@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ObjectiveData" load_steps=7 format=3 uid="uid://dl2dhjw0r3xot"]
+
+[ext_resource type="Script" path="res://Interface/Inventory/SlotData.gd" id="1_62iao"]
+[ext_resource type="Resource" uid="uid://c32xig504njs8" path="res://Objects/Plants/Crops/Potos/poto_consumable.tres" id="2_5arqd"]
+[ext_resource type="Script" path="res://Player/Objectives/ObjectiveData.gd" id="2_gqbbe"]
+[ext_resource type="Resource" uid="uid://qjhad5dtcdm4" path="res://Characters/Teddy/teddy_npc_data.tres" id="3_58rdr"]
+[ext_resource type="Script" path="res://Player/Objectives/ObjectiveStepData.gd" id="4_vxt61"]
+
+[sub_resource type="Resource" id="Resource_pn4mo"]
+script = ExtResource("1_62iao")
+item_data = ExtResource("2_5arqd")
+quantity = 4
+
+[resource]
+script = ExtResource("2_gqbbe")
+title = "Give Teddy a poto"
+description = "Grow or acquire a poto and give it to the mayor"
+turn_in_npc = ExtResource("3_58rdr")
+due_date = 12
+due_season = ""
+due_time = 21.0
+required_items = Array[ExtResource("1_62iao")]([SubResource("Resource_pn4mo")])
+steps = Array[ExtResource("4_vxt61")]([])
+complete = false
+reward_items = Array[ExtResource("1_62iao")]([])
+reward_skill = ""
+reward_xp = 0.0
+reward_opinion = 0.0

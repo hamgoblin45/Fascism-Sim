@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ObjectiveData" load_steps=8 format=3 uid="uid://b3jguip20iuwv"]
+
+[ext_resource type="Script" uid="uid://4u3sk6ok7l42" path="res://Interface/Inventory/SlotData.gd" id="1_8brng"]
+[ext_resource type="Script" uid="uid://cxuxs2o2hni3" path="res://Player/Objectives/ObjectiveData.gd" id="2_ia5v0"]
+[ext_resource type="Script" uid="uid://cmhdrt4l6bqgi" path="res://Player/Objectives/ObjectiveStepData.gd" id="3_34d7x"]
+
+[sub_resource type="Resource" id="Resource_c1ikk"]
+script = ExtResource("3_34d7x")
+step_text = "Head north to your new property"
+
+[sub_resource type="Resource" id="Resource_i0ogs"]
+script = ExtResource("3_34d7x")
+step_text = "Open the Welcome Chest"
+
+[sub_resource type="Resource" id="Resource_jxuqw"]
+script = ExtResource("3_34d7x")
+step_text = "Clean up your property"
+req_actions = Array[Dictionary]([{
+"current": 0,
+"repaired": 0,
+"required": 3,
+"text": "Spots repaired"
+}, {
+"current": 0,
+"required": 3,
+"text": "Spots dusted"
+}])
+
+[sub_resource type="Resource" id="Resource_3qvct"]
+script = ExtResource("3_34d7x")
+step_text = "Go to bed"
+metadata/_custom_type_script = "uid://cmhdrt4l6bqgi"
+
+[resource]
+script = ExtResource("2_ia5v0")
+title = "Home Sweet Home"
+description = "Check out your new property"
+steps = Array[ExtResource("3_34d7x")]([SubResource("Resource_c1ikk"), SubResource("Resource_i0ogs"), SubResource("Resource_jxuqw"), SubResource("Resource_3qvct")])
