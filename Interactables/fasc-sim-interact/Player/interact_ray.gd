@@ -16,8 +16,8 @@ signal looking_at_snappable(Area3D)
 signal stop_looking_at_snappable
 
 
-func _ready() -> void:
-	EventBus.look_at_item.connect()
+#func _ready() -> void:
+	#EventBus.look_at_item.connect()
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if not coll or not GameState.ui_open:
@@ -40,43 +40,26 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("right_click"):
 		EventBus.item_interacted.emit(coll.id, "r_click", false)
 
-func looking_at_interactable():
-	if not GameState.ui_open:
-		
-		## -- Looking at interactables
-		#print("LOOKING @ %s" % coll)
-		if coll.is_in_group("interactable"):
-			if coll.is_in_group("doors") and coll.get_parent().data.locked:
-				display_interact.emit("LOCKED", coll.get_parent().locked_icon, coll.click_interact_text, coll.click_interact_icon, coll.r_click_interact_text, coll.r_click_interact_icon)
-			else:
-				display_interact.emit(coll.interact_text, coll.interact_icon, coll.click_interact_text, coll.click_interact_icon, coll.r_click_interact_text, coll.r_click_interact_icon)
-		
-		## -- Shop item details
-		if coll.is_in_group("purchaseable"):
-			coll.get_parent().show_details()
-			
-		
-		## -- Looking at garden
-		
-		if coll.get_parent().is_in_group("garden"):
-			var plot = coll.get_parent()
-			if plot.garden_plot_data.plant_data:
-				#if not plot.plant_info_panel.visible:
-				plot.plant_info_panel.set_info_panel(plot.garden_plot_data)
-		
-		## - Interactable Highlight Shader
-		if coll.get_parent() is MeshInstance3D:
-			coll.get_parent().material_override = OBJECT_OUTLINE_MATERIAL
-		if coll.get_parent() is StaticBody3D or RigidBody3D or CharacterBody3D:
-			for child in coll.get_parent().get_children():
-				if child is MeshInstance3D:
-					child.material_overlay = OBJECT_OUTLINE_MATERIAL
-				elif child.get_children().size() > 0:
-					for _child in child.get_children():
-						if _child is MeshInstance3D:
-							_child.material_overlay = OBJECT_OUTLINE_MATERIAL
-	else:
-		stop_looking_at_interactable()
+#func looking_at_interactable():
+	#if not GameState.ui_open:
+		#
+		### -- Looking at interactables
+		##print("LOOKING @ %s" % coll)
+		#if coll is Interactable:
+		#
+		### - Interactable Highlight Shader
+		##if coll.get_parent() is MeshInstance3D:
+			##coll.get_parent().material_override = OBJECT_OUTLINE_MATERIAL
+		##if coll.get_parent() is StaticBody3D or RigidBody3D or CharacterBody3D:
+			##for child in coll.get_parent().get_children():
+				##if child is MeshInstance3D:
+					##child.material_overlay = OBJECT_OUTLINE_MATERIAL
+				##elif child.get_children().size() > 0:
+					##for _child in child.get_children():
+						##if _child is MeshInstance3D:
+							##_child.material_overlay = OBJECT_OUTLINE_MATERIAL
+	#else:
+		#stop_looking_at_interactable()
 
 func stop_looking_at_interactable():
 	if is_instance_valid(coll):
@@ -91,21 +74,9 @@ func stop_looking_at_interactable():
 						for _child in child.get_children():
 							if _child is MeshInstance3D:
 								_child.material_overlay = null
-		#coll.stop_looking_at()
-	
-		if coll.is_in_group("purchaseable"):
-			coll.get_parent().hide_details()
 		
 		coll = null
 	hide_interact.emit()
-	stop_looking_at_snappable.emit()
-	
-
-func pick_up_placeable():
-	Player.get_item(interact_item, 1)
-	interact_item = null
-	interact_scene.queue_free()
-	interact_scene = null
 
 func _on_interact_check_timer_timeout() -> void:
 	if self.is_colliding():
@@ -113,14 +84,11 @@ func _on_interact_check_timer_timeout() -> void:
 			stop_looking_at_interactable()
 		coll = self.get_collider()
 		#print("Colliding with " % coll)
-		if coll and coll.is_in_group("interactable"):
+		#if coll and coll is Interactable:
 			#print("Colliding with interactable %s " % coll)
 			#coll.looking_at()
-			looking_at_interactable()
+			#looking_at_interactable()
 			
-			
-		if coll and coll.is_in_group("snappable"):
-			looking_at_snappable.emit(coll)
 	else:
 		
 		# Picking up an item crashed here because it queues_free before it stops colliding. 

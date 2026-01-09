@@ -83,7 +83,7 @@ class_name PlayerCharacter
 
 
 ## Member variables
-var speed : float = 0.0
+var speed : float = 7.0
 var current_speed : float = 0.0
 ## States: normal, crouching, sprinting
 var state : String = "normal"
@@ -210,7 +210,7 @@ func handle_holding_object():
 	#if Input.is_action_just_pressed("click") and held_object:
 		#drop_held_object()
 	
-	if Input.is_action_just_pressed("right_click") and held_object:
+	if Input.is_action_just_pressed("r_click") and held_object:
 		throw_held_object()
 	
 	if Input.is_action_just_released("click") and held_object:
@@ -232,9 +232,7 @@ func handle_holding_object():
 #### ---- FPS CONTROLLER ADDON CODE START -------- ####
 #######################################################
 func set_controls():
-	#It is safe to comment this line if your game doesn't start with the mouse captured
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	# If the controller is rotated in a certain direction for game design purposes, redirect this rotation into the head.
 	HEAD.rotation.y = rotation.y

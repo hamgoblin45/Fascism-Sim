@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw6voe3e73him"]
+
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node3D"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_ig7tw")]
+
+[node name="Ground" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(50, 0.1, 50)
