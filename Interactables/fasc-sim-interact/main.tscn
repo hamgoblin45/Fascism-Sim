@@ -1,11 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw6voe3e73him"]
+[gd_scene load_steps=4 format=3 uid="uid://cw6voe3e73him"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d3jlrqbf4beyk" path="res://Items/interactable.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://j22i50g5odp8" path="res://Items/grabbable.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node3D"]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ig7tw")]
+base_speed = 7.0
+sprint_speed = 12.0
+crouch_speed = 2.5
+acceleration = 5.0
+jump_velocity = 2.5
+mouse_sensitivity = 0.1
+invert_mouse_y = false
+immobile = false
+JUMP = "jump"
+LEFT = "move_left"
+RIGHT = "move_right"
+FORWARD = "move_forward"
+BACKWARD = "move_back"
+PAUSE = "pause"
+CROUCH = "crouch"
+SPRINT = "sprint"
+jumping_enabled = true
+in_air_momentum = true
+motion_smoothing = true
+sprint_enabled = true
+crouch_enabled = true
+crouch_mode = 0
+sprint_mode = 0
+dynamic_fov = true
+continuous_jumping = true
+view_bobbing = true
+jump_animation = true
+pausing_enabled = true
+gravity_enabled = true
+throw_force = 1.5
+follow_speed = 10.0
+follow_dist = 2.5
+max_dist_from_cam = 5.0
 
 [node name="Ground" type="CSGBox3D" parent="."]
 use_collision = true
@@ -14,5 +48,10 @@ size = Vector3(50, 0.1, 50)
 [node name="Interactable" parent="." instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23266721, 1.0531642, -5.243383)
 id = "INTERACT"
+
+[node name="Grabbable" parent="." instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1830163, 0.70874155, -4.4590507)
+collision_layer = 1
+collision_mask = 1
 
 [editable path="Interactable"]
