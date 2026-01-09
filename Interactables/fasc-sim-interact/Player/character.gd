@@ -181,7 +181,7 @@ func _physics_process(delta):
 		### --- FPS ADDON CODE END --- ###
 
 		
-		handle_holding_object()
+		_handle_holding_object()
 
 
 func _set_held_object(body):
@@ -208,7 +208,7 @@ func _throw_held_object():
 		obj.apply_central_impulse(-CAMERA.global_transform.basis.z * throw_force * 10)
 		#EventBus.item_dropped.emit(obj, throw_force * 10)
 
-func handle_holding_object():
+func _handle_holding_object():
 	#if Input.is_action_just_pressed("click") and held_object:
 		#drop_held_object()
 	
