@@ -21,10 +21,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("click"):
 		EventBus.item_interacted.emit(coll.id, "click", false)
 	
-	if Input.is_action_just_pressed("right_click"):
+	if Input.is_action_just_pressed("r_click"):
 		EventBus.item_interacted.emit(coll.id, "r_click", true)
 	
-	if Input.is_action_just_released("right_click"):
+	if Input.is_action_just_released("r_click"):
 		EventBus.item_interacted.emit(coll.id, "r_click", false)
 
 func _physics_process(_delta: float) -> void:

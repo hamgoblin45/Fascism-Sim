@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cw6voe3e73him"]
+[gd_scene load_steps=3 format=3 uid="uid://cw6voe3e73him"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://d3jlrqbf4beyk" path="res://Items/interactable.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node3D"]
 
@@ -9,3 +10,9 @@
 [node name="Ground" type="CSGBox3D" parent="."]
 use_collision = true
 size = Vector3(50, 0.1, 50)
+
+[node name="Interactable" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23266721, 1.0531642, -5.243383)
+id = "INTERACT"
+
+[editable path="Interactable"]
