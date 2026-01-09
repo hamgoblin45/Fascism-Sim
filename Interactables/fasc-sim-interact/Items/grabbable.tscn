@@ -15,12 +15,13 @@ height = 0.5
 size = Vector3(0.33496094, 0.44506836, 0.4885254)
 
 [node name="Grabbable" type="RigidBody3D"]
-collision_layer = 67
-collision_mask = 67
+collision_layer = 5
+collision_mask = 5
 lock_rotation = true
 script = ExtResource("1_2uhas")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_44aib")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

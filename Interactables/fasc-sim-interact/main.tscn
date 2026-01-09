@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw6voe3e73him"]
+[gd_scene load_steps=9 format=3 uid="uid://cw6voe3e73him"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d3jlrqbf4beyk" path="res://Items/interactable.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://j22i50g5odp8" path="res://Items/grabbable.tscn" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://b1fxygtu6jhbr" path="res://Audio/switch_on.mp3" id="4_272bh"]
+[ext_resource type="Script" uid="uid://bfieu26yk2f26" path="res://Items/lamp.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://btcya64wkus8y" path="res://Items/Meshes/lamp.gltf" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://66oowgb5nudm" path="res://Items/Meshes/axe.gltf" id="6_7mycd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
+size = Vector3(0.5917969, 1.4990234, 0.54785156)
 
 [node name="Main" type="Node3D"]
 
@@ -45,13 +52,37 @@ max_dist_from_cam = 5.0
 use_collision = true
 size = Vector3(50, 0.1, 50)
 
-[node name="Interactable" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23266721, 1.0531642, -5.243383)
-id = "INTERACT"
+[node name="Lamp" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1485384, 0, -2.908421)
+script = ExtResource("4_lquwl")
 
-[node name="Grabbable" parent="." instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1830163, 0.70874155, -4.4590507)
+[node name="LampMesh" parent="Lamp" instance=ExtResource("5_7mycd")]
+
+[node name="LampAudio" type="AudioStreamPlayer3D" parent="Lamp"]
+stream = ExtResource("4_272bh")
+
+[node name="Interactable" parent="Lamp" instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.075879, 0)
+id = "lamp"
+interact_text = "Click to lamp"
+
+[node name="CollisionShape3D" parent="Lamp/Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31835938, 0)
+shape = SubResource("BoxShape3D_7mycd")
+
+[node name="LampLight" type="OmniLight3D" parent="Lamp"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4876975, 0)
+visible = false
+
+[node name="Axe" parent="." instance=ExtResource("3_h2yge")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0742135, 0, -3.5710645)
 collision_layer = 1
-collision_mask = 1
 
-[editable path="Interactable"]
+[node name="axe" parent="Axe" instance=ExtResource("6_7mycd")]
+
+[editable path="Lamp/Interactable"]
+[editable path="Axe"]
+[editable path="Axe/Interactable"]
