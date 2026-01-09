@@ -12,6 +12,7 @@ config_version=5
 
 config/name="FascSim-Interact"
 config/tags=PackedStringArray("fasc")
+run/main_scene="uid://cw6voe3e73him"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

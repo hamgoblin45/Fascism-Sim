@@ -394,18 +394,10 @@ libraries = {
 [node name="InteractRay" type="RayCast3D" parent="Head"]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -3)
-collision_mask = 64
+collision_mask = 6
 hit_from_inside = true
 collide_with_areas = true
-collide_with_bodies = false
 script = ExtResource("2_6j38j")
-
-[node name="InteractCheckTimer" type="Timer" parent="Head/InteractRay"]
-wait_time = 0.1
-autostart = true
-
-[node name="PlaceablePoint" type="Node3D" parent="Head/InteractRay"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.82)
 
 [node name="DropPoint" type="Node3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.518397, -1.07424)
@@ -423,4 +415,3 @@ unique_name_in_owner = true
 target_position = Vector3(0, -0.1, 0)
 
 [connection signal="animation_finished" from="Head/HoldItemPoint/ConsumeAnim" to="." method="_on_consume_anim_animation_finished"]
-[connection signal="timeout" from="Head/InteractRay/InteractCheckTimer" to="Head/InteractRay" method="_on_interact_check_timer_timeout"]
