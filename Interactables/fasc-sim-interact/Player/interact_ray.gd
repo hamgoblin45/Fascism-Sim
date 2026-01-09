@@ -1,14 +1,12 @@
 extends RayCast3D
 
 var coll
-const OBJECT_OUTLINE_MATERIAL = preload("res://Shaders/object_outline_material.tres")
+#const OBJECT_OUTLINE_MATERIAL = preload("res://Shaders/object_outline_material.tres")
 
 @onready var interact_check_timer: Timer = $InteractCheckTimer
 
 var interacting: bool
 
-var interact_item: ItemData
-var interact_scene
 
 signal display_interact(String, Texture2D)
 #signal display_alt_interact(String)
@@ -18,31 +16,32 @@ signal looking_at_snappable(Area3D)
 signal stop_looking_at_snappable
 
 
+func _ready() -> void:
+	EventBus.look_at_item.connect()
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if not Global.ui_open:
-		if Input.is_action_just_pressed("interact"):
-			if coll and coll is Interactable:
-				coll.interact()
-		if Input.is_action_just_pressed("click"):
-			if coll and coll is Interactable:
-				coll.click_interact()
-		if Input.is_action_just_pressed("right_click"):
-			if coll and coll is Interactable:
-				coll.right_click_interact()
-				if coll.get_parent() is not GardenPlot:
-					if "item_data" in coll.get_parent() and coll.get_parent().item_data and coll.get_parent().item_data.placeable:
-						print("Right-click detected on a placeable")
-						interact_item = coll.get_parent().item_data
-						interact_scene = coll.get_parent()
-						Global.ui.start_picking_up_placeable(coll.get_parent().item_data)
-						Global.ui.interact_progress_complete.connect(pick_up_placeable)
-		if Input.is_action_just_released("right_click"):
-			if interact_item:
-				interact_item = null
+	if not coll or not GameState.ui_open:
+		return
+	if Input.is_action_just_pressed("interact"):
+		if coll and coll is Interactable:
+			coll.interact()
+	if Input.is_action_just_pressed("click"):
+		if coll and coll is Interactable:
+			#coll.click_interact()
+			EventBus.item_interacted.emit(coll.id, "click", true)
+	if Input.is_action_just_released("click"):
+		if coll and coll is Interactable:
+			#coll.click_interact()
+			EventBus.item_interacted.emit(coll.id, "click", true)
+	if Input.is_action_just_pressed("right_click"):
+		if coll and coll is Interactable:
+			EventBus.item_interacted.emit(coll.id, "r_click", true)
+			#coll.right_click_interact()
+	if Input.is_action_just_released("right_click"):
+		EventBus.item_interacted.emit(coll.id, "r_click", false)
 
 func looking_at_interactable():
-	if not Global.ui_open:
+	if not GameState.ui_open:
 		
 		## -- Looking at interactables
 		#print("LOOKING @ %s" % coll)

@@ -10,18 +10,18 @@ class_name PlayerCharacter
 ## The settings for the character's movement and feel.
 @export_category("Character")
 ## The speed that the character moves at without crouching or sprinting.
-#@export var base_speed : float = 7
+@export var base_speed : float = 7
 ### The speed that the character moves at when sprinting.
-#@export var sprint_speed : float = 12.0
+@export var sprint_speed : float = 12.0
 ### The speed that the character moves at when crouching.
-#@export var crouch_speed : float = 2.5
+@export var crouch_speed : float = 2.5
 #
 ### How fast the character speeds up and slows down when Motion Smoothing is on.
-#@export var acceleration : float = 5.0
+@export var acceleration : float = 5.0
 ### How high the player jumps.
-#@export var jump_velocity : float = 2.5
+@export var jump_velocity : float = 2.5
 ### How far the player turns when the mouse is moved.
-#@export var mouse_sensitivity : float = 0.1
+@export var mouse_sensitivity : float = 0.1
 ## Invert the Y input for mouse and joystick
 @export var invert_mouse_y : bool = false # Possibly add an invert mouse X in the future
 ## Wether the player can use movement inputs. Does not stop outside forces or jumping. See Jumping Enabled.
@@ -83,7 +83,7 @@ class_name PlayerCharacter
 
 
 ## Member variables
-var speed : float = Settings.player_base_speed
+var speed : float = 0.0
 var current_speed : float = 0.0
 ## States: normal, crouching, sprinting
 var state : String = "normal"
@@ -96,13 +96,8 @@ var RETICLE : Control
 ## Get the gravity from the project settings to be synced with RigidBody nodes
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") # Don't set this as a const, see the gravity section in _physics_process
 
-## Stores mouse input for rotating the camera in the phyhsics process
+## Stores mouse input for rotating the camera in the physics process
 var mouseInput : Vector2 = Vector2(0,0)
-
-const LANTERN = preload("res://Objects/Items/Equipment/lantern/lantern.tscn")
-@onready var lantern: Node3D = $Head/Lantern
-
-const PLACEABLE_PREVIEW = preload("res://Objects/Items/Placeables/placeable_preview.tscn")
 
 @onready var interact_ray: RayCast3D = $Head/InteractRay
 
@@ -117,59 +112,18 @@ var held: bool
 var held_object: RigidBody3D
 var original_held_parent
 
-@onready var tool_point: Node3D = $Head/ToolPoint
-@onready var placeable_point: Node3D = $Head/InteractRay/PlaceablePoint
-@onready var hold_item_point: Node3D = %HoldItemPoint
-@onready var consume_anim: AnimationPlayer = $Head/HoldItemPoint/ConsumeAnim
-@onready var consume_audio: AudioStreamPlayer = $Head/HoldItemPoint/ConsumeAudio
-
 @onready var drop_point: Node3D = $Head/DropPoint
 @onready var look_at_node: Node3D = $LookAtNode
 
-@onready var footsteps_audio: SAudioStreamPlayer3D = $FootstepsAudio
-
-var looking_at_something: bool = false
+#@onready var footsteps_audio: SAudioStreamPlayer3D = $FootstepsAudio
+var looking_at = null
 
 
 func _ready():
-	Global.player = self
+	GameState.player = self
 	set_controls()
-	connect_signals()
-	if Player.equipped_item:
-		equip_item(Player.equipped_item)
-
-## Mainly to communicate with UI, needs to wait for the main_viewport to set its Global reference var to itself before connecting
-func connect_signals():
-	await  get_tree().create_timer(0.05).timeout
-	Global.main_viewport.inventory_interface.selected_item.connect(equip_item)
-	Global.main_viewport.inventory_interface.unequip_item.connect(unequip_item)
-
-func _process(delta):
-	### --- FPS ADDON CODE START --- ###
-	Global.main_viewport.ui.debug_panel.add_property("FPS", Performance.get_monitor(Performance.TIME_FPS), 0)
-	var status : String = state
-	if !is_on_floor():
-		status += " in the air"
-	Global.main_viewport.ui.debug_panel.add_property("State", status, 4)
-	### --- FPS ADDON CODE END --- ###
-	
-	if is_instance_valid(Player.looking_at):
-		##look_at_target(looking_at)
-		if Player.looking_at.head:
-			var target_pos = Player.looking_at.head.global_position
-			target_pos.y -= 0.8
-			look_at_node.look_at(target_pos)
-		else:
-			look_at_node.look_at(Player.looking_at.global_position)
-		HEAD.global_rotation = lerp(HEAD.global_rotation, look_at_node.global_rotation, 0.8 * delta)
-		CAMERA.fov = lerpf(CAMERA.fov, 45, 0.5 * delta)
-	elif CAMERA.fov != 75:#Set this to be whatever the FOV setting is
-		CAMERA.fov = lerpf(CAMERA.fov, 75, 0.8 * delta)
 
 func _unhandled_input(event : InputEvent):
-	if Player.has_lantern and Input.is_action_just_pressed("light"):
-		lantern.visible = not lantern.visible
-		
 	### --- FPS ADDON CODE START --- ###
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		mouseInput.x += event.relative.x
@@ -183,25 +137,14 @@ func _unhandled_input(event : InputEvent):
 	### --- FPS ADDON CODE END --- ###
 
 func _physics_process(delta):
-	if not get_tree().paused and not Global.in_dialogue:
+	if not get_tree().paused:
 	
 	### --- FPS ADDON CODE START --- ###
 	
 	# Big thanks to github.com/LorenzoAncora for the concept of the improved debug values
 		current_speed = Vector3.ZERO.distance_to(get_real_velocity())
-		Global.main_viewport.ui.debug_panel.add_property("Speed", snappedf(current_speed, 0.001), 1)
-		Global.main_viewport.ui.debug_panel.add_property("Target speed", speed, 2)
-		var cv : Vector3 = get_real_velocity()
-		var vd : Array[float] = [
-			snappedf(cv.x, 0.001),
-			snappedf(cv.y, 0.001),
-			snappedf(cv.z, 0.001)
-		]
-		var readable_velocity : String = "X: " + str(vd[0]) + " Y: " + str(vd[1]) + " Z: " + str(vd[2])
-		Global.main_viewport.ui.debug_panel.add_property("Velocity", readable_velocity, 3)
 		
 		# Gravity
-		#gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # If the gravity changes during your game, uncomment this code
 		if not is_on_floor() and gravity and gravity_enabled:
 			velocity.y -= gravity * delta
 		
@@ -238,55 +181,10 @@ func _physics_process(delta):
 
 		
 		handle_holding_object()
-		
-		if Input.is_action_just_pressed("click") and Player.equipped_item:
-			if Player.equipped_item is ConsumableData and not consume_anim.is_playing():
-				consume_anim.play("consume")
-		if Input.is_action_just_released("click") or not Player.equipped_item and consume_anim.is_playing():
-			consume_anim.stop()
-		
 
-## Clears equipped item, then instances item based on its data, and finally sets a Global var for reference from other scripts
-func equip_item(item_data: ItemData):
-	unequip_item()
-	if Player.equipped_item == item_data:
-		Player.equipped_item = null
-		print("Selected equipped item again")
-		return
-		
-	if held_object:
-		drop_held_object()
-	
-	var instance
-	if item_data.equippable:
-		print("Equipping %s" % item_data.name)
-		instance = item_data.scene.instantiate()
-		tool_point.add_child(instance)
-		Player.equipped_scene = instance
-		
-	#if item_data.mesh:
-		#instance = item_data.mesh.instantiate()
-		#consumable_point.add_child(instance)
-	if Global.current_map_name == "player_farm" or Global.current_map_name == "player_house" or Global.current_map_name == "test_map":
-		if item_data.placeable:
-			var placeable = PLACEABLE_PREVIEW.instantiate()
-			placeable_point.add_child(placeable)
-
-	Player.equipped_item = item_data
-
-## Clears physical equipped item node from in front of player
-func unequip_item():
-	Player.equipped_scene = null
-	for child in tool_point.get_children():
-		child.queue_free()
-	for child in placeable_point.get_children():
-		child.queue_free()
-	for child in hold_item_point.get_children():
-		if child is not AnimationPlayer and child is not AudioStreamPlayer:
-			child.queue_free()
 
 func set_held_object(body):
-	if body is RigidBody3D and not Player.equipped_item:
+	if body is RigidBody3D:
 		print("Setting held object on character.gd")
 		held_object = body
 		original_held_parent = body.get_parent()
@@ -296,7 +194,7 @@ func drop_held_object():
 	print("Dropping held item")
 	#held_object.reparent(original_held_parent)
 	if is_instance_valid(held_object):
-		held_object.reparent(Global.current_map)
+		EventBus.item_dropped.emit(held_object, 0.0) # No additional force applied
 		original_held_parent = null
 		held_object = null
 
@@ -306,6 +204,7 @@ func throw_held_object():
 	drop_held_object()
 	if is_instance_valid(obj):
 		obj.apply_central_impulse(-CAMERA.global_transform.basis.z * throw_force * 10)
+		#EventBus.item_dropped.emit(obj, throw_force * 10)
 
 func handle_holding_object():
 	#if Input.is_action_just_pressed("click") and held_object:
@@ -393,12 +292,12 @@ func handle_jumping():
 			if Input.is_action_pressed(JUMP) and is_on_floor() and !low_ceiling:
 				if jump_animation:
 					JUMP_ANIMATION.play("jump", 0.25)
-				velocity.y += Settings.jump_velocity # Adding instead of setting so jumping on slopes works properly
+				velocity.y += jump_velocity # Adding instead of setting so jumping on slopes works properly
 		else:
 			if Input.is_action_just_pressed(JUMP) and is_on_floor() and !low_ceiling:
 				if jump_animation:
 					JUMP_ANIMATION.play("jump", 0.25)
-				velocity.y += Settings.jump_velocity
+				velocity.y += jump_velocity
 
 func handle_movement(delta, input_dir):
 	var direction = input_dir.rotated(-HEAD.rotation.y)
@@ -408,34 +307,25 @@ func handle_movement(delta, input_dir):
 	if in_air_momentum:
 		if is_on_floor():
 			if motion_smoothing:
-				velocity.x = lerp(velocity.x, direction.x * speed, Settings.player_acceleration * delta)
-				velocity.z = lerp(velocity.z, direction.z * speed, Settings.player_acceleration * delta)
+				velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
+				velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 			else:
 				velocity.x = direction.x * speed
 				velocity.z = direction.z * speed
 	else:
 		if motion_smoothing:
-			velocity.x = lerp(velocity.x, direction.x * speed, Settings.player_acceleration * delta)
-			velocity.z = lerp(velocity.z, direction.z * speed, Settings.player_acceleration * delta)
+			velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
+			velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 		else:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
 
 func handle_head_rotation():
-	HEAD.rotation_degrees.y -= mouseInput.x * Settings.mouse_sensitivity
+	HEAD.rotation_degrees.y -= mouseInput.x * mouse_sensitivity
 	if invert_mouse_y:
-		HEAD.rotation_degrees.x -= mouseInput.y * Settings.mouse_sensitivity * -1.0
+		HEAD.rotation_degrees.x -= mouseInput.y * mouse_sensitivity * -1.0
 	else:
-		HEAD.rotation_degrees.x -= mouseInput.y * Settings.mouse_sensitivity
-	
-	## Uncomment for controller support
-	#var controller_view_rotation = Input.get_vector(LOOK_DOWN, LOOK_UP, LOOK_RIGHT, LOOK_LEFT) * controller_sensitivity # These are inverted because of the nature of 3D rotation.
-	#HEAD.rotation.x += controller_view_rotation.x
-	#if invert_mouse_y:
-		#HEAD.rotation.y += controller_view_rotation.y * -1.0
-	#else:
-		#HEAD.rotation.y += controller_view_rotation.y
-	
+		HEAD.rotation_degrees.x -= mouseInput.y * mouse_sensitivity
 	
 	mouseInput = Vector2(0,0)
 	HEAD.rotation.x = clamp(HEAD.rotation.x, deg_to_rad(-90), deg_to_rad(90))
@@ -490,13 +380,13 @@ func enter_normal_state():
 	if prev_state == "crouching":
 		CROUCH_ANIMATION.play_backwards("crouch")
 	state = "normal"
-	speed = Settings.player_base_speed
+	speed = base_speed
 
 func enter_crouch_state():
 	#print("entering crouch state")
 	#var prev_state = state
 	state = "crouching"
-	speed = Settings.player_crouch_speed
+	speed = crouch_speed
 	CROUCH_ANIMATION.play("crouch")
 
 func enter_sprint_state():
@@ -505,7 +395,7 @@ func enter_sprint_state():
 	if prev_state == "crouching":
 		CROUCH_ANIMATION.play_backwards("crouch")
 	state = "sprinting"
-	speed = Settings.player_sprint_speed
+	speed = sprint_speed
 
 func update_camera_fov():
 	if state == "sprinting":
@@ -528,7 +418,7 @@ func headbob_animation(moving):
 			was_playing = true
 		
 		HEADBOB_ANIMATION.play(use_headbob_animation, 0.25)
-		HEADBOB_ANIMATION.speed_scale = (current_speed / Settings.player_base_speed) * 2.25
+		HEADBOB_ANIMATION.speed_scale = (current_speed / base_speed) * 2.25
 		if !was_playing:
 			HEADBOB_ANIMATION.seek(float(randi() % 2)) # Randomize the initial headbob direction
 			# Let me explain that piece of code because it looks like it does the opposite of what it actually does.
@@ -543,11 +433,3 @@ func headbob_animation(moving):
 
 #### ---- FPS CONTROLLER ADDON CODE END -------- ####
 #######################################################
-
-
-
-
-
-## Uses item after consume anim finishes and then removes the physical instance of it
-func _on_consume_anim_animation_finished(anim_name: StringName) -> void:
-		Player.use_item(Player.equipped_item)

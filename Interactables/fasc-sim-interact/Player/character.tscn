@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene load_steps=20 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://cvyrqfy6x3x1l" path="res://Player/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://bcllo70t6g0an" path="res://Player/interact_ray.gd" id="2_6j38j"]
-[ext_resource type="Script" uid="uid://dwrm0kgltshre" path="res://Player/head.gd" id="2_nixxv"]
 [ext_resource type="Script" uid="uid://d04xmgme67dv2" path="res://Player/EditorModule.gd" id="3_v3ckk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
@@ -329,13 +328,13 @@ collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_0t4e8")
 default_reticle = "res://Player/reticles/reticle_0.tscn"
-drop_below_player = true
 HEAD = NodePath("Head")
 CAMERA = NodePath("Head/Camera")
 HEADBOB_ANIMATION = NodePath("Head/HeadbobAnimation")
 JUMP_ANIMATION = NodePath("Head/JumpAnimation")
 CROUCH_ANIMATION = NodePath("CrouchAnimation")
 COLLISION_MESH = NodePath("Collision")
+drop_below_player = true
 ground_ray = NodePath("GroundRay")
 
 [node name="LookAtNode" type="Node3D" parent="."]
@@ -361,7 +360,6 @@ libraries = {
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-script = ExtResource("2_nixxv")
 
 [node name="Camera" type="Camera3D" parent="Head"]
 process_mode = 1
