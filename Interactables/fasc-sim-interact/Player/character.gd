@@ -122,6 +122,7 @@ var looking_at = null
 func _ready():
 	GameState.player = self
 	set_controls()
+	EventBus.item_grabbed.connect(_set_held_object)
 
 func _unhandled_input(event : InputEvent):
 	### --- FPS ADDON CODE START --- ###
@@ -183,25 +184,26 @@ func _physics_process(delta):
 		handle_holding_object()
 
 
-func set_held_object(body):
+func _set_held_object(body):
 	if body is RigidBody3D:
 		print("Setting held object on character.gd")
 		held_object = body
 		original_held_parent = body.get_parent()
 		held_object.reparent(HEAD)
 
-func drop_held_object():
+func _drop_held_object():
 	print("Dropping held item")
 	#held_object.reparent(original_held_parent)
 	if is_instance_valid(held_object):
 		EventBus.item_dropped.emit(held_object, 0.0) # No additional force applied
+		held_object.reparent(held_object.original_parent)
 		original_held_parent = null
 		held_object = null
 
-func throw_held_object():
+func _throw_held_object():
 	print("throwing held item")
 	var obj = held_object
-	drop_held_object()
+	_drop_held_object()
 	if is_instance_valid(obj):
 		obj.apply_central_impulse(-CAMERA.global_transform.basis.z * throw_force * 10)
 		#EventBus.item_dropped.emit(obj, throw_force * 10)
@@ -211,10 +213,10 @@ func handle_holding_object():
 		#drop_held_object()
 	
 	if Input.is_action_just_pressed("r_click") and held_object:
-		throw_held_object()
+		_throw_held_object()
 	
 	if Input.is_action_just_released("click") and held_object:
-		drop_held_object()
+		_drop_held_object()
 	
 	if held_object and is_instance_valid(held_object):
 		var target_pos = CAMERA.global_transform.origin + (CAMERA.global_basis * Vector3(0, 0, -follow_dist))
@@ -222,11 +224,11 @@ func handle_holding_object():
 		held_object.linear_velocity = (target_pos - object_pos) * follow_speed
 		
 		if held_object.global_position.distance_to(CAMERA.global_position) > max_dist_from_cam:
-			drop_held_object()
+			_drop_held_object()
 		
 		if drop_below_player && ground_ray.is_colliding():
 			if ground_ray.get_collider() == held_object:
-				drop_held_object()
+				_drop_held_object()
 
 
 #### ---- FPS CONTROLLER ADDON CODE START -------- ####
