@@ -1,16 +1,22 @@
-[gd_scene load_steps=17 format=4 uid="uid://cw6voe3e73him"]
+[gd_scene load_steps=21 format=4 uid="uid://cw6voe3e73him"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d3jlrqbf4beyk" path="res://Items/interactable.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://j22i50g5odp8" path="res://Items/grabbable.tscn" id="3_h2yge"]
 [ext_resource type="Material" uid="uid://c3rhvr6bla26v" path="res://Shaders/interact_outline_shader_material.tres" id="4_5vw27"]
 [ext_resource type="AudioStream" uid="uid://b1fxygtu6jhbr" path="res://Audio/switch_on.mp3" id="4_272bh"]
 [ext_resource type="Script" uid="uid://bfieu26yk2f26" path="res://Items/lamp.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://7tyb052ddhfs" path="res://Items/Meshes/lamp.gltf" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://0gvfijpq5qdy" path="res://Items/grabbable.gd" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://baot8cx26xrnf" path="res://Items/Meshes/coffee_cup.gltf" id="7_272bh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
 size = Vector3(0.5917969, 1.4990234, 0.54785156)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
+size = Vector3(0.14453125, 1.9261475, 0.18554688)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4c57u"]
+size = Vector3(0.14453125, 1.9261475, 0.18554688)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
 blend_mode = 4
@@ -88,6 +94,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6oqe8")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2uhas"]
+size = Vector3(0.33496094, 0.44506836, 0.4885254)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
+size = Vector3(0.24438477, 0.45837402, 0.25219727)
+
 [node name="Main" type="Node3D"]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ig7tw")]
@@ -153,10 +165,22 @@ visible = false
 
 [node name="lamp" parent="Lamp" instance=ExtResource("5_7mycd")]
 
-[node name="Axe" parent="." instance=ExtResource("3_h2yge")]
+[node name="Axe" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0742135, 0, -3.5710645)
-collision_layer = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0742135, 1.1867695, -3.5710645)
+lock_rotation = true
+script = ExtResource("6_kek77")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Axe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7923031, 0)
+shape = SubResource("BoxShape3D_kek77")
+
+[node name="Interactable" parent="Axe" instance=ExtResource("2_0xm2m")]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" parent="Axe/Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74053955, 0)
+shape = SubResource("BoxShape3D_4c57u")
 
 [node name="axe" type="Node3D" parent="Axe"]
 
@@ -171,11 +195,21 @@ transform = Transform3D(0.08543908, 0, 0, 0, 0.31497633, 0, 0, 0, 0.44266626, 0,
 mesh = SubResource("ArrayMesh_visxy")
 skeleton = NodePath("")
 
-[node name="Cup" parent="." instance=ExtResource("3_h2yge")]
+[node name="Cup" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4491918, 0.9, -4.6682873)
+lock_rotation = true
+script = ExtResource("6_kek77")
 
-[node name="Interactable" parent="Cup" index="2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22616684, 0)
+shape = SubResource("BoxShape3D_2uhas")
+
+[node name="Interactable" parent="Cup" instance=ExtResource("2_0xm2m")]
 id = "cup"
+
+[node name="CollisionShape3D" parent="Cup/Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22576904, 0)
+shape = SubResource("BoxShape3D_5vw27")
 
 [node name="coffee_cup" parent="Cup" instance=ExtResource("7_272bh")]
 
@@ -183,8 +217,6 @@ id = "cup"
 material_overlay = ExtResource("4_5vw27")
 
 [editable path="Lamp/Interactable"]
-[editable path="Axe"]
 [editable path="Axe/Interactable"]
-[editable path="Cup"]
 [editable path="Cup/Interactable"]
 [editable path="Cup/coffee_cup"]
