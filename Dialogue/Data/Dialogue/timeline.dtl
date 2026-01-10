@@ -1,1 +1,8 @@
 This is to test the dialogue system. There should be no character assigned here.
+character: Now, what do you want to do?
+- Kick you in the balls
+	character: Ow my balls!
+- Make sweet love to you
+	Mmm, pound me grandpa!
+What's your name?
+[text_input var="name"]
