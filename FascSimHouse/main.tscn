@@ -1,7 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://wf1pkv3ob04m"]
+[gd_scene load_steps=4 format=3 uid="uid://wf1pkv3ob04m"]
 
-[ext_resource type="PackedScene" uid="uid://bia2drnjxbb62" path="res://map.glb" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://l660nhxaek0u" path="res://map.gltf" id="2_h2yge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(500, 1, 500)
 
 [node name="Main" type="Node3D"]
 
-[node name="map" parent="." instance=ExtResource("1_ig7tw")]
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.63654, 6.1824074, 86.33716)
+
+[node name="map" parent="." instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136.0492, 0, -241.92032)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.32641, 2.2152243, 202.06668)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/StaticBody3D"]
+shape = SubResource("BoxShape3D_0xm2m")
