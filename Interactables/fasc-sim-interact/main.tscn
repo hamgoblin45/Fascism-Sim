@@ -1,6 +1,8 @@
-[gd_scene load_steps=21 format=4 uid="uid://cw6voe3e73him"]
+[gd_scene load_steps=24 format=4 uid="uid://cw6voe3e73him"]
 
+[ext_resource type="Script" uid="uid://c6aj1rblivlac" path="res://Interface/interact_ui.gd" id="1_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dtysfm7paobyb" path="res://Interface/icon_atlas.tres" id="1_kek77"]
 [ext_resource type="PackedScene" uid="uid://d3jlrqbf4beyk" path="res://Items/interactable.tscn" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://c3rhvr6bla26v" path="res://Shaders/interact_outline_shader_material.tres" id="4_5vw27"]
 [ext_resource type="AudioStream" uid="uid://b1fxygtu6jhbr" path="res://Audio/switch_on.mp3" id="4_272bh"]
@@ -8,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://7tyb052ddhfs" path="res://Items/Meshes/lamp.gltf" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://0gvfijpq5qdy" path="res://Items/grabbable.gd" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://baot8cx26xrnf" path="res://Items/Meshes/coffee_cup.gltf" id="7_272bh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5vw27"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7mycd"]
 size = Vector3(0.5917969, 1.4990234, 0.54785156)
@@ -102,6 +106,59 @@ size = Vector3(0.24438477, 0.45837402, 0.25219727)
 
 [node name="Main" type="Node3D"]
 
+[node name="UI" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="InteractUI" type="PanelContainer" parent="UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5vw27")
+script = ExtResource("1_4c57u")
+
+[node name="InteractBox" type="VBoxContainer" parent="UI/InteractUI"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InteractIcon" type="TextureRect" parent="UI/InteractUI/InteractBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("1_kek77")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="InteractLabel" type="RichTextLabel" parent="UI/InteractUI/InteractBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]Interact"
+fit_content = true
+
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ig7tw")]
 base_speed = 7.0
 sprint_speed = 12.0
@@ -152,6 +209,7 @@ stream = ExtResource("4_272bh")
 [node name="Interactable" parent="Lamp" instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.075879, 0)
 id = "lamp"
+interact_icon = ExtResource("1_kek77")
 interact_text = "Click to lamp"
 
 [node name="CollisionShape3D" parent="Lamp/Interactable" index="0"]
@@ -177,6 +235,8 @@ shape = SubResource("BoxShape3D_kek77")
 
 [node name="Interactable" parent="Axe" instance=ExtResource("2_0xm2m")]
 unique_name_in_owner = true
+id = "Grab"
+interact_icon = ExtResource("1_kek77")
 
 [node name="CollisionShape3D" parent="Axe/Interactable" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74053955, 0)
