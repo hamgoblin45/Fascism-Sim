@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+EventBus="*res://Scripts/EventBus.gd"
+GameState="*res://Scripts/GameState.gd"
 
 [dialogic]
 
@@ -70,6 +72,7 @@ audio/channel_defaults={
 variables={
 "name": ""
 }
+glossary/default_case_sensitive=true
 
 [dotnet]
 
@@ -78,6 +81,10 @@ project/assembly_name="FascSim-Dialogue"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
+[gui]
+
+theme/custom_font="uid://bjf86jey6r1qf"
 
 [input]
 
