@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cw6voe3e73him"]
+[gd_scene load_steps=25 format=4 uid="uid://cw6voe3e73him"]
 
 [ext_resource type="Script" uid="uid://c6aj1rblivlac" path="res://Interface/interact_ui.gd" id="1_4c57u"]
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://7tyb052ddhfs" path="res://Items/Meshes/lamp.gltf" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://0gvfijpq5qdy" path="res://Items/grabbable.gd" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://baot8cx26xrnf" path="res://Items/Meshes/coffee_cup.gltf" id="7_272bh"]
+[ext_resource type="Script" uid="uid://8yo1utsr8bth" path="res://Items/interactable.gd" id="9_efxa6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5vw27"]
 
@@ -233,12 +234,16 @@ script = ExtResource("6_kek77")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7923031, 0)
 shape = SubResource("BoxShape3D_kek77")
 
-[node name="Interactable" parent="Axe" instance=ExtResource("2_0xm2m")]
+[node name="Interactable" type="Area3D" parent="Axe"]
 unique_name_in_owner = true
-id = "Grab"
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("9_efxa6")
+id = "axe"
 interact_icon = ExtResource("1_kek77")
+interact_text = "Grab"
 
-[node name="CollisionShape3D" parent="Axe/Interactable" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Axe/Interactable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74053955, 0)
 shape = SubResource("BoxShape3D_4c57u")
 
@@ -264,10 +269,15 @@ script = ExtResource("6_kek77")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22616684, 0)
 shape = SubResource("BoxShape3D_2uhas")
 
-[node name="Interactable" parent="Cup" instance=ExtResource("2_0xm2m")]
+[node name="Interactable" type="Area3D" parent="Cup"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("9_efxa6")
 id = "cup"
+interact_icon = ExtResource("1_kek77")
+interact_text = "GRAB"
 
-[node name="CollisionShape3D" parent="Cup/Interactable" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cup/Interactable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22576904, 0)
 shape = SubResource("BoxShape3D_5vw27")
 
@@ -277,6 +287,4 @@ shape = SubResource("BoxShape3D_5vw27")
 material_overlay = ExtResource("4_5vw27")
 
 [editable path="Lamp/Interactable"]
-[editable path="Axe/Interactable"]
-[editable path="Cup/Interactable"]
 [editable path="Cup/coffee_cup"]

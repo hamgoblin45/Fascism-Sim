@@ -430,6 +430,7 @@ target_position = Vector3(0, 0, -3)
 collision_mask = 6
 hit_from_inside = true
 collide_with_areas = true
+collide_with_bodies = false
 script = ExtResource("2_6j38j")
 
 [node name="DropPoint" type="Node3D" parent="Head"]
