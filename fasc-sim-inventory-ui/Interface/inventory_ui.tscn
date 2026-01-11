@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=8 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://df76rpwwphwk2" path="res://Interface/inventory_ui.gd" id="1_5h8ar"]
+[ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/inventory_slot_ui.tscn" id="2_spoia"]
+[ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
+[ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Data/Items/test_item_1.tres" id="4_cx7ba"]
+
+[sub_resource type="Resource" id="Resource_kfiqh"]
+script = ExtResource("3_cx7ba")
+item_data = ExtResource("4_cx7ba")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
+[sub_resource type="Resource" id="Resource_m26qo"]
+script = ExtResource("2_0gv4u")
+slot_datas = Array[ExtResource("3_cx7ba")]([null, SubResource("Resource_kfiqh"), null, null])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [node name="InventoryControl" type="Control"]
 layout_mode = 3
@@ -11,8 +24,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5h8ar")
+inventory_data = SubResource("Resource_m26qo")
 
-[node name="InventoryUI" type="PanelContainer" parent="."]
+[node name="PlayerInventoryUI" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 0
 offset_left = 801.0
@@ -20,45 +35,46 @@ offset_top = 347.0
 offset_right = 1121.0
 offset_bottom = 460.0
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryUI"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerInventoryUI"]
 layout_mode = 2
 theme_override_constants/margin_left = 18
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 18
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInventoryUI/MarginContainer"]
 layout_mode = 2
 
-[node name="PocketsLabel" type="Label" parent="InventoryUI/MarginContainer/VBoxContainer"]
+[node name="PocketsLabel" type="Label" parent="PlayerInventoryUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "POCKETS"
 horizontal_alignment = 1
 
-[node name="SlotsPanel" type="PanelContainer" parent="InventoryUI/MarginContainer/VBoxContainer"]
+[node name="SlotsPanel" type="PanelContainer" parent="PlayerInventoryUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="SlotContainer" type="GridContainer" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer"]
+[node name="PocketSlotContainer" type="GridContainer" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 4
 
-[node name="InventorySlotUI" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
 
-[node name="InventorySlotUI2" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI2" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
 
-[node name="InventorySlotUI3" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI3" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
 
-[node name="InventorySlotUI4" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI4" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2

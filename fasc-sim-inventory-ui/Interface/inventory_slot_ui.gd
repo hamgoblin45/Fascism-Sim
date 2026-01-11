@@ -8,9 +8,10 @@ extends PanelContainer
 func _ready() -> void:
 	EventBus.removing_item_from_inventory.connect(_clear_slot_data)
 
-func _set_slot_data(new_slot_data: InventorySlotData):
+func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data
-	if !slot_data.item_data:
+	if !slot_data or !slot_data.item_data:
+		print("Setting slot in InventorySlotUI, has no slot and/or item_data")
 		return
 	
 	item_texture.show()
