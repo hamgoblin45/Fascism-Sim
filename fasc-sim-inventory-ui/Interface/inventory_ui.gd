@@ -30,27 +30,38 @@ func _set_player_inventory():
 		pocket_slot_container.add_child(slot_ui)
 		slot_ui.set_slot_data(slot)
 
-func _on_inventory_interact(slot: InventorySlotData, type: String):
+func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, type: String):
 	match type:
 		"click":
 			print("Click from %s received by inventoryUI" % slot)
-			if slot and slot.item_data:
-				print("Clicked %s" % slot.item_data.name)
-				grabbed_slot_data = slot
+			if grabbed_slot_data:
+				if slot_data and slot_data.item_data:
+					print("Clicked %s" % slot_data.item_data.name)
+					
+					if grabbed_slot_data != slot_data:
+						print("Trying to merge grabbed slot with existing slot")
+						
+					
+				else:
+					slot.set_slot_data(grabbed_slot_data)
+					_clear_grabbed_slot()
+			else:
+				grabbed_slot_data = slot_data
 				grab_timer.start()
 		"r_click":
 			print("Right Click from %s received by inventoryUI" % slot)
 
-func _unhandled_input(event: InputEvent) -> void:
-	# Stop grabbing if click released early
-	if event is InputEventMouseButton:
-		if !grab_timer.is_stopped() and !event.is_pressed():
-			grabbed_slot_data = null
-			grab_timer.stop()
 
 func _physics_process(_delta: float) -> void:
 	if grabbed_slot_ui.visible:
 		grabbed_slot_ui.position = get_local_mouse_position()
+	# Stop grabbing if click released early
+	if Input.is_action_just_released("click"):
+		print("click released")
+		if grabbed_slot_data and not grab_timer.is_stopped():
+			grabbed_slot_data = null
+			grab_timer.stop()
+			print("grab aborted")
 
 func _set_grabbed_slot():
 	if !grabbed_slot_data or !grabbed_slot_data.item_data:
@@ -64,6 +75,10 @@ func _set_grabbed_slot():
 		grabbed_quantity.text = str(grabbed_slot_data.quantity)
 	
 	EventBus.removing_item_from_inventory.emit(grabbed_slot_data)
+
+func _clear_grabbed_slot():
+	grabbed_slot_data = null
+	grabbed_slot_ui.hide()
 
 func _on_grab_timer_timeout() -> void:
 	_set_grabbed_slot()

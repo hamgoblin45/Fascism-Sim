@@ -46,7 +46,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			#if Input.is_action_pressed("")
 			print("left click")
-			EventBus.inventory_interacted.emit(slot_data, "click")
+			EventBus.inventory_interacted.emit(self, slot_data, "click")
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			print("right click")
-			EventBus.inventory_interacted.emit(slot_data, "r_click")
+			EventBus.inventory_interacted.emit(self, slot_data, "r_click")

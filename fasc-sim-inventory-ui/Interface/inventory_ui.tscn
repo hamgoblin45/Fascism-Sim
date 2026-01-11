@@ -101,6 +101,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_bjljn")
 
 [node name="ItemUI" type="MarginContainer" parent="GrabbedSlotUI"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
@@ -110,6 +111,7 @@ theme_override_constants/margin_bottom = 6
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("8_bjljn")
 expand_mode = 1
 
@@ -123,6 +125,7 @@ text = "10"
 
 [node name="GrabTimer" type="Timer" parent="GrabbedSlotUI"]
 unique_name_in_owner = true
+wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
