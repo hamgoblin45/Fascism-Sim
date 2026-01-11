@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3yl41a7rncgb"]
+
+[ext_resource type="Texture2D" uid="uid://djx5545v0k17s" path="res://icon.svg" id="1_2ik1e"]
+[ext_resource type="Script" uid="uid://cmgrxt4425wc2" path="res://Interface/inventory_slot_ui.gd" id="1_e3oss"]
+
+[node name="InventorySlotUI" type="PanelContainer"]
+custom_minimum_size = Vector2(60, 60)
+script = ExtResource("1_e3oss")
+
+[node name="ItemUI" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ItemTexture" type="TextureRect" parent="ItemUI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("1_2ik1e")
+expand_mode = 1
+
+[node name="Quantity" type="Label" parent="ItemUI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "10"
