@@ -46,19 +46,19 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="GridContainer" type="GridContainer" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer"]
+[node name="SlotContainer" type="GridContainer" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 4
 
-[node name="InventorySlotUI" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/GridContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
 
-[node name="InventorySlotUI2" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/GridContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI2" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
 
-[node name="InventorySlotUI3" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/GridContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI3" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
 
-[node name="InventorySlotUI4" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/GridContainer" instance=ExtResource("2_spoia")]
+[node name="InventorySlotUI4" parent="InventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/SlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2

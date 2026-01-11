@@ -35,3 +35,15 @@ func _change_quantity(value: int):
 		EventBus.inventory_item_updated.emit(slot_data)
 	elif slot_data.quantity <= 0:
 		_clear_slot_data(slot_data)
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		#print("Inv slot clicked")
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			#if Input.is_action_pressed("")
+			print("left click")
+			EventBus.inventory_interacted.emit(slot_data, "click")
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			print("right click")
+			EventBus.inventory_interacted.emit(slot_data, "r_click")
