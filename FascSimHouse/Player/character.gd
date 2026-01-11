@@ -10,14 +10,14 @@ class_name PlayerCharacter
 ## The settings for the character's movement and feel.
 @export_category("Character")
 ## The speed that the character moves at without crouching or sprinting.
-@export var base_speed : float = 7
+@export var base_speed : float = 9.5
 ### The speed that the character moves at when sprinting.
-@export var sprint_speed : float = 12.0
+@export var sprint_speed : float = 15.0
 ### The speed that the character moves at when crouching.
-@export var crouch_speed : float = 2.5
+@export var crouch_speed : float = 4.5
 #
 ### How fast the character speeds up and slows down when Motion Smoothing is on.
-@export var acceleration : float = 5.0
+@export var acceleration : float = 9.0
 ### How high the player jumps.
 @export var jump_velocity : float = 2.5
 ### How far the player turns when the mouse is moved.
