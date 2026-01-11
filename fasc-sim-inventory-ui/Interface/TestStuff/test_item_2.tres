@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryItemData" load_steps=3 format=3 uid="uid://bu7k1xa16ud57"]
+
+[ext_resource type="Script" uid="uid://dwbtgkwya4a0e" path="res://Data/InventoryItemData.gd" id="1_kgtr7"]
+[ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="2_75sg4"]
+
+[resource]
+script = ExtResource("1_kgtr7")
+name = "Carrot"
+texture = ExtResource("2_75sg4")
+stackable = true
+metadata/_custom_type_script = "uid://dwbtgkwya4a0e"
