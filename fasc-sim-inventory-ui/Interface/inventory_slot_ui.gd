@@ -22,7 +22,9 @@ func set_slot_data(new_slot_data: InventorySlotData):
 	EventBus.inventory_item_updated.emit(slot_data)
 
 func _clear_slot_data(slot: InventorySlotData):
+	if !slot or !slot_data: return
 	if slot.item_data and slot_data.item_data and slot.item_data == slot_data.item_data:
+		print("Clear slot run on InventorySlotUI")
 		slot_data = null
 		item_texture.hide()
 		quantity.hide()
