@@ -51,7 +51,11 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 				else:
 					slot.set_slot_data(grabbed_slot_data)
 					_clear_grabbed_slot()
+			
 			else:
+				if Input.is_action_pressed("shift"):
+					EventBus.open_split_stack_ui.emit(slot_data)
+					return
 				grabbed_slot_data = slot_data
 				grab_timer.start()
 		"r_click":

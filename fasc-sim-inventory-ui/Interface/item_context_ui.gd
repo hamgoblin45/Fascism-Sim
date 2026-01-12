@@ -48,6 +48,7 @@ func _on_use_button_pressed() -> void:
 
 func _on_split_button_pressed() -> void:
 	EventBus.open_split_stack_ui.emit(slot_data)
+	print("Split button pressed on Context Menu")
 
 
 func _on_mouse_entered() -> void:

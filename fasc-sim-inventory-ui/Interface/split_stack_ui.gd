@@ -14,16 +14,20 @@ func _ready() -> void:
 
 
 func _set_split_ui(slot: InventorySlotData):
+	if not slot.item_data.stackable: return
+	await get_tree().create_timer(0.01).timeout
 	show()
+	global_position = Vector2(get_global_mouse_position().x - 150, get_global_mouse_position().y - 90)
 	slot_data = slot
-	split_qty.text = "%s/%s" % [str(split_slider.value), str(slot.quantity)]
+	split_qty.text = "%s/%s" % [str(snappedi(split_slider.value,1)), str(slot.quantity)]
 	split_slider.max_value = slot.quantity
 	split_slider.value = 0
 
-func _unhandled_input(event: InputEvent) -> void:
-	if visible and event.is_pressed() \
-	and event is InputEventMouseButton and not mouse_on_ui \
+func _physics_process(_delta: float) -> void:
+	if !visible: return
+	if Input.is_action_just_pressed("click") and not mouse_on_ui \
 	or Input.is_action_just_pressed("back"):
+		print("Click while split ui is visible and mouse off panel, hiding")
 		hide()
 
 func _on_split_button_pressed() -> void:
@@ -32,12 +36,14 @@ func _on_split_button_pressed() -> void:
 
 
 func _on_split_slider_value_changed(value: float) -> void:
-	split_qty.text = "%s/%s" % [str(value), str(slot_data.quantity)]
+	split_qty.text = "%s/%s" % [str(snappedi(value,1)), str(slot_data.quantity)]
 
 
 func _on_mouse_exited() -> void:
+	print("Mouse left split UI")
 	mouse_on_ui = false
 
 
 func _on_mouse_entered() -> void:
+	print("Mouse on split UI")
 	mouse_on_ui = true

@@ -192,16 +192,19 @@ alignment = 1
 [node name="TrashButton" type="Button" parent="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "TRASH"
 
 [node name="UseButton" type="Button" parent="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "USE"
 
 [node name="SplitButton" type="Button" parent="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "SPLIT"
 
 [node name="SplitStackUI" type="PanelContainer" parent="."]
@@ -209,6 +212,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = -200.0
 offset_bottom = 70.0
+mouse_filter = 1
 script = ExtResource("9_3xrn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="SplitStackUI"]
@@ -230,6 +234,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
 [node name="SplitQty" type="Label" parent="SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -240,6 +245,7 @@ horizontal_alignment = 1
 
 [node name="SplitButton" type="Button" parent="SplitStackUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Split"
 
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
