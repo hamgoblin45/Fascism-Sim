@@ -22,6 +22,7 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 
 func _ready() -> void:
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
+	EventBus.splitting_item_stack.connect(_on_slot_split)
 	_set_player_inventory()
 
 
@@ -39,7 +40,6 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 			print("Click from %s received by inventoryUI" % slot)
 			if grabbed_slot_data:
 				if slot_data and slot_data.item_data:
-					print("Clicked %s" % slot_data.item_data.name)
 					
 					if grabbed_slot_data != slot_data:
 						print("Trying to merge grabbed slot with existing slot")
@@ -119,6 +119,10 @@ func _set_grabbed_slot():
 func _clear_grabbed_slot():
 	grabbed_slot_data = null
 	grabbed_slot_ui.hide()
+
+func _on_slot_split(slot: InventorySlotData, _orig_slot_data: InventorySlotData):
+	grabbed_slot_data = slot
+	_set_grabbed_slot()
 
 func _on_grab_timer_timeout() -> void:
 	_set_grabbed_slot()
