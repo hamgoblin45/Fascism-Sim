@@ -53,6 +53,30 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 				grab_timer.start()
 		"r_click":
 			print("Right Click from %s received by inventoryUI" % slot)
+			if grabbed_slot_data:
+				if slot_data and slot_data.item_data:
+					print("Right Clicked %s" % slot_data.item_data.name)
+					
+					if grabbed_slot_data != slot_data:
+						print("Trying to merge grabbed slot with existing slot")
+						if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
+							slot_data.quantity += 1
+							grabbed_slot_data.quantity -= 1
+							
+				else:
+					print("Trying to drop a single item into an empty slot, creating slot data")
+					slot_data = InventorySlotData.new()
+					slot_data.item_data = grabbed_slot_data.item_data
+					slot_data.quantity = 1
+					grabbed_slot_data.quantity -= 1
+							
+						#elif grabbed_slot_data.item_data.stackable
+				if grabbed_slot_data.quantity <= 0:
+					print("Grabbed slot empty")
+					_clear_grabbed_slot()
+				
+				slot.set_slot_data(slot_data)
+				_set_grabbed_slot()
 
 
 func _physics_process(_delta: float) -> void:
@@ -76,6 +100,8 @@ func _set_grabbed_slot():
 	if grabbed_slot_data.quantity > 1 and grabbed_slot_data.item_data.stackable:
 		grabbed_quantity.show()
 		grabbed_quantity.text = str(grabbed_slot_data.quantity)
+	else:
+		grabbed_quantity.hide()
 	
 	EventBus.removing_item_from_inventory.emit(grabbed_slot_data)
 

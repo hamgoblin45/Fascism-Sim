@@ -20,6 +20,8 @@ func set_slot_data(new_slot_data: InventorySlotData):
 	if slot_data.quantity > 1 and slot_data.item_data.stackable:
 		quantity.show()
 		quantity.text = str(slot_data.quantity)
+	else:
+		quantity.hide()
 	EventBus.inventory_item_updated.emit(slot_data)
 
 func _clear_slot_data(slot: InventorySlotData):
