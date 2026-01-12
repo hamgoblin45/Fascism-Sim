@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=15 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://df76rpwwphwk2" path="res://Interface/inventory_ui.gd" id="1_5h8ar"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
 [ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/test_item_1.tres" id="4_cx7ba"]
 [ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/test_item_2.tres" id="5_m26qo"]
+[ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
+[ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
 
 [sub_resource type="Resource" id="Resource_kfiqh"]
 script = ExtResource("3_cx7ba")
@@ -134,4 +136,119 @@ unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
+[node name="ItemContextUI" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 0
+offset_left = -232.0
+offset_top = -152.0
+offset_right = 8.0
+offset_bottom = -4.0
+pivot_offset = Vector2(239, 178)
+mouse_filter = 1
+script = ExtResource("8_3xrn1")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemContextUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemContextUI/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ItemName" type="Label" parent="ItemContextUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "ItemName"
+horizontal_alignment = 1
+
+[node name="ItemDescript" type="RichTextLabel" parent="ItemContextUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center]This is the [color=gold] item [/color] description"
+fit_content = true
+
+[node name="ItemFlavorText" type="RichTextLabel" parent="ItemContextUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+bbcode_enabled = true
+text = "[i]This is some lore description to add flavor text to a description"
+fit_content = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="ItemContextUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TrashButton" type="Button" parent="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TRASH"
+
+[node name="UseButton" type="Button" parent="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "USE"
+
+[node name="SplitButton" type="Button" parent="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SPLIT"
+
+[node name="SplitStackUI" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -200.0
+offset_bottom = 70.0
+script = ExtResource("9_3xrn1")
+
+[node name="MarginContainer" type="MarginContainer" parent="SplitStackUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SplitStackUI/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SplitStackUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SplitSlider" type="HSlider" parent="SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SplitQty" type="Label" parent="SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "X/XX"
+horizontal_alignment = 1
+
+[node name="SplitButton" type="Button" parent="SplitStackUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Split"
+
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
+[connection signal="mouse_entered" from="ItemContextUI" to="ItemContextUI" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ItemContextUI" to="ItemContextUI" method="_on_mouse_exited"]
+[connection signal="pressed" from="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/TrashButton" to="ItemContextUI" method="_on_trash_button_pressed"]
+[connection signal="pressed" from="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/UseButton" to="ItemContextUI" method="_on_use_button_pressed"]
+[connection signal="pressed" from="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/SplitButton" to="ItemContextUI" method="_on_split_button_pressed"]
+[connection signal="mouse_entered" from="SplitStackUI" to="SplitStackUI" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SplitStackUI" to="SplitStackUI" method="_on_mouse_exited"]
+[connection signal="value_changed" from="SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="SplitStackUI" method="_on_split_slider_value_changed"]
+[connection signal="pressed" from="SplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="SplitStackUI" method="_on_split_button_pressed"]

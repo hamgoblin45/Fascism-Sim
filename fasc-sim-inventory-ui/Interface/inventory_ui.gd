@@ -16,6 +16,9 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 @onready var grabbed_quantity: Label = %GrabbedQuantity
 @onready var grab_timer: Timer = %GrabTimer
 
+@onready var item_context_ui: PanelContainer = %ItemContextUI
+
+
 
 func _ready() -> void:
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
@@ -77,6 +80,10 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 				
 				slot.set_slot_data(slot_data)
 				_set_grabbed_slot()
+			else:
+				if slot_data and slot_data.item_data:
+					EventBus.open_item_context_menu.emit(slot_data)
+				#item_context_ui.set_context_menu(slot_data)
 
 
 func _physics_process(_delta: float) -> void:
