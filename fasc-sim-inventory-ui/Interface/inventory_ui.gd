@@ -46,7 +46,13 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 						if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
 							slot_data.quantity += grabbed_slot_data.quantity
 							_clear_grabbed_slot()
-							slot.set_slot_data(slot_data)
+							
+						else:
+							var sd = grabbed_slot_data
+							grabbed_slot_data = slot_data
+							slot_data = sd
+							_set_grabbed_slot()
+						slot.set_slot_data(slot_data)
 					
 				else:
 					slot.set_slot_data(grabbed_slot_data)
