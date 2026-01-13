@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=24 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://df76rpwwphwk2" path="res://Interface/inventory_ui.gd" id="1_5h8ar"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
@@ -10,7 +10,8 @@
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
-[ext_resource type="Script" uid="uid://c2mr38vtxx4oj" path="res://Interface/give_item_slot.gd" id="11_gur8t"]
+[ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/give_item_ui.gd" id="11_c0f0r"]
+[ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
 
 [sub_resource type="Resource" id="Resource_kfiqh"]
 script = ExtResource("3_cx7ba")
@@ -315,6 +316,7 @@ offset_right = 167.0
 offset_bottom = 423.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y5k6")
+script = ExtResource("11_c0f0r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GiveItemUI"]
 layout_mode = 2
@@ -347,7 +349,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
-script = ExtResource("11_gur8t")
 
 [node name="ItemUI" type="MarginContainer" parent="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer/GiveItemSlot"]
 layout_mode = 2
@@ -371,6 +372,45 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "10"
 
+[node name="TestStuff" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("12_c0f0r")
+
+[node name="TestPanel" type="PanelContainer" parent="TestStuff"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -127.0
+offset_right = 112.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/TestPanel"]
+layout_mode = 2
+alignment = 1
+
+[node name="OpenGiveUI" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Open Give UI"
+
+[node name="GetItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Get Item"
+
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="mouse_entered" from="ItemContextUI" to="ItemContextUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ItemContextUI" to="ItemContextUI" method="_on_mouse_exited"]
@@ -382,3 +422,5 @@ text = "10"
 [connection signal="value_changed" from="SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="SplitStackUI" method="_on_split_slider_value_changed"]
 [connection signal="pressed" from="SplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="SplitStackUI" method="_on_split_button_pressed"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenGiveUI" to="TestStuff" method="_on_open_give_ui_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItem" to="TestStuff" method="_on_get_item_pressed"]
