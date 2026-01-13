@@ -19,6 +19,7 @@ func set_slot_data(new_slot_data: InventorySlotData):
 	print("Set_Slot_Data run in inv_slot_ui. New slot: %s" % slot_data)
 	item_texture.show()
 	item_texture.texture = slot_data.item_data.texture
+	tooltip_text = slot_data.item_data.name
 	if slot_data.quantity > 1 and slot_data.item_data.stackable:
 		quantity.show()
 		quantity.text = str(slot_data.quantity)

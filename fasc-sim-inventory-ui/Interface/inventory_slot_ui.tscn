@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3yl41a7rncgb"]
+[gd_scene load_steps=3 format=3 uid="uid://d3yl41a7rncgb"]
 
 [ext_resource type="Script" uid="uid://cmgrxt4425wc2" path="res://Interface/inventory_slot_ui.gd" id="1_e3oss"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ik1e"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="InventorySlotUI" type="PanelContainer"]
 custom_minimum_size = Vector2(60, 60)
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1e")
 script = ExtResource("1_e3oss")
 
 [node name="ItemUI" type="MarginContainer" parent="."]
