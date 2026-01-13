@@ -1,5 +1,7 @@
 extends Control
 
+const TEST_EXTERNAL_INVENTORY = preload("uid://qecerdvqb2fx")
+
 @onready var open_give_ui: Button = $TestPanel/VBoxContainer/OpenGiveUI
 @onready var get_item: Button = $TestPanel/VBoxContainer/GetItem
 
@@ -30,3 +32,10 @@ func _on_give_item(slot: InventorySlotData):
 	%GiveLabel.text = "You gave the npc a[n] %s" % slot.item_data.name
 	await get_tree().create_timer(2.0).timeout
 	%GiveLabel.hide()
+
+
+func _on_open_container_pressed() -> void:
+	if !%ExternalInventory.visible:
+		EventBus.setting_external_inventory.emit(TEST_EXTERNAL_INVENTORY)
+	else:
+		EventBus.setting_external_inventory.emit(null)

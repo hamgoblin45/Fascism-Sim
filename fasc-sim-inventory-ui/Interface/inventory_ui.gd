@@ -18,6 +18,9 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 
 @onready var item_context_ui: PanelContainer = %ItemContextUI
 
+@onready var external_inventory: PanelContainer = %ExternalInventory
+@onready var external_slot_container: GridContainer = %ExternalSlotContainer
+
 @onready var give_item_ui: PanelContainer = %GiveItemUI
 @onready var give_item_slot: PanelContainer = %GiveItemSlot
 
@@ -25,6 +28,7 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 func _ready() -> void:
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
 	EventBus.splitting_item_stack.connect(_on_slot_split)
+	EventBus.setting_external_inventory.connect(_set_external_inventory)
 	_set_player_inventory()
 
 
@@ -135,6 +139,19 @@ func _on_slot_split(slot: InventorySlotData, _orig_slot_data: InventorySlotData)
 func _on_grab_timer_timeout() -> void:
 	_set_grabbed_slot()
 
+func _set_external_inventory(inv_data: InventoryData):
+	external_inventory_data = inv_data
+	for slot in external_slot_container.get_children():
+		slot.queue_free()
+	if !inv_data:
+		external_inventory.hide()
+		
+	else:
+		external_inventory.show()
+		for slot in external_inventory_data.slot_datas:
+			var slot_ui = INVENTORY_SLOT.instantiate()
+			external_slot_container.add_child(slot_ui)
+			slot_ui.set_slot_data(slot)
 
 func _on_give_item_slot_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():

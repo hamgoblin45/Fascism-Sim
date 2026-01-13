@@ -19,6 +19,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1e")
 script = ExtResource("1_e3oss")
 
 [node name="ItemUI" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6

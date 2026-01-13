@@ -148,6 +148,76 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
 
+[node name="ExternalInventory" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(304, 0)
+layout_mode = 0
+offset_left = 41.0
+offset_top = 155.0
+offset_right = 345.0
+offset_bottom = 333.0
+theme_override_styles/panel = ExtResource("6_3y5k6")
+
+[node name="MarginContainer" type="MarginContainer" parent="ExternalInventory"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ExternalInventory/MarginContainer"]
+layout_mode = 2
+
+[node name="ExternalLabel" type="Label" parent="ExternalInventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
+text = "CONTAINER"
+horizontal_alignment = 1
+
+[node name="SlotsPanel" type="PanelContainer" parent="ExternalInventory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gur8t")
+
+[node name="ExternalSlotContainer" type="GridContainer" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 4
+
+[node name="InventorySlotUI" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
+
+[node name="InventorySlotUI2" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3y5k6")
+
+[node name="InventorySlotUI3" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
+
+[node name="InventorySlotUI4" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
+
+[node name="InventorySlotUI5" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
+
+[node name="InventorySlotUI6" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3y5k6")
+
+[node name="InventorySlotUI7" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
+
+[node name="InventorySlotUI8" parent="ExternalInventory/MarginContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
+
 [node name="ItemContextUI" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 0)
@@ -416,6 +486,11 @@ layout_mode = 2
 mouse_filter = 1
 text = "Get Item"
 
+[node name="OpenContainer" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Open Container"
+
 [node name="DialogueLabel" type="Label" parent="TestStuff"]
 unique_name_in_owner = true
 visible = false
@@ -459,3 +534,4 @@ horizontal_alignment = 1
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenGiveUI" to="TestStuff" method="_on_open_give_ui_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItem" to="TestStuff" method="_on_get_item_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer" to="TestStuff" method="_on_open_container_pressed"]
