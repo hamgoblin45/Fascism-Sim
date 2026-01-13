@@ -14,7 +14,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="InventorySlotUI" type="PanelContainer"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(64, 64)
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1e")
 script = ExtResource("1_e3oss")
 

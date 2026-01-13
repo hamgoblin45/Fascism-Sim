@@ -81,9 +81,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjljn"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjljn"]
 
 [node name="InventoryControl" type="Control"]
 texture_filter = 1
@@ -147,45 +147,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
 [node name="InventorySlotUI4" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="GrabbedSlotUI" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_right = 60.0
-offset_bottom = 60.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_bjljn")
-
-[node name="ItemUI" type="MarginContainer" parent="GrabbedSlotUI"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="GrabbedItemTexture" type="TextureRect" parent="GrabbedSlotUI/ItemUI"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("8_bjljn")
-expand_mode = 1
-
-[node name="GrabbedQuantity" type="Label" parent="GrabbedSlotUI/ItemUI"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "10"
-
-[node name="GrabTimer" type="Timer" parent="GrabbedSlotUI"]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
 
 [node name="ItemContextUI" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -309,6 +270,7 @@ mouse_filter = 1
 text = "Split"
 
 [node name="GiveItemUI" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 71.0
 offset_top = 278.0
@@ -372,11 +334,54 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "10"
 
+[node name="GrabbedSlotUI" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bjljn")
+
+[node name="ItemUI" type="MarginContainer" parent="GrabbedSlotUI"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="GrabbedItemTexture" type="TextureRect" parent="GrabbedSlotUI/ItemUI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_bjljn")
+expand_mode = 1
+
+[node name="GrabbedQuantity" type="Label" parent="GrabbedSlotUI/ItemUI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "10"
+
+[node name="GrabTimer" type="Timer" parent="GrabbedSlotUI"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
 [node name="TestStuff" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 441.0
+offset_top = 244.0
+offset_right = -441.0
+offset_bottom = -244.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -411,7 +416,36 @@ layout_mode = 2
 mouse_filter = 1
 text = "Get Item"
 
-[connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
+[node name="DialogueLabel" type="Label" parent="TestStuff"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.5
+offset_top = -210.0
+offset_right = 49.5
+offset_bottom = -194.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "IN DIALOGUE"
+horizontal_alignment = 1
+
+[node name="GiveLabel" type="Label" parent="TestStuff"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 23.0
+offset_top = 90.0
+offset_right = 248.0
+offset_bottom = 147.0
+text = "YOU GAVE THE NPC AN ITEM!"
+horizontal_alignment = 1
+
 [connection signal="mouse_entered" from="ItemContextUI" to="ItemContextUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ItemContextUI" to="ItemContextUI" method="_on_mouse_exited"]
 [connection signal="pressed" from="ItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/TrashButton" to="ItemContextUI" method="_on_trash_button_pressed"]
@@ -422,5 +456,6 @@ text = "Get Item"
 [connection signal="value_changed" from="SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="SplitStackUI" method="_on_split_slider_value_changed"]
 [connection signal="pressed" from="SplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="SplitStackUI" method="_on_split_button_pressed"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
+[connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenGiveUI" to="TestStuff" method="_on_open_give_ui_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItem" to="TestStuff" method="_on_get_item_pressed"]
