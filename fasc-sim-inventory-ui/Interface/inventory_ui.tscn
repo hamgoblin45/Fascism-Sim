@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=20 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://df76rpwwphwk2" path="res://Interface/inventory_ui.gd" id="1_5h8ar"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
 [ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/test_item_1.tres" id="4_cx7ba"]
 [ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/test_item_2.tres" id="5_m26qo"]
+[ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="6_3y5k6"]
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
@@ -32,9 +33,54 @@ script = ExtResource("2_0gv4u")
 slot_datas = Array[ExtResource("3_cx7ba")]([null, SubResource("Resource_kfiqh"), SubResource("Resource_bjljn"), SubResource("Resource_3xrn1")])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xrn1"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y5k6"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gur8t"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0f0r"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjljn"]
 
 [node name="InventoryControl" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,12 +92,12 @@ inventory_data = SubResource("Resource_m26qo")
 
 [node name="PlayerInventoryUI" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 0)
 layout_mode = 0
-offset_left = 801.0
-offset_top = 347.0
-offset_right = 1121.0
-offset_bottom = 460.0
+offset_left = 35.0
+offset_top = 435.0
+offset_right = 207.0
+offset_bottom = 617.0
+theme_override_styles/panel = ExtResource("6_3y5k6")
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayerInventoryUI"]
 layout_mode = 2
@@ -65,6 +111,7 @@ layout_mode = 2
 
 [node name="PocketsLabel" type="Label" parent="PlayerInventoryUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
 text = "POCKETS"
 horizontal_alignment = 1
 
@@ -83,19 +130,23 @@ theme_override_constants/margin_bottom = 6
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
-columns = 4
+columns = 2
 
 [node name="InventorySlotUI" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
 
 [node name="InventorySlotUI2" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3y5k6")
 
 [node name="InventorySlotUI3" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
 
 [node name="InventorySlotUI4" parent="PlayerInventoryUI/MarginContainer/VBoxContainer/SlotsPanel/MarginContainer/PocketSlotContainer" instance=ExtResource("2_spoia")]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
 
 [node name="GrabbedSlotUI" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -146,6 +197,7 @@ offset_right = 8.0
 offset_bottom = -4.0
 pivot_offset = Vector2(239, 178)
 mouse_filter = 1
+theme_override_styles/panel = ExtResource("6_3y5k6")
 script = ExtResource("8_3xrn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="ItemContextUI"]
@@ -162,6 +214,9 @@ size_flags_vertical = 0
 [node name="ItemName" type="Label" parent="ItemContextUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.45080644, 0.603062, 0.86143565, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.54509807)
+theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 20
 text = "ItemName"
 horizontal_alignment = 1
@@ -170,6 +225,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
 bbcode_enabled = true
 text = "[center]This is the [color=gold] item [/color] description"
 fit_content = true
@@ -178,6 +234,7 @@ fit_content = true
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2784314)
 theme_override_font_sizes/normal_font_size = 12
 theme_override_font_sizes/bold_italics_font_size = 12
 theme_override_font_sizes/italics_font_size = 12
@@ -213,6 +270,7 @@ layout_mode = 0
 offset_left = -200.0
 offset_bottom = 70.0
 mouse_filter = 1
+theme_override_styles/panel = ExtResource("6_3y5k6")
 script = ExtResource("9_3xrn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="SplitStackUI"]

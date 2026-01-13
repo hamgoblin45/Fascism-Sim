@@ -24,6 +24,10 @@ GameState="*res://Scripts/GameState.gd"
 
 project/assembly_name="FascSim-InventoryUI"
 
+[gui]
+
+theme/custom_font="uid://bac8hyfa4piml"
+
 [input]
 
 click={

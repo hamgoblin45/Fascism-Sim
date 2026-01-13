@@ -12,6 +12,5 @@ script = ExtResource("1_dwg4w")
 name = "Harp"
 texture = SubResource("AtlasTexture_m0hq4")
 description = "A simple harp"
-flavor = "Lemme play a harp, bitch!"
 useable = true
 metadata/_custom_type_script = "uid://dwbtgkwya4a0e"

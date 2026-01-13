@@ -27,7 +27,7 @@ func _set_context_menu(slot: InventorySlotData):
 	if slot_data.item_data.useable:
 		use_button.show()
 	
-	global_position = Vector2(get_global_mouse_position().x - 200, get_global_mouse_position().y - 180)
+	global_position = Vector2(get_global_mouse_position().x, get_global_mouse_position().y - 180)
 
 func _physics_process(_delta: float) -> void:
 	if !visible: return
