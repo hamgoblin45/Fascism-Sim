@@ -10,6 +10,7 @@ region = Rect2(96, 352, 32, 32)
 [resource]
 script = ExtResource("1_dwg4w")
 name = "Harp"
+id = "harp"
 texture = SubResource("AtlasTexture_m0hq4")
 description = "A simple harp"
 useable = true

@@ -6,9 +6,9 @@
 [resource]
 script = ExtResource("1_kgtr7")
 name = "Carrot"
+id = "carrot"
 texture = ExtResource("2_75sg4")
 description = "Tis but a carrot."
-flavor = "Eh, what's up doc?"
 stackable = true
 useable = true
 metadata/_custom_type_script = "uid://dwbtgkwya4a0e"

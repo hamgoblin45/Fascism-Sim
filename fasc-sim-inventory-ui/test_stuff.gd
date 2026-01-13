@@ -46,3 +46,11 @@ func _on_remove_item_pressed() -> void:
 	test_slot.item_data = preload("uid://fligqycw40pd")
 	#test_slot.item_data = preload("uid://bu7k1xa16ud57")
 	EventBus.removing_item_from_inventory.emit(test_slot)
+
+
+func _on_get_item_stackable_pressed() -> void:
+	var test_slot = InventorySlotData.new()
+	#test_slot.item_data = preload("uid://fligqycw40pd")
+	test_slot.item_data = preload("uid://bu7k1xa16ud57")
+	test_slot.quantity = 4
+	EventBus.adding_item_to_inventory.emit(test_slot)
