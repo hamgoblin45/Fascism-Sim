@@ -29,6 +29,7 @@ func _ready() -> void:
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
 	EventBus.splitting_item_stack.connect(_on_slot_split)
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
+	EventBus.adding_item_to_inventory.connect(_add_item_to_inventory)
 	_set_player_inventory()
 
 
@@ -101,7 +102,6 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 					EventBus.open_item_context_menu.emit(slot_data)
 				#item_context_ui.set_context_menu(slot_data)
 
-
 func _physics_process(_delta: float) -> void:
 	if grabbed_slot_ui.visible:
 		grabbed_slot_ui.position = get_local_mouse_position()
@@ -112,6 +112,29 @@ func _physics_process(_delta: float) -> void:
 			grabbed_slot_data = null
 			grab_timer.stop()
 			print("grab aborted")
+
+func _add_item_to_inventory(slot_data: InventorySlotData):
+	print("Adding item %s to inventory" % slot_data.item_data.name)
+	for slot_ui in pocket_slot_container.get_children():
+		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
+			slot_ui.slot_data.quantity += slot_data.quantity
+			slot_ui.set_slot_data(slot_ui.slot_data)
+			#EventBus.inventory_item_updated.emit(slot_data)
+			#_set_player_inventory()
+			print("Able to merge new item with an existing slot")
+			return
+	
+	for slot_ui in pocket_slot_container.get_children():
+		if !slot_ui.slot_data or !slot_ui.slot_data.item_data:
+			slot_ui.slot_data = slot_data
+			slot_ui.set_slot_data(slot_ui.slot_data)
+			#EventBus.inventory_item_updated.emit(slot_data)
+			#_set_player_inventory()
+			print("Empty spot found, putting item in it")
+			return
+	
+		print("Unable to add item due to a full inventory")
+		return
 
 func _set_grabbed_slot():
 	if !grabbed_slot_data or !grabbed_slot_data.item_data:

@@ -25,7 +25,7 @@ func _on_get_item_pressed() -> void:
 	var test_slot = InventorySlotData.new()
 	test_slot.item_data = preload("uid://fligqycw40pd")
 	#test_slot.item_data = preload("uid://bu7k1xa16ud57")
-	EventBus.adding_item_to_inventory.emit()
+	EventBus.adding_item_to_inventory.emit(test_slot)
 
 func _on_give_item(slot: InventorySlotData):
 	%GiveLabel.show()
