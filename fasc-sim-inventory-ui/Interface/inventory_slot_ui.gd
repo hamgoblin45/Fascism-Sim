@@ -6,7 +6,7 @@ extends PanelContainer
 @onready var quantity: Label = %Quantity
 
 func _ready() -> void:
-	EventBus.removing_item_from_inventory.connect(_clear_slot_data)
+	EventBus.removing_item_from_inventory.connect(clear_slot_data)
 	EventBus.splitting_item_stack.connect(_stack_split)
 	
 
@@ -27,7 +27,8 @@ func set_slot_data(new_slot_data: InventorySlotData):
 		quantity.hide()
 	EventBus.inventory_item_updated.emit(slot_data)
 
-func _clear_slot_data(slot: InventorySlotData):
+
+func clear_slot_data(slot: InventorySlotData):
 	if !slot or !slot_data: return
 	if slot.item_data and slot_data.item_data and slot == slot_data:
 		print("Clear slot run on InventorySlotUI. Slot: %s" % slot)
@@ -43,7 +44,7 @@ func _stack_split(result_slot: InventorySlotData, orig_slot: InventorySlotData):
 		quantity.show()
 		quantity.text = str(slot_data.quantity)
 	elif slot_data.quantity <= 0:
-		_clear_slot_data(slot_data)
+		clear_slot_data(slot_data)
 	set_slot_data(orig_slot)
 	EventBus.inventory_item_updated.emit(slot_data)
 

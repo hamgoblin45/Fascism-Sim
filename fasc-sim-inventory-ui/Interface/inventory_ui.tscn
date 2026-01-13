@@ -486,6 +486,11 @@ layout_mode = 2
 mouse_filter = 1
 text = "Get Item"
 
+[node name="RemoveItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Remove Item"
+
 [node name="OpenContainer" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
@@ -534,4 +539,5 @@ horizontal_alignment = 1
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenGiveUI" to="TestStuff" method="_on_open_give_ui_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItem" to="TestStuff" method="_on_get_item_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/RemoveItem" to="TestStuff" method="_on_remove_item_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer" to="TestStuff" method="_on_open_container_pressed"]

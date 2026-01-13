@@ -39,3 +39,10 @@ func _on_open_container_pressed() -> void:
 		EventBus.setting_external_inventory.emit(TEST_EXTERNAL_INVENTORY)
 	else:
 		EventBus.setting_external_inventory.emit(null)
+
+
+func _on_remove_item_pressed() -> void:
+	var test_slot = InventorySlotData.new()
+	test_slot.item_data = preload("uid://fligqycw40pd")
+	#test_slot.item_data = preload("uid://bu7k1xa16ud57")
+	EventBus.removing_item_from_inventory.emit(test_slot)
