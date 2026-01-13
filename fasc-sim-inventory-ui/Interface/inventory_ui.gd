@@ -47,24 +47,39 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 		"click":
 			print("Click from %s received by inventoryUI" % slot)
 			if grabbed_slot_data:
-				if slot_data and slot_data.item_data:
-					
-					if grabbed_slot_data != slot_data:
-						print("Trying to merge grabbed slot with existing slot")
-						if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
-							slot_data.quantity += grabbed_slot_data.quantity
+				if grabbed_slot_data.item_data.id and slot_data.item_data.id and slot_data.item_data.stackable:
+					# Check for mergability
+					var space_left = slot_data.item_data.max_stack_size - slot_data.quantity
+					if space_left > 0:
+						var amount_to_move = min(grabbed_slot_data.quantity, space_left)
+						slot_data.quantity += amount_to_move
+						grabbed_slot_data.quantity -= amount_to_move
+						
+						if grabbed_slot_data.quantity <= 0:
 							_clear_grabbed_slot()
-							
 						else:
-							var sd = grabbed_slot_data
-							grabbed_slot_data = slot_data
-							slot_data = sd
 							_set_grabbed_slot()
+						
 						slot.set_slot_data(slot_data)
+						print("Item merge success")
+						return
 					
-				else:
-					slot.set_slot_data(grabbed_slot_data)
-					_clear_grabbed_slot()
+					#if grabbed_slot_data != slot_data:
+						#print("Trying to merge grabbed slot with existing slot")
+						#if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
+							#slot_data.quantity += grabbed_slot_data.quantity
+							#_clear_grabbed_slot()
+							#
+						#else:
+							#var sd = grabbed_slot_data
+							#grabbed_slot_data = slot_data
+							#slot_data = sd
+							#_set_grabbed_slot()
+						#slot.set_slot_data(slot_data)
+					#
+				#else:
+					#slot.set_slot_data(grabbed_slot_data)
+					#_clear_grabbed_slot()
 			
 			else:
 				if Input.is_action_pressed("shift"):
@@ -154,32 +169,40 @@ func _add_item_to_inventory(slot_data: InventorySlotData):
 				slot_ui.set_slot_data(new_slot)
 			if qty_to_add <= 0:
 				break
-	#for slot_ui in pocket_slot_container.get_children():
-		#if !slot_ui.slot_data or !slot_ui.slot_data.item_data:
-			#slot_ui.slot_data = slot_data
-			#slot_ui.set_slot_data(slot_ui.slot_data)
-			##EventBus.inventory_item_updated.emit(slot_data)
-			##_set_player_inventory()
-			#print("Empty spot found, putting item in it")
-			#return
-	#
-		#print("Unable to add item due to a full inventory")
-		#return
 
 func _remove_item_from_inventory(slot_data: InventorySlotData):
 	print("Removing item %s from inventory" % slot_data.item_data.name)
-	for slot_ui in pocket_slot_container.get_children():
-		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data.item_data == slot_data.item_data:
-			if slot_data.item_data.stackable:
-				slot_ui.slot_data.quantity -= slot_data.quantity
+	var qty_to_remove = slot_data.quantity
+	var pocket_slots = pocket_slot_container.get_children()
+	for i in range(pocket_slots.size() -1, -1, -1):
+		var slot_ui = pocket_slots[i]
+		var slot = slot_ui.slot_data
+		
+		if slot and slot.item_data and slot.item_data.id == slot_data.item_data.id:
+			if slot.quantity > qty_to_remove:
+				#Stack has more than amount requested to remove
+				slot.quantity -= qty_to_remove
+				qty_to_remove = 0
+				slot_ui.set_slot_data(slot)
 			else:
-				slot_ui.clear_slot_data(slot_data)
-			slot_ui.set_slot_data(slot_ui.slot_data)
-			return
-			#EventBus.inventory_item_updated.emit(slot_data)
-			#_set_player_inventory()
-	
-		print("Unable to remove item")
+				# Stack is <= to amount requested to remove
+				qty_to_remove -= slot.quantity
+				slot_ui.clear_slot_data(slot)
+			
+			if qty_to_remove <= 0:
+				print("Could only remove some items, %s still missing" % qty_to_remove)
+	#for slot_ui in pocket_slot_container.get_children():
+		#if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data.item_data == slot_data.item_data:
+			#if slot_data.item_data.stackable:
+				#slot_ui.slot_data.quantity -= slot_data.quantity
+			#else:
+				#slot_ui.clear_slot_data(slot_data)
+			#slot_ui.set_slot_data(slot_ui.slot_data)
+			#return
+			##EventBus.inventory_item_updated.emit(slot_data)
+			##_set_player_inventory()
+	#
+		#print("Unable to remove item")
 		
 
 func _set_grabbed_slot():
