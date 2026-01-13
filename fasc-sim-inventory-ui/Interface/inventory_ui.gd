@@ -18,6 +18,8 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 
 @onready var item_context_ui: PanelContainer = %ItemContextUI
 
+@onready var give_item_ui: PanelContainer = %GiveItemUI
+@onready var give_item_slot: PanelContainer = %GiveItemSlot
 
 
 func _ready() -> void:
@@ -132,3 +134,24 @@ func _on_slot_split(slot: InventorySlotData, _orig_slot_data: InventorySlotData)
 
 func _on_grab_timer_timeout() -> void:
 	_set_grabbed_slot()
+
+
+func _on_give_item_slot_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		if grabbed_slot_data:
+			if event.button_index == MOUSE_BUTTON_LEFT:
+				print("Giving full grabbed stack")
+				EventBus.giving_item.emit(grabbed_slot_data)
+				_clear_grabbed_slot()
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				var single_stack = InventorySlotData.new()
+				single_stack.item_data = grabbed_slot_data.item_data
+				single_stack.quantity = 1
+				print("Giving a single of grabbed stack")
+				EventBus.giving_item.emit(single_stack)
+				grabbed_slot_data.quantity -= 1
+							
+						#elif grabbed_slot_data.item_data.stackable
+				if grabbed_slot_data.quantity <= 0:
+					_clear_grabbed_slot()
+			_set_grabbed_slot()

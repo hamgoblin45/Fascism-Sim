@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=22 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://df76rpwwphwk2" path="res://Interface/inventory_ui.gd" id="1_5h8ar"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
+[ext_resource type="Script" uid="uid://c2mr38vtxx4oj" path="res://Interface/give_item_slot.gd" id="11_gur8t"]
 
 [sub_resource type="Resource" id="Resource_kfiqh"]
 script = ExtResource("3_cx7ba")
@@ -78,6 +79,8 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjljn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
 
 [node name="InventoryControl" type="Control"]
 texture_filter = 1
@@ -275,9 +278,9 @@ script = ExtResource("9_3xrn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="SplitStackUI"]
 layout_mode = 2
-theme_override_constants/margin_left = 6
+theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
+theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SplitStackUI/MarginContainer"]
@@ -303,8 +306,73 @@ horizontal_alignment = 1
 
 [node name="SplitButton" type="Button" parent="SplitStackUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 mouse_filter = 1
 text = "Split"
+
+[node name="GiveItemUI" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 294.0
+offset_right = 157.0
+offset_bottom = 419.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3y5k6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GiveItemUI"]
+layout_mode = 2
+
+[node name="GiveItemLabel" type="Label" parent="GiveItemUI/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4627451)
+theme_override_font_sizes/font_size = 20
+text = "GIVE
+ITEM"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="GiveItemUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("6_3y5k6")
+
+[node name="MarginContainer" type="MarginContainer" parent="GiveItemUI/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="GiveItemSlot" type="PanelContainer" parent="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
+script = ExtResource("11_gur8t")
+
+[node name="ItemUI" type="MarginContainer" parent="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer/GiveItemSlot"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ItemTexture" type="TextureRect" parent="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer/GiveItemSlot/ItemUI"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Quantity" type="Label" parent="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer/GiveItemSlot/ItemUI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "10"
 
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="mouse_entered" from="ItemContextUI" to="ItemContextUI" method="_on_mouse_entered"]
@@ -316,3 +384,4 @@ text = "Split"
 [connection signal="mouse_exited" from="SplitStackUI" to="SplitStackUI" method="_on_mouse_exited"]
 [connection signal="value_changed" from="SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="SplitStackUI" method="_on_split_slider_value_changed"]
 [connection signal="pressed" from="SplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="SplitStackUI" method="_on_split_button_pressed"]
+[connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/MarginContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
