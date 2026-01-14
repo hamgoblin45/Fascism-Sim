@@ -60,7 +60,7 @@ func clear_slot_data(slot: InventorySlotData):
 	EventBus.inventory_item_updated.emit(null)
 
 
-func _stack_split(result_slot: InventorySlotData, amount: int):
+func _stack_split(_result_slot: InventorySlotData, _orig_slot: InventorySlotData):
 	#print("Change quantity called on inv_slot_ui. New slot: %s, Orig Slot: %s" % [result_slot, orig_slot])
 	if slot_data.quantity > 1 and slot_data.item_data.stackable:
 		quantity.show()

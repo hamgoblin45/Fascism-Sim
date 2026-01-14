@@ -13,6 +13,8 @@ var mouse_on_ui: bool = false
 
 func _ready() -> void:
 	EventBus.open_item_context_menu.connect(_set_context_menu)
+	EventBus.dialogue_started.connect(_set_button_to_give)
+	EventBus.dialogue_ended.connect(_set_button_to_use)
 
 func _set_context_menu(slot: InventorySlotData):
 	show()
@@ -35,15 +37,25 @@ func _physics_process(_delta: float) -> void:
 	or Input.is_action_just_pressed("back"):
 		hide()
 
+func _set_button_to_give():
+	use_button.text = "GIVE"
+
+func _set_button_to_use():
+	use_button.text = "USE"
+
 func _on_trash_button_pressed() -> void:
 	EventBus.removing_item_from_inventory.emit(slot_data)
 	slot_data = null
 	hide()
 
-
-
 func _on_use_button_pressed() -> void:
-	pass # Replace with function body.
+	match use_button.text:
+		"USE":
+			EventBus.item_used.emit(slot_data)
+		"GIVE":
+			EventBus.giving_item.emit(slot_data)
+			EventBus.removing_item_from_inventory.emit(slot_data)
+			#EventBus.inventory_item_updated.emit(slot_data)
 
 
 func _on_split_button_pressed() -> void:
