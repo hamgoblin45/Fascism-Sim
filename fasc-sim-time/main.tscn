@@ -234,6 +234,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "PAUSE"
 
+[node name="SleepButton" type="Button" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SLEEP"
+
 [node name="DayTransition" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
@@ -293,6 +298,7 @@ autostart = true
 
 [connection signal="value_changed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow/SpeedSlider" to="TimeControl/TimeControlUI" method="_on_speed_slider_value_changed"]
 [connection signal="pressed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/PauseButton" to="TimeControl/TimeControlUI" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SleepButton" to="TimeControl/TimeControlUI" method="_on_sleep_button_pressed"]
 [connection signal="pressed" from="DayTransition/NewDayPanel/VBoxContainer/StartNewDayButton" to="DayTransition" method="_on_start_new_day_button_pressed"]
 [connection signal="animation_finished" from="DayTransition/NewDayPanel/NewDayFade" to="DayTransition" method="_on_new_day_fade_animation_finished"]
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]

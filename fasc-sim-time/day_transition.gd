@@ -10,6 +10,7 @@ func _ready() -> void:
 
 func _start_day_transition():
 	print("Start_Day_Transition called on DayTransition")
+	EventBus.set_paused.emit(true)
 	show()
 	new_day_label.text = "DAY %s" % str(GameState.day)
 	new_day_fade.play("fade_in")
