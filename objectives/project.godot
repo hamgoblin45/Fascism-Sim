@@ -18,7 +18,12 @@ config/icon="res://icon.svg"
 
 EventBus="*res://Scripts/EventBus.gd"
 GameState="*res://Scripts/GameState.gd"
+QuestSystem="*res://addons/quest_system/quest_manager.gd"
 
 [dotnet]
 
 project/assembly_name="Objectives"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/quest_system/plugin.cfg")

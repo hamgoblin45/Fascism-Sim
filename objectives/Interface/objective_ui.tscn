@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4q0h7ka7r6wv"]
+
+[ext_resource type="Script" uid="uid://roly273byw5v" path="res://Interface/objective_ui.gd" id="1_gjltt"]
+[ext_resource type="PackedScene" uid="uid://btcdsfmx1knfj" path="res://Interface/objective_step_ui.tscn" id="2_gjltt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7d15p"]
+
+[node name="ObjectiveUI" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 64)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7d15p")
+script = ExtResource("1_gjltt")
+
+[node name="ObjectiveVBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ObjectiveName" type="Label" parent="ObjectiveVBox"]
+layout_mode = 2
+text = "Objective Name"
+
+[node name="StepsContainer" type="VBoxContainer" parent="ObjectiveVBox"]
+layout_mode = 2
+
+[node name="ObjectiveStepUI" parent="ObjectiveVBox/StepsContainer" instance=ExtResource("2_gjltt")]
+layout_mode = 2

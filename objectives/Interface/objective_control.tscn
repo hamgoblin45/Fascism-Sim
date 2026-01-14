@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci8qlujuy7ma5"]
+
+[ext_resource type="Script" uid="uid://cugngl2iwo01j" path="res://Interface/objective_manager.gd" id="1_76m2h"]
+[ext_resource type="Script" uid="uid://cbrq0qtlgucg7" path="res://Interface/objective_tracker_ui.gd" id="2_7d15p"]
+[ext_resource type="PackedScene" uid="uid://b4q0h7ka7r6wv" path="res://Interface/objective_ui.tscn" id="3_0ygxj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76m2h"]
+
+[node name="ObjectiveControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ObjectiveManager" type="Node" parent="."]
+script = ExtResource("1_76m2h")
+
+[node name="ObjectiveTrackerUI" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -301.0
+offset_top = -204.0
+offset_right = -15.0
+offset_bottom = 67.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_76m2h")
+script = ExtResource("2_7d15p")
+
+[node name="ObjectiveTrackerContainer" type="VBoxContainer" parent="ObjectiveTrackerUI"]
+layout_mode = 2
+
+[node name="ObjectivesHeader" type="Label" parent="ObjectiveTrackerUI/ObjectiveTrackerContainer"]
+layout_mode = 2
+text = "OBJECTIVES"
+horizontal_alignment = 1
+
+[node name="ObjectiveContainer" type="VBoxContainer" parent="ObjectiveTrackerUI/ObjectiveTrackerContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ObjectiveUI" parent="ObjectiveTrackerUI/ObjectiveTrackerContainer/ObjectiveContainer" instance=ExtResource("3_0ygxj")]
+layout_mode = 2
