@@ -14,6 +14,7 @@ config/name="FascSim-InventoryUI"
 run/main_scene="uid://dhpfeub82th3n"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+config/tags=PackedStringArray("fasc")
 
 [autoload]
 
