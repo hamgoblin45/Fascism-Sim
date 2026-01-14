@@ -183,4 +183,4 @@ func _on_timer_timeout() -> void:
 		handle_sky()
 		
 		handle_lights()
-		GameState.time_tracker()
+		#GameState.time_tracker()

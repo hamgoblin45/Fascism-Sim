@@ -12,6 +12,7 @@ config_version=5
 
 config/name="FascSim-Time"
 config/tags=PackedStringArray("fasc")
+run/main_scene="uid://e8o0kydvppr1"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
