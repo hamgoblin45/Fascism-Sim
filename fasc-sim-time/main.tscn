@@ -178,3 +178,4 @@ max_value = 10.0
 value = 1.0
 
 [connection signal="timeout" from="DayNightCycle/Timer" to="DayNightCycle" method="_on_timer_timeout"]
+[connection signal="value_changed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow/SpeedSlider" to="TimeControl/TimeControlUI" method="_on_speed_slider_value_changed"]

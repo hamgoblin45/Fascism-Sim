@@ -11,12 +11,14 @@ extends PanelContainer
 
 func _ready():
 	EventBus.main_scene_loaded.connect(_set_ui)
-	EventBus.day_changed.connect(_set_day)
+	EventBus.change_day.connect(_set_day)
+	#EventBus.day_changed.connect(_set_day)
 	EventBus.minute_changed.connect(_set_time)
 
 func _set_ui():
 	_set_day(GameState.day)
 	_set_time(GameState.hour, GameState.minute)
+	speed_label.text = str(GameState.time_speed)
 
 
 func _set_day(day: int):
@@ -40,3 +42,8 @@ func _set_time(hour: int, minute: int):
 	
 	var formatted_time = "%s:%s" % [formatted_hour,formatted_min]
 	time_label.text = formatted_time
+
+
+func _on_speed_slider_value_changed(value: float) -> void:
+	GameState.time_speed = value
+	speed_label.text = str(value)

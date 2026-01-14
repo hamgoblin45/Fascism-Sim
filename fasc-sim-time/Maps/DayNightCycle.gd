@@ -45,8 +45,9 @@ func handle_time():
 	GameState.time = 1440 * GameState.cycle_time / 60
 	GameState.hour = floor(GameState.time)
 	var minute_fraction = GameState.time - GameState.hour
-	GameState.minute = 60 * minute_fraction
+	GameState.minute = int(60 * minute_fraction)
 	
+	EventBus.minute_changed.emit(GameState.hour, GameState.minute)
 	#print("Hour: %s" % GameState.hour)
 	#print("Minute: %s" % GameState.minute)
 	#print("It is %s minute" % minute_fraction)
@@ -170,17 +171,11 @@ func handle_lights():
 
 ## Controls time in a more optimized manner than running it in _process()
 func _on_timer_timeout() -> void:
-	
-	#if Objectives.day_1_tour_complete:
-	
 		GameState.cycle_time += time_rate * GameState.time_speed
 		
-		#print("Cycle Time: %f" % GameState.cycle_time)
-		#print("Time: %f" % GameState.time)
+		print("Cycle Time: %f" % GameState.cycle_time)
+		print("Time: %f" % GameState.time)
 		
 		handle_time()
-		
 		handle_sky()
-		
-		handle_lights()
-		#GameState.time_tracker()
+		handle_lights() # Streetlights
