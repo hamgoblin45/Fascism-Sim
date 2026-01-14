@@ -486,22 +486,22 @@ text = "Open Give UI"
 [node name="GetItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-text = "Get Item"
+text = "Get Harp"
 
 [node name="GetItemStackable" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-text = "Get Stackable"
+text = "Get Carrots"
 
 [node name="RemoveItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-text = "Remove Item"
+text = "Remove Harp"
 
 [node name="RemoveItemStackable" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-text = "Remove Item"
+text = "Remove 1 Carrot"
 
 [node name="OpenContainer" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
 layout_mode = 2
