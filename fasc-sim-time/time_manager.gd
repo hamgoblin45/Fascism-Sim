@@ -5,6 +5,7 @@ var time_rate: float = 0.0003
 
 func _ready() -> void:
 	handle_time()
+	EventBus.set_paused.connect(_handle_pause)
 
 func handle_time():
 	GameState.time = 1440 * GameState.cycle_time / 60
@@ -50,6 +51,10 @@ func _change_weekday():
 func _on_timer_timeout() -> void:
 	GameState.cycle_time += time_rate * GameState.time_speed
 	handle_time()
+
+
+func _handle_pause(paused: bool):
+	get_tree().paused = paused
 
 func handle_lights():
 	if GameState.time >= 17.5 or GameState.time < 6.0:

@@ -10,3 +10,4 @@ var time: float = 8.0 # in hours
 var cycle_time: float = 0.33 # between 0.0 and 1.0
 
 var time_speed: float = 1.0
+var paused: bool = false

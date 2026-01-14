@@ -7,7 +7,7 @@ extends PanelContainer
 @onready var speed_label: Label = %SpeedLabel
 @onready var speed_slider: HSlider = %SpeedSlider
 
-
+var paused: bool = false
 
 func _ready():
 	EventBus.main_scene_loaded.connect(_set_ui)
@@ -54,3 +54,13 @@ func _day_changed(_new_day: int):
 	%DayChangeLabel.show()
 	await get_tree().create_timer(1.5).timeout
 	%DayChangeLabel.hide()
+
+
+func _on_pause_button_pressed() -> void:
+	paused = !paused
+	EventBus.set_paused.emit(paused)
+	
+	if paused:
+		%PauseButton.text = "RESUME"
+	else:
+		%PauseButton.text = "PAUSE"
