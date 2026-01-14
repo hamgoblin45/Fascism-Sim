@@ -81,27 +81,9 @@ func _handle_sky(_hour: int, _minute: int):
 		if GameState.time < 8.0 and GameState.time >= 6.0:
 			cloud_shadow_intensity = (GameState.time - 6.0) / 2
 			star_intensity = ((8.0 - GameState.time) / 2)
-			#_star_intensity
-			#if star_intensity < 1.0:
-				#star_intensity += 0.1
-				#if star_intensity > 1.0:
-					#star_intensity = 1.0
 			print("Star intensity: %s" % str(star_intensity))
-			#if cloud_shadow_intensity > 0.0:
-				#cloud_shadow_intensity -= 0.05
-				#if cloud_shadow_intensity < 0.0:
-					#cloud_shadow_intensity = 0.0
-		#if GameState.time >= 0.3 or GameState.time <= 0.75:
-			#if star_intensity > 0.0:
-				#star_intensity -= 0.1
-				#if star_intensity < 0.0:
-					#star_intensity = 0.0
-			#if cloud_shadow_intensity < 1.0:
-				#cloud_shadow_intensity += 0.05
-				#if cloud_shadow_intensity > 1.0:
-					#cloud_shadow_intensity = 1.0
 		
 		environment.environment.sky.sky_material.set_shader_parameter("stars_intensity", star_intensity)
 		environment.environment.sky.sky_material.set_shader_parameter("clouds_shadow_intensity", cloud_shadow_intensity)
-		#environment.environment.sky.sky_material.set("ground_bottom_color", sky_top_color.sample(GameState.cycle_time))
-		#environment.environment.sky.sky_material.set("ground_horizon_color", sky_horizon_color.sample(GameState.cycle_time))
+		environment.environment.sky.sky_material.set("ground_bottom_color", sky_top_color.sample(GameState.cycle_time))
+		environment.environment.sky.sky_material.set("ground_horizon_color", sky_horizon_color.sample(GameState.cycle_time))

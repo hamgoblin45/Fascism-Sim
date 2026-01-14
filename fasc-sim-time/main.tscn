@@ -66,7 +66,7 @@ script = ExtResource("1_ig7tw")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.24364887, -0.56908506, 0.7853518, 0, 0.80975497, 0.58676815, -0.96986353, 0.14296539, -0.19729589, 59.698593, 17.11194, 49.314587)
+transform = Transform3D(-0.27653083, -0.086584695, 0.9570966, -0.021425402, 0.99624085, 0.08393552, -0.9607662, 0.0027045794, -0.27734643, 59.698593, 17.11194, 49.314587)
 
 [node name="DayNightCycle" type="Node3D" parent="."]
 process_mode = 1
@@ -90,10 +90,6 @@ shadow_opacity = 0.75
 transform = Transform3D(0.988054, 0.0927073, 0.123103, -0.154107, 0.594392, 0.789272, 6.57169e-09, -0.798814, 0.601578, 0, 9.45001, 0)
 shadow_enabled = true
 sky_mode = 1
-
-[node name="Timer" type="Timer" parent="DayNightCycle"]
-wait_time = 0.1
-autostart = true
 
 [node name="Sky" type="Node3D" parent="DayNightCycle"]
 
@@ -185,6 +181,5 @@ script = ExtResource("6_7mycd")
 wait_time = 0.1
 autostart = true
 
-[connection signal="timeout" from="DayNightCycle/Timer" to="DayNightCycle" method="_on_timer_timeout"]
 [connection signal="value_changed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow/SpeedSlider" to="TimeControl/TimeControlUI" method="_on_speed_slider_value_changed"]
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
