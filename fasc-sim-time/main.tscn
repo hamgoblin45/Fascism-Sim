@@ -1,11 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://e8o0kydvppr1"]
+[gd_scene load_steps=21 format=3 uid="uid://e8o0kydvppr1"]
 
 [ext_resource type="Script" uid="uid://1v0ae4eu1rag" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://coghiaiitrpt7" path="res://Maps/day_night_cycle.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://coghiaiitrpt7" path="res://Maps/sky.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cq362a8jqvadw" path="res://Maps/time_control_ui.gd" id="4_1bvp3"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://Maps/sky/examples/day_sky.tres" id="4_7mycd"]
 [ext_resource type="Script" uid="uid://co6onokbkdfa7" path="res://time_manager.gd" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://kptp3n3g2x67" path="res://day_transition.gd" id="6_272bh"]
 
 [sub_resource type="Gradient" id="Gradient_pmrgb"]
 offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
@@ -59,7 +60,60 @@ fog_sky_affect = 0.07
 fog_depth_begin = 0.0
 fog_depth_end = 600.0
 
+[sub_resource type="Animation" id="Animation_kek77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5vw27"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_272bh"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4c57u"]
+_data = {
+&"RESET": SubResource("Animation_kek77"),
+&"fade_in": SubResource("Animation_5vw27"),
+&"fade_out": SubResource("Animation_272bh")
+}
+
 [node name="Main" type="Node3D"]
+process_mode = 3
 script = ExtResource("1_ig7tw")
 
 [node name="map" parent="." instance=ExtResource("2_0xm2m")]
@@ -180,31 +234,65 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "PAUSE"
 
-[node name="DayChangeLabel" type="Label" parent="TimeControl"]
-unique_name_in_owner = true
-visible = false
+[node name="DayTransition" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_272bh")
+
+[node name="NewDayPanel" type="PanelContainer" parent="DayTransition"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -265.5
-offset_top = -145.5
-offset_right = 265.5
-offset_bottom = -46.5
+offset_left = -127.5
+offset_top = -79.0
+offset_right = 127.5
+offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 72
-text = "DAY CHANGED!"
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DayTransition/NewDayPanel"]
+layout_mode = 2
+
+[node name="NewDayLabel" type="Label" parent="DayTransition/NewDayPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 89
+text = "DAY X"
+
+[node name="StartNewDayButton" type="Button" parent="DayTransition/NewDayPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Start New Day"
+
+[node name="NewDayFade" type="AnimationPlayer" parent="DayTransition/NewDayPanel"]
+unique_name_in_owner = true
+process_mode = 3
+libraries = {
+&"": SubResource("AnimationLibrary_4c57u")
+}
 
 [node name="TimeManager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("6_7mycd")
 
 [node name="Timer" type="Timer" parent="TimeManager"]
+process_mode = 1
 wait_time = 0.1
 autostart = true
 
 [connection signal="value_changed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow/SpeedSlider" to="TimeControl/TimeControlUI" method="_on_speed_slider_value_changed"]
 [connection signal="pressed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/PauseButton" to="TimeControl/TimeControlUI" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="DayTransition/NewDayPanel/VBoxContainer/StartNewDayButton" to="DayTransition" method="_on_start_new_day_button_pressed"]
+[connection signal="animation_finished" from="DayTransition/NewDayPanel/NewDayFade" to="DayTransition" method="_on_new_day_fade_animation_finished"]
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]

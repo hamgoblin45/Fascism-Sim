@@ -1,9 +1,6 @@
 extends Node3D
 
 
-
-@onready var timer: Timer = $Timer
-
 var sun: DirectionalLight3D
 @export var sun_color: Gradient
 @export var sun_intensity: Curve
@@ -26,6 +23,7 @@ func _ready():
 	EventBus.main_scene_loaded.connect(_setup)
 
 func _setup():
+	
 	sun = get_node("Sun")
 	moon = get_node("Moon")
 	environment = get_node("Sky/WorldEnvironment")
@@ -33,6 +31,8 @@ func _setup():
 	sky_material = environment.environment.sky.sky_material
 	_handle_sky(GameState.hour, GameState.minute)
 	EventBus.minute_changed.connect(_handle_sky)
+	
+	print("Setup run on Sky")
 
 
 
@@ -78,7 +78,7 @@ func _handle_sky(_hour: int, _minute: int):
 		if GameState.time < 8.0 and GameState.time >= 6.0:
 			cloud_shadow_intensity = (GameState.time - 6.0) / 2
 			star_intensity = ((8.0 - GameState.time) / 2)
-			print("Star intensity: %s" % str(star_intensity))
+			#print("Star intensity: %s" % str(star_intensity))
 		
 		environment.environment.sky.sky_material.set_shader_parameter("stars_intensity", star_intensity)
 		environment.environment.sky.sky_material.set_shader_parameter("clouds_shadow_intensity", cloud_shadow_intensity)

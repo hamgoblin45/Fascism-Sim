@@ -4,10 +4,12 @@ extends Node
 var time_rate: float = 0.0003
 
 func _ready() -> void:
-	_setup_new_day()
+	_start_new_day()
 	handle_time()
 	
 	EventBus.set_paused.connect(_handle_pause)
+	EventBus.change_day.connect(_change_day)
+	EventBus.start_day.connect(_start_new_day)
 
 func handle_time():
 	GameState.time = 1440 * GameState.cycle_time / 60
@@ -15,23 +17,35 @@ func handle_time():
 	var minute_fraction = GameState.time - GameState.hour
 	GameState.minute = int(60 * minute_fraction)
 	
+	if GameState.hour >= 24:
+		GameState.cycle_time = 0.0
+		GameState.hour = 0
+	
 	EventBus.minute_changed.emit(GameState.hour, GameState.minute)
 	#print("Hour: %s" % GameState.hour)
 	#print("Minute: %s" % GameState.minute)
 	#print("It is %s minute" % minute_fraction)
-	if GameState.cycle_time >= 1.0:
-		_change_day()
+	
+	# Only works for AM end times
+	if GameState.time >= GameState.day_end and GameState.time < GameState.day_start:
+		EventBus.end_day.emit()
+		_handle_pause(true)
+		
+		
 		
 
 func _change_day(): # Have this done during day transition
-	GameState.cycle_time = 0.0
+	
+	
 	GameState.day += 1
 	
 	_change_weekday()
 	
-	print("CHANGING DAY TO %s" % GameState.day)
-	EventBus.day_changed.emit(GameState.day)
-	_setup_new_day() # Have this actually run after loading back in for a new day / upon game start
+	print("CHANGING DAY TO %s via TimeManager" % GameState.day)
+	EventBus.day_changed.emit()
+	#_start_new_day() # Have this actually run after loading back in for a new day / upon game start
+
+
 
 func _change_weekday():
 	match GameState.weekday:
@@ -50,9 +64,11 @@ func _change_weekday():
 		"Sunday":
 			GameState.weekday = "Monday"
 
-func _setup_new_day():
-	GameState.time = 8.0 # in hours
+func _start_new_day():
+	print("Setting up new day in TimeManager")
+	GameState.time = GameState.day_start # in hours
 	GameState.cycle_time = GameState.time / 24
+	EventBus.set_paused.emit(false)
 	#GameState.cycle_time = 0.33 # between 0.0 and 1.0
 	#EventBus.new_day_started.emit()
 
@@ -63,6 +79,7 @@ func _on_timer_timeout() -> void:
 
 
 func _handle_pause(paused: bool):
+	print("Pause handled in TimeManager")
 	get_tree().paused = paused
 
 func handle_lights():
