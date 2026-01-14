@@ -26,9 +26,6 @@ func _ready():
 	EventBus.main_scene_loaded.connect(_setup)
 
 func _setup():
-	
-	GameState.cycle_time = GameState.time / 24
-	
 	sun = get_node("Sun")
 	moon = get_node("Moon")
 	environment = get_node("Sky/WorldEnvironment")

@@ -4,7 +4,9 @@ extends Node
 var time_rate: float = 0.0003
 
 func _ready() -> void:
+	_setup_new_day()
 	handle_time()
+	
 	EventBus.set_paused.connect(_handle_pause)
 
 func handle_time():
@@ -21,7 +23,7 @@ func handle_time():
 		_change_day()
 		
 
-func _change_day():
+func _change_day(): # Have this done during day transition
 	GameState.cycle_time = 0.0
 	GameState.day += 1
 	
@@ -29,6 +31,7 @@ func _change_day():
 	
 	print("CHANGING DAY TO %s" % GameState.day)
 	EventBus.day_changed.emit(GameState.day)
+	_setup_new_day() # Have this actually run after loading back in for a new day / upon game start
 
 func _change_weekday():
 	match GameState.weekday:
@@ -46,6 +49,12 @@ func _change_weekday():
 			GameState.weekday = "Sunday"
 		"Sunday":
 			GameState.weekday = "Monday"
+
+func _setup_new_day():
+	GameState.time = 8.0 # in hours
+	GameState.cycle_time = GameState.time / 24
+	#GameState.cycle_time = 0.33 # between 0.0 and 1.0
+	#EventBus.new_day_started.emit()
 
 
 func _on_timer_timeout() -> void:
