@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://e8o0kydvppr1"]
+[gd_scene load_steps=5 format=3 uid="uid://e8o0kydvppr1"]
 
 [ext_resource type="Script" uid="uid://1v0ae4eu1rag" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://btcbf58h7yvlx" path="res://Maps/day_night_cycle.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cq362a8jqvadw" path="res://Maps/time_control_ui.gd" id="4_1bvp3"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ig7tw")
@@ -14,3 +15,81 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 transform = Transform3D(-0.24364887, -0.56908506, 0.7853518, 0, 0.80975497, 0.58676815, -0.96986353, 0.14296539, -0.19729589, 59.698593, 17.11194, 49.314587)
 
 [node name="DayNightCycle" parent="." instance=ExtResource("3_h2yge")]
+
+[node name="TimeControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeControlUI" type="PanelContainer" parent="TimeControl"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_bottom = 184.0
+grow_horizontal = 0
+script = ExtResource("4_1bvp3")
+
+[node name="MarginContainer" type="MarginContainer" parent="TimeControl/TimeControlUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="MainVBox" type="VBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
+layout_mode = 2
+text = "TIME"
+horizontal_alignment = 1
+
+[node name="DayTimeRow" type="HBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="WeekdayLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/DayTimeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Weekday"
+
+[node name="DayLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/DayTimeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Day"
+
+[node name="TimeLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/DayTimeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "XX:XX"
+
+[node name="SpeedContainer" type="VBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer"]
+layout_mode = 2
+text = "Time Speed"
+horizontal_alignment = 1
+
+[node name="SpeedRow" type="HBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1.0"
+
+[node name="SpeedSlider" type="HSlider" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = -10.0
+max_value = 10.0
+value = 1.0
