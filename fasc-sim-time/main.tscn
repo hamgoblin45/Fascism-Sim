@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://e8o0kydvppr1"]
+
+[ext_resource type="Script" uid="uid://1v0ae4eu1rag" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://btcbf58h7yvlx" path="res://Maps/day_night_cycle.tscn" id="3_h2yge"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ig7tw")
+
+[node name="map" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.24364887, -0.56908506, 0.7853518, 0, 0.80975497, 0.58676815, -0.96986353, 0.14296539, -0.19729589, 59.698593, 17.11194, 49.314587)
+
+[node name="DayNightCycle" parent="." instance=ExtResource("3_h2yge")]
