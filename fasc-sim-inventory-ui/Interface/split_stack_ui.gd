@@ -31,10 +31,23 @@ func _physics_process(_delta: float) -> void:
 		hide()
 
 func _on_split_button_pressed() -> void:
+	var amount = int(split_slider.value)
+	
+	if amount <= 0:
+		hide()
+		return
+	
+	if amount >= slot_data.quantity:
+		amount = slot_data.quantity
+	
 	var stack_data = InventorySlotData.new()
 	stack_data.item_data = slot_data.item_data
-	stack_data.quantity = split_slider.value
-	slot_data.quantity -= int(split_slider.value)
+	stack_data.quantity = amount
+	
+	slot_data.quantity -= int(amount)
+	
+	EventBus.inventory_item_updated.emit(slot_data)
+	
 	EventBus.splitting_item_stack.emit(stack_data, slot_data)
 	hide()
 

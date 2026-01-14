@@ -16,6 +16,9 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 @onready var grabbed_quantity: Label = %GrabbedQuantity
 @onready var grab_timer: Timer = %GrabTimer
 
+var pending_grab_slot_ui: PanelContainer = null
+var pending_grab_slot_data: InventorySlotData = null
+
 @onready var item_context_ui: PanelContainer = %ItemContextUI
 
 @onready var external_inventory: PanelContainer = %ExternalInventory
@@ -47,46 +50,22 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 		"click":
 			print("Click from %s received by inventoryUI" % slot)
 			if grabbed_slot_data:
-				if grabbed_slot_data.item_data.id and slot_data.item_data.id and slot_data.item_data.stackable:
-					# Check for mergability
-					var space_left = slot_data.item_data.max_stack_size - slot_data.quantity
-					if space_left > 0:
-						var amount_to_move = min(grabbed_slot_data.quantity, space_left)
-						slot_data.quantity += amount_to_move
-						grabbed_slot_data.quantity -= amount_to_move
-						
-						if grabbed_slot_data.quantity <= 0:
-							_clear_grabbed_slot()
-						else:
-							_set_grabbed_slot()
-						
-						slot.set_slot_data(slot_data)
-						print("Item merge success")
+				_handle_drop_or_merge(slot, slot_data)
+			else:
+				if slot_data and slot_data.item_data:
+					if Input.is_action_pressed("shift"):
+						EventBus.open_split_stack_ui.emit(slot_data)
 						return
 					
-					#if grabbed_slot_data != slot_data:
-						#print("Trying to merge grabbed slot with existing slot")
-						#if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
-							#slot_data.quantity += grabbed_slot_data.quantity
-							#_clear_grabbed_slot()
-							#
-						#else:
-							#var sd = grabbed_slot_data
-							#grabbed_slot_data = slot_data
-							#slot_data = sd
-							#_set_grabbed_slot()
-						#slot.set_slot_data(slot_data)
-					#
-				#else:
-					#slot.set_slot_data(grabbed_slot_data)
-					#_clear_grabbed_slot()
+					# START GRAB PROCESS
+					pending_grab_slot_data = slot_data
+					pending_grab_slot_ui = slot
+					grab_timer.start()
+				
+				
+				
 			
-			else:
-				if Input.is_action_pressed("shift"):
-					EventBus.open_split_stack_ui.emit(slot_data)
-					return
-				grabbed_slot_data = slot_data
-				grab_timer.start()
+				
 		"r_click":
 			print("Right Click from %s received by inventoryUI" % slot)
 			if grabbed_slot_data:
@@ -98,6 +77,8 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 						if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
 							slot_data.quantity += 1
 							grabbed_slot_data.quantity -= 1
+							_set_grabbed_slot()
+							slot.set_slot_data(slot_data)
 							
 				else:
 					print("Trying to drop a single item into an empty slot, creating slot data")
@@ -124,10 +105,40 @@ func _physics_process(_delta: float) -> void:
 	# Stop grabbing if click released early
 	if Input.is_action_just_released("click"):
 		print("click released")
-		if grabbed_slot_data and not grab_timer.is_stopped():
-			grabbed_slot_data = null
+		if !grab_timer.is_stopped():
 			grab_timer.stop()
+			pending_grab_slot_data = null
+			pending_grab_slot_ui = null
+			
 			print("grab aborted")
+
+func _handle_drop_or_merge(slot, slot_data):
+	if slot_data and slot_data.item_data and slot_data.item_data.id == grabbed_slot_data.item_data.id and slot_data.item_data.stackable:
+		# Check for mergability
+		var space_left = slot_data.item_data.max_stack_size - slot_data.quantity
+		if space_left > 0:
+			var amount_to_move = min(grabbed_slot_data.quantity, space_left)
+			slot_data.quantity += amount_to_move
+			grabbed_slot_data.quantity -= amount_to_move
+			
+			slot.set_slot_data(slot_data)
+			
+			if grabbed_slot_data.quantity <= 0:
+				_clear_grabbed_slot()
+			else:
+				_set_grabbed_slot()
+			print("Item merge success")
+			return
+	else:
+		## SWAP / DROP LOGIC
+		var temp_data = slot_data
+		slot.set_slot_data(grabbed_slot_data)
+		
+		if temp_data and temp_data.item_data:
+			grabbed_slot_data = temp_data
+			_set_grabbed_slot()
+		else:
+			_clear_grabbed_slot()
 
 func _add_item_to_inventory(item_to_add: InventoryItemData, qty_to_add: int):
 	if can_inventory_fit(item_to_add, qty_to_add):
@@ -215,29 +226,42 @@ func _remove_item_from_inventory(slot_data: InventorySlotData):
 
 func _set_grabbed_slot():
 	if !grabbed_slot_data or !grabbed_slot_data.item_data:
-		print("Trying to set grabbed slot in InventoryUI but has no slot and/or item_data")
+		#print("Trying to set grabbed slot in InventoryUI but has no slot and/or item_data")
 		return
 	grabbed_slot_ui.position = get_local_mouse_position()
 	grabbed_slot_ui.show()
 	grabbed_item_texture.texture = grabbed_slot_data.item_data.texture
+	
 	if grabbed_slot_data.quantity > 1 and grabbed_slot_data.item_data.stackable:
 		grabbed_quantity.show()
 		grabbed_quantity.text = str(grabbed_slot_data.quantity)
 	else:
 		grabbed_quantity.hide()
-	
-	EventBus.removing_item_from_inventory.emit(grabbed_slot_data)
 
 func _clear_grabbed_slot():
 	grabbed_slot_data = null
 	grabbed_slot_ui.hide()
 
-func _on_slot_split(slot: InventorySlotData, _orig_slot_data: InventorySlotData):
+func _on_slot_split(slot: InventorySlotData, _orig_slot: InventorySlotData):
 	grabbed_slot_data = slot
+	var all_slots = pocket_slot_container.get_children()
+	all_slots.append_array(external_slot_container.get_children())
+	for slot_ui in all_slots:
+		if slot_ui.slot_data == slot:
+			slot_ui.set_slot_data(slot)
+			#break
 	_set_grabbed_slot()
 
 func _on_grab_timer_timeout() -> void:
-	_set_grabbed_slot()
+	if pending_grab_slot_data:
+		grabbed_slot_data = pending_grab_slot_data
+		
+		pending_grab_slot_ui.clear_slot_data(pending_grab_slot_data)
+	
+		_set_grabbed_slot()
+		
+		pending_grab_slot_data = null
+		pending_grab_slot_ui = null
 
 func _set_external_inventory(inv_data: InventoryData):
 	external_inventory_data = inv_data

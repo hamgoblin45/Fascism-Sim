@@ -11,7 +11,7 @@ signal setting_external_inventory(inv_data: InventoryData)
 
 signal open_item_context_menu(slot_data: InventorySlotData)
 signal open_split_stack_ui(slot_data: InventorySlotData)
-signal splitting_item_stack(slot_data: InventorySlotData, orig_slot_data: InventorySlotData)
+signal splitting_item_stack(slot_data: InventorySlotData, orig_slot: InventorySlotData)
 
 signal using_item(slot_data: InventorySlotData)
 signal item_used(slot_data: InventorySlotData)
