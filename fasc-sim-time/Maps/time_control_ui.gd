@@ -14,6 +14,7 @@ func _ready():
 	EventBus.change_day.connect(_set_day)
 	#EventBus.day_changed.connect(_set_day)
 	EventBus.minute_changed.connect(_set_time)
+	EventBus.day_changed.connect(_day_changed)
 
 func _set_ui():
 	_set_day(GameState.day)
@@ -47,3 +48,9 @@ func _set_time(hour: int, minute: int):
 func _on_speed_slider_value_changed(value: float) -> void:
 	GameState.time_speed = value
 	speed_label.text = str(value)
+
+
+func _day_changed(_new_day: int):
+	%DayChangeLabel.show()
+	await get_tree().create_timer(1.5).timeout
+	%DayChangeLabel.hide()

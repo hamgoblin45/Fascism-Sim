@@ -17,10 +17,34 @@ func handle_time():
 	#print("Minute: %s" % GameState.minute)
 	#print("It is %s minute" % minute_fraction)
 	if GameState.cycle_time >= 1.0:
-		#next_day()
-		GameState.cycle_time = 0.0
-		print("midnight reached")
-		EventBus.change_day.emit(GameState.day + 1)
+		_change_day()
+		
+
+func _change_day():
+	GameState.cycle_time = 0.0
+	GameState.day += 1
+	
+	_change_weekday()
+	
+	print("CHANGING DAY TO %s" % GameState.day)
+	EventBus.day_changed.emit(GameState.day)
+
+func _change_weekday():
+	match GameState.weekday:
+		"Monday":
+			GameState.weekday = "Tuesday"
+		"Tuesday":
+			GameState.weekday = "Wednesday"
+		"Wednesday":
+			GameState.weekday = "Thursday"
+		"Thursday":
+			GameState.weekday = "Friday"
+		"Friday":
+			GameState.weekday = "Saturday"
+		"Saturday":
+			GameState.weekday = "Sunday"
+		"Sunday":
+			GameState.weekday = "Monday"
 
 
 func _on_timer_timeout() -> void:
