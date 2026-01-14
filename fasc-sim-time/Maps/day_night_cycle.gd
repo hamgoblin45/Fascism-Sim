@@ -1,13 +1,8 @@
 extends Node3D
 
-#var time: float
-#@export var day_length: float = 800000.0
-@export var start_time: float = 0.25
 
-var time_rate: float = 0.0001
 
 @onready var timer: Timer = $Timer
-
 
 var sun: DirectionalLight3D
 @export var sun_color: Gradient
@@ -28,7 +23,9 @@ var sky_material: Material
 
 
 func _ready():
-	#GameState.cycle_time = start_time
+	EventBus.main_scene_loaded.connect(_setup)
+
+func _setup():
 	
 	GameState.cycle_time = GameState.time / 24
 	
@@ -36,29 +33,14 @@ func _ready():
 	moon = get_node("Moon")
 	environment = get_node("Sky/WorldEnvironment")
 	
-	
-	handle_time()
-	
 	sky_material = environment.environment.sky.sky_material
+	_handle_sky(GameState.hour, GameState.minute)
+	EventBus.minute_changed.connect(_handle_sky)
 
-func handle_time():
-	GameState.time = 1440 * GameState.cycle_time / 60
-	GameState.hour = floor(GameState.time)
-	var minute_fraction = GameState.time - GameState.hour
-	GameState.minute = int(60 * minute_fraction)
-	
-	EventBus.minute_changed.emit(GameState.hour, GameState.minute)
-	#print("Hour: %s" % GameState.hour)
-	#print("Minute: %s" % GameState.minute)
-	#print("It is %s minute" % minute_fraction)
-	if GameState.cycle_time >= 1.0:
-		#next_day()
-		GameState.cycle_time = 0.0
-		print("midnight reached")
-		EventBus.change_day.emit(GameState.day + 1)
+
 
 ## Controls sun, moon, light, and color of sky
-func handle_sky():
+func _handle_sky(_hour: int, _minute: int):
 		#SUN
 		sun.rotation_degrees.x = GameState.cycle_time * 360 + 90
 		sun.light_color = sun_color.sample(GameState.cycle_time)
@@ -123,59 +105,3 @@ func handle_sky():
 		environment.environment.sky.sky_material.set_shader_parameter("clouds_shadow_intensity", cloud_shadow_intensity)
 		#environment.environment.sky.sky_material.set("ground_bottom_color", sky_top_color.sample(GameState.cycle_time))
 		#environment.environment.sky.sky_material.set("ground_horizon_color", sky_horizon_color.sample(GameState.cycle_time))
-
-## Rolls over time to a new day
-#func next_day():
-			##Make it so each day has to be ended, like Stardew. If it reaches a certain time, Player passes out and loses
-			##some resource.
-			#
-			#GameState.cycle_time = 0.0
-			#GameState.day += 1
-			#GameState.overall_day += 1
-			#
-			#match GameState.weekday:
-				#"Monday":
-					#GameState.weekday = "Tuesday"
-				#"Tuesday":
-					#GameState.weekday = "Wednesday"
-				#"Wednesday":
-					#GameState.weekday = "Thursday"
-				#"Thursday":
-					#GameState.weekday = "Friday"
-				#"Friday":
-					#GameState.weekday = "Saturday"
-				#"Saturday":
-					#GameState.weekday = "Sunday"
-				#"Sunday":
-					#GameState.weekday = "Monday"
-			#
-			#if GameState.day >= 29:
-				#GameState.day = 1
-				#match GameState.season:
-					#"Spring":
-						#GameState.season = "Summer"
-					#"Summer":
-						#GameState.season = "Fall"
-					#"Fall":
-						#GameState.season = "Winter"
-					#"Winter":
-						#GameState.season = "Spring"
-
-func handle_lights():
-	if GameState.time >= 17.5 or GameState.time < 6.0:
-		for lamp in get_tree().get_nodes_in_group("lamps"):	
-			lamp.light_on()
-	else:
-		for lamp in get_tree().get_nodes_in_group("lamps"):	
-			lamp.light_off()
-
-## Controls time in a more optimized manner than running it in _process()
-func _on_timer_timeout() -> void:
-		GameState.cycle_time += time_rate * GameState.time_speed
-		
-		print("Cycle Time: %f" % GameState.cycle_time)
-		print("Time: %f" % GameState.time)
-		
-		handle_time()
-		handle_sky()
-		handle_lights() # Streetlights

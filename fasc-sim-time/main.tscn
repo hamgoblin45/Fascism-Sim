@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://e8o0kydvppr1"]
+[gd_scene load_steps=16 format=3 uid="uid://e8o0kydvppr1"]
 
 [ext_resource type="Script" uid="uid://1v0ae4eu1rag" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://coghiaiitrpt7" path="res://Maps/DayNightCycle.gd" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://coghiaiitrpt7" path="res://Maps/day_night_cycle.gd" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://cq362a8jqvadw" path="res://Maps/time_control_ui.gd" id="4_1bvp3"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://Maps/sky/examples/day_sky.tres" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://co6onokbkdfa7" path="res://time_manager.gd" id="6_7mycd"]
 
 [sub_resource type="Gradient" id="Gradient_pmrgb"]
 offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
@@ -177,5 +178,13 @@ min_value = -10.0
 max_value = 10.0
 value = 1.0
 
+[node name="TimeManager" type="Node" parent="."]
+script = ExtResource("6_7mycd")
+
+[node name="Timer" type="Timer" parent="TimeManager"]
+wait_time = 0.1
+autostart = true
+
 [connection signal="timeout" from="DayNightCycle/Timer" to="DayNightCycle" method="_on_timer_timeout"]
 [connection signal="value_changed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow/SpeedSlider" to="TimeControl/TimeControlUI" method="_on_speed_slider_value_changed"]
+[connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]

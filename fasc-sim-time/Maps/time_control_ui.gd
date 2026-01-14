@@ -1,5 +1,5 @@
 extends PanelContainer
-
+# Only handle UI stuff here! Logic goes in TimeManager
 
 @onready var weekday_label: Label = %WeekdayLabel
 @onready var day_label: Label = %DayLabel
