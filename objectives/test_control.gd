@@ -65,3 +65,8 @@ func _print_output(text: String):
 	
 	if output_container.get_children().size() > 8:
 		output_container.get_children()[0].queue_free()
+
+
+func _on_turn_in_simple_objective_pressed() -> void:
+	var obj = TEST_SIMPLE_OBJECTIVE
+	EventBus.turn_in_objective.emit(obj)

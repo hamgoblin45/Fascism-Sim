@@ -23,6 +23,8 @@ func set_objective_data(objective: ObjectiveData):
 	objective_name.text = objective.name
 	objective_description.text = objective.description
 	
+	_set_current_step(objective.current_step)
+	
 	EventBus.objective_advanced.connect(_on_step_advanced)
 
 func _set_current_step(step: ObjectiveStepData):
@@ -33,7 +35,8 @@ func _set_current_step(step: ObjectiveStepData):
 	# set step ui in its own code
 
 func _on_step_advanced(objective: ObjectiveData):
-	print("step advance acknowledged in objective_ui. Objective: %s, Current Step: %s" % [objective, objective.current_step])
-	
-	_set_current_step(objective_data.current_step)
+	if objective.id == objective_data.id:
+		print("step advance acknowledged in objective_ui. Objective: %s, Current Step: %s" % [objective, objective.current_step])
+		
+		_set_current_step(objective_data.current_step)
 	

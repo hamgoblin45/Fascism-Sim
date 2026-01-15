@@ -6,6 +6,7 @@ func _ready() -> void:
 	EventBus.assign_objective.connect(_assign_objective)
 	EventBus.advance_objective.connect(_advance_objective)
 	EventBus.complete_objective.connect(_complete_objective)
+	EventBus.turn_in_objective.connect(_turn_in_objective)
 	EventBus.remove_objective.connect(_remove_objective)
 
 func _assign_objective(objective: ObjectiveData):
@@ -33,6 +34,9 @@ func _advance_objective(objective: ObjectiveData):
 func _complete_objective(objective: ObjectiveData):
 	pass
 	
+
+func _turn_in_objective(objective: ObjectiveData):
+	pass
 
 func _remove_objective(objective: ObjectiveData):
 	pass

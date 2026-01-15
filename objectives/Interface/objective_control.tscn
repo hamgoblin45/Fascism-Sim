@@ -51,6 +51,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ObjectiveUI" parent="ObjectiveTrackerUI/ObjectiveTrackerContainer/ObjectiveContainer" instance=ExtResource("3_0ygxj")]
+visible = false
 layout_mode = 2
 
 [node name="TestControl" type="Control" parent="."]
@@ -91,6 +92,11 @@ text = "Advance Simple Objective"
 layout_mode = 2
 disabled = true
 text = "Fail Simple Objective"
+
+[node name="TurnInSimpleObjective" type="Button" parent="TestControl/ButtonsPanel/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Turn In Simple Objective"
 
 [node name="AssignGatherObjective" type="Button" parent="TestControl/ButtonsPanel/VBoxContainer"]
 layout_mode = 2
@@ -138,6 +144,7 @@ layout_mode = 2
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/AssignSimpleObjective" to="TestControl" method="_on_assign_simple_objective_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/AdvanceSimpleObjective" to="TestControl" method="_on_advance_simple_objective_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/FailSimpleObjective" to="TestControl" method="_on_fail_simple_objective_pressed"]
+[connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/TurnInSimpleObjective" to="TestControl" method="_on_turn_in_simple_objective_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/AssignGatherObjective" to="TestControl" method="_on_assign_gather_objective_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/GatherRequiredItem" to="TestControl" method="_on_gather_required_item_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/GatherUnrelatedItem" to="TestControl" method="_on_gather_unrelated_item_pressed"]
