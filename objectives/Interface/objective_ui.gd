@@ -10,6 +10,8 @@ const OBJECTIVE_STEP_UI = preload("uid://btcdsfmx1knfj")
 
 @onready var steps_container: VBoxContainer = %StepsContainer
 
+@onready var anim: AnimationPlayer = %AnimationPlayer
+
 
 func set_objective_data(objective: ObjectiveData):
 	print("Setting objective data via ObjectiveUI")
@@ -24,6 +26,8 @@ func set_objective_data(objective: ObjectiveData):
 	objective_description.text = objective.description
 	
 	_set_current_step(objective.current_step)
+	
+	anim.play("show_highlight")
 	
 	EventBus.objective_advanced.connect(_on_step_advanced)
 	EventBus.objective_completed.connect(_on_objective_complete)
@@ -44,13 +48,14 @@ func _on_step_advanced(objective: ObjectiveData):
 		print("step advance acknowledged in objective_ui. Objective: %s, Current Step: %s" % [objective, objective.current_step])
 		
 		_set_current_step(objective_data.current_step)
+		anim.play("show_highlight")
 	
 
 func _on_objective_complete(objective: ObjectiveData):
 	if objective.id == objective_data.id:
 		objective_name.text = objective.name
 		objective_description.text = "Ready to turn in"
-		
+		anim.play("show_highlight")
 		#remove Steps from ui
 		for child in steps_container.get_children():
 			child.queue_free()
@@ -58,6 +63,7 @@ func _on_objective_complete(objective: ObjectiveData):
 func _on_objective_turned_in(objective: ObjectiveData):
 	if objective.id == objective_data.id:
 		print("Objective turned in acknowledged by its ObjectiveUI")
+		anim.play("turn_in")
 		# This is where getting rewards would be displayed, as well as this panel fading out
-		await get_tree().create_timer(1.0).timeout
+		await anim.animation_finished
 		queue_free()
