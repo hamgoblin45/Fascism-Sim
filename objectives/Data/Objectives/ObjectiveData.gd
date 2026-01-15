@@ -10,9 +10,9 @@ class_name ObjectiveData
 
 var current_step: ObjectiveStepData
 
-var ready_to_turn_in: bool = false
 @export var turn_in_npc: String = "" # Not sure if this is necessary but putting it here in case
 var complete: bool = false
+var turned_in: bool = false
 var failed: bool = false
 
 @export var follow_up_objective: ObjectiveData
@@ -34,6 +34,7 @@ func advance_objective():
 			break
 	
 	if next_step_index >= step_datas.size():
+		complete = true
 		EventBus.objective_completed.emit(self)
 		return
 	
