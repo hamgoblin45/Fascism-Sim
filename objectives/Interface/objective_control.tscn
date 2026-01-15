@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci8qlujuy7ma5"]
+[gd_scene load_steps=7 format=3 uid="uid://ci8qlujuy7ma5"]
 
 [ext_resource type="Script" uid="uid://cugngl2iwo01j" path="res://Interface/objective_manager.gd" id="1_76m2h"]
 [ext_resource type="Script" uid="uid://cbrq0qtlgucg7" path="res://Interface/objective_tracker_ui.gd" id="2_7d15p"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cmnfp80lkroyp" path="res://test_control.gd" id="4_mdw3h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76m2h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdw3h"]
 
 [node name="ObjectiveControl" type="Control"]
 layout_mode = 3
@@ -53,17 +55,16 @@ layout_mode = 2
 
 [node name="TestControl" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -131.0
-offset_top = -141.0
+offset_top = -282.0
 offset_right = 131.0
-offset_bottom = 141.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("4_mdw3h")
 
 [node name="ButtonsPanel" type="PanelContainer" parent="TestControl"]
@@ -109,6 +110,30 @@ text = "Gather Unrelated Item"
 layout_mode = 2
 disabled = true
 text = "Drop/Trash Required Item"
+
+[node name="OutputControl" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -550.0
+offset_right = 195.0
+offset_bottom = 233.0
+grow_horizontal = 2
+
+[node name="OutputPanel" type="PanelContainer" parent="OutputControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mdw3h")
+
+[node name="OutputContainer" type="VBoxContainer" parent="OutputControl/OutputPanel"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/AssignSimpleObjective" to="TestControl" method="_on_assign_simple_objective_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/AdvanceSimpleObjective" to="TestControl" method="_on_advance_simple_objective_pressed"]

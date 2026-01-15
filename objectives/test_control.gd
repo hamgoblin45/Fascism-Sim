@@ -9,12 +9,18 @@ extends Control
 @onready var gather_unrelated_item: Button = $ButtonsPanel/VBoxContainer/GatherUnrelatedItem
 @onready var drop_required_item: Button = $ButtonsPanel/VBoxContainer/DropRequiredItem
 
+@onready var output_control: Control = %OutputControl
+@onready var output_container: VBoxContainer = %OutputContainer
+
+var outputs: Array[Label]
 
 
 func _on_assign_simple_objective_pressed() -> void:
 	assign_simple_objective.disabled = true
 	advance_simple_objective.disabled = false
 	fail_simple_objective.disabled = false
+	_print_output("Simple objective assigned")
+	
 
 
 func _on_advance_simple_objective_pressed() -> void:
@@ -23,6 +29,7 @@ func _on_advance_simple_objective_pressed() -> void:
 
 func _on_fail_simple_objective_pressed() -> void:
 	fail_simple_objective.disabled = true
+	advance_simple_objective.disabled = true
 
 
 func _on_assign_gather_objective_pressed() -> void:
@@ -39,3 +46,12 @@ func _on_gather_unrelated_item_pressed() -> void:
 
 func _on_drop_required_item_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _print_output(text: String):
+	var new_label = Label.new()
+	new_label.text = text
+	output_container.add_child(new_label)
+	
+	if output_container.get_children().size() > 8:
+		output_container.get_children()[0].queue_free()
