@@ -18,6 +18,7 @@ layout_mode = 2
 text = "Objective Name"
 
 [node name="StepsContainer" type="VBoxContainer" parent="ObjectiveVBox"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ObjectiveStepUI" parent="ObjectiveVBox/StepsContainer" instance=ExtResource("2_gjltt")]
