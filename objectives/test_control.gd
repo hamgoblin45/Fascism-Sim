@@ -33,7 +33,8 @@ func _on_assign_simple_objective_pressed() -> void:
 
 
 func _on_advance_simple_objective_pressed() -> void:
-	pass # Replace with function body.
+	var obj = TEST_SIMPLE_OBJECTIVE
+	EventBus.advance_objective.emit(obj)
 
 
 func _on_fail_simple_objective_pressed() -> void:

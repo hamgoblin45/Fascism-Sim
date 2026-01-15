@@ -9,7 +9,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdw3h"]
 
-[node name="ObjectiveControl" type="Control"]
+[node name="ObjectiveControlUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

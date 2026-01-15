@@ -7,7 +7,7 @@ extends PanelContainer
 
 
 func set_step_data(step: ObjectiveStepData):
-	print("Setting setp data in objective_step_ui")
+	print("Setting step data in objective_step_ui")
 	step_data = step
 	step_label.text = step.text
 	

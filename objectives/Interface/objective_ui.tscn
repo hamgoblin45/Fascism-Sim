@@ -14,8 +14,17 @@ script = ExtResource("1_gjltt")
 layout_mode = 2
 
 [node name="ObjectiveName" type="Label" parent="ObjectiveVBox"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Objective Name"
+
+[node name="ObjectiveDescription" type="RichTextLabel" parent="ObjectiveVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Test an objective"
+fit_content = true
 
 [node name="StepsContainer" type="VBoxContainer" parent="ObjectiveVBox"]
 unique_name_in_owner = true
