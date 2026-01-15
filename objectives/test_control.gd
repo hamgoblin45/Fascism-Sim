@@ -7,6 +7,9 @@ const TEST_SIMPLE_OBJECTIVE = preload("uid://5qxnfyfegl6t")
 @onready var assign_simple_objective: Button = $ButtonsPanel/VBoxContainer/AssignSimpleObjective
 @onready var advance_simple_objective: Button = $ButtonsPanel/VBoxContainer/AdvanceSimpleObjective
 @onready var fail_simple_objective: Button = $ButtonsPanel/VBoxContainer/FailSimpleObjective
+@onready var turn_in_simple_objective: Button = $ButtonsPanel/VBoxContainer/TurnInSimpleObjective
+
+
 @onready var assign_gather_objective: Button = $ButtonsPanel/VBoxContainer/AssignGatherObjective
 @onready var gather_required_item: Button = $ButtonsPanel/VBoxContainer/GatherRequiredItem
 @onready var gather_unrelated_item: Button = $ButtonsPanel/VBoxContainer/GatherUnrelatedItem
@@ -16,6 +19,11 @@ const TEST_SIMPLE_OBJECTIVE = preload("uid://5qxnfyfegl6t")
 @onready var output_container: VBoxContainer = %OutputContainer
 
 var outputs: Array[Label]
+
+
+
+func _ready():
+	EventBus.objective_completed.connect(_on_objective_completed)
 
 
 func _on_assign_simple_objective_pressed() -> void:
@@ -70,3 +78,10 @@ func _print_output(text: String):
 func _on_turn_in_simple_objective_pressed() -> void:
 	var obj = TEST_SIMPLE_OBJECTIVE
 	EventBus.turn_in_objective.emit(obj)
+
+func _on_objective_completed(obj: ObjectiveData):
+	if obj.id == TEST_SIMPLE_OBJECTIVE.id:
+		turn_in_simple_objective.disabled = false
+		
+	var text = "OBJECTIVE '%s' COMPLETED! Ready to turn in" % obj.name
+	_print_output(text)

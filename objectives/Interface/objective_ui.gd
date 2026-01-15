@@ -26,13 +26,17 @@ func set_objective_data(objective: ObjectiveData):
 	_set_current_step(objective.current_step)
 	
 	EventBus.objective_advanced.connect(_on_step_advanced)
+	EventBus.objective_completed.connect(_on_objective_complete)
 
 func _set_current_step(step: ObjectiveStepData):
 	print("Setting current step via ObjectiveUI")
+	# Clear out previous step from UI
+	for child in steps_container.get_children():
+		child.queue_free()
+	
 	var new_step_ui = OBJECTIVE_STEP_UI.instantiate()
 	steps_container.add_child(new_step_ui)
 	new_step_ui.set_step_data(step)
-	# set step ui in its own code
 
 func _on_step_advanced(objective: ObjectiveData):
 	if objective.id == objective_data.id:
@@ -40,3 +44,8 @@ func _on_step_advanced(objective: ObjectiveData):
 		
 		_set_current_step(objective_data.current_step)
 	
+
+func _on_objective_complete(objective: ObjectiveData):
+	if objective.id == objective_data.id:
+		objective_name.text = objective.name
+		objective_description.text = "COMPLETE!!"

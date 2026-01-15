@@ -10,6 +10,8 @@ class_name ObjectiveData
 
 var current_step: ObjectiveStepData
 
+var ready_to_turn_in: bool = false
+@export var turn_in_npc: String = "" # Not sure if this is necessary but putting it here in case
 var complete: bool = false
 var failed: bool = false
 

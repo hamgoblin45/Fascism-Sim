@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ci8qlujuy7ma5"]
+[gd_scene load_steps=6 format=3 uid="uid://ci8qlujuy7ma5"]
 
 [ext_resource type="Script" uid="uid://cugngl2iwo01j" path="res://Interface/objective_manager.gd" id="1_76m2h"]
 [ext_resource type="Script" uid="uid://cbrq0qtlgucg7" path="res://Interface/objective_tracker_ui.gd" id="2_7d15p"]
-[ext_resource type="PackedScene" uid="uid://b4q0h7ka7r6wv" path="res://Interface/objective_ui.tscn" id="3_0ygxj"]
 [ext_resource type="Script" uid="uid://cmnfp80lkroyp" path="res://test_control.gd" id="4_mdw3h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76m2h"]
@@ -50,10 +49,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ObjectiveUI" parent="ObjectiveTrackerUI/ObjectiveTrackerContainer/ObjectiveContainer" instance=ExtResource("3_0ygxj")]
-visible = false
-layout_mode = 2
-
 [node name="TestControl" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -89,6 +84,7 @@ disabled = true
 text = "Advance Simple Objective"
 
 [node name="FailSimpleObjective" type="Button" parent="TestControl/ButtonsPanel/VBoxContainer"]
+visible = false
 layout_mode = 2
 disabled = true
 text = "Fail Simple Objective"
