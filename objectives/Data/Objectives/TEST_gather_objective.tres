@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObjectiveData" load_steps=3 format=3 uid="uid://6fxmo62vnuo4"]
+
+[ext_resource type="Script" uid="uid://dl860ocyo52gv" path="res://Data/Objectives/ObjectiveData.gd" id="1_ea3lf"]
+[ext_resource type="Script" uid="uid://ca4a8eabrgwaa" path="res://Data/Objectives/ObjectiveStepData.gd" id="2_5rkej"]
+
+[resource]
+script = ExtResource("1_ea3lf")
+metadata/_custom_type_script = "uid://dl860ocyo52gv"

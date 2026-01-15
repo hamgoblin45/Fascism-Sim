@@ -1,5 +1,8 @@
 extends Control
 
+const TEST_GATHER_OBJECTIVE = preload("uid://6fxmo62vnuo4")
+const TEST_SIMPLE_OBJECTIVE = preload("uid://5qxnfyfegl6t")
+
 ## -- BUTTONS
 @onready var assign_simple_objective: Button = $ButtonsPanel/VBoxContainer/AssignSimpleObjective
 @onready var advance_simple_objective: Button = $ButtonsPanel/VBoxContainer/AdvanceSimpleObjective
@@ -19,8 +22,14 @@ func _on_assign_simple_objective_pressed() -> void:
 	assign_simple_objective.disabled = true
 	advance_simple_objective.disabled = false
 	fail_simple_objective.disabled = false
-	_print_output("Simple objective assigned")
 	
+	var obj = TEST_SIMPLE_OBJECTIVE
+	EventBus.assign_objective.emit(obj)
+	
+	print("Assigned simple objective. Data: %s
+	Name: %s - Description: %s" % [obj, obj.name, obj.description])
+	_print_output("Simple objective assigned")
+
 
 
 func _on_advance_simple_objective_pressed() -> void:
