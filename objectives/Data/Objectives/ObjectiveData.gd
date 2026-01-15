@@ -1,5 +1,6 @@
 extends Resource
 class_name ObjectiveData
+## All EventBus signals emitted from here should start with "objective_" as these are confirming the change to data took place
 
 @export var name: String = ""
 @export var id: String = ""
@@ -31,7 +32,7 @@ func advance_objective():
 			break
 	
 	if next_step_index >= step_datas.size():
-		EventBus.complete_objective.emit(self)
+		EventBus.objective_completed.emit(self)
 		return
 	
 	current_step = step_datas[next_step_index]

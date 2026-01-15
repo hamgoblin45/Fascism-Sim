@@ -5,7 +5,7 @@ extends Node
 func _ready() -> void:
 	EventBus.assign_objective.connect(_assign_objective)
 	EventBus.advance_objective.connect(_advance_objective)
-	EventBus.complete_objective.connect(_complete_objective)
+	EventBus.objective_completed.connect(_complete_objective) # Since completion is determined by attempting to advance, there's no request signal. This just listens for confirmation
 	EventBus.turn_in_objective.connect(_turn_in_objective)
 	EventBus.remove_objective.connect(_remove_objective)
 
@@ -32,7 +32,7 @@ func _advance_objective(objective: ObjectiveData):
 
 
 func _complete_objective(objective: ObjectiveData):
-	pass
+	print("Objective %s completed acknowledged by ObjectiveManager" % objective)
 	
 
 func _turn_in_objective(objective: ObjectiveData):
