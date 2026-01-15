@@ -80,6 +80,7 @@ func _print_output(text: String):
 func _on_turn_in_simple_objective_pressed() -> void:
 	var obj = TEST_SIMPLE_OBJECTIVE
 	EventBus.turn_in_objective.emit(obj)
+	turn_in_simple_objective.disabled = true
 
 func _on_objective_completed(obj: ObjectiveData):
 	if obj.id == TEST_SIMPLE_OBJECTIVE.id:

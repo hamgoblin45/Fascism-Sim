@@ -27,6 +27,7 @@ func set_objective_data(objective: ObjectiveData):
 	
 	EventBus.objective_advanced.connect(_on_step_advanced)
 	EventBus.objective_completed.connect(_on_objective_complete)
+	EventBus.objective_turned_in.connect(_on_objective_turned_in)
 
 func _set_current_step(step: ObjectiveStepData):
 	print("Setting current step via ObjectiveUI")
@@ -48,4 +49,15 @@ func _on_step_advanced(objective: ObjectiveData):
 func _on_objective_complete(objective: ObjectiveData):
 	if objective.id == objective_data.id:
 		objective_name.text = objective.name
-		objective_description.text = "COMPLETE!!"
+		objective_description.text = "Ready to turn in"
+		
+		#remove Steps from ui
+		for child in steps_container.get_children():
+			child.queue_free()
+
+func _on_objective_turned_in(objective: ObjectiveData):
+	if objective.id == objective_data.id:
+		print("Objective turned in acknowledged by its ObjectiveUI")
+		# This is where getting rewards would be displayed, as well as this panel fading out
+		await get_tree().create_timer(1.0).timeout
+		queue_free()

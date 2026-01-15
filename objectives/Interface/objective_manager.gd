@@ -36,7 +36,9 @@ func _complete_objective(objective: ObjectiveData):
 	
 
 func _turn_in_objective(objective: ObjectiveData):
-	pass
+	print("Objective %s turned in as acknowledge by ObjectiveManager" % objective)
+	objective.turned_in = true
+	EventBus.objective_turned_in.emit(objective)
 
 func _remove_objective(objective: ObjectiveData):
 	pass
