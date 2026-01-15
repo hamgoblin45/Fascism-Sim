@@ -12,4 +12,5 @@ func set_step_data(step: ObjectiveStepData):
 	step_label.text = step.text
 	
 	if step is ObjectiveStepGatherData:
+		step_progress_label.show()
 		step_progress_label.text = ""

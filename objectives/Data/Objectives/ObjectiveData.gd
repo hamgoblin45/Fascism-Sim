@@ -15,6 +15,7 @@ var complete: bool = false
 var turned_in: bool = false
 var failed: bool = false
 
+@export var rewards: Array[InventoryItemData]
 @export var follow_up_objective: ObjectiveData
 
 
@@ -36,6 +37,7 @@ func advance_objective():
 	if next_step_index >= step_datas.size():
 		complete = true
 		EventBus.objective_completed.emit(self)
+		# When connecting to Inv, add reward items here
 		return
 	
 	current_step = step_datas[next_step_index]

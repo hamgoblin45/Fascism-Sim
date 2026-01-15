@@ -1,8 +1,20 @@
-[gd_resource type="Resource" script_class="ObjectiveData" load_steps=3 format=3 uid="uid://6fxmo62vnuo4"]
+[gd_resource type="Resource" script_class="ObjectiveData" load_steps=6 format=3 uid="uid://6fxmo62vnuo4"]
 
+[ext_resource type="Script" uid="uid://bu00q3p03457u" path="res://Data/InventoryItemData.gd" id="1_7djrx"]
 [ext_resource type="Script" uid="uid://dl860ocyo52gv" path="res://Data/Objectives/ObjectiveData.gd" id="1_ea3lf"]
 [ext_resource type="Script" uid="uid://ca4a8eabrgwaa" path="res://Data/Objectives/ObjectiveStepData.gd" id="2_5rkej"]
+[ext_resource type="Script" uid="uid://bhslcuxf56u7" path="res://Data/Objectives/ObjectiveStepGatherData.gd" id="4_rfsht"]
+
+[sub_resource type="Resource" id="Resource_a32f1"]
+script = ExtResource("4_rfsht")
+required_items = Array[String](["Corn"])
+text = "Gather Corn"
+metadata/_custom_type_script = "uid://bhslcuxf56u7"
 
 [resource]
 script = ExtResource("1_ea3lf")
+name = "Gather X items"
+id = "gather_objective"
+description = "Here to test objective progress based on inventory state"
+step_datas = Array[ExtResource("2_5rkej")]([SubResource("Resource_a32f1")])
 metadata/_custom_type_script = "uid://dl860ocyo52gv"

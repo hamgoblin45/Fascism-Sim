@@ -54,6 +54,12 @@ func _on_fail_simple_objective_pressed() -> void:
 
 func _on_assign_gather_objective_pressed() -> void:
 	assign_gather_objective.disabled = true
+	var obj = TEST_GATHER_OBJECTIVE
+	EventBus.assign_objective.emit(obj)
+	
+	print("Assigned gather objective. Data: %s
+	Name: %s - Description: %s" % [obj, obj.name, obj.description])
+	_print_output("Gather objective assigned")
 
 
 func _on_gather_required_item_pressed() -> void:
