@@ -4,16 +4,16 @@ const TEST_GATHER_OBJECTIVE = preload("uid://6fxmo62vnuo4")
 const TEST_SIMPLE_OBJECTIVE = preload("uid://5qxnfyfegl6t")
 
 ## -- BUTTONS
-@onready var assign_simple_objective: Button = $ButtonsPanel/VBoxContainer/AssignSimpleObjective
-@onready var advance_simple_objective: Button = $ButtonsPanel/VBoxContainer/AdvanceSimpleObjective
-@onready var fail_simple_objective: Button = $ButtonsPanel/VBoxContainer/FailSimpleObjective
-@onready var turn_in_simple_objective: Button = $ButtonsPanel/VBoxContainer/TurnInSimpleObjective
+@onready var assign_simple_objective: Button = %AssignSimpleObjective
+@onready var advance_simple_objective: Button = %AdvanceSimpleObjective
+@onready var fail_simple_objective: Button = %FailSimpleObjective
+@onready var turn_in_simple_objective: Button = %TurnInSimpleObjective
 
+@onready var assign_gather_objective: Button = %AssignGatherObjective
+@onready var gather_required_item: Button = %GatherRequiredItem
+@onready var gather_unrelated_item: Button = %GatherUnrelatedItem
+@onready var drop_required_item: Button = %DropRequiredItem
 
-@onready var assign_gather_objective: Button = $ButtonsPanel/VBoxContainer/AssignGatherObjective
-@onready var gather_required_item: Button = $ButtonsPanel/VBoxContainer/GatherRequiredItem
-@onready var gather_unrelated_item: Button = $ButtonsPanel/VBoxContainer/GatherUnrelatedItem
-@onready var drop_required_item: Button = $ButtonsPanel/VBoxContainer/DropRequiredItem
 
 @onready var output_control: Control = %OutputControl
 @onready var output_container: VBoxContainer = %OutputContainer

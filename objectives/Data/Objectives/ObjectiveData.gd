@@ -20,7 +20,8 @@ var failed: bool = false
 
 
 func set_data():
-	current_step = step_datas[0] # Assign first step
+	if step_datas.size() > 0:
+		current_step = step_datas[0] # Assign first step
 	EventBus.objective_assigned.emit(self)
 
 func advance_objective():
