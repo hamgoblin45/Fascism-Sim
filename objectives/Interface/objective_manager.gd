@@ -51,14 +51,19 @@ func _check_for_required_items(_slot: InventorySlotData):
 	for obj in GameState.objectives:
 		var current_step = obj.current_step
 		if current_step is ObjectiveStepGatherData:
+			print("Current step is Gather, as acknowledged by ObjectiveManager")
+			current_step.held_items.clear()
 			for req_item_slot in current_step.required_items:
 				
 			# Checks inventory for required items
-				var amount_held: int = 0
+				#var amount_held: int = 0
 				for slot_data in GameState.inventory.slot_datas:
 					if slot_data and slot_data.item_data and slot_data.item_data.id == req_item_slot.item_data.id:
-						amount_held += slot_data.quantity
+						var held_slot_data = InventorySlotData.new()
+						held_slot_data.item_data = slot_data.item_data
+						held_slot_data.quantity = slot_data.quantity
+						current_step.held_items.append(held_slot_data)
 				# Sets objective data to reflect quantity of req item held
-				req_item_slot.quantity = amount_held
-			
+				#req_item_slot.quantity = amount_held
+			EventBus.update_objective.emit(obj)
 			

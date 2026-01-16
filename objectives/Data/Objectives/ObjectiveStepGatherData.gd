@@ -4,7 +4,7 @@ class_name ObjectiveStepGatherData
 
 
 @export var required_items: Array[InventorySlotData] # quantities matching required amount
-
+var held_items: Array[InventorySlotData]
 
 #func _ready():
 	#EventBus.item_added_to_inventory.connect(something)
