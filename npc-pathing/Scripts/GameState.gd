@@ -1,5 +1,8 @@
 extends Node
 
+var player: CharacterBody3D
+
+
 var weekday: String = "Monday"
 
 var day: int = 1

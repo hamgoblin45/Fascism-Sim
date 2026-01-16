@@ -2,7 +2,7 @@ extends Resource
 class_name PathData
 
 #@export var curve: Curve3D # Each individual path
-@export var start_map: String
+#@export var start_map: String
 @export var start_pos: Vector3
 @export var start_rot: float
 var target_pos: Vector3
@@ -14,10 +14,9 @@ var target_pos: Vector3
 @export var anim: String = ""
 # Used to set the line of dialogue that plays AFTER walking
 @export var dialogue_title: String = ""
-@export var next_map: String
+#@export var next_map: String
 @export var end_rotation: float
 
-signal path_finished()
 #@export var next_map: String = ""
 
 
@@ -29,7 +28,7 @@ func set_position():
 		return
 	for pos in target_positions:
 		if pos and target_positions[-1] and pos == target_positions[-1]:
-			path_finished.emit()
+			EventBus.path_finished.emit(self)
 			print("PathData.gd: all target positions reached")
 			return
 		if pos and pos == target_pos:

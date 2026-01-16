@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2e1wswg0mcea"]
+[gd_scene load_steps=5 format=3 uid="uid://c2e1wswg0mcea"]
 
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c3mnecndcoemi" path="res://time_manager.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://clfwpf54mxbjm" path="res://Managers/pathing_manager.gd" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Maps/sky/examples/sky.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node3D"]
 
-[node name="map" parent="." instance=ExtResource("1_ig7tw")]
+[node name="TimeManager" type="Node" parent="."]
+script = ExtResource("2_0xm2m")
+
+[node name="PathingManager" type="Node" parent="."]
+script = ExtResource("2_h2yge")
+
+[node name="MapMesh" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.78314, 0, -239.62195)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.8927982, 0.33855733, -0.29713687, -8.881784e-16, 0.6596345, 0.7515866, 0.45045683, -0.6710152, 0.5889205, -110.58052, 98.489494, 108.24985)
+
+[node name="Sky" parent="." instance=ExtResource("4_1bvp3")]
