@@ -1,14 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1jos7r4f40bc"]
+[gd_scene load_steps=11 format=3 uid="uid://b1jos7r4f40bc"]
+
+[ext_resource type="Script" uid="uid://jf465a7umsp8" path="res://NPCs/npc.gd" id="1_0ikh5"]
+[ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="2_vxakg"]
+
+[sub_resource type="Resource" id="Resource_k7mck"]
+script = ExtResource("2_vxakg")
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2f5l"]
-radius = 0.481783
-height = 2.5938
+radius = 0.7338867
+height = 4.8991823
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w48l3"]
 radius = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uamu8"]
-albedo_color = Color(0.76185673, 0.36952832, 0, 1)
+shading_mode = 0
+albedo_color = Color(0.849446, 5.7371853e-05, 0.6507998, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uamu8"]
 material = SubResource("StandardMaterial3D_uamu8")
@@ -19,13 +27,12 @@ albedo_color = Color(0.96, 0.56, 0, 0.380392)
 
 [sub_resource type="SphereMesh" id="SphereMesh_qwsqk"]
 material = SubResource("StandardMaterial3D_vymve")
-radius = 0.35
-height = 0.7
+height = 1.2
 
 [sub_resource type="SphereMesh" id="SphereMesh_qkxgd"]
 material = SubResource("StandardMaterial3D_vymve")
-radius = 0.35
-height = 2.0
+radius = 0.6
+height = 4.0
 
 [node name="NPC" type="CharacterBody3D"]
 process_mode = 3
@@ -35,11 +42,13 @@ floor_constant_speed = true
 floor_max_angle = 1.4137167
 floor_snap_length = 1.0
 safe_margin = 0.056
+script = ExtResource("1_0ikh5")
+npc_data = SubResource("Resource_k7mck")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.332838, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4855292, 0)
 shape = SubResource("CapsuleShape3D_h2f5l")
 
 [node name="ProximityDetectArea" type="Area3D" parent="."]
@@ -55,15 +64,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0716, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.61824715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6315293, 0.61824715)
 mesh = SubResource("BoxMesh_uamu8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.281652, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7710776, 0)
 mesh = SubResource("SphereMesh_qwsqk")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0091088, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9984965, 0)
 mesh = SubResource("SphereMesh_qkxgd")
 
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]

@@ -2,10 +2,6 @@ extends CharacterBody3D
 class_name NPC
 
 @export var npc_data: NPCData
-#@export var dialogue_data: DialogueData
-#@export var dialogue_title: String
-
-@onready var dialogue_blurb: Node3D = $DialogueBlurb
 
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") # Don't set this as a const, see the gravity section in _physics_process
 var gravity_enabled: bool = true
@@ -16,36 +12,22 @@ var mesh
 @onready var npc_mesh: Node3D = $NPCMesh
 
 
-#@onready var face_mesh: MeshInstance3D = $Mesh/Armature/Skeleton3D/Cube_001
-
-@export var face_smile: Texture2D
-@export var face_serious: Texture2D
-
 @onready var head: Node3D = $Head
-@onready var dialog_cam_point: Node3D = $DialogCamPoint
-
 
 @onready var look_at_node: Node3D = $LookAtNode
 var looking_at: Node3D
 var player_nearby: bool
 
 var interactable: bool = true
-#@export var state: String
-#@export var speed: float = 10.0
 
-enum {IDLE, WALK, TALK, SIT, WAIT}
+enum {IDLE, WALK, WAIT}
 var state = IDLE
 var prev_state
 var anim: AnimationPlayer
 
-#var walk_speed: float = 5.8
-#var walk_accel: float = 6.0
-#var run_speed: float = 10.0
-#var run_accel: float = 15.0
-
 var schedule: ScheduleData
 
-@onready var anim_tree: AnimationTree = $AnimationTree
+#@onready var anim_tree: AnimationTree = $AnimationTree
 
 @export var blend_speed = 2
 var walk_blend_value = 0
