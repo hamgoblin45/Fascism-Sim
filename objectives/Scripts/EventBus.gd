@@ -1,5 +1,7 @@
 extends Node
 
+# For testing
+signal inventory_item_updated(slot: InventorySlotData)
 
 # Request signals (when attempting)
 signal assign_objective(objective: ObjectiveData)
@@ -14,3 +16,5 @@ signal objective_advanced(objective: ObjectiveData)
 signal objective_completed(objective: ObjectiveData)
 signal objective_turned_in(objective: ObjectiveData)
 signal objective_removed(objective: ObjectiveData)
+
+signal update_objective(objective: ObjectiveData)

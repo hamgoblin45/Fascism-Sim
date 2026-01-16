@@ -8,6 +8,8 @@ func _ready() -> void:
 	EventBus.objective_completed.connect(_complete_objective) # Since completion is determined by attempting to advance, there's no request signal. This just listens for confirmation
 	EventBus.turn_in_objective.connect(_turn_in_objective)
 	EventBus.remove_objective.connect(_remove_objective)
+	
+	EventBus.inventory_item_updated.connect(_check_for_required_items)
 
 func _assign_objective(objective: ObjectiveData):
 	print("Assign objective %s received by ObjectiveManager" % objective)
@@ -42,3 +44,21 @@ func _turn_in_objective(objective: ObjectiveData):
 
 func _remove_objective(objective: ObjectiveData):
 	pass
+
+func _check_for_required_items(_slot: InventorySlotData):
+	print("Check for required items called in ObjectiveManager")
+	# Checks for gather objectives
+	for obj in GameState.objectives:
+		var current_step = obj.current_step
+		if current_step is ObjectiveStepGatherData:
+			for req_item_slot in current_step.required_items:
+				
+			# Checks inventory for required items
+				var amount_held: int = 0
+				for slot_data in GameState.inventory.slot_datas:
+					if slot_data and slot_data.item_data and slot_data.item_data.id == req_item_slot.item_data.id:
+						amount_held += slot_data.quantity
+				# Sets objective data to reflect quantity of req item held
+				req_item_slot.quantity = amount_held
+			
+			

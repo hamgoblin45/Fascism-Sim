@@ -3,7 +3,7 @@ class_name ObjectiveStepGatherData
 ## Step specific to gathering a certain number of items
 
 
-@export var required_items: Array[String] # Actually make this SlotDatas, with quantities matching required amount
+@export var required_items: Array[InventorySlotData] # quantities matching required amount
 
 
 #func _ready():

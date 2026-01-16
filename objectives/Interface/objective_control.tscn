@@ -209,3 +209,6 @@ text = "Assign Complex Objective"
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/GatherObjectiveContainer/GatherRequiredItem" to="TestControl" method="_on_gather_required_item_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/GatherObjectiveContainer/GatherUnrelatedItem" to="TestControl" method="_on_gather_unrelated_item_pressed"]
 [connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/GatherObjectiveContainer/DropRequiredItem" to="TestControl" method="_on_drop_required_item_pressed"]
+[connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/MultiChoiceContainer/AssignMultiChoiceObjective" to="TestControl" method="_on_assign_multi_choice_objective_pressed"]
+[connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/MultiChoiceContainer/Choice1Button" to="TestControl" method="_on_choice_1_button_pressed"]
+[connection signal="pressed" from="TestControl/ButtonsPanel/VBoxContainer/MultiChoiceContainer/Choice2Button" to="TestControl" method="_on_choice_2_button_pressed"]
