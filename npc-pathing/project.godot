@@ -10,17 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Objectives"
-run/main_scene="uid://ci8qlujuy7ma5"
+config/name="NPCPathing"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray("fasc")
-
-[autoload]
-
-EventBus="*res://Scripts/EventBus.gd"
-GameState="*res://Scripts/GameState.gd"
 
 [dotnet]
 
-project/assembly_name="Objectives"
+project/assembly_name="NPCPathing"

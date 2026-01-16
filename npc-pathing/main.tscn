@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2e1wswg0mcea"]
+
+[ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="1_ig7tw"]
+
+[node name="Main" type="Node3D"]
+
+[node name="map" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.78314, 0, -239.62195)
