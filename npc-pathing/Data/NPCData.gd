@@ -2,6 +2,7 @@ extends Resource
 class_name NPCData
 
 @export var name: String
+@export var id: String
 
 @export var on_map: bool = true
 @export var schedule: ScheduleData

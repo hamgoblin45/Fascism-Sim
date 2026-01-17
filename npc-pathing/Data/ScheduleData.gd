@@ -26,7 +26,7 @@ func set_routine():
 func _set_path():
 	if not current_path and current_routine.size() > 0:
 		current_path = current_routine[0]
-		EventBus.setting_path.emit(current_path)
+		EventBus.setting_path.emit(self, current_path)
 		print("ScheduleData.gd: Setting path to %s" % current_path)
 		return
 	for path in current_routine:
@@ -38,6 +38,6 @@ func _set_path():
 			var path_index = current_routine.find(path)
 			var next_path: PathData = current_routine[path_index + 1]
 			current_path = next_path
-			EventBus.setting_path.emit(current_path)
+			EventBus.setting_path.emit(self, current_path)
 			print("ScheduleData.gd: updating path to %s" % current_path)
 			return

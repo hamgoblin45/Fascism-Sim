@@ -16,3 +16,5 @@ signal set_paused(bool)
 
 
 ## -- PATHING ---
+signal setting_path(schedule: ScheduleData, path: PathData)
+signal path_finished(npc: NPCData, path: PathData)

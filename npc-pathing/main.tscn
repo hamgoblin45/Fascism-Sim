@@ -1,4 +1,4 @@
-[gd_scene load_steps=338 format=4 uid="uid://c2e1wswg0mcea"]
+[gd_scene load_steps=343 format=4 uid="uid://c2e1wswg0mcea"]
 
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c3mnecndcoemi" path="res://Managers/time_manager.gd" id="2_0xm2m"]
@@ -7,10 +7,28 @@
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Maps/sky/examples/sky.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="5_272bh"]
-[ext_resource type="PackedScene" path="res://Maps/time_control_ui.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://ch2y18lpkj1j" path="res://Data/PathData.gd" id="6_4c57u"]
+[ext_resource type="Script" uid="uid://p0yiwd1penmr" path="res://Data/ScheduleData.gd" id="7_efxa6"]
+[ext_resource type="PackedScene" uid="uid://bllcwma07j3aa" path="res://Maps/time_control_ui.tscn" id="8_5vw27"]
 
 [sub_resource type="Resource" id="Resource_5vw27"]
 script = ExtResource("5_272bh")
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
+
+[sub_resource type="Resource" id="Resource_dg77c"]
+script = ExtResource("6_4c57u")
+start_pos = Vector3(-154.26099, 2.75, -332.1178)
+target_positions = Array[Vector3]([Vector3(-110.672, 2.7499924, -318.34064), Vector3(-77.999504, 2.7499924, -287.99646)])
+metadata/_custom_type_script = "uid://ch2y18lpkj1j"
+
+[sub_resource type="Resource" id="Resource_ycdy4"]
+script = ExtResource("7_efxa6")
+test_routine = Array[ExtResource("6_4c57u")]([SubResource("Resource_dg77c")])
+metadata/_custom_type_script = "uid://p0yiwd1penmr"
+
+[sub_resource type="Resource" id="Resource_w48qg"]
+script = ExtResource("5_272bh")
+schedule = SubResource("Resource_ycdy4")
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1bvp3"]
@@ -4013,7 +4031,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.47627, 2.75, -245.41342)
 npc_data = SubResource("Resource_5vw27")
 
 [node name="NPC2" parent="NPCManager" instance=ExtResource("3_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.750916, 2.75, -261.4319)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.999504, 2.7499924, -287.99646)
+npc_data = SubResource("Resource_w48qg")
 
 [node name="NPC3" parent="NPCManager" instance=ExtResource("3_lquwl")]
 transform = Transform3D(-0.99941856, 0, -0.034096807, 0, 1, 0, 0.034096807, 0, -0.99941856, -78.47745, 2.75, -172.09676)

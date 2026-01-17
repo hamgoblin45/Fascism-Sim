@@ -57,6 +57,7 @@ func _ready() -> void:
 		#schedule.finishing_routine.connect(change_map)
 		
 		print("%s current path set to %s" % [npc_data.name,npc_data.schedule.current_path])
+		state = WALK
 
 
 
@@ -83,8 +84,8 @@ func _physics_process(delta: float) -> void:
 
 
 func instance_npc():
-	for child in npc_mesh.get_children():
-		child.queue_free()
+	#for child in npc_mesh.get_children():
+		#child.queue_free()
 	if npc_data.on_map:
 		print("npc_node.gd: Instancing %s, is on current map" % npc_data.name)
 		
@@ -150,7 +151,7 @@ func handle_nav(delta: float):
 func set_path(_path: PathData):
 	if _path:
 		_path.set_position()
-		_path.path_finished.connect(finish_path)
+		EventBus.path_finished.connect(_finish_path)
 		
 		if _path.start_pos:
 			global_position = _path.start_pos
@@ -181,9 +182,10 @@ func set_next_path(_path: PathData):
 					return
 
 ## Stops anims, sets states, resets rotation (not entirely sure why I put that there)
-func finish_path():
+func _finish_path(_npc: NPCData, _path: PathData):
 	print("npc.gd: %s stopped walking" % npc_data.name)
-	
+	if _npc != npc_data:
+		return
 	state = IDLE
 	
 	npc_data.waiting_for_player = npc_data.schedule.current_path.wait_for_player
