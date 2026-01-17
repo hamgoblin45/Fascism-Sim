@@ -1,4 +1,4 @@
-[gd_scene load_steps=337 format=4 uid="uid://c2e1wswg0mcea"]
+[gd_scene load_steps=338 format=4 uid="uid://c2e1wswg0mcea"]
 
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c3mnecndcoemi" path="res://Managers/time_manager.gd" id="2_0xm2m"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Maps/sky/examples/sky.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="5_272bh"]
+[ext_resource type="PackedScene" path="res://Maps/time_control_ui.tscn" id="8_5vw27"]
 
 [sub_resource type="Resource" id="Resource_5vw27"]
 script = ExtResource("5_272bh")
@@ -4570,3 +4571,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.22948, 0, -479.36972)
 transform = Transform3D(0.8927982, 0.33855733, -0.29713687, -8.881784e-16, 0.6596345, 0.7515866, 0.45045683, -0.6710152, 0.5889205, -199.92995, 98.48949, -131.76488)
 
 [node name="Sky" parent="." instance=ExtResource("4_1bvp3")]
+
+[node name="TimeControlUI" parent="." instance=ExtResource("8_5vw27")]
+mouse_filter = 2

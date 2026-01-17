@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://1v0ae4eu1rag" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://coghiaiitrpt7" path="res://Maps/sky.gd" id="3_lquwl"]
-[ext_resource type="Script" uid="uid://cq362a8jqvadw" path="res://Maps/time_control_ui.gd" id="4_1bvp3"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://Maps/sky/examples/day_sky.tres" id="4_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bfofgjiphllqj" path="res://time_control_ui.tscn" id="5_272bh"]
 [ext_resource type="Script" uid="uid://co6onokbkdfa7" path="res://time_manager.gd" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://kptp3n3g2x67" path="res://day_transition.gd" id="6_272bh"]
 
@@ -159,85 +159,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TimeControlUI" type="PanelContainer" parent="TimeControl"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -309.0
-offset_bottom = 184.0
-grow_horizontal = 0
-script = ExtResource("4_1bvp3")
-
-[node name="MarginContainer" type="MarginContainer" parent="TimeControl/TimeControlUI"]
-layout_mode = 2
-theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 22
-theme_override_constants/margin_right = 22
-theme_override_constants/margin_bottom = 22
-
-[node name="MainVBox" type="VBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer"]
-layout_mode = 2
-
-[node name="Header" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
-layout_mode = 2
-text = "TIME"
-horizontal_alignment = 1
-
-[node name="DayTimeRow" type="HBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
-layout_mode = 2
-theme_override_constants/separation = 14
-alignment = 1
-
-[node name="WeekdayLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/DayTimeRow"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Weekday"
-
-[node name="DayLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/DayTimeRow"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Day"
-
-[node name="TimeLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/DayTimeRow"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "XX:XX"
-
-[node name="SpeedContainer" type="VBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
-layout_mode = 2
-
-[node name="Header" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer"]
-layout_mode = 2
-text = "Time Speed"
-horizontal_alignment = 1
-
-[node name="SpeedRow" type="HBoxContainer" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer"]
-layout_mode = 2
-
-[node name="SpeedLabel" type="Label" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "1.0"
-
-[node name="SpeedSlider" type="HSlider" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-min_value = -10.0
-max_value = 10.0
-value = 1.0
-
-[node name="PauseButton" type="Button" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "PAUSE"
-
-[node name="SleepButton" type="Button" parent="TimeControl/TimeControlUI/MarginContainer/MainVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "SLEEP"
+[node name="TimeControlUI" parent="TimeControl" instance=ExtResource("5_272bh")]
+layout_mode = 0
+anchors_preset = 0
 
 [node name="DayTransition" type="Control" parent="."]
 process_mode = 3
@@ -296,9 +220,6 @@ process_mode = 1
 wait_time = 0.1
 autostart = true
 
-[connection signal="value_changed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SpeedContainer/SpeedRow/SpeedSlider" to="TimeControl/TimeControlUI" method="_on_speed_slider_value_changed"]
-[connection signal="pressed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/PauseButton" to="TimeControl/TimeControlUI" method="_on_pause_button_pressed"]
-[connection signal="pressed" from="TimeControl/TimeControlUI/MarginContainer/MainVBox/SleepButton" to="TimeControl/TimeControlUI" method="_on_sleep_button_pressed"]
 [connection signal="pressed" from="DayTransition/NewDayPanel/VBoxContainer/StartNewDayButton" to="DayTransition" method="_on_start_new_day_button_pressed"]
 [connection signal="animation_finished" from="DayTransition/NewDayPanel/NewDayFade" to="DayTransition" method="_on_new_day_fade_animation_finished"]
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]

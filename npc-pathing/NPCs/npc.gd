@@ -25,16 +25,14 @@ var state = IDLE
 var prev_state
 var anim: AnimationPlayer
 
-var schedule: ScheduleData
-
 #@onready var anim_tree: AnimationTree = $AnimationTree
 
+@export_category("Anim Control")
 @export var blend_speed = 2
 var walk_blend_value = 0
 var prev_walk_blend_value: float
 var sit_blend_value = 0
 
-@export var current_path: PathData
 var path_follow: PathFollow3D
 
 @onready var proximity_detect_area: Area3D = $ProximityDetectArea
@@ -46,15 +44,10 @@ var target_pos: Vector3
 
 
 func _ready() -> void:
-	## sets NPC data from NPC Node (the one on PathFollows), interact/path/dialog signals
-	current_path = null
-	schedule = null
-	
 	if npc_data.schedule:
-		schedule = npc_data.schedule
 		
-		schedule.set_routine() # This is a func in the data
-		set_path(schedule.current_path)
+		npc_data.schedule.set_routine()
+		set_path(npc_data.schedule.current_path)
 		
 		if npc_data.on_map:
 			instance_npc()
@@ -63,7 +56,7 @@ func _ready() -> void:
 		#schedule.setting_path.connect(set_path)
 		#schedule.finishing_routine.connect(change_map)
 		
-		print("%s current path set to %s" % [npc_data.name,current_path])
+		print("%s current path set to %s" % [npc_data.name,npc_data.schedule.current_path])
 
 
 
@@ -128,7 +121,8 @@ func handle_state(delta):
 
 func handle_nav(delta: float):
 	#print("NPC walking towards %s, currently at %s [approx. %s away]" % [current_path.target_pos, global_position, global_position.distance_to(current_path.target_pos)])
-	if current_path:
+	if npc_data.schedule.current_path:
+		var current_path = npc_data.schedule.current_path
 		if global_position.distance_to(current_path.target_pos) > 1.5:
 			
 			if not current_path.interactable_while_walking and interactable:
@@ -155,11 +149,8 @@ func handle_nav(delta: float):
 
 func set_path(_path: PathData):
 	if _path:
-		
-		current_path = _path
-		
-		current_path.set_position()
-		current_path.path_finished.connect(finish_path)
+		_path.set_position()
+		_path.path_finished.connect(finish_path)
 		
 		if _path.start_pos:
 			global_position = _path.start_pos
@@ -172,6 +163,7 @@ func set_path(_path: PathData):
 func set_next_path(_path: PathData):
 	#print("NPC setting next path")
 	if _path:
+		var current_path = npc_data.schedule.current_path
 		for path in npc_data.schedule.current_routine:
 			if current_path == path:
 				if path != npc_data.schedule.current_routine[-1]:
@@ -181,7 +173,6 @@ func set_next_path(_path: PathData):
 					set_path(npc_data.schedule.current_routine[path_index + 1])
 					return
 				else:
-					current_path = null
 					if is_instance_valid(anim):
 						anim.stop()
 					state = "idle"
@@ -195,9 +186,9 @@ func finish_path():
 	
 	state = IDLE
 	
-	npc_data.waiting_for_player = current_path.wait_for_player
+	npc_data.waiting_for_player = npc_data.schedule.current_path.wait_for_player
 	
-	set_next_path(current_path)
+	set_next_path(npc_data.schedule.current_path)
 
 ## -- INTERACTION -- ##
 
@@ -218,22 +209,6 @@ func look_at_target(target):
 		look_at_node.look_at(looking_at.global_position)
 	else:
 		looking_at = null
-
-
-#func change_map(next_map: String):
-	#npc_data.start_path_time = 0
-	#npc_data.current_map = next_map
-	#
-	#if next_map != "" and next_map != Global.current_map_name:
-		#for child in npc_mesh.get_children():
-			#child.queue_free()
-			#gravity_enabled = false
-	#
-		#print("%s NPC: Changing map to %s based off change_map in NPC Node" % [npc_data.name, next_map])
-	### Instances NPC if they are entering current map
-	#if next_map == Global.current_map_name:
-		#instance_npc()
-		#print("%s entering current map, instancing based off change_map in NPC.gd" % npc_data.name)
 
 
 #

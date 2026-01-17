@@ -59,8 +59,3 @@ func _on_pause_button_pressed() -> void:
 		%PauseButton.text = "RESUME"
 	else:
 		%PauseButton.text = "PAUSE"
-
-
-func _on_sleep_button_pressed() -> void:
-	EventBus.end_day.emit()
-	

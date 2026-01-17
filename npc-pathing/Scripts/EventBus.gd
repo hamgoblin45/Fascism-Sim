@@ -13,3 +13,6 @@ signal hour_changed(hour: int)
 signal minute_changed(hour: int, minute: int)
 
 signal set_paused(bool)
+
+
+## -- PATHING ---

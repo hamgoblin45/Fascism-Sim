@@ -19,11 +19,8 @@ func set_routine():
 		print("Setting a normal routine for NPC")
 	else:
 		current_routine = test_routine
-	
-	
+
 	#print("%s selected routine %s" % [self, current_routine])
-	
-	
 	_set_path()
 
 func _set_path():
