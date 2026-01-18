@@ -6,7 +6,7 @@ var player: CharacterBody3D
 var weekday: String = "Monday"
 
 var day: int = 1
-var hour: int = 8
+var hour: float = 8.0
 var minute: int = 0
 
 var day_start: float = 18.0

@@ -4,9 +4,6 @@ class_name RouteData
 @export var paths: Array[PathData]
 var current_path: PathData
 
-#@export var next_map: String
-
-
 func _set_path():
 	if not current_path and paths.size() > 0:
 		current_path = paths[0]

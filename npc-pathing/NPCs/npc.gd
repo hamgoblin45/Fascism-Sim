@@ -3,24 +3,22 @@ class_name NPC
 
 @export var npc_data: NPCData
 
+@onready var npc_mesh: Node3D = $NPCMesh
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var look_at_node: Node3D = $LookAtNode
+
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") # Don't set this as a const, see the gravity section in _physics_process
 var gravity_enabled: bool = true
 
-@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-
-var mesh
-@onready var npc_mesh: Node3D = $NPCMesh
-
+var interactable: bool = true
+var last_schedule_check: float = -1.0 #Based on time, full numbers being hours
 
 @onready var head: Node3D = $Head
 
-@onready var look_at_node: Node3D = $LookAtNode
 var looking_at: Node3D
 var player_nearby: bool
 
-var interactable: bool = true
-
-enum {IDLE, WALK, WAIT}
+enum {IDLE, WALK, WAIT, ANIMATING}
 var state = IDLE
 var prev_state
 var anim: AnimationPlayer
@@ -44,20 +42,22 @@ var target_pos: Vector3
 
 
 func _ready() -> void:
-	if npc_data.schedule:
-		
-		npc_data.schedule.set_routine()
-		set_path(npc_data.schedule.current_path)
-		
-		if npc_data.on_map:
-			instance_npc()
-			print("%s instancing on current map, instancing based off change_map in NPC.gd" % npc_data.name)
-		
-		#schedule.setting_path.connect(set_path)
-		#schedule.finishing_routine.connect(change_map)
-		
-		print("%s current path set to %s" % [npc_data.name,npc_data.schedule.current_path])
-		state = WALK
+	EventBus.minute_changed.connect(_on_time_updated)
+	_check_schedule(GameState.hour)
+	#if npc_data.schedule:
+		#
+		#npc_data.schedule.set_routine()
+		#set_path(npc_data.schedule.current_path)
+		#
+		#if npc_data.on_map:
+			#instance_npc()
+			#print("%s instancing on current map, instancing based off change_map in NPC.gd" % npc_data.name)
+		#
+		##schedule.setting_path.connect(set_path)
+		##schedule.finishing_routine.connect(change_map)
+		#
+		#print("%s current path set to %s" % [npc_data.name,npc_data.schedule.current_path])
+		#state = WALK
 
 
 
@@ -67,7 +67,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and gravity and gravity_enabled:
 		
 		velocity.y -= gravity * delta
-		move_and_slide()
 		
 	## Look at a node if a node is set
 	if is_instance_valid(looking_at):
@@ -81,6 +80,7 @@ func _physics_process(delta: float) -> void:
 
 	#update_anim_tree()
 	handle_state(delta)
+	move_and_slide()
 
 
 func instance_npc():
@@ -91,6 +91,30 @@ func instance_npc():
 		
 		gravity_enabled = true
 
+func _on_time_updated(hour: float, _minute: int):
+	if hour != last_schedule_check:
+		last_schedule_check = hour
+		_check_schedule(hour)
+
+func _check_schedule(hour: float):
+	if not npc_data.schedule:
+		return
+	var new_path = npc_data.schedule.get_path_for_time(hour)
+	
+	if new_path and new_path != npc_data.schedule.current_path:
+		npc_data.schedule.current_path = new_path
+		new_path.reset_path()
+		set_path(new_path)
+
+func set_path(path: PathData):
+	if path.get_next_target(): # Get the first position
+		state = WALK
+		if path.start_pos != Vector3.ZERO:
+			global_position = path.start_pos
+	else:
+		state = IDLE
+
+
 ## -- STATE MACHINE -- ##
 
 # Sets animations (or tries to) based on state. From tutorial. Designed to work with AnimationTree
@@ -99,12 +123,13 @@ func handle_state(delta):
 	
 	match state:
 		
-		IDLE:
+		IDLE, ANIMATING:
 			
-			walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
-			sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
+			#walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
+			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
 			
-			velocity = Vector3.ZERO
+			velocity.x = move_toward(velocity.x, 0, npc_data.walk_accel * delta)
+			velocity.z = move_toward(velocity.z, 0, npc_data.walk_accel * delta)
 			
 			#if npc_data.waiting_for_player and looking_at != Global.player:
 				#looking_at = Global.player
@@ -114,52 +139,86 @@ func handle_state(delta):
 			if not get_tree().paused:
 				#walk_blend_value = lerpf(walk_blend_value, 1, blend_speed * delta)
 				#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
-				move_and_slide()
 				handle_nav(delta)
+				move_and_slide()
 
 
 ## -- NAVIGATION -- ##
 
 func handle_nav(delta: float):
-	#print("NPC walking towards %s, currently at %s [approx. %s away]" % [current_path.target_pos, global_position, global_position.distance_to(current_path.target_pos)])
-	if npc_data.schedule.current_path:
-		var current_path = npc_data.schedule.current_path
-		if global_position.distance_to(current_path.target_pos) > 1.5:
-			
-			if not current_path.interactable_while_walking and interactable:
-				interactable = false
-				#interact_area.interact_text = ""
-			
-			#nav_agent.target_position = current_path.target_pos
-			
-			var dir = (current_path.target_pos - global_position).normalized()
-			
-			look_at_node.look_at(current_path.target_pos) # - Maybe a way to lerp/interpolate this?
-			global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 6.0 * delta)
-			
-			## Walking
-			velocity = velocity.lerp(dir * npc_data.walk_speed, npc_data.walk_accel * delta)
-			
-		else:
-			current_path.set_position()
-			if current_path:
-				nav_agent.target_position = current_path.target_pos
-		#finish_path()
+	var path = npc_data.schedule.current_path
+	if not path: return
+	
+	# Checks if npc has reached target point
+	if global_position.distance_to(path.target_pos) < 0.5:
+		if not path.get_next_target():
+			_finish_path()
+			return
+	
+	# Calculate movement
+	var dir = (path.target_pos - global_position).normalized()
+	velocity.x = lerp(velocity.x, dir.x * npc_data.walk_speed, npc_data.walk_accel * delta)
+	velocity.z = lerp(velocity.z, dir.z * npc_data.walk_speed, npc_data.walk_accel * delta)
+	
+	# Rotation
+	look_at_node.look_at(path.target_pos)
+	global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 6.0 * delta)
+
+func _finish_path():
+	var path = npc_data.schedule.current_path
+	print("%s reached end of path" % npc_data.name)
+	
+	if path.anim_on_arrival != "":
+		state = ANIMATING
+		#Once setting up anims:
+		anim.play(path.anim_on_arrival)
 	else:
 		state = IDLE
+	
+	interactable = true
+	npc_data.waiting_for_player = path.wait_for_player
+	EventBus.path_finished.emit(npc_data, path)
 
-func set_path(_path: PathData):
-	if _path:
-		_path.set_position()
-		EventBus.path_finished.connect(_finish_path)
-		
-		if _path.start_pos:
-			global_position = _path.start_pos
-		
-		if _path.start_rot:
-			global_rotation.y = _path.start_rot
-		
-		print("Setting path for %s. Start pos is %s, actual pos is %s" % [npc_data.name,_path.start_pos, position])
+#func handle_nav(delta: float):
+	##print("NPC walking towards %s, currently at %s [approx. %s away]" % [current_path.target_pos, global_position, global_position.distance_to(current_path.target_pos)])
+	#if npc_data.schedule.current_path:
+		#var current_path = npc_data.schedule.current_path
+		#if global_position.distance_to(current_path.target_pos) > 1.5:
+			#
+			#if not current_path.interactable_while_walking and interactable:
+				#interactable = false
+				##interact_area.interact_text = ""
+			#
+			##nav_agent.target_position = current_path.target_pos
+			#
+			#var dir = (current_path.target_pos - global_position).normalized()
+			#
+			#look_at_node.look_at(current_path.target_pos) # - Maybe a way to lerp/interpolate this?
+			#global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 6.0 * delta)
+			#
+			### Walking
+			#velocity = velocity.lerp(dir * npc_data.walk_speed, npc_data.walk_accel * delta)
+			#
+		#else:
+			#current_path.set_position()
+			#if current_path:
+				#nav_agent.target_position = current_path.target_pos
+		##finish_path()
+	#else:
+		#state = IDLE
+#
+#func set_path(_path: PathData):
+	#if _path:
+		#_path.set_position()
+		#EventBus.path_finished.connect(_finish_path)
+		#
+		#if _path.start_pos:
+			#global_position = _path.start_pos
+		#
+		#if _path.start_rot:
+			#global_rotation.y = _path.start_rot
+		#
+		#print("Setting path for %s. Start pos is %s, actual pos is %s" % [npc_data.name,_path.start_pos, position])
 
 func set_next_path(_path: PathData):
 	#print("NPC setting next path")
@@ -182,15 +241,15 @@ func set_next_path(_path: PathData):
 					return
 
 ## Stops anims, sets states, resets rotation (not entirely sure why I put that there)
-func _finish_path(_npc: NPCData, _path: PathData):
-	print("npc.gd: %s stopped walking" % npc_data.name)
-	if _npc != npc_data:
-		return
-	state = IDLE
-	
-	npc_data.waiting_for_player = npc_data.schedule.current_path.wait_for_player
-	
-	set_next_path(npc_data.schedule.current_path)
+#func _finish_path(_npc: NPCData, _path: PathData):
+	#print("npc.gd: %s stopped walking" % npc_data.name)
+	#if _npc != npc_data:
+		#return
+	#state = IDLE
+	#
+	#npc_data.waiting_for_player = npc_data.schedule.current_path.wait_for_player
+	#
+	#set_next_path(npc_data.schedule.current_path)
 
 ## -- INTERACTION -- ##
 
