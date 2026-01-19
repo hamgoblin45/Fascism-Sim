@@ -4,7 +4,7 @@ class_name Grabbable
 @export var id: String = ""
 
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
-@onready var interact_area: Interactable = $Interactable
+@export var interact_area: Interactable
 
 var original_parent
 var current_parent
@@ -26,12 +26,19 @@ func _interact(type: String, engaged: bool):
 		"click":
 			if engaged:
 				EventBus.item_grabbed.emit(self)
+				held = true
 				print("Item grabbed")
 			else:
 				EventBus.item_dropped.emit()
+				held = false
 		
 		"r_click":
 			print("R Click detected on a grabbable")
 		
 		"interact":
 			print("This will pick items up in the inventory project")
+
+func _physics_process(_delta: float) -> void:
+	if not held:
+		return
+	global_rotation = Vector3.ZERO
