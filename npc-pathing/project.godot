@@ -14,6 +14,7 @@ config/name="NPCPathing"
 run/main_scene="uid://c2e1wswg0mcea"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+config/tags=PackedStringArray("fasc")
 
 [autoload]
 

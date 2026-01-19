@@ -1,8 +1,10 @@
 extends RigidBody3D
 class_name Grabbable
 
+@export var id: String = ""
+
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
-@onready var interact_area: Interactable = %Interactable
+@onready var interact_area: Interactable = $Interactable
 
 var original_parent
 var current_parent

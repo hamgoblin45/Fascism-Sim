@@ -229,13 +229,13 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0742135, 1.1867695, -3.5710645)
 lock_rotation = true
 script = ExtResource("6_kek77")
+id = "axe"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Axe"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7923031, 0)
 shape = SubResource("BoxShape3D_kek77")
 
 [node name="Interactable" type="Area3D" parent="Axe"]
-unique_name_in_owner = true
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("9_efxa6")
@@ -264,6 +264,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4491918, 0.9, -4.6682873)
 lock_rotation = true
 script = ExtResource("6_kek77")
+id = "xu"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cup"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22616684, 0)
