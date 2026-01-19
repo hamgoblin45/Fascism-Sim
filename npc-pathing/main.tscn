@@ -1,4 +1,4 @@
-[gd_scene load_steps=342 format=4 uid="uid://c2e1wswg0mcea"]
+[gd_scene load_steps=340 format=4 uid="uid://c2e1wswg0mcea"]
 
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c3mnecndcoemi" path="res://Managers/time_manager.gd" id="2_0xm2m"]
@@ -7,20 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Maps/sky/examples/sky.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="5_272bh"]
-[ext_resource type="Script" uid="uid://p0yiwd1penmr" path="res://Data/ScheduleData.gd" id="7_efxa6"]
+[ext_resource type="Resource" uid="uid://325mofd5d5s" path="res://Data/test_schedule_1.tres" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://bllcwma07j3aa" path="res://Maps/time_control_ui.tscn" id="8_5vw27"]
 
 [sub_resource type="Resource" id="Resource_5vw27"]
 script = ExtResource("5_272bh")
-metadata/_custom_type_script = "uid://coai26ivs6uv4"
-
-[sub_resource type="Resource" id="Resource_ycdy4"]
-script = ExtResource("7_efxa6")
-metadata/_custom_type_script = "uid://p0yiwd1penmr"
-
-[sub_resource type="Resource" id="Resource_w48qg"]
-script = ExtResource("5_272bh")
-schedule = SubResource("Resource_ycdy4")
+name = "Bob"
+id = "bob"
+schedule = ExtResource("5_kek77")
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1bvp3"]
@@ -4015,6 +4009,9 @@ size = Vector3(735.75024, 0.1, 707.39746)
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
 
+[node name="Timer" type="Timer" parent="TimeManager"]
+autostart = true
+
 [node name="NPCManager" type="Node3D" parent="."]
 script = ExtResource("2_7mycd")
 
@@ -4022,18 +4019,8 @@ script = ExtResource("2_7mycd")
 script = ExtResource("2_h2yge")
 
 [node name="NPC" parent="NPCManager" instance=ExtResource("3_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -123.47627, 2.75, -245.41342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.40025, 5.837348, -226.70935)
 npc_data = SubResource("Resource_5vw27")
-
-[node name="NPC2" parent="NPCManager" instance=ExtResource("3_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.999504, 2.7499924, -287.99646)
-npc_data = SubResource("Resource_w48qg")
-
-[node name="NPC3" parent="NPCManager" instance=ExtResource("3_lquwl")]
-transform = Transform3D(-0.99941856, 0, -0.034096807, 0, 1, 0, 0.034096807, 0, -0.99941856, -78.47745, 2.75, -172.09676)
-
-[node name="NPC4" parent="NPCManager" instance=ExtResource("3_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -117.69556, 2.75, -252.76962)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.78314, 0, -239.62195)
@@ -4594,3 +4581,5 @@ transform = Transform3D(0.8927982, 0.33855733, -0.29713687, -8.881784e-16, 0.659
 
 [node name="TimeControlUI" parent="." instance=ExtResource("8_5vw27")]
 mouse_filter = 2
+
+[connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]

@@ -14,9 +14,7 @@ class_name PathData
 # Might need a var for anims that may play once path is finished
 @export var anim_on_arrival: String = ""
 # Used to set the line of dialogue that plays AFTER walking
-@export var dialogue_title: String = ""
-#@export var next_map: String
-#@export var end_rotation: float
+#@export var dialogue_title: String = ""
 
 var current_index: int = 0
 var target_pos: Vector3
@@ -26,6 +24,7 @@ func get_next_target() -> bool:
 	if target_positions.is_empty():
 		return false
 	
+	print("get_next_target run in PathData")
 	if current_index < target_positions.size():
 		target_pos = target_positions[current_index]
 		current_index += 1
@@ -37,25 +36,18 @@ func get_next_target() -> bool:
 	
 	return false
 
+func jump_to_closest_point(current_pos: Vector3):
+	var closest_dist = INF
+	var closest_index = 0
+	for i in range(target_positions.size()):
+		var dist = current_pos.distance_to(target_positions[i])
+		if dist < closest_dist:
+			closest_dist = dist
+			closest_index = i
+	current_index = closest_index
+	target_pos = target_positions[current_index]
+
 func reset_path():
+	print("reset_path run in PathData")
 	current_index = 0
 	target_pos = Vector3.ZERO
-
-
-#
-#func set_position():
-	#if not target_pos and target_positions.size() > 0:
-		#target_pos = target_positions[0]
-		#print("PathData.gd: Setting target pos to %s" % target_pos)
-		#return
-	#for pos in target_positions:
-		#if pos and target_positions[-1] and pos == target_positions[-1]:
-			#EventBus.path_finished.emit(self)
-			#print("PathData.gd: all target positions reached")
-			#return
-		#if pos and pos == target_pos:
-			#var pos_index = target_positions.find(pos)
-			#var next_pos = target_positions[pos_index + 1]
-			#target_pos = next_pos
-			#print("ScheduleData.gd: updating pos to %s" % target_pos)
-			#return

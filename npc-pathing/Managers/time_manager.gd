@@ -21,7 +21,8 @@ func handle_time():
 		GameState.cycle_time = 0.0
 		GameState.hour = 0
 	
-	EventBus.minute_changed.emit(GameState.hour, GameState.minute)
+	EventBus.time_changed.emit(GameState.time)
+	#EventBus.minute_changed.emit(GameState.hour, GameState.minute)
 	#print("Hour: %s" % GameState.hour)
 	#print("Minute: %s" % GameState.minute)
 	#print("It is %s minute" % minute_fraction)
@@ -30,9 +31,17 @@ func handle_time():
 	if GameState.time >= GameState.day_end and GameState.time < GameState.day_start:
 		EventBus.end_day.emit()
 		_handle_pause(true)
-		
-		
-		
+
+
+func _on_timer_timeout() -> void:
+	GameState.cycle_time += time_rate * GameState.time_speed
+	handle_time()
+
+# Putting this in ScheduleData for use there but saving it just in case it makes more sense here for Time Control
+#func _get_total_minutes(time_string: String) -> int:
+	#var parts = time_string.split(":")
+	#if parts.size() != 2: return 0
+	#return(int(parts[0]) * 60) + int(parts[1]) # Breaks hours down into minutes from "HH:MM" format
 
 func _change_day(): # Have this done during day transition
 	
@@ -73,9 +82,7 @@ func _start_new_day():
 	#EventBus.new_day_started.emit()
 
 
-func _on_timer_timeout() -> void:
-	GameState.cycle_time += time_rate * GameState.time_speed
-	handle_time()
+
 
 
 func _handle_pause(paused: bool):

@@ -10,7 +10,8 @@ signal day_changed() # to acknowledge the change and initiate follow-up logic
 signal start_day # To load back into the main scene in a full game
 
 signal hour_changed(hour: int)
-signal minute_changed(hour: int, minute: int)
+signal time_changed(time: float)
+signal minute_changed(hour: float, minute: int)
 
 signal set_paused(bool)
 

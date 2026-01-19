@@ -3,8 +3,8 @@ extends Node3D
 var npcs = []
 
 ## Sets a global var with reference to self for use from other scripts
-func _ready() -> void:
-	instance_nodes()
+#func _ready() -> void:
+	#instance_nodes()
 
 ## Calls instance_node from npc_node.gd
 func instance_nodes():
