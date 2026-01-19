@@ -3,7 +3,7 @@ class_name Grabbable
 
 @export var id: String = ""
 
-@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
+#@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @export var interact_area: Interactable
 
 var original_parent
