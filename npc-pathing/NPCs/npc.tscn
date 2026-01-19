@@ -20,7 +20,7 @@ albedo_color = Color(0.849446, 5.7371853e-05, 0.6507998, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_uamu8"]
 material = SubResource("StandardMaterial3D_uamu8")
-size = Vector3(0.1, 0.1, 1)
+size = Vector3(0.2, 0.2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vymve"]
 albedo_color = Color(0.96, 0.56, 0, 0.380392)
@@ -35,7 +35,6 @@ radius = 0.6
 height = 4.0
 
 [node name="NPC" type="CharacterBody3D"]
-process_mode = 3
 collision_layer = 131
 collision_mask = 131
 floor_constant_speed = true
@@ -46,6 +45,7 @@ script = ExtResource("1_0ikh5")
 npc_data = SubResource("Resource_k7mck")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+process_mode = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4855292, 0)
@@ -64,7 +64,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0716, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6315293, 0.61824715)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06482768, 2.6315293, -1.3503411)
 mesh = SubResource("BoxMesh_uamu8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
