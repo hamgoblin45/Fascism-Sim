@@ -21,8 +21,8 @@ func handle_time():
 		GameState.cycle_time = 0.0
 		GameState.hour = 0
 	
-	EventBus.time_changed.emit(GameState.time)
-	#EventBus.minute_changed.emit(GameState.hour, GameState.minute)
+	#EventBus.time_changed.emit(GameState.time)
+	EventBus.minute_changed.emit(GameState.hour, GameState.minute)
 	#print("Hour: %s" % GameState.hour)
 	#print("Minute: %s" % GameState.minute)
 	#print("It is %s minute" % minute_fraction)

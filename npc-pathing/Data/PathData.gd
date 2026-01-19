@@ -28,12 +28,15 @@ func get_next_target() -> bool:
 	if current_index < target_positions.size():
 		target_pos = target_positions[current_index]
 		current_index += 1
+		print("Advancing to next target pos: %s" % target_pos)
 		return true
 	
 	elif is_looping:
+		print("Looping path")
 		current_index = 0
 		return get_next_target()
 	
+	print("No more targets")
 	return false
 
 func jump_to_closest_point(current_pos: Vector3):
@@ -46,8 +49,9 @@ func jump_to_closest_point(current_pos: Vector3):
 			closest_index = i
 	current_index = closest_index
 	target_pos = target_positions[current_index]
+	print("Jumping to closest point")
 
 func reset_path():
 	print("reset_path run in PathData")
 	current_index = 0
-	target_pos = Vector3.ZERO
+	#target_pos = Vector3.ZERO

@@ -7,7 +7,7 @@ var current_path: PathData
 
 ## Find the next scheduled path based on time
 func get_path_for_time(hour: int, minute: int) -> PathData:
-	print("get_path_for_time run in ScheduleData")
+	#print("get_path_for_time run in ScheduleData")
 	var current_total = (hour * 60) + minute
 	var best_match_minutes: int = -1
 	var selected_path: PathData = null
@@ -15,9 +15,10 @@ func get_path_for_time(hour: int, minute: int) -> PathData:
 	for time_key in hourly_routine.keys():
 		var task_minutes = _get_total_minutes(time_key)
 		# Find the most recent task that has already been started
-		if current_total >= task_minutes and task_minutes > best_match_minutes:
+		if current_total >= task_minutes and task_minutes > best_match_minutes and best_match_minutes != task_minutes:
 			best_match_minutes = task_minutes
 			selected_path = hourly_routine[time_key]
+			print("A new path selected based on time in ScheduleData")
 	return selected_path
 
 func _get_total_minutes(time_string: String) -> int:

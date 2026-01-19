@@ -12,8 +12,8 @@ var paused: bool = false
 func _ready():
 	EventBus.main_scene_loaded.connect(_set_day)
 	EventBus.start_day.connect(_set_day)
-	#EventBus.minute_changed.connect(_set_time)
-	EventBus.time_changed.connect(_set_time)
+	EventBus.minute_changed.connect(_set_time)
+	#EventBus.time_changed.connect(_set_time)
 
 
 func _set_day():
@@ -25,10 +25,10 @@ func _set_day():
 func _set_ui():
 	print("set_ui called in time_control_ui.gd")
 	
-	_set_time(GameState.time)
+	_set_time(GameState.hour, GameState.minute)
 	speed_label.text = str(GameState.time_speed)
 
-func _set_time(hour: float):
+func _set_time(hour: int, minute: int):
 	# Format hours
 	var formatted_hour: String = ""
 	if hour < 10:
@@ -38,10 +38,10 @@ func _set_time(hour: float):
 	
 	# Format minutes
 	var formatted_min: String = ""
-	#if minute < 10:
-		#formatted_min = "0%s" % str(minute)
-	#else:
-		#formatted_min = str(minute)
+	if minute < 10:
+		formatted_min = "0%s" % str(minute)
+	else:
+		formatted_min = str(minute)
 	
 	var formatted_time = "%s:%s" % [formatted_hour,formatted_min]
 	time_label.text = formatted_time

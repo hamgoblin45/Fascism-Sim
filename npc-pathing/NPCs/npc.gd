@@ -91,7 +91,7 @@ func _on_time_updated(h: int, m: int):
 func _check_schedule(h: int, m: int):
 	if not npc_data.schedule:
 		return
-	print("_check_schedule run in npc.gd")
+	#print("_check_schedule run in npc.gd")
 	var new_path = npc_data.schedule.get_path_for_time(h, m)
 	
 	if new_path and new_path != npc_data.schedule.current_path:
@@ -168,7 +168,7 @@ func _handle_state(delta):
 
 ## -- NAVIGATION -- ##
 func handle_nav(delta: float):
-	print("Handling Nav")
+	#print("Handling Nav")
 	var path = npc_data.schedule.current_path
 	if not path: return
 	
@@ -179,12 +179,15 @@ func handle_nav(delta: float):
 			return
 	
 	# Calculate movement
-	var dir = (path.target_pos - global_position).normalized()
-	velocity.x = lerp(velocity.x, dir.x * npc_data.walk_speed, npc_data.walk_accel * delta)
-	velocity.z = lerp(velocity.z, dir.z * npc_data.walk_speed, npc_data.walk_accel * delta)
-	
+	var dir = global_position.direction_to(path.target_pos)
+	_move_and_rotate(dir, npc_data.walk_speed, delta)
+
+
+func _move_and_rotate(dir: Vector3, speed: float, delta: float):
+	velocity.x = lerp(velocity.x, dir.x * speed, npc_data.walk_accel * delta)
+	velocity.z = lerp(velocity.z, dir.z * speed, npc_data.walk_accel * delta)
 	# Rotation
-	look_at_node.look_at(path.target_pos)
+	look_at_node.look_at(global_position + dir)
 	global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 6.0 * delta)
 
 func _start_walking():
