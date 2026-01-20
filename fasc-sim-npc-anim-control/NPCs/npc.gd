@@ -23,8 +23,8 @@ var gravity_enabled: bool = true
 var looking_at: Node3D
 var player_nearby: bool
 
-enum {IDLE, WALK, WAIT, ANIMATING}
-var state = IDLE
+#enum {IDLE, WALK, TALK, WAIT, ANIMATING}
+var state: String = "IDLE"
 #var recovery_timer:float = 0.0
 var is_interrupted: bool = false
 var prev_state
@@ -47,6 +47,7 @@ var sit_blend_value = 0
 
 func _ready() -> void:
 	EventBus.npc_play_anim.connect(_play_anim)
+	EventBus.npc_set_state.connect(_set_state)
 	#EventBus.minute_changed.connect(_on_time_updated)
 	#_check_schedule(GameState.hour, GameState.minute)
 
@@ -72,25 +73,37 @@ func _physics_process(delta: float) -> void:
 func _play_anim(npc: NPCData, anim_name: String):
 	if npc.id != npc_data.id:
 		return
+	if not anim.has_animation(anim_name):
+		push_error("Attempting to play anim %s on NPC %s but no such anim name exists" % [anim_name, npc_data.name])
 	anim.stop()
 	anim.play(anim_name)
 
 ## -- STATE MACHINE -- ##
+func _set_state(npc: NPCData, new_state: String):
+	if npc.id != npc_data.id or new_state == state:
+		return
+	print("Setting state in NPC")
+	state = new_state
+
 
 # Sets animations (or tries to) based on state. From tutorial. Designed to work with AnimationTree
 # Perhaps tracking path progress should be its own func
 func _handle_state(_delta):
 	match state:
 		
-		IDLE:
-			if !anim.is_playing():
+		"IDLE":
+			if anim.is_playing() and idle_anims.has(anim.current_animation):
+				return
+			else:
 				var selected_anim = idle_anims.pick_random()
 				anim.play(selected_anim)
 			#walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
 			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
 		
-		WALK:
-			if !anim.is_playing():
+		"WALK":
+			if anim.is_playing() and walk_anims.has(anim.current_animation):
+				return
+			else:
 				var selected_anim = walk_anims.pick_random()
 				anim.play(selected_anim)
 

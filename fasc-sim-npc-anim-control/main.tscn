@@ -49,6 +49,97 @@ transform = Transform3D(1, 0, 0, 0, -0.37661248, 0.92637104, 0, -0.92637104, -0.
 
 [node name="LadyNPC" parent="." instance=ExtResource("1_ig7tw")]
 npc_data = ExtResource("2_h2yge")
+idle_anims = Array[String](["Idle1"])
+walk_anims = Array[String](["Walking"])
+
+[node name="GruntNPC" type="CharacterBody3D" parent="." node_paths=PackedStringArray("anim")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2, 0, 0)
+collision_layer = 131
+collision_mask = 131
+floor_constant_speed = true
+floor_max_angle = 1.4137167
+floor_snap_length = 1.0
+safe_margin = 0.056
+script = ExtResource("4_lquwl")
+npc_data = ExtResource("5_272bh")
+anim = NodePath("grunt/AnimationPlayer")
+idle_anims = Array[String](["RifleIdle1", "RifleIdle2"])
+walk_anims = Array[String](["Walk1"])
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="GruntNPC"]
+process_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GruntNPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4855292, 0)
+shape = SubResource("CapsuleShape3D_h2f5l")
+
+[node name="ProximityDetectArea" type="Area3D" parent="GruntNPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9287833, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GruntNPC/ProximityDetectArea"]
+shape = SubResource("SphereShape3D_w48l3")
+
+[node name="LookAtNode" type="Node3D" parent="GruntNPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0716, 0)
+
+[node name="Head" type="Node3D" parent="GruntNPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GruntNPC/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06482768, 2.6315293, -1.3503411)
+visible = false
+mesh = SubResource("BoxMesh_uamu8")
+
+[node name="AnimationTree" type="AnimationTree" parent="GruntNPC"]
+tree_root = SubResource("AnimationNodeStateMachine_k5705")
+
+[node name="grunt" parent="GruntNPC" instance=ExtResource("5_7mycd")]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0, 0)
+
+[node name="Skeleton3D" parent="GruntNPC/grunt/Armature" index="0"]
+bones/0/position = Vector3(-0.007122271, -1.3833895, -138.49391)
+bones/0/rotation = Quaternion(0.735439, 0.008967844, -0.039474886, -0.6763807)
+bones/1/rotation = Quaternion(0.089384936, 0.028766468, -0.022742366, 0.99532187)
+bones/2/rotation = Quaternion(0.014946706, 0.008014136, -0.0038271912, 0.99984884)
+bones/3/rotation = Quaternion(0.013291812, 0.007932554, -0.003980191, 0.9998723)
+bones/4/rotation = Quaternion(-0.0142089445, -0.028277937, -0.022002857, 0.99925697)
+bones/5/rotation = Quaternion(-0.12010633, -0.0092196325, 0.024720702, 0.99241036)
+bones/7/rotation = Quaternion(0.65545774, 0.3580394, -0.51280093, 0.42334175)
+bones/8/position = Vector3(1.9040999e-06, 15.967427, 1.8372684e-06)
+bones/8/rotation = Quaternion(0.40494928, 0.13867891, 0.100489706, 0.89815706)
+bones/9/position = Vector3(-2.553542e-06, 26.91702, -4.1071676e-06)
+bones/9/rotation = Quaternion(-0.019206349, 0.0014271225, 0.22988997, 0.9730261)
+bones/10/position = Vector3(-6.2764075e-06, 33.32203, -1.4797457e-05)
+bones/10/rotation = Quaternion(-0.045566052, 0.118666634, -0.076163694, 0.98895967)
+bones/11/position = Vector3(5.2490022e-06, 8.371676, 7.872148e-06)
+bones/11/rotation = Quaternion(0.24034648, 0.5735273, 0.15635785, 0.7673672)
+bones/12/position = Vector3(-7.897297e-07, 4.9097, -1.6987294e-06)
+bones/12/rotation = Quaternion(0.24415776, 0.04765413, 0.20536162, 0.9465425)
+bones/13/position = Vector3(-0.4751823, 5.6715226, -2.1641188)
+bones/13/rotation = Quaternion(0.044307593, 0.100759044, 0.2740129, 0.9554064)
+bones/14/position = Vector3(0.23941055, 1.9016953, -0.6859614)
+bones/15/rotation = Quaternion(0.68727756, -0.3157549, 0.50255245, 0.41879535)
+bones/16/position = Vector3(-1.1232102e-06, 15.9674425, 4.3428736e-07)
+bones/16/rotation = Quaternion(0.4111191, -0.07735265, -0.08286118, 0.9045063)
+bones/17/position = Vector3(2.0184361e-06, 26.913683, -1.5705209e-06)
+bones/17/rotation = Quaternion(-0.005675504, -0.0015247251, -0.10268598, 0.99469656)
+bones/18/position = Vector3(2.9406294e-06, 33.327892, 2.6229782e-06)
+bones/18/rotation = Quaternion(-0.046727024, 0.69312584, -0.05016792, 0.7175489)
+bones/19/position = Vector3(-2.1119358e-06, 7.534677, -2.5369955e-06)
+bones/19/rotation = Quaternion(-0.23826094, 0.96432424, -0.007586807, -0.115121715)
+bones/20/position = Vector3(-5.470609e-06, 5.644125, 9.045021e-06)
+bones/20/rotation = Quaternion(0.37883496, -0.1311521, -0.1495164, 0.9038407)
+bones/21/position = Vector3(2.162014, 4.732726, -5.0085993)
+bones/21/rotation = Quaternion(-0.06963946, -0.17485774, -0.21094325, 0.959207)
+bones/22/position = Vector3(0.4156323, 2.6886632, -2.1862395)
+bones/23/rotation = Quaternion(0.110746466, 0.11943117, 0.985314, -0.05126157)
+bones/24/rotation = Quaternion(-0.18170653, -0.059749626, 0.0014813155, 0.98153484)
+bones/25/rotation = Quaternion(0.42844775, -0.1058333, -0.003004969, 0.89734215)
+bones/26/rotation = Quaternion(0.32873264, -0.074484676, 0.026017182, 0.9411217)
+bones/28/rotation = Quaternion(-0.13449718, 0.013220436, 0.989155, 0.057517257)
+bones/29/rotation = Quaternion(-0.24373735, 0.06497055, -0.018842408, 0.9674792)
+bones/30/rotation = Quaternion(0.5731645, 0.17422716, 0.011135824, 0.8006269)
+bones/31/rotation = Quaternion(0.33797362, 0.07134546, -0.023078011, 0.93816364)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, -1.530701e-08, 0.9845521, 0.17509179, 8.6072276e-08, 0.17509179, -0.9845521, 0, 3.6612597, -5.247834)
@@ -93,88 +184,43 @@ popup/item_0/id = 0
 popup/item_1/text = "Grunt"
 popup/item_1/id = 1
 
-[node name="Label" type="Label" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+[node name="SelectState" type="Label" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+layout_mode = 2
+text = "STATE"
+horizontal_alignment = 1
+
+[node name="StateSelect" type="OptionButton" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "IDLE"
+popup/item_0/id = 0
+popup/item_1/text = "WALK"
+popup/item_1/id = 1
+popup/item_2/text = "TALK"
+popup/item_2/id = 2
+
+[node name="AnimsLabel" type="Label" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
 layout_mode = 2
 text = "ANIMS"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+[node name="AnimsGrid" type="GridContainer" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
 layout_mode = 2
 columns = 3
 
-[node name="Idle1Button" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Idle1"
-
-[node name="Talk1Button" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Talk1"
-
-[node name="Walk1Button" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Walk1"
-
-[node name="TakeItemButton" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
+[node name="TakeItemButton" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "TakeItem"
 autowrap_mode = 1
 
-[node name="NPC" type="CharacterBody3D" parent="." node_paths=PackedStringArray("anim")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-collision_layer = 131
-collision_mask = 131
-floor_constant_speed = true
-floor_max_angle = 1.4137167
-floor_snap_length = 1.0
-safe_margin = 0.056
-script = ExtResource("4_lquwl")
-npc_data = ExtResource("5_272bh")
-anim = NodePath("grunt/AnimationPlayer")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NPC"]
-process_mode = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4855292, 0)
-shape = SubResource("CapsuleShape3D_h2f5l")
-
-[node name="ProximityDetectArea" type="Area3D" parent="NPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9287833, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC/ProximityDetectArea"]
-shape = SubResource("SphereShape3D_w48l3")
-
-[node name="LookAtNode" type="Node3D" parent="NPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0716, 0)
-
-[node name="Head" type="Node3D" parent="NPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NPC/Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06482768, 2.6315293, -1.3503411)
-visible = false
-mesh = SubResource("BoxMesh_uamu8")
-
-[node name="AnimationTree" type="AnimationTree" parent="NPC"]
-tree_root = SubResource("AnimationNodeStateMachine_k5705")
-
-[node name="grunt" parent="NPC" instance=ExtResource("5_7mycd")]
-transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0, 0)
-
+[connection signal="body_entered" from="GruntNPC/ProximityDetectArea" to="GruntNPC" method="_on_proximity_detect_area_body_entered"]
+[connection signal="body_exited" from="GruntNPC/ProximityDetectArea" to="GruntNPC" method="_on_proximity_detect_area_body_exited"]
 [connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/NPCSelect" to="AnimControlUI" method="_on_npc_select_item_selected"]
-[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Idle1Button" to="AnimControlUI" method="_on_idle_1_button_pressed"]
-[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Talk1Button" to="AnimControlUI" method="_on_talk_1_button_pressed"]
-[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Walk1Button" to="AnimControlUI" method="_on_walk_1_button_pressed"]
-[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/TakeItemButton" to="AnimControlUI" method="_on_take_item_button_pressed"]
-[connection signal="body_entered" from="NPC/ProximityDetectArea" to="NPC" method="_on_proximity_detect_area_body_entered"]
-[connection signal="body_exited" from="NPC/ProximityDetectArea" to="NPC" method="_on_proximity_detect_area_body_exited"]
+[connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelect" to="AnimControlUI" method="_on_state_select_item_selected"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/TakeItemButton" to="AnimControlUI" method="_on_take_item_button_pressed"]
 
-[editable path="NPC/grunt"]
+[editable path="GruntNPC/grunt"]
