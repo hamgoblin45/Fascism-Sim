@@ -1,10 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://dq148aftmrkpy"]
+[gd_scene load_steps=15 format=3 uid="uid://dq148aftmrkpy"]
 
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bvuobrw7e8w0x" path="res://anim_control_ui.gd" id="2_0xm2m"]
 [ext_resource type="Resource" uid="uid://dlqp1w41fktkf" path="res://Data/lady.tres" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://dt4m7cd4dlk2a" path="res://NPCs/npc.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bvryu67x74exl" path="res://NPCs/grunt.gltf" id="5_7mycd"]
+[ext_resource type="Resource" uid="uid://cbxe2cpbaau0c" path="res://Data/grunt.tres" id="5_272bh"]
 
 [sub_resource type="Environment" id="Environment_7dm0k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2f5l"]
+radius = 0.7338867
+height = 4.8991823
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w48l3"]
+radius = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uamu8"]
+shading_mode = 0
+albedo_color = Color(0.849446, 5.7371853e-05, 0.6507998, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_uamu8"]
+material = SubResource("StandardMaterial3D_uamu8")
+size = Vector3(0.2, 0.2, 2)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vxakg"]
+animation = &"Walking"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k7mck"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k5705"]
+states/Walking/node = SubResource("AnimationNodeAnimation_vxakg")
+states/Walking/position = Vector2(408, 103.333336)
+states/walk/node = SubResource("AnimationNodeStateMachine_k7mck")
+states/walk/position = Vector2(282.66666, 104.666664)
 
 [node name="Main" type="Node3D"]
 
@@ -98,8 +127,54 @@ size_flags_vertical = 3
 text = "TakeItem"
 autowrap_mode = 1
 
+[node name="NPC" type="CharacterBody3D" parent="." node_paths=PackedStringArray("anim")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+collision_layer = 131
+collision_mask = 131
+floor_constant_speed = true
+floor_max_angle = 1.4137167
+floor_snap_length = 1.0
+safe_margin = 0.056
+script = ExtResource("4_lquwl")
+npc_data = ExtResource("5_272bh")
+anim = NodePath("grunt/AnimationPlayer")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NPC"]
+process_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4855292, 0)
+shape = SubResource("CapsuleShape3D_h2f5l")
+
+[node name="ProximityDetectArea" type="Area3D" parent="NPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9287833, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC/ProximityDetectArea"]
+shape = SubResource("SphereShape3D_w48l3")
+
+[node name="LookAtNode" type="Node3D" parent="NPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0716, 0)
+
+[node name="Head" type="Node3D" parent="NPC"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NPC/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06482768, 2.6315293, -1.3503411)
+visible = false
+mesh = SubResource("BoxMesh_uamu8")
+
+[node name="AnimationTree" type="AnimationTree" parent="NPC"]
+tree_root = SubResource("AnimationNodeStateMachine_k5705")
+
+[node name="grunt" parent="NPC" instance=ExtResource("5_7mycd")]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0, 0)
+
 [connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/NPCSelect" to="AnimControlUI" method="_on_npc_select_item_selected"]
 [connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Idle1Button" to="AnimControlUI" method="_on_idle_1_button_pressed"]
 [connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Talk1Button" to="AnimControlUI" method="_on_talk_1_button_pressed"]
 [connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Walk1Button" to="AnimControlUI" method="_on_walk_1_button_pressed"]
 [connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/TakeItemButton" to="AnimControlUI" method="_on_take_item_button_pressed"]
+[connection signal="body_entered" from="NPC/ProximityDetectArea" to="NPC" method="_on_proximity_detect_area_body_entered"]
+[connection signal="body_exited" from="NPC/ProximityDetectArea" to="NPC" method="_on_proximity_detect_area_body_exited"]
+
+[editable path="NPC/grunt"]

@@ -1,6 +1,8 @@
 extends Control
 
 const LADY = preload("uid://dlqp1w41fktkf")
+const GRUNT = preload("uid://cbxe2cpbaau0c")
+
 
 
 var selected_npc: NPCData
@@ -15,6 +17,8 @@ func _on_npc_select_item_selected(index: int) -> void:
 	match index:
 		0:
 			selected_npc = LADY
+		1:
+			selected_npc = GRUNT
 
 ## EDIT THESE NAMES TO MATCH ANIMS
 

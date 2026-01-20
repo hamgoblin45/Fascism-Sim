@@ -28,12 +28,16 @@ var state = IDLE
 #var recovery_timer:float = 0.0
 var is_interrupted: bool = false
 var prev_state
-@export var anim: AnimationPlayer
 
 #@onready var anim_tree: AnimationTree = $AnimationTree
 
 @export_category("Anim Control")
+@export var anim: AnimationPlayer
 @export var blend_speed = 2
+
+@export var idle_anims: Array[String]
+@export var walk_anims: Array[String]
+
 var walk_blend_value = 0
 var prev_walk_blend_value: float
 var sit_blend_value = 0
@@ -78,14 +82,17 @@ func _play_anim(npc: NPCData, anim_name: String):
 func _handle_state(_delta):
 	match state:
 		
-		IDLE, ANIMATING:
-			
+		IDLE:
+			if !anim.is_playing():
+				var selected_anim = idle_anims.pick_random()
+				anim.play(selected_anim)
 			#walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
 			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
-			pass
 		
 		WALK:
-			pass
+			if !anim.is_playing():
+				var selected_anim = walk_anims.pick_random()
+				anim.play(selected_anim)
 
 
 # Sets the rotation of a Node3D (look_at_node) so that the target lerps in the same rotation to mimic looking at a node
