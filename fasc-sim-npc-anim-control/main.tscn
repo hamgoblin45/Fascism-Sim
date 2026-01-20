@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq148aftmrkpy"]
+[gd_scene load_steps=5 format=3 uid="uid://dq148aftmrkpy"]
 
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bvuobrw7e8w0x" path="res://anim_control_ui.gd" id="2_0xm2m"]
+[ext_resource type="Resource" uid="uid://dlqp1w41fktkf" path="res://Data/lady.tres" id="2_h2yge"]
 
 [sub_resource type="Environment" id="Environment_7dm0k"]
 
@@ -16,7 +18,88 @@ environment = SubResource("Environment_7dm0k")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -0.37661248, 0.92637104, 0, -0.92637104, -0.37661248, 0, 0, 0)
 
-[node name="NPC" parent="." instance=ExtResource("1_ig7tw")]
+[node name="LadyNPC" parent="." instance=ExtResource("1_ig7tw")]
+npc_data = ExtResource("2_h2yge")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.742278e-08, -1.530701e-08, 0.9845521, 0.17509179, 8.6072276e-08, 0.17509179, -0.9845521, 0, 3.6612597, -5.247834)
+
+[node name="AnimControlUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_0xm2m")
+
+[node name="AnimControlPanel" type="PanelContainer" parent="AnimControlUI"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -323.0
+offset_top = -300.0
+offset_bottom = 300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AnimControlUI/AnimControlPanel"]
+layout_mode = 2
+
+[node name="WhichNPC" type="Label" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+layout_mode = 2
+text = "NPC"
+horizontal_alignment = 1
+
+[node name="NPCSelect" type="OptionButton" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "SmileLady"
+popup/item_0/id = 0
+popup/item_1/text = "Grunt"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+layout_mode = 2
+text = "ANIMS"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Idle1Button" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Idle1"
+
+[node name="Talk1Button" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Talk1"
+
+[node name="Walk1Button" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Walk1"
+
+[node name="TakeItemButton" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "TakeItem"
+autowrap_mode = 1
+
+[connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/NPCSelect" to="AnimControlUI" method="_on_npc_select_item_selected"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Idle1Button" to="AnimControlUI" method="_on_idle_1_button_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Talk1Button" to="AnimControlUI" method="_on_talk_1_button_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/Walk1Button" to="AnimControlUI" method="_on_walk_1_button_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/GridContainer/TakeItemButton" to="AnimControlUI" method="_on_take_item_button_pressed"]

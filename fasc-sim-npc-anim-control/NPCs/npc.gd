@@ -28,7 +28,7 @@ var state = IDLE
 #var recovery_timer:float = 0.0
 var is_interrupted: bool = false
 var prev_state
-var anim: AnimationPlayer
+@export var anim: AnimationPlayer
 
 #@onready var anim_tree: AnimationTree = $AnimationTree
 
@@ -41,8 +41,8 @@ var sit_blend_value = 0
 
 
 
-#func _ready() -> void:
-	#EventBus.npc_play_anim.connect(_play_anim)
+func _ready() -> void:
+	EventBus.npc_play_anim.connect(_play_anim)
 	#EventBus.minute_changed.connect(_on_time_updated)
 	#_check_schedule(GameState.hour, GameState.minute)
 
@@ -64,6 +64,12 @@ func _physics_process(delta: float) -> void:
 	_handle_state(delta)
 	move_and_slide()
 
+
+func _play_anim(npc: NPCData, anim_name: String):
+	if npc.id != npc_data.id:
+		return
+	anim.stop()
+	anim.play(anim_name)
 
 ## -- STATE MACHINE -- ##
 

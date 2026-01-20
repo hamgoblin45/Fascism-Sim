@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://dlqp1w41fktkf"]
+
+[ext_resource type="Script" uid="uid://bqn82y44qyr3m" path="res://Data/NPCData.gd" id="1_yxgth"]
+
+[resource]
+script = ExtResource("1_yxgth")
+name = "lady"
+id = "lady"
+metadata/_custom_type_script = "uid://bqn82y44qyr3m"
