@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1jos7r4f40bc"]
+[gd_scene load_steps=11 format=3 uid="uid://b1jos7r4f40bc"]
 
 [ext_resource type="Script" uid="uid://dt4m7cd4dlk2a" path="res://NPCs/npc.gd" id="1_0ikh5"]
 
@@ -20,16 +20,22 @@ albedo_color = Color(0.849446, 5.7371853e-05, 0.6507998, 1)
 material = SubResource("StandardMaterial3D_uamu8")
 size = Vector3(0.2, 0.2, 2)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vxakg"]
-animation = &"Walking"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k7mck"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k7mck"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k5705"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k5705"]
-states/Walking/node = SubResource("AnimationNodeAnimation_vxakg")
-states/Walking/position = Vector2(408, 103.333336)
-states/walk/node = SubResource("AnimationNodeStateMachine_k7mck")
-states/walk/position = Vector2(282.66666, 104.666664)
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_xlwy1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vxakg"]
+graph_offset = Vector2(-441.05167, 92.24967)
+nodes/output/position = Vector2(1146.6666, 133.33333)
+nodes/AnimIdle/node = SubResource("AnimationNodeAnimation_k7mck")
+nodes/AnimIdle/position = Vector2(400, 160)
+nodes/AnimWalk/node = SubResource("AnimationNodeAnimation_k5705")
+nodes/AnimWalk/position = Vector2(453.33334, 453.33334)
+nodes/Walk/node = SubResource("AnimationNodeBlend2_xlwy1")
+nodes/Walk/position = Vector2(613.3333, 160)
+node_connections = [&"output", 0, &"Walk", &"Walk", 0, &"AnimIdle", &"Walk", 1, &"AnimWalk"]
 
 [node name="NPC" type="CharacterBody3D"]
 collision_layer = 131
@@ -66,7 +72,8 @@ visible = false
 mesh = SubResource("BoxMesh_uamu8")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_k5705")
+tree_root = SubResource("AnimationNodeBlendTree_vxakg")
+parameters/Walk/blend_amount = 0.0
 
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]
 [connection signal="body_exited" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_exited"]
