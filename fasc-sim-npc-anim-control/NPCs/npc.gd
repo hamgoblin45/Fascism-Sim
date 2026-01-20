@@ -32,11 +32,11 @@ var prev_state
 #@onready var anim_tree: AnimationTree = $AnimationTree
 
 @export_category("Anim Control")
-@export var anim: AnimationPlayer
+var anim: AnimationPlayer
+var animating: bool = false
 @export var blend_speed = 2
 
-@export var idle_anims: Array[String]
-@export var walk_anims: Array[String]
+
 
 var walk_blend_value = 0
 var prev_walk_blend_value: float
@@ -46,11 +46,23 @@ var sit_blend_value = 0
 
 
 func _ready() -> void:
+	_instance_npc_mesh()
 	EventBus.npc_play_anim.connect(_play_anim)
 	EventBus.npc_set_state.connect(_set_state)
 	#EventBus.minute_changed.connect(_on_time_updated)
 	#_check_schedule(GameState.hour, GameState.minute)
 
+func _instance_npc_mesh():
+	if npc_data:
+		if npc_data.mesh:
+			var mesh = npc_data.mesh.instantiate()
+			add_child(mesh)
+			
+			for child in mesh.get_children():
+				if child is AnimationPlayer:
+					anim = child
+					anim.animation_finished.connect(_on_anim_finished)
+					return
 
 func _physics_process(delta: float) -> void:
 	
@@ -77,12 +89,14 @@ func _play_anim(npc: NPCData, anim_name: String):
 		push_error("Attempting to play anim %s on NPC %s but no such anim name exists" % [anim_name, npc_data.name])
 	anim.stop()
 	anim.play(anim_name)
+	animating = true
 
 ## -- STATE MACHINE -- ##
 func _set_state(npc: NPCData, new_state: String):
 	if npc.id != npc_data.id or new_state == state:
 		return
 	print("Setting state in NPC")
+	prev_state = state
 	state = new_state
 
 
@@ -92,19 +106,19 @@ func _handle_state(_delta):
 	match state:
 		
 		"IDLE":
-			if anim.is_playing() and idle_anims.has(anim.current_animation):
+			if anim.is_playing() and npc_data.idle_anims.has(anim.current_animation) or animating:
 				return
 			else:
-				var selected_anim = idle_anims.pick_random()
+				var selected_anim = npc_data.idle_anims.pick_random()
 				anim.play(selected_anim)
 			#walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
 			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
 		
 		"WALK":
-			if anim.is_playing() and walk_anims.has(anim.current_animation):
+			if anim.is_playing() and npc_data.walk_anims.has(anim.current_animation) or animating:
 				return
 			else:
-				var selected_anim = walk_anims.pick_random()
+				var selected_anim = npc_data.walk_anims.pick_random()
 				anim.play(selected_anim)
 
 
@@ -119,3 +133,6 @@ func look_at_target(target):
 		look_at_node.look_at(looking_at.global_position)
 	else:
 		looking_at = null
+
+func _on_anim_finished(_anim_name: String):
+	animating = false

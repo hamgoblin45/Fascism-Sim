@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://cbxe2cpbaau0c"]
+[gd_resource type="Resource" script_class="NPCData" load_steps=3 format=3 uid="uid://cbxe2cpbaau0c"]
 
 [ext_resource type="Script" uid="uid://bqn82y44qyr3m" path="res://Data/NPCData.gd" id="1_el0w8"]
+[ext_resource type="PackedScene" uid="uid://bvryu67x74exl" path="res://NPCs/grunt.gltf" id="1_l5tp7"]
 
 [resource]
 script = ExtResource("1_el0w8")
 name = "grunt"
 id = "grunt"
+mesh = ExtResource("1_l5tp7")
+idle_anims = Array[String](["RifleIdle1", "RifleIdle2"])
+walk_anims = Array[String](["Walk1"])
 metadata/_custom_type_script = "uid://bqn82y44qyr3m"

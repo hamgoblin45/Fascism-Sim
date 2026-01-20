@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="NPCData" load_steps=2 format=3 uid="uid://dlqp1w41fktkf"]
+[gd_resource type="Resource" script_class="NPCData" load_steps=3 format=3 uid="uid://dlqp1w41fktkf"]
 
+[ext_resource type="PackedScene" uid="uid://wsqdiun3bwo1" path="res://NPCs/blonde_lady.gltf" id="1_63vpt"]
 [ext_resource type="Script" uid="uid://bqn82y44qyr3m" path="res://Data/NPCData.gd" id="1_yxgth"]
 
 [resource]
 script = ExtResource("1_yxgth")
 name = "lady"
 id = "lady"
+mesh = ExtResource("1_63vpt")
+idle_anims = Array[String](["Idle1"])
+walk_anims = Array[String](["Walking"])
 metadata/_custom_type_script = "uid://bqn82y44qyr3m"
