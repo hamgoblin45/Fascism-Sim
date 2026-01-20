@@ -10,9 +10,8 @@ config_version=5
 
 [application]
 
-config/name="NPCPathing"
+config/name="FascSim-NPCAnimControl"
 config/tags=PackedStringArray("fasc")
-run/main_scene="uid://c2e1wswg0mcea"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,4 +22,4 @@ GameState="*res://Scripts/GameState.gd"
 
 [dotnet]
 
-project/assembly_name="NPCPathing"
+project/assembly_name="FascSim-NPCAnimControl"

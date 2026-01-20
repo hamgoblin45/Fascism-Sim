@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq148aftmrkpy"]
+
+[ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="1_ig7tw"]
+
+[sub_resource type="Environment" id="Environment_7dm0k"]
+
+[node name="Main" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(50, 0.1, 50)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7dm0k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.5539729, 0.8325347, 0, -0.8325347, 0.5539729, 0, 0, 0)
+
+[node name="NPC" parent="." instance=ExtResource("1_ig7tw")]
