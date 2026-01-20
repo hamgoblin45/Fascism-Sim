@@ -33,7 +33,7 @@ var prev_state
 
 @export_category("Anim Control")
 var anim: AnimationPlayer
-var animating: bool = false
+#var animating: bool = false
 @export var blend_speed = 2
 @onready var anim_tree: AnimationTree = $AnimationTree
 
@@ -63,7 +63,7 @@ func _instance_npc_mesh():
 					# Set up AnimTree
 					_set_blend_tree()
 					
-					anim.animation_finished.connect(_on_anim_finished)
+					#anim.animation_finished.connect(_on_anim_finished)
 					return
 
 func _physics_process(delta: float) -> void:
@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 		look_at_node.look_at(looking_at.global_position)
 		global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 0.75 * delta)
 
-	_update_anim_tree()
+	
 	_handle_state(delta)
 	move_and_slide()
 
@@ -91,7 +91,8 @@ func _play_anim(npc: NPCData, anim_name: String):
 		push_error("Attempting to play anim %s on NPC %s but no such anim name exists" % [anim_name, npc_data.name])
 	anim.stop()
 	anim.play(anim_name)
-	animating = true
+	#animating = true
+	print("NPC %s playing anim %s" % [npc_data.name, anim_name])
 
 func _set_blend_tree():
 	anim_tree.anim_player = anim.get_path()
@@ -121,7 +122,7 @@ func _update_anim_tree():
 func _set_state(npc: NPCData, new_state: String):
 	if npc.id != npc_data.id or new_state == state:
 		return
-	print("Setting state in NPC")
+	print("NPC %s setting state to %s" % [npc_data.name, new_state])
 	#prev_state = state
 	state = new_state
 
@@ -129,25 +130,17 @@ func _set_state(npc: NPCData, new_state: String):
 # Sets animations (or tries to) based on state. From tutorial. Designed to work with AnimationTree
 # Perhaps tracking path progress should be its own func
 func _handle_state(delta):
+	
 	match state:
-		
 		"IDLE":
-			#if anim.is_playing() and npc_data.idle_anims.has(anim.current_animation) or animating:
-				#return
-			#else:
-				#var selected_anim = npc_data.idle_anims.pick_random()
-				#anim.play(selected_anim)
 			walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
 			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
 		
 		"WALK":
 			walk_blend_value = lerpf(walk_blend_value, 1, blend_speed * delta)
-			#if anim.is_playing() and npc_data.walk_anims.has(anim.current_animation) or animating:
-				#return
-			#else:
-				#var selected_anim = npc_data.walk_anims.pick_random()
-				#anim.play(selected_anim)
-
+			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
+	
+	_update_anim_tree()
 
 
 # Sets the rotation of a Node3D (look_at_node) so that the target lerps in the same rotation to mimic looking at a node
@@ -163,4 +156,5 @@ func look_at_target(target):
 		looking_at = null
 
 func _on_anim_finished(_anim_name: String):
-	animating = false
+	print("NPC %s finished playing anim %s, animating set to false" % [npc_data.name, _anim_name])
+	#animating = false
