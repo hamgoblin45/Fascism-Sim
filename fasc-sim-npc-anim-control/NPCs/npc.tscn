@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1jos7r4f40bc"]
+[gd_scene load_steps=13 format=3 uid="uid://b1jos7r4f40bc"]
 
 [ext_resource type="Script" uid="uid://dt4m7cd4dlk2a" path="res://NPCs/npc.gd" id="1_0ikh5"]
 
@@ -20,6 +20,10 @@ albedo_color = Color(0.849446, 5.7371853e-05, 0.6507998, 1)
 material = SubResource("StandardMaterial3D_uamu8")
 size = Vector3(0.2, 0.2, 2)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ikh5"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0ikh5"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k7mck"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k5705"]
@@ -27,15 +31,19 @@ size = Vector3(0.2, 0.2, 2)
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_xlwy1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vxakg"]
-graph_offset = Vector2(-441.05167, 92.24967)
-nodes/output/position = Vector2(1146.6666, 133.33333)
+graph_offset = Vector2(-75.68107, 158.4173)
+nodes/output/position = Vector2(1173.3334, 106.666664)
 nodes/AnimIdle/node = SubResource("AnimationNodeAnimation_k7mck")
 nodes/AnimIdle/position = Vector2(400, 160)
 nodes/AnimWalk/node = SubResource("AnimationNodeAnimation_k5705")
-nodes/AnimWalk/position = Vector2(453.33334, 453.33334)
+nodes/AnimWalk/position = Vector2(400, 453.33334)
 nodes/Walk/node = SubResource("AnimationNodeBlend2_xlwy1")
-nodes/Walk/position = Vector2(613.3333, 160)
-node_connections = [&"output", 0, &"Walk", &"Walk", 0, &"AnimIdle", &"Walk", 1, &"AnimWalk"]
+nodes/Walk/position = Vector2(666.6667, 133.33333)
+nodes/ActionOneShot/node = SubResource("AnimationNodeOneShot_0ikh5")
+nodes/ActionOneShot/position = Vector2(933.3333, 106.666664)
+nodes/ActionAnimation/node = SubResource("AnimationNodeAnimation_0ikh5")
+nodes/ActionAnimation/position = Vector2(720, 400)
+node_connections = [&"output", 0, &"ActionOneShot", &"Walk", 0, &"AnimIdle", &"Walk", 1, &"AnimWalk", &"ActionOneShot", 0, &"Walk", &"ActionOneShot", 1, &"ActionAnimation"]
 
 [node name="NPC" type="CharacterBody3D"]
 collision_layer = 131
@@ -74,6 +82,9 @@ mesh = SubResource("BoxMesh_uamu8")
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_vxakg")
 parameters/Walk/blend_amount = 0.0
+parameters/ActionOneShot/active = false
+parameters/ActionOneShot/internal_active = false
+parameters/ActionOneShot/request = 0
 
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]
 [connection signal="body_exited" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_exited"]

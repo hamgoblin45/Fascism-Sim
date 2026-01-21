@@ -4,16 +4,8 @@ class_name NPC
 @export var npc_data: NPCData
 
 @export_group("AI Settings")
-#@export var flee_distance: flaot = 8.0
-#@export var vision_angle: float = 45.0 # Degrees
-#@export var recovery_time: float = 4.0
-
-#@onready var npc_mesh: Node3D = $NPCMesh
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var look_at_node: Node3D = $LookAtNode
-
-
-
 
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") # Don't set this as a const, see the gravity section in _physics_process
 var gravity_enabled: bool = true
@@ -25,15 +17,11 @@ var player_nearby: bool
 
 #enum {IDLE, WALK, TALK, WAIT, ANIMATING}
 var state: String = "IDLE"
-#var recovery_timer:float = 0.0
 var is_interrupted: bool = false
-var prev_state
 
-#@onready var anim_tree: AnimationTree = $AnimationTree
 
 @export_category("Anim Control")
 var anim: AnimationPlayer
-#var animating: bool = false
 @export var blend_speed = 2
 @onready var anim_tree: AnimationTree = $AnimationTree
 
@@ -48,8 +36,6 @@ func _ready() -> void:
 	_instance_npc_mesh()
 	EventBus.npc_play_anim.connect(_play_anim)
 	EventBus.npc_set_state.connect(_set_state)
-	#EventBus.minute_changed.connect(_on_time_updated)
-	#_check_schedule(GameState.hour, GameState.minute)
 
 func _instance_npc_mesh():
 	if npc_data:
@@ -62,8 +48,6 @@ func _instance_npc_mesh():
 					anim = child
 					# Set up AnimTree
 					_set_blend_tree()
-					
-					#anim.animation_finished.connect(_on_anim_finished)
 					return
 
 func _physics_process(delta: float) -> void:
@@ -83,19 +67,23 @@ func _physics_process(delta: float) -> void:
 	_handle_state(delta)
 	move_and_slide()
 
-
 func _play_anim(npc: NPCData, anim_name: String):
 	if npc.id != npc_data.id:
 		return
+	
 	if not anim.has_animation(anim_name):
-		push_error("Attempting to play anim %s on NPC %s but no such anim name exists" % [anim_name, npc_data.name])
-	anim.stop()
-	anim.play(anim_name)
-	#animating = true
+		push_error("NPC %s: Animation '%s' not found" % [npc_data.name, anim_name])
+		return
+	
+	var anim_path = "parameters/ActionOneShot/ActionAnimation/animation"
+	anim_tree.set(anim_path, anim_name)
+	
+	anim_tree.set("parameters/ActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	print("NPC %s playing anim %s" % [npc_data.name, anim_name])
 
 func _set_blend_tree():
 	anim_tree.anim_player = anim.get_path()
+	anim_tree.active = true # Makes sure tree is running
 	var tree_root: AnimationNodeBlendTree = anim_tree.tree_root
 	
 	# Set Idle node anim
@@ -126,9 +114,7 @@ func _set_state(npc: NPCData, new_state: String):
 	#prev_state = state
 	state = new_state
 
-
-# Sets animations (or tries to) based on state. From tutorial. Designed to work with AnimationTree
-# Perhaps tracking path progress should be its own func
+# Sets animations (or tries to) based on state. From a tutorial. Designed to work with AnimationTree
 func _handle_state(delta):
 	
 	match state:
@@ -139,6 +125,12 @@ func _handle_state(delta):
 		"WALK":
 			walk_blend_value = lerpf(walk_blend_value, 1, blend_speed * delta)
 			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
+		"TALK":
+			walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
+			velocity.x = move_toward(velocity.x, 0, npc_data.walk_accel * delta)
+			velocity.z = move_toward(velocity.z, 0, npc_data.walk_accel * delta)
+		"ANIMATING":
+			walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
 	
 	_update_anim_tree()
 
