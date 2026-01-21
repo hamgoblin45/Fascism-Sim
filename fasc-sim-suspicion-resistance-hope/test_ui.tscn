@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ohh3opd0e28n"]
+[gd_scene load_steps=8 format=3 uid="uid://ohh3opd0e28n"]
 
 [ext_resource type="Script" uid="uid://jd3caem6lo40" path="res://test_ui.gd" id="1_w4nob"]
 [ext_resource type="Script" uid="uid://bke2sgaucjmf3" path="res://Managers/suspicion_resist_hope_manager.gd" id="2_3tn64"]
+[ext_resource type="PackedScene" uid="uid://d4f7fxy2s7ntw" path="res://output_label.tscn" id="3_3tn64"]
+[ext_resource type="Script" uid="uid://ckrramv5pdu6x" path="res://output_ui.gd" id="3_w3nqu"]
+[ext_resource type="Script" uid="uid://cgsny8r5kftqu" path="res://output_label.gd" id="4_clead"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4nob"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3tn64"]
 
 [node name="TestUI" type="Control"]
 layout_mode = 3
@@ -14,3 +21,190 @@ script = ExtResource("1_w4nob")
 
 [node name="SuspicionResistHopeManager" type="Node" parent="."]
 script = ExtResource("2_3tn64")
+
+[node name="OutputUI" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 15.0
+offset_right = 307.0
+offset_bottom = -15.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_w4nob")
+script = ExtResource("3_w3nqu")
+
+[node name="OutputContainer" type="VBoxContainer" parent="OutputUI"]
+layout_mode = 2
+
+[node name="OutputLabel" parent="OutputUI/OutputContainer" instance=ExtResource("3_3tn64")]
+layout_mode = 2
+script = ExtResource("4_clead")
+
+[node name="StateUI" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = 8.0
+offset_right = -11.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3tn64")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StateUI"]
+layout_mode = 2
+alignment = 1
+
+[node name="SuspicionLabel" type="Label" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+text = "SUSPICION"
+horizontal_alignment = 1
+
+[node name="SuspicionDescript" type="RichTextLabel" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Openly resisting the regime will increase [color=orange]Suspicion[/color]. Assiting the Regime will decrease it.
+Increased [color=orange]Suspicion[/color] will result in more [color=red]Searches[/color] and fewer privileges"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="SuspicionProgressBar" type="ProgressBar" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="SuspicionValue" type="Label" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResistLabel" type="Label" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+text = "RESISTANCE"
+horizontal_alignment = 1
+
+[node name="ResistDescript" type="RichTextLabel" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Assiting the Rebels will increase [color=green]Resistance[/color]. Assiting the Regime will decrease it.
+Once [color=green]Resistance[/color] reaches 100%, the Regime will be overthrown."
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="ResistProgressBar" type="ProgressBar" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResistValue" type="Label" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="HopeLabel" type="Label" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+text = "INDIVIDUAL NEIGHBOR HOPE"
+horizontal_alignment = 1
+
+[node name="HopeValue" type="Label" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+text = "0.0"
+horizontal_alignment = 1
+
+[node name="HopeDescript" type="RichTextLabel" parent="StateUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "The [color=purple]Hope[/color] level of your neighbors will contribute to the [color=green]Resistance[/color]. Negative levels will impede progress while positive levels will advance it.[p]Inspire and care for your neighbors to increase their [color=purple]Hope[/color]. Belittle, threaten, or ignore their plights to decrease it."
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+
+[node name="ButtonsUI" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -208.0
+offset_right = 258.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CategoryContainer" type="VBoxContainer" parent="ButtonsUI"]
+layout_mode = 2
+
+[node name="InterrogationLabel" type="Label" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+text = "Interrogation Responses"
+
+[node name="InterrogationButtonsContainer" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="Button" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+layout_mode = 2
+text = "Neutral Response"
+
+[node name="Button2" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+layout_mode = 2
+text = "Snarky"
+
+[node name="Button3" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+layout_mode = 2
+text = "Hostile"
+
+[node name="Button4" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+layout_mode = 2
+text = "Provide Intel (real)"
+
+[node name="Button5" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+layout_mode = 2
+text = "Provide Intel (lie)"
+
+[node name="Button6" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+layout_mode = 2
+text = "Give Evidence"
+
+[node name="NeighborLabel" type="Label" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+text = "Talking to Neighbor"
+
+[node name="NeighborButtonsContainer2" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="Button" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+layout_mode = 2
+text = "Inspire"
+
+[node name="Button2" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+layout_mode = 2
+text = "Doom & Gloom"
+
+[node name="Button3" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+layout_mode = 2
+text = "Threaten"
+
+[node name="Button4" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+layout_mode = 2
+text = "Everything is Fine"
+
+[node name="Button5" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+layout_mode = 2
+text = "Comfort"
+
+[node name="Button6" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+layout_mode = 2
+text = "Demean"
+
+[node name="NeighborLabel2" type="Label" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+text = "Talking to Rebel"
+
+[node name="NeighborLabel3" type="Label" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+text = "Tasks"

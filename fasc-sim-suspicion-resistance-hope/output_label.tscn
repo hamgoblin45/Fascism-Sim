@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d4f7fxy2s7ntw"]
+
+[node name="OutputLabel" type="RichTextLabel"]
+bbcode_enabled = true
+text = "Output text goes here. [color=red]Lorem ipsum motherfucker"
+fit_content = true
