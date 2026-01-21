@@ -102,6 +102,15 @@ size_flags_vertical = 3
 text = "TakeItem"
 autowrap_mode = 1
 
+[node name="PullRifleOut" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "PullRifleOut
+"
+autowrap_mode = 1
+
 [connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/NPCSelect" to="AnimControlUI" method="_on_npc_select_item_selected"]
 [connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelect" to="AnimControlUI" method="_on_state_select_item_selected"]
 [connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/TakeItemButton" to="AnimControlUI" method="_on_take_item_button_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/PullRifleOut" to="AnimControlUI" method="_on_pull_rifle_out_pressed"]

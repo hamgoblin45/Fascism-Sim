@@ -29,11 +29,11 @@ input_0/name = "TakeItem"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
-input_1/name = "RiflePullOut"
+input_1/name = "PullRifleOut"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = true
-input_2/name = "RiflePutAway"
+input_2/name = "PutRifleAway"
 input_2/auto_advance = false
 input_2/break_loop_at_end = false
 input_2/reset = true
@@ -51,7 +51,7 @@ input_2/reset = true
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_xlwy1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vxakg"]
-graph_offset = Vector2(-407.1194, 1331.1251)
+graph_offset = Vector2(-734.10126, 1281.2848)
 nodes/output/position = Vector2(746.6667, 480)
 nodes/AnimIdle/node = SubResource("AnimationNodeAnimation_k7mck")
 nodes/AnimIdle/position = Vector2(-53.333332, 533.3333)
@@ -67,11 +67,11 @@ nodes/ActionSelector/node = SubResource("AnimationNodeTransition_0ikh5")
 nodes/ActionSelector/position = Vector2(213.33333, 1280)
 nodes/TakeItem/node = SubResource("AnimationNodeAnimation_2pim4")
 nodes/TakeItem/position = Vector2(-53.333332, 1653.3334)
-nodes/RiflePullOut/node = SubResource("AnimationNodeAnimation_vxakg")
-nodes/RiflePullOut/position = Vector2(-53.333332, 1093.3334)
-nodes/RiflePutAway/node = SubResource("AnimationNodeAnimation_xlwy1")
-nodes/RiflePutAway/position = Vector2(-53.333332, 1386.6666)
-node_connections = [&"output", 0, &"ActionOneShot", &"Walk", 0, &"AnimIdle", &"Walk", 1, &"AnimWalk", &"ActionOneShot", 0, &"Walk", &"ActionOneShot", 1, &"ActionSelector", &"ActionSelector", 0, &"TakeItem", &"ActionSelector", 1, &"RiflePullOut", &"ActionSelector", 2, &"RiflePutAway"]
+nodes/PullRifleOut/node = SubResource("AnimationNodeAnimation_vxakg")
+nodes/PullRifleOut/position = Vector2(-53.333332, 1093.3334)
+nodes/PutRifleAway/node = SubResource("AnimationNodeAnimation_xlwy1")
+nodes/PutRifleAway/position = Vector2(-53.333332, 1386.6666)
+node_connections = [&"output", 0, &"ActionOneShot", &"Walk", 0, &"AnimIdle", &"Walk", 1, &"AnimWalk", &"ActionOneShot", 0, &"Walk", &"ActionOneShot", 1, &"ActionSelector", &"ActionSelector", 0, &"TakeItem", &"ActionSelector", 1, &"PullRifleOut", &"ActionSelector", 2, &"PutRifleAway"]
 
 [node name="NPC" type="CharacterBody3D"]
 collision_layer = 131

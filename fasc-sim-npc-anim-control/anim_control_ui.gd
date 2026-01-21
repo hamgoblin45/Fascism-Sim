@@ -36,3 +36,7 @@ func _on_state_select_item_selected(index: int) -> void:
 			EventBus.npc_set_state.emit(selected_npc, "WALK")
 		2:
 			EventBus.npc_set_state.emit(selected_npc, "TALK")
+
+
+func _on_pull_rifle_out_pressed() -> void:
+	EventBus.npc_play_anim.emit(selected_npc, "PullRifleOut")

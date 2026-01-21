@@ -43,6 +43,7 @@ func _ready() -> void:
 
 func _instance_npc_mesh():
 	if npc_data and npc_data.mesh:
+		
 		var mesh = npc_data.mesh.instantiate()
 		add_child(mesh)
 		
@@ -54,9 +55,22 @@ func _instance_npc_mesh():
 		
 		if found_anim:
 			anim = found_anim
+			anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
+			
 			anim_tree.anim_player = anim.get_path()
 			anim_tree.active = true
+			
 			_set_blend_tree()
+
+func _build_action_map():
+	action_map.clear()
+	
+	#ALERT - Change these to reflect all actual anims
+	action_map = {
+		"TakeItem": 0,
+		"PullRifleOut": 1,
+		"PutRifleAway": 2
+	}
 
 func _physics_process(delta: float) -> void:
 	
@@ -86,6 +100,9 @@ func _play_anim(npc: NPCData, anim_name: String):
 		print("NPC %s fired action %s at index %d" % [npc_data.name, anim_name, action_index])
 	else:
 		push_error("NPC %s: Animation '%s' not found" % [npc_data.name, anim_name])
+		#Fallback, try to directly play an anim if tree isn't working out
+		if anim.has_animation(anim_name):
+			anim.play(anim_name)
 	#if not anim.has_animation(anim_name):
 		#push_error("NPC %s: Animation '%s' not found" % [npc_data.name, anim_name])
 		#return
@@ -116,6 +133,10 @@ func _set_blend_tree():
 		print("_set_blend_tree run in npc.gd; %s's AnimWalk animation set to %s" % [npc_data.name, walk_node.animation])
 	else:
 		print("Walk Anim node not found in blend tree!")
+	
+	_build_action_map()
+
+
 
 func _update_anim_tree():
 	anim_tree["parameters/Walk/blend_amount"] = walk_blend_value
