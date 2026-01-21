@@ -25,6 +25,10 @@ var anim: AnimationPlayer
 @export var blend_speed = 2
 @onready var anim_tree: AnimationTree = $AnimationTree
 
+var action_map = {
+	"TakeItem": 0
+}
+
 var walk_blend_value = 0
 var prev_walk_blend_value: float
 var sit_blend_value = 0
@@ -38,17 +42,21 @@ func _ready() -> void:
 	EventBus.npc_set_state.connect(_set_state)
 
 func _instance_npc_mesh():
-	if npc_data:
-		if npc_data.mesh:
-			var mesh = npc_data.mesh.instantiate()
-			add_child(mesh)
-			
-			for child in mesh.get_children():
-				if child is AnimationPlayer:
-					anim = child
-					# Set up AnimTree
-					_set_blend_tree()
-					return
+	if npc_data and npc_data.mesh:
+		var mesh = npc_data.mesh.instantiate()
+		add_child(mesh)
+		
+		var found_anim: AnimationPlayer = null
+		for child in mesh.get_children():
+			if child is AnimationPlayer:
+				found_anim = child
+				break
+		
+		if found_anim:
+			anim = found_anim
+			anim_tree.anim_player = anim.get_path()
+			anim_tree.active = true
+			_set_blend_tree()
 
 func _physics_process(delta: float) -> void:
 	
@@ -71,15 +79,22 @@ func _play_anim(npc: NPCData, anim_name: String):
 	if npc.id != npc_data.id:
 		return
 	
-	if not anim.has_animation(anim_name):
+	if action_map.has(anim_name):
+		var action_index = action_map[anim_name]
+		anim_tree.set("parameters/ActionSelector/current_state", action_index)
+		anim_tree.set("parameters/ActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		print("NPC %s fired action %s at index %d" % [npc_data.name, anim_name, action_index])
+	else:
 		push_error("NPC %s: Animation '%s' not found" % [npc_data.name, anim_name])
-		return
+	#if not anim.has_animation(anim_name):
+		#push_error("NPC %s: Animation '%s' not found" % [npc_data.name, anim_name])
+		#return
 	
-	var anim_path = "parameters/ActionOneShot/ActionAnimation/animation"
-	anim_tree.set(anim_path, anim_name)
-	
-	anim_tree.set("parameters/ActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	print("NPC %s playing anim %s" % [npc_data.name, anim_name])
+	#var anim_path = "parameters/ActionOneShot/ActionAnimation/animation"
+	#anim_tree.set(anim_path, anim_name)
+	#
+	#anim_tree.set("parameters/ActionOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	#print("NPC %s playing anim %s" % [npc_data.name, anim_name])
 
 func _set_blend_tree():
 	anim_tree.anim_player = anim.get_path()

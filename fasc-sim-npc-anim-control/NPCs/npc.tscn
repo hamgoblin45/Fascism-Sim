@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1jos7r4f40bc"]
+[gd_scene load_steps=17 format=3 uid="uid://b1jos7r4f40bc"]
 
 [ext_resource type="Script" uid="uid://dt4m7cd4dlk2a" path="res://NPCs/npc.gd" id="1_0ikh5"]
 
@@ -24,26 +24,54 @@ size = Vector3(0.2, 0.2, 2)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_0ikh5"]
 
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_0ikh5"]
+input_0/name = "TakeItem"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "RiflePullOut"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "RiflePutAway"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k7mck"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k5705"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vxakg"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xlwy1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2pim4"]
+
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_xlwy1"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_vxakg"]
-graph_offset = Vector2(-75.68107, 158.4173)
-nodes/output/position = Vector2(1173.3334, 106.666664)
+graph_offset = Vector2(-407.1194, 1331.1251)
+nodes/output/position = Vector2(746.6667, 480)
 nodes/AnimIdle/node = SubResource("AnimationNodeAnimation_k7mck")
-nodes/AnimIdle/position = Vector2(400, 160)
+nodes/AnimIdle/position = Vector2(-53.333332, 533.3333)
 nodes/AnimWalk/node = SubResource("AnimationNodeAnimation_k5705")
-nodes/AnimWalk/position = Vector2(400, 453.33334)
+nodes/AnimWalk/position = Vector2(-53.333332, 800)
 nodes/Walk/node = SubResource("AnimationNodeBlend2_xlwy1")
-nodes/Walk/position = Vector2(666.6667, 133.33333)
+nodes/Walk/position = Vector2(213.33333, 480)
 nodes/ActionOneShot/node = SubResource("AnimationNodeOneShot_0ikh5")
-nodes/ActionOneShot/position = Vector2(933.3333, 106.666664)
+nodes/ActionOneShot/position = Vector2(480, 453.33334)
 nodes/ActionAnimation/node = SubResource("AnimationNodeAnimation_0ikh5")
-nodes/ActionAnimation/position = Vector2(720, 400)
-node_connections = [&"output", 0, &"ActionOneShot", &"Walk", 0, &"AnimIdle", &"Walk", 1, &"AnimWalk", &"ActionOneShot", 0, &"Walk", &"ActionOneShot", 1, &"ActionAnimation"]
+nodes/ActionAnimation/position = Vector2(-53.333332, 240)
+nodes/ActionSelector/node = SubResource("AnimationNodeTransition_0ikh5")
+nodes/ActionSelector/position = Vector2(213.33333, 1280)
+nodes/TakeItem/node = SubResource("AnimationNodeAnimation_2pim4")
+nodes/TakeItem/position = Vector2(-53.333332, 1653.3334)
+nodes/RiflePullOut/node = SubResource("AnimationNodeAnimation_vxakg")
+nodes/RiflePullOut/position = Vector2(-53.333332, 1093.3334)
+nodes/RiflePutAway/node = SubResource("AnimationNodeAnimation_xlwy1")
+nodes/RiflePutAway/position = Vector2(-53.333332, 1386.6666)
+node_connections = [&"output", 0, &"ActionOneShot", &"Walk", 0, &"AnimIdle", &"Walk", 1, &"AnimWalk", &"ActionOneShot", 0, &"Walk", &"ActionOneShot", 1, &"ActionSelector", &"ActionSelector", 0, &"TakeItem", &"ActionSelector", 1, &"RiflePullOut", &"ActionSelector", 2, &"RiflePutAway"]
 
 [node name="NPC" type="CharacterBody3D"]
 collision_layer = 131
@@ -85,6 +113,9 @@ parameters/Walk/blend_amount = 0.0
 parameters/ActionOneShot/active = false
 parameters/ActionOneShot/internal_active = false
 parameters/ActionOneShot/request = 0
+parameters/ActionSelector/current_state = ""
+parameters/ActionSelector/transition_request = "TakeItem"
+parameters/ActionSelector/current_index = -1
 
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]
 [connection signal="body_exited" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_exited"]
