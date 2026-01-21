@@ -76,6 +76,7 @@ horizontal_alignment = 1
 
 [node name="StateSelect" type="OptionButton" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 selected = 0
 item_count = 3
@@ -85,6 +86,28 @@ popup/item_1/text = "WALK"
 popup/item_1/id = 1
 popup/item_2/text = "TALK"
 popup/item_2/id = 2
+
+[node name="StateSelectRow" type="HBoxContainer" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="IdleButton" type="CheckButton" parent="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelectRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Idle"
+alignment = 1
+
+[node name="WalkButton" type="CheckButton" parent="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelectRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Walk"
+alignment = 1
+
+[node name="TalkButton" type="CheckButton" parent="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelectRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Talk"
+alignment = 1
 
 [node name="AnimsLabel" type="Label" parent="AnimControlUI/AnimControlPanel/VBoxContainer"]
 layout_mode = 2
@@ -102,6 +125,21 @@ size_flags_vertical = 3
 text = "TakeItem"
 autowrap_mode = 1
 
+[node name="GiveItem" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "GiveItem"
+autowrap_mode = 1
+
+[node name="Salute" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Salute
+"
+autowrap_mode = 1
+
 [node name="PullRifleOut" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -110,7 +148,60 @@ text = "PullRifleOut
 "
 autowrap_mode = 1
 
+[node name="PutRifleAway" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text = "PutRifleAway"
+autowrap_mode = 1
+
+[node name="Exclaim" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Exclaim"
+autowrap_mode = 1
+
+[node name="Cry" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Cry"
+autowrap_mode = 1
+
+[node name="Laugh" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Laugh"
+autowrap_mode = 1
+
+[node name="Yes" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Yes"
+autowrap_mode = 1
+
+[node name="No" type="Button" parent="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "No"
+autowrap_mode = 1
+
 [connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/NPCSelect" to="AnimControlUI" method="_on_npc_select_item_selected"]
 [connection signal="item_selected" from="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelect" to="AnimControlUI" method="_on_state_select_item_selected"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelectRow/IdleButton" to="AnimControlUI" method="_on_idle_button_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelectRow/WalkButton" to="AnimControlUI" method="_on_walk_button_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/StateSelectRow/TalkButton" to="AnimControlUI" method="_on_talk_button_pressed"]
 [connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/TakeItemButton" to="AnimControlUI" method="_on_take_item_button_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/GiveItem" to="AnimControlUI" method="_on_give_item_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/Salute" to="AnimControlUI" method="_on_salute_pressed"]
 [connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/PullRifleOut" to="AnimControlUI" method="_on_pull_rifle_out_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/PutRifleAway" to="AnimControlUI" method="_on_put_rifle_away_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/Exclaim" to="AnimControlUI" method="_on_exclaim_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/Cry" to="AnimControlUI" method="_on_cry_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/Laugh" to="AnimControlUI" method="_on_laugh_pressed"]
+[connection signal="pressed" from="AnimControlUI/AnimControlPanel/VBoxContainer/AnimsGrid/Yes" to="AnimControlUI" method="_on_yes_pressed"]
