@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ohh3opd0e28n"]
+
+[ext_resource type="Script" uid="uid://jd3caem6lo40" path="res://test_ui.gd" id="1_w4nob"]
+[ext_resource type="Script" uid="uid://bke2sgaucjmf3" path="res://Managers/suspicion_resist_hope_manager.gd" id="2_3tn64"]
+
+[node name="TestUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4nob")
+
+[node name="SuspicionResistHopeManager" type="Node" parent="."]
+script = ExtResource("2_3tn64")
