@@ -6,6 +6,9 @@ var max_hp: float = 20.0
 var energy: float = 100.0
 var max_energy: float = 100.0
 
+var hunger: float = 0.0
+var max_hunger: float = 100.0
+
 ## --- TIME ---
 var weekday: String = "Monday"
 

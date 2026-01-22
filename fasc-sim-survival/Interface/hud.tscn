@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhgbx8ii83l8i"]
+[gd_scene load_steps=12 format=3 uid="uid://bhgbx8ii83l8i"]
 
 [ext_resource type="Script" uid="uid://bkn54eobfiiov" path="res://Interface/hud.gd" id="1_jq685"]
 [ext_resource type="PackedScene" uid="uid://bfofgjiphllqj" path="res://Interface/time_control_ui.tscn" id="2_1uf33"]
+[ext_resource type="Script" uid="uid://docnlypjp8sy1" path="res://Managers/status_manager.gd" id="2_4i735"]
 [ext_resource type="Script" uid="uid://ciaaelgrld3wn" path="res://Interface/test_actions_ui.gd" id="3_28tah"]
 [ext_resource type="Script" uid="uid://dbt5541uxfnie" path="res://Managers/time_manager.gd" id="4_mb2mj"]
 [ext_resource type="Script" uid="uid://2b15yf3g73t5" path="res://Interface/day_transition.gd" id="5_jsbdt"]
@@ -68,6 +69,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jq685")
+
+[node name="StatusManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_4i735")
 
 [node name="TimeControlUI" parent="." instance=ExtResource("2_1uf33")]
 layout_mode = 1
@@ -153,9 +158,18 @@ layout_mode = 2
 [node name="HungerLabel" type="Label" parent="HungerUI/VBoxContainer"]
 layout_mode = 2
 text = "Hunger (semi-hidden stat)"
+horizontal_alignment = 1
 
 [node name="HungerBar" type="ProgressBar" parent="HungerUI/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+
+[node name="HungerValue" type="Label" parent="HungerUI/VBoxContainer/HungerBar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="TestActionsUI" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -206,16 +220,20 @@ mouse_filter = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="DayTransition/NewDayPanel"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="NewDayLabel" type="Label" parent="DayTransition/NewDayPanel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 
 [node name="StartNewDayButton" type="Button" parent="DayTransition/NewDayPanel/VBoxContainer"]
 layout_mode = 2
+text = "Start New Day"
 
 [node name="NewDayFade" type="AnimationPlayer" parent="DayTransition/NewDayPanel"]
 unique_name_in_owner = true
+process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_4i735")
 }
