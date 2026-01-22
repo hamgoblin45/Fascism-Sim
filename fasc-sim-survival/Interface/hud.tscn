@@ -168,12 +168,9 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HungerValue" type="Label" parent="HungerUI/VBoxContainer/HungerBar"]
+[node name="HungerValue" type="Label" parent="HungerUI/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 2
 
 [node name="TestActionsUI" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -182,12 +179,31 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -120.0
+offset_top = -376.0
+offset_right = 120.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("3_28tah")
+
+[node name="TestButtonsContainer" type="VBoxContainer" parent="TestActionsUI"]
+layout_mode = 2
+
+[node name="EatSomething" type="Button" parent="TestActionsUI/TestButtonsContainer"]
+layout_mode = 2
+text = "Eat Something"
+autowrap_mode = 3
+
+[node name="TakeDmg" type="Button" parent="TestActionsUI/TestButtonsContainer"]
+layout_mode = 2
+text = "Take Dmg"
+autowrap_mode = 3
+
+[node name="HoldToWork" type="Button" parent="TestActionsUI/TestButtonsContainer"]
+layout_mode = 2
+text = "HOLD to Work"
+autowrap_mode = 3
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("4_mb2mj")

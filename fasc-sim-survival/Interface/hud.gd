@@ -29,7 +29,7 @@ func _set_hud():
 	
 	# This is only for testing unless we decide to display Hunger to player
 	hunger_bar.value = GameState.hunger
-	hunger_value.text = str(snapped(GameState.hunger, 1))
+	hunger_value.text = "Hunger LVL: %s" % str(GameState.hunger_level)
 
 
 # Should this go in a PlayerManager, stay here, or something else?

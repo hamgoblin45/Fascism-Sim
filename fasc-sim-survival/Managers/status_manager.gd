@@ -39,8 +39,8 @@ func _change_stat(stat: String, value: float):
 			#print("New energy value: %s" % str(GameState.energy))
 		"hunger":
 			GameState.hunger += value
-			if GameState.hunger > GameState.max_hunger:
-				GameState.hunger = GameState.max_hunger
+			if GameState.hunger <= 0:
+				GameState.hunger = 0
 			
 			if GameState.hunger < 25:
 				GameState.hunger_level = 1
@@ -51,8 +51,9 @@ func _change_stat(stat: String, value: float):
 			else:
 				GameState.hunger_level = 4
 			
-			if GameState.hunger >= 100:
-				GameState.hunger = 100
+			if GameState.hunger > GameState.max_hunger:
+				GameState.hunger = GameState.max_hunger
+			
 				print("You are starving to death")
 			#print("New Hunger value: %s, now at Hunger Level %s" % [str(GameState.hunger), str(GameState.hunger_level)])
 		
@@ -61,9 +62,16 @@ func _change_stat(stat: String, value: float):
 
 
 func _on_status_check_timer_timeout() -> void:
-	var total_minutes: float = (GameState.hour * 24) + GameState.minute
+	var total_minutes: float = (GameState.hour * 60) + GameState.minute
 	print("There have been %s minutes in the day so far.
-	Prev hunger check: %s. Prev status check %s" % [str(total_minutes), str(prev_hunger_check), str(prev_status_check)])
+	Prev hunger check: %s ago. Prev status check %s ago" % [str(total_minutes), str(total_minutes - prev_hunger_check), str(total_minutes - prev_status_check)])
+	
+	# Check for times past midnight
+	if prev_status_check - total_minutes > 1000:
+		prev_status_check = 1440 - prev_status_check
+	if prev_hunger_check - total_minutes > 1000:
+		prev_hunger_check = 1440 - prev_hunger_check
+		
 	# Change hunger every 60 min
 	if total_minutes - prev_hunger_check >= 60:
 		print("It's been an hour since last hunger check!")

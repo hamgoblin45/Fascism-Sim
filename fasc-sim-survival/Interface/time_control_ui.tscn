@@ -69,8 +69,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = -10.0
-max_value = 10.0
-value = 1.0
+max_value = 45.0
+value = 12.0
 
 [node name="PauseButton" type="Button" parent="MarginContainer/MainVBox"]
 unique_name_in_owner = true

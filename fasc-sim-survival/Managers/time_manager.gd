@@ -27,9 +27,9 @@ func handle_time():
 	#print("It is %s minute" % minute_fraction)
 	
 	# Only works for AM end times
-	if GameState.time >= GameState.day_end and GameState.time < GameState.day_start:
-		EventBus.end_day.emit()
-		_handle_pause(true)
+	#if GameState.time >= GameState.day_end and GameState.time < GameState.day_start:
+		#EventBus.end_day.emit()
+		#_handle_pause(true)
 		
 		
 		
