@@ -18,5 +18,6 @@ func _receive_output(text: String):
 
 func _check_for_overflow():
 	var outputs = output_container.get_children()
-	if outputs.size() > 10:
-		outputs.erase(outputs[0])
+	if outputs.size() > 12:
+		print("Removing oldest output")
+		outputs[0].queue_free()

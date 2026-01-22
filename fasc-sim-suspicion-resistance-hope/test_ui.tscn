@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ohh3opd0e28n"]
+[gd_scene load_steps=6 format=3 uid="uid://ohh3opd0e28n"]
 
 [ext_resource type="Script" uid="uid://jd3caem6lo40" path="res://test_ui.gd" id="1_w4nob"]
 [ext_resource type="Script" uid="uid://bke2sgaucjmf3" path="res://Managers/suspicion_resist_hope_manager.gd" id="2_3tn64"]
-[ext_resource type="PackedScene" uid="uid://d4f7fxy2s7ntw" path="res://output_label.tscn" id="3_3tn64"]
 [ext_resource type="Script" uid="uid://ckrramv5pdu6x" path="res://output_ui.gd" id="3_w3nqu"]
-[ext_resource type="Script" uid="uid://cgsny8r5kftqu" path="res://output_label.gd" id="4_clead"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4nob"]
 
@@ -23,23 +21,17 @@ script = ExtResource("1_w4nob")
 script = ExtResource("2_3tn64")
 
 [node name="OutputUI" type="PanelContainer" parent="."]
+clip_contents = true
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 15.0
-offset_right = 307.0
-offset_bottom = -15.0
-grow_vertical = 2
+offset_right = 299.0
+offset_bottom = 585.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_w4nob")
 script = ExtResource("3_w3nqu")
 
 [node name="OutputContainer" type="VBoxContainer" parent="OutputUI"]
+clip_contents = true
+custom_minimum_size = Vector2(300, 585)
 layout_mode = 2
-
-[node name="OutputLabel" parent="OutputUI/OutputContainer" instance=ExtResource("3_3tn64")]
-layout_mode = 2
-script = ExtResource("4_clead")
 
 [node name="StateUI" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -75,9 +67,11 @@ autowrap_mode = 2
 horizontal_alignment = 1
 
 [node name="SuspicionProgressBar" type="ProgressBar" parent="StateUI/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="SuspicionValue" type="Label" parent="StateUI/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ResistLabel" type="Label" parent="StateUI/VBoxContainer"]
@@ -96,9 +90,11 @@ autowrap_mode = 2
 horizontal_alignment = 1
 
 [node name="ResistProgressBar" type="ProgressBar" parent="StateUI/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ResistValue" type="Label" parent="StateUI/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="HopeLabel" type="Label" parent="StateUI/VBoxContainer"]
@@ -107,6 +103,7 @@ text = "INDIVIDUAL NEIGHBOR HOPE"
 horizontal_alignment = 1
 
 [node name="HopeValue" type="Label" parent="StateUI/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "0.0"
 horizontal_alignment = 1
@@ -145,27 +142,27 @@ text = "Interrogation Responses"
 layout_mode = 2
 columns = 4
 
-[node name="Button" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+[node name="InterrogateNeutral" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
 layout_mode = 2
 text = "Neutral Response"
 
-[node name="Button2" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+[node name="InterrogateSnarky" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
 layout_mode = 2
 text = "Snarky"
 
-[node name="Button3" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+[node name="InterrogateHostile" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
 layout_mode = 2
 text = "Hostile"
 
-[node name="Button4" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+[node name="ProvideRealIntel" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
 layout_mode = 2
 text = "Provide Intel (real)"
 
-[node name="Button5" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+[node name="ProvideFakeIntel" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
 layout_mode = 2
 text = "Provide Intel (lie)"
 
-[node name="Button6" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
+[node name="GiveEvidence" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
 layout_mode = 2
 text = "Give Evidence"
 
@@ -173,38 +170,73 @@ text = "Give Evidence"
 layout_mode = 2
 text = "Talking to Neighbor"
 
-[node name="NeighborButtonsContainer2" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
+[node name="NeighborButtonsContainer" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
 layout_mode = 2
 columns = 4
 
-[node name="Button" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+[node name="Inspire" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer"]
 layout_mode = 2
 text = "Inspire"
 
-[node name="Button2" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+[node name="Doom" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer"]
 layout_mode = 2
 text = "Doom & Gloom"
 
-[node name="Button3" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+[node name="Threaten" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer"]
 layout_mode = 2
 text = "Threaten"
 
-[node name="Button4" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+[node name="Denial" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer"]
 layout_mode = 2
 text = "Everything is Fine"
 
-[node name="Button5" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+[node name="Comfort" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer"]
 layout_mode = 2
 text = "Comfort"
 
-[node name="Button6" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer2"]
+[node name="Demean" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer"]
 layout_mode = 2
 text = "Demean"
 
-[node name="NeighborLabel2" type="Label" parent="ButtonsUI/CategoryContainer"]
+[node name="RebelLabel" type="Label" parent="ButtonsUI/CategoryContainer"]
 layout_mode = 2
 text = "Talking to Rebel"
 
-[node name="NeighborLabel3" type="Label" parent="ButtonsUI/CategoryContainer"]
+[node name="RebelButtonsContainer" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="Inspire" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+layout_mode = 2
+text = "Inspire"
+
+[node name="Doom" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+layout_mode = 2
+text = "Doom & Gloom"
+
+[node name="Threaten" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+layout_mode = 2
+text = "Threaten"
+
+[node name="Denial" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+layout_mode = 2
+text = "Everything is Fine"
+
+[node name="Comfort" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+layout_mode = 2
+text = "Comfort"
+
+[node name="Demean" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+layout_mode = 2
+text = "Demean"
+
+[node name="TasksLabel" type="Label" parent="ButtonsUI/CategoryContainer"]
 layout_mode = 2
 text = "Tasks"
+
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/InterrogateNeutral" to="." method="_on_interrogate_neutral_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/InterrogateSnarky" to="." method="_on_interrogate_snarky_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/InterrogateHostile" to="." method="_on_interrogate_hostile_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/ProvideRealIntel" to="." method="_on_provide_real_intel_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/ProvideFakeIntel" to="." method="_on_provide_fake_intel_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/GiveEvidence" to="." method="_on_give_evidence_pressed"]

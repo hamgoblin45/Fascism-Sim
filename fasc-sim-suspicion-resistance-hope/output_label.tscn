@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://d4f7fxy2s7ntw"]
+[gd_scene load_steps=2 format=3 uid="uid://d4f7fxy2s7ntw"]
+
+[ext_resource type="Script" uid="uid://cgsny8r5kftqu" path="res://output_label.gd" id="1_4ibyc"]
 
 [node name="OutputLabel" type="RichTextLabel"]
 bbcode_enabled = true
 text = "Output text goes here. [color=red]Lorem ipsum motherfucker"
 fit_content = true
+script = ExtResource("1_4ibyc")
