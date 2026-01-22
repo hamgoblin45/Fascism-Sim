@@ -1,5 +1,12 @@
 extends Node
 
+var hp: float = 10.0
+var max_hp: float = 20.0
+
+var energy: float = 100.0
+var max_energy: float = 100.0
+
+## --- TIME ---
 var weekday: String = "Monday"
 
 var day: int = 1

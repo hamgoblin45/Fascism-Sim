@@ -2,6 +2,9 @@ extends Node
 
 signal main_scene_loaded
 
+signal stat_changed(stat: String, change_value: float)
+
+## -- TIME
 signal end_day # To initiate day transition
 signal change_day() # to initiate the change
 signal day_changed() # to acknowledge the change and initiate follow-up logic

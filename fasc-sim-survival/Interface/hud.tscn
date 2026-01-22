@@ -93,12 +93,14 @@ text = "HP"
 horizontal_alignment = 1
 
 [node name="HPBar" type="ProgressBar" parent="StatusUI/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 show_percentage = false
 
 [node name="HPValue" type="Label" parent="StatusUI/VBoxContainer/HPBar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,12 +118,14 @@ text = "ENERGY"
 horizontal_alignment = 1
 
 [node name="EnergyBar" type="ProgressBar" parent="StatusUI/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 24)
 layout_mode = 2
 size_flags_horizontal = 4
 show_percentage = false
 
 [node name="EnergyValue" type="Label" parent="StatusUI/VBoxContainer/EnergyBar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
