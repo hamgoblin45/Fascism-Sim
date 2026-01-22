@@ -6,8 +6,9 @@ extends Control
 @onready var suspicion_progress_bar: ProgressBar = %SuspicionProgressBar
 @onready var suspicion_state: RichTextLabel = %SuspicionState
 @onready var resist_progress_bar: ProgressBar = %ResistProgressBar
-@onready var resist_value: Label = %ResistValue
+@onready var resist_state: Label = %ResistState
 @onready var hope_value: Label = %HopeValue
+@onready var hope_result: Label = %HopeResult
 
 
 
@@ -15,15 +16,17 @@ func _ready() -> void:
 	EventBus.suspicion_changed.connect(_on_suspicion_changed)
 	EventBus.resistance_changed.connect(_on_resist_changed)
 	EventBus.npc_hope_changed.connect(_on_hope_changed)
-	_set_regime_response()
+	_set_regime_state()
+	_set_resist_state()
+	_set_hope_state()
 
 
 func _on_suspicion_changed(new_value: float):
 	suspicion_progress_bar.value = new_value
-	_set_regime_response()
+	_set_regime_state()
 	#suspicion_value.text = str(new_value)
 
-func _set_regime_response():
+func _set_regime_state():
 	if GameState.suspicion < 10:
 		suspicion_state.text = "[center][color=green]Privileges Granted"
 	elif GameState.suspicion >= 10 and GameState.suspicion < 20:
@@ -47,11 +50,50 @@ func _set_regime_response():
 
 func _on_resist_changed(new_value: float):
 	resist_progress_bar.value = new_value
-	resist_value.text = str(new_value)
+	#resist_value.text = str(new_value)
+	_set_resist_state()
+
+func _set_resist_state():
+	var r = GameState.resistance
+	if r < 10:
+		resist_state.text = "[center][color=white]There is no Resistance"
+	elif r >= 10 and r < 20:
+		resist_state.text = "[center][color=lightblue]Protests"
+	elif r >= 20 and r < 30:
+		resist_state.text = "[center][color=navyblue]Organized dissent"
+	elif r >= 30 and r < 40:
+		resist_state.text = "[center][color=purple]Riots and Occupation"
+	elif r >= 40 and r < 50:
+		resist_state.text = "[center][color=pink]Rebel militias forming"
+	elif r >= 50 and r < 60:
+		resist_state.text = "[center][color=orange]Rebel networks established"
+	elif r >= 60 and r < 70:
+		resist_state.text = "[center][color=orangered]Active sabotage"
+	elif r >= 70 and r < 80:
+		resist_state.text = "[center][color=red]Skirmishes and Assassinations"
+	elif r >= 80 and r < 90:
+		resist_state.text = "[center][color=darkred]War-like battles"
+	elif r >= 90:
+		resist_state.text = "[center][color=black]The Regime is collapsing"
 
 func _on_hope_changed(_npc_id: String, new_value: float):
 	hope_value.text = str(new_value)
+	_set_hope_state()
 
+func _set_hope_state():
+	var h = GameState.npcs[0].get("hope")
+	if h < -10:
+		hope_result.text = "[center][color=black]Hopeless"
+	elif h >= -10 and h < -5:
+		hope_result.text = "[center][color=blue]Depressed"
+	elif h >= -5 and h < -1:
+		hope_result.text = "[center][color=orange]On Edge"
+	elif h >= -1 and h < 1:
+		hope_result.text = "[center][color=white]Unbothered"
+	elif h >= 1 and h < 5:
+		hope_result.text = "[center][color=pink]Inspired"
+	elif h >= 5 and h < 10:
+		hope_result.text = "[center][color=gold]Resisting"
 
 func _on_interrogate_neutral_pressed() -> void:
 	EventBus.output.emit("You gave the Regime a neutral response")
