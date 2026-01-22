@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj1cyf80hrqb4"]
+
+[ext_resource type="Script" uid="uid://bof061njs5h01" path="res://Interface/shop_slot_ui.gd" id="1_3au0k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ik1e"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ShopSlotUI" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1e")
+script = ExtResource("1_3au0k")
+
+[node name="ItemUI" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="ItemTexture" type="TextureRect" parent="ItemUI"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Quantity" type="Label" parent="ItemUI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "10"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_kgtr7")
-name = "Carrot"
-id = "carrot"
+name = "Drumstick"
+id = "drumstick"
 texture = ExtResource("2_75sg4")
 description = "Tis but a carrot."
 stackable = true

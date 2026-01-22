@@ -34,6 +34,8 @@ func _ready() -> void:
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
 	EventBus.adding_item_to_inventory.connect(_add_item_to_inventory)
 	EventBus.removing_item_from_inventory.connect(_remove_item_from_inventory)
+	
+	EventBus.shopping.connect(_handle_shop_ui)
 	_set_player_inventory()
 
 
@@ -44,6 +46,7 @@ func _set_player_inventory():
 		var slot_ui = INVENTORY_SLOT.instantiate()
 		pocket_slot_container.add_child(slot_ui)
 		slot_ui.set_slot_data(slot)
+		slot_ui.parent_inventory = inventory_data
 
 func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, type: String):
 	match type:
@@ -61,11 +64,7 @@ func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, 
 					pending_grab_slot_data = slot_data
 					pending_grab_slot_ui = slot
 					grab_timer.start()
-				
-				
-				
-			
-				
+
 		"r_click":
 			print("Right Click from %s received by inventoryUI" % slot)
 			if grabbed_slot_data:
@@ -296,3 +295,6 @@ func _on_give_item_slot_gui_input(event: InputEvent) -> void:
 				if grabbed_slot_data.quantity <= 0:
 					_clear_grabbed_slot()
 			_set_grabbed_slot()
+
+func _handle_shop_ui():
+	print("Player is shopping as detected by InventoryUI: %s" % GameState.shopping)

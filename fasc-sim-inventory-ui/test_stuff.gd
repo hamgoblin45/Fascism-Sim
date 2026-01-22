@@ -53,3 +53,8 @@ func _on_remove_item_stackable_pressed() -> void:
 	var test_slot = InventorySlotData.new()
 	test_slot.item_data = preload("uid://bu7k1xa16ud57")
 	EventBus.removing_item_from_inventory.emit(test_slot)
+
+
+func _on_open_shop_ui_pressed() -> void:
+# For Legal shopping
+		EventBus.shopping.emit(true)

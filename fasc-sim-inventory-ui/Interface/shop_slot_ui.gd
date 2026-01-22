@@ -1,6 +1,7 @@
 extends PanelContainer
 
 var parent_inventory: InventoryData
+
 @export var slot_data: InventorySlotData
 
 @onready var item_texture: TextureRect = %ItemTexture

@@ -8,6 +8,7 @@ signal removing_item_from_inventory(_clear_slot_data: InventorySlotData)
 signal adding_item_to_inventory(item_data: InventorySlotData, qty: int)
 
 signal setting_external_inventory(inv_data: InventoryData)
+signal shopping(legal: bool)
 
 signal open_item_context_menu(slot_data: InventorySlotData)
 signal open_split_stack_ui(slot_data: InventorySlotData)
