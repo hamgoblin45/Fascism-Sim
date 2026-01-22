@@ -6,9 +6,10 @@ extends Control
 @onready var suspicion_progress_bar: ProgressBar = %SuspicionProgressBar
 @onready var suspicion_state: RichTextLabel = %SuspicionState
 @onready var resist_progress_bar: ProgressBar = %ResistProgressBar
-@onready var resist_state: Label = %ResistState
-@onready var hope_value: Label = %HopeValue
-@onready var hope_result: Label = %HopeResult
+@onready var resist_state: RichTextLabel = %ResistState
+@onready var hope_value: RichTextLabel = %HopeValue
+@onready var hope_result: RichTextLabel = %HopeResult
+
 
 
 
@@ -154,3 +155,57 @@ func _on_comfort_pressed() -> void:
 func _on_demean_pressed() -> void:
 	EventBus.output.emit("You demeaned a neighbor")
 	EventBus.change_npc_hope.emit("test_npc", -1.5)
+
+
+func _on_dismiss_rebel_pressed() -> void:
+	EventBus.output.emit("You dismissed the Rebel")
+	EventBus.change_resistance.emit(-0.75)
+	EventBus.change_suspicion.emit(-0.75)
+
+
+func _on_sympathize_rebel_pressed() -> void:
+	EventBus.output.emit("You sympathized with the Rebel's cause")
+	EventBus.change_resistance.emit(1.25)
+	EventBus.change_suspicion.emit(0.75)
+
+
+func _on_condemn_rebel_pressed() -> void:
+	EventBus.output.emit("You condemned the Rebel")
+	EventBus.change_resistance.emit(-1.5)
+	EventBus.change_suspicion.emit(1.5)
+
+
+func _on_agree_to_help_rebel_pressed() -> void:
+	EventBus.output.emit("You agreed to help the Rebel")
+	EventBus.change_resistance.emit(3.5)
+	EventBus.change_suspicion.emit(4.0)
+
+
+func _on_give_intel_rebel_pressed() -> void:
+	EventBus.output.emit("You gave the Rebel intel against the Regime")
+	EventBus.change_resistance.emit(6.5)
+	EventBus.change_suspicion.emit(5.0)
+
+
+func _on_turn_in_neighbor_pressed() -> void:
+	EventBus.output.emit("You turned in a neighbor")
+	EventBus.change_resistance.emit(-15.0)
+	EventBus.change_suspicion.emit(-35.0)
+
+
+func _on_work_on_checkpoint_pressed() -> void:
+	EventBus.output.emit("You helped build the checkpoint as ordered by the Regime")
+	EventBus.change_resistance.emit(-1.0)
+	EventBus.change_suspicion.emit(-10.0)
+
+
+func _on_sabotage_discrete_pressed() -> void:
+	EventBus.output.emit("You sabotaged the Regime and got away with it")
+	EventBus.change_resistance.emit(15.0)
+	EventBus.change_suspicion.emit(5.0)
+
+
+func _on_sabotage_caught_pressed() -> void:
+	EventBus.output.emit("You sabotaged the Regime and got caught")
+	EventBus.change_resistance.emit(-5.0)
+	EventBus.change_suspicion.emit(55.0)

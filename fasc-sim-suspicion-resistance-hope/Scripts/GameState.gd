@@ -1,8 +1,8 @@
 extends Node
 
 
-var suspicion: float
-var resistance: float
+var suspicion: float = 20.0
+var resistance: float = 10.0
 
 
 var npcs: Array[Dictionary] = [{
