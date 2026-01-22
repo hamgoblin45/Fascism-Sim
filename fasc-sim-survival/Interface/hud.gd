@@ -33,5 +33,5 @@ func _set_hud():
 
 
 # Should this go in a PlayerManager, stay here, or something else?
-func _change_stat(_stat: String, _value: float):
+func _change_stat(_stat: String):
 	_set_hud()

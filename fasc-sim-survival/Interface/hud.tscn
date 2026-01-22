@@ -74,6 +74,10 @@ script = ExtResource("1_jq685")
 unique_name_in_owner = true
 script = ExtResource("2_4i735")
 
+[node name="StatusCheckTimer" type="Timer" parent="StatusManager"]
+unique_name_in_owner = true
+autostart = true
+
 [node name="TimeControlUI" parent="." instance=ExtResource("2_1uf33")]
 layout_mode = 1
 offset_bottom = 218.0
@@ -238,6 +242,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_4i735")
 }
 
+[connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
 [connection signal="pressed" from="DayTransition/NewDayPanel/VBoxContainer/StartNewDayButton" to="DayTransition" method="_on_start_new_day_button_pressed"]
 [connection signal="animation_finished" from="DayTransition/NewDayPanel/NewDayFade" to="DayTransition" method="_on_new_day_fade_animation_finished"]
