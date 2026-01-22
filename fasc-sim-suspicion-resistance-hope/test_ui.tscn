@@ -60,7 +60,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Openly resisting the regime will increase [color=orange]Suspicion[/color]. Assiting the Regime will decrease it.
+text = "Openly resisting the regime will increase [color=orange]Suspicion[/color]. Assisting the Regime will decrease it.
 Increased [color=orange]Suspicion[/color] will result in more [color=red]Searches[/color] and fewer privileges"
 fit_content = true
 autowrap_mode = 2
@@ -70,20 +70,26 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="SuspicionValue" type="Label" parent="StateUI/VBoxContainer"]
+[node name="SuspicionState" type="RichTextLabel" parent="StateUI/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+bbcode_enabled = true
+text = "[center][color=gold]Standard Routine"
+fit_content = true
+horizontal_alignment = 1
 
 [node name="ResistLabel" type="Label" parent="StateUI/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5058824)
 text = "RESISTANCE"
 horizontal_alignment = 1
 
 [node name="ResistDescript" type="RichTextLabel" parent="StateUI/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49019608)
 theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
-text = "Assiting the Rebels will increase [color=green]Resistance[/color]. Assiting the Regime will decrease it.
+text = "Assisting the Rebels will increase [color=green]Resistance[/color]. Assisting the Regime will decrease it.
 Once [color=green]Resistance[/color] reaches 100%, the Regime will be overthrown."
 fit_content = true
 autowrap_mode = 2
@@ -125,7 +131,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -258.0
-offset_top = -208.0
+offset_top = -287.0
 offset_right = 258.0
 offset_bottom = 285.0
 grow_horizontal = 2
@@ -140,6 +146,7 @@ text = "Interrogation Responses"
 
 [node name="InterrogationButtonsContainer" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 columns = 4
 
 [node name="InterrogateNeutral" type="Button" parent="ButtonsUI/CategoryContainer/InterrogationButtonsContainer"]
@@ -172,6 +179,7 @@ text = "Talking to Neighbor"
 
 [node name="NeighborButtonsContainer" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 columns = 4
 
 [node name="Inspire" type="Button" parent="ButtonsUI/CategoryContainer/NeighborButtonsContainer"]
@@ -204,35 +212,59 @@ text = "Talking to Rebel"
 
 [node name="RebelButtonsContainer" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 columns = 4
 
-[node name="Inspire" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+[node name="DismissRebel" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
 layout_mode = 2
-text = "Inspire"
+text = "Dismiss"
 
-[node name="Doom" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+[node name="SympathizeRebel" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
 layout_mode = 2
-text = "Doom & Gloom"
+text = "Sympathize"
 
-[node name="Threaten" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+[node name="CondemnRebel" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
 layout_mode = 2
-text = "Threaten"
+text = "Condemn"
 
-[node name="Denial" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+[node name="AgreeToHelpRebel" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
 layout_mode = 2
-text = "Everything is Fine"
+text = "Agree to Help"
 
-[node name="Comfort" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
+[node name="GiveIntelRebel" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
 layout_mode = 2
-text = "Comfort"
-
-[node name="Demean" type="Button" parent="ButtonsUI/CategoryContainer/RebelButtonsContainer"]
-layout_mode = 2
-text = "Demean"
+text = "Give Regime Intel"
 
 [node name="TasksLabel" type="Label" parent="ButtonsUI/CategoryContainer"]
 layout_mode = 2
 text = "Tasks"
+
+[node name="TaskButtonContainer" type="GridContainer" parent="ButtonsUI/CategoryContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="TurnInNeighbor" type="Button" parent="ButtonsUI/CategoryContainer/TaskButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Turn in Neighbor"
+autowrap_mode = 2
+
+[node name="WorkOnCheckpoint" type="Button" parent="ButtonsUI/CategoryContainer/TaskButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Work on Checkpoint"
+autowrap_mode = 2
+
+[node name="SabotageDiscrete" type="Button" parent="ButtonsUI/CategoryContainer/TaskButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sabotage Checkpoint (discrete)"
+autowrap_mode = 2
+
+[node name="SabotageCaught" type="Button" parent="ButtonsUI/CategoryContainer/TaskButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sabotage Checkpoint (caught)"
 
 [connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/InterrogateNeutral" to="." method="_on_interrogate_neutral_pressed"]
 [connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/InterrogateSnarky" to="." method="_on_interrogate_snarky_pressed"]
@@ -240,3 +272,9 @@ text = "Tasks"
 [connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/ProvideRealIntel" to="." method="_on_provide_real_intel_pressed"]
 [connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/ProvideFakeIntel" to="." method="_on_provide_fake_intel_pressed"]
 [connection signal="pressed" from="ButtonsUI/CategoryContainer/InterrogationButtonsContainer/GiveEvidence" to="." method="_on_give_evidence_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/NeighborButtonsContainer/Inspire" to="." method="_on_inspire_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/NeighborButtonsContainer/Doom" to="." method="_on_doom_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/NeighborButtonsContainer/Threaten" to="." method="_on_threaten_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/NeighborButtonsContainer/Denial" to="." method="_on_denial_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/NeighborButtonsContainer/Comfort" to="." method="_on_comfort_pressed"]
+[connection signal="pressed" from="ButtonsUI/CategoryContainer/NeighborButtonsContainer/Demean" to="." method="_on_demean_pressed"]
