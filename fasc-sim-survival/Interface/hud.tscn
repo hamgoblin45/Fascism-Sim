@@ -191,16 +191,19 @@ script = ExtResource("3_28tah")
 layout_mode = 2
 
 [node name="EatSomething" type="Button" parent="TestActionsUI/TestButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Eat Something"
 autowrap_mode = 3
 
 [node name="TakeDmg" type="Button" parent="TestActionsUI/TestButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Take Dmg"
 autowrap_mode = 3
 
 [node name="HoldToWork" type="Button" parent="TestActionsUI/TestButtonsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "HOLD to Work"
 autowrap_mode = 3
@@ -259,6 +262,10 @@ libraries = {
 }
 
 [connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]
+[connection signal="pressed" from="TestActionsUI/TestButtonsContainer/EatSomething" to="TestActionsUI" method="_on_eat_something_pressed"]
+[connection signal="pressed" from="TestActionsUI/TestButtonsContainer/TakeDmg" to="TestActionsUI" method="_on_take_dmg_pressed"]
+[connection signal="button_down" from="TestActionsUI/TestButtonsContainer/HoldToWork" to="TestActionsUI" method="_on_hold_to_work_button_down"]
+[connection signal="button_up" from="TestActionsUI/TestButtonsContainer/HoldToWork" to="TestActionsUI" method="_on_hold_to_work_button_up"]
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
 [connection signal="pressed" from="DayTransition/NewDayPanel/VBoxContainer/StartNewDayButton" to="DayTransition" method="_on_start_new_day_button_pressed"]
 [connection signal="animation_finished" from="DayTransition/NewDayPanel/NewDayFade" to="DayTransition" method="_on_new_day_fade_animation_finished"]

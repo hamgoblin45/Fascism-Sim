@@ -1,5 +1,6 @@
 extends Node
 
+## -- STATS
 var hp: float = 10.0
 var max_hp: float = 20.0
 var hp_starve_drain_rate: float = 0.025 # how much HP you lose per minute when starving
@@ -12,6 +13,8 @@ var hunger: float = 0.0
 var max_hunger: float = 100.0
 var hunger_drain_rate: float = 4.5 # % of hunger lost per hour
 var hunger_level: int = 1 # Higher levels = faster energy drain
+
+var working: bool = false
 
 ## --- TIME ---
 var weekday: String = "Monday"

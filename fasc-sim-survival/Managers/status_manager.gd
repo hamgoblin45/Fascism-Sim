@@ -84,7 +84,11 @@ func _on_status_check_timer_timeout() -> void:
 	
 	prev_status_check = total_minutes
 	
-	_change_stat("energy", -GameState.energy_drain_rate * GameState.hunger_level)
+	var energy_change = -GameState.energy_drain_rate * GameState.hunger_level
+	if GameState.working:
+		energy_change *= 3
+	
+	_change_stat("energy", energy_change)
 	
 	if GameState.hunger >= 100:
 		_change_stat("hp", -GameState.hp_starve_drain_rate)
