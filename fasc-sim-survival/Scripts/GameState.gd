@@ -12,5 +12,5 @@ var day_end: float = 2.0 # Measured in hours, above 24 is in the AM
 var time: float = 8.0 # in hours
 var cycle_time: float = 0.33 # between 0.0 and 1.0
 
-var time_speed: float = 1.0
+var time_speed: float = 30.0
 var paused: bool = false
