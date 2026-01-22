@@ -15,7 +15,10 @@ func _ready():
 	prev_hunger_check = total_minutes
 
 	EventBus.change_stat.connect(_change_stat)
-	
+	EventBus.start_day.connect(_on_new_day_start)
+
+func _on_new_day_start():
+	pass
 
 func _change_stat(stat: String, value: float):
 	#print("Changing %s by %s" % [stat, value])
@@ -27,6 +30,7 @@ func _change_stat(stat: String, value: float):
 			if GameState.hp <= 0:
 				GameState.hp = 0
 				print("You are fucking dead")
+				# EventBus.player_died.emit()
 			#print("New HP value: %s" % str(GameState.hp))
 		"energy":
 			

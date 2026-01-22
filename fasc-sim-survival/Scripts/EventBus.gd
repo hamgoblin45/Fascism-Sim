@@ -4,6 +4,7 @@ signal main_scene_loaded
 
 signal change_stat(stat: String, change_value: float)
 signal stat_changed(stat: String)
+signal player_died
 
 ## -- TIME
 signal end_day # To initiate day transition
