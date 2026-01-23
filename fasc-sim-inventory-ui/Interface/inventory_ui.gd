@@ -21,7 +21,8 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 var pending_grab_slot_ui: PanelContainer = null
 var pending_grab_slot_data: InventorySlotData = null
 
-@onready var item_context_ui: PanelContainer = %ItemContextUI
+@onready var pocket_item_context_ui: PanelContainer = %PocketItemContextUI
+@onready var external_item_context_ui: PanelContainer = %ExternalItemContextUI
 
 @onready var external_inventory: PanelContainer = %ExternalInventory
 @onready var external_slot_container: GridContainer = %ExternalSlotContainer
@@ -50,7 +51,11 @@ func _set_player_inventory():
 		pocket_slot_container.add_child(slot_ui)
 		slot_ui.set_slot_data(slot)
 		slot_ui.parent_inventory = pockets_inventory_data
+	
 	money_value.text = str(snapped(GameState.money, 0.1))
+	pocket_item_context_ui.inventory_data = pockets_inventory_data
+	
+
 
 func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String):
 	#match inv:
@@ -66,6 +71,7 @@ func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data:
 								EventBus.open_split_stack_ui.emit(slot_data)
 								return
 							
+							EventBus.open_item_context_menu.emit(inv, slot_data)
 							# START GRAB PROCESS
 							_start_grabbing_slot(inv, slot, slot_data)
 

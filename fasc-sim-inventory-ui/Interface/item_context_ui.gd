@@ -37,11 +37,11 @@ func _set_context_menu(inv: InventoryData, slot: InventorySlotData):
 		else:
 			_set_button_to_use()
 
-func _physics_process(_delta: float) -> void:
-	if !visible: return
-	if Input.is_action_just_pressed("click") and not mouse_on_ui \
-	or Input.is_action_just_pressed("back"):
-		hide()
+#func _physics_process(_delta: float) -> void:
+	#if !visible: return
+	#if Input.is_action_just_pressed("click") and not mouse_on_ui \
+	#or Input.is_action_just_pressed("back"):
+		#hide()
 
 func _clear_out_context_ui():
 	slot_data = null
