@@ -48,7 +48,7 @@ func _set_player_inventory():
 		slot_ui.set_slot_data(slot)
 		slot_ui.parent_inventory = inventory_data
 
-func _on_inventory_interact(slot: PanelContainer, slot_data: InventorySlotData, type: String):
+func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String):
 	match type:
 		"click":
 			print("Click from %s received by inventoryUI" % slot)

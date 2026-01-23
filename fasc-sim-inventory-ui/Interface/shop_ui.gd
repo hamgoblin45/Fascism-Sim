@@ -1,6 +1,6 @@
 extends PanelContainer
 
-
+const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 
 #Create a "Pool" of loot for the inventory to pull from
 @export var legal_inventory_pool: InventoryData
@@ -10,11 +10,12 @@ extends PanelContainer
 
 @onready var slot_container: GridContainer = %BuySlotContainer
 
-
+var legal: bool = true
 
 
 func _ready():
 	EventBus.shopping.connect(_handle_shop_ui)
+	EventBus.inventory_interacted.connect(_on_inventory_interact)
 
 func _handle_shop_ui(legal: bool):
 	GameState.shopping = not GameState.shopping
@@ -26,7 +27,6 @@ func _handle_shop_ui(legal: bool):
 	else:
 		_set_illegal_inventory()
 		print("Starting a trade at the Black Market")
-
 
 func _set_legal_inventory():
 	# Checks how much room in the shop inventory isn't already taken by persistant stock
@@ -47,4 +47,19 @@ func _set_illegal_inventory():
 	_populate_shop(illegal_shop_inventory)
 
 func _populate_shop(inv: InventoryData):
-	pass
+	for slot_data in inv.slot_datas:
+		var new_slot_ui = SHOP_SLOT_UI.instantiate()
+		var new_slot_data = InventorySlotData.new()
+		new_slot_data.item_data = slot_data.item_data
+		new_slot_data.quantity = slot_data.quantity
+		new_slot_ui.parent_inventory = inv
+		new_slot_ui.set_slot_data(new_slot_data)
+		slot_container.add_child(new_slot_ui)
+
+func _on_inventory_interact(inv: InventoryData, panel: PanelContainer, slot_data: InventorySlotData, interact_type: String):
+	if legal and inv != legal_shop_inventory:
+		return
+	elif not legal and inv != illegal_shop_inventory:
+		return
+	
+	

@@ -74,6 +74,6 @@ func _stack_split(_result_slot: InventorySlotData, _orig_slot: InventorySlotData
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			EventBus.inventory_interacted.emit(self, slot_data, "click")
+			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "click")
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			EventBus.inventory_interacted.emit(self, slot_data, "r_click")
+			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "r_click")

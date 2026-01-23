@@ -57,4 +57,4 @@ func _on_remove_item_stackable_pressed() -> void:
 
 func _on_open_shop_ui_pressed() -> void:
 # For Legal shopping
-		EventBus.shopping.emit(true)
+	EventBus.shopping.emit(true)

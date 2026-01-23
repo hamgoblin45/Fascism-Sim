@@ -2,7 +2,7 @@ extends Node
 
 
 
-signal inventory_interacted(slot: PanelContainer, slot_data: InventorySlotData, type: String)
+signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String)
 signal inventory_item_updated(slot_data: InventorySlotData)
 signal removing_item_from_inventory(_clear_slot_data: InventorySlotData)
 signal adding_item_to_inventory(item_data: InventorySlotData, qty: int)
