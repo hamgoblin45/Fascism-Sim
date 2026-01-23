@@ -1,9 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=37 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://df76rpwwphwk2" path="res://Interface/inventory_ui.gd" id="1_5h8ar"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/inventory_slot_ui.tscn" id="2_spoia"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
+[ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/test_item_1.tres" id="4_cx7ba"]
+[ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/test_item_2.tres" id="5_m26qo"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="6_3y5k6"]
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
@@ -11,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/shop_ui.gd" id="8_xywkj"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/give_item_ui.gd" id="11_c0f0r"]
+[ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/test_item_3.tres" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
 
 [sub_resource type="Resource" id="Resource_c0f0r"]
@@ -99,6 +102,32 @@ expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvb16"]
+
+[sub_resource type="Resource" id="Resource_sxlab"]
+script = ExtResource("3_cx7ba")
+item_data = ExtResource("5_m26qo")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
+[sub_resource type="Resource" id="Resource_u6hsv"]
+script = ExtResource("3_cx7ba")
+item_data = ExtResource("11_hvb16")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
+[sub_resource type="Resource" id="Resource_ofwss"]
+script = ExtResource("2_0gv4u")
+slot_datas = Array[ExtResource("3_cx7ba")]([SubResource("Resource_sxlab"), SubResource("Resource_u6hsv")])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+
+[sub_resource type="Resource" id="Resource_xywkj"]
+script = ExtResource("3_cx7ba")
+item_data = ExtResource("4_cx7ba")
+quantity = 99
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
+[sub_resource type="Resource" id="Resource_pjc3g"]
+script = ExtResource("2_0gv4u")
+slot_datas = Array[ExtResource("3_cx7ba")]([SubResource("Resource_xywkj"), null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gur8t"]
 
@@ -531,6 +560,8 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hvb16")
 script = ExtResource("8_xywkj")
+legal_inventory_pool = SubResource("Resource_ofwss")
+legal_shop_inventory = SubResource("Resource_pjc3g")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ShopUI"]
 layout_mode = 2
@@ -610,7 +641,6 @@ layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("6_3y5k6")
-script = ExtResource("8_3xrn1")
 
 [node name="MarginContainer" type="MarginContainer" parent="ShopUI/HBoxContainer/ShopItemContextUI"]
 layout_mode = 2
@@ -684,6 +714,7 @@ mouse_filter = 1
 
 [node name="BuyQty" type="Label" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "X/XX"
@@ -906,6 +937,8 @@ horizontal_alignment = 1
 [connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI" method="_on_split_button_pressed"]
 [connection signal="mouse_entered" from="ShopUI/HBoxContainer/ShopItemContextUI" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ShopUI/HBoxContainer/ShopItemContextUI" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_mouse_exited"]
+[connection signal="pressed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyButton" to="ShopUI" method="_on_buy_button_pressed"]
+[connection signal="value_changed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer/BuyQtySlider" to="ShopUI" method="_on_buy_qty_slider_value_changed"]
 [connection signal="pressed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/HideDetailsButton" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_hide_details_button_pressed"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
 [connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]

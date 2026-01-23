@@ -15,6 +15,7 @@ var selected_item: InventorySlotData = null
 @onready var shop_flavor_text: RichTextLabel = %ShopFlavorText
 @onready var shop_item_value: Label = %ShopItemValue
 @onready var buy_qty_slider: HSlider = %BuyQtySlider
+@onready var buy_qty: Label = %BuyQty
 
 @onready var slot_container: GridContainer = %BuySlotContainer
 
@@ -68,11 +69,13 @@ func _populate_shop(inv: InventoryData):
 	for slot_data in inv.slot_datas:
 		var new_slot_ui = SHOP_SLOT_UI.instantiate()
 		var new_slot_data = InventorySlotData.new()
-		new_slot_data.item_data = slot_data.item_data
-		new_slot_data.quantity = slot_data.quantity
-		new_slot_ui.parent_inventory = inv
-		new_slot_ui.set_slot_data(new_slot_data)
 		slot_container.add_child(new_slot_ui)
+		new_slot_ui.parent_inventory = inv
+		if slot_data and slot_data.item_data:
+			new_slot_data.item_data = slot_data.item_data
+			new_slot_data.quantity = slot_data.quantity
+			new_slot_ui.set_slot_data(new_slot_data)
+		
 
 func _set_sellable_inventory():
 	pass
@@ -93,6 +96,7 @@ func _clear_select_item():
 	selected_item = null
 	shop_item_context_ui.hide()
 	buy_qty_slider.hide()
+	buy_qty.hide()
 
 func _select_shop_item(slot_data: InventorySlotData):
 	_clear_select_item()
@@ -106,12 +110,19 @@ func _select_shop_item(slot_data: InventorySlotData):
 	if slot_data.item_data.stackable and slot_data.quantity > 1:
 		buy_qty_slider.show()
 		buy_qty_slider.value = 1
+		buy_qty.text = "1"
 		buy_qty_slider.max_value = slot_data.quantity
 
 
 func _on_buy_button_pressed() -> void:
-	pass # Replace with function body.
+	if selected_item:
+		if GameState.money < selected_item.item_data.buy_value:
+			print("TOO POOR!")
+			return
+		GameState.money -= selected_item.item_data.buy_value 
+		EventBus.adding_item_to_inventory.emit(selected_item, buy_qty_slider.value)
+		_clear_select_item()
 
 
 func _on_buy_qty_slider_value_changed(value: float) -> void:
-	%BuyQty.text = str(value)
+	buy_qty.text = str(value)
