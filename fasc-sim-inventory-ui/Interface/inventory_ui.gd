@@ -53,8 +53,8 @@ func _set_player_inventory():
 	money_value.text = str(snapped(GameState.money, 0.1))
 
 func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String):
-	match inv:
-		pockets_inventory_data:
+	#match inv:
+		#pockets_inventory_data:
 			match type:
 				"click":
 					print("Click on %s in %s by inventoryUI" % [slot, inv])
@@ -285,6 +285,7 @@ func _set_external_inventory(inv_data: InventoryData):
 		for slot in external_inventory_data.slot_datas:
 			var slot_ui = INVENTORY_SLOT.instantiate()
 			external_slot_container.add_child(slot_ui)
+			slot_ui.parent_inventory = inv_data
 			slot_ui.set_slot_data(slot)
 
 func _on_give_item_slot_gui_input(event: InputEvent) -> void:
