@@ -17,7 +17,6 @@ func _set_split_ui(slot: InventorySlotData):
 	if not slot.item_data.stackable: return
 	await get_tree().create_timer(0.01).timeout
 	show()
-	global_position = Vector2(get_global_mouse_position().x, get_global_mouse_position().y - 90)
 	slot_data = slot
 	split_qty.text = "%s/%s" % [str(snappedi(split_slider.value,1)), str(slot.quantity)]
 	split_slider.max_value = slot.quantity

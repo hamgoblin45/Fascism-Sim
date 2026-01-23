@@ -1,5 +1,6 @@
 extends PanelContainer
 
+var inventory_data: InventoryData
 var slot_data
 
 @onready var item_name: Label = %ItemName
@@ -16,7 +17,10 @@ func _ready() -> void:
 	EventBus.dialogue_started.connect(_set_button_to_give)
 	EventBus.dialogue_ended.connect(_set_button_to_use)
 
-func _set_context_menu(slot: InventorySlotData):
+func _set_context_menu(inv: InventoryData, slot: InventorySlotData):
+	if inv != inventory_data:
+		hide()
+		return
 	show()
 	slot_data = slot
 	print("Setting item context menu in inventory")
@@ -28,14 +32,20 @@ func _set_context_menu(slot: InventorySlotData):
 		split_button.show()
 	if slot_data.item_data.useable:
 		use_button.show()
-	
-	global_position = Vector2(get_global_mouse_position().x - 25, get_global_mouse_position().y - 180)
+		if GameState.shopping:
+			use_button.text = "SELL"
+		else:
+			_set_button_to_use()
 
 func _physics_process(_delta: float) -> void:
 	if !visible: return
 	if Input.is_action_just_pressed("click") and not mouse_on_ui \
 	or Input.is_action_just_pressed("back"):
 		hide()
+
+func _clear_out_context_ui():
+	slot_data = null
+	hide()
 
 func _set_button_to_give():
 	use_button.text = "GIVE"
@@ -45,8 +55,7 @@ func _set_button_to_use():
 
 func _on_trash_button_pressed() -> void:
 	EventBus.removing_item_from_inventory.emit(slot_data)
-	slot_data = null
-	hide()
+	_clear_out_context_ui()
 
 func _on_use_button_pressed() -> void:
 	match use_button.text:
@@ -55,19 +64,24 @@ func _on_use_button_pressed() -> void:
 		"GIVE":
 			EventBus.giving_item.emit(slot_data)
 			EventBus.removing_item_from_inventory.emit(slot_data)
-			#EventBus.inventory_item_updated.emit(slot_data)
+		"SELL":
+			EventBus.selling_item.emit(slot_data)
 
 
 func _on_split_button_pressed() -> void:
 	EventBus.open_split_stack_ui.emit(slot_data)
 	print("Split button pressed on Context Menu")
+#
+#
+#func _on_mouse_entered() -> void:
+	#print("Mouse on Context Menu")
+	#mouse_on_ui = true
+#
+#
+#func _on_mouse_exited() -> void:
+	#print("Mouse left Context Menu")
+	#mouse_on_ui = false
 
 
-func _on_mouse_entered() -> void:
-	print("Mouse on Context Menu")
-	mouse_on_ui = true
-
-
-func _on_mouse_exited() -> void:
-	print("Mouse left Context Menu")
-	mouse_on_ui = false
+func _on_hide_details_button_pressed() -> void:
+	_clear_out_context_ui()

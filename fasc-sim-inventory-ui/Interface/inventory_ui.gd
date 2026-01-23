@@ -1,14 +1,16 @@
 extends Control
 
-@export var inventory_data: InventoryData # Player's pockets
+@export var pockets_inventory_data: InventoryData # Player's pockets
 var external_inventory_data: InventoryData # Containers
 
 var grabbed_slot_data: InventorySlotData
 
 const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 
-@onready var player_inventory_ui: PanelContainer = %PlayerInventoryUI
+@onready var pockets_inventory_ui: PanelContainer = %PocketsInventoryUI
 @onready var pocket_slot_container: GridContainer = %PocketSlotContainer
+@onready var money_value: Label = %MoneyValue
+
 
 @onready var grabbed_slot_ui: PanelContainer = %GrabbedSlotUI
 
@@ -37,79 +39,88 @@ func _ready() -> void:
 	
 	EventBus.shopping.connect(_handle_shop_ui)
 	_set_player_inventory()
+	
 
 
 func _set_player_inventory():
 	for child in pocket_slot_container.get_children():
 		child.queue_free()
-	for slot in inventory_data.slot_datas:
+	for slot in pockets_inventory_data.slot_datas:
 		var slot_ui = INVENTORY_SLOT.instantiate()
 		pocket_slot_container.add_child(slot_ui)
 		slot_ui.set_slot_data(slot)
-		slot_ui.parent_inventory = inventory_data
+		slot_ui.parent_inventory = pockets_inventory_data
+	money_value.text = str(snapped(GameState.money, 0.1))
 
 func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String):
-	match type:
-		"click":
-			print("Click from %s received by inventoryUI" % slot)
-			if grabbed_slot_data:
-				_handle_drop_or_merge(slot, slot_data)
-			else:
-				if slot_data and slot_data.item_data:
-					if Input.is_action_pressed("shift"):
-						EventBus.open_split_stack_ui.emit(slot_data)
-						return
-					
-					# START GRAB PROCESS
-					pending_grab_slot_data = slot_data
-					pending_grab_slot_ui = slot
-					grab_timer.start()
+	match inv:
+		pockets_inventory_data:
+			match type:
+				"click":
+					print("Click on %s in %s by inventoryUI" % [slot, inv])
+					if grabbed_slot_data:
+						_handle_drop_or_merge(slot, slot_data)
+					else:
+						if slot_data and slot_data.item_data:
+							if Input.is_action_pressed("shift"):
+								EventBus.open_split_stack_ui.emit(slot_data)
+								return
+							
+							# START GRAB PROCESS
+							_start_grabbing_slot(inv, slot, slot_data)
 
-		"r_click":
-			print("Right Click from %s received by inventoryUI" % slot)
-			if grabbed_slot_data:
-				if slot_data and slot_data.item_data:
-					print("Right Clicked %s" % slot_data.item_data.name)
-					
-					if grabbed_slot_data != slot_data:
-						print("Trying to merge grabbed slot with existing slot")
-						if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
-							slot_data.quantity += 1
+				"r_click":
+					print("R-Click on %s in Inv %s received by inventoryUI" % [slot, inv])
+					if grabbed_slot_data:
+						if slot_data and slot_data.item_data:
+							print("Right Clicked %s" % slot_data.item_data.name)
+							
+							if grabbed_slot_data != slot_data:
+								print("Trying to merge grabbed slot with existing slot")
+								if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
+									slot_data.quantity += 1
+									grabbed_slot_data.quantity -= 1
+									_set_grabbed_slot()
+									slot.set_slot_data(slot_data)
+									
+						else:
+							print("Trying to drop a single item into an empty slot, creating slot data")
+							slot_data = InventorySlotData.new()
+							slot_data.item_data = grabbed_slot_data.item_data
+							slot_data.quantity = 1
 							grabbed_slot_data.quantity -= 1
-							_set_grabbed_slot()
-							slot.set_slot_data(slot_data)
-							
-				else:
-					print("Trying to drop a single item into an empty slot, creating slot data")
-					slot_data = InventorySlotData.new()
-					slot_data.item_data = grabbed_slot_data.item_data
-					slot_data.quantity = 1
-					grabbed_slot_data.quantity -= 1
-							
-						#elif grabbed_slot_data.item_data.stackable
-				if grabbed_slot_data.quantity <= 0:
-					print("Grabbed slot empty")
-					_clear_grabbed_slot()
-				
-				slot.set_slot_data(slot_data)
-				_set_grabbed_slot()
-			else:
-				if slot_data and slot_data.item_data:
-					EventBus.open_item_context_menu.emit(slot_data)
-				#item_context_ui.set_context_menu(slot_data)
+									
+								#elif grabbed_slot_data.item_data.stackable
+						if grabbed_slot_data.quantity <= 0:
+							print("Grabbed slot empty")
+							_clear_grabbed_slot()
+						
+						slot.set_slot_data(slot_data)
+						_set_grabbed_slot()
+					else:
+						if slot_data and slot_data.item_data:
+							EventBus.open_item_context_menu.emit(slot_data)
+						#item_context_ui.set_context_menu(slot_data)
 
 func _physics_process(_delta: float) -> void:
+	# Grabbed Slot appears by mouse when visible
 	if grabbed_slot_ui.visible:
 		grabbed_slot_ui.position = get_local_mouse_position()
+	
 	# Stop grabbing if click released early
 	if Input.is_action_just_released("click"):
-		print("click released")
 		if !grab_timer.is_stopped():
 			grab_timer.stop()
 			pending_grab_slot_data = null
 			pending_grab_slot_ui = null
-			
-			print("grab aborted")
+			#print("grab aborted")
+
+func _start_grabbing_slot(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData):
+	# START GRAB PROCESS
+	EventBus.open_item_context_menu.emit(inv, slot_data)
+	pending_grab_slot_data = slot_data
+	pending_grab_slot_ui = slot
+	grab_timer.start()
 
 func _handle_drop_or_merge(slot, slot_data):
 	if slot_data and slot_data.item_data and slot_data.item_data.id == grabbed_slot_data.item_data.id and slot_data.item_data.stackable:
@@ -183,13 +194,13 @@ func can_inventory_fit(item_to_add: InventoryItemData, quantity: int) -> bool:
 	var remaining_needed = quantity
 	#Check existing stacks
 	if item_to_add.stackable:
-		for slot in inventory_data.slot_datas: # check data directly
+		for slot in pockets_inventory_data.slot_datas: # check data directly
 			if slot and slot.item_data and slot.item_data.id == item_to_add.id:
 				remaining_needed -= (item_to_add.max_stack_size - slot.quantity)
 				if remaining_needed <= 0: return true
 	# Check empty slots
 	var empty_slots = 0
-	for slot in inventory_data.slot_datas:
+	for slot in pockets_inventory_data.slot_datas:
 		if !slot or !slot.item_data:
 			empty_slots += 1
 	

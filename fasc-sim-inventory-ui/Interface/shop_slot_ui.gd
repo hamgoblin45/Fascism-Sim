@@ -6,6 +6,8 @@ var parent_inventory: InventoryData
 
 @onready var item_texture: TextureRect = %ItemTexture
 @onready var quantity: Label = %Quantity
+@onready var selected_panel: Panel = %SelectedPanel
+
 
 func _ready() -> void:
 	EventBus.inventory_item_updated.connect(_on_item_updated)

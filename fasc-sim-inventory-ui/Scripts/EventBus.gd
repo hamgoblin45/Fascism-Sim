@@ -9,8 +9,10 @@ signal adding_item_to_inventory(item_data: InventorySlotData, qty: int)
 
 signal setting_external_inventory(inv_data: InventoryData)
 signal shopping(legal: bool)
+signal selling_item(slot: InventorySlotData)
+signal item_sold(slot: InventorySlotData)
 
-signal open_item_context_menu(slot_data: InventorySlotData)
+signal open_item_context_menu(inv: InventoryData, slot_data: InventorySlotData)
 signal open_split_stack_ui(slot_data: InventorySlotData)
 signal splitting_item_stack(slot_data: InventorySlotData, orig_slot: InventorySlotData)
 

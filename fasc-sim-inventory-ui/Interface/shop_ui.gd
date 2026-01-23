@@ -10,6 +10,8 @@ const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 
 @onready var slot_container: GridContainer = %BuySlotContainer
 
+@onready var buy_button: Button = %BuyButton
+
 var legal: bool = true
 
 
@@ -17,9 +19,10 @@ func _ready():
 	EventBus.shopping.connect(_handle_shop_ui)
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
 
-func _handle_shop_ui(legal: bool):
+func _handle_shop_ui(legal_shop: bool):
 	GameState.shopping = not GameState.shopping
 	visible = GameState.shopping
+	legal = legal_shop
 	if legal:
 		_set_legal_inventory()
 		print("Starting a trade at the Comissary")
@@ -47,6 +50,11 @@ func _set_illegal_inventory():
 	_populate_shop(illegal_shop_inventory)
 
 func _populate_shop(inv: InventoryData):
+	# Clear out previous slots to avoid inconsistencies
+	for child in slot_container.get_children():
+		child.queue_free()
+	
+# Create a slot for each space in slot_datas, even if no slot_data
 	for slot_data in inv.slot_datas:
 		var new_slot_ui = SHOP_SLOT_UI.instantiate()
 		var new_slot_data = InventorySlotData.new()
@@ -56,10 +64,20 @@ func _populate_shop(inv: InventoryData):
 		new_slot_ui.set_slot_data(new_slot_data)
 		slot_container.add_child(new_slot_ui)
 
+func _set_sellable_inventory():
+	pass
+
 func _on_inventory_interact(inv: InventoryData, panel: PanelContainer, slot_data: InventorySlotData, interact_type: String):
 	if legal and inv != legal_shop_inventory:
 		return
 	elif not legal and inv != illegal_shop_inventory:
 		return
 	
-	
+	match interact_type:
+		"click":
+			if slot_data != null and slot_data.item_data:
+				panel.selected_panel.show()
+
+
+func _on_buy_button_pressed() -> void:
+	pass # Replace with function body.
