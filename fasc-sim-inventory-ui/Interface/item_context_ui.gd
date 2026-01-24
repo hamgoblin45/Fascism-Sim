@@ -13,7 +13,7 @@ var slot_data
 var mouse_on_ui: bool = false
 
 func _ready() -> void:
-	EventBus.open_item_context_menu.connect(_set_context_menu)
+	EventBus.select_item.connect(_set_context_menu)
 	EventBus.dialogue_started.connect(_set_button_to_give)
 	EventBus.dialogue_ended.connect(_set_button_to_use)
 

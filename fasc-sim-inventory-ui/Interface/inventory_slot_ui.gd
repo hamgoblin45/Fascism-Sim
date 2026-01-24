@@ -1,4 +1,5 @@
 extends PanelContainer
+class_name SlotUI
 
 var parent_inventory: InventoryData
 @export var slot_data: InventorySlotData

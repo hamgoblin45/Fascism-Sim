@@ -1,22 +1,25 @@
-[gd_scene load_steps=37 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=40 format=3 uid="uid://dhpfeub82th3n"]
 
-[ext_resource type="Script" uid="uid://df76rpwwphwk2" path="res://Interface/inventory_ui.gd" id="1_5h8ar"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/inventory_slot_ui.tscn" id="2_spoia"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
+[ext_resource type="Script" uid="uid://cmfnyi8auyirc" path="res://Interface/pockets_inventory_ui.gd" id="3_mee32"]
 [ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/test_item_1.tres" id="4_cx7ba"]
+[ext_resource type="Script" uid="uid://jremvvcffik8" path="res://Interface/inventory_manager.gd" id="4_sxlab"]
 [ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/test_item_2.tres" id="5_m26qo"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="6_3y5k6"]
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
+[ext_resource type="Script" uid="uid://ddtw01iqjw1hk" path="res://Interface/external_inventory.gd" id="8_ofwss"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="8_pjc3g"]
 [ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/shop_ui.gd" id="8_xywkj"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/give_item_ui.gd" id="11_c0f0r"]
 [ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/test_item_3.tres" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
+[ext_resource type="Script" uid="uid://c2pgrodfpcdpw" path="res://Interface/grabbed_slot_ui.gd" id="15_u6hsv"]
 
-[sub_resource type="Resource" id="Resource_c0f0r"]
+[sub_resource type="Resource" id="Resource_mee32"]
 script = ExtResource("2_0gv4u")
 slot_datas = Array[ExtResource("3_cx7ba")]([null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
@@ -135,7 +138,7 @@ metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjljn"]
 
-[node name="InventoryControl" type="Control"]
+[node name="InventoryUI" type="Control"]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -143,8 +146,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5h8ar")
-pockets_inventory_data = SubResource("Resource_c0f0r")
+
+[node name="InventoryManager" type="Node" parent="."]
+script = ExtResource("4_sxlab")
+pockets_inventory_data = SubResource("Resource_mee32")
+
+[node name="GrabTimer" type="Timer" parent="InventoryManager"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
 
 [node name="PocketsInventoryUI" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -158,6 +168,7 @@ offset_right = 516.0
 offset_bottom = -16.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_xywkj")
+script = ExtResource("3_mee32")
 
 [node name="PocketsMasterContainer" type="PanelContainer" parent="PocketsInventoryUI"]
 layout_mode = 2
@@ -366,6 +377,7 @@ offset_right = 572.0
 offset_bottom = 418.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pjc3g")
+script = ExtResource("8_ofwss")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ExternalInventory"]
 layout_mode = 2
@@ -375,7 +387,8 @@ theme_override_constants/separation = 12
 layout_mode = 2
 alignment = 2
 
-[node name="ExternalLabel" type="Label" parent="ExternalInventory/HBoxContainer/VBoxContainer"]
+[node name="ExternalNameLabel" type="Label" parent="ExternalInventory/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
 theme_override_font_sizes/font_size = 20
@@ -502,7 +515,8 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 texture_normal = SubResource("AtlasTexture_3y5k6")
 
-[node name="SplitStackUI" type="PanelContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI"]
+[node name="ExternalSplitStackUI" type="PanelContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -510,33 +524,33 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_xywkj")
 script = ExtResource("9_3xrn1")
 
-[node name="MarginContainer" type="MarginContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI"]
+[node name="MarginContainer" type="MarginContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="SplitSlider" type="HSlider" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SplitSlider" type="HSlider" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="SplitQty" type="Label" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SplitQty" type="Label" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "X/XX"
 horizontal_alignment = 1
 
-[node name="SplitButton" type="Button" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer/VBoxContainer"]
+[node name="SplitButton" type="Button" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
@@ -794,6 +808,7 @@ offset_right = 60.0
 offset_bottom = 60.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bjljn")
+script = ExtResource("15_u6hsv")
 
 [node name="ItemUI" type="MarginContainer" parent="GrabbedSlotUI"]
 layout_mode = 2
@@ -818,11 +833,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "10"
-
-[node name="GrabTimer" type="Timer" parent="GrabbedSlotUI"]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
 
 [node name="TestStuff" type="Control" parent="."]
 layout_mode = 1
@@ -915,6 +925,7 @@ offset_bottom = 147.0
 text = "YOU GAVE THE NPC AN ITEM!"
 horizontal_alignment = 1
 
+[connection signal="timeout" from="InventoryManager/GrabTimer" to="InventoryManager" method="_on_grab_timer_timeout"]
 [connection signal="mouse_entered" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_mouse_exited"]
 [connection signal="pressed" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/TrashButton" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_trash_button_pressed"]
@@ -931,17 +942,16 @@ horizontal_alignment = 1
 [connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/UseButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_use_button_pressed"]
 [connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/SplitButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_split_button_pressed"]
 [connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/HideDetailsButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_hide_details_button_pressed"]
-[connection signal="mouse_entered" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI" method="_on_mouse_exited"]
-[connection signal="value_changed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI" method="_on_split_slider_value_changed"]
-[connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/SplitStackUI" method="_on_split_button_pressed"]
+[connection signal="mouse_entered" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_mouse_exited"]
+[connection signal="value_changed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_split_slider_value_changed"]
+[connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_split_button_pressed"]
 [connection signal="mouse_entered" from="ShopUI/HBoxContainer/ShopItemContextUI" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ShopUI/HBoxContainer/ShopItemContextUI" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_mouse_exited"]
 [connection signal="pressed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyButton" to="ShopUI" method="_on_buy_button_pressed"]
 [connection signal="value_changed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer/BuyQtySlider" to="ShopUI" method="_on_buy_qty_slider_value_changed"]
 [connection signal="pressed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/HideDetailsButton" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_hide_details_button_pressed"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
-[connection signal="timeout" from="GrabbedSlotUI/GrabTimer" to="." method="_on_grab_timer_timeout"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenGiveUI" to="TestStuff" method="_on_open_give_ui_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItem" to="TestStuff" method="_on_get_item_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItemStackable" to="TestStuff" method="_on_get_item_stackable_pressed"]

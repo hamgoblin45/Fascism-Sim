@@ -21,8 +21,6 @@ var selected_item: InventorySlotData = null
 
 @onready var shop_item_context_ui: PanelContainer = %ShopItemContextUI
 
-@onready var buy_button: Button = %BuyButton
-
 var legal: bool = true
 
 
