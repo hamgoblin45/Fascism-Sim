@@ -13,6 +13,7 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 
 func _ready() -> void:
 	EventBus.external_inventory_set.connect(_set_inventory)
+	EventBus.select_item.connect(_on_item_select)
 
 
 func _set_inventory(inv_data: InventoryData):
@@ -28,3 +29,12 @@ func _set_inventory(inv_data: InventoryData):
 		slot_container.add_child(slot_ui)
 		slot_ui.parent_inventory = inv_data
 		slot_ui.set_slot_data(slot)
+
+func _on_item_select(inv: InventoryData, slot: InventorySlotData):
+	if inv != inventory_data:
+		return
+	print("External inventory item selected")
+	for slot_ui in slot_container.get_children():
+		slot_ui.selected_panel.hide()
+		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data == slot:
+			slot_ui.selected_panel.show()

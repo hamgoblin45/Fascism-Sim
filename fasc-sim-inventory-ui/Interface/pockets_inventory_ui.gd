@@ -15,6 +15,7 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 func _ready() -> void:
 	EventBus.pockets_inventory_set.connect(_set_inventory)
 	EventBus.money_updated.connect(_update_money)
+	EventBus.select_item.connect(_on_item_select)
 
 func _set_inventory(inv_data: InventoryData): # Done
 	for child in slot_container.get_children():
@@ -27,6 +28,15 @@ func _set_inventory(inv_data: InventoryData): # Done
 	
 	money_value.text = str(snapped(GameState.money, 0.1))
 	item_context_ui.inventory_data = inv_data
+
+func _on_item_select(inv: InventoryData, slot: InventorySlotData):
+	if inv != inventory_data:
+		return
+	print("External inventory item selected")
+	for slot_ui in slot_container.get_children():
+		slot_ui.selected_panel.hide()
+		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data == slot:
+			slot_ui.selected_panel.show()
 
 func _update_money(value: float):
 	money_value.text = str(snapped(value, 0.01))

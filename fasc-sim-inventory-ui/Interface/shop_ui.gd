@@ -8,6 +8,7 @@ const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 @export var legal_shop_inventory: InventoryData
 @export var illegal_shop_inventory: InventoryData
 
+var shop_inventory_data: InventoryData
 var selected_item: InventorySlotData = null
 
 @onready var shop_item_name: Label = %ShopItemName
@@ -26,12 +27,25 @@ var legal: bool = true
 
 func _ready():
 	EventBus.shopping.connect(_handle_shop_ui)
-	EventBus.inventory_interacted.connect(_on_inventory_interact)
+	EventBus.select_item.connect(_on_item_select)
+	
 
+## --------- SHOP POPULATION
 func _handle_shop_ui(legal_shop: bool):
+	# Clear stuff out
+	shop_inventory_data = null
+	_clear_selected_item()
+	
+	# Trigger whether closing or opening ShopUI
 	GameState.shopping = not GameState.shopping
 	visible = GameState.shopping
-	legal = legal_shop
+	
+	# Stops if not shopping
+	if not visible:
+		return
+	
+	legal = legal_shop # Sets whether shop is Black Market or Legal
+	
 	if legal:
 		_set_legal_inventory()
 		print("Starting a trade at the Comissary")
@@ -60,9 +74,11 @@ func _set_illegal_inventory():
 
 func _populate_shop(inv: InventoryData):
 	# Clear out previous slots to avoid inconsistencies
+	shop_inventory_data = null
 	for child in slot_container.get_children():
 		child.queue_free()
 	
+	shop_inventory_data = inv
 # Create a slot for each space in slot_datas, even if no slot_data
 	for slot_data in inv.slot_datas:
 		var new_slot_ui = SHOP_SLOT_UI.instantiate()
@@ -75,29 +91,22 @@ func _populate_shop(inv: InventoryData):
 			new_slot_ui.set_slot_data(new_slot_data)
 		
 
-func _set_sellable_inventory():
-	pass
-
-func _on_inventory_interact(inv: InventoryData, panel: PanelContainer, slot_data: InventorySlotData, interact_type: String):
-	if legal and inv != legal_shop_inventory:
-		return
-	elif not legal and inv != illegal_shop_inventory:
-		return
-	
-	match interact_type:
-		"click":
-			if slot_data != null and slot_data.item_data:
-				_select_shop_item(slot_data)
-				panel.selected_panel.show()
-
-func _clear_select_item():
+## ------- SELECTED ITEM
+func _clear_selected_item():
 	selected_item = null
 	shop_item_context_ui.hide()
 	buy_qty_slider.hide()
 	buy_qty.hide()
+	for slot_ui in slot_container.get_children():
+		slot_ui.selected_panel.hide()
 
-func _select_shop_item(slot_data: InventorySlotData):
-	_clear_select_item()
+func _on_item_select(inv: InventoryData, slot_data: InventorySlotData):
+	if selected_item != slot_data:
+		_clear_selected_item()
+	
+	if inv != shop_inventory_data:
+		return
+
 	shop_item_context_ui.show()
 	selected_item = slot_data
 	print("Setting item context menu in inventory")
@@ -110,7 +119,13 @@ func _select_shop_item(slot_data: InventorySlotData):
 		buy_qty_slider.value = 1
 		buy_qty.text = "1"
 		buy_qty_slider.max_value = slot_data.quantity
+	
+	for slot_ui in slot_container.get_children():
+		slot_ui.selected_panel.hide()
+		if slot_ui.slot_data and slot_ui.slot_data == slot_data:
+			slot_ui.selected_panel.show()
 
+## ------------- BUYING
 
 func _on_buy_button_pressed() -> void:
 	if selected_item:
@@ -118,8 +133,8 @@ func _on_buy_button_pressed() -> void:
 			print("TOO POOR!")
 			return
 		GameState.money -= selected_item.item_data.buy_value 
-		EventBus.adding_item_to_inventory.emit(selected_item, buy_qty_slider.value)
-		_clear_select_item()
+		EventBus.adding_item.emit(selected_item, buy_qty_slider.value)
+		_clear_selected_item()
 
 
 func _on_buy_qty_slider_value_changed(value: float) -> void:

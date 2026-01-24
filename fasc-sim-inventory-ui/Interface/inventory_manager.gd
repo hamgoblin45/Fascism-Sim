@@ -7,7 +7,7 @@ extends Node
 
 var grabbed_slot_data: InventorySlotData
 var pending_grab_slot_data: InventorySlotData
-var pending_grab_slot_ui: SlotUI
+var pending_grab_slot_ui: PanelContainer
 #var grab_slot_data: InventorySlotData
 
 @onready var inv_ui: Control = $".."
@@ -22,6 +22,7 @@ var pending_grab_slot_ui: SlotUI
 
 
 func _ready() -> void:
+	EventBus.inventory_interacted.connect(_on_inventory_interact)
 	EventBus.adding_item.connect(_add_item_to_inventory)
 	EventBus.removing_item.connect(_remove_item_from_inventory)
 	#EventBus.selling_item.connect(_sell_item)
@@ -49,7 +50,7 @@ func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data:
 								EventBus.open_split_stack_ui.emit(slot_data)
 								return
 							
-							EventBus.open_item_context_menu.emit(inv, slot_data)
+							#EventBus.select_item.emit(inv, slot_data)
 							# START GRAB PROCESS
 							_start_grabbing_slot(inv, slot, slot_data)
 
@@ -190,7 +191,7 @@ func _remove_item_from_inventory(slot_data: InventorySlotData):
 
 func _start_grabbing_slot(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData):
 	# START GRAB PROCESS
-	EventBus.open_item_context_menu.emit(inv, slot_data)
+	EventBus.select_item.emit(inv, slot_data)
 	pending_grab_slot_data = slot_data
 	pending_grab_slot_ui = slot
 	grab_timer.start()
