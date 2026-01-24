@@ -18,7 +18,7 @@ func _ready() -> void:
 	EventBus.dialogue_ended.connect(_set_button_to_use)
 
 func _set_context_menu(inv: InventoryData, slot: InventorySlotData):
-	if inv != inventory_data:
+	if inv != inventory_data or not slot:
 		hide()
 		return
 	show()
@@ -54,7 +54,7 @@ func _set_button_to_use():
 	use_button.text = "USE"
 
 func _on_trash_button_pressed() -> void:
-	EventBus.removing_item_from_inventory.emit(slot_data)
+	EventBus.removing_item.emit(inventory_data, slot_data)
 	_clear_out_context_ui()
 
 func _on_use_button_pressed() -> void:

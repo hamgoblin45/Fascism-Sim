@@ -30,11 +30,11 @@ func _set_inventory(inv_data: InventoryData): # Done
 	item_context_ui.inventory_data = inv_data
 
 func _on_item_select(inv: InventoryData, slot: InventorySlotData):
-	if inv != inventory_data:
-		return
 	print("External inventory item selected")
 	for slot_ui in slot_container.get_children():
 		slot_ui.selected_panel.hide()
+		if inv != inventory_data:
+			return
 		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data == slot:
 			slot_ui.selected_panel.show()
 

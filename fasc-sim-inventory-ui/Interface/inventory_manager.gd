@@ -45,12 +45,13 @@ func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data:
 					if grabbed_slot_data:
 						_handle_drop_or_merge(slot, slot_data)
 					else:
+						EventBus.select_item.emit(inv, slot_data)
 						if slot_data and slot_data.item_data:
 							if Input.is_action_pressed("shift"):
 								EventBus.open_split_stack_ui.emit(slot_data)
 								return
 							
-							#EventBus.select_item.emit(inv, slot_data)
+							
 							# START GRAB PROCESS
 							_start_grabbing_slot(inv, slot, slot_data)
 
@@ -191,7 +192,7 @@ func _remove_item_from_inventory(slot_data: InventorySlotData):
 
 func _start_grabbing_slot(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData):
 	# START GRAB PROCESS
-	EventBus.select_item.emit(inv, slot_data)
+	
 	pending_grab_slot_data = slot_data
 	pending_grab_slot_ui = slot
 	grab_timer.start()

@@ -1,21 +1,18 @@
-[gd_scene load_steps=40 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=30 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/inventory_slot_ui.tscn" id="2_spoia"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
 [ext_resource type="Script" uid="uid://cmfnyi8auyirc" path="res://Interface/pockets_inventory_ui.gd" id="3_mee32"]
-[ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/test_item_1.tres" id="4_cx7ba"]
 [ext_resource type="Script" uid="uid://jremvvcffik8" path="res://Interface/inventory_manager.gd" id="4_sxlab"]
-[ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/test_item_2.tres" id="5_m26qo"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="6_3y5k6"]
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
 [ext_resource type="Script" uid="uid://ddtw01iqjw1hk" path="res://Interface/external_inventory.gd" id="8_ofwss"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="8_pjc3g"]
-[ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/shop_ui.gd" id="8_xywkj"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/give_item_ui.gd" id="11_c0f0r"]
-[ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/test_item_3.tres" id="11_hvb16"]
+[ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/shop_ui.tscn" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
 [ext_resource type="Script" uid="uid://c2pgrodfpcdpw" path="res://Interface/grabbed_slot_ui.gd" id="15_u6hsv"]
 
@@ -103,36 +100,6 @@ expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvb16"]
-
-[sub_resource type="Resource" id="Resource_sxlab"]
-script = ExtResource("3_cx7ba")
-item_data = ExtResource("5_m26qo")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_u6hsv"]
-script = ExtResource("3_cx7ba")
-item_data = ExtResource("11_hvb16")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_ofwss"]
-script = ExtResource("2_0gv4u")
-slot_datas = Array[ExtResource("3_cx7ba")]([SubResource("Resource_sxlab"), SubResource("Resource_u6hsv")])
-metadata/_custom_type_script = "uid://crfuvv7qrrub3"
-
-[sub_resource type="Resource" id="Resource_xywkj"]
-script = ExtResource("3_cx7ba")
-item_data = ExtResource("4_cx7ba")
-quantity = 99
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_pjc3g"]
-script = ExtResource("2_0gv4u")
-slot_datas = Array[ExtResource("3_cx7ba")]([SubResource("Resource_xywkj"), null, null, null, null, null, null, null, null, null, null, null])
-metadata/_custom_type_script = "uid://crfuvv7qrrub3"
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gur8t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
 
@@ -556,189 +523,10 @@ size_flags_horizontal = 4
 mouse_filter = 1
 text = "Split"
 
-[node name="ShopUI" type="PanelContainer" parent="."]
+[node name="ShopUI" parent="." instance=ExtResource("11_hvb16")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(304, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -559.0
-offset_top = -117.0
-offset_right = 27.0
-offset_bottom = 144.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_hvb16")
-script = ExtResource("8_xywkj")
-legal_inventory_pool = SubResource("Resource_ofwss")
-legal_shop_inventory = SubResource("Resource_pjc3g")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ShopUI"]
-layout_mode = 2
-theme_override_constants/separation = 24
-
-[node name="ShopPanel" type="PanelContainer" parent="ShopUI/HBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("6_3y5k6")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ShopUI/HBoxContainer/ShopPanel"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ShopHeader" type="Label" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7372549)
-theme_override_constants/shadow_outline_size = 4
-theme_override_font_sizes/font_size = 34
-text = "SHOP"
-horizontal_alignment = 1
-
-[node name="SlotsPanel" type="PanelContainer" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_gur8t")
-
-[node name="BuySlotContainer" type="GridContainer" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-mouse_filter = 2
-columns = 4
-
-[node name="InventorySlotUI" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI2" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI3" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI4" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI5" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI6" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI7" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI8" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI9" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI10" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI11" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="InventorySlotUI12" parent="ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-
-[node name="ShopItemContextUI" type="PanelContainer" parent="ShopUI/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("6_3y5k6")
-
-[node name="MarginContainer" type="MarginContainer" parent="ShopUI/HBoxContainer/ShopItemContextUI"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="ShopItemName" type="Label" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.45080644, 0.603062, 0.86143565, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.54509807)
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 20
-text = "ItemName"
-horizontal_alignment = 1
-
-[node name="ShopItemDescript" type="RichTextLabel" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
-bbcode_enabled = true
-text = "[center]This is the [color=gold] item [/color] description"
-fit_content = true
-
-[node name="ShopFlavorText" type="RichTextLabel" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2784314)
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_italics_font_size = 12
-theme_override_font_sizes/italics_font_size = 12
-bbcode_enabled = true
-text = "[i]This is some lore description to add flavor text to a description"
-fit_content = true
-
-[node name="ShopItemValue" type="Label" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Cost: X"
-horizontal_alignment = 1
-
-[node name="ButtonContainer" type="HBoxContainer" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="BuyButton" type="Button" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-mouse_filter = 1
-text = "BUY"
-
-[node name="BuyQtyContainer" type="HBoxContainer" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="BuyQtySlider" type="HSlider" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="BuyQty" type="Label" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-text = "X/XX"
-horizontal_alignment = 1
-
-[node name="HideDetailsButton" type="TextureButton" parent="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = SubResource("AtlasTexture_3y5k6")
+layout_mode = 0
+anchors_preset = 0
 
 [node name="GiveItemUI" type="PanelContainer" parent="."]
 visible = false
@@ -946,11 +734,6 @@ horizontal_alignment = 1
 [connection signal="mouse_exited" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_mouse_exited"]
 [connection signal="value_changed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_split_slider_value_changed"]
 [connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_split_button_pressed"]
-[connection signal="mouse_entered" from="ShopUI/HBoxContainer/ShopItemContextUI" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ShopUI/HBoxContainer/ShopItemContextUI" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_mouse_exited"]
-[connection signal="pressed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyButton" to="ShopUI" method="_on_buy_button_pressed"]
-[connection signal="value_changed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer/BuyQtySlider" to="ShopUI" method="_on_buy_qty_slider_value_changed"]
-[connection signal="pressed" from="ShopUI/HBoxContainer/ShopItemContextUI/MarginContainer/HideDetailsButton" to="ShopUI/HBoxContainer/ShopItemContextUI" method="_on_hide_details_button_pressed"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenGiveUI" to="TestStuff" method="_on_open_give_ui_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItem" to="TestStuff" method="_on_get_item_pressed"]

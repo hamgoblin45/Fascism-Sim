@@ -104,7 +104,7 @@ func _on_item_select(inv: InventoryData, slot_data: InventorySlotData):
 	if selected_item != slot_data:
 		_clear_selected_item()
 	
-	if inv != shop_inventory_data:
+	if inv != shop_inventory_data or not slot_data:
 		return
 
 	shop_item_context_ui.show()
