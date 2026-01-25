@@ -13,9 +13,8 @@ func _physics_process(_delta: float) -> void: # Not working, not sure why
 
 func _update_grabbed_slot(slot: InventorySlotData):
 	print("Setting grabbed slot in GrabbedSlotUI")
-	
+	_clear_grabbed_slot()
 	if slot == null:
-		_clear_grabbed_slot()
 		return
 	
 	show()

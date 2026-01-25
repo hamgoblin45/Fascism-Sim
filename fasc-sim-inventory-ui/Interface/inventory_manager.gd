@@ -58,35 +58,60 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 		"r_click":
 			print("R-Click on %s in Inv %s received by inventoryUI" % [slot_data, inv])
 			if grabbed_slot_data:
-				# If there is already something in the slot try to merge one into
-				if slot_data and slot_data.item_data:
-					if grabbed_slot_data != slot_data:
-						print("Trying to merge grabbed slot with existing slot")
-						if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
-							slot_data.quantity += 1
-							grabbed_slot_data.quantity -= 1
-							EventBus.update_grabbed_slot.emit(slot_data)
-							EventBus.inventory_item_updated.emit(slot_data)
-							#slot.set_slot_data(slot_data)
-							
-				else:
-					print("Trying to drop a single item into an empty slot, creating slot data")
-					slot_data = InventorySlotData.new()
-					slot_data.item_data = grabbed_slot_data.item_data
-					slot_data.quantity = 1
-					grabbed_slot_data.quantity -= 1
-							
-						#elif grabbed_slot_data.item_data.stackable
-				if grabbed_slot_data.quantity <= 0:
-					print("Grabbed slot empty")
-					grabbed_slot_data = null
-					EventBus.update_grabbed_slot.emit(null)
+				var index = slot_ui.get_index()
 				
-				EventBus.inventory_item_updated.emit(slot_data)
-				#slot.set_slot_data(slot_data)
-				inv_ui._set_grabbed_slot_ui()
-			#else:
+				# If slot is empty, create a new one
+				if not slot_data or not slot_data.item_data:
+					var new_slot = InventorySlotData.new()
+					new_slot.item_data = grabbed_slot_data.item_data
+					new_slot.quantity = 1
+					
+					inv.slot_datas[index] = new_slot # Update resource
+					slot_ui.set_slot_data(new_slot) # Update UI
+					grabbed_slot_data.quantity -= 1
+				
+				# If slot matches, increment
+				elif slot_data.item_data == grabbed_slot_data.item_data:
+					if slot_data.quantity < slot_data.item_data.max_stack_size:
+						slot_data.quantity += 1
+						grabbed_slot_data.quantity -= 1
+						slot_ui.set_slot_data(slot_data)
+						
+				if grabbed_slot_data.quantity <= 0:
+					grabbed_slot_data = null
+				
+				EventBus.update_grabbed_slot.emit(grabbed_slot_data)
+						
+						
+				## If there is already something in the slot try to merge one into
 				#if slot_data and slot_data.item_data:
+					#if grabbed_slot_data != slot_data:
+						#print("Trying to merge grabbed slot with existing slot")
+						#if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
+							#slot_data.quantity += 1
+							#grabbed_slot_data.quantity -= 1
+							#EventBus.update_grabbed_slot.emit(slot_data)
+							#EventBus.inventory_item_updated.emit(slot_data)
+							##slot.set_slot_data(slot_data)
+							#
+				#else:
+					#print("Trying to drop a single item into an empty slot, creating slot data")
+					#slot_data = InventorySlotData.new()
+					#slot_data.item_data = grabbed_slot_data.item_data
+					#slot_data.quantity = 1
+					#grabbed_slot_data.quantity -= 1
+							#
+						##elif grabbed_slot_data.item_data.stackable
+				#if grabbed_slot_data.quantity <= 0:
+					#print("Grabbed slot empty")
+					#grabbed_slot_data = null
+					#EventBus.update_grabbed_slot.emit(null)
+				#
+				#EventBus.inventory_item_updated.emit(slot_data)
+				##slot.set_slot_data(slot_data)
+				#inv_ui._set_grabbed_slot_ui()
+			##else:
+				##if slot_data and slot_data.item_data:
 					##item_context_ui.set_context_menu(slot_data)
 
 func _physics_process(_delta: float) -> void:

@@ -51,6 +51,7 @@ func _update_visuals():
 
 ## -- Remove from slot
 func clear_visuals():
+	selected_panel.hide()
 	item_texture.hide()
 	quantity.hide()
 	tooltip_text = ""
