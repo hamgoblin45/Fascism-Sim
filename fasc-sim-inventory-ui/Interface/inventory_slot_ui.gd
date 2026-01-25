@@ -29,7 +29,7 @@ func set_slot_data(new_slot_data: InventorySlotData):
 		quantity.text = str(slot_data.quantity)
 	else:
 		quantity.hide()
-	EventBus.inventory_item_updated.emit(slot_data)
+	EventBus.inventory_item_updated.emit(slot_data) # For use by other nodes if needed, locally the same as running _on_item_updated()
 
 func _on_item_updated(updated_slot_data: InventorySlotData):
 	# Only updates if slot is actually changed
@@ -48,11 +48,11 @@ func _update_visuals():
 	else:
 		quantity.hide()
 
+## -- Remove from slot
 func clear_visuals():
 	item_texture.hide()
 	quantity.hide()
 	tooltip_text = ""
-
 
 func clear_slot_data(slot: InventorySlotData):
 	if slot and slot != slot_data: return # Verify this slot is the right one
@@ -62,18 +62,16 @@ func clear_slot_data(slot: InventorySlotData):
 	slot_data = null
 	clear_visuals()
 	
-	EventBus.inventory_item_updated.emit(null)
-
-
-func _stack_split(_result_slot: InventorySlotData, _orig_slot: InventorySlotData):
-	#print("Change quantity called on inv_slot_ui. New slot: %s, Orig Slot: %s" % [result_slot, orig_slot])
-	if slot_data.quantity > 1 and slot_data.item_data.stackable:
-		quantity.show()
-		quantity.text = str(slot_data.quantity)
-	elif slot_data.quantity <= 0:
-		clear_slot_data(slot_data)
-	EventBus.inventory_item_updated.emit(slot_data)
-
+	#EventBus.inventory_item_updated.emit(null) # This doesn't make sense, it would trigger every slot without slot data
+#
+#func _stack_split(_result_slot: InventorySlotData, _orig_slot: InventorySlotData):
+	##print("Change quantity called on inv_slot_ui. New slot: %s, Orig Slot: %s" % [result_slot, orig_slot])
+	#if slot_data.quantity > 1 and slot_data.item_data.stackable:
+		#quantity.show()
+		#quantity.text = str(slot_data.quantity)
+	#elif slot_data.quantity <= 0:
+		#clear_slot_data(slot_data)
+	#EventBus.inventory_item_updated.emit(slot_data)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
@@ -82,3 +80,4 @@ func _on_gui_input(event: InputEvent) -> void:
 			print("Slot clicked")
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "r_click")
+			print("Slot r-clicked")

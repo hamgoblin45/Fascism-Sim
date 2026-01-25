@@ -10,7 +10,7 @@ signal item_removed(inv: InventoryData, slot: InventorySlotData) # Confirms an i
 signal adding_item(item_data: InventorySlotData, qty: int) # Requests adding an item to an inventory
 signal item_added(inv: InventoryData, slot: InventorySlotData) # Confirms an item was added
 
-signal grabbed_item_slot(slot: InventorySlotData) # for picking up items between inventory slots. emit null to clear out
+signal update_grabbed_slot(slot: InventorySlotData) # for picking up items between inventory slots. emit null to clear out
 
 signal setting_pockets_inventory(inv: InventoryData)
 signal pockets_inventory_set(inv: InventoryData)
@@ -22,7 +22,7 @@ signal shopping(legal: bool) # Opens up either the legal shop or the black marke
 signal selling_item(slot: InventorySlotData) # Requests sale
 signal item_sold(slot: InventorySlotData) # Confirms sale
 
-signal select_item(inv: InventoryData, slot_data: InventorySlotData) # When clicking an item in an inventory, used to set context ui
+signal select_item(slot_data: InventorySlotData) # When clicking an item in an inventory, used to set context ui
 signal open_split_stack_ui(slot_data: InventorySlotData)
 signal splitting_item_stack(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Requests splitting a slot
 signal item_stack_split(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Confirms a slot was split

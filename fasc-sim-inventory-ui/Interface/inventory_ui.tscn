@@ -1,29 +1,22 @@
-[gd_scene load_steps=30 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=14 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
-[ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/inventory_slot_ui.tscn" id="2_spoia"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
-[ext_resource type="Script" uid="uid://cmfnyi8auyirc" path="res://Interface/pockets_inventory_ui.gd" id="3_mee32"]
+[ext_resource type="PackedScene" uid="uid://bmqlxplie777" path="res://Interface/pockets_inventory_ui.tscn" id="4_3y5k6"]
 [ext_resource type="Script" uid="uid://jremvvcffik8" path="res://Interface/inventory_manager.gd" id="4_sxlab"]
+[ext_resource type="PackedScene" uid="uid://wkm6jgcm5mys" path="res://Interface/external_inventory.tscn" id="5_gur8t"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="6_3y5k6"]
-[ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="8_3xrn1"]
-[ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="8_bjljn"]
-[ext_resource type="Script" uid="uid://ddtw01iqjw1hk" path="res://Interface/external_inventory.gd" id="8_ofwss"]
-[ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="8_pjc3g"]
-[ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="9_3xrn1"]
+[ext_resource type="PackedScene" uid="uid://cb06vgbnsed6c" path="res://Interface/grabbed_slot_ui.tscn" id="9_c0f0r"]
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/give_item_ui.gd" id="11_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/shop_ui.tscn" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
-[ext_resource type="Script" uid="uid://c2pgrodfpcdpw" path="res://Interface/grabbed_slot_ui.gd" id="15_u6hsv"]
 
 [sub_resource type="Resource" id="Resource_mee32"]
 script = ExtResource("2_0gv4u")
 slot_datas = Array[ExtResource("3_cx7ba")]([null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xywkj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c0f0r"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xrn1"]
 bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
@@ -35,75 +28,6 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y5k6"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gur8t"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0f0r"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hvb16"]
-atlas = ExtResource("8_pjc3g")
-region = Rect2(224, 384, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3y5k6"]
-atlas = ExtResource("8_pjc3g")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xywkj"]
-bg_color = Color(0.18431373, 0.17254902, 0.13725491, 1)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjc3g"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjc3g"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.18431373, 0.17254902, 0.13725491, 0.5411765)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjljn"]
 
 [node name="InventoryUI" type="Control"]
 texture_filter = 1
@@ -123,410 +47,45 @@ unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="PocketsInventoryUI" type="PanelContainer" parent="."]
+[node name="PocketsInventoryUI" parent="." instance=ExtResource("4_3y5k6")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -222.0
-offset_right = 516.0
-offset_bottom = -16.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_xywkj")
-script = ExtResource("3_mee32")
+offset_left = 27.0
+offset_top = -146.0
+offset_right = 455.0
+offset_bottom = -8.0
 
-[node name="PocketsMasterContainer" type="PanelContainer" parent="PocketsInventoryUI"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_c0f0r")
-
-[node name="BarDetailsRow" type="HBoxContainer" parent="PocketsInventoryUI/PocketsMasterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="PocketsContainer" type="VBoxContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow"]
-layout_mode = 2
-alignment = 2
-
-[node name="PocketsLabel" type="Label" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
-theme_override_font_sizes/font_size = 20
-text = "POCKETS"
-horizontal_alignment = 1
-
-[node name="SlotsPanel" type="PanelContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("6_3y5k6")
-
-[node name="PocketSlotContainer" type="GridContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-columns = 6
-
-[node name="InventorySlotUI" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
-
-[node name="InventorySlotUI2" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3y5k6")
-
-[node name="InventorySlotUI3" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
-
-[node name="InventorySlotUI4" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="InventorySlotUI5" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="InventorySlotUI6" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="MoneyRow" type="HBoxContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer"]
-layout_mode = 2
-
-[node name="MoneyIcon" type="TextureRect" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/MoneyRow"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = SubResource("AtlasTexture_hvb16")
-expand_mode = 1
-
-[node name="MoneyValue" type="Label" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/MoneyRow"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "0"
-
-[node name="PocketItemContextUI" type="PanelContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow"]
+[node name="ExternalInventory" parent="." instance=ExtResource("5_gur8t")]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("6_3y5k6")
-script = ExtResource("8_3xrn1")
-
-[node name="MarginContainer" type="MarginContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="ItemName" type="Label" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.45080644, 0.603062, 0.86143565, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.54509807)
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 20
-text = "ItemName"
-horizontal_alignment = 1
-
-[node name="ItemDescript" type="RichTextLabel" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
-bbcode_enabled = true
-text = "[center]This is the [color=gold] item [/color] description"
-fit_content = true
-
-[node name="ItemFlavorText" type="RichTextLabel" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2784314)
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_italics_font_size = 12
-theme_override_font_sizes/italics_font_size = 12
-bbcode_enabled = true
-text = "[i]This is some lore description to add flavor text to a description"
-fit_content = true
-
-[node name="ItemValue" type="Label" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-horizontal_alignment = 1
-
-[node name="ButtonContainer" type="HBoxContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="TrashButton" type="Button" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-text = "TRASH"
-
-[node name="UseButton" type="Button" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-text = "USE"
-
-[node name="SplitButton" type="Button" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-text = "SPLIT"
-
-[node name="HideDetailsButton" type="TextureButton" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = SubResource("AtlasTexture_3y5k6")
-
-[node name="PocketsSplitStackUI" type="PanelContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_xywkj")
-script = ExtResource("9_3xrn1")
-
-[node name="MarginContainer" type="MarginContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="SplitSlider" type="HSlider" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="SplitQty" type="Label" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "X/XX"
-horizontal_alignment = 1
-
-[node name="SplitButton" type="Button" parent="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-mouse_filter = 1
-text = "Split"
-
-[node name="ExternalInventory" type="PanelContainer" parent="."]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(304, 0)
-layout_mode = 0
-offset_left = 16.0
-offset_top = 225.0
-offset_right = 572.0
-offset_bottom = 418.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_pjc3g")
-script = ExtResource("8_ofwss")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ExternalInventory"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ExternalInventory/HBoxContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="ExternalNameLabel" type="Label" parent="ExternalInventory/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
-theme_override_font_sizes/font_size = 20
-text = "CONTAINER"
-horizontal_alignment = 1
-
-[node name="SlotsPanel" type="PanelContainer" parent="ExternalInventory/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("6_3y5k6")
-
-[node name="ExternalSlotContainer" type="GridContainer" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-columns = 4
-
-[node name="InventorySlotUI" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
-
-[node name="InventorySlotUI2" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3y5k6")
-
-[node name="InventorySlotUI3" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
-
-[node name="InventorySlotUI4" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="InventorySlotUI5" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
-
-[node name="InventorySlotUI6" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3y5k6")
-
-[node name="InventorySlotUI7" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
-
-[node name="InventorySlotUI8" parent="ExternalInventory/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer" instance=ExtResource("2_spoia")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="ExternalItemContextUI" type="PanelContainer" parent="ExternalInventory/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_pjc3g")
-script = ExtResource("8_3xrn1")
-
-[node name="MarginContainer" type="MarginContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="ItemName" type="Label" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.45080644, 0.603062, 0.86143565, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.54509807)
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 20
-text = "ItemName"
-horizontal_alignment = 1
-
-[node name="ItemDescript" type="RichTextLabel" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
-bbcode_enabled = true
-text = "[center]This is the [color=gold] item [/color] description"
-fit_content = true
-
-[node name="ItemFlavorText" type="RichTextLabel" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2784314)
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_italics_font_size = 12
-theme_override_font_sizes/italics_font_size = 12
-bbcode_enabled = true
-text = "[i]This is some lore description to add flavor text to a description"
-fit_content = true
-
-[node name="ItemValue" type="Label" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-horizontal_alignment = 1
-
-[node name="ButtonContainer" type="HBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="TrashButton" type="Button" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-mouse_filter = 1
-text = "TRASH"
-
-[node name="UseButton" type="Button" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-mouse_filter = 1
-text = "USE"
-
-[node name="SplitButton" type="Button" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
-layout_mode = 2
-mouse_filter = 1
-text = "SPLIT"
-
-[node name="HideDetailsButton" type="TextureButton" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = SubResource("AtlasTexture_3y5k6")
-
-[node name="ExternalSplitStackUI" type="PanelContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_xywkj")
-script = ExtResource("9_3xrn1")
-
-[node name="MarginContainer" type="MarginContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI"]
-layout_mode = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 6
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="SplitSlider" type="HSlider" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(105, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-
-[node name="SplitQty" type="Label" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "X/XX"
-horizontal_alignment = 1
-
-[node name="SplitButton" type="Button" parent="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-mouse_filter = 1
-text = "Split"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -565.0
+offset_top = 1.0
+offset_right = -261.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ShopUI" parent="." instance=ExtResource("11_hvb16")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 11.0
+offset_top = 196.0
+offset_right = 597.0
+offset_bottom = 457.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="GiveItemUI" type="PanelContainer" parent="."]
 visible = false
@@ -587,40 +146,9 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "10"
 
-[node name="GrabbedSlotUI" type="PanelContainer" parent="."]
+[node name="GrabbedSlotUI" parent="." instance=ExtResource("9_c0f0r")]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
-offset_right = 60.0
-offset_bottom = 60.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_bjljn")
-script = ExtResource("15_u6hsv")
-
-[node name="ItemUI" type="MarginContainer" parent="GrabbedSlotUI"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="GrabbedItemTexture" type="TextureRect" parent="GrabbedSlotUI/ItemUI"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("8_bjljn")
-expand_mode = 1
-
-[node name="GrabbedQuantity" type="Label" parent="GrabbedSlotUI/ItemUI"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "10"
 
 [node name="TestStuff" type="Control" parent="."]
 layout_mode = 1
@@ -714,26 +242,6 @@ text = "YOU GAVE THE NPC AN ITEM!"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="InventoryManager/GrabTimer" to="InventoryManager" method="_on_grab_timer_timeout"]
-[connection signal="mouse_entered" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_mouse_exited"]
-[connection signal="pressed" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/TrashButton" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_trash_button_pressed"]
-[connection signal="pressed" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/UseButton" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_use_button_pressed"]
-[connection signal="pressed" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/SplitButton" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_split_button_pressed"]
-[connection signal="pressed" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/HideDetailsButton" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_hide_details_button_pressed"]
-[connection signal="mouse_entered" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" method="_on_mouse_exited"]
-[connection signal="value_changed" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" method="_on_split_slider_value_changed"]
-[connection signal="pressed" from="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" method="_on_split_button_pressed"]
-[connection signal="mouse_entered" from="ExternalInventory/HBoxContainer/ExternalItemContextUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ExternalInventory/HBoxContainer/ExternalItemContextUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_mouse_exited"]
-[connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/TrashButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_trash_button_pressed"]
-[connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/UseButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_use_button_pressed"]
-[connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/SplitButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_split_button_pressed"]
-[connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/MarginContainer/HideDetailsButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI" method="_on_hide_details_button_pressed"]
-[connection signal="mouse_entered" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_mouse_exited"]
-[connection signal="value_changed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_split_slider_value_changed"]
-[connection signal="pressed" from="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/SplitButton" to="ExternalInventory/HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" method="_on_split_button_pressed"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenGiveUI" to="TestStuff" method="_on_open_give_ui_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItem" to="TestStuff" method="_on_get_item_pressed"]

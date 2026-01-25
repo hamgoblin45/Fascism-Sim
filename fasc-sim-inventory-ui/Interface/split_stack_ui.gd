@@ -2,8 +2,8 @@ extends PanelContainer
 
 var slot_data: InventorySlotData
 
-@onready var split_slider: HSlider = %SplitSlider
-@onready var split_qty: Label = %SplitQty
+@onready var split_slider: HSlider = $MarginContainer/VBoxContainer/HBoxContainer/SplitSlider
+@onready var split_qty: Label = $MarginContainer/VBoxContainer/HBoxContainer/SplitQty
 
 var mouse_on_ui: bool
 

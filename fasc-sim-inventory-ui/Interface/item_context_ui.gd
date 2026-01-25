@@ -3,12 +3,12 @@ extends PanelContainer
 var inventory_data: InventoryData
 var slot_data
 
-@onready var item_name: Label = %ItemName
-@onready var item_descript: RichTextLabel = %ItemDescript
-@onready var item_flavor_text: RichTextLabel = %ItemFlavorText
-@onready var trash_button: Button = %TrashButton
-@onready var use_button: Button = %UseButton
-@onready var split_button: Button = %SplitButton
+@export var item_name: Label
+@export var item_descript: RichTextLabel
+@export var item_flavor_text: RichTextLabel
+@export var trash_button: Button
+@export var use_button: Button
+@export var split_button: Button
 
 var mouse_on_ui: bool = false
 
@@ -17,8 +17,8 @@ func _ready() -> void:
 	EventBus.dialogue_started.connect(_set_button_to_give)
 	EventBus.dialogue_ended.connect(_set_button_to_use)
 
-func _set_context_menu(inv: InventoryData, slot: InventorySlotData):
-	if inv != inventory_data or not slot:
+func _set_context_menu(slot: InventorySlotData):
+	if not slot or not slot.item_data:
 		hide()
 		return
 	show()

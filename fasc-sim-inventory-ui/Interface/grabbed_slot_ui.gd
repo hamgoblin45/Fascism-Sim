@@ -1,21 +1,18 @@
 extends PanelContainer
 
-var slot_data: InventorySlotData
-
 @onready var grabbed_item_texture: TextureRect = %GrabbedItemTexture
 @onready var grabbed_quantity: Label = %GrabbedQuantity
 
 
 func _ready() -> void:
-	EventBus.grabbed_item_slot.connect(_set_grabbed_slot)
+	EventBus.update_grabbed_slot.connect(_update_grabbed_slot)
 
-func _physics_process(_delta: float) -> void:
-	if !slot_data or !visible:
-		return
-	position = get_local_mouse_position()
+func _physics_process(_delta: float) -> void: # Not working, not sure why
+	if visible:
+		position = get_parent().get_local_mouse_position()
 
-func _set_grabbed_slot(slot: InventorySlotData):
-	slot_data = slot
+func _update_grabbed_slot(slot: InventorySlotData):
+	print("Setting grabbed slot in GrabbedSlotUI")
 	
 	if slot == null:
 		_clear_grabbed_slot()
@@ -28,9 +25,10 @@ func _set_grabbed_slot(slot: InventorySlotData):
 		grabbed_quantity.text = str(slot.quantity)
 		grabbed_quantity.show()
 	
-	position = get_local_mouse_position()
+	position = get_parent().get_local_mouse_position()
 
 func _clear_grabbed_slot():
+	print("Clearing grabbed slot in GrabbedSlotUI")
 	hide()
 	grabbed_quantity.hide()
 	grabbed_item_texture.texture = null

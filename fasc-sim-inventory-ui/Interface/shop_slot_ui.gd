@@ -46,6 +46,7 @@ func _update_visuals():
 	else:
 		quantity.hide()
 
+## -- Remove from slot
 func clear_visuals():
 	item_texture.hide()
 	quantity.hide()

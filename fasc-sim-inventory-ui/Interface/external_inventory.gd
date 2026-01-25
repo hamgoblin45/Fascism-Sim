@@ -30,11 +30,10 @@ func _set_inventory(inv_data: InventoryData):
 		slot_ui.parent_inventory = inv_data
 		slot_ui.set_slot_data(slot)
 
-func _on_item_select(inv: InventoryData, slot: InventorySlotData):
-	if inv != inventory_data:
-		return
-	print("External inventory item selected")
+func _on_item_select(slot: InventorySlotData):
+	
 	for slot_ui in slot_container.get_children():
 		slot_ui.selected_panel.hide()
 		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data == slot:
 			slot_ui.selected_panel.show()
+			print("External inventory item selected")

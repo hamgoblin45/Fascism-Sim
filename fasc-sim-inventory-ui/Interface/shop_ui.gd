@@ -9,7 +9,7 @@ const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 @export var illegal_shop_inventory: InventoryData
 
 var shop_inventory_data: InventoryData
-var selected_item: InventorySlotData = null
+var selected_slot: InventorySlotData = null
 
 @onready var shop_item_name: Label = %ShopItemName
 @onready var shop_item_descript: RichTextLabel = %ShopItemDescript
@@ -93,22 +93,22 @@ func _populate_shop(inv: InventoryData):
 
 ## ------- SELECTED ITEM
 func _clear_selected_item():
-	selected_item = null
+	selected_slot = null
 	shop_item_context_ui.hide()
 	buy_qty_slider.hide()
 	buy_qty.hide()
 	for slot_ui in slot_container.get_children():
 		slot_ui.selected_panel.hide()
 
-func _on_item_select(inv: InventoryData, slot_data: InventorySlotData):
-	if selected_item != slot_data:
+func _on_item_select(slot_data: InventorySlotData):
+	if selected_slot != slot_data:
 		_clear_selected_item()
 	
-	if inv != shop_inventory_data or not slot_data:
+	if not slot_data:
 		return
 
 	shop_item_context_ui.show()
-	selected_item = slot_data
+	selected_slot = slot_data
 	print("Setting item context menu in inventory")
 	shop_item_name.text = slot_data.item_data.name
 	shop_item_descript.text = slot_data.item_data.description
@@ -128,12 +128,12 @@ func _on_item_select(inv: InventoryData, slot_data: InventorySlotData):
 ## ------------- BUYING
 
 func _on_buy_button_pressed() -> void:
-	if selected_item:
-		if GameState.money < selected_item.item_data.buy_value:
+	if selected_slot and selected_slot.item_data:
+		if GameState.money < selected_slot.item_data.buy_value:
 			print("TOO POOR!")
 			return
-		GameState.money -= selected_item.item_data.buy_value 
-		EventBus.adding_item.emit(selected_item, buy_qty_slider.value)
+		GameState.money -= selected_slot.item_data.buy_value 
+		EventBus.adding_item.emit(selected_slot, buy_qty_slider.value)
 		_clear_selected_item()
 
 
