@@ -49,7 +49,7 @@ func _set_button_to_use():
 	use_button.text = "USE"
 
 func _on_trash_button_pressed() -> void:
-	EventBus.removing_item.emit(inventory_data, slot_data)
+	EventBus.removing_item.emit(slot_data)
 	_clear_out_context_ui()
 
 func _on_use_button_pressed() -> void:
@@ -58,7 +58,6 @@ func _on_use_button_pressed() -> void:
 			EventBus.item_used.emit(slot_data)
 		"GIVE":
 			EventBus.giving_item.emit(slot_data)
-			EventBus.removing_item_from_inventory.emit(slot_data)
 		"SELL":
 			EventBus.selling_item.emit(slot_data)
 

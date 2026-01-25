@@ -5,8 +5,8 @@ extends Node
 signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String) # Goes to managers, which then emit confirmation signals like "select_item"
 signal inventory_item_updated(slot_data: InventorySlotData) # Emit from Manager to confirm something changed a slot
 
-signal removing_item(inv: InventoryData, slot: InventorySlotData) # Requests removing an item from an inventory
-signal item_removed(inv: InventoryData, slot: InventorySlotData) # Confirms an item's removal
+signal removing_item(slot: InventorySlotData) # Requests removing an item from an inventory
+signal item_removed(slot: InventorySlotData) # Confirms an item's removal
 signal adding_item(item_data: InventorySlotData, qty: int) # Requests adding an item to an inventory
 signal item_added(inv: InventoryData, slot: InventorySlotData) # Confirms an item was added
 

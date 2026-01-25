@@ -6,3 +6,4 @@ var shopping: bool = false # Dictates how inventory UI will react, primarily Usi
 
 
 var money: float = 100
+var pockets_inventory: InventoryData

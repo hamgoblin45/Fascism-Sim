@@ -31,8 +31,10 @@ func _ready() -> void:
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
 	
 	await get_tree().create_timer(0.05).timeout # This makes sure the signals below are connected first
+	
 	# Sets player inventory
 	pocket_slot_container = pockets_inventory_ui.slot_container
+	GameState.pockets_inventory = pockets_inventory_data
 	EventBus.pockets_inventory_set.emit(pockets_inventory_data)
 	
 	# If bags added later, emit setup here
@@ -172,29 +174,53 @@ func can_inventory_fit(item_to_add: InventoryItemData, quantity: int) -> bool:
 
 ## -- REMOVING ITEMS
 
-func _remove_item_from_inventory(inv_data: InventoryData, slot_data: InventorySlotData):
-	print("Removing item %s from inventory" % slot_data.item_data.name)
-	var qty_to_remove = slot_data.quantity
+func _remove_item_from_inventory(slot_data: InventorySlotData):
 	
-	if inv_data == pockets_inventory_data:
-		var pocket_slots = pocket_slot_container.get_children()
-		for i in range(pocket_slots.size() -1, -1, -1):
-			var slot_ui = pocket_slots[i]
-			var slot = slot_ui.slot_data
+	var qty_to_remove = slot_data.quantity
+	var slots
+	if pockets_inventory_data.slot_datas.has(slot_data):
+		print("Removing item %s from inventory" % slot_data.item_data.name)
+		slots = pocket_slot_container.get_children()
+	elif external_inventory_data and external_inventory_data.slot_datas.has(slot_data):
+		slots = external_inventory.slot_container.get_children()
+	else:
+		slots = pocket_slot_container.get_children()
+	for i in range(slots.size() -1, -1, -1):
+		var slot_ui = slots[i]
+		var slot = slot_ui.slot_data
+		
+		# Prioritizes deleting the slot selected, otherwise deletes from the next applicable slot
+		if slot == slot_data:
+			if slot.quantity > qty_to_remove:
+				#Stack has more than amount requested to remove
+				slot.quantity -= qty_to_remove
+				qty_to_remove = 0
+				slot_ui.set_slot_data(slot)
+			else:
+				# Stack is <= to amount requested to remove
+				qty_to_remove -= slot.quantity
+				slot_ui.clear_slot_data(slot)
 			
-			if slot and slot.item_data and slot.item_data.id == slot_data.item_data.id:
-				if slot.quantity > qty_to_remove:
-					#Stack has more than amount requested to remove
-					slot.quantity -= qty_to_remove
-					qty_to_remove = 0
-					slot_ui.set_slot_data(slot)
-				else:
-					# Stack is <= to amount requested to remove
-					qty_to_remove -= slot.quantity
-					slot_ui.clear_slot_data(slot)
-				
-				if qty_to_remove <= 0:
-					print("Could only remove some items, %s still missing" % qty_to_remove)
+			if qty_to_remove <= 0:
+				print("Could only remove some items, %s still missing" % qty_to_remove)
+			return
+	
+	for i in range(slots.size() -1, -1, -1):
+		var slot_ui = slots[i]
+		var slot = slot_ui.slot_data
+		if slot and slot.item_data and slot.item_data.id == slot_data.item_data.id:
+			if slot.quantity > qty_to_remove:
+				#Stack has more than amount requested to remove
+				slot.quantity -= qty_to_remove
+				qty_to_remove = 0
+				slot_ui.set_slot_data(slot)
+			else:
+				# Stack is <= to amount requested to remove
+				qty_to_remove -= slot.quantity
+				slot_ui.clear_slot_data(slot)
+			
+			if qty_to_remove <= 0:
+				print("Could only remove some items, %s still missing" % qty_to_remove)
 
 
 ## Slot Grabbing
