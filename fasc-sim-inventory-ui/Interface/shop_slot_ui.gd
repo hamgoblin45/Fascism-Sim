@@ -9,9 +9,6 @@ var parent_inventory: InventoryData
 @onready var selected_panel: Panel = %SelectedPanel
 
 
-func _ready() -> void:
-	EventBus.inventory_item_updated.connect(_on_item_updated)
-
 func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data
 	if !slot_data or !slot_data.item_data:
@@ -28,14 +25,6 @@ func set_slot_data(new_slot_data: InventorySlotData):
 	else:
 		quantity.hide()
 	EventBus.inventory_item_updated.emit(slot_data)
-
-func _on_item_updated(updated_slot_data: InventorySlotData):
-	# Only updates if slot is actually changed
-	if updated_slot_data == slot_data:
-		if slot_data == null or slot_data.item_data == null:
-			clear_visuals()
-		else:
-			_update_visuals()
 
 func _update_visuals():
 	item_texture.show()

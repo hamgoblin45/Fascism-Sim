@@ -45,7 +45,9 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 		"click":
 			print("Click on %s in %s by inventoryUI" % [slot_ui, inv])
 			# Drop or merge slot if grabbing something
-			if grabbed_slot_data:
+			if grabbed_slot_data and slot_ui is SlotUI:
+				# Disable interaction w/ shop if grabbing an item
+				
 				_handle_drop_or_merge(inv, slot_ui, slot_data)
 				return
 			#If not grabbing anything, select and start grab timer
@@ -58,7 +60,10 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 
 		"r_click":
 			print("R-Click on %s in Inv %s received by inventoryUI" % [slot_data, inv])
-			if grabbed_slot_data:
+			if grabbed_slot_data and slot_ui is SlotUI:
+				# Disable interaction w/ shop if grabbing an item
+				if inv == shop_inventory_data:
+					return
 				var index = slot_ui.get_index()
 				
 				# If slot is empty, create a new one

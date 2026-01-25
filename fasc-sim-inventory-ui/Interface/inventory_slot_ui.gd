@@ -13,6 +13,7 @@ var parent_inventory: InventoryData
 func _ready() -> void:
 	#EventBus.splitting_item_stack.connect(_stack_split)
 	EventBus.inventory_item_updated.connect(_on_item_updated)
+	EventBus.select_item.connect(_select_item)
 
 func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data
@@ -31,8 +32,17 @@ func set_slot_data(new_slot_data: InventorySlotData):
 		quantity.hide()
 	#EventBus.inventory_item_updated.emit(slot_data) # For use by other nodes if needed, locally the same as running _on_item_updated()
 
+func _select_item(data: InventorySlotData):
+	if data and data == slot_data:
+		selected_panel.show()
+		return
+	else:
+		selected_panel.hide()
+	
+
 func _on_item_updated(updated_slot_data: InventorySlotData):
 	# Only updates if slot is actually changed
+	selected_panel.hide()
 	if updated_slot_data == slot_data:
 		if slot_data == null or slot_data.item_data == null:
 			clear_visuals()
