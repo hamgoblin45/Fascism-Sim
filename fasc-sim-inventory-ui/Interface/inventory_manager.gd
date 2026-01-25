@@ -36,10 +36,7 @@ func _ready() -> void:
 	pocket_slot_container = pockets_inventory_ui.slot_container
 	GameState.pockets_inventory = pockets_inventory_data
 	EventBus.pockets_inventory_set.emit(pockets_inventory_data)
-	
 	# If bags added later, emit setup here
-
-
 
 ## -- INVENTORY INTERACTION
 func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_data: InventorySlotData, type: String):
@@ -174,70 +171,43 @@ func can_inventory_fit(item_to_add: InventoryItemData, quantity: int) -> bool:
 
 ## -- REMOVING ITEMS
 
-func _remove_item_from_inventory(slot_data: InventorySlotData):
-	if not slot_data or not slot_data.item_data:
-		return
+func _remove_item_from_inventory(item_data: InventoryItemData, qty_to_remove: int, preferred_slot: InventorySlotData = null):
+	var remaining = qty_to_remove
 	
-	# Which inventory owns this item?
-	var target_inv: InventoryData = null
-	if pockets_inventory_data.slot_datas.has(slot_data):
-		target_inv = pockets_inventory_data
-	elif external_inventory_data and external_inventory_data.slot_datas.has(slot_data):
-		target_inv = external_inventory_data
+	# If a preferred slot was provided, take from that first
+	if preferred_slot and preferred_slot.item_data == item_data:
+		remaining = _take_from_slot(preferred_slot, remaining)
 	
-	if not target_inv:
-		push_error("Could not find an owner inventory when attempting to remove %s" % slot_data.item_data.name)
-		return
+	# If we still need to take more, look for other matching slots
+	if remaining > 0:
+		for slot in pockets_inventory_data.slot_datas:
+			if slot and slot.item_data == item_data:
+				remaining = _take_from_slot(slot, remaining)
 	
-	# Update resource
-	var index = target_inv.slot_datas.find(slot_data)
-	
-	# Removes the whole stack
-	target_inv.slot_datas[index] = null
-	
-	EventBus.inventory_item_updated.emit(slot_data)
 	EventBus.select_item.emit(null)
+
+# Handles the moth of reducing slot quantities and clearing out empty ones
+func _take_from_slot(slot: InventorySlotData, amount_needed: int) -> int:
+	var can_take = min(slot.quantity, amount_needed)
+	slot.quantity -= can_take
+	var still_needed = amount_needed - can_take
 	
-	
-	#var qty_to_remove = slot_data.quantity
-	#var owner_inv: InventoryData
-	#var slots
-	#if pockets_inventory_data.slot_datas.has(slot_data):
-		#print("Removing item %s from inventory" % slot_data.item_data.name)
-		#slots = pocket_slot_container.get_children()
-		#owner_inv = pockets_inventory_data
-	#elif external_inventory_data and external_inventory_data.slot_datas.has(slot_data):
-		#slots = external_inventory.slot_container.get_children()
-		#owner_inv = external_inventory_data
-	#else:
-		#slots = pocket_slot_container.get_children()
-		#owner_inv = pockets_inventory_data
-	#
-	#var index = owner_inv.slot_datas.find(slot_data)
-	#for i in range(slots.size() -1, -1, -1):
-		#var slot_ui = slots[i]
-		#var slot = slot_ui.slot_data
-		#
-		## Prioritizes deleting the slot selected, otherwise deletes from the next applicable slot
-		#if slot == slot_data:
-			#if slot.quantity > qty_to_remove:
-				##Stack has more than amount requested to remove
-				#slot.quantity -= qty_to_remove
-				#qty_to_remove = 0
-				#slot_ui.set_slot_data(slot)
-			#else:
-				## Stack is <= to amount requested to remove
-				#qty_to_remove -= slot.quantity
-				#owner_inv.slot_datas[index] = null
-				#slot_ui.clear_slot_data(slot)
-				#
-				#
-			#
-			#if qty_to_remove <= 0:
-				#print("Could only remove some items, %s still missing" % qty_to_remove)
-			#EventBus.select_item.emit(null)
-			#EventBus.inventory_item_updated.emit(slot_data)
-			#return
+	# Update whatever inventory if we null out a slot
+	if slot.quantity <= 0:
+		_nullify_slot_in_data(slot)
+	else:
+		# Otherwise, update the slot
+		EventBus.inventory_item_updated.emit(slot)
+	return still_needed
+
+func _nullify_slot_in_data(slot: InventorySlotData):
+	if pockets_inventory_data.slot_datas.has(slot):
+		var idx = pockets_inventory_data.slot_datas.find(slot)
+		pockets_inventory_data.slot_datas[idx] = null
+	elif external_inventory_data and external_inventory_data.slot_datas.has(slot):
+		var idx = external_inventory_data.slot_datas.find(slot)
+		external_inventory_data.slot_datas[idx] = null
+	EventBus.inventory_item_updated.emit(slot)
 
 ## Slot Grabbing
 

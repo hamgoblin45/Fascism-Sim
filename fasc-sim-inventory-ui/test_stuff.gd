@@ -41,7 +41,7 @@ func _on_open_container_pressed() -> void:
 func _on_remove_item_pressed() -> void:
 	var test_slot = InventorySlotData.new()
 	test_slot.item_data = preload("uid://fligqycw40pd")
-	EventBus.removing_item.emit(test_slot)
+	EventBus.removing_item.emit(test_slot.item_data, test_slot.quantity, test_slot)
 
 func _on_get_item_pressed() -> void:
 	var test_item = preload("uid://fligqycw40pd")
@@ -57,7 +57,7 @@ func _on_get_item_stackable_pressed() -> void:
 func _on_remove_item_stackable_pressed() -> void:
 	var test_slot = InventorySlotData.new()
 	test_slot.item_data = preload("uid://bu7k1xa16ud57")
-	EventBus.removing_item.emit(test_slot)
+	EventBus.removing_item.emit(test_slot.item_data, test_slot.quantity, test_slot)
 
 
 func _on_open_shop_ui_pressed() -> void:
