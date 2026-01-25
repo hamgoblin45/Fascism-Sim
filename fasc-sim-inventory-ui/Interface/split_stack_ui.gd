@@ -47,7 +47,7 @@ func _on_split_button_pressed() -> void:
 	
 	EventBus.inventory_item_updated.emit(slot_data)
 	
-	EventBus.splitting_item_stack.emit(stack_data, slot_data)
+	EventBus.splitting_item_stack.emit(stack_data)
 	hide()
 
 

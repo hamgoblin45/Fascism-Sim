@@ -56,10 +56,7 @@ func clear_visuals():
 	quantity.hide()
 	tooltip_text = ""
 
-func clear_slot_data(slot: InventorySlotData):
-	if slot and slot != slot_data: return # Verify this slot is the right one
-	
-	print("Clear slot run on InventorySlotUI. Slot: %s" % slot)
+func clear_slot_data(_slot: InventorySlotData):
 	item_texture.texture = null
 	slot_data = null
 	clear_visuals()

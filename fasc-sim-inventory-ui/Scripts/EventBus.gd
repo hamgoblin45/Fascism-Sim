@@ -24,7 +24,7 @@ signal item_sold(slot: InventorySlotData) # Confirms sale
 
 signal select_item(slot_data: InventorySlotData) # When clicking an item in an inventory, used to set context ui
 signal open_split_stack_ui(slot_data: InventorySlotData)
-signal splitting_item_stack(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Requests splitting a slot
+signal splitting_item_stack(grab_slot_data: InventorySlotData) # Requests splitting a slot
 signal item_stack_split(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Confirms a slot was split
 
 signal using_item(slot_data: InventorySlotData) # Requests use of an item

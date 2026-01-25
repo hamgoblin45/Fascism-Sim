@@ -25,6 +25,7 @@ func _ready() -> void:
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
 	EventBus.adding_item.connect(_add_item_to_inventory)
 	EventBus.removing_item.connect(_remove_item_from_inventory)
+	EventBus.splitting_item_stack.connect(_split_item_stack)
 	#EventBus.selling_item.connect(_sell_item)
 	#EventBus.using_item.connect(_use_item)
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
@@ -81,38 +82,6 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 					grabbed_slot_data = null
 				
 				EventBus.update_grabbed_slot.emit(grabbed_slot_data)
-						
-						
-				## If there is already something in the slot try to merge one into
-				#if slot_data and slot_data.item_data:
-					#if grabbed_slot_data != slot_data:
-						#print("Trying to merge grabbed slot with existing slot")
-						#if grabbed_slot_data.item_data == slot_data.item_data and slot_data.item_data.stackable:
-							#slot_data.quantity += 1
-							#grabbed_slot_data.quantity -= 1
-							#EventBus.update_grabbed_slot.emit(slot_data)
-							#EventBus.inventory_item_updated.emit(slot_data)
-							##slot.set_slot_data(slot_data)
-							#
-				#else:
-					#print("Trying to drop a single item into an empty slot, creating slot data")
-					#slot_data = InventorySlotData.new()
-					#slot_data.item_data = grabbed_slot_data.item_data
-					#slot_data.quantity = 1
-					#grabbed_slot_data.quantity -= 1
-							#
-						##elif grabbed_slot_data.item_data.stackable
-				#if grabbed_slot_data.quantity <= 0:
-					#print("Grabbed slot empty")
-					#grabbed_slot_data = null
-					#EventBus.update_grabbed_slot.emit(null)
-				#
-				#EventBus.inventory_item_updated.emit(slot_data)
-				##slot.set_slot_data(slot_data)
-				#inv_ui._set_grabbed_slot_ui()
-			##else:
-				##if slot_data and slot_data.item_data:
-					##item_context_ui.set_context_menu(slot_data)
 
 func _physics_process(_delta: float) -> void:
 # Stop grabbing if click released early
@@ -268,3 +237,8 @@ func _on_grab_timer_timeout() -> void:
 		# Remove temp data
 		pending_grab_slot_data = null
 		pending_grab_slot_ui = null
+
+func _split_item_stack(new_grab_data: InventorySlotData):
+	grabbed_slot_data = new_grab_data
+	EventBus.update_grabbed_slot.emit(new_grab_data)
+	EventBus.select_item.emit(null)
