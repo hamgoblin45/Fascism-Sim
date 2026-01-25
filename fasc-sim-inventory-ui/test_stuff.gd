@@ -2,21 +2,21 @@ extends Control
 
 const TEST_EXTERNAL_INVENTORY = preload("uid://qecerdvqb2fx")
 
+var test_inv_data: InventoryData
+
 @onready var open_give_ui: Button = $TestPanel/VBoxContainer/OpenGiveUI
 @onready var get_item: Button = $TestPanel/VBoxContainer/GetItem
 
 @onready var external_inventory: PanelContainer = %ExternalInventory
 
-
-var in_dialogue: bool = false
-
 func _ready() -> void:
 	EventBus.giving_item.connect(_on_give_item)
+	test_inv_data = TEST_EXTERNAL_INVENTORY.duplicate(true)
 
 func _on_open_give_ui_pressed() -> void:
-	in_dialogue = !in_dialogue
-	%DialogueLabel.visible = in_dialogue
-	if in_dialogue:
+	GameState.in_dialogue = !GameState.in_dialogue
+	%DialogueLabel.visible = GameState.in_dialogue
+	if GameState.in_dialogue:
 		EventBus.dialogue_started.emit()
 		
 	else:
@@ -31,7 +31,7 @@ func _on_give_item(slot: InventorySlotData):
 func _on_open_container_pressed() -> void:
 	if !external_inventory.visible:
 		print("Opening continare")
-		EventBus.setting_external_inventory.emit(TEST_EXTERNAL_INVENTORY)
+		EventBus.setting_external_inventory.emit(test_inv_data)
 		return
 	else:
 		print("Closing container")

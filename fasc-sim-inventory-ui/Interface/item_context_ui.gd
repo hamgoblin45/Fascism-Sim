@@ -13,17 +13,20 @@ var slot_data
 var mouse_on_ui: bool = false
 
 func _ready() -> void:
-	#EventBus.select_item.connect(_set_context_menu)
 	EventBus.dialogue_started.connect(_set_button_to_give)
 	EventBus.dialogue_ended.connect(_set_button_to_use)
 
 func set_context_menu(slot: InventorySlotData):
 	if not slot or not slot.item_data:
-		hide()
+		_clear_out_context_ui()
 		return
+	split_button.hide()
+	use_button.hide()
+	
 	show()
 	slot_data = slot
-	print("Setting item context menu in inventory")
+	
+	print("Setting item context menu in inventory %s" % inventory_data)
 	item_name.text = slot_data.item_data.name
 	item_descript.text = slot_data.item_data.description
 	item_flavor_text.text = slot_data.item_data.flavor_text
@@ -34,8 +37,10 @@ func set_context_menu(slot: InventorySlotData):
 		use_button.show()
 		if GameState.shopping:
 			use_button.text = "SELL"
+		elif GameState.in_dialogue:
+			use_button.text = "GIVE"
 		else:
-			_set_button_to_use()
+			use_button.text = "USE"
 
 
 func _clear_out_context_ui():

@@ -39,6 +39,11 @@ func _on_item_select(slot: InventorySlotData):
 		#if inv != inventory_data:
 			#return
 		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data == slot:
+			if slot_ui.selected_panel.visible:
+				slot_ui.selected_panel.hide()
+				item_context_ui.set_context_menu(null)
+				return
+			print("Setting context menu")
 			item_context_ui.set_context_menu(slot)
 			#slot_ui.selected_panel.show()
 			return

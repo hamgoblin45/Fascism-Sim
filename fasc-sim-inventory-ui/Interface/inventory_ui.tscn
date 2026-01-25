@@ -158,6 +158,7 @@ text = "10"
 
 [node name="GrabbedSlotUI" parent="." instance=ExtResource("9_c0f0r")]
 unique_name_in_owner = true
+top_level = true
 layout_mode = 0
 
 [node name="TestStuff" type="Control" parent="."]
