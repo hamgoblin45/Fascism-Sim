@@ -99,6 +99,7 @@ func _physics_process(_delta: float) -> void:
 
 func _set_external_inventory(inv_data: InventoryData):
 	external_inventory_data = inv_data
+	EventBus.external_inventory_set.emit(inv_data)
 
 ## -- ADDING ITEMS
 

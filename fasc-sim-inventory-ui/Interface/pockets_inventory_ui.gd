@@ -34,11 +34,15 @@ func _set_inventory(inv_data: InventoryData):
 func _on_item_select(slot: InventorySlotData):
 	print("Pockets inventory item selected")
 	for slot_ui in slot_container.get_children():
+		item_context_ui.set_context_menu(null)
 		slot_ui.selected_panel.hide()
 		#if inv != inventory_data:
 			#return
 		if slot_ui.slot_data and slot_ui.slot_data.item_data and slot_ui.slot_data == slot:
+			item_context_ui.set_context_menu(slot)
 			slot_ui.selected_panel.show()
+			return
+			
 
 func _update_money(value: float):
 	money_value.text = str(snapped(value, 0.01))

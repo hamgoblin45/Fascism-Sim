@@ -13,11 +13,11 @@ var slot_data
 var mouse_on_ui: bool = false
 
 func _ready() -> void:
-	EventBus.select_item.connect(_set_context_menu)
+	#EventBus.select_item.connect(_set_context_menu)
 	EventBus.dialogue_started.connect(_set_button_to_give)
 	EventBus.dialogue_ended.connect(_set_button_to_use)
 
-func _set_context_menu(slot: InventorySlotData):
+func set_context_menu(slot: InventorySlotData):
 	if not slot or not slot.item_data:
 		hide()
 		return
