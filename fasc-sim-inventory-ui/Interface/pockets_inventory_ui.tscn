@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmqlxplie777"]
+[gd_scene load_steps=11 format=3 uid="uid://bmqlxplie777"]
 
 [ext_resource type="Script" uid="uid://cmfnyi8auyirc" path="res://Interface/pockets_inventory_ui.gd" id="1_x7uns"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="2_33qv7"]
-[ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/inventory_slot_ui.tscn" id="3_ucvu7"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="4_wcso4"]
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="5_lwv56"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="6_phiob"]
@@ -10,50 +9,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xywkj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c0f0r"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xrn1"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y5k6"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gur8t"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0f0r"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hvb16"]
 atlas = ExtResource("4_wcso4")
@@ -110,30 +65,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 6
-
-[node name="InventorySlotUI" parent="PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("3_ucvu7")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
-
-[node name="InventorySlotUI2" parent="PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("3_ucvu7")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3y5k6")
-
-[node name="InventorySlotUI3" parent="PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("3_ucvu7")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gur8t")
-
-[node name="InventorySlotUI4" parent="PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("3_ucvu7")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="InventorySlotUI5" parent="PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("3_ucvu7")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
-
-[node name="InventorySlotUI6" parent="PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer" instance=ExtResource("3_ucvu7")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c0f0r")
 
 [node name="MoneyRow" type="HBoxContainer" parent="PocketsMasterContainer/BarDetailsRow/PocketsContainer"]
 layout_mode = 2

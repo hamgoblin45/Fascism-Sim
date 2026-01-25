@@ -17,7 +17,9 @@ func _ready() -> void:
 	EventBus.money_updated.connect(_update_money)
 	EventBus.select_item.connect(_on_item_select)
 
-func _set_inventory(inv_data: InventoryData): # Done
+func _set_inventory(inv_data: InventoryData):
+	print("Setting pocket inventory")
+	# Clears out old slots
 	for child in slot_container.get_children():
 		child.queue_free()
 	for slot in inv_data.slot_datas:

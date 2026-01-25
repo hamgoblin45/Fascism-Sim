@@ -29,6 +29,7 @@ func _ready() -> void:
 	#EventBus.using_item.connect(_use_item)
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
 	
+	await get_tree().create_timer(0.05).timeout # This makes sure the signals below are connected first
 	# Sets player inventory
 	pocket_slot_container = pockets_inventory_ui.slot_container
 	EventBus.pockets_inventory_set.emit(pockets_inventory_data)
@@ -38,24 +39,24 @@ func _ready() -> void:
 
 
 ## -- INVENTORY INTERACTION
-func _on_inventory_interact(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String):
+func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_data: InventorySlotData, type: String):
 	match type:
 		"click":
-			print("Click on %s in %s by inventoryUI" % [slot, inv])
+			print("Click on %s in %s by inventoryUI" % [slot_ui, inv])
 			# Drop or merge slot if grabbing something
 			if grabbed_slot_data:
-				_handle_drop_or_merge(slot_data)
+				_handle_drop_or_merge(inv, slot_ui, slot_data)
+				return
 			#If not grabbing anything, select and start grab timer
-			else:
-				EventBus.select_item.emit(slot_data)
-				if slot_data and slot_data.item_data:
+			EventBus.select_item.emit(slot_data)
+			if slot_data and slot_data.item_data:
 
-					# START GRAB PROCESS
-					if slot is SlotUI: # Don't grab shop slots
-						_start_grabbing_slot(slot, slot_data)
+				# START GRAB PROCESS
+				if slot_ui is SlotUI: # Don't grab shop slots
+					_start_grabbing_slot(slot_ui, slot_data)
 
 		"r_click":
-			print("R-Click on %s in Inv %s received by inventoryUI" % [slot, inv])
+			print("R-Click on %s in Inv %s received by inventoryUI" % [slot_data, inv])
 			if grabbed_slot_data:
 				# If there is already something in the slot try to merge one into
 				if slot_data and slot_data.item_data:
@@ -205,31 +206,33 @@ func _start_grabbing_slot(slot: PanelContainer, slot_data: InventorySlotData):
 	pending_grab_slot_ui = slot
 	grab_timer.start()
 
-func _handle_drop_or_merge(slot_data):
+func _handle_drop_or_merge(inv: InventoryData, slot_ui: PanelContainer, target_slot_data: InventorySlotData):
 	# Confirms item exists and is stackable
-	if slot_data and slot_data.item_data and slot_data.item_data.id == grabbed_slot_data.item_data.id and slot_data.item_data.stackable:
+	if target_slot_data and target_slot_data.item_data and target_slot_data.item_data == grabbed_slot_data.item_data:
+		if target_slot_data.item_data.stackable:
 		# Check for mergability
-		var space_left = slot_data.item_data.max_stack_size - slot_data.quantity
-		if space_left > 0:
-			var amount_to_move = min(grabbed_slot_data.quantity, space_left)
-			slot_data.quantity += amount_to_move
-			grabbed_slot_data.quantity -= amount_to_move
-			
-			#slot.set_slot_data(slot_data) # 
-			EventBus.inventory_item_updated.emit(slot_data) # Update the inventory slot
-			
-			EventBus.update_grabbed_slot.emit(grabbed_slot_data) # Update the grabbed slot
-			print("Item merge success")
-			return
-	else:
+			var space_left = target_slot_data.item_data.max_stack_size - target_slot_data.quantity
+			if space_left > 0:
+				var amount_to_move = min(grabbed_slot_data.quantity, space_left)
+				target_slot_data.quantity += amount_to_move
+				grabbed_slot_data.quantity -= amount_to_move
+				# Clear grabbed slot if empty
+				if grabbed_slot_data.quantity <= 0:
+					grabbed_slot_data = null
+				
+				# Update UI
+				EventBus.inventory_item_updated.emit(target_slot_data)
+				EventBus.update_grabbed_slot.emit(grabbed_slot_data)
+				return
+	
 		## SWAP / DROP LOGIC
-		var temp_data = slot_data
-		EventBus.inventory_item_updated.emit(slot_data) # Update the inventory slot
-		
-		if temp_data and temp_data.item_data:
-			grabbed_slot_data = temp_data
-		
-		EventBus.update_grabbed_slot.emit(grabbed_slot_data) # Update the grabbed slot
+	var index = slot_ui.get_index()
+	var temp_grabbed = grabbed_slot_data
+	grabbed_slot_data = target_slot_data
+	inv.slot_datas[index] = temp_grabbed
+	
+	slot_ui.set_slot_data(temp_grabbed)
+	EventBus.update_grabbed_slot.emit(grabbed_slot_data)
 
 func _on_grab_timer_timeout() -> void:
 	if pending_grab_slot_data:

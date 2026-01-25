@@ -37,11 +37,6 @@ func _set_context_menu(slot: InventorySlotData):
 		else:
 			_set_button_to_use()
 
-#func _physics_process(_delta: float) -> void:
-	#if !visible: return
-	#if Input.is_action_just_pressed("click") and not mouse_on_ui \
-	#or Input.is_action_just_pressed("back"):
-		#hide()
 
 func _clear_out_context_ui():
 	slot_data = null
@@ -67,21 +62,9 @@ func _on_use_button_pressed() -> void:
 		"SELL":
 			EventBus.selling_item.emit(slot_data)
 
-
 func _on_split_button_pressed() -> void:
 	EventBus.open_split_stack_ui.emit(slot_data)
 	print("Split button pressed on Context Menu")
-#
-#
-#func _on_mouse_entered() -> void:
-	#print("Mouse on Context Menu")
-	#mouse_on_ui = true
-#
-#
-#func _on_mouse_exited() -> void:
-	#print("Mouse left Context Menu")
-	#mouse_on_ui = false
-
 
 func _on_hide_details_button_pressed() -> void:
 	_clear_out_context_ui()

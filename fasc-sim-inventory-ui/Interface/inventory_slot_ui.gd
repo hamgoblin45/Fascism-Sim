@@ -29,7 +29,7 @@ func set_slot_data(new_slot_data: InventorySlotData):
 		quantity.text = str(slot_data.quantity)
 	else:
 		quantity.hide()
-	EventBus.inventory_item_updated.emit(slot_data) # For use by other nodes if needed, locally the same as running _on_item_updated()
+	#EventBus.inventory_item_updated.emit(slot_data) # For use by other nodes if needed, locally the same as running _on_item_updated()
 
 func _on_item_updated(updated_slot_data: InventorySlotData):
 	# Only updates if slot is actually changed
@@ -37,6 +37,7 @@ func _on_item_updated(updated_slot_data: InventorySlotData):
 		if slot_data == null or slot_data.item_data == null:
 			clear_visuals()
 		else:
+			set_slot_data(updated_slot_data)
 			_update_visuals()
 
 func _update_visuals():
@@ -61,17 +62,6 @@ func clear_slot_data(slot: InventorySlotData):
 	item_texture.texture = null
 	slot_data = null
 	clear_visuals()
-	
-	#EventBus.inventory_item_updated.emit(null) # This doesn't make sense, it would trigger every slot without slot data
-#
-#func _stack_split(_result_slot: InventorySlotData, _orig_slot: InventorySlotData):
-	##print("Change quantity called on inv_slot_ui. New slot: %s, Orig Slot: %s" % [result_slot, orig_slot])
-	#if slot_data.quantity > 1 and slot_data.item_data.stackable:
-		#quantity.show()
-		#quantity.text = str(slot_data.quantity)
-	#elif slot_data.quantity <= 0:
-		#clear_slot_data(slot_data)
-	#EventBus.inventory_item_updated.emit(slot_data)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
