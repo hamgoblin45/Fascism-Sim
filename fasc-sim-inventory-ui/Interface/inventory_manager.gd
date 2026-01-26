@@ -22,8 +22,8 @@ var pocket_slot_container: GridContainer
 
 func _ready() -> void:
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
-	EventBus.adding_item.connect(_add_item_to_inventory)
-	EventBus.removing_item.connect(_remove_item_from_inventory)
+	EventBus.adding_item.connect(_on_adding_item_request)
+	EventBus.removing_item.connect(_on_removing_item_request)
 	EventBus.request_pockets_inventory.connect(_on_pockets_request)
 	EventBus.splitting_item_stack.connect(_split_item_stack)
 	#EventBus.selling_item.connect(_sell_item)
@@ -124,6 +124,17 @@ func _set_external_inventory(inv_data: InventoryData):
 	print("InventoryManager: setting external inv")
 	external_inventory_data = inv_data
 	EventBus.external_inventory_set.emit(inv_data)
+
+## ---- BRIDGE FUNCTIONS (allows adding / removing items from outside functions)
+
+func _on_adding_item_request(item_data: InventoryItemData, qty: int):
+	# Defaults to adding items to pockets
+	_add_item_to_inventory(pockets_inventory_data, item_data, qty)
+
+func _on_removing_item_request(item_data: InventoryItemData, qty: int, slot: InventorySlotData):
+	_remove_item_from_inventory(item_data, qty, slot)
+
+
 
 ## -- ADDING ITEMS
 
