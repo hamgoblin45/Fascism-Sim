@@ -9,8 +9,10 @@ var slot_data
 @export var trash_button: Button
 @export var use_button: Button
 @export var split_button: Button
+@export var drop_button: Button
 
 var mouse_on_ui: bool = false
+var trash_confirmed: bool = false
 
 func _ready() -> void:
 	EventBus.select_item.connect(set_context_menu)
@@ -25,6 +27,9 @@ func set_context_menu(slot: InventorySlotData):
 		_clear_out_context_ui()
 		return
 	
+	trash_confirmed = false
+	trash_button.text = "TRASH"
+	
 	split_button.hide()
 	use_button.hide()
 	
@@ -36,6 +41,7 @@ func set_context_menu(slot: InventorySlotData):
 	item_descript.text = slot_data.item_data.description
 	item_flavor_text.text = slot_data.item_data.flavor_text
 	
+	drop_button.show()
 	if slot_data.item_data.stackable and slot_data.quantity > 1:
 		split_button.show()
 	if slot_data.item_data.useable:
@@ -49,13 +55,27 @@ func set_context_menu(slot: InventorySlotData):
 
 
 func _clear_out_context_ui():
+	trash_confirmed = false
+	trash_button.text = "TRASH"
+	trash_button.modulate = Color.WHITE # Reset trash button color
 	slot_data = null
 	hide()
 
 
 func _on_trash_button_pressed() -> void:
-	EventBus.removing_item.emit(slot_data.item_data, slot_data.quantity, slot_data)
-	_clear_out_context_ui()
+	if not trash_confirmed:
+		# First click: ask to confirm trash
+		trash_confirmed = true
+		trash_button.text = "SURE?"
+		trash_button.modulate = Color.RED
+	
+	else:
+		
+		# Second click: actually removes
+		
+		
+		EventBus.removing_item.emit(slot_data.item_data, slot_data.quantity, slot_data)
+		_clear_out_context_ui()
 
 func _on_use_button_pressed() -> void:
 	match use_button.text:
@@ -71,4 +91,12 @@ func _on_split_button_pressed() -> void:
 	print("Split button pressed on Context Menu")
 
 func _on_hide_details_button_pressed() -> void:
+	_clear_out_context_ui()
+
+
+func _on_drop_button_pressed() -> void:
+	EventBus.removing_item.emit(slot_data.item_data, slot_data.quantity, slot_data)
+	
+	EventBus.item_discarded.emit(slot_data, get_global_mouse_position())
+	
 	_clear_out_context_ui()

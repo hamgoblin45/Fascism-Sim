@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmqlxplie777"]
+[gd_scene load_steps=10 format=3 uid="uid://bmqlxplie777"]
 
 [ext_resource type="Script" uid="uid://cmfnyi8auyirc" path="res://Interface/pockets_inventory_ui.gd" id="1_x7uns"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="2_33qv7"]
@@ -13,10 +13,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_hvb16"]
 atlas = ExtResource("4_wcso4")
 region = Rect2(224, 384, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3y5k6"]
-atlas = ExtResource("4_wcso4")
-region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xywkj"]
 bg_color = Color(0.18431373, 0.17254902, 0.13725491, 1)
@@ -81,9 +77,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "0"
 
-[node name="PocketItemContextUI" type="PanelContainer" parent="PocketsMasterContainer/BarDetailsRow" node_paths=PackedStringArray("item_name", "item_descript", "item_flavor_text", "trash_button", "use_button", "split_button")]
+[node name="PocketItemContextUI" type="PanelContainer" parent="PocketsMasterContainer/BarDetailsRow" node_paths=PackedStringArray("item_name", "item_descript", "item_flavor_text", "trash_button", "use_button", "split_button", "drop_button")]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -95,6 +90,7 @@ item_flavor_text = NodePath("MarginContainer/VBoxContainer/ItemFlavorText")
 trash_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/TrashButton")
 use_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/UseButton")
 split_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/SplitButton")
+drop_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/DropButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI"]
 layout_mode = 2
@@ -153,6 +149,12 @@ layout_mode = 2
 mouse_filter = 1
 text = "TRASH"
 
+[node name="DropButton" type="Button" parent="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+text = "DROP"
+
 [node name="UseButton" type="Button" parent="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -164,12 +166,6 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "SPLIT"
-
-[node name="HideDetailsButton" type="TextureButton" parent="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = SubResource("AtlasTexture_3y5k6")
 
 [node name="PocketsSplitStackUI" type="PanelContainer" parent="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI"]
 unique_name_in_owner = true
@@ -218,9 +214,9 @@ text = "Split"
 [connection signal="mouse_entered" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_mouse_exited"]
 [connection signal="pressed" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/TrashButton" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_trash_button_pressed"]
+[connection signal="pressed" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/DropButton" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_drop_button_pressed"]
 [connection signal="pressed" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/UseButton" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_use_button_pressed"]
 [connection signal="pressed" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/SplitButton" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_split_button_pressed"]
-[connection signal="pressed" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/MarginContainer/HideDetailsButton" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI" method="_on_hide_details_button_pressed"]
 [connection signal="mouse_entered" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" method="_on_mouse_exited"]
 [connection signal="value_changed" from="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer/SplitSlider" to="PocketsMasterContainer/BarDetailsRow/PocketItemContextUI/PocketsSplitStackUI" method="_on_split_slider_value_changed"]

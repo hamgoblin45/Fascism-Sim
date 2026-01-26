@@ -176,6 +176,8 @@ func _remove_item_from_inventory(item_data: InventoryItemData, qty_to_remove: in
 			if slot and slot.item_data == item_data:
 				print("InventoryManager: _remove_item_from_inventory: non-specific match found, attempting to take from it...")
 				remaining = _take_from_slot(slot, remaining)
+				if remaining <= 0: break
+			
 	
 	EventBus.select_item.emit(null)
 
@@ -196,15 +198,19 @@ func _take_from_slot(slot: InventorySlotData, amount_needed: int) -> int:
 	return still_needed
 
 func _nullify_slot_in_data(slot: InventorySlotData):
+	var target_inv: InventoryData = null
 	if pockets_inventory_data.slot_datas.has(slot):
 		print("InventoryManager: _nullify_slot_in_data: attempting to nullify %s in pockets inventory" % slot)
-		var idx = pockets_inventory_data.slot_datas.find(slot)
-		pockets_inventory_data.slot_datas[idx] = null
+		target_inv = pockets_inventory_data
 	elif external_inventory_data and external_inventory_data.slot_datas.has(slot):
 		print("InventoryManager: _nullify_slot_in_data: attempting to nullify %s in external inventory" % slot)
-		var idx = external_inventory_data.slot_datas.find(slot)
-		external_inventory_data.slot_datas[idx] = null
-	EventBus.inventory_item_updated.emit(slot)
+		target_inv = external_inventory_data
+	
+	if target_inv:
+		var idx = target_inv.slot_datas.find(slot)
+		target_inv.slot_datas[idx] = null
+	
+		EventBus.inventory_item_updated.emit(slot)
 
 ## Slot Grabbing
 func _start_grabbing_slot(slot: PanelContainer, slot_data: InventorySlotData):

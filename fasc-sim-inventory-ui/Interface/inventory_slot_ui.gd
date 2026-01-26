@@ -44,8 +44,8 @@ func _on_item_updated(updated_slot_data: InventorySlotData):
 	
 	selected_panel.hide()
 	if updated_slot_data == slot_data:
-		if slot_data == null or slot_data.item_data == null:
-			clear_visuals()
+		if slot_data == null or slot_data.quantity <= 0 or slot_data.item_data == null:
+			clear_slot_data(null)
 		else:
 			print("InventorySlotUI: _on_item_updated running...")
 			set_slot_data(updated_slot_data)
