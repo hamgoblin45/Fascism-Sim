@@ -36,7 +36,7 @@ func set_context_menu(slot: InventorySlotData):
 	show()
 	slot_data = slot
 	
-	print("ItemContextUI: set_context_menu: Setting context UI to %s in inv:" % [slot, inventory_data])
+	print("ItemContextUI: set_context_menu: Setting context UI to %s in inv: %s" % [slot, inventory_data])
 	item_name.text = slot_data.item_data.name
 	item_descript.text = slot_data.item_data.description
 	item_flavor_text.text = slot_data.item_data.flavor_text
