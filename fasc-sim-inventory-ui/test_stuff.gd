@@ -44,23 +44,28 @@ func _on_give_item(slot: InventorySlotData):
 
 func _on_remove_item_pressed() -> void:
 	var test_slot = InventorySlotData.new()
-	test_slot.item_data = preload("uid://fligqycw40pd")
+	test_slot.item_data = preload("uid://fligqycw40pd").duplicate(true)
 	EventBus.removing_item.emit(test_slot.item_data, test_slot.quantity, test_slot)
 
 func _on_get_item_pressed() -> void:
-	var test_item = preload("uid://fligqycw40pd")
+	var test_item = preload("uid://fligqycw40pd").duplicate(true)
+	var new_slot = InventorySlotData.new()
+	new_slot.item_data = test_item
 	#test_slot.item_data = preload("uid://bu7k1xa16ud57")
 	EventBus.adding_item.emit(test_item, 1)
 
 func _on_get_item_stackable_pressed() -> void:
-	var test_item = preload("uid://bu7k1xa16ud57")
+	var test_item = preload("uid://bu7k1xa16ud57").duplicate(true)
 	var quantity = 4
+	var new_slot = InventorySlotData.new()
+	new_slot.item_data = test_item
+	new_slot.quantity = quantity
 	EventBus.adding_item.emit(test_item, quantity)
 
 
 func _on_remove_item_stackable_pressed() -> void:
 	var test_slot = InventorySlotData.new()
-	test_slot.item_data = preload("uid://bu7k1xa16ud57")
+	test_slot.item_data = preload("uid://bu7k1xa16ud57").duplicate(true)
 	EventBus.removing_item.emit(test_slot.item_data, test_slot.quantity, test_slot)
 
 

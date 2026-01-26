@@ -3,11 +3,11 @@ extends Node
 
 
 signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String) # Goes to managers, which then emit confirmation signals like "select_item"
-signal inventory_item_updated(slot_data: InventorySlotData) # Emit from Manager to confirm something changed a slot
+signal inventory_item_updated(inv_data: InventorySlotData, index: int) # Emit from Manager to confirm something changed a slot
 
 signal removing_item(item: InventoryItemData, qty: int, slot: InventorySlotData) # Requests removing an item from an inventory
 
-signal adding_item(item_data: InventorySlotData, qty: int) # Requests adding an item to an inventory
+signal adding_item(item_data: InventoryItemData, qty: int) # Requests adding an item to an inventory
 
 signal update_grabbed_slot(slot: InventorySlotData) # for picking up items between inventory slots. emit null to clear out
 

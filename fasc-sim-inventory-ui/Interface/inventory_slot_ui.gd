@@ -39,16 +39,17 @@ func _select_item(data: InventorySlotData):
 	selected_panel.visible = (data == slot_data and data != null)
 	
 
-func _on_item_updated(updated_slot_data: InventorySlotData):
+func _on_item_updated(inv_data: InventoryData, index: int):
 	# Only updates if slot is actually changed
-	
-	selected_panel.hide()
-	if updated_slot_data == slot_data:
-		if slot_data == null or slot_data.quantity <= 0 or slot_data.item_data == null:
+	if inv_data == parent_inventory and index == get_index():
+		selected_panel.hide()
+		
+		var new_data = parent_inventory.slot_datas[index]
+		if new_data == null or new_data.quantity <= 0:
 			clear_slot_data(null)
 		else:
 			print("InventorySlotUI: _on_item_updated running...")
-			set_slot_data(updated_slot_data)
+			set_slot_data(new_data)
 			_update_visuals()
 
 func _update_visuals():
