@@ -10,7 +10,6 @@ var test_inv_data: InventoryData
 @onready var external_inventory: PanelContainer = %ExternalInventory
 
 func _ready() -> void:
-	EventBus.giving_item.connect(_on_give_item)
 	test_inv_data = TEST_EXTERNAL_INVENTORY.duplicate(true)
 
 func _on_open_give_ui_pressed() -> void:

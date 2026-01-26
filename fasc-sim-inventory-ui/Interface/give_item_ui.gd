@@ -9,7 +9,7 @@ extends PanelContainer
 func _ready() -> void:
 	EventBus.dialogue_started.connect(show)
 	EventBus.dialogue_ended.connect(hide)
-	EventBus.giving_item.connect(_give_item)
+
 
 func _give_item(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data

@@ -19,24 +19,29 @@ var pocket_slot_container: GridContainer
 @onready var grab_timer: Timer = %GrabTimer
 
 
-
-
 func _ready() -> void:
 	EventBus.inventory_interacted.connect(_on_inventory_interact)
 	EventBus.adding_item.connect(_add_item_to_inventory)
 	EventBus.removing_item.connect(_remove_item_from_inventory)
+	EventBus.request_pockets_inventory.connect(_on_pockets_request)
 	EventBus.splitting_item_stack.connect(_split_item_stack)
 	#EventBus.selling_item.connect(_sell_item)
 	#EventBus.using_item.connect(_use_item)
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
 	
-	await get_tree().create_timer(0.05).timeout # This makes sure the signals below are connected first
-	
+	call_deferred("_set_player_inventory")
+
+
+func _set_player_inventory():
 	# Sets player inventory
 	pocket_slot_container = pockets_inventory_ui.slot_container
 	GameState.pockets_inventory = pockets_inventory_data
 	EventBus.pockets_inventory_set.emit(pockets_inventory_data)
 	# If bags added later, emit setup here
+
+func _on_pockets_request():
+	print("Manager: UI requested inventory, sending data...")
+	EventBus.pockets_inventory_set.emit(pockets_inventory_data)
 
 ## -- INVENTORY INTERACTION
 func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_data: InventorySlotData, type: String):
@@ -108,42 +113,29 @@ func _set_external_inventory(inv_data: InventoryData):
 ## -- ADDING ITEMS
 
 func _add_item_to_inventory(item_to_add: InventoryItemData, qty_to_add: int):
-	if can_inventory_fit(item_to_add, qty_to_add):
-		print("Adding item %s to inventory" % item_to_add.name)
-		
+	var remaining = qty_to_add
+
 		## Attempt to merge existing slots if stackable
-		if item_to_add.stackable:
-			for slot_ui in pockets_inventory_ui.slot_container.get_children():
-				var slot = slot_ui.slot_data
-				if slot and slot.item_data and slot.item_data.id == item_to_add.id:
-					var space_in_stack = item_to_add.max_stack_size - slot.quantity
-					if space_in_stack > 0:
-						var qty_to_fill = min(qty_to_add, space_in_stack)
-						slot.quantity += qty_to_fill
-						qty_to_add -= qty_to_fill
-						slot_ui.set_slot_data(slot)
-					print("Able to merge new item with an existing slot")
-					
-				if qty_to_add <= 0:
-					break
-		
-		if qty_to_add > 0:
-			for slot_ui in pockets_inventory_ui.slot_container.get_children():
-				if !slot_ui.slot_data or !slot_ui.slot_data.item_data:
-					var new_slot = InventorySlotData.new()
-					new_slot.item_data = item_to_add
-					
-					## How much goes into new slot
-					var current_batch = qty_to_add
-					if item_to_add.stackable:
-						current_batch = min(qty_to_add, item_to_add.max_stack_size) #As much as can fit if stackable
-					else:
-						current_batch = 1 # 1 for nonstackable
-					new_slot.quantity = current_batch
-					qty_to_add -= current_batch
-					slot_ui.set_slot_data(new_slot)
-				if qty_to_add <= 0:
-					break
+	if item_to_add.stackable:
+		for slot in pockets_inventory_data.slot_datas:
+			if slot and slot.item_data and slot.item_data.id == item_to_add.id:
+				var space = item_to_add.max_stack_size - slot.quantity
+				var fill = min(remaining, space)
+				slot.quantity += fill
+				remaining -= fill
+				EventBus.inventory_item_updated.emit(slot) # Notify UI
+			if remaining <= 0: break
+			
+	if remaining > 0:
+		for i in range(pockets_inventory_data.slot_datas.size()):
+			if pockets_inventory_data.slot_datas[i] == null:
+				var new_slot = InventorySlotData.new()
+				new_slot.item_data = item_to_add
+				new_slot.quantity = min(remaining, item_to_add.max_stack_size)
+				pockets_inventory_data.slot_datas[i] = new_slot
+				remaining -= new_slot.quantity
+				EventBus.inventory_item_updated.emit(new_slot) # Notify UI
+			if remaining <= 0: break
 	else:
 		print("Inventory full, blocking pickup")
 

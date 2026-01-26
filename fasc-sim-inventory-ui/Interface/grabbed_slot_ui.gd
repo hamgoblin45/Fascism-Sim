@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void: # Not working, not sure why
 	if visible:
-		position = get_parent().get_local_mouse_position()
+		global_position = get_global_mouse_position() + Vector2(5, 5)
 
 func _update_grabbed_slot(slot: InventorySlotData):
 	print("Setting grabbed slot in GrabbedSlotUI")

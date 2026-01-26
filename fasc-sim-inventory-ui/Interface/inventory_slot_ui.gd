@@ -31,11 +31,8 @@ func set_slot_data(new_slot_data: InventorySlotData):
 		quantity.hide()
 
 func _select_item(data: InventorySlotData):
-	if data and data == slot_data:
-		selected_panel.show()
-		return
-	else:
-		selected_panel.hide()
+	# Show if panel being selected, hide if not
+	selected_panel.visible = (data == slot_data and data != null)
 	
 
 func _on_item_updated(updated_slot_data: InventorySlotData):
