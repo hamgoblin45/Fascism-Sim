@@ -18,9 +18,15 @@ func _ready() -> void:
 	EventBus.dialogue_ended.connect(_set_button_to_use)
 
 func set_context_menu(slot: InventorySlotData):
-	if not slot or not slot.item_data:
+	if not slot or not slot.item_data or not inventory_data:
 		_clear_out_context_ui()
 		return
+	
+	# Checks if item is in correlating inventory
+	if not inventory_data.slot_datas.has(slot):
+		_clear_out_context_ui()
+		return
+	
 	split_button.hide()
 	use_button.hide()
 	
