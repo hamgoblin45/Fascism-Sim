@@ -13,6 +13,9 @@ var parent_inventory: InventoryData
 func _ready() -> void:
 	EventBus.inventory_item_updated.connect(_on_item_updated)
 	EventBus.select_item.connect(_select_item)
+	#Hover effect
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 
 func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data
@@ -56,6 +59,14 @@ func _update_visuals():
 		quantity.text = str(slot_data.quantity)
 	else:
 		quantity.hide()
+
+func _on_mouse_entered():
+	# Shows a subtle highlight on hover
+	if !selected_panel.visible:
+		modulate = Color(1.2, 1.2, 1.2) # Slightly brighten
+
+func _on_mouse_exited():
+	modulate = Color(1,1,1) # Reset to normal
 
 ## -- Remove from slot
 func clear_visuals():
