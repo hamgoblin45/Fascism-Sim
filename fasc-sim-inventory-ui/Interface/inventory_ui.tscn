@@ -171,7 +171,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -274.0
-offset_bottom = -426.0
+offset_bottom = -293.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
@@ -215,7 +215,17 @@ layout_mode = 2
 mouse_filter = 1
 text = "Remove 1 Carrot"
 
-[node name="OpenContainer" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="OpenContainer1" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Open Container"
+
+[node name="OpenContainer2" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Open Container"
+
+[node name="OpenContainer3" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 text = "Open Container"
@@ -262,5 +272,7 @@ horizontal_alignment = 1
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/GetItemStackable" to="TestStuff" method="_on_get_item_stackable_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/RemoveItem" to="TestStuff" method="_on_remove_item_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/RemoveItemStackable" to="TestStuff" method="_on_remove_item_stackable_pressed"]
-[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer" to="TestStuff" method="_on_open_container_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer1" to="TestStuff" method="_on_open_container_1_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer2" to="TestStuff" method="_on_open_container_2_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer3" to="TestStuff" method="_on_open_container_3_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenShopUI" to="TestStuff" method="_on_open_shop_ui_pressed"]

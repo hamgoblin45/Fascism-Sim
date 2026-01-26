@@ -79,6 +79,7 @@ text = "0"
 
 [node name="PocketItemContextUI" type="PanelContainer" parent="PocketsMasterContainer/BarDetailsRow" node_paths=PackedStringArray("item_name", "item_descript", "item_flavor_text", "trash_button", "use_button", "split_button", "drop_button")]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 mouse_filter = 1

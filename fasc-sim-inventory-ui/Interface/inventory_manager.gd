@@ -136,7 +136,6 @@ func _add_item_to_inventory(inv: InventoryData, item: InventoryItemData, qty: in
 			if slot and slot.item_data and slot.item_data.id == item.id:
 				var space = item.max_stack_size - slot.quantity
 				if space > 0:
-				
 					var fill = min(remaining, space)
 					slot.quantity += fill
 					remaining -= fill
@@ -173,6 +172,13 @@ func _remove_item_from_inventory(item_data: InventoryItemData, qty_to_remove: in
 	# If we still need to take more, look for other matching slots
 	if remaining > 0:
 		for slot in pockets_inventory_data.slot_datas:
+			if slot and slot.item_data == item_data:
+				print("InventoryManager: _remove_item_from_inventory: non-specific match found, attempting to take from it...")
+				remaining = _take_from_slot(slot, remaining)
+				if remaining <= 0: break
+			
+	if remaining > 0 and external_inventory_data:
+		for slot in external_inventory_data.slot_datas:
 			if slot and slot.item_data == item_data:
 				print("InventoryManager: _remove_item_from_inventory: non-specific match found, attempting to take from it...")
 				remaining = _take_from_slot(slot, remaining)
@@ -301,7 +307,6 @@ func _handle_quick_move(source_inv: InventoryData, slot_data: InventorySlotData)
 	
 	# Determine how many we are moving
 	var starting_qty = slot_data.quantity
-	
 	# Try to transfer item
 	var remaining = _add_item_to_inventory(destination_inv, slot_data.item_data, starting_qty)
 	
@@ -310,5 +315,5 @@ func _handle_quick_move(source_inv: InventoryData, slot_data: InventorySlotData)
 		_nullify_slot_in_data(slot_data)
 	else:
 		slot_data.quantity = remaining
-	EventBus.inventory_item_updated.emit(slot_data)
+		EventBus.inventory_item_updated.emit(slot_data)
 	print("InventoryManager: _handle_quick_move: finished running")

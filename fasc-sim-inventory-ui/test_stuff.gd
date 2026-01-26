@@ -2,7 +2,11 @@ extends Control
 
 const TEST_EXTERNAL_INVENTORY = preload("uid://qecerdvqb2fx")
 
-var test_inv_data: InventoryData
+#var test_inv_data: InventoryData
+
+var test_container_inventory_1: InventoryData
+var test_container_inventory_2: InventoryData
+var test_container_inventory_3: InventoryData
 
 @onready var open_give_ui: Button = $TestPanel/VBoxContainer/OpenGiveUI
 @onready var get_item: Button = $TestPanel/VBoxContainer/GetItem
@@ -10,7 +14,15 @@ var test_inv_data: InventoryData
 @onready var external_inventory: PanelContainer = %ExternalInventory
 
 func _ready() -> void:
-	test_inv_data = TEST_EXTERNAL_INVENTORY.duplicate(true)
+	#test_inv_data = TEST_EXTERNAL_INVENTORY.duplicate(true)
+	test_container_inventory_1 = InventoryData.new()
+	test_container_inventory_1.slot_datas.resize(8)
+	
+	test_container_inventory_2 = InventoryData.new()
+	test_container_inventory_2.slot_datas.resize(4)
+	
+	test_container_inventory_3 = InventoryData.new()
+	test_container_inventory_3.slot_datas.resize(5)
 
 func _on_open_give_ui_pressed() -> void:
 	GameState.in_dialogue = !GameState.in_dialogue
@@ -27,14 +39,7 @@ func _on_give_item(slot: InventorySlotData):
 	await get_tree().create_timer(2.0).timeout
 	%GiveLabel.hide()
 
-func _on_open_container_pressed() -> void:
-	if !external_inventory.visible:
-		print("Opening continare")
-		EventBus.setting_external_inventory.emit(test_inv_data)
-		return
-	else:
-		print("Closing container")
-		EventBus.setting_external_inventory.emit(null)
+
 
 
 func _on_remove_item_pressed() -> void:
@@ -62,3 +67,31 @@ func _on_remove_item_stackable_pressed() -> void:
 func _on_open_shop_ui_pressed() -> void:
 # For Legal shopping
 	EventBus.shopping.emit(true)
+
+func _on_open_container_1_pressed() -> void:
+	if !external_inventory.visible:
+		print("TestStuff: Opening container 1")
+		EventBus.setting_external_inventory.emit(test_container_inventory_1)
+		return
+	else:
+		print("TestStuff: Closing container 1")
+		EventBus.setting_external_inventory.emit(null)
+
+func _on_open_container_2_pressed() -> void:
+	if !external_inventory.visible:
+		print("TestStuff: Opening container 2")
+		EventBus.setting_external_inventory.emit(test_container_inventory_2)
+		return
+	else:
+		print("TestStuff: Closing container 2")
+		EventBus.setting_external_inventory.emit(null)
+
+
+func _on_open_container_3_pressed() -> void:
+	if !external_inventory.visible:
+		print("TestStruff: Opening container 3")
+		EventBus.setting_external_inventory.emit(test_container_inventory_3)
+		return
+	else:
+		print("TestStuff: Closing container 3")
+		EventBus.setting_external_inventory.emit(null)
