@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=19 format=3 uid="uid://dhpfeub82th3n"]
 
+[ext_resource type="Script" uid="uid://1exja7h0qfdn" path="res://Interface/discard_zone.gd" id="1_xywkj"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
 [ext_resource type="PackedScene" uid="uid://bmqlxplie777" path="res://Interface/pockets_inventory_ui.tscn" id="4_3y5k6"]
@@ -50,6 +51,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_xywkj")
 
 [node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("4_sxlab")

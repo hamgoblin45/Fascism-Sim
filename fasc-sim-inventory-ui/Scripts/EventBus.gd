@@ -26,6 +26,8 @@ signal open_split_stack_ui(slot_data: InventorySlotData)
 signal splitting_item_stack(grab_slot_data: InventorySlotData) # Requests splitting a slot
 signal item_stack_split(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Confirms a slot was split
 
+signal item_discarded(slot_data: InventorySlotData, drop_position: Vector2)
+
 signal using_item(slot_data: InventorySlotData) # Requests use of an item
 
 signal money_updated(new_total: float)

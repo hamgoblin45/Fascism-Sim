@@ -99,6 +99,12 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 					grabbed_slot_data = null
 				
 				EventBus.update_grabbed_slot.emit(grabbed_slot_data)
+	
+		"world_click":
+			if grabbed_slot_data:
+				_discard_grabbed_item()
+			else:
+				EventBus.select_item.emit(null)
 
 func _physics_process(_delta: float) -> void:
 # Stop grabbing if click released early
@@ -242,14 +248,6 @@ func _handle_drop_or_merge(inv: InventoryData, slot_ui: PanelContainer, target_s
 	source_inventory = null
 	EventBus.update_grabbed_slot.emit(null)
 	
-	#var index = slot_ui.get_index()
-	#var temp_grabbed = grabbed_slot_data
-	#grabbed_slot_data = target_slot_data
-	#inv.slot_datas[index] = temp_grabbed
-	#
-	#slot_ui.set_slot_data(temp_grabbed)
-	#EventBus.update_grabbed_slot.emit(grabbed_slot_data)
-
 func _on_grab_timer_timeout() -> void:
 	if pending_grab_slot_data:
 		print("InventoryManager: Grab Timer Timeout")
@@ -273,6 +271,17 @@ func _split_item_stack(new_grab_data: InventorySlotData):
 	grabbed_slot_data = new_grab_data
 	EventBus.update_grabbed_slot.emit(new_grab_data)
 	EventBus.select_item.emit(null)
+
+func _discard_grabbed_item():
+	print("Discarding %s into the world" % grabbed_slot_data.item_data.name)
+	
+	# This signal will be used in the 3D game to spawn a 3D pickup of the discarded item
+	EventBus.item_discarded.emit(grabbed_slot_data, inv_ui.get_global_mouse_position())
+	
+	# Clean up manager state
+	grabbed_slot_data = null
+	source_inventory = null
+	EventBus.update_grabbed_slot.emit(null)
 
 ### ---- Transfering items
 
