@@ -12,7 +12,7 @@ func _physics_process(_delta: float) -> void: # Not working, not sure why
 		global_position = get_global_mouse_position() + Vector2(5, 5)
 
 func _update_grabbed_slot(slot: InventorySlotData):
-	print("Setting grabbed slot in GrabbedSlotUI")
+	print("GrabbedSlotUI: Setting grabbed slot to %s" % slot)
 	_clear_grabbed_slot()
 	if slot == null:
 		return
@@ -27,7 +27,7 @@ func _update_grabbed_slot(slot: InventorySlotData):
 	position = get_parent().get_local_mouse_position()
 
 func _clear_grabbed_slot():
-	print("Clearing grabbed slot in GrabbedSlotUI")
+	print("GrabbedSlotUI: clearing data")
 	hide()
 	grabbed_quantity.hide()
 	grabbed_item_texture.texture = null

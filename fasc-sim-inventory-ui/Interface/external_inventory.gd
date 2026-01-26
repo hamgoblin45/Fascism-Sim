@@ -30,6 +30,7 @@ func _set_inventory(inv_data: InventoryData):
 		slot_ui.parent_inventory = inv_data
 		slot_ui.set_slot_data(slot)
 	item_context_ui.inventory_data = inv_data
+	print("ExternalInventoryUI: Set inventory w/ resource: %s" % inventory_data)
 #
 #func _on_item_select(slot: InventorySlotData):
 	#for slot_ui in slot_container.get_children():

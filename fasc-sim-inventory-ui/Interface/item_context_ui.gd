@@ -14,8 +14,6 @@ var mouse_on_ui: bool = false
 
 func _ready() -> void:
 	EventBus.select_item.connect(set_context_menu)
-	EventBus.dialogue_started.connect(_set_button_to_give)
-	EventBus.dialogue_ended.connect(_set_button_to_use)
 
 func set_context_menu(slot: InventorySlotData):
 	if not slot or not slot.item_data or not inventory_data:
@@ -33,7 +31,7 @@ func set_context_menu(slot: InventorySlotData):
 	show()
 	slot_data = slot
 	
-	print("Setting item context menu in inventory %s" % inventory_data)
+	print("ItemContextUI: set_context_menu: Setting context UI to %s in inv:" % [slot, inventory_data])
 	item_name.text = slot_data.item_data.name
 	item_descript.text = slot_data.item_data.description
 	item_flavor_text.text = slot_data.item_data.flavor_text
@@ -54,11 +52,6 @@ func _clear_out_context_ui():
 	slot_data = null
 	hide()
 
-func _set_button_to_give():
-	use_button.text = "GIVE"
-
-func _set_button_to_use():
-	use_button.text = "USE"
 
 func _on_trash_button_pressed() -> void:
 	EventBus.removing_item.emit(slot_data.item_data, slot_data.quantity, slot_data)

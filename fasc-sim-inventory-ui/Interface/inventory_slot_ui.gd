@@ -17,10 +17,10 @@ func _ready() -> void:
 func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data
 	if !slot_data or !slot_data.item_data:
-		print("Setting slot in InventorySlotUI, has no slot and/or item_data")
+		print("InventorySlotUI: set_slot_data: setting empty slot")
 		return
 	
-	print("Set_Slot_Data run in inv_slot_ui. New slot: %s" % slot_data)
+	print("InventorySlotUI: set_slot_data: DATA: %s, ITEM: %s" % [slot_data, slot_data.item_data.name])
 	item_texture.show()
 	item_texture.texture = slot_data.item_data.texture
 	tooltip_text = slot_data.item_data.name
@@ -32,16 +32,19 @@ func set_slot_data(new_slot_data: InventorySlotData):
 
 func _select_item(data: InventorySlotData):
 	# Show if panel being selected, hide if not
+	print("InventorySlotUI: select_item: selecting %s" % data)
 	selected_panel.visible = (data == slot_data and data != null)
 	
 
 func _on_item_updated(updated_slot_data: InventorySlotData):
 	# Only updates if slot is actually changed
+	
 	selected_panel.hide()
 	if updated_slot_data == slot_data:
 		if slot_data == null or slot_data.item_data == null:
 			clear_visuals()
 		else:
+			print("InventorySlotUI: _on_item_updated running...")
 			set_slot_data(updated_slot_data)
 			_update_visuals()
 
@@ -62,15 +65,24 @@ func clear_visuals():
 	tooltip_text = ""
 
 func clear_slot_data(_slot: InventorySlotData):
+	print("InventorySlotUI: clearing slot data")
 	item_texture.texture = null
 	slot_data = null
 	clear_visuals()
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
+		# Shift click
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "click")
-			print("Slot clicked")
+			if Input.is_key_pressed(KEY_SHIFT):
+				EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "shift_click")
+				print("InventorySlotUI: Shift Slot clicked")
+			else:
+				EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "click")
+				print("InventorySlotUI: Slot clicked")
+			return
+		
+			
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "r_click")
-			print("Slot r-clicked")
+			print("InventorySlotUI: Slot right-clicked")
