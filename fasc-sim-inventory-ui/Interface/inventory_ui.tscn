@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene load_steps=22 format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://1exja7h0qfdn" path="res://Interface/discard_zone.gd" id="1_xywkj"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/give_item_ui.gd" id="11_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/shop_ui.tscn" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
+[ext_resource type="Script" uid="uid://bya0l8x7gtw7q" path="res://Interface/notication_control.gd" id="15_sxlab"]
 
 [sub_resource type="Resource" id="Resource_c0f0r"]
 script = ExtResource("3_cx7ba")
@@ -276,6 +277,23 @@ offset_right = 248.0
 offset_bottom = 147.0
 text = "YOU GAVE THE NPC AN ITEM!"
 horizontal_alignment = 1
+
+[node name="NoticationControl" type="Control" parent="."]
+clip_contents = true
+anchors_preset = 0
+offset_right = 249.0
+offset_bottom = 221.0
+mouse_filter = 2
+script = ExtResource("15_sxlab")
+
+[node name="NotificationContainer" type="VBoxContainer" parent="NoticationControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="timeout" from="InventoryManager/GrabTimer" to="InventoryManager" method="_on_grab_timer_timeout"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]

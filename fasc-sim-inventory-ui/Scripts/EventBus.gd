@@ -18,6 +18,7 @@ signal pockets_inventory_set(inv: InventoryData)
 signal setting_external_inventory(inv_data: InventoryData) # Populates container inventories
 signal external_inventory_set(inv_data: InventoryData) # Confirms an external inventory was loaded
 
+# Consider changing shopping to emit a string id for shop type if you want different kinds of vendors
 signal shopping(legal: bool) # Opens up either the legal shop or the black market
 signal shop_closed # Resets player inventory slots if they had been disabled for selling
 signal selling_item(slot: InventorySlotData) # Requests sale

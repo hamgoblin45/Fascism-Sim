@@ -88,7 +88,7 @@ func _on_trash_button_pressed() -> void:
 func _on_use_button_pressed() -> void:
 	match use_button.text:
 		"USE":
-			EventBus.item_used.emit(slot_data)
+			EventBus.using_item.emit(slot_data)
 		"GIVE":
 			EventBus.giving_item.emit(slot_data)
 		"SELL":
