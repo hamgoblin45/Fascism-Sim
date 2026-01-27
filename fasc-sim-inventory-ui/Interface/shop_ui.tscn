@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cbsuhe7my4ttl"]
+[gd_scene load_steps=24 format=3 uid="uid://cbsuhe7my4ttl"]
 
 [ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/shop_ui.gd" id="1_8js8v"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_ob0a7"]
@@ -42,6 +42,7 @@ metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 [sub_resource type="Resource" id="Resource_vrdig"]
 script = ExtResource("3_e6hud")
 item_data = ExtResource("8_6qn1n")
+quantity = 99
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
 [sub_resource type="Resource" id="Resource_ee1af"]
@@ -58,6 +59,11 @@ metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 [sub_resource type="Resource" id="Resource_pjc3g"]
 script = ExtResource("2_ob0a7")
 slot_datas = Array[ExtResource("3_e6hud")]([SubResource("Resource_xywkj"), null, null, null, null, null, null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+
+[sub_resource type="Resource" id="Resource_ob0a7"]
+script = ExtResource("2_ob0a7")
+slot_datas = Array[ExtResource("3_e6hud")]([null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gur8t"]
@@ -88,6 +94,7 @@ script = ExtResource("1_8js8v")
 legal_inventory_pool = SubResource("Resource_ofwss")
 illegal_inventory_pool = SubResource("Resource_ee1af")
 legal_shop_inventory = SubResource("Resource_pjc3g")
+illegal_shop_inventory = SubResource("Resource_ob0a7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

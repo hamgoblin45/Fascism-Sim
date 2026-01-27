@@ -74,11 +74,17 @@ func _set_legal_inventory():
 
 func _set_illegal_inventory():
 	# Checks how much room in the shop inventory isn't already taken by persistant stock
-	for slot in illegal_shop_inventory.slot_datas:
-		if slot == null:
-			var item = illegal_inventory_pool.slot_datas.pick_random().item_data
+	for i in illegal_shop_inventory.slot_datas:
+		var slot_index = illegal_shop_inventory.slot_datas.find(i)
+		var slot_data = illegal_shop_inventory.slot_datas[slot_index]
+		if not slot_data or not slot_data.item_data:
+			print("Empty slot in illegal inventory set")
+			var random_slot = illegal_inventory_pool.slot_datas.pick_random()
+			print("Item selected for empty shop slot: %s" % random_slot.item_data.name)
 			var new_slot = InventorySlotData.new()
-			new_slot.item_data = item
+			new_slot.item_data = random_slot.item_data
+			new_slot.quantity = random_slot.quantity
+			illegal_shop_inventory.slot_datas[slot_index] = new_slot
 	_populate_shop(illegal_shop_inventory)
 
 func _populate_shop(inv: InventoryData):

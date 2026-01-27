@@ -92,3 +92,8 @@ func _on_open_container_3_pressed() -> void:
 	else:
 		print("TestStuff: Closing container 3")
 		EventBus.setting_external_inventory.emit(null)
+
+
+func _on_open_illegal_shop_pressed() -> void:
+	if not GameState.shopping:
+		EventBus.shopping.emit(false)

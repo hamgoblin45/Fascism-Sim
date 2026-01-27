@@ -242,6 +242,11 @@ layout_mode = 2
 mouse_filter = 1
 text = "Open Shop"
 
+[node name="OpenIllegalShop" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "Open Illegal Shop"
+
 [node name="DialogueLabel" type="Label" parent="TestStuff"]
 unique_name_in_owner = true
 visible = false
@@ -283,3 +288,4 @@ horizontal_alignment = 1
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer2" to="TestStuff" method="_on_open_container_2_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer3" to="TestStuff" method="_on_open_container_3_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenShopUI" to="TestStuff" method="_on_open_shop_ui_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenIllegalShop" to="TestStuff" method="_on_open_illegal_shop_pressed"]
