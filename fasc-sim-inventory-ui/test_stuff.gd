@@ -62,7 +62,8 @@ func _on_remove_item_stackable_pressed() -> void:
 
 func _on_open_shop_ui_pressed() -> void:
 # For Legal shopping
-	EventBus.shopping.emit(true)
+	if not GameState.shopping:
+		EventBus.shopping.emit(true)
 
 func _on_open_container_1_pressed() -> void:
 	if !external_inventory.visible:

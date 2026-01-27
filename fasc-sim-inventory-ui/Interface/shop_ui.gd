@@ -44,6 +44,7 @@ func _handle_shop_ui(legal_shop: bool):
 	
 	# Stops if not shopping
 	if not visible:
+		EventBus.shop_closed.emit()
 		return
 	
 	legal = legal_shop # Sets whether shop is Black Market or Legal
@@ -94,8 +95,7 @@ func _populate_shop(inv: InventoryData):
 		new_slot_ui.parent_inventory = inv
 		if slot_data:
 			new_slot_ui.set_slot_data(slot_data)
-		
-
+	
 ## ------- SELECTED ITEM
 func _clear_selected_item():
 	selected_slot = null
@@ -188,3 +188,7 @@ func _sell_item(sell_slot: InventorySlotData):
 func _on_buy_qty_slider_value_changed(value: float) -> void:
 	buy_qty.text = str(value)
 	_update_price_display()
+
+
+func _on_close_shop_button_pressed() -> void:
+	_handle_shop_ui(legal)

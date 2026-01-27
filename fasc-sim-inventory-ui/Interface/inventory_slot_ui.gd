@@ -9,6 +9,8 @@ var parent_inventory: InventoryData
 
 @onready var selected_panel: Panel = %SelectedPanel
 
+var activated: bool = true
+
 
 func _ready() -> void:
 	EventBus.inventory_item_updated.connect(_on_item_updated)
@@ -16,6 +18,8 @@ func _ready() -> void:
 	#Hover effect
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	EventBus.shopping.connect(_check_if_sellable)
+	EventBus.shop_closed.connect(_on_shop_closed)
 
 func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data
@@ -53,6 +57,7 @@ func _on_item_updated(inv_data: InventoryData, index: int):
 			_update_visuals()
 
 func _update_visuals():
+	print("UPDATING VISUALS")
 	item_texture.show()
 	item_texture.texture = slot_data.item_data.texture
 	if slot_data.quantity > 1 and slot_data.item_data.stackable:
@@ -60,6 +65,7 @@ func _update_visuals():
 		quantity.text = str(slot_data.quantity)
 	else:
 		quantity.hide()
+	
 
 func _on_mouse_entered():
 	# Shows a subtle highlight on hover
@@ -75,6 +81,7 @@ func clear_visuals():
 	item_texture.hide()
 	quantity.hide()
 	tooltip_text = ""
+	
 
 func clear_slot_data(_slot: InventorySlotData):
 	print("InventorySlotUI: clearing slot data")
@@ -83,7 +90,7 @@ func clear_slot_data(_slot: InventorySlotData):
 	clear_visuals()
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
+	if event is InputEventMouseButton and event.is_pressed() and activated:
 		# Shift click
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if Input.is_key_pressed(KEY_SHIFT):
@@ -98,3 +105,27 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "r_click")
 			print("InventorySlotUI: Slot right-clicked")
+
+func _check_if_sellable(legal: bool):
+	if not slot_data or not slot_data.item_data:
+		return
+	if legal and slot_data.item_data.contraband_level > 1 \
+	or not legal and slot_data.item_data.contraband_level <= 1:
+		activated = false
+		item_texture.modulate = Color.BLACK
+		tooltip_text = "Merchant won't buy this"
+		modulate = Color.DIM_GRAY
+	else:
+		activated = true
+		item_texture.modulate = Color.WHITE
+		tooltip_text = slot_data.item_data.name
+		modulate = Color.WHITE
+
+func _on_shop_closed():
+	if not slot_data or not slot_data.item_data:
+		return
+		# Reset deactivate parameters set when an item isn't sellable
+	activated = true
+	item_texture.modulate = Color(1,1,1) # Reset to normal
+	tooltip_text = slot_data.item_data.name
+	modulate = Color(1,1,1) # Reset to normal
