@@ -63,10 +63,11 @@ func _set_legal_inventory():
 		var slot_data = legal_shop_inventory.slot_datas[slot_index]
 		if not slot_data or not slot_data.item_data:
 			print("Empty slot in legal inventory set")
-			var item = legal_inventory_pool.slot_datas.pick_random().item_data
-			print("Item selected for empty shop slot: %s" % item.name)
+			var random_slot = legal_inventory_pool.slot_datas.pick_random()
+			print("Item selected for empty shop slot: %s" % random_slot.item_data.name)
 			var new_slot = InventorySlotData.new()
-			new_slot.item_data = item
+			new_slot.item_data = random_slot.item_data
+			new_slot.quantity = random_slot.quantity
 			legal_shop_inventory.slot_datas[slot_index] = new_slot
 	_populate_shop(legal_shop_inventory)
 
@@ -118,37 +119,62 @@ func _on_item_select(slot_data: InventorySlotData):
 
 	shop_item_context_ui.show()
 	selected_slot = slot_data
-	print("Setting item context menu in inventory")
+	
 	shop_item_name.text = slot_data.item_data.name
 	shop_item_descript.text = slot_data.item_data.description
 	shop_flavor_text.text = slot_data.item_data.flavor_text
-	shop_item_value.text = "Buy for %s" % slot_data.item_data.buy_value
 	
-	if slot_data.item_data.stackable and slot_data.quantity > 1:
-		buy_qty_slider.show()
+	
+	if not slot_data.item_data.stackable:
+		buy_qty.hide()
 		buy_qty_slider.value = 1
-		buy_qty.text = "1"
+		buy_qty_slider.hide()
+	else:
+		buy_qty_slider.show()
+		buy_qty_slider.min_value = 1
 		buy_qty_slider.max_value = slot_data.quantity
+		buy_qty_slider.value = 1
+	
+	_update_price_display()
 	
 	for slot_ui in slot_container.get_children():
 		slot_ui.selected_panel.hide()
 		if slot_ui.slot_data and slot_ui.slot_data == slot_data:
 			slot_ui.selected_panel.show()
 
+func _update_price_display():
+	if selected_slot and selected_slot.item_data:
+		var amount_to_buy = int(buy_qty_slider.value)
+		var total_cost = selected_slot.item_data.buy_value * amount_to_buy
+		if amount_to_buy > 1:
+			shop_item_value.text = "Buy %s for %s" % [str(amount_to_buy), str(total_cost)]
+		else:
+			shop_item_value.text = "Buy for %s" % str(total_cost)
+
 ## ------------- BUYING
 
 func _on_buy_button_pressed() -> void:
 	if selected_slot and selected_slot.item_data:
-		if GameState.money < selected_slot.item_data.buy_value:
+		var amount_to_buy = int(buy_qty_slider.value)
+		var total_cost = selected_slot.item_data.buy_value * amount_to_buy
+		
+		if GameState.money < total_cost:
 			print("TOO POOR!")
 			return
-		GameState.money -= selected_slot.item_data.buy_value 
+		
+		GameState.money -= total_cost
 		EventBus.money_updated.emit(GameState.money)
-		if selected_slot.item_data.stackable and buy_qty_slider.value > 1:
-			EventBus.adding_item.emit(selected_slot.item_data, buy_qty_slider.value)
-		else:
-			EventBus.adding_item.emit(selected_slot.item_data, 1)
-		_clear_selected_item()
+		
+		EventBus.adding_item.emit(selected_slot.item_data, amount_to_buy)
+		
+		selected_slot.quantity -= amount_to_buy # Reduces shop stock by amount
+		
+		if selected_slot.quantity <= 0:
+			var idx = shop_inventory_data.slot_datas.find(selected_slot)
+			shop_inventory_data.slot_datas[idx] = null
+			_clear_selected_item()
+		
+		_populate_shop(shop_inventory_data)
 
 func _sell_item(sell_slot: InventorySlotData):
 	if not sell_slot or not sell_slot.item_data:
@@ -161,3 +187,4 @@ func _sell_item(sell_slot: InventorySlotData):
 
 func _on_buy_qty_slider_value_changed(value: float) -> void:
 	buy_qty.text = str(value)
+	_update_price_display()
