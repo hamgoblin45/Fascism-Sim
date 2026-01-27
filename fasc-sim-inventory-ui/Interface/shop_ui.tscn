@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://cbsuhe7my4ttl"]
+[gd_scene load_steps=24 format=3 uid="uid://cbsuhe7my4ttl"]
 
 [ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/shop_ui.gd" id="1_8js8v"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_ob0a7"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_e6hud"]
-[ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/test_item_2.tres" id="4_6qn1n"]
-[ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/test_item_3.tres" id="5_lgrcb"]
-[ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/test_item_1.tres" id="6_l6cp0"]
+[ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/item_carrot.tres" id="4_6qn1n"]
+[ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/item_hammer.tres" id="5_lgrcb"]
+[ext_resource type="Resource" uid="uid://c1cqxlfgintig" path="res://Interface/TestStuff/item_boots.tres" id="6_e6hud"]
+[ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/item_harp.tres" id="6_l6cp0"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="7_vrdig"]
+[ext_resource type="Resource" uid="uid://bmahi1w8kf6yv" path="res://Interface/TestStuff/cocaine.tres" id="8_6qn1n"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/inventory_slot_ui.tscn" id="8_ee1af"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="9_o2eq8"]
 
@@ -22,9 +24,29 @@ script = ExtResource("3_e6hud")
 item_data = ExtResource("5_lgrcb")
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
+[sub_resource type="Resource" id="Resource_lgrcb"]
+script = ExtResource("3_e6hud")
+item_data = ExtResource("6_e6hud")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
+[sub_resource type="Resource" id="Resource_l6cp0"]
+script = ExtResource("3_e6hud")
+item_data = ExtResource("6_l6cp0")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
 [sub_resource type="Resource" id="Resource_ofwss"]
 script = ExtResource("2_ob0a7")
-slot_datas = Array[ExtResource("3_e6hud")]([SubResource("Resource_sxlab"), SubResource("Resource_u6hsv")])
+slot_datas = Array[ExtResource("3_e6hud")]([SubResource("Resource_sxlab"), SubResource("Resource_u6hsv"), SubResource("Resource_lgrcb"), SubResource("Resource_l6cp0")])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+
+[sub_resource type="Resource" id="Resource_vrdig"]
+script = ExtResource("3_e6hud")
+item_data = ExtResource("8_6qn1n")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
+[sub_resource type="Resource" id="Resource_ee1af"]
+script = ExtResource("2_ob0a7")
+slot_datas = Array[ExtResource("3_e6hud")]([SubResource("Resource_vrdig")])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="Resource" id="Resource_xywkj"]
@@ -61,6 +83,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hvb16")
 script = ExtResource("1_8js8v")
 legal_inventory_pool = SubResource("Resource_ofwss")
+illegal_inventory_pool = SubResource("Resource_ee1af")
 legal_shop_inventory = SubResource("Resource_pjc3g")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -184,7 +207,7 @@ bbcode_enabled = true
 text = "[i]This is some lore description to add flavor text to a description"
 fit_content = true
 
-[node name="ShopItemValue" type="Label" parent="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer"]
+[node name="ItemValue" type="Label" parent="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14

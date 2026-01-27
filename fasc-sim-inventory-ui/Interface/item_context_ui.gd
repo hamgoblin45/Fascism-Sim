@@ -6,6 +6,9 @@ var slot_data
 @export var item_name: Label
 @export var item_descript: RichTextLabel
 @export var item_flavor_text: RichTextLabel
+@onready var item_value: Label = %ItemValue
+
+
 @export var trash_button: Button
 @export var use_button: Button
 @export var split_button: Button
@@ -48,12 +51,14 @@ func set_context_menu(slot: InventorySlotData):
 	if inventory_data != GameState.pockets_inventory:
 		drop_button.hide()
 	
+	item_value.text = "Sell Value: %s" % slot_data.item_data.sell_value
 	if slot_data.item_data.stackable and slot_data.quantity > 1:
 		split_button.show()
-	if slot_data.item_data.useable:
+	if slot_data.item_data.useable or GameState.shopping:
 		use_button.show()
 		if GameState.shopping:
 			use_button.text = "SELL"
+			
 		elif GameState.in_dialogue:
 			use_button.text = "GIVE"
 		else:
