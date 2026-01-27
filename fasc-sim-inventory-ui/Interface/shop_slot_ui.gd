@@ -24,7 +24,11 @@ func set_slot_data(new_slot_data: InventorySlotData):
 		quantity.text = str(slot_data.quantity)
 	else:
 		quantity.hide()
-	EventBus.inventory_item_updated.emit(slot_data)
+	
+	var qty = slot_data.quantity
+	if not slot_data.item_data.stackable:
+		qty = 1
+	EventBus.inventory_item_updated.emit(parent_inventory, qty)
 
 func _update_visuals():
 	item_texture.show()

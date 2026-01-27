@@ -197,7 +197,6 @@ alignment = 1
 
 [node name="BuyButton" type="Button" parent="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
-mouse_filter = 1
 text = "BUY"
 
 [node name="BuyQtyContainer" type="HBoxContainer" parent="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
@@ -210,7 +209,6 @@ visible = false
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 
 [node name="BuyQty" type="Label" parent="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer"]
 unique_name_in_owner = true

@@ -133,7 +133,10 @@ func _on_buy_button_pressed() -> void:
 			print("TOO POOR!")
 			return
 		GameState.money -= selected_slot.item_data.buy_value 
-		EventBus.adding_item.emit(selected_slot, buy_qty_slider.value)
+		if selected_slot.item_data.stackable:
+			EventBus.adding_item.emit(selected_slot.item_data, buy_qty_slider.value)
+		else:
+			EventBus.adding_item.emit(selected_slot.item_data, 1)
 		_clear_selected_item()
 
 
