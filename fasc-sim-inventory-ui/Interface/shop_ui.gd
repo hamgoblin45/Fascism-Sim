@@ -89,13 +89,10 @@ func _populate_shop(inv: InventoryData):
 # Create a slot for each space in slot_datas, even if no slot_data
 	for slot_data in inv.slot_datas:
 		var new_slot_ui = SHOP_SLOT_UI.instantiate()
-		var new_slot_data = InventorySlotData.new()
 		slot_container.add_child(new_slot_ui)
 		new_slot_ui.parent_inventory = inv
-		if slot_data and slot_data.item_data:
-			new_slot_data.item_data = slot_data.item_data
-			new_slot_data.quantity = slot_data.quantity
-			new_slot_ui.set_slot_data(new_slot_data)
+		if slot_data:
+			new_slot_ui.set_slot_data(slot_data)
 		
 
 ## ------- SELECTED ITEM
@@ -108,6 +105,11 @@ func _clear_selected_item():
 		slot_ui.selected_panel.hide()
 
 func _on_item_select(slot_data: InventorySlotData):
+	if not shop_inventory_data or not shop_inventory_data.slot_datas.has(slot_data):
+		print("Shop inv doesn't have slot")
+		_clear_selected_item()
+		return
+	
 	if selected_slot != slot_data:
 		_clear_selected_item()
 	
@@ -142,7 +144,7 @@ func _on_buy_button_pressed() -> void:
 			return
 		GameState.money -= selected_slot.item_data.buy_value 
 		EventBus.money_updated.emit(GameState.money)
-		if selected_slot.item_data.stackable:
+		if selected_slot.item_data.stackable and buy_qty_slider.value > 1:
 			EventBus.adding_item.emit(selected_slot.item_data, buy_qty_slider.value)
 		else:
 			EventBus.adding_item.emit(selected_slot.item_data, 1)
