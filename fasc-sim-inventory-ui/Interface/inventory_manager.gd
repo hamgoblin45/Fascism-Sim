@@ -182,6 +182,10 @@ func _remove_item_from_inventory(item_data: InventoryItemData, qty_to_remove: in
 	if preferred_slot and preferred_slot.item_data == item_data:
 		print("InventoryManager: _remove_item_from_inventory: preferred slot found, attempting to take from it...")
 		remaining = _take_from_slot(preferred_slot, remaining)
+		
+		if remaining <= 0 or preferred_slot.quantity <= 0:
+			EventBus.select_item.emit(null)
+			return
 	
 	# If we still need to take more, look for other matching slots
 	if remaining > 0:
@@ -205,6 +209,10 @@ func _remove_item_from_inventory(item_data: InventoryItemData, qty_to_remove: in
 func _take_from_slot(slot: InventorySlotData, amount_needed: int) -> int:
 	print("InventoryManager: _take_from_slot: attempting to take %s from %s" % [str(amount_needed), slot])
 	var target_inv = _get_inv_of_slot(slot)
+	
+	if not target_inv:
+		return amount_needed
+	
 	var can_take = min(slot.quantity, amount_needed)
 	slot.quantity -= can_take
 	var still_needed = amount_needed - can_take
@@ -264,10 +272,10 @@ func _handle_drop_or_merge(inv: InventoryData, slot_ui: PanelContainer, target_s
 		if source_idx != -1:
 			source_inventory.slot_datas[source_idx] = target_slot_data
 			# Tell the OG inventory that its baby is gone
-			EventBus.inventory_item_updated.emit(inv, target_index)
+			EventBus.inventory_item_updated.emit(source_inventory, source_idx)
 		
 	inv.slot_datas[target_index] = grabbed_slot_data
-	slot_ui.set_slot_data(grabbed_slot_data)
+	EventBus.inventory_item_updated.emit(inv, target_index)
 	
 	grabbed_slot_data = null
 	source_inventory = null

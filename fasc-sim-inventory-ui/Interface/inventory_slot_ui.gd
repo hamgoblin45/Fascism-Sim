@@ -35,7 +35,7 @@ func set_slot_data(new_slot_data: InventorySlotData):
 
 func _select_item(data: InventorySlotData):
 	# Show if panel being selected, hide if not
-	print("InventorySlotUI: select_item: selecting %s" % data)
+	#print("InventorySlotUI: select_item: selecting %s" % data)
 	selected_panel.visible = (data == slot_data and data != null)
 	
 
@@ -78,8 +78,8 @@ func clear_visuals():
 
 func clear_slot_data(_slot: InventorySlotData):
 	print("InventorySlotUI: clearing slot data")
-	item_texture.texture = null
 	slot_data = null
+	item_texture.texture = null
 	clear_visuals()
 
 func _on_gui_input(event: InputEvent) -> void:

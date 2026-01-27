@@ -23,12 +23,13 @@ func set_context_menu(slot: InventorySlotData):
 		return
 	
 	# Checks if item is in correlating inventory
-	if not inventory_data.slot_datas.has(slot):
-		_clear_out_context_ui()
+	if not inventory_data or not inventory_data.slot_datas.has(slot):
+		hide()
 		return
 	
 	trash_confirmed = false
 	trash_button.text = "TRASH"
+	trash_button.modulate = Color.WHITE
 	
 	split_button.hide()
 	use_button.hide()
@@ -42,6 +43,11 @@ func set_context_menu(slot: InventorySlotData):
 	item_flavor_text.text = slot_data.item_data.flavor_text
 	
 	drop_button.show()
+	
+	# Prevent dropping from external inventories
+	if inventory_data != GameState.pockets_inventory:
+		drop_button.hide()
+	
 	if slot_data.item_data.stackable and slot_data.quantity > 1:
 		split_button.show()
 	if slot_data.item_data.useable:
@@ -52,6 +58,7 @@ func set_context_menu(slot: InventorySlotData):
 			use_button.text = "GIVE"
 		else:
 			use_button.text = "USE"
+
 
 
 func _clear_out_context_ui():
@@ -68,12 +75,8 @@ func _on_trash_button_pressed() -> void:
 		trash_confirmed = true
 		trash_button.text = "SURE?"
 		trash_button.modulate = Color.RED
-	
 	else:
-		
 		# Second click: actually removes
-		
-		
 		EventBus.removing_item.emit(slot_data.item_data, slot_data.quantity, slot_data)
 		_clear_out_context_ui()
 
