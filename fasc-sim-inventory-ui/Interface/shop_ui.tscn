@@ -409,4 +409,5 @@ text = "CLOSE"
 [connection signal="mouse_exited" from="HBoxContainer/ShopItemContextUI" to="HBoxContainer/ShopItemContextUI" method="_on_mouse_exited"]
 [connection signal="pressed" from="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="value_changed" from="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer/BuyQtySlider" to="." method="_on_buy_qty_slider_value_changed"]
+[connection signal="pressed" from="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer/BuybackButton" to="." method="_on_buyback_button_pressed"]
 [connection signal="pressed" from="CloseShopButton" to="." method="_on_close_shop_button_pressed"]
