@@ -25,7 +25,7 @@ var buyback_slot: InventorySlotData
 @onready var shop_item_context_ui: PanelContainer = %ShopItemContextUI
 
 var legal: bool = true
-
+var duplicate_stock_allowed: bool = false
 
 func _ready():
 	EventBus.shopping.connect(_handle_shop_ui)
@@ -42,8 +42,6 @@ func _handle_shop_ui(legal_shop: bool):
 	visible = GameState.shopping
 	
 	_clear_selected_item()
-	
-	
 	
 	# Stops if not shopping
 	if not visible:
@@ -80,9 +78,6 @@ func _set_legal_inventory():
 			new_slot.item_data = random_slot.item_data
 			new_slot.quantity = random_slot.quantity
 			legal_shop_inventory.slot_datas[slot_index] = new_slot
-		# If no data was selected, reduce the shop's slot size by one
-		#else:
-			#legal_shop_inventory.slot_datas.resize(legal_shop_inventory.slot_datas.size() - 1)
 	
 	_populate_shop(legal_shop_inventory)
 
@@ -91,9 +86,9 @@ func _set_illegal_inventory():
 	for i in illegal_shop_inventory.slot_datas:
 		var slot_index = illegal_shop_inventory.slot_datas.find(i)
 		var slot_data = illegal_shop_inventory.slot_datas[slot_index]
-		if not slot_data or not slot_data.item_data:
-			print("Empty slot in illegal inventory set")
-			var random_slot = illegal_inventory_pool.slot_datas.pick_random()
+		var random_slot = _select_random_item(slot_data, illegal_inventory_pool)
+		# If a slot was chosen, create a UI for it
+		if random_slot != null:
 			print("Item selected for empty shop slot: %s" % random_slot.item_data.name)
 			var new_slot = InventorySlotData.new()
 			new_slot.item_data = random_slot.item_data
@@ -103,14 +98,15 @@ func _set_illegal_inventory():
 
 func _select_random_item(slot_data: InventorySlotData, pool: InventoryData) -> InventorySlotData:
 	# Return if missing slot_data or if there are no more items in the modified_pool
-	if not slot_data or not slot_data.item_data:
+	if slot_data:
 		return null
 	if pool.slot_datas.size() <= 0:
 		return null
-	
 	# Pick a random slot
 	var random_slot = pool.slot_datas.pick_random()
-	pool.slot_datas.erase(random_slot) # Removes the slot so it won't be selected again
+	 # Removes the slot so it won't be selected again
+	if not duplicate_stock_allowed:
+		pool.slot_datas.erase(random_slot)
 	
 	if random_slot:
 		return random_slot
@@ -119,7 +115,7 @@ func _select_random_item(slot_data: InventorySlotData, pool: InventoryData) -> I
 
 func _populate_shop(inv: InventoryData):
 	# Clear out previous slots to avoid inconsistencies
-	shop_inventory_data = null
+	#shop_inventory_data = null
 	for child in slot_container.get_children():
 		child.queue_free()
 	
