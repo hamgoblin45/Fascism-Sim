@@ -10,6 +10,8 @@ var parent_inventory: InventoryData
 @onready var selected_panel: Panel = %SelectedPanel
 @onready var equip_highlight: Panel = %EquipHighlight
 
+@onready var hotbar_number: Label = %HotbarNumber
+
 var activated: bool = true
 
 

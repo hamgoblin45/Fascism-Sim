@@ -55,17 +55,19 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("open_interface"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			GameState.ui_open = true
 			print("Mouse visible again, UI open")
 		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			print("Mouse hidded, in FPS mode")
+			GameState.ui_open = false
+			print("Mouse hidden, in FPS mode")
 	
 	## Number Keys
 	for i in range (pockets_inventory_data.slot_datas.size()):
 		if event.is_action_pressed("hotbar_" + str(i + 1)):
 			_on_hotbar_select(i)
 	
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+	if not GameState.ui_open:
 	
 		# Scroll Wheel
 		if event.is_action_pressed("scroll_up"):
@@ -82,6 +84,7 @@ func _input(event: InputEvent) -> void:
 			_drop_equipped()
 
 func _on_hotbar_select(index: int):
+	print("Selecting hotbar slot ", str(index))
 	if index < 0 or index >= pockets_inventory_data.slot_datas.size():
 		return
 	
@@ -91,6 +94,8 @@ func _on_hotbar_select(index: int):
 		_unequip()
 	else:
 		_equip(new_slot)
+	
+	active_hotbar_index = index
 
 func _equip(slot: InventorySlotData):
 	equipped_slot_data = slot
