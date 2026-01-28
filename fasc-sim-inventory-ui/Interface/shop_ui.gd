@@ -165,15 +165,18 @@ func _on_item_select(slot_data: InventorySlotData):
 	shop_item_descript.text = slot_data.item_data.description
 	shop_flavor_text.text = slot_data.item_data.flavor_text
 	
+	var price_each = slot_data.item_data.buy_value
+	var affordable_qty = floor(GameState.money / price_each)
 	
+	# Reset slider, hide is non stackable
 	if not slot_data.item_data.stackable:
+		buy_qty_slider.hide()
 		buy_qty.hide()
 		buy_qty_slider.value = 1
-		buy_qty_slider.hide()
 	else:
 		buy_qty_slider.show()
 		buy_qty_slider.min_value = 1
-		buy_qty_slider.max_value = slot_data.quantity
+		buy_qty_slider.max_value = min(slot_data.quantity, affordable_qty)
 		buy_qty_slider.value = 1
 	
 	_update_price_display()
@@ -191,6 +194,11 @@ func _update_price_display():
 			shop_item_value.text = "Buy %s for %s" % [str(amount_to_buy), str(total_cost)]
 		else:
 			shop_item_value.text = "Buy for %s" % str(total_cost)
+		
+		if total_cost > GameState.money:
+			shop_item_value.modulate = Color.RED
+		else:
+			shop_item_value.modulate = Color.WHITE
 
 ## ------------- BUYING
 
@@ -209,6 +217,8 @@ func _on_buy_button_pressed() -> void:
 		EventBus.adding_item.emit(selected_slot.item_data, amount_to_buy)
 		
 		selected_slot.quantity -= amount_to_buy # Reduces shop stock by amount
+		
+		_on_item_select(selected_slot)
 		
 		if selected_slot.quantity <= 0:
 			var idx = shop_inventory_data.slot_datas.find(selected_slot)
