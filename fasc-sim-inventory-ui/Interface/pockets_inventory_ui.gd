@@ -30,6 +30,7 @@ func _set_inventory(inv_data: InventoryData):
 		slot_ui.parent_inventory = inv_data
 		slot_ui.hotbar_number.text = str(slot_index)
 		slot_index += 1
+		# Something here to keep track of empty slots too so they highlight when selected
 	
 	money_value.text = str(snapped(GameState.money, 0.1))
 	item_context_ui.inventory_data = inv_data

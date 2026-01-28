@@ -18,10 +18,9 @@ signal pockets_inventory_set(inv: InventoryData)
 signal setting_external_inventory(inv_data: InventoryData) # Populates container inventories
 signal external_inventory_set(inv_data: InventoryData) # Confirms an external inventory was loaded
 
-signal hotbar_select(index: int)
 signal use_equipped_item
 signal drop_equipped_item
-signal equipped_item_changed(slot_data: InventorySlotData)
+signal hotbar_index_changed(index: int)
 
 # Consider changing shopping to emit a string id for shop type if you want different kinds of vendors
 signal shopping(legal: bool) # Opens up either the legal shop or the black market

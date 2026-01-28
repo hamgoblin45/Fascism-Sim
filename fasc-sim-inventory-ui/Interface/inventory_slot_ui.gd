@@ -11,6 +11,7 @@ var parent_inventory: InventoryData
 @onready var equip_highlight: Panel = %EquipHighlight
 
 @onready var hotbar_number: Label = %HotbarNumber
+var hotbar_index: int = 0
 
 var activated: bool = true
 
@@ -18,7 +19,7 @@ var activated: bool = true
 func _ready() -> void:
 	EventBus.inventory_item_updated.connect(_on_item_updated)
 	EventBus.select_item.connect(_select_item)
-	EventBus.equipped_item_changed.connect(_on_equipped_changed)
+	EventBus.hotbar_index_changed.connect(_on_equipped_changed)
 	#Hover effect
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
@@ -40,6 +41,9 @@ func set_slot_data(new_slot_data: InventorySlotData):
 		quantity.text = str(slot_data.quantity)
 	else:
 		quantity.hide()
+	
+	if parent_inventory == GameState.pockets_inventory:
+		equip_highlight.visible = (get_index() == GameState.active_hotbar_index)
 
 func _select_item(data: InventorySlotData):
 	# Show if panel being selected, hide if not
@@ -110,9 +114,12 @@ func _on_gui_input(event: InputEvent) -> void:
 			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "r_click")
 			print("InventorySlotUI: Slot right-clicked")
 
-func _on_equipped_changed(data: InventorySlotData):
+func _on_equipped_changed(active_index: int):
 	if parent_inventory == GameState.pockets_inventory:
-		equip_highlight.visible = (data == slot_data and data != null)
+		equip_highlight.visible = (get_index() == active_index)
+	else:
+		equip_highlight.hide()
+		#equip_highlight.visible = (data == slot_data and data != null)
 
 
 func _check_if_sellable(legal: bool):
