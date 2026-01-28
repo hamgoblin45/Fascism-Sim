@@ -11,7 +11,7 @@ const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 
 var shop_inventory_data: InventoryData
 var selected_slot: InventorySlotData = null
-var buyback_slot: InventorySlotData
+var buyback_slot: InventorySlotData = null
 
 @onready var shop_item_name: Label = %ShopItemName
 @onready var shop_item_descript: RichTextLabel = %ShopItemDescript
@@ -23,6 +23,13 @@ var buyback_slot: InventorySlotData
 @onready var slot_container: GridContainer = %BuySlotContainer
 
 @onready var shop_item_context_ui: PanelContainer = %ShopItemContextUI
+
+@onready var buyback_ui: PanelContainer = %BuybackUI
+@onready var buyback_item_texture: TextureRect = %BuybackItemTexture
+@onready var buyback_quantity: Label = %BuybackQuantity
+@onready var buybuack_price_label: Label = %BuybuackPriceLabel
+@onready var buyback_button: Button = %BuybackButton
+
 
 var legal: bool = true
 var duplicate_stock_allowed: bool = false
@@ -45,6 +52,7 @@ func _handle_shop_ui(legal_shop: bool):
 	
 	# Stops if not shopping
 	if not visible:
+		buyback_ui.hide()
 		EventBus.shop_closed.emit()
 		return
 	
@@ -211,6 +219,16 @@ func _on_buy_button_pressed() -> void:
 func _sell_item(sell_slot: InventorySlotData):
 	if not sell_slot or not sell_slot.item_data:
 		return
+	
+	buyback_slot = InventorySlotData.new()
+	buyback_slot.item_data = sell_slot.item_data
+	buyback_slot.quantity = sell_slot.quantity
+	
+	buyback_ui.show()
+	buyback_item_texture.texture = sell_slot.item_data.texture
+	buyback_quantity.text  = str(sell_slot.quantity)
+	buybuack_price_label.text = "%s" % str(sell_slot.item_data.sell_value * sell_slot.quantity)
+	buyback_ui.tooltip_text = sell_slot.item_data.name
 	
 	GameState.money += (sell_slot.item_data.sell_value * sell_slot.quantity)
 	EventBus.money_updated.emit(GameState.money)

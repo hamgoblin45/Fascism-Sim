@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cbsuhe7my4ttl"]
+[gd_scene load_steps=47 format=3 uid="uid://cbsuhe7my4ttl"]
 
 [ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/shop_ui.gd" id="1_8js8v"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_ob0a7"]
@@ -19,6 +19,9 @@
 [ext_resource type="Resource" uid="uid://jo0gq5u6e4hl" path="res://Data/Items/Misc/parody_movie.tres" id="15_qtknh"]
 [ext_resource type="Resource" uid="uid://bbcvmy2ujko5d" path="res://Data/Items/Equippables/pistol.tres" id="16_jak1g"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="17_6o2oc"]
+[ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="20_241a7"]
+[ext_resource type="Script" uid="uid://c71dv8rsa3jlu" path="res://Interface/buyback_ui.gd" id="20_v4hxh"]
+[ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="21_v4hxh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvb16"]
 
@@ -129,6 +132,21 @@ metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gur8t"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ik1e"]
+bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdlb4"]
+atlas = ExtResource("21_v4hxh")
+region = Rect2(224, 384, 32, 32)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ob0a7"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -143,9 +161,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -559.0
+offset_left = -559.5
 offset_top = -117.0
-offset_right = 27.0
+offset_right = 107.5
 offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -229,7 +247,6 @@ layout_mode = 2
 
 [node name="ShopItemContextUI" type="PanelContainer" parent="HBoxContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -311,6 +328,75 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "X/XX"
 horizontal_alignment = 1
+
+[node name="BuybackUI" type="PanelContainer" parent="HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("7_vrdig")
+script = ExtResource("20_v4hxh")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/BuybackUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/BuybackUI/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BuybackSlotUI" type="PanelContainer" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1e")
+
+[node name="ItemUI" type="MarginContainer" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer/BuybackSlotUI"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="BuybackItemTexture" type="TextureRect" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer/BuybackSlotUI/ItemUI"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("20_241a7")
+expand_mode = 1
+
+[node name="BuybackQuantity" type="Label" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer/BuybackSlotUI/ItemUI"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "10"
+
+[node name="PriceRow" type="HBoxContainer" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrencySymbol" type="TextureRect" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer/PriceRow"]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 2
+texture = SubResource("AtlasTexture_vdlb4")
+expand_mode = 1
+
+[node name="BuybuackPriceLabel" type="Label" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer/PriceRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "X"
+
+[node name="BuybackButton" type="Button" parent="HBoxContainer/BuybackUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Buyback"
 
 [node name="CloseShopButton" type="Button" parent="."]
 layout_mode = 2
