@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3yl41a7rncgb"]
+[gd_scene load_steps=6 format=3 uid="uid://d3yl41a7rncgb"]
 
 [ext_resource type="Script" uid="uid://cmgrxt4425wc2" path="res://Interface/inventory_slot_ui.gd" id="1_e3oss"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="2_e3oss"]
@@ -26,6 +26,19 @@ border_width_right = 9
 border_width_bottom = 9
 border_color = Color(0.9607843, 0.6784314, 0.32941177, 1)
 border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5eqy"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -68,5 +81,12 @@ visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_e3oss")
+
+[node name="EquipHighlight" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u5eqy")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

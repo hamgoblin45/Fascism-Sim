@@ -11,6 +11,9 @@ var pending_grab_slot_data: InventorySlotData
 var pending_grab_slot_ui: PanelContainer
 #var grab_slot_data: InventorySlotData
 
+var equipped_slot_data: InventorySlotData = null
+var active_hotbar_index: int = -1
+
 @onready var inv_ui: Control = $".."
 @onready var pockets_inventory_ui: PanelContainer = %PocketsInventoryUI
 var pocket_slot_container: GridContainer
@@ -30,8 +33,11 @@ func _ready() -> void:
 	#EventBus.using_item.connect(_use_item)
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
 	
+	EventBus.hotbar_select.connect(_on_hotbar_select)
+	EventBus.use_equipped_item.connect(_use_equipped)
+	EventBus.drop_equipped_item.connect(_drop_equipped)
+	
 	call_deferred("_set_player_inventory")
-
 
 func _set_player_inventory():
 	# Sets player inventory
@@ -45,6 +51,78 @@ func _on_pockets_request():
 	print("Manager: UI requested inventory, sending data...")
 	EventBus.pockets_inventory_set.emit(pockets_inventory_data)
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("open_interface"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			print("Mouse visible again, UI open")
+		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			print("Mouse hidded, in FPS mode")
+	
+	## Number Keys
+	for i in range (pockets_inventory_data.slot_datas.size()):
+		if event.is_action_pressed("hotbar_" + str(i + 1)):
+			_on_hotbar_select(i)
+	
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+	
+		# Scroll Wheel
+		if event.is_action_pressed("scroll_up"):
+			_scroll_hotbar(-1)
+		if event.is_action_pressed("scroll_down"):
+			_scroll_hotbar(1)
+		
+		# Use item on click if mouse captured
+		if event.is_action_pressed("click"):
+			_use_equipped()
+		
+		# Drop item
+		if event.is_action_pressed("drop"):
+			_drop_equipped()
+
+func _on_hotbar_select(index: int):
+	if index < 0 or index >= pockets_inventory_data.slot_datas.size():
+		return
+	
+	var new_slot = pockets_inventory_data.slot_datas[index]
+	
+	if active_hotbar_index == index:
+		_unequip()
+	else:
+		_equip(new_slot)
+
+func _equip(slot: InventorySlotData):
+	equipped_slot_data = slot
+	EventBus.equipped_item_changed.emit(equipped_slot_data)
+	if slot and slot.item_data:
+		print("EQUIPPED ", slot.item_data.name)
+
+func _unequip():
+	active_hotbar_index = -1
+	equipped_slot_data = null
+	EventBus.equipped_item_changed.emit(null)
+	print("UNEQUIPPED EVERYTHING")
+
+func _scroll_hotbar(dir: int):
+	var max_slots = pockets_inventory_data.slot_datas.size()
+	var new_index = active_hotbar_index + dir
+	if new_index < 0: new_index = max_slots - 1
+	if new_index >= max_slots: new_index = 0
+	_on_hotbar_select(new_index)
+
+func _use_equipped():
+	if equipped_slot_data and equipped_slot_data.item_data:
+		print("Using ", equipped_slot_data.item_data.name)
+	
+
+func _drop_equipped():
+	if equipped_slot_data and equipped_slot_data.item_data:
+		var temp_data = equipped_slot_data
+		_remove_item_from_inventory(temp_data.item_data, temp_data.quantity, temp_data)
+		EventBus.item_discarded.emit(temp_data, Vector2.ZERO)
+		_unequip()
+
 ## -- INVENTORY INTERACTION
 func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_data: InventorySlotData, type: String):
 	match type:
@@ -56,6 +134,7 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 		
 		"click":
 			print("InventoryManager: Click on %s in %s" % [slot_ui, inv])
+			_unequip()
 			# Drop or merge slot if grabbing something
 			if grabbed_slot_data and slot_ui is SlotUI:
 				# Disable interaction w/ shop if grabbing an item

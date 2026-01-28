@@ -8,6 +8,7 @@ var parent_inventory: InventoryData
 @onready var quantity: Label = %Quantity
 
 @onready var selected_panel: Panel = %SelectedPanel
+@onready var equip_highlight: Panel = %EquipHighlight
 
 var activated: bool = true
 
@@ -15,6 +16,7 @@ var activated: bool = true
 func _ready() -> void:
 	EventBus.inventory_item_updated.connect(_on_item_updated)
 	EventBus.select_item.connect(_select_item)
+	EventBus.equipped_item_changed.connect(_on_equipped_changed)
 	#Hover effect
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
@@ -105,6 +107,11 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "r_click")
 			print("InventorySlotUI: Slot right-clicked")
+
+func _on_equipped_changed(data: InventorySlotData):
+	if parent_inventory == GameState.pockets_inventory:
+		equip_highlight.visible = (data == slot_data and data != null)
+
 
 func _check_if_sellable(legal: bool):
 	if not slot_data or not slot_data.item_data:
