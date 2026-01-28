@@ -14,6 +14,7 @@ var parent_inventory: InventoryData
 var hotbar_index: int = 0
 
 var activated: bool = true
+var tween: Tween
 
 
 func _ready() -> void:
@@ -116,11 +117,26 @@ func _on_gui_input(event: InputEvent) -> void:
 
 func _on_equipped_changed(active_index: int):
 	if parent_inventory == GameState.pockets_inventory:
-		equip_highlight.visible = (get_index() == active_index)
+		var is_active = (get_index() == active_index)
+		equip_highlight.visible = is_active
+		
+		_animate_selection(is_active)
+		
 	else:
 		equip_highlight.hide()
 		#equip_highlight.visible = (data == slot_data and data != null)
 
+func _animate_selection(is_active: bool):
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	
+	var target_scale = Vector2(1.15,1.15) if is_active else Vector2(1.0, 1.0)
+	
+	tween.set_trans(tween.TRANS_BACK) # Give it a lil bounce, ya know what I'm sayin'?
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(self, "scale", target_scale, 0.2)
 
 func _check_if_sellable(legal: bool):
 	if not slot_data or not slot_data.item_data:

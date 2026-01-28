@@ -60,11 +60,7 @@ func _input(event: InputEvent) -> void:
 			GameState.ui_open = false
 			print("Mouse hidden, in FPS mode")
 	
-	## Number Keys
-	for i in range (pockets_inventory_data.slot_datas.size()):
-		if event.is_action_pressed("hotbar_" + str(i + 1)):
-			_on_hotbar_select(i)
-			return
+	
 	
 	if not GameState.ui_open:
 	
@@ -73,6 +69,13 @@ func _input(event: InputEvent) -> void:
 			_scroll_hotbar(-1)
 		if event.is_action_pressed("scroll_down"):
 			_scroll_hotbar(1)
+		
+		## Number Keys
+		else:
+			for i in range (6):
+				if event.is_action_pressed("hotbar_" + str(i + 1)):
+					_on_hotbar_select(i)
+					return
 		
 		# Use item on click if mouse captured
 		if event.is_action_pressed("click"):
@@ -91,14 +94,14 @@ func _on_hotbar_select(index: int):
 	
 	if GameState.active_hotbar_index == index:
 		_unequip()
-	else:
-		_equip(new_slot)
-	
-	GameState.active_hotbar_index = index
+		return
 
-func _equip(slot: InventorySlotData):
+	GameState.active_hotbar_index = index
+	_equip(new_slot, index)
+
+func _equip(slot: InventorySlotData, index: int):
 	equipped_slot_data = slot
-	EventBus.hotbar_index_changed.emit(GameState.active_hotbar_index)
+	EventBus.hotbar_index_changed.emit(index)
 	if slot and slot.item_data:
 		print("EQUIPPED ", slot.item_data.name)
 
@@ -121,7 +124,7 @@ func _scroll_hotbar(dir: int):
 	elif GameState.active_hotbar_index >= max_slots: GameState.active_hotbar_index = 0
 	
 	var new_slot = pockets_inventory_data.slot_datas[GameState.active_hotbar_index]
-	_equip(new_slot)
+	_equip(new_slot, GameState.active_hotbar_index)
 	
 	EventBus.hotbar_index_changed.emit(GameState.active_hotbar_index)
 

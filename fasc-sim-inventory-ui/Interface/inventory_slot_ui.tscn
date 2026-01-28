@@ -48,6 +48,7 @@ corner_detail = 5
 [node name="InventorySlotUI" type="PanelContainer"]
 process_mode = 3
 custom_minimum_size = Vector2(64, 64)
+pivot_offset = Vector2(32, 32)
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ik1e")
 script = ExtResource("1_e3oss")
 
