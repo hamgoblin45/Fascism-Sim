@@ -4,6 +4,7 @@ const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 
 #Create a "Pool" of loot for the inventory to pull from
 @export var legal_inventory_pool: InventoryData
+#var modified_pool: InventoryData
 @export var illegal_inventory_pool: InventoryData
 @export var legal_shop_inventory: InventoryData
 @export var illegal_shop_inventory: InventoryData
@@ -34,13 +35,15 @@ func _ready():
 
 ## --------- SHOP POPULATION
 func _handle_shop_ui(legal_shop: bool):
-	# Clear stuff out
-	shop_inventory_data = null
-	_clear_selected_item()
+	
 	
 	# Trigger whether closing or opening ShopUI
 	GameState.shopping = not GameState.shopping
 	visible = GameState.shopping
+	
+	_clear_selected_item()
+	
+	
 	
 	# Stops if not shopping
 	if not visible:
@@ -50,26 +53,37 @@ func _handle_shop_ui(legal_shop: bool):
 	legal = legal_shop # Sets whether shop is Black Market or Legal
 	
 	if legal:
+		if shop_inventory_data == legal_shop_inventory: # Prevents rerolling data each time it is opened
+			return
+		shop_inventory_data = null
 		_set_legal_inventory()
 		print("Starting a trade at the Comissary")
 	
 	else:
+		if shop_inventory_data == illegal_shop_inventory: # Prevents rerolling data each time it is opened
+			return
+		shop_inventory_data = null
 		_set_illegal_inventory()
 		print("Starting a trade at the Black Market")
 
 func _set_legal_inventory():
 	# Checks how much room in the shop inventory isn't already taken by persistant stock
+	# Also removes items in the persistant stock from the pool to avoid dupes
 	for i in legal_shop_inventory.slot_datas:
 		var slot_index = legal_shop_inventory.slot_datas.find(i)
 		var slot_data = legal_shop_inventory.slot_datas[slot_index]
-		if not slot_data or not slot_data.item_data:
-			print("Empty slot in legal inventory set")
-			var random_slot = legal_inventory_pool.slot_datas.pick_random()
+		var random_slot = _select_random_item(slot_data, legal_inventory_pool)
+		# If a slot was chosen, create a UI for it
+		if random_slot != null:
 			print("Item selected for empty shop slot: %s" % random_slot.item_data.name)
 			var new_slot = InventorySlotData.new()
 			new_slot.item_data = random_slot.item_data
 			new_slot.quantity = random_slot.quantity
 			legal_shop_inventory.slot_datas[slot_index] = new_slot
+		# If no data was selected, reduce the shop's slot size by one
+		#else:
+			#legal_shop_inventory.slot_datas.resize(legal_shop_inventory.slot_datas.size() - 1)
+	
 	_populate_shop(legal_shop_inventory)
 
 func _set_illegal_inventory():
@@ -86,6 +100,22 @@ func _set_illegal_inventory():
 			new_slot.quantity = random_slot.quantity
 			illegal_shop_inventory.slot_datas[slot_index] = new_slot
 	_populate_shop(illegal_shop_inventory)
+
+func _select_random_item(slot_data: InventorySlotData, pool: InventoryData) -> InventorySlotData:
+	# Return if missing slot_data or if there are no more items in the modified_pool
+	if not slot_data or not slot_data.item_data:
+		return null
+	if pool.slot_datas.size() <= 0:
+		return null
+	
+	# Pick a random slot
+	var random_slot = pool.slot_datas.pick_random()
+	pool.slot_datas.erase(random_slot) # Removes the slot so it won't be selected again
+	
+	if random_slot:
+		return random_slot
+		
+	return null
 
 func _populate_shop(inv: InventoryData):
 	# Clear out previous slots to avoid inconsistencies
