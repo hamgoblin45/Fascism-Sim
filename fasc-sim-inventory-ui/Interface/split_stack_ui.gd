@@ -1,6 +1,7 @@
 extends PanelContainer
 
 var slot_data: InventorySlotData
+var current_inventory: InventoryData
 
 @onready var split_slider: HSlider = $MarginContainer/VBoxContainer/HBoxContainer/SplitSlider
 @onready var split_qty: Label = $MarginContainer/VBoxContainer/HBoxContainer/SplitQty
@@ -13,10 +14,11 @@ func _ready() -> void:
 	EventBus.open_split_stack_ui.connect(_set_split_ui)
 
 
-func _set_split_ui(slot: InventorySlotData):
+func _set_split_ui(inv: InventoryData, slot: InventorySlotData):
 	if not slot.item_data.stackable: return
 	await get_tree().create_timer(0.01).timeout
 	show()
+	current_inventory = inv
 	slot_data = slot
 	split_qty.text = "%s/%s" % [str(snappedi(split_slider.value,1)), str(slot.quantity)]
 	split_slider.max_value = slot.quantity
@@ -32,12 +34,9 @@ func _physics_process(_delta: float) -> void:
 func _on_split_button_pressed() -> void:
 	var amount = int(split_slider.value)
 	
-	if amount <= 0:
+	if amount <= 0 or amount >= slot_data.quantity:
 		hide()
 		return
-	
-	if amount >= slot_data.quantity:
-		amount = slot_data.quantity
 	
 	var stack_data = InventorySlotData.new()
 	stack_data.item_data = slot_data.item_data
@@ -45,7 +44,9 @@ func _on_split_button_pressed() -> void:
 	
 	slot_data.quantity -= int(amount)
 	
-	EventBus.inventory_item_updated.emit(slot_data)
+	var idx = current_inventory.slot_datas.find(slot_data)
+	
+	EventBus.inventory_item_updated.emit(current_inventory, idx)
 	
 	EventBus.splitting_item_stack.emit(stack_data)
 	hide()

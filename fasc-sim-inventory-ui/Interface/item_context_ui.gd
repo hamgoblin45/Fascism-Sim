@@ -95,7 +95,7 @@ func _on_use_button_pressed() -> void:
 			EventBus.selling_item.emit(slot_data)
 
 func _on_split_button_pressed() -> void:
-	EventBus.open_split_stack_ui.emit(slot_data)
+	EventBus.open_split_stack_ui.emit(inventory_data, slot_data)
 	print("Split button pressed on Context Menu")
 
 func _on_hide_details_button_pressed() -> void:
