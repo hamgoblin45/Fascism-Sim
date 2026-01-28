@@ -114,12 +114,10 @@ func _check_if_sellable(legal: bool):
 		activated = false
 		item_texture.modulate = Color.BLACK
 		tooltip_text = "Merchant won't buy this"
-		modulate = Color.DIM_GRAY
 	else:
 		activated = true
 		item_texture.modulate = Color.WHITE
 		tooltip_text = slot_data.item_data.name
-		modulate = Color.WHITE
 
 func _on_shop_closed():
 	if not slot_data or not slot_data.item_data:
@@ -128,4 +126,3 @@ func _on_shop_closed():
 	activated = true
 	item_texture.modulate = Color(1,1,1) # Reset to normal
 	tooltip_text = slot_data.item_data.name
-	modulate = Color(1,1,1) # Reset to normal
