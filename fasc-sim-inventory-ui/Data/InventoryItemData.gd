@@ -13,7 +13,7 @@ class_name InventoryItemData
 @export var concealability: float = 0.0 # 0 - 5 w/ 5 most concealable and 0 the least
 @export var contraband_level: int = 0 # 0 - Legal, 1 - Frowned Upon, 2 - Prohibited, 3 - Strictly Illegal, etc
 
-@export var size: int = 0 # 0 - 5 w/ 5 being largest
+#@export var size: int = 0 # 0 - 5 w/ 5 being largest
 @export var stackable: bool
 @export var max_stack_size: int = 99
 @export var useable: bool
