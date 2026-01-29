@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhy5f81eytswm"]
+[gd_scene load_steps=6 format=3 uid="uid://dhy5f81eytswm"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/inventory_ui.tscn" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 
@@ -17,6 +18,7 @@ sky = SubResource("Sky_0xm2m")
 environment = SubResource("Environment_7dm0k")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.005113774, 0.99998695, 0, -0.99998695, 0.005113774, 0, 0, 0)
 
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08818102, 0)
@@ -25,3 +27,5 @@ size = Vector3(80, 0.1, 80)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31503916, 0)
+
+[node name="InventoryUI" parent="." instance=ExtResource("2_0xm2m")]
