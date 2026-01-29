@@ -38,7 +38,11 @@ func _interact(type: String, engaged: bool):
 		
 		"interact":
 			if slot_data and slot_data.item_data:
-				EventBus.adding_item.emit(slot_data.item_data, slot_data.quantity)
+				var item_data = InventoryItemData.new()
+				item_data = slot_data.item_data
+				var qty = slot_data.quantity
+				
+				EventBus.adding_item.emit(item_data, qty)
 				queue_free()
 				#print("This will pick items up in the inventory project")
 

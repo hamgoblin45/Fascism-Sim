@@ -101,6 +101,8 @@ var mouseInput : Vector2 = Vector2(0,0)
 
 @onready var interact_ray: RayCast3D = $Head/InteractRay
 @export_category("Item Equipping/Use")
+const GRABBABLE = preload("uid://j22i50g5odp8")
+
 var equipped_item_mesh
 @onready var hold_item_point: Node3D = %HoldItemPoint
 
@@ -127,6 +129,7 @@ func _ready():
 	set_controls()
 	EventBus.item_grabbed.connect(_set_held_object)
 	EventBus.equipping_item.connect(_set_equipped_item)
+	EventBus.item_discarded.connect(_on_discard_item)
 
 func _unhandled_input(event : InputEvent):
 	### --- FPS ADDON CODE START --- ###
@@ -225,6 +228,13 @@ func _handle_holding_object():
 		if drop_below_player && ground_ray.is_colliding():
 			if ground_ray.get_collider() == held_object:
 				_drop_held_object()
+
+ ## -- Discarding Inv items
+func _on_discard_item(slot_data: InventorySlotData, _drop_position: Vector2):
+	var item_instance = GRABBABLE.instantiate()
+	item_instance.slot_data = slot_data
+	get_parent().add_child(item_instance)
+	item_instance.global_position = drop_point.global_position
 
 ## -- Equipping Items
 
