@@ -220,6 +220,7 @@ func _set_external_inventory(inv_data: InventoryData):
 	print("InventoryManager: setting external inv")
 	external_inventory_data = inv_data
 	EventBus.external_inventory_set.emit(inv_data)
+	
 
 ## ---- BRIDGE FUNCTIONS (allows adding / removing items from outside functions)
 

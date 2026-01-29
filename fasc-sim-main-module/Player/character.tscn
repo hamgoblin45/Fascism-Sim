@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://cvyrqfy6x3x1l" path="res://Player/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://bcllo70t6g0an" path="res://Player/interact_ray.gd" id="2_6j38j"]
@@ -323,7 +323,7 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "ground_ray")]
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1054369776 node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "ground_ray")]
 collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_0t4e8")
@@ -370,61 +370,53 @@ max_dist_from_cam = null
 drop_below_player = true
 ground_ray = NodePath("GroundRay")
 
-[node name="LookAtNode" type="Node3D" parent="."]
+[node name="LookAtNode" type="Node3D" parent="." unique_id=1947893186]
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9377, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="LookAtNode"]
+[node name="RayCast3D" type="RayCast3D" parent="LookAtNode" unique_id=6845103]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -5, 0)
 debug_shape_custom_color = Color(0.927841, 0.346608, 0.588068, 1)
 
-[node name="Collision" type="CollisionShape3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=671325077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_uy03j")
 
-[node name="CrouchAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5e5t5")
-}
+[node name="CrouchAnimation" type="AnimationPlayer" parent="." unique_id=74418944]
+libraries/ = SubResource("AnimationLibrary_5e5t5")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=1932335596]
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera" type="Camera3D" parent="Head"]
+[node name="Camera" type="Camera3D" parent="Head" unique_id=759016982]
 process_mode = 1
 
-[node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
+[node name="HeadbobAnimation" type="AnimationPlayer" parent="Head" unique_id=417643793]
 process_mode = 1
-libraries = {
-&"": SubResource("AnimationLibrary_o0unb")
-}
+libraries/ = SubResource("AnimationLibrary_o0unb")
 blend_times = [&"RESET", &"RESET", 0.5, &"RESET", &"walk", 0.5, &"walk", &"RESET", 0.5]
 
-[node name="JumpAnimation" type="AnimationPlayer" parent="Head"]
-libraries = {
-&"": SubResource("AnimationLibrary_qeg5r")
-}
+[node name="JumpAnimation" type="AnimationPlayer" parent="Head" unique_id=48612857]
+libraries/ = SubResource("AnimationLibrary_qeg5r")
 speed_scale = 4.0
 
-[node name="ToolPoint" type="Node3D" parent="Head"]
+[node name="ToolPoint" type="Node3D" parent="Head" unique_id=831791176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.548226, -0.369346, -0.706932)
 
-[node name="HoldItemPoint" type="Node3D" parent="Head"]
+[node name="HoldItemPoint" type="Node3D" parent="Head" unique_id=994079019]
 unique_name_in_owner = true
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0664444, -0.168296, -0.435361)
 
-[node name="ConsumeAnim" type="AnimationPlayer" parent="Head/HoldItemPoint"]
-libraries = {
-&"": SubResource("AnimationLibrary_78wew")
-}
+[node name="ConsumeAnim" type="AnimationPlayer" parent="Head/HoldItemPoint" unique_id=1973854879]
+libraries/ = SubResource("AnimationLibrary_78wew")
 
-[node name="ConsumeAudio" type="AudioStreamPlayer" parent="Head/HoldItemPoint"]
+[node name="ConsumeAudio" type="AudioStreamPlayer" parent="Head/HoldItemPoint" unique_id=350575378]
 
-[node name="InteractRay" type="RayCast3D" parent="Head"]
+[node name="InteractRay" type="RayCast3D" parent="Head" unique_id=1223219909]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -3)
 collision_mask = 6
@@ -433,18 +425,18 @@ collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("2_6j38j")
 
-[node name="DropPoint" type="Node3D" parent="Head"]
+[node name="DropPoint" type="Node3D" parent="Head" unique_id=1344688562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.518397, -1.07424)
 
-[node name="CrouchCeilingDetection" type="ShapeCast3D" parent="."]
+[node name="CrouchCeilingDetection" type="ShapeCast3D" parent="." unique_id=1851315159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_k4wwl")
 target_position = Vector3(0, 0.5, 0)
 
-[node name="EditorModule" type="Node" parent="."]
+[node name="EditorModule" type="Node" parent="." unique_id=659043363]
 script = ExtResource("3_v3ckk")
 
-[node name="GroundRay" type="RayCast3D" parent="."]
+[node name="GroundRay" type="RayCast3D" parent="." unique_id=1782413701]
 unique_name_in_owner = true
 target_position = Vector3(0, -0.1, 0)
 

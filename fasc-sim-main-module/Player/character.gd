@@ -204,9 +204,6 @@ func _throw_held_object():
 		#EventBus.item_dropped.emit(obj, throw_force * 10)
 
 func _handle_holding_object():
-	#if Input.is_action_just_pressed("click") and held_object:
-		#drop_held_object()
-	
 	if Input.is_action_just_pressed("r_click") and held_object:
 		_throw_held_object()
 	

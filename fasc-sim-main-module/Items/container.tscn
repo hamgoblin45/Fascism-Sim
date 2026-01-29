@@ -16,7 +16,9 @@ region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6s50"]
 
-[node name="Container" type="Node3D" unique_id=93282791]
+[sub_resource type="BoxShape3D" id="BoxShape3D_b1gkk"]
+
+[node name="Container" type="StaticBody3D" unique_id=427099316]
 script = ExtResource("1_b1gkk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=57309622]
@@ -32,3 +34,6 @@ interact_text = "Open"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=595969542]
 shape = SubResource("BoxShape3D_x6s50")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="." unique_id=1340977184]
+shape = SubResource("BoxShape3D_b1gkk")
