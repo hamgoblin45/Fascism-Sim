@@ -100,7 +100,7 @@ func _on_hotbar_select(index: int):
 
 	GameState.active_hotbar_index = index
 	_equip(new_slot, index)
-	EventBus.hotbar_index_changed.emit(GameState.active_hotbar_index)
+	
 	
 
 func _equip(slot: InventorySlotData, index: int):
