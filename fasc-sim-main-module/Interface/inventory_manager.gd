@@ -92,23 +92,31 @@ func _on_hotbar_select(index: int):
 	
 	var new_slot = pockets_inventory_data.slot_datas[index]
 	
-	if GameState.active_hotbar_index == index:
+	if GameState.active_hotbar_index == index or new_slot == null or not new_slot.item_data:
+		print("Unequipping")
 		_unequip()
+		
 		return
 
 	GameState.active_hotbar_index = index
 	_equip(new_slot, index)
+	EventBus.hotbar_index_changed.emit(GameState.active_hotbar_index)
+	
 
 func _equip(slot: InventorySlotData, index: int):
 	equipped_slot_data = slot
 	EventBus.hotbar_index_changed.emit(index)
 	if slot and slot.item_data:
+		EventBus.equipping_item.emit(slot.item_data)
 		print("EQUIPPED ", slot.item_data.name)
+	#else:
+		#_unequip()
 
 func _unequip():
 	GameState.active_hotbar_index = -1
 	equipped_slot_data = null
 	EventBus.hotbar_index_changed.emit(-1)
+	EventBus.equipping_item.emit(null)
 	print("UNEQUIPPED EVERYTHING")
 
 func _scroll_hotbar(dir: int):
@@ -123,10 +131,16 @@ func _scroll_hotbar(dir: int):
 	if GameState.active_hotbar_index < 0: GameState.active_hotbar_index = max_slots - 1
 	elif GameState.active_hotbar_index >= max_slots: GameState.active_hotbar_index = 0
 	
+	
 	var new_slot = pockets_inventory_data.slot_datas[GameState.active_hotbar_index]
-	_equip(new_slot, GameState.active_hotbar_index)
+	if new_slot and new_slot.item_data:
+		_equip(new_slot, GameState.active_hotbar_index)
+	else:
+		EventBus.equipping_item.emit(null)
+		equipped_slot_data = null
 	
 	EventBus.hotbar_index_changed.emit(GameState.active_hotbar_index)
+
 
 func _use_equipped():
 	if equipped_slot_data and equipped_slot_data.item_data:

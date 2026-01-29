@@ -100,6 +100,9 @@ var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") 
 var mouseInput : Vector2 = Vector2(0,0)
 
 @onready var interact_ray: RayCast3D = $Head/InteractRay
+@export_category("Item Equipping/Use")
+var equipped_item_mesh
+@onready var hold_item_point: Node3D = %HoldItemPoint
 
 @export_category("Holding/Dropping/Throwing")
 var held: bool
@@ -123,6 +126,7 @@ func _ready():
 	GameState.player = self
 	set_controls()
 	EventBus.item_grabbed.connect(_set_held_object)
+	EventBus.equipping_item.connect(_set_equipped_item)
 
 func _unhandled_input(event : InputEvent):
 	### --- FPS ADDON CODE START --- ###
@@ -177,7 +181,7 @@ func _physics_process(delta):
 		
 		_handle_holding_object()
 
-
+## -- Clicking and holding physical objects
 func _set_held_object(body):
 	if body is Grabbable:
 		
@@ -221,6 +225,24 @@ func _handle_holding_object():
 		if drop_below_player && ground_ray.is_colliding():
 			if ground_ray.get_collider() == held_object:
 				_drop_held_object()
+
+## -- Equipping Items
+
+func _handle_equipped_item():
+	pass
+
+func _set_equipped_item(item_data: InventoryItemData):
+	print("Set equipped item called")
+	# Clear out old meshes
+	equipped_item_mesh = null
+	for child in hold_item_point.get_children():
+		child.queue_free()
+	if item_data == null:
+		return
+	if item_data.equipped_scene:
+		var mesh_instance = item_data.equipped_scene.instantiate()
+		hold_item_point.add_child(mesh_instance)
+		equipped_item_mesh = mesh_instance
 
 
 #### ---- FPS CONTROLLER ADDON CODE START -------- ####
@@ -321,7 +343,6 @@ func handle_head_rotation():
 	
 	mouseInput = Vector2(0,0)
 	HEAD.rotation.x = clamp(HEAD.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-
 
 func handle_state(moving):
 	if sprint_enabled:

@@ -17,3 +17,5 @@ class_name InventoryItemData
 @export var stackable: bool
 @export var max_stack_size: int = 99
 @export var useable: bool
+
+@export var equipped_scene: PackedScene # The mesh that is "held" when an item is equipped

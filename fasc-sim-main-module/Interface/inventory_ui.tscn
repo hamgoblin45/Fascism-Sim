@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
 [ext_resource type="PackedScene" uid="uid://bmqlxplie777" path="res://Interface/pockets_inventory_ui.tscn" id="4_3y5k6"]
-[ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/item_harp.tres" id="4_cx7ba"]
 [ext_resource type="Script" uid="uid://jremvvcffik8" path="res://Interface/inventory_manager.gd" id="4_sxlab"]
 [ext_resource type="PackedScene" uid="uid://wkm6jgcm5mys" path="res://Interface/external_inventory.tscn" id="5_gur8t"]
 [ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/item_carrot.tres" id="5_m26qo"]
+[ext_resource type="Resource" uid="uid://xnc5ytkpto04" path="res://Data/Items/Food/coffee_cup.tres" id="5_pjc3g"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="6_3y5k6"]
 [ext_resource type="Resource" uid="uid://bmahi1w8kf6yv" path="res://Interface/TestStuff/cocaine.tres" id="7_pjc3g"]
 [ext_resource type="PackedScene" uid="uid://cb06vgbnsed6c" path="res://Interface/grabbed_slot_ui.tscn" id="9_c0f0r"]
@@ -17,7 +17,7 @@
 
 [sub_resource type="Resource" id="Resource_c0f0r"]
 script = ExtResource("3_cx7ba")
-item_data = ExtResource("4_cx7ba")
+item_data = ExtResource("5_pjc3g")
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
 [sub_resource type="Resource" id="Resource_xywkj"]

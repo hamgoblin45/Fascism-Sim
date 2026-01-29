@@ -37,7 +37,7 @@ signal external_inventory_set(inv_data: InventoryData) # Confirms an external in
 
 ## - Hotbar
 signal using_item(slot_data: InventorySlotData) # Requests use of an item
-
+signal equipping_item(item: InventoryItemData)
 signal use_equipped_item
 signal drop_equipped_item
 signal hotbar_index_changed(index: int)
