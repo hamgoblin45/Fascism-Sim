@@ -248,6 +248,11 @@ layout_mode = 2
 mouse_filter = 1
 text = "Open Illegal Shop"
 
+[node name="StartSearch" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=502261515]
+layout_mode = 2
+mouse_filter = 1
+text = "START SEARCH"
+
 [node name="DialogueLabel" type="Label" parent="TestStuff" unique_id=207362338]
 unique_name_in_owner = true
 visible = false
@@ -307,3 +312,4 @@ mouse_filter = 2
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenContainer3" to="TestStuff" method="_on_open_container_3_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenShopUI" to="TestStuff" method="_on_open_shop_ui_pressed"]
 [connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/OpenIllegalShop" to="TestStuff" method="_on_open_illegal_shop_pressed"]
+[connection signal="pressed" from="TestStuff/TestPanel/VBoxContainer/StartSearch" to="TestStuff" method="_on_start_search_pressed"]

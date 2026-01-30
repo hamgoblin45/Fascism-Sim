@@ -97,3 +97,7 @@ func _on_open_container_3_pressed() -> void:
 func _on_open_illegal_shop_pressed() -> void:
 	if not GameState.shopping:
 		EventBus.shopping.emit(false)
+
+
+func _on_start_search_pressed() -> void:
+	SearchManager.start_search(GameState.pockets_inventory)
