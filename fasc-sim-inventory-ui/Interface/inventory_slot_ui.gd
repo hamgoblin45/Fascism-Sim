@@ -168,9 +168,9 @@ func _on_shop_closed():
 func _on_search_step(index: int, duration: float):
 	if index == get_index():
 		_set_search_visual(SearchState.SEARCHING, duration)
-	elif index > get_index() and SearchManager.is_searching:
+	elif index < get_index() and SearchManager.is_searching:
 		_set_search_visual(SearchState.PENDING)
-	elif index < get_index():
+	elif index > get_index():
 		_set_search_visual(SearchState.CLEARED)
 
 func _set_search_visual(state: SearchState, duration: float = 0.0):

@@ -11,6 +11,7 @@ var thoroughness: float = 0.5 # 0.0 to 1.0 (searcher's skill, Suspicion will dir
 var is_searching: bool = false
 
 func start_search(inventory: InventoryData):
+	print("SearchManager: STARTING SEARCH!")
 	is_searching = true
 	suspicion_level = 0.0
 	var elapsed_time = 0.0
@@ -34,7 +35,7 @@ func start_search(inventory: InventoryData):
 		elapsed_time += search_duration
 		
 		if slot and slot.item_data:
-			if _check_discovery(slot.item_data):
+			if _discovered_contraband(slot.item_data):
 				player_busted(slot.item_data, slot.quantity)
 				
 				return
@@ -42,20 +43,26 @@ func start_search(inventory: InventoryData):
 	#search_finished.emit(false, null, 0)
 	#is_searching = false
 
-func _check_discovery(item: InventoryItemData) -> bool:
-	if item.contraband_level == 0: return false
+func _discovered_contraband(item: InventoryItemData) -> bool:
+	print("SearchManager: _check_discovery: %s has a contraband level of %s" % [item.name, item.contraband_level])
+	if item.contraband_level == 0:
+		return false
 	
 	# Higher concealability reduces RNG chance of discovery
 	# Thoroughness increases it
+	
 	var discovery_chance = (item.contraband_level * thoroughness) / (item.concealability + 0.1)
+	print("SearchManager: Chance of contraband being discovered: ", discovery_chance)
 	return randf() < discovery_chance
 
 func _finish_search(caught: bool, item: InventoryItemData, qty: int):
+	print("SearchManager: search finished. Caught: ", caught)
 	is_searching = false
 	current_search_index = -1
 	search_finished.emit(caught, item, qty)
 
 func player_busted(item: InventoryItemData, qty: int):
+	print("SearchManager: PLAYER BUSTED with ", item.name)
 	is_searching = false
 	search_finished.emit(true, item, qty)
 			
