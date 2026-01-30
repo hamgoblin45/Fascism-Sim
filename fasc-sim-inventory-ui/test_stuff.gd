@@ -12,6 +12,12 @@ var test_container_inventory_3: InventoryData
 @onready var get_item: Button = $TestPanel/VBoxContainer/GetItem
 
 @onready var external_inventory: PanelContainer = %ExternalInventory
+@onready var searched_label: Label = %SearchedLabel
+@onready var current_suspicion: Label = %CurrentSuspicion
+@onready var search_patience: Label = %SearchPatience
+@onready var time_elapsed: Label = %TimeElapsed
+@onready var discovery_odds: Label = %DiscoveryOdds
+
 
 func _ready() -> void:
 	#test_inv_data = TEST_EXTERNAL_INVENTORY.duplicate(true)
@@ -23,6 +29,15 @@ func _ready() -> void:
 	
 	test_container_inventory_3 = InventoryData.new()
 	test_container_inventory_3.slot_datas.resize(5)
+	SearchManager.search_step_started.connect(_on_search_step_started)
+	SearchManager.search_finished.connect(_on_search_finished)
+
+func _process(_delta: float) -> void:
+	if not SearchManager.is_searching:
+		return
+	current_suspicion.text = "Current suspicion: %s" % SearchManager.suspicion_level
+	search_patience.text = "Searcher's patience: %ss" % SearchManager.patience
+	time_elapsed.text = "Time Elapsed: %s" % SearchManager.temp_elapse_time
 
 func _on_open_give_ui_pressed() -> void:
 	GameState.in_dialogue = !GameState.in_dialogue
@@ -101,3 +116,20 @@ func _on_open_illegal_shop_pressed() -> void:
 
 func _on_start_search_pressed() -> void:
 	SearchManager.start_search(GameState.pockets_inventory)
+
+func _on_search_step_started(index: int, duration: float):
+	if not searched_label.visible:
+		searched_label.show()
+		searched_label.modulate = Color.WHITE
+	searched_label.text = "YOU ARE BEING SEARCHED!"
+
+func _on_search_finished(caught: bool, item: InventoryItemData, qty: int):
+	if caught:
+		searched_label.text = "BUSTED!!!!
+		You were caught with %s %s" % [qty, item.name]
+		searched_label.modulate = Color.RED
+	else:
+		searched_label.text = "Search complete!
+		They found nothing :)"
+		searched_label.modulate = Color.GREEN
+	

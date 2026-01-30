@@ -174,23 +174,83 @@ layout_mode = 0
 
 [node name="TestStuff" type="Control" parent="." unique_id=1109689936]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -274.0
-offset_bottom = -293.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("12_c0f0r")
 
-[node name="TestPanel" type="PanelContainer" parent="TestStuff" unique_id=537286624]
+[node name="SearchUI" type="Control" parent="TestStuff" unique_id=1801683746]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -73.0
+offset_right = 206.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/SearchUI" unique_id=2013249341]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SearchedLabel" type="Label" parent="TestStuff/SearchUI/VBoxContainer" unique_id=451510094]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "YOU ARE BEING SEARCHED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeElapsed" type="Label" parent="TestStuff/SearchUI/VBoxContainer" unique_id=1657353175]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentSuspicion" type="Label" parent="TestStuff/SearchUI/VBoxContainer" unique_id=617763326]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.39785928, 0.70488954, 0.92446965, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SearchPatience" type="Label" parent="TestStuff/SearchUI/VBoxContainer" unique_id=700362022]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiscoveryOdds" type="Label" parent="TestStuff/SearchUI/VBoxContainer" unique_id=848864956]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TestPanel" type="PanelContainer" parent="TestStuff" unique_id=537286624]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -152.0
+offset_right = -16.0
+offset_bottom = 152.0
+grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
 
