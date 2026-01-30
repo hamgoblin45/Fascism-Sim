@@ -132,6 +132,7 @@ func _ready():
 	EventBus.item_discarded.connect(_on_discard_item)
 
 func _unhandled_input(event : InputEvent):
+	_handle_holding_object()
 	### --- FPS ADDON CODE START --- ###
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		mouseInput.x += event.relative.x
@@ -182,23 +183,27 @@ func _physics_process(delta):
 		### --- FPS ADDON CODE END --- ###
 
 		
-		_handle_holding_object()
+		
 
 ## -- Clicking and holding physical objects
 func _set_held_object(body):
-	if body is Grabbable:
-		
-		print("Setting held object on character.gd")
-		held_object = body
-		original_held_parent = body.get_parent()
-		held_object.reparent(HEAD)
+	if held_object or not body is Grabbable: return
+	print("Setting held object on character.gd")
+	held_object = body
+	GameState.held_item = true
+	held_object.freeze = true
+	original_held_parent = body.get_parent()
+	held_object.reparent(HEAD)
+	#held_object.global_transform.origin = hold_item_point.global_position
 
 func _drop_held_object():
 	print("Dropping held item")
 	#held_object.reparent(original_held_parent)
 	if is_instance_valid(held_object):
-		EventBus.item_dropped.emit(held_object, 0.0) # No additional force applied
-		held_object.reparent(held_object.original_parent)
+		held_object.freeze = false
+		#EventBus.item_dropped.emit(held_object, 0.0) # No additional force applied
+		held_object.reparent(original_held_parent)
+		GameState.held_item = false
 		original_held_parent = null
 		held_object = null
 
@@ -217,17 +222,17 @@ func _handle_holding_object():
 	if Input.is_action_just_released("click") and held_object:
 		_drop_held_object()
 	
-	if held_object and is_instance_valid(held_object):
-		var target_pos = CAMERA.global_transform.origin + (CAMERA.global_basis * Vector3(0, 0, -follow_dist))
-		var object_pos = held_object.global_transform.origin
-		held_object.linear_velocity = (target_pos - object_pos) * follow_speed
-		
-		if held_object.global_position.distance_to(CAMERA.global_position) > max_dist_from_cam:
-			_drop_held_object()
-		
-		if drop_below_player && ground_ray.is_colliding():
-			if ground_ray.get_collider() == held_object:
-				_drop_held_object()
+	#if held_object and is_instance_valid(held_object):
+		#var target_pos = CAMERA.global_transform.origin + (CAMERA.global_basis * Vector3(0, 0, -follow_dist))
+		#var object_pos = held_object.global_transform.origin
+		#held_object.linear_velocity = (target_pos - object_pos) * follow_speed
+		#
+		#if held_object.global_position.distance_to(CAMERA.global_position) > max_dist_from_cam:
+			#_drop_held_object()
+		#
+		#if drop_below_player && ground_ray.is_colliding():
+			#if ground_ray.get_collider() == held_object:
+				#_drop_held_object()
 
  ## -- Discarding Inv items
 func _on_discard_item(slot_data: InventorySlotData, _drop_position: Vector2):

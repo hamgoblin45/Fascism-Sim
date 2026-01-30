@@ -27,8 +27,8 @@ shape = SubResource("BoxShape3D_2uhas")
 
 [node name="Interactable" type="Area3D" parent="." unique_id=1027235263]
 unique_name_in_owner = true
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("2_40rwh")
 interact_icon = ExtResource("3_40rwh")
 
