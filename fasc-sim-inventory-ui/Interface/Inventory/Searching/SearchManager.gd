@@ -50,8 +50,7 @@ func _discovered_contraband(item: InventoryItemData) -> bool:
 	
 	# Higher concealability reduces RNG chance of discovery
 	# Thoroughness increases it
-	
-	var discovery_chance = (item.contraband_level * thoroughness) / (item.concealability + 0.1)
+	var discovery_chance = (thoroughness) / (item.concealability + 0.1)
 	print("SearchManager: Chance of contraband being discovered: ", discovery_chance)
 	return randf() < discovery_chance
 
