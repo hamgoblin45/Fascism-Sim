@@ -35,7 +35,7 @@ func start_search(inventory: InventoryData):
 		
 		if slot and slot.item_data:
 			if _check_discovery(slot.item_data):
-				_player_busted(slot.item_data, slot.quantity)
+				player_busted(slot.item_data, slot.quantity)
 				
 				return
 	_finish_search(false, null, 0)
@@ -55,7 +55,7 @@ func _finish_search(caught: bool, item: InventoryItemData, qty: int):
 	current_search_index = -1
 	search_finished.emit(caught, item, qty)
 
-func _player_busted(item: InventoryItemData, qty: int):
+func player_busted(item: InventoryItemData, qty: int):
 	is_searching = false
 	search_finished.emit(true, item, qty)
 			

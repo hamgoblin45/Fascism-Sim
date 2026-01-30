@@ -150,8 +150,25 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 				
 		
 		"click":
-			if SearchManager.is_searching: # We could likely make this just a reference above instead of an autoload
+			if SearchManager.is_searching and inv == pockets_inventory_data: # We could likely make this just a reference above instead of an autoload
 				print("Player interacted with slot %s while being searched" % slot_data)
+				var clicked_index = slot_ui.get_index()
+				
+				# IMMEDIATELY busted when touching the slot the guard is currently searching
+				if clicked_index == SearchManager.current_search_index:
+					print("InventoryManager: Caught moving items in the slot being searched! NOOB!")
+					SearchManager.player_busted(slot_data.item_data if slot_data else null, 0) # Should this just be 0 or the slot's quantity?
+					return
+				
+				# Increase suspicion when moving items, more for less concealable items
+				var heat_gain = 0.15 # Base suspicion that moving adds
+				if slot_data and slot_data.item_data:
+					# Concealable items less likely to be noticed and vice versa
+					heat_gain += (5.0 - slot_data.item_data.concealability) * 0.05
+				
+				SearchManager.suspicion_level += heat_gain
+				print("Player moving stuff aroound in pockets, suspicion is: ", SearchManager.suspicion_level)
+				
 				# Put risk logic here
 			
 			print("InventoryManager: Click on %s in %s" % [slot_ui, inv])
