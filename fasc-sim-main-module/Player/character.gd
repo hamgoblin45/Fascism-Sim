@@ -116,7 +116,9 @@ var held: bool
 @export var drop_below_player = false
 @export var ground_ray: RayCast3D
 var held_object: RigidBody3D
-var original_held_parent
+#var original_held_parent
+var last_hold_pos: Vector3
+var current_hold_velocity: Vector3
 
 @onready var drop_point: Node3D = $Head/DropPoint
 @onready var look_at_node: Node3D = $LookAtNode
@@ -183,7 +185,10 @@ func _physics_process(delta):
 		
 		### --- FPS ADDON CODE END --- ###
 
-		
+		if is_instance_valid(hold_item_point):
+			# Velocity = (Current Position - Last Position) / Time
+			current_hold_velocity = (hold_item_point.global_position - last_hold_pos) / delta
+			last_hold_pos = hold_item_point.global_position
 		
 
 ## -- Clicking and holding physical objects
@@ -193,7 +198,7 @@ func _set_held_object(body):
 	held_object = body
 	GameState.held_item = true
 	held_object.freeze = true
-	original_held_parent = body.get_parent()
+	#original_held_parent = body.get_parent()
 	held_object.reparent(HEAD)
 	
 	held_object.rotate_object_local(Vector3(1,0,0), 0.2) # A slight "jolt" when picking up
@@ -203,14 +208,13 @@ func _drop_held_object():
 	if is_instance_valid(held_object):
 		held_object.freeze = false
 		
-		#var target_pos = CAMERA.global_transform.origin + (CAMERA.global_basis * Vector3(0, 0, -follow_dist))
-		#var object_pos = held_object.global_transform.origin
-		#held_object.linear_velocity = (target_pos - object_pos) * follow_speed
+		held_object.reparent(get_parent()) # The world is usually the parent of Player
+		held_object.linear_velocity = current_hold_velocity
 		
-		held_object.reparent(original_held_parent)
+		held_object.angular_velocity = Vector3(randf(), randf(), randf()) * 2.0 # Gives a slight spin for a natural feel
 		
 		GameState.held_item = false
-		original_held_parent = null
+		#original_held_parent = null
 		held_object = null
 
 func _throw_held_object():
