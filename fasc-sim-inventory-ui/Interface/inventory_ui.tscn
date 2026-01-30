@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dhpfeub82th3n"]
+[gd_scene format=3 uid="uid://dhpfeub82th3n"]
 
 [ext_resource type="Script" uid="uid://1exja7h0qfdn" path="res://Interface/discard_zone.gd" id="1_xywkj"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_0gv4u"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/shop_ui.tscn" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
 [ext_resource type="Script" uid="uid://bya0l8x7gtw7q" path="res://Interface/notication_control.gd" id="15_sxlab"]
+[ext_resource type="Script" uid="uid://b03qagyiuoc44" path="res://Interface/Inventory/Searching/SearchManager.gd" id="16_sxlab"]
 
 [sub_resource type="Resource" id="Resource_c0f0r"]
 script = ExtResource("3_cx7ba")
@@ -51,7 +52,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="InventoryUI" type="Control"]
+[node name="InventoryUI" type="Control" unique_id=890553961]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -62,16 +63,16 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_xywkj")
 
-[node name="InventoryManager" type="Node" parent="."]
+[node name="InventoryManager" type="Node" parent="." unique_id=1546385511]
 script = ExtResource("4_sxlab")
 pockets_inventory_data = SubResource("Resource_mee32")
 
-[node name="GrabTimer" type="Timer" parent="InventoryManager"]
+[node name="GrabTimer" type="Timer" parent="InventoryManager" unique_id=68799962]
 unique_name_in_owner = true
 wait_time = 0.5
 one_shot = true
 
-[node name="PocketsInventoryUI" parent="." instance=ExtResource("4_3y5k6")]
+[node name="PocketsInventoryUI" parent="." unique_id=2042826993 instance=ExtResource("4_3y5k6")]
 unique_name_in_owner = true
 layout_mode = 1
 offset_left = 27.0
@@ -79,7 +80,7 @@ offset_top = -146.0
 offset_right = 455.0
 offset_bottom = -8.0
 
-[node name="ExternalInventory" parent="." instance=ExtResource("5_gur8t")]
+[node name="ExternalInventory" parent="." unique_id=1272855423 instance=ExtResource("5_gur8t")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -92,7 +93,7 @@ offset_right = 570.0
 offset_bottom = 176.5
 grow_vertical = 2
 
-[node name="ShopUI" parent="." instance=ExtResource("11_hvb16")]
+[node name="ShopUI" parent="." unique_id=349363681 instance=ExtResource("11_hvb16")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -108,7 +109,7 @@ offset_bottom = 457.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="GiveItemUI" type="PanelContainer" parent="."]
+[node name="GiveItemUI" type="PanelContainer" parent="." unique_id=1747615952]
 visible = false
 layout_mode = 0
 offset_left = 47.0
@@ -119,11 +120,11 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y5k6")
 script = ExtResource("11_c0f0r")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GiveItemUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GiveItemUI" unique_id=1291810148]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="GiveItemLabel" type="Label" parent="GiveItemUI/VBoxContainer"]
+[node name="GiveItemLabel" type="Label" parent="GiveItemUI/VBoxContainer" unique_id=1423266186]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4627451)
 theme_override_font_sizes/font_size = 20
@@ -131,35 +132,35 @@ text = "GIVE
 ITEM"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="GiveItemUI/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GiveItemUI/VBoxContainer" unique_id=1528548289]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("6_3y5k6")
 
-[node name="GiveItemSlot" type="PanelContainer" parent="GiveItemUI/VBoxContainer/PanelContainer"]
+[node name="GiveItemSlot" type="PanelContainer" parent="GiveItemUI/VBoxContainer/PanelContainer" unique_id=715850357]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
 
-[node name="ItemUI" type="MarginContainer" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot"]
+[node name="ItemUI" type="MarginContainer" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" unique_id=706101899]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="ItemTexture" type="TextureRect" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot/ItemUI"]
+[node name="ItemTexture" type="TextureRect" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot/ItemUI" unique_id=1940587560]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 expand_mode = 1
 
-[node name="Quantity" type="Label" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot/ItemUI"]
+[node name="Quantity" type="Label" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot/ItemUI" unique_id=586966755]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -167,12 +168,12 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "10"
 
-[node name="GrabbedSlotUI" parent="." instance=ExtResource("9_c0f0r")]
+[node name="GrabbedSlotUI" parent="." unique_id=942335897 instance=ExtResource("9_c0f0r")]
 unique_name_in_owner = true
 top_level = true
 layout_mode = 0
 
-[node name="TestStuff" type="Control" parent="."]
+[node name="TestStuff" type="Control" parent="." unique_id=1109689936]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -185,7 +186,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("12_c0f0r")
 
-[node name="TestPanel" type="PanelContainer" parent="TestStuff"]
+[node name="TestPanel" type="PanelContainer" parent="TestStuff" unique_id=537286624]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -194,61 +195,61 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/TestPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/TestPanel" unique_id=360051499]
 layout_mode = 2
 alignment = 1
 
-[node name="OpenGiveUI" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="OpenGiveUI" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=1895494647]
 layout_mode = 2
 mouse_filter = 1
 text = "Open Give UI"
 
-[node name="GetItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="GetItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=371171954]
 layout_mode = 2
 mouse_filter = 1
 text = "Get Harp"
 
-[node name="GetItemStackable" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="GetItemStackable" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=838747278]
 layout_mode = 2
 mouse_filter = 1
 text = "Get Carrots"
 
-[node name="RemoveItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="RemoveItem" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=1419700150]
 layout_mode = 2
 mouse_filter = 1
 text = "Remove Harp"
 
-[node name="RemoveItemStackable" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="RemoveItemStackable" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=616080581]
 layout_mode = 2
 mouse_filter = 1
 text = "Remove 1 Carrot"
 
-[node name="OpenContainer1" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="OpenContainer1" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=1199505731]
 layout_mode = 2
 mouse_filter = 1
 text = "Open Container"
 
-[node name="OpenContainer2" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="OpenContainer2" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=1163223716]
 layout_mode = 2
 mouse_filter = 1
 text = "Open Container"
 
-[node name="OpenContainer3" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="OpenContainer3" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=288034686]
 layout_mode = 2
 mouse_filter = 1
 text = "Open Container"
 
-[node name="OpenShopUI" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="OpenShopUI" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=385545055]
 layout_mode = 2
 mouse_filter = 1
 text = "Open Shop"
 
-[node name="OpenIllegalShop" type="Button" parent="TestStuff/TestPanel/VBoxContainer"]
+[node name="OpenIllegalShop" type="Button" parent="TestStuff/TestPanel/VBoxContainer" unique_id=935877980]
 layout_mode = 2
 mouse_filter = 1
 text = "Open Illegal Shop"
 
-[node name="DialogueLabel" type="Label" parent="TestStuff"]
+[node name="DialogueLabel" type="Label" parent="TestStuff" unique_id=207362338]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -267,7 +268,7 @@ theme_override_font_sizes/font_size = 32
 text = "IN DIALOGUE"
 horizontal_alignment = 1
 
-[node name="GiveLabel" type="Label" parent="TestStuff"]
+[node name="GiveLabel" type="Label" parent="TestStuff" unique_id=1181093146]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -278,7 +279,7 @@ offset_bottom = 147.0
 text = "YOU GAVE THE NPC AN ITEM!"
 horizontal_alignment = 1
 
-[node name="NoticationControl" type="Control" parent="."]
+[node name="NoticationControl" type="Control" parent="." unique_id=1774874422]
 clip_contents = true
 anchors_preset = 0
 offset_right = 249.0
@@ -286,7 +287,7 @@ offset_bottom = 221.0
 mouse_filter = 2
 script = ExtResource("15_sxlab")
 
-[node name="NotificationContainer" type="VBoxContainer" parent="NoticationControl"]
+[node name="NotificationContainer" type="VBoxContainer" parent="NoticationControl" unique_id=1313251892]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -294,6 +295,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="SearchManager" type="Node" parent="." unique_id=27354110]
+script = ExtResource("16_sxlab")
 
 [connection signal="timeout" from="InventoryManager/GrabTimer" to="InventoryManager" method="_on_grab_timer_timeout"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
