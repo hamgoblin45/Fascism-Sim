@@ -44,9 +44,3 @@ func _interact(type: String, engaged: bool):
 				
 				EventBus.adding_item.emit(item_data, qty)
 				queue_free()
-				#print("This will pick items up in the inventory project")
-
-func _physics_process(_delta: float) -> void:
-	if not held:
-		return
-	global_rotation = Vector3.ZERO

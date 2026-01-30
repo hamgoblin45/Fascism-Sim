@@ -10,22 +10,22 @@ func _unhandled_input(_event: InputEvent) -> void:
 		return
 	
 	if Input.is_action_just_pressed("interact"):
-		EventBus.item_interacted.emit(coll.id, "interact", true)
+		EventBus.item_interacted.emit(coll, "interact", true)
 	
 	if Input.is_action_just_released("interact"):
-		EventBus.item_interacted.emit(coll.id, "interact", false)
+		EventBus.item_interacted.emit(coll, "interact", false)
 	
 	if Input.is_action_just_pressed("click"):
-		EventBus.item_interacted.emit(coll.id, "click", true)
+		EventBus.item_interacted.emit(coll, "click", true)
 	
 	if Input.is_action_just_released("click"):
-		EventBus.item_interacted.emit(coll.id, "click", false)
+		EventBus.item_interacted.emit(coll, "click", false)
 	
 	if Input.is_action_just_pressed("r_click"):
-		EventBus.item_interacted.emit(coll.id, "r_click", true)
+		EventBus.item_interacted.emit(coll, "r_click", true)
 	
 	if Input.is_action_just_released("r_click"):
-		EventBus.item_interacted.emit(coll.id, "r_click", false)
+		EventBus.item_interacted.emit(coll, "r_click", false)
 
 func _physics_process(_delta: float) -> void:
 	if not get_tree().paused:

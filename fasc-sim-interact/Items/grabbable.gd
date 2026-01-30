@@ -1,7 +1,7 @@
 extends RigidBody3D
 class_name Grabbable
 
-@export var id: String = ""
+#@export var id: String = ""
 
 #@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @export var interact_area: Interactable
@@ -36,9 +36,4 @@ func _interact(type: String, engaged: bool):
 			print("R Click detected on a grabbable")
 		
 		"interact":
-			print("This will pick items up in the inventory project")
-
-func _physics_process(_delta: float) -> void:
-	if not held:
-		return
-	global_rotation = Vector3.ZERO
+			print("Will interact in full game")

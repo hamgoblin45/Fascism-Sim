@@ -100,6 +100,11 @@ var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") 
 var mouseInput : Vector2 = Vector2(0,0)
 
 @onready var interact_ray: RayCast3D = $Head/InteractRay
+@export_category("Item Equipping/Use")
+const GRABBABLE = preload("uid://j22i50g5odp8")
+
+var equipped_item_mesh
+@onready var hold_item_point: Node3D = %HoldItemPoint
 
 @export_category("Holding/Dropping/Throwing")
 var held: bool
@@ -107,10 +112,13 @@ var held: bool
 @export var follow_speed = 10.0
 @export var follow_dist = 2.5
 @export var max_dist_from_cam = 5.0
+@export var rotation_speed: float = 10.0
 @export var drop_below_player = false
 @export var ground_ray: RayCast3D
 var held_object: RigidBody3D
-var original_held_parent
+#var original_held_parent
+var last_hold_pos: Vector3
+var current_hold_velocity: Vector3
 
 @onready var drop_point: Node3D = $Head/DropPoint
 @onready var look_at_node: Node3D = $LookAtNode
@@ -123,8 +131,11 @@ func _ready():
 	GameState.player = self
 	set_controls()
 	EventBus.item_grabbed.connect(_set_held_object)
+	#EventBus.equipping_item.connect(_set_equipped_item)
+	#EventBus.item_discarded.connect(_on_discard_item)
 
 func _unhandled_input(event : InputEvent):
+	_handle_holding_object()
 	### --- FPS ADDON CODE START --- ###
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		mouseInput.x += event.relative.x
@@ -174,56 +185,90 @@ func _physics_process(delta):
 		
 		### --- FPS ADDON CODE END --- ###
 
+		if is_instance_valid(hold_item_point):
+			# Velocity = (Current Position - Last Position) / Time
+			current_hold_velocity = (hold_item_point.global_position - last_hold_pos) / delta
+			last_hold_pos = hold_item_point.global_position
 		
-		_handle_holding_object()
 
-
+## -- Clicking and holding physical objects
 func _set_held_object(body):
-	if body is Grabbable:
-		
-		print("Setting held object on character.gd")
-		held_object = body
-		original_held_parent = body.get_parent()
-		held_object.reparent(HEAD)
+	if held_object or not body is Grabbable: return
+	print("Setting held object on character.gd")
+	held_object = body
+	GameState.held_item = true
+	held_object.freeze = true
+	#original_held_parent = body.get_parent()
+	held_object.reparent(HEAD)
+	
+	held_object.rotate_object_local(Vector3(1,0,0), 0.2) # A slight "jolt" when picking up
 
 func _drop_held_object():
 	print("Dropping held item")
-	#held_object.reparent(original_held_parent)
 	if is_instance_valid(held_object):
-		EventBus.item_dropped.emit(held_object, 0.0) # No additional force applied
-		held_object.reparent(held_object.original_parent)
-		original_held_parent = null
+		held_object.freeze = false
+		
+		held_object.reparent(get_parent()) # The world is usually the parent of Player
+		held_object.linear_velocity = current_hold_velocity
+		
+		held_object.angular_velocity = Vector3(randf(), randf(), randf()) * 2.0 # Gives a slight spin for a natural feel
+		
+		GameState.held_item = false
+		#original_held_parent = null
 		held_object = null
 
 func _throw_held_object():
 	print("throwing held item")
 	var obj = held_object
+	var throw_vel = current_hold_velocity + (-CAMERA.global_transform.basis.z * throw_force * 10)
 	_drop_held_object()
 	if is_instance_valid(obj):
-		obj.apply_central_impulse(-CAMERA.global_transform.basis.z * throw_force * 10)
+		obj.linear_velocity = throw_vel
 		#EventBus.item_dropped.emit(obj, throw_force * 10)
 
 func _handle_holding_object():
-	#if Input.is_action_just_pressed("click") and held_object:
-		#drop_held_object()
-	
 	if Input.is_action_just_pressed("r_click") and held_object:
 		_throw_held_object()
 	
 	if Input.is_action_just_released("click") and held_object:
 		_drop_held_object()
 	
-	if held_object and is_instance_valid(held_object):
-		var target_pos = CAMERA.global_transform.origin + (CAMERA.global_basis * Vector3(0, 0, -follow_dist))
-		var object_pos = held_object.global_transform.origin
-		held_object.linear_velocity = (target_pos - object_pos) * follow_speed
+	# Rotation Smoothing
+	if is_instance_valid(held_object):
+		var target_quat = Quaternion.IDENTITY
+		var current_quat = held_object.quaternion
 		
-		if held_object.global_position.distance_to(CAMERA.global_position) > max_dist_from_cam:
-			_drop_held_object()
-		
-		if drop_below_player && ground_ray.is_colliding():
-			if ground_ray.get_collider() == held_object:
-				_drop_held_object()
+		held_object.quaternion = current_quat.slerp(target_quat, rotation_speed * get_physics_process_delta_time())
+
+ ### -- Discarding Inv items
+#func _on_discard_item(slot_data: InventorySlotData, _drop_position: Vector2):
+	#var item_instance = GRABBABLE.instantiate()
+	#item_instance.slot_data = slot_data
+	#get_parent().add_child(item_instance)
+	#item_instance.global_position = drop_point.global_position
+	#
+	#interact_ray.add_exception(item_instance)
+	#get_tree().create_timer(0.2).timeout.connect(
+		#func(): if is_instance_valid(item_instance): interact_ray.remove_exception(item_instance)
+		#)
+
+### -- Equipping Items
+#
+#func _handle_equipped_item():
+	#pass
+#
+#func _set_equipped_item(item_data: InventoryItemData):
+	#print("Set equipped item called")
+	## Clear out old meshes
+	#equipped_item_mesh = null
+	#for child in hold_item_point.get_children():
+		#child.queue_free()
+	#if item_data == null:
+		#return
+	#if item_data.equipped_scene:
+		#var mesh_instance = item_data.equipped_scene.instantiate()
+		#hold_item_point.add_child(mesh_instance)
+		#equipped_item_mesh = mesh_instance
 
 
 #### ---- FPS CONTROLLER ADDON CODE START -------- ####
@@ -324,7 +369,6 @@ func handle_head_rotation():
 	
 	mouseInput = Vector2(0,0)
 	HEAD.rotation.x = clamp(HEAD.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-
 
 func handle_state(moving):
 	if sprint_enabled:

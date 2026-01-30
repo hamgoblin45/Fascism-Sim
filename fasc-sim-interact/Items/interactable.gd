@@ -27,11 +27,11 @@ func _set_meshes():
 				if child is MeshInstance3D:
 					meshes.append(child)
 
-func _interacted(_id: String, type: String, engaged: bool):
-	if _id != id:
+func _interacted(obj: Interactable, type: String, engaged: bool):
+	if obj != self:
 		return
 		
-	print("%s detected on %s: %s" % [type, _id, engaged])
+	print("%s detected on %s: %s" % [type, obj, engaged])
 	
 	interacted.emit(type,engaged) # Connect to owner scene in order to handle unique functionaly
 	# i.e., turning on a light, playing a sound, etc
