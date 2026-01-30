@@ -220,9 +220,10 @@ func _drop_held_object():
 func _throw_held_object():
 	print("throwing held item")
 	var obj = held_object
+	var throw_vel = current_hold_velocity + (-CAMERA.global_transform.basis.z * throw_force * 10)
 	_drop_held_object()
 	if is_instance_valid(obj):
-		obj.apply_central_impulse(-CAMERA.global_transform.basis.z * throw_force * 10)
+		obj.linear_velocity = throw_vel
 		#EventBus.item_dropped.emit(obj, throw_force * 10)
 
 func _handle_holding_object():
