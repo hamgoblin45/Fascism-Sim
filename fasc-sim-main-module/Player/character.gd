@@ -112,6 +112,7 @@ var held: bool
 @export var follow_speed = 10.0
 @export var follow_dist = 2.5
 @export var max_dist_from_cam = 5.0
+@export var rotation_speed: float = 10.0
 @export var drop_below_player = false
 @export var ground_ray: RayCast3D
 var held_object: RigidBody3D
@@ -194,15 +195,20 @@ func _set_held_object(body):
 	held_object.freeze = true
 	original_held_parent = body.get_parent()
 	held_object.reparent(HEAD)
-	#held_object.global_transform.origin = hold_item_point.global_position
+	
+	held_object.rotate_object_local(Vector3(1,0,0), 0.2) # A slight "jolt" when picking up
 
 func _drop_held_object():
 	print("Dropping held item")
-	#held_object.reparent(original_held_parent)
 	if is_instance_valid(held_object):
 		held_object.freeze = false
-		#EventBus.item_dropped.emit(held_object, 0.0) # No additional force applied
+		
+		#var target_pos = CAMERA.global_transform.origin + (CAMERA.global_basis * Vector3(0, 0, -follow_dist))
+		#var object_pos = held_object.global_transform.origin
+		#held_object.linear_velocity = (target_pos - object_pos) * follow_speed
+		
 		held_object.reparent(original_held_parent)
+		
 		GameState.held_item = false
 		original_held_parent = null
 		held_object = null
@@ -222,17 +228,12 @@ func _handle_holding_object():
 	if Input.is_action_just_released("click") and held_object:
 		_drop_held_object()
 	
-	#if held_object and is_instance_valid(held_object):
-		#var target_pos = CAMERA.global_transform.origin + (CAMERA.global_basis * Vector3(0, 0, -follow_dist))
-		#var object_pos = held_object.global_transform.origin
-		#held_object.linear_velocity = (target_pos - object_pos) * follow_speed
-		#
-		#if held_object.global_position.distance_to(CAMERA.global_position) > max_dist_from_cam:
-			#_drop_held_object()
-		#
-		#if drop_below_player && ground_ray.is_colliding():
-			#if ground_ray.get_collider() == held_object:
-				#_drop_held_object()
+	# Rotation Smoothing
+	if is_instance_valid(held_object):
+		var target_quat = Quaternion.IDENTITY
+		var current_quat = held_object.quaternion
+		
+		held_object.quaternion = current_quat.slerp(target_quat, rotation_speed * get_physics_process_delta_time())
 
  ## -- Discarding Inv items
 func _on_discard_item(slot_data: InventorySlotData, _drop_position: Vector2):
@@ -240,6 +241,11 @@ func _on_discard_item(slot_data: InventorySlotData, _drop_position: Vector2):
 	item_instance.slot_data = slot_data
 	get_parent().add_child(item_instance)
 	item_instance.global_position = drop_point.global_position
+	
+	interact_ray.add_exception(item_instance)
+	get_tree().create_timer(0.2).timeout.connect(
+		func(): if is_instance_valid(item_instance): interact_ray.remove_exception(item_instance)
+		)
 
 ## -- Equipping Items
 
