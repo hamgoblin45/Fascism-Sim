@@ -150,6 +150,10 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 				
 		
 		"click":
+			if SearchManager.is_searching: # We could likely make this just a reference above instead of an autoload
+				print("Player interacted with slot %s while being searched" % slot_data)
+				# Put risk logic here
+			
 			print("InventoryManager: Click on %s in %s" % [slot_ui, inv])
 			_unequip()
 			# Drop or merge slot if grabbing something

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_cx7ba"]
 [ext_resource type="PackedScene" uid="uid://bmqlxplie777" path="res://Interface/pockets_inventory_ui.tscn" id="4_3y5k6"]
 [ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/item_harp.tres" id="4_cx7ba"]
-[ext_resource type="Script" uid="uid://jremvvcffik8" path="res://Interface/inventory_manager.gd" id="4_sxlab"]
+[ext_resource type="Script" uid="uid://jremvvcffik8" path="res://Interface/InventoryManager.gd" id="4_sxlab"]
 [ext_resource type="PackedScene" uid="uid://wkm6jgcm5mys" path="res://Interface/external_inventory.tscn" id="5_gur8t"]
 [ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/item_carrot.tres" id="5_m26qo"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="6_3y5k6"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/shop_ui.tscn" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://cq4onjs5la4xt" path="res://test_stuff.gd" id="12_c0f0r"]
 [ext_resource type="Script" uid="uid://bya0l8x7gtw7q" path="res://Interface/notication_control.gd" id="15_sxlab"]
-[ext_resource type="Script" uid="uid://b03qagyiuoc44" path="res://Interface/Inventory/Searching/SearchManager.gd" id="16_sxlab"]
 
 [sub_resource type="Resource" id="Resource_c0f0r"]
 script = ExtResource("3_cx7ba")
@@ -295,9 +294,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="SearchManager" type="Node" parent="." unique_id=27354110]
-script = ExtResource("16_sxlab")
 
 [connection signal="timeout" from="InventoryManager/GrabTimer" to="InventoryManager" method="_on_grab_timer_timeout"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
