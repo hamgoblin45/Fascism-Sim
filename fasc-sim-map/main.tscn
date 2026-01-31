@@ -14,6 +14,19 @@
 [ext_resource type="PackedScene" uid="uid://5y2lc6m0p2tv" path="res://Map/telephone_pole.gltf" id="12_dg77c"]
 [ext_resource type="PackedScene" uid="uid://daxf6jtqfqyuh" path="res://Map/car1.gltf" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://csso27phrjcmt" path="res://Map/pickup.gltf" id="14_vivmo"]
+[ext_resource type="PackedScene" uid="uid://12tgaag32x0d" path="res://Map/Environ/town_square_tree.gltf" id="15_cegan"]
+[ext_resource type="PackedScene" uid="uid://ci8hpi5w65xhg" path="res://Map/Environ/rock3.gltf" id="16_82xsv"]
+[ext_resource type="PackedScene" uid="uid://b4a84wbhr1djw" path="res://Map/Environ/rock2.gltf" id="17_getpj"]
+[ext_resource type="PackedScene" uid="uid://cbbhomn83epg5" path="res://Map/Environ/rock1.gltf" id="18_ryguw"]
+[ext_resource type="PackedScene" uid="uid://c65ikvyc1v7nf" path="res://Map/Environ/leafy_tree_1.gltf" id="19_d13ii"]
+[ext_resource type="PackedScene" uid="uid://bvuoug0kjqyre" path="res://Map/Environ/leafy_tree_2.gltf" id="20_d13ii"]
+[ext_resource type="PackedScene" uid="uid://dnpc6v770ptmo" path="res://Map/Environ/leafy_tree_3.gltf" id="21_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://ellpid88d70y" path="res://Map/Environ/alpine_tree_1.gltf" id="22_0odxb"]
+[ext_resource type="PackedScene" uid="uid://caakuikmt1e0u" path="res://Map/Environ/alpine_tree_2.gltf" id="23_lswn8"]
+[ext_resource type="PackedScene" uid="uid://rd6xro7aqi8e" path="res://Map/Environ/alpine_tree_3.gltf" id="24_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://cal2b1y6wpmj" path="res://Map/Environ/alpine_stump_1.gltf" id="25_lswn8"]
+[ext_resource type="PackedScene" uid="uid://db2xvhvntk6fu" path="res://Map/Environ/leafy_stump_1.gltf" id="26_a6jrf"]
+[ext_resource type="PackedScene" uid="uid://u42dc3gashuo" path="res://Map/transmission_tower.gltf" id="27_a6jrf"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -1889,5 +1902,517 @@ metadata/asset_placer_res_id = "uid://ckqfi05gehmb6"
 [node name="pickup" type="Node3D" parent="." unique_id=1305557820 instance=ExtResource("14_vivmo")]
 transform = Transform3D(0.8747975, 0, 0.48448902, 0, 1, 0, -0.48448902, 0, 0.8747975, 46.90056, 2.8714967, 181.89656)
 metadata/asset_placer_res_id = "uid://csso27phrjcmt"
+
+[node name="town_square_tree" type="Node3D" parent="." unique_id=845578751 instance=ExtResource("15_cegan")]
+transform = Transform3D(2.8383386, 0, 0, 0, 2.8383386, 0, 0, 0, 2.8383386, 204.84628, 2.8715034, 80.93213)
+metadata/asset_placer_res_id = "uid://12tgaag32x0d"
+
+[node name="rock3" type="Node3D" parent="." unique_id=944758764 instance=ExtResource("16_82xsv")]
+transform = Transform3D(5.9631553, 0, 0, 0, 5.9631553, 0, 0, 0, 5.9631553, 291.25327, 2.8715034, 218.14473)
+metadata/asset_placer_res_id = "uid://ci8hpi5w65xhg"
+
+[node name="rock2" type="Node3D" parent="." unique_id=290409338 instance=ExtResource("17_getpj")]
+transform = Transform3D(15.159092, 0, 0, 0, 15.159092, 0, 0, 0, 15.159092, 291.48273, 7.8183517, 96.949814)
+metadata/asset_placer_res_id = "uid://b4a84wbhr1djw"
+
+[node name="rock1" type="Node3D" parent="." unique_id=2109378129 instance=ExtResource("18_ryguw")]
+transform = Transform3D(4.637982, 0, 5.527331, 0, 7.215416, 0, -5.527331, 0, 4.637982, 278.46967, 4.6251955, 84.59044)
+metadata/asset_placer_res_id = "uid://cbbhomn83epg5"
+
+[node name="rock1 (1)" type="Node3D" parent="." unique_id=768111606 instance=ExtResource("18_ryguw")]
+transform = Transform3D(4.637982, 0, 5.527331, 0, 7.215416, 0, -5.527331, 0, 4.637982, -179.84528, 2.9472325, 386.54147)
+metadata/asset_placer_res_id = "uid://cbbhomn83epg5"
+
+[node name="rock3 (1)" type="Node3D" parent="." unique_id=653200378 instance=ExtResource("16_82xsv")]
+transform = Transform3D(6.6371403, 0, -3.8319542, 0, 7.663909, 0, 3.8319542, 0, 6.6371403, -198.18091, 2.8715098, 346.20486)
+metadata/asset_placer_res_id = "uid://ci8hpi5w65xhg"
+
+[node name="leafy_tree_1" type="Node3D" parent="." unique_id=1750675691 instance=ExtResource("19_d13ii")]
+transform = Transform3D(5.4492755, 0, 0, 0, 5.4492755, 0, 0, 0, 5.4492755, 66.65219, 2.8715162, 145.96466)
+metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
+
+[node name="leafy_tree_2" type="Node3D" parent="." unique_id=1697504338 instance=ExtResource("20_d13ii")]
+transform = Transform3D(5.7102466, 0, 3.296812, 0, 6.5936236, 0, -3.296812, 0, 5.7102466, -63.408722, 2.8715098, 283.23987)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_3" type="Node3D" parent="." unique_id=1098231850 instance=ExtResource("21_1u8w0")]
+transform = Transform3D(6.7275004, 0, 0, 0, 6.7275004, 0, 0, 0, 6.7275004, 8.452652, 2.8715098, 455.01642)
+metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
+
+[node name="alpine_tree_1" type="Node3D" parent="." unique_id=1333806243 instance=ExtResource("22_0odxb")]
+transform = Transform3D(3.7219286, 0, 0, 0, 3.7219286, 0, 0, 0, 3.7219286, 236.48555, 2.8715098, 235.94495)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (1)" type="Node3D" parent="." unique_id=1601315838 instance=ExtResource("22_0odxb")]
+transform = Transform3D(5.449275, 0, 0, 0, 5.449275, 0, 0, 0, 5.449275, 131.36084, 2.8715098, 458.23712)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (2)" type="Node3D" parent="." unique_id=1440489998 instance=ExtResource("22_0odxb")]
+transform = Transform3D(4.3260756, 0, 0, 0, 4.3260756, 0, 0, 0, 4.3260756, 230.20612, 2.871523, 583.39514)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (3)" type="Node3D" parent="." unique_id=508656748 instance=ExtResource("22_0odxb")]
+transform = Transform3D(4.3260756, 0, 0, 0, 4.3260756, 0, 0, 0, 4.3260756, 393.2015, 17.382395, 109.60205)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (4)" type="Node3D" parent="." unique_id=1812591186 instance=ExtResource("22_0odxb")]
+transform = Transform3D(4.3260756, 0, 0, 0, 4.3260756, 0, 0, 0, 4.3260756, -159.86572, 9.614589, 631.80786)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (5)" type="Node3D" parent="." unique_id=1658255062 instance=ExtResource("22_0odxb")]
+transform = Transform3D(4.3260756, 0, 0, 0, 4.3260756, 0, 0, 0, 4.3260756, 222.85526, 2.8714836, -107.80008)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_2" type="Node3D" parent="." unique_id=966422117 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-3.519958, 0, -2.9535935, 0, 4.5949736, 0, 2.9535935, 0, -3.519958, 307.8854, 2.8715098, 198.89091)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (1)" type="Node3D" parent="." unique_id=1096134551 instance=ExtResource("23_lswn8")]
+transform = Transform3D(1.2476426, 0, -3.4278743, 0, 3.6478627, 0, 3.4278743, 0, 1.2476426, 309.4212, 2.8894598, 537.0004)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (2)" type="Node3D" parent="." unique_id=1950098169 instance=ExtResource("23_lswn8")]
+transform = Transform3D(1.8239363, 0, 3.1591473, 0, 3.6478627, 0, -3.1591473, 0, 1.8239363, -108.42294, 2.876118, 375.65393)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (3)" type="Node3D" parent="." unique_id=1940999114 instance=ExtResource("23_lswn8")]
+transform = Transform3D(2.2069628, 0, -3.8225749, 0, 4.4139137, 0, 3.8225749, 0, 2.2069628, -140.28241, 2.871523, 179.38455)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (4)" type="Node3D" parent="." unique_id=533215562 instance=ExtResource("23_lswn8")]
+transform = Transform3D(2.6843219, 0, -2.2524157, 0, 3.5041225, 0, 2.2524157, 0, 2.6843219, 109.89009, 2.8714836, 27.428085)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_3" type="Node3D" parent="." unique_id=2010630135 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(3.7974987, 0, 0, 0, 3.7974987, 0, 0, 0, 3.7974987, 171.02014, 2.8714576, 170.6974)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (1)" type="Node3D" parent="." unique_id=1139947608 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(3.7974987, 0, 0, 0, 3.7974987, 0, 0, 0, 3.7974987, -235.66861, 2.8714836, 403.14874)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (2)" type="Node3D" parent="." unique_id=1840673934 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(4.5035334, 0, 0, 0, 4.5035334, 0, 0, 0, 4.5035334, 329.12393, 2.8714576, -38.466034)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (3)" type="Node3D" parent="." unique_id=330568145 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-2.2517674, 0, 3.9001763, 0, 4.5035334, 0, -3.9001763, 0, -2.2517674, -249.05743, 2.8719537, 181.7432)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (4)" type="Node3D" parent="." unique_id=1150734632 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-2.2517674, 0, 3.9001768, 0, 4.5035334, 0, -3.9001768, 0, -2.2517674, 62.890377, 2.8715098, -49.023407)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (5)" type="Node3D" parent="." unique_id=592956203 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-2.2517674, 0, 3.9001768, 0, 4.5035334, 0, -3.9001768, 0, -2.2517674, 353.43863, 2.8714836, 370.32822)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (6)" type="Node3D" parent="." unique_id=532438810 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-2.2517674, 0, 3.9001768, 0, 4.5035334, 0, -3.9001768, 0, -2.2517674, 394.044, 3.7420897, 580.9961)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (7)" type="Node3D" parent="." unique_id=446152279 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-0.9462589, 0, -5.366493, 0, 5.449275, 0, 5.366493, 0, -0.9462589, 385.2028, 2.8733113, 237.00548)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (8)" type="Node3D" parent="." unique_id=1973850017 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-0.9462589, 0, -5.366493, 0, 5.449275, 0, 5.366493, 0, -0.9462589, -193.78043, 3.1892307, 494.74908)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (9)" type="Node3D" parent="." unique_id=1563586881 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(2.2524092, 0, -2.6843176, 0, 3.504121, 0, 2.6843176, 0, 2.2524092, -311.7894, 6.7675533, 513.5203)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (10)" type="Node3D" parent="." unique_id=580403146 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(3.034664, 0, 1.7520633, 0, 3.504121, 0, -1.7520633, 0, 3.034664, -31.118599, 2.876836, 564.8707)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_stump_1" type="Node3D" parent="." unique_id=1736263095 instance=ExtResource("25_lswn8")]
+transform = Transform3D(6.462411, 0, 0, 0, 6.462411, 0, 0, 0, 6.462411, 299.1246, 2.8856087, 147.2674)
+metadata/asset_placer_res_id = "uid://cal2b1y6wpmj"
+
+[node name="leafy_stump_1" type="Node3D" parent="." unique_id=25642270 instance=ExtResource("26_a6jrf")]
+transform = Transform3D(3.7219286, 0, 0, 0, 3.7219286, 0, 0, 0, 3.7219286, -51.729797, 3.236214, 427.75818)
+metadata/asset_placer_res_id = "uid://db2xvhvntk6fu"
+
+[node name="alpine_tree_1 (6)" type="Node3D" parent="." unique_id=1603259137 instance=ExtResource("22_0odxb")]
+transform = Transform3D(2.143589, 0, 0, 0, 2.143589, 0, 0, 0, 2.143589, -81.24739, 3.4180243, 415.83325)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (7)" type="Node3D" parent="." unique_id=67077060 instance=ExtResource("22_0odxb")]
+transform = Transform3D(2.143589, 0, 0, 0, 2.143589, 0, 0, 0, 2.143589, -155.27797, 2.8714836, 209.76317)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (8)" type="Node3D" parent="." unique_id=1057442059 instance=ExtResource("22_0odxb")]
+transform = Transform3D(0.37223133, 0, 2.1110234, 0, 2.143589, 0, -2.1110234, 0, 0.37223133, -92.5573, 2.871523, 123.24586)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (9)" type="Node3D" parent="." unique_id=1148796280 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-1.3778721, 0, 1.6420858, 0, 2.143589, 0, -1.6420858, 0, -1.3778721, 81.978546, 2.8715034, 34.891968)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (10)" type="Node3D" parent="." unique_id=1956294575 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-3.0292487, 0, 0.5341402, 0, 3.075974, 0, -0.5341402, 0, -3.0292487, 173.45322, 2.8715131, 134.1171)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (11)" type="Node3D" parent="." unique_id=201987960 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-3.029254, 0, -0.534137, 0, 3.075974, 0, 0.534137, 0, -3.029254, 287.76355, 2.8715098, 169.83173)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (12)" type="Node3D" parent="." unique_id=393310554 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-1.0520515, 0, -2.8904805, 0, 3.075974, 0, 2.8904805, 0, -1.0520515, 274.95087, 2.8715162, 390.0131)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (13)" type="Node3D" parent="." unique_id=2003531547 instance=ExtResource("22_0odxb")]
+transform = Transform3D(0.53413695, 0, -3.0292566, 0, 3.075974, 0, 3.0292566, 0, 0.53413695, -89.73082, 2.8714967, 302.93802)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (14)" type="Node3D" parent="." unique_id=1240017714 instance=ExtResource("22_0odxb")]
+transform = Transform3D(2.8904817, 0, -1.0520527, 0, 3.075974, 0, 1.0520527, 0, 2.8904817, -124.58853, 2.9935043, 540.72015)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (15)" type="Node3D" parent="." unique_id=838311664 instance=ExtResource("22_0odxb")]
+transform = Transform3D(6.2077928, 0, -6.676143e-06, 0, 6.2077656, 0, 6.676143e-06, 0, 6.2077928, -334.57336, 2.8715098, 246.2077)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_2 (5)" type="Node3D" parent="." unique_id=1342683168 instance=ExtResource("23_lswn8")]
+transform = Transform3D(2.5937426, 0, 0, 0, 2.5937426, 0, 0, 0, 2.5937426, 142.18292, 31.525364, 579.3282)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (6)" type="Node3D" parent="." unique_id=1409328775 instance=ExtResource("23_lswn8")]
+transform = Transform3D(3.0759737, 0, 0, 0, 3.0759737, 0, 0, 0, 3.0759737, 284.22113, 2.8715098, 329.2049)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="leafy_tree_1 (1)" type="Node3D" parent="." unique_id=947485028 instance=ExtResource("19_d13ii")]
+transform = Transform3D(3.1384287, 0, 0, 0, 3.1384287, 0, 0, 0, 3.1384287, -23.047325, 2.8715098, 390.88483)
+metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
+
+[node name="leafy_tree_1 (2)" type="Node3D" parent="." unique_id=1014398306 instance=ExtResource("19_d13ii")]
+transform = Transform3D(2.8511634, 0, 2.39241, 0, 3.7219286, 0, -2.39241, 0, 2.8511634, -16.08303, 3.9486384, 594.8977)
+metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
+
+[node name="leafy_tree_1 (3)" type="Node3D" parent="." unique_id=2117840141 instance=ExtResource("19_d13ii")]
+transform = Transform3D(1.272975, 0, 3.4974701, 0, 3.7219286, 0, -3.4974701, 0, 1.272975, -236.15472, 2.8714836, 435.91122)
+metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
+
+[node name="leafy_tree_1 (4)" type="Node3D" parent="." unique_id=2110234054 instance=ExtResource("19_d13ii")]
+transform = Transform3D(3.4974706, 0, 1.2729756, 0, 3.7219286, 0, -1.2729756, 0, 3.4974706, -271.2237, 2.871301, 225.3242)
+metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
+
+[node name="leafy_tree_1 (5)" type="Node3D" parent="." unique_id=1230856861 instance=ExtResource("19_d13ii")]
+transform = Transform3D(2.7246406, 0, 4.719215, 0, 5.449275, 0, -4.719215, 0, 2.7246406, -171.55884, 2.8715098, 115.93153)
+metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
+
+[node name="leafy_tree_2 (1)" type="Node3D" parent="." unique_id=20547583 instance=ExtResource("20_d13ii")]
+transform = Transform3D(2.5937426, 0, 0, 0, 2.5937426, 0, 0, 0, 2.5937426, -184.35045, 3.8201818, 461.11935)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (2)" type="Node3D" parent="." unique_id=926950553 instance=ExtResource("20_d13ii")]
+transform = Transform3D(2.5937426, 0, 0, 0, 2.5937426, 0, 0, 0, 2.5937426, 257.44556, 3.4023328, 538.6973)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (3)" type="Node3D" parent="." unique_id=634974258 instance=ExtResource("20_d13ii")]
+transform = Transform3D(2.5937426, 0, 0, 0, 2.5937426, 0, 0, 0, 2.5937426, 96.364914, 56.897022, 606.1106)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (4)" type="Node3D" parent="." unique_id=1193553907 instance=ExtResource("20_d13ii")]
+transform = Transform3D(1.569215, 0, 2.7179592, 0, 3.1384287, 0, -2.7179592, 0, 1.569215, 58.023865, 2.8715098, 502.1469)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (5)" type="Node3D" parent="." unique_id=1787138585 instance=ExtResource("20_d13ii")]
+transform = Transform3D(1.5692152, 0, 2.7179592, 0, 3.1384287, 0, -2.7179592, 0, 1.5692152, -68.3188, 3.025762, 479.4474)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (6)" type="Node3D" parent="." unique_id=1204631975 instance=ExtResource("20_d13ii")]
+transform = Transform3D(-2.4041762, 0, 2.0173447, 0, 3.1384287, 0, -2.0173447, 0, -2.4041762, -99.05534, 4.425625, 577.80237)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (7)" type="Node3D" parent="." unique_id=1857793034 instance=ExtResource("20_d13ii")]
+transform = Transform3D(-5.3664913, 0, 0.94625914, 0, 5.4492755, 0, -0.94625914, 0, -5.3664913, 152.3378, 2.8715098, -28.26355)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_3 (1)" type="Node3D" parent="." unique_id=164600456 instance=ExtResource("21_1u8w0")]
+transform = Transform3D(5.559918, 0, 0, 0, 5.559918, 0, 0, 0, 5.559918, 322.87833, 2.8875146, 282.3365)
+metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
+
+[node name="leafy_tree_3 (2)" type="Node3D" parent="." unique_id=1101491138 instance=ExtResource("21_1u8w0")]
+transform = Transform3D(2.8948166, 0, 3.4499078, 0, 4.503534, 0, -3.4499078, 0, 2.8948166, 115.40504, 2.8715098, 201.52962)
+metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
+
+[node name="leafy_tree_2 (8)" type="Node3D" parent="." unique_id=1454842968 instance=ExtResource("20_d13ii")]
+transform = Transform3D(-4.525168, 0, 0.7979103, 0, 4.5949736, 0, -0.7979103, 0, -4.525168, 171.9866, 2.8715034, 334.45486)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (9)" type="Node3D" parent="." unique_id=685303997 instance=ExtResource("20_d13ii")]
+transform = Transform3D(-4.525168, 0, 0.7979103, 0, 4.5949736, 0, -0.7979103, 0, -4.525168, 305.50806, 2.8715098, 356.4562)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (10)" type="Node3D" parent="." unique_id=1375190751 instance=ExtResource("20_d13ii")]
+transform = Transform3D(-6.625298, 0, 1.1682211, 0, 6.7275004, 0, -1.1682211, 0, -6.625298, 404.18344, 3.0345607, 353.03992)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (11)" type="Node3D" parent="." unique_id=808006968 instance=ExtResource("20_d13ii")]
+transform = Transform3D(-2.3009462, 0, -6.321787, 0, 6.7275004, 0, 6.321787, 0, -2.3009462, 330.81958, 6.046461, 120.99876)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_2 (12)" type="Node3D" parent="." unique_id=161744535 instance=ExtResource("20_d13ii")]
+transform = Transform3D(-1.8637666, 0, -5.1206474, 0, 5.4492755, 0, 5.1206474, 0, -1.8637666, 276.0534, 2.892123, 1.7817535)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="leafy_tree_3 (3)" type="Node3D" parent="." unique_id=1666898961 instance=ExtResource("21_1u8w0")]
+transform = Transform3D(9.461615, 0, 0, 0, 9.461615, 0, 0, 0, 9.461615, 370.25287, 2.871523, 5.980423)
+metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
+
+[node name="leafy_tree_3 (4)" type="Node3D" parent="." unique_id=422354577 instance=ExtResource("21_1u8w0")]
+transform = Transform3D(1.0565164, 0, 5.991799, 0, 6.0842304, 0, -5.991799, 0, 1.0565164, 305.58197, 13.70474, 77.07173)
+metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
+
+[node name="leafy_tree_3 (5)" type="Node3D" parent="." unique_id=1606629 instance=ExtResource("21_1u8w0")]
+transform = Transform3D(1.0565164, 0, 5.991799, 0, 6.0842304, 0, -5.991799, 0, 1.0565164, 215.8972, 2.9897316, 434.39114)
+metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
+
+[node name="alpine_tree_3 (11)" type="Node3D" parent="." unique_id=974393145 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(4.326077, 0, 0, 0, 4.326077, 0, 0, 0, 4.326077, 166.71536, 2.8715098, 250.33492)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_1 (16)" type="Node3D" parent="." unique_id=653507806 instance=ExtResource("22_0odxb")]
+transform = Transform3D(1.7477663, 0, 1.0090733, 0, 2.0181463, 0, -1.0090733, 0, 1.7477663, 356.36276, 3.5785558, 134.0448)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (17)" type="Node3D" parent="." unique_id=1961587154 instance=ExtResource("22_0odxb")]
+transform = Transform3D(0.69024694, 0, 1.8964378, 0, 2.0181463, 0, -1.8964378, 0, 0.69024694, 342.7401, 2.8715098, 236.47527)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (18)" type="Node3D" parent="." unique_id=234181446 instance=ExtResource("22_0odxb")]
+transform = Transform3D(0.690247, 0, 1.8964379, 0, 2.0181463, 0, -1.8964379, 0, 0.690247, 324.06744, 2.8721626, 338.6288)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (19)" type="Node3D" parent="." unique_id=1655024878 instance=ExtResource("22_0odxb")]
+transform = Transform3D(0.690247, 0, 1.8964379, 0, 2.0181463, 0, -1.8964379, 0, 0.690247, 477.72034, 40.36885, 334.88544)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (20)" type="Node3D" parent="." unique_id=1912765035 instance=ExtResource("22_0odxb")]
+transform = Transform3D(0.690247, 0, 1.8964379, 0, 2.0181463, 0, -1.8964379, 0, 0.690247, 479.45276, 30.279009, 180.98854)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (21)" type="Node3D" parent="." unique_id=1893400598 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-0.42404145, 0, 2.404859, 0, 2.441957, 0, -2.404859, 0, -0.42404145, 327.5486, 3.0504873, 16.084854)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (22)" type="Node3D" parent="." unique_id=100804899 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-0.42404148, 0, 2.4048593, 0, 2.441957, 0, -2.4048593, 0, -0.42404148, 477.56406, 25.330067, 48.370193)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (23)" type="Node3D" parent="." unique_id=1031948534 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-0.42404148, 0, 2.4048593, 0, 2.441957, 0, -2.4048593, 0, -0.42404148, 338.4957, 3.0161016, 523.17615)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (24)" type="Node3D" parent="." unique_id=922895848 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-0.42404148, 0, 2.4048593, 0, 2.441957, 0, -2.4048593, 0, -0.42404148, 33.310616, 2.871536, 496.52835)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (25)" type="Node3D" parent="." unique_id=1797756807 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-2.6308963, 0, 2.2075844, 0, 3.4343896, 0, -2.2075844, 0, -2.6308963, -183.31752, 2.8714967, 358.80023)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (26)" type="Node3D" parent="." unique_id=19224563 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-2.6308963, 0, 2.2075844, 0, 3.4343896, 0, -2.2075844, 0, -2.6308963, -248.49591, 2.8714967, 475.02618)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (27)" type="Node3D" parent="." unique_id=1342765304 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-2.6308963, 0, 2.2075844, 0, 3.4343896, 0, -2.2075844, 0, -2.6308963, 396.5227, 5.1726303, 202.06827)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (28)" type="Node3D" parent="." unique_id=2083717501 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-3.4343917, 0, 5.066395e-07, 0, 3.4343896, 0, -5.066395e-07, 0, -3.4343917, 399.7376, 2.8715098, 388.38037)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_2 (7)" type="Node3D" parent="." unique_id=1001106263 instance=ExtResource("23_lswn8")]
+transform = Transform3D(1.9869223, 0, 1.667226, 0, 2.5937426, 0, -1.667226, 0, 1.9869223, 363.08557, 2.8715098, 253.9391)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (8)" type="Node3D" parent="." unique_id=1752064674 instance=ExtResource("23_lswn8")]
+transform = Transform3D(1.6391277e-07, 0, 2.5937433, 0, 2.5937426, 0, -2.5937433, 0, 1.6391277e-07, 432.49738, 10.770044, 169.0665)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (9)" type="Node3D" parent="." unique_id=1202017584 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-1.667226, 0, 1.9869227, 0, 2.5937426, 0, -1.9869227, 0, -1.667226, 421.62836, 21.322119, 58.23497)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (10)" type="Node3D" parent="." unique_id=1036294277 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-1.667226, 0, 1.9869229, 0, 2.5937426, 0, -1.9869229, 0, -1.667226, 292.99078, 9.03348, 59.95616)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (11)" type="Node3D" parent="." unique_id=1159287177 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-1.667226, 0, 1.9869229, 0, 2.5937426, 0, -1.9869229, 0, -1.667226, 320.83093, 2.8714836, 384.52933)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (12)" type="Node3D" parent="." unique_id=664944118 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-2.949159, 0, 1.0734065, 0, 3.1384287, 0, -1.0734065, 0, -2.949159, 356.86502, 4.9651155, 316.03912)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (13)" type="Node3D" parent="." unique_id=2105165963 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-2.949159, 0, 1.0734065, 0, 3.1384287, 0, -1.0734065, 0, -2.949159, 320.4267, 2.8715098, 254.9161)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (14)" type="Node3D" parent="." unique_id=540752551 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-2.949159, 0, 1.0734065, 0, 3.1384287, 0, -1.0734065, 0, -2.949159, 337.99878, 2.871536, 162.39153)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (15)" type="Node3D" parent="." unique_id=1482594783 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-2.949159, 0, 1.0734065, 0, 3.1384287, 0, -1.0734065, 0, -2.949159, 475.37823, 37.04577, 265.3822)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (16)" type="Node3D" parent="." unique_id=2007572208 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-3.7464948, 0, -2.1630387, 0, 4.326076, 0, 2.1630387, 0, -3.7464948, 475.3103, 44.996758, 127.68427)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (17)" type="Node3D" parent="." unique_id=1568564488 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-3.7464948, 0, -2.1630387, 0, 4.326076, 0, 2.1630387, 0, -3.7464948, 337.34122, 2.901953, 458.75146)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (18)" type="Node3D" parent="." unique_id=896526382 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-3.746495, 0, 2.1630402, 0, 4.326076, 0, -2.1630402, 0, -3.746495, 201.5294, 4.199559, 500.61734)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (19)" type="Node3D" parent="." unique_id=556399529 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-3.746495, 0, 2.1630402, 0, 4.326076, 0, -2.1630402, 0, -3.746495, -230.7627, 2.8715098, 267.53543)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (20)" type="Node3D" parent="." unique_id=442786467 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-3.746495, 0, 2.1630402, 0, 4.326076, 0, -2.1630402, 0, -3.746495, -170.25957, 3.7255497, 438.6965)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (21)" type="Node3D" parent="." unique_id=72163268 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-1.1746334, 0, -3.2272756, 0, 3.4343896, 0, 3.2272756, 0, -1.1746334, -103.83261, 3.7125735, 453.15436)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (22)" type="Node3D" parent="." unique_id=1841826851 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-2.6850812, 0, -0.4734513, 0, 2.7264967, 0, 0.4734513, 0, -2.6850812, 6.112625, 2.871523, 494.256)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_3 (12)" type="Node3D" parent="." unique_id=483550120 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(1.8564032, 0, 1.0717947, 0, 2.143589, 0, -1.0717947, 0, 1.8564032, -19.820885, 2.874695, 490.12476)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (13)" type="Node3D" parent="." unique_id=107003843 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(1.8564032, 0, 1.0717947, 0, 2.143589, 0, -1.0717947, 0, 1.8564032, -123.84276, 3.2102876, 439.80823)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (14)" type="Node3D" parent="." unique_id=801770478 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(1.3778734, 0, 1.6420853, 0, 2.143589, 0, -1.6420853, 0, 1.3778734, -52.0103, 2.9624476, 452.4724)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (15)" type="Node3D" parent="." unique_id=412266945 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(5.662441e-07, 0, 3.0759766, 0, 3.075974, 0, -3.0759766, 0, 5.662441e-07, 47.2972, 2.8715098, 462.56586)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (16)" type="Node3D" parent="." unique_id=1369889294 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(5.662441e-07, 0, 3.0759766, 0, 3.075974, 0, -3.0759766, 0, 5.662441e-07, 42.380333, 3.775666, 533.298)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (17)" type="Node3D" parent="." unique_id=1500950571 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-1.9771999, 0, 2.3563364, 0, 3.075974, 0, -2.3563364, 0, -1.9771999, 78.78033, 35.574196, 584.61084)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (18)" type="Node3D" parent="." unique_id=9274235 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-1.9771999, 0, 2.3563364, 0, 3.075974, 0, -2.3563364, 0, -1.9771999, 329.6625, 36.08248, 659.30774)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (19)" type="Node3D" parent="." unique_id=1804994735 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-3.0292475, 0, 0.534139, 0, 3.075974, 0, -0.534139, 0, -3.0292475, 440.7711, 45.250946, 648.5155)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (20)" type="Node3D" parent="." unique_id=873088070 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-2.663877, 0, -1.537989, 0, 3.075974, 0, 1.537989, 0, -2.663877, 453.30637, 28.48248, 542.57495)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (21)" type="Node3D" parent="." unique_id=1301649158 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-1.5379907, 0, -2.663876, 0, 3.075974, 0, 2.663876, 0, -1.5379907, 481.63895, 39.512318, 437.62775)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (22)" type="Node3D" parent="." unique_id=494027897 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(-0.5341395, 0, -3.029249, 0, 3.075974, 0, 3.029249, 0, -0.5341395, 394.46097, 2.871523, 424.43976)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_3 (23)" type="Node3D" parent="." unique_id=515494517 instance=ExtResource("24_1u8w0")]
+transform = Transform3D(1.0520461, 0, -2.8904774, 0, 3.075974, 0, 2.8904774, 0, 1.0520461, 286.96558, 2.8715098, 427.18683)
+metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
+
+[node name="alpine_tree_2 (23)" type="Node3D" parent="." unique_id=461983004 instance=ExtResource("23_lswn8")]
+transform = Transform3D(2.6638722, 0, 1.537987, 0, 3.0759737, 0, -1.537987, 0, 2.6638722, 288.02457, 2.9593537, 473.73877)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (24)" type="Node3D" parent="." unique_id=260164958 instance=ExtResource("23_lswn8")]
+transform = Transform3D(2.6638722, 0, 1.537987, 0, 3.0759737, 0, -1.537987, 0, 2.6638722, 447.7464, 23.07371, 510.43597)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (25)" type="Node3D" parent="." unique_id=136770864 instance=ExtResource("23_lswn8")]
+transform = Transform3D(0.5341377, 0, 3.0292442, 0, 3.0759737, 0, -3.0292442, 0, 0.5341377, 471.16132, 31.3454, 399.4098)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (26)" type="Node3D" parent="." unique_id=662446254 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-1.5379877, 0, 2.6638741, 0, 3.0759737, 0, -2.6638741, 0, -1.5379877, 286.30908, 2.9447196, 623.1521)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_2 (27)" type="Node3D" parent="." unique_id=362127005 instance=ExtResource("23_lswn8")]
+transform = Transform3D(-2.3563347, 0, 1.9772006, 0, 3.0759737, 0, -1.9772006, 0, -2.3563347, 181.3658, 30.687016, 658.3463)
+metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
+
+[node name="alpine_tree_1 (29)" type="Node3D" parent="." unique_id=680002214 instance=ExtResource("22_0odxb")]
+transform = Transform3D(1.7715611, 0, 0, 0, 1.7715611, 0, 0, 0, 1.7715611, 132.46373, 48.664925, 633.6702)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (30)" type="Node3D" parent="." unique_id=493294478 instance=ExtResource("22_0odxb")]
+transform = Transform3D(2.294689, 0, 0.8351985, 0, 2.4419572, 0, -0.8351985, 0, 2.294689, 175.835, 2.9368086, 475.01706)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (31)" type="Node3D" parent="." unique_id=1856867742 instance=ExtResource("22_0odxb")]
+transform = Transform3D(2.1147974, 0, 1.2209786, 0, 2.4419572, 0, -1.2209786, 0, 2.1147974, 340.84976, 2.8714836, 399.54794)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (32)" type="Node3D" parent="." unique_id=974181481 instance=ExtResource("22_0odxb")]
+transform = Transform3D(2.1147974, 0, 1.2209786, 0, 2.4419572, 0, -1.2209786, 0, 2.1147974, 311.00137, 2.8715034, 309.0318)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (33)" type="Node3D" parent="." unique_id=1865017314 instance=ExtResource("22_0odxb")]
+transform = Transform3D(2.1147974, 0, 1.2209786, 0, 2.4419572, 0, -1.2209786, 0, 2.1147974, 349.525, 2.9139762, 275.4279)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (34)" type="Node3D" parent="." unique_id=2096934145 instance=ExtResource("22_0odxb")]
+transform = Transform3D(5.662441e-07, 0, 2.441958, 0, 2.4419572, 0, -2.441958, 0, 5.662441e-07, 416.31775, 6.014386, 321.03503)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (35)" type="Node3D" parent="." unique_id=1124775531 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-1.8706481, 0, 1.5696614, 0, 2.4419572, 0, -1.5696614, 0, -1.8706481, 352.928, 2.878481, 172.88202)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (36)" type="Node3D" parent="." unique_id=640268756 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-1.8706481, 0, 1.5696614, 0, 2.4419572, 0, -1.5696614, 0, -1.8706481, 433.01672, 3.2733672, 2.578125)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="alpine_tree_1 (37)" type="Node3D" parent="." unique_id=1212647679 instance=ExtResource("22_0odxb")]
+transform = Transform3D(-2.2946913, 0, -0.835198, 0, 2.4419572, 0, 0.835198, 0, -2.2946913, 432.5808, 2.871523, -66.96463)
+metadata/asset_placer_res_id = "uid://ellpid88d70y"
+
+[node name="leafy_stump_1 (1)" type="Node3D" parent="." unique_id=670208174 instance=ExtResource("26_a6jrf")]
+transform = Transform3D(3.7219286, 0, 0, 0, 3.7219286, 0, 0, 0, 3.7219286, 384.4372, 34.781364, 82.38878)
+metadata/asset_placer_res_id = "uid://db2xvhvntk6fu"
+
+[node name="leafy_stump_1 (2)" type="Node3D" parent="." unique_id=1335606797 instance=ExtResource("26_a6jrf")]
+transform = Transform3D(3.7219286, 0, 0, 0, 3.7219286, 0, 0, 0, 3.7219286, 248.97235, 2.8715098, 245.47911)
+metadata/asset_placer_res_id = "uid://db2xvhvntk6fu"
+
+[node name="leafy_tree_3 (6)" type="Node3D" parent="." unique_id=1970894116 instance=ExtResource("21_1u8w0")]
+transform = Transform3D(3.7219286, 0, 0, 0, 3.7219286, 0, 0, 0, 3.7219286, 288.59735, 2.8715098, 285.78104)
+metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
+
+[node name="leafy_tree_2 (13)" type="Node3D" parent="." unique_id=416390718 instance=ExtResource("20_d13ii")]
+transform = Transform3D(1.667226, 0, 1.9869225, 0, 2.5937426, 0, -1.9869225, 0, 1.667226, 261.83533, 2.8715098, 367.91144)
+metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
+
+[node name="transmission_tower" type="Node3D" parent="." unique_id=144356961 instance=ExtResource("27_a6jrf")]
+transform = Transform3D(1.1984806, 0, -3.292798, 0, 3.504122, 0, 3.292798, 0, 1.1984806, 444.45193, 2.871523, 718.47754)
+metadata/asset_placer_res_id = "uid://u42dc3gashuo"
 
 [editable path="PlayerCharacter"]
