@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bib6qwq7dg0hq"
-path="res://.godot/imported/picket_fence_short_broken_A.gltf-072d258165d961cdf917785ef015b6ea.scn"
+uid="uid://btf8mxmrr3ep"
+path="res://.godot/imported/fence_1_post.gltf-65cbdf4ba8d57a9bb25467f235079c67.scn"
 
 [deps]
 
-source_file="res://Map/Fences/picket_fence_short_broken_A.gltf"
-dest_files=["res://.godot/imported/picket_fence_short_broken_A.gltf-072d258165d961cdf917785ef015b6ea.scn"]
+source_file="res://Map/Fences/fence_1_post.gltf"
+dest_files=["res://.godot/imported/fence_1_post.gltf-65cbdf4ba8d57a9bb25467f235079c67.scn"]
 
 [params]
 

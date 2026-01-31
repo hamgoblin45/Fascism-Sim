@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://lx7gpi1nvcv2" path="res://Map/Buildings/checkpoint.gltf" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ckqfi05gehmb6" path="res://Map/car2.gltf" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cbxnnbyabl534" path="res://Map/military_wall_block.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://btf8mxmrr3ep" path="res://Map/Fences/fence_1_post.gltf" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://bblch3hlr4c75" path="res://Map/Fences/fence_A_single_post.gltf" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dwrbhwhl67s4c" path="res://Map/Fences/picket_fence_tall.gltf" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://ccwiioata2y5n" path="res://Map/Fences/picket_fence_short.gltf" id="10_4c57u"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -15,217 +19,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.520313, 7.485712, 314.0281
 [node name="DayNightCycle" parent="." unique_id=1429322333 instance=ExtResource("3_h2yge")]
 script = null
 
-[node name="Terrain" parent="." unique_id=1811752975 instance=ExtResource("3_1bvp3")]
+[node name="Terrain" parent="." unique_id=551557800 instance=ExtResource("3_1bvp3")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="Structures" type="Node3D" parent="Terrain" unique_id=1680364581]
-visible = false
-
-[node name="Commisary" parent="Terrain" index="3" unique_id=1436026411]
-visible = false
-
-[node name="Cylinder_004" parent="Terrain" index="22" unique_id=502730781]
-visible = false
-
-[node name="Barbwire" parent="Terrain" index="23" unique_id=1194658439]
-visible = false
-
-[node name="Building" parent="Terrain" index="24" unique_id=604503496]
-visible = false
-
-[node name="Gate" parent="Terrain" index="25" unique_id=81395298]
-visible = false
-
-[node name="MilitaryWallBlock" parent="Terrain" index="26" unique_id=623060657]
-visible = false
-
-[node name="MilitaryWallBlock_001" parent="Terrain" index="27" unique_id=461445785]
-visible = false
-
-[node name="MilitaryWallBlock_002" parent="Terrain" index="28" unique_id=1868661715]
-visible = false
-
-[node name="MilitaryWallBlock_003" parent="Terrain" index="29" unique_id=1113108152]
-visible = false
-
-[node name="MilitaryWallBlock_004" parent="Terrain" index="30" unique_id=1443218667]
-visible = false
-
-[node name="MilitaryWallBlock_005" parent="Terrain" index="31" unique_id=1371774600]
-visible = false
-
-[node name="MilitaryWallBlock_006" parent="Terrain" index="32" unique_id=488264563]
-visible = false
-
-[node name="MilitaryWallBlock_007" parent="Terrain" index="33" unique_id=1970180893]
-visible = false
-
-[node name="MilitaryWallBlock_008" parent="Terrain" index="34" unique_id=243982075]
-visible = false
-
-[node name="MilitaryWallBlock_009" parent="Terrain" index="35" unique_id=1074740805]
-visible = false
-
-[node name="MilitaryWallBlock_010" parent="Terrain" index="36" unique_id=1591906861]
-visible = false
-
-[node name="MilitaryWallBlock_011" parent="Terrain" index="37" unique_id=21018312]
-visible = false
-
-[node name="MilitaryWallBlock_012" parent="Terrain" index="38" unique_id=122230959]
-visible = false
-
-[node name="MilitaryWallBlock_013" parent="Terrain" index="39" unique_id=63210434]
-visible = false
-
-[node name="MilitaryWallBlock_014" parent="Terrain" index="40" unique_id=2044861316]
-visible = false
-
-[node name="MilitaryWallBlock_015" parent="Terrain" index="41" unique_id=1922668335]
-visible = false
-
-[node name="MilitaryWallBlock_016" parent="Terrain" index="42" unique_id=757005148]
-visible = false
-
-[node name="MilitaryWallBlock_017" parent="Terrain" index="43" unique_id=248039569]
-visible = false
-
-[node name="MilitaryWallBlock_018" parent="Terrain" index="44" unique_id=2138596306]
-visible = false
-
-[node name="MilitaryWallBlock_019" parent="Terrain" index="45" unique_id=1584844345]
-visible = false
-
-[node name="MilitaryWallBlock_020" parent="Terrain" index="46" unique_id=1540122005]
-visible = false
-
-[node name="MilitaryWallBlock_021" parent="Terrain" index="47" unique_id=630289567]
-visible = false
-
-[node name="MilitaryWallBlock_022" parent="Terrain" index="48" unique_id=637543733]
-visible = false
-
-[node name="MilitaryWallBlock_023" parent="Terrain" index="49" unique_id=192747726]
-visible = false
-
-[node name="MilitaryWallBlock_024" parent="Terrain" index="50" unique_id=877794672]
-visible = false
-
-[node name="MilitaryWallBlock_025" parent="Terrain" index="51" unique_id=973305328]
-visible = false
-
-[node name="MilitaryWallBlock_026" parent="Terrain" index="52" unique_id=1773449882]
-visible = false
-
-[node name="MilitaryWallBlock_027" parent="Terrain" index="53" unique_id=5296483]
-visible = false
-
-[node name="MilitaryWallBlock_028" parent="Terrain" index="54" unique_id=1856581893]
-visible = false
-
-[node name="MilitaryWallBlock_029" parent="Terrain" index="55" unique_id=949273756]
-visible = false
-
-[node name="MilitaryWallBlock_030" parent="Terrain" index="56" unique_id=321358472]
-visible = false
-
-[node name="MilitaryWallBlock_031" parent="Terrain" index="57" unique_id=370033033]
-visible = false
-
-[node name="MilitaryWallBlock_032" parent="Terrain" index="58" unique_id=567845627]
-visible = false
-
-[node name="MilitaryWallBlock_033" parent="Terrain" index="59" unique_id=2074168256]
-visible = false
-
-[node name="MilitaryWallBlock_034" parent="Terrain" index="60" unique_id=1274657228]
-visible = false
-
-[node name="MilitaryWallBlock_035" parent="Terrain" index="61" unique_id=2006035076]
-visible = false
-
-[node name="MilitaryWallBlock_036" parent="Terrain" index="62" unique_id=1955648778]
-visible = false
-
-[node name="MilitaryWallBlock_037" parent="Terrain" index="63" unique_id=146731550]
-visible = false
-
-[node name="MilitaryWallBlock_038" parent="Terrain" index="64" unique_id=1622753483]
-visible = false
-
-[node name="MilitaryWallBlock_039" parent="Terrain" index="65" unique_id=66793620]
-visible = false
-
-[node name="MilitaryWallBlock_040" parent="Terrain" index="66" unique_id=1559513746]
-visible = false
-
-[node name="MilitaryWallBlock_041" parent="Terrain" index="67" unique_id=1219330226]
-visible = false
-
-[node name="MilitaryWallBlock_042" parent="Terrain" index="68" unique_id=714178894]
-visible = false
-
-[node name="MilitaryWallBlock_043" parent="Terrain" index="69" unique_id=470099031]
-visible = false
-
-[node name="MilitaryWallBlock_044" parent="Terrain" index="70" unique_id=1978429724]
-visible = false
-
-[node name="MilitaryWallBlock_045" parent="Terrain" index="71" unique_id=1552631019]
-visible = false
-
-[node name="MilitaryWallBlock_046" parent="Terrain" index="72" unique_id=546623802]
-visible = false
-
-[node name="MilitaryWallBlock_047" parent="Terrain" index="73" unique_id=1073212181]
-visible = false
-
-[node name="MilitaryWallBlock_048" parent="Terrain" index="74" unique_id=1267606857]
-visible = false
-
-[node name="MilitaryWallBlock_049" parent="Terrain" index="75" unique_id=1499003163]
-visible = false
-
-[node name="MilitaryWallBlock_050" parent="Terrain" index="76" unique_id=167484441]
-visible = false
-
-[node name="MilitaryWallBlock_051" parent="Terrain" index="77" unique_id=725896244]
-visible = false
-
-[node name="MilitaryWallBlock_052" parent="Terrain" index="78" unique_id=1053831879]
-visible = false
-
-[node name="MilitaryWallBlock_053" parent="Terrain" index="79" unique_id=797629871]
-visible = false
-
-[node name="MilitaryWallBlock_054" parent="Terrain" index="80" unique_id=115150739]
-visible = false
-
-[node name="MilitaryWallBlock_055" parent="Terrain" index="81" unique_id=1496483150]
-visible = false
-
-[node name="MilitaryWallBlock_056" parent="Terrain" index="82" unique_id=1142749562]
-visible = false
-
-[node name="MilitaryWallBlock_057" parent="Terrain" index="83" unique_id=1026887743]
-visible = false
-
-[node name="MilitaryWallBlock_058" parent="Terrain" index="84" unique_id=532000326]
-visible = false
-
-[node name="MilitaryWallBlock_059" parent="Terrain" index="85" unique_id=786607711]
-visible = false
-
-[node name="MilitaryWallBlock_060" parent="Terrain" index="86" unique_id=1445721744]
-visible = false
-
-[node name="MilitaryWallBlock_061" parent="Terrain" index="87" unique_id=957738598]
-visible = false
-
-[node name="MilitaryWallBlock_062" parent="Terrain" index="88" unique_id=1512970760]
-visible = false
-
-[node name="MilitaryWallBlock_063" parent="Terrain" index="89" unique_id=1751596168]
 visible = false
 
 [node name="car2" parent="." unique_id=2125822609 instance=ExtResource("5_lquwl")]
@@ -239,365 +36,1750 @@ metadata/asset_placer_res_id = "uid://lx7gpi1nvcv2"
 
 [node name="MilitaryBlockWall" type="Node3D" parent="Scenery" unique_id=1500551022]
 
-[node name="MilitaryWallBlock" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=106517638 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock" parent="Scenery/MilitaryBlockWall" unique_id=106517638 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -84.45382, -0.40673327, 39.73362)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (1)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1475957162 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (1)" parent="Scenery/MilitaryBlockWall" unique_id=1475957162 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, 0.2850168, 0, 0.8333334, 0, -0.2850168, 0, 0.78307724, -82.24317, -0.40673852, 51.41523)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (2)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=234519771 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (2)" parent="Scenery/MilitaryBlockWall" unique_id=234519771 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.82067317, 0, 0.14470682, 0, 0.8333334, 0, -0.14470682, 0, 0.82067317, -79.72926, -0.40673327, 62.02725)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (3)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1491241074 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (3)" parent="Scenery/MilitaryBlockWall" unique_id=1491241074 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.82067317, 0, 0.14470682, 0, 0.8333334, 0, -0.14470682, 0, 0.82067317, -77.76472, -0.40673327, 72.96188)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (4)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1036791342 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (4)" parent="Scenery/MilitaryBlockWall" unique_id=1036791342 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, 0.2850168, 0, 0.8333334, 0, -0.2850168, 0, 0.78307724, -75.85297, -0.40673327, 83.275314)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (5)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=275193610 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (5)" parent="Scenery/MilitaryBlockWall" unique_id=275193610 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8333335, 0, 6.2088175e-09, 0, 0.8333334, 0, -6.2088175e-09, 0, 0.8333335, -83.62021, 10.371913, 40.607544)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (6)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1856980408 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (6)" parent="Scenery/MilitaryBlockWall" unique_id=1856980408 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206733, 0, 0.14470683, 0, 0.8333334, 0, -0.14470683, 0, 0.8206733, -81.84196, 10.371907, 50.969784)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (7)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=932285339 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (7)" parent="Scenery/MilitaryBlockWall" unique_id=932285339 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206733, 0, 0.14470685, 0, 0.8333334, 0, -0.14470685, 0, 0.8206733, -79.50924, 10.371913, 62.21526)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (8)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1425820052 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (8)" parent="Scenery/MilitaryBlockWall" unique_id=1425820052 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206733, 0, 0.14470685, 0, 0.8333334, 0, -0.14470685, 0, 0.8206733, -77.615555, 10.371913, 73.43315)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (9)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1412536704 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (9)" parent="Scenery/MilitaryBlockWall" unique_id=1412536704 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7830775, 0, 0.2850169, 0, 0.8333334, 0, -0.2850169, 0, 0.7830775, -75.86636, 10.371913, 83.79514)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (10)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=544733691 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (10)" parent="Scenery/MilitaryBlockWall" unique_id=544733691 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -86.203835, -0.40673852, 89.4518)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (11)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=392358761 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (11)" parent="Scenery/MilitaryBlockWall" unique_id=392358761 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -86.11682, 10.371907, 89.178856)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (12)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1657034408 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (12)" parent="Scenery/MilitaryBlockWall" unique_id=1657034408 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -96.13419, -0.40673852, 94.25935)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (13)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=193384401 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (13)" parent="Scenery/MilitaryBlockWall" unique_id=193384401 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -95.43586, 10.371907, 94.709564)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (14)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1814683561 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (14)" parent="Scenery/MilitaryBlockWall" unique_id=1814683561 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.63837063, 0, 0.53565663, 0, 0.8333334, 0, -0.53565663, 0, 0.63837063, -105.60472, -0.40673852, 100.18358)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (15)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=280994639 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (15)" parent="Scenery/MilitaryBlockWall" unique_id=280994639 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216882, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216882, -114.54984, -0.40673852, 105.876144)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (16)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=803379786 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (16)" parent="Scenery/MilitaryBlockWall" unique_id=803379786 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216882, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216882, -105.455215, 10.371907, 100.03627)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (17)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2001355717 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (17)" parent="Scenery/MilitaryBlockWall" unique_id=2001355717 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216882, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216882, -114.62335, 10.371913, 106.15824)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (18)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1388763969 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (18)" parent="Scenery/MilitaryBlockWall" unique_id=1388763969 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.41666692, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, 0.41666692, -123.65567, -0.406744, 115.99685)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (19)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1377317630 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (19)" parent="Scenery/MilitaryBlockWall" unique_id=1377317630 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -130.22281, -0.40673852, 125.16073)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (20)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=439951567 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (20)" parent="Scenery/MilitaryBlockWall" unique_id=439951567 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -137.82727, -0.406744, 133.61664)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (21)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=61484499 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (21)" parent="Scenery/MilitaryBlockWall" unique_id=61484499 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -144.72456, -0.406744, 142.20322)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (22)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=23130300 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (22)" parent="Scenery/MilitaryBlockWall" unique_id=23130300 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -123.085915, 10.371902, 115.70098)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (23)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=378379210 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (23)" parent="Scenery/MilitaryBlockWall" unique_id=378379210 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -130.40121, 10.371907, 124.30215)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (24)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=810292385 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (24)" parent="Scenery/MilitaryBlockWall" unique_id=810292385 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.41666692, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, 0.41666692, -137.65643, 10.371901, 133.63812)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (25)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=779273059 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (25)" parent="Scenery/MilitaryBlockWall" unique_id=779273059 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -144.60832, 10.371902, 142.72958)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (26)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2127482956 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (26)" parent="Scenery/MilitaryBlockWall" unique_id=2127482956 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -150.95552, -0.40673852, 153.44887)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (27)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=672745355 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (27)" parent="Scenery/MilitaryBlockWall" unique_id=672745355 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -151.04646, 10.371913, 154.38301)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (28)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1224835161 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (28)" parent="Scenery/MilitaryBlockWall" unique_id=1224835161 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -155.00137, -0.40675497, 164.46428)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (29)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=419971738 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (29)" parent="Scenery/MilitaryBlockWall" unique_id=419971738 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, -158.01598, -0.4068148, 175.87383)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (30)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1436365554 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (30)" parent="Scenery/MilitaryBlockWall" unique_id=1436365554 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -161.98637, -0.40656996, 185.52098)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (31)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1215929286 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (31)" parent="Scenery/MilitaryBlockWall" unique_id=1215929286 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -166.09618, -0.4066298, 195.67363)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (32)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1472392431 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (32)" parent="Scenery/MilitaryBlockWall" unique_id=1472392431 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.72168803, 0, -0.4166667, 0, 0.8333334, 0, 0.4166667, 0, 0.72168803, -155.18985, 10.371891, 166.12056)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (33)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1720285752 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (33)" parent="Scenery/MilitaryBlockWall" unique_id=1720285752 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307736, 0, -0.28501683, 0, 0.8333334, 0, 0.28501683, 0, 0.78307736, -159.01123, 10.371831, 177.2772)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (34)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=985744163 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (34)" parent="Scenery/MilitaryBlockWall" unique_id=985744163 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307736, 0, -0.28501683, 0, 0.8333334, 0, 0.28501683, 0, 0.78307736, -162.54602, 10.372076, 187.93529)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (35)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1130706801 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (35)" parent="Scenery/MilitaryBlockWall" unique_id=1130706801 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8333337, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333337, -167.88654, -0.40673852, 208.14691)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (36)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2141491100 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (36)" parent="Scenery/MilitaryBlockWall" unique_id=2141491100 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8333337, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333337, -168.1917, -0.406744, 219.38036)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (37)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=70158879 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (37)" parent="Scenery/MilitaryBlockWall" unique_id=70158879 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.82067347, 0, -0.14470689, 0, 0.8333334, 0, 0.14470689, 0, 0.82067347, -169.73303, -0.40673852, 230.14528)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (38)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=632435542 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (38)" parent="Scenery/MilitaryBlockWall" unique_id=632435542 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8333338, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333338, -170.67964, -0.406744, 241.89632)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (39)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2043444801 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (39)" parent="Scenery/MilitaryBlockWall" unique_id=2043444801 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8333338, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333338, -171.16064, -0.40673852, 253.02794)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (40)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=402287809 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (40)" parent="Scenery/MilitaryBlockWall" unique_id=402287809 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206736, 0, -0.14470689, 0, 0.8333334, 0, 0.14470689, 0, 0.8206736, -172.31691, -0.40673852, 264.51477)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (41)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=132891047 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (41)" parent="Scenery/MilitaryBlockWall" unique_id=132891047 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206736, 0, -0.14470689, 0, 0.8333334, 0, 0.14470689, 0, 0.8206736, -166.44705, 10.372016, 199.1066)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (42)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1664925074 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (42)" parent="Scenery/MilitaryBlockWall" unique_id=1664925074 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333385, 0, -1.2417635e-08, 0, 0.8333334, 0, 1.2417635e-08, 0, 0.83333385, -167.95483, 10.371907, 210.79712)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (43)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=262255609 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (43)" parent="Scenery/MilitaryBlockWall" unique_id=262255609 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333385, 0, -1.2417635e-08, 0, 0.8333334, 0, 1.2417635e-08, 0, 0.83333385, -168.42148, 10.371902, 222.08041)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (44)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1560882632 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (44)" parent="Scenery/MilitaryBlockWall" unique_id=1560882632 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206737, 0, -0.1447069, 0, 0.8333334, 0, 0.1447069, 0, 0.8206737, -170.2575, 10.371907, 234.22794)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (45)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=614460699 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (45)" parent="Scenery/MilitaryBlockWall" unique_id=614460699 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333397, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333397, -171.18968, 10.371902, 246.11766)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (46)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1430126101 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (46)" parent="Scenery/MilitaryBlockWall" unique_id=1430126101 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333397, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333397, -171.20279, 10.371907, 257.26627)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (47)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=161027465 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (47)" parent="Scenery/MilitaryBlockWall" unique_id=161027465 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216884, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216884, 8.075785, -0.40673852, 16.279247)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (48)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1259820553 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (48)" parent="Scenery/MilitaryBlockWall" unique_id=1259820553 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565687, 0, 0.63837093, 0, 0.8333334, 0, -0.63837093, 0, 0.53565687, 15.876805, -0.40673852, 23.045986)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (49)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2050718665 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (49)" parent="Scenery/MilitaryBlockWall" unique_id=2050718665 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565687, 0, 0.63837093, 0, 0.8333334, 0, -0.63837093, 0, 0.53565687, 24.475817, -0.40673852, 30.020956)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (50)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=418951341 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (50)" parent="Scenery/MilitaryBlockWall" unique_id=418951341 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.63837105, 0, 0.5356568, 0, 0.8333334, 0, -0.5356568, 0, 0.63837105, 32.72247, -0.40673852, 21.256168)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (51)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=38145276 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (51)" parent="Scenery/MilitaryBlockWall" unique_id=38145276 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216887, 0, 0.41666707, 0, 0.8333334, 0, -0.41666707, 0, 0.7216887, 43.437935, -0.40673852, 15.935606)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (52)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=878193916 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (52)" parent="Scenery/MilitaryBlockWall" unique_id=878193916 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216887, 0, 0.41666707, 0, 0.8333334, 0, -0.41666707, 0, 0.7216887, 53.061626, -0.40673852, 10.50527)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (53)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2134320346 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (53)" parent="Scenery/MilitaryBlockWall" unique_id=2134320346 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206743, 0, 0.14470698, 0, 0.8333334, 0, -0.14470698, 0, 0.8206743, 64.95888, -0.4067359, 6.5406547)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (54)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=340624673 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (54)" parent="Scenery/MilitaryBlockWall" unique_id=340624673 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333457, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.83333457, 76.832, -0.40673327, 5.414251)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (55)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1789365554 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (55)" parent="Scenery/MilitaryBlockWall" unique_id=1789365554 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.82067436, 0, 0.144707, 0, 0.8333334, 0, -0.144707, 0, 0.82067436, 87.061516, -0.40674138, 4.2686462)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (56)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=56906108 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (56)" parent="Scenery/MilitaryBlockWall" unique_id=56906108 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333474, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333474, 98.87822, -0.40673852, 3.2240298)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (57)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=566628913 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (57)" parent="Scenery/MilitaryBlockWall" unique_id=566628913 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333474, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333474, 109.842735, -0.40673852, 3.1802878)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (58)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=694829997 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (58)" parent="Scenery/MilitaryBlockWall" unique_id=694829997 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333486, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.83333486, 120.79063, -0.40673852, 4.1955185)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (59)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1889531990 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (59)" parent="Scenery/MilitaryBlockWall" unique_id=1889531990 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.82067466, 0, 0.14470704, 0, 0.8333334, 0, -0.14470704, 0, 0.82067466, 131.59258, -0.40673852, 3.111674)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (60)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=8373482 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (60)" parent="Scenery/MilitaryBlockWall" unique_id=8373482 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206748, 0, -0.14470711, 0, 0.8333334, 0, 0.14470711, 0, 0.8206748, 144.22662, -0.40673327, 3.705648)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (61)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1811035610 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (61)" parent="Scenery/MilitaryBlockWall" unique_id=1811035610 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206748, 0, -0.14470711, 0, 0.8333334, 0, 0.14470711, 0, 0.8206748, 155.17938, -0.406744, 5.826556)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (62)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=117737702 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (62)" parent="Scenery/MilitaryBlockWall" unique_id=117737702 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216895, 0, 0.41666758, 0, 0.8333334, 0, -0.41666758, 0, 0.7216895, 8.377988, 10.3719015, 16.546385)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (63)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=177327931 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (63)" parent="Scenery/MilitaryBlockWall" unique_id=177327931 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565776, 0, 0.638372, 0, 0.8333334, 0, -0.638372, 0, 0.53565776, 16.458664, 10.371907, 23.745022)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (64)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1810714301 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (64)" parent="Scenery/MilitaryBlockWall" unique_id=1810714301 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.53565776, 0, 0.638372, 0, 0.8333334, 0, -0.638372, 0, 0.53565776, 25.664436, 10.371907, 29.708546)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (65)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1056878741 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (65)" parent="Scenery/MilitaryBlockWall" unique_id=1056878741 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.6383721, 0, 0.53565776, 0, 0.8333334, 0, -0.53565776, 0, 0.6383721, 33.856163, 10.371907, 21.290768)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (66)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=380800819 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (66)" parent="Scenery/MilitaryBlockWall" unique_id=380800819 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216899, 0, 0.4166678, 0, 0.8333334, 0, -0.4166678, 0, 0.7216899, 43.83535, 10.371907, 15.000169)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (67)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=440072952 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (67)" parent="Scenery/MilitaryBlockWall" unique_id=440072952 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7830794, 0, 0.28501755, 0, 0.8333334, 0, -0.28501755, 0, 0.7830794, 54.577187, 10.371907, 9.737496)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (68)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=885252542 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (68)" parent="Scenery/MilitaryBlockWall" unique_id=885252542 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8333359, 0, -2.483527e-08, 0, 0.8333334, 0, 2.483527e-08, 0, 0.8333359, 66.53616, 10.371916, 5.8794756)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (69)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1786549996 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (69)" parent="Scenery/MilitaryBlockWall" unique_id=1786549996 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333594, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333594, 77.68893, 10.371913, 4.9553947)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (70)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1611603404 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (70)" parent="Scenery/MilitaryBlockWall" unique_id=1611603404 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206758, 0, 0.14470723, 0, 0.8333334, 0, -0.14470723, 0, 0.8206758, 89.56484, 10.371905, 4.050372)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (71)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=301178916 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (71)" parent="Scenery/MilitaryBlockWall" unique_id=301178916 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 101.43839, 10.371907, 3.1220908)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (72)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1021862120 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (72)" parent="Scenery/MilitaryBlockWall" unique_id=1021862120 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 112.705795, 10.371907, 3.2874932)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (73)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1610062241 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (73)" parent="Scenery/MilitaryBlockWall" unique_id=1610062241 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 123.76946, 10.371907, 3.4180484)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (74)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1277590709 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (74)" parent="Scenery/MilitaryBlockWall" unique_id=1277590709 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 134.74179, 10.371907, 2.772299)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (75)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=518144411 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (75)" parent="Scenery/MilitaryBlockWall" unique_id=518144411 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.8206759, 0, -0.14470734, 0, 0.8333334, 0, 0.14470734, 0, 0.8206759, 146.62782, 10.371913, 3.790739)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (76)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=906570254 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (76)" parent="Scenery/MilitaryBlockWall" unique_id=906570254 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, 166.6825, -0.40673852, 8.87085)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (77)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=322317423 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (77)" parent="Scenery/MilitaryBlockWall" unique_id=322317423 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, 177.16165, -0.4067359, 12.590968)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (78)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1363273862 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (78)" parent="Scenery/MilitaryBlockWall" unique_id=1363273862 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.72168803, 0, -0.4166667, 0, 0.8333334, 0, 0.4166667, 0, 0.72168803, 187.8265, -0.40673852, 17.484526)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (79)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1518439712 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (79)" parent="Scenery/MilitaryBlockWall" unique_id=1518439712 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.72168803, 0, -0.4166667, 0, 0.8333334, 0, 0.4166667, 0, 0.72168803, 197.7002, -0.406744, 23.268587)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (80)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1112571291 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (80)" parent="Scenery/MilitaryBlockWall" unique_id=1112571291 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7830775, 0, -0.28501686, 0, 0.8333334, 0, 0.28501686, 0, 0.7830775, 207.71269, -0.23240352, 28.98828)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (81)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=455255295 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (81)" parent="Scenery/MilitaryBlockWall" unique_id=455255295 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.5356568, 0, -0.63837075, 0, 0.8333334, 0, 0.63837075, 0, 0.5356568, 219.02246, 0.14399362, 37.432163)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (82)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1267863215 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (82)" parent="Scenery/MilitaryBlockWall" unique_id=1267863215 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307784, 0, -0.28501695, 0, 0.8333334, 0, 0.28501695, 0, 0.78307784, 158.19984, 10.371902, 6.6327815)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (83)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2043992594 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (83)" parent="Scenery/MilitaryBlockWall" unique_id=2043992594 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.78307784, 0, -0.28501695, 0, 0.8333334, 0, 0.28501695, 0, 0.78307784, 168.72522, 10.371907, 10.10458)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (84)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1962651729 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (84)" parent="Scenery/MilitaryBlockWall" unique_id=1962651729 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.82067376, 0, -0.14470688, 0, 0.8333334, 0, 0.14470688, 0, 0.82067376, 179.72418, 10.37191, 13.430096)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (85)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2034067670 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (85)" parent="Scenery/MilitaryBlockWall" unique_id=2034067670 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.72168845, 0, -0.41666692, 0, 0.8333334, 0, 0.41666692, 0, 0.72168845, 191.14114, 10.371907, 18.446878)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (86)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1353366217 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (86)" parent="Scenery/MilitaryBlockWall" unique_id=1353366217 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.72168845, 0, -0.41666692, 0, 0.8333334, 0, 0.41666692, 0, 0.72168845, 202.11221, 10.371902, 25.380745)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (87)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1004756889 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (87)" parent="Scenery/MilitaryBlockWall" unique_id=1004756889 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.7216885, 0, -0.41666698, 0, 0.8333334, 0, 0.41666698, 0, 0.7216885, 211.8754, 10.546243, 30.914429)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (88)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=114296975 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (88)" parent="Scenery/MilitaryBlockWall" unique_id=114296975 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.6383711, 0, -0.5356568, 0, 0.8333334, 0, 0.5356568, 0, 0.6383711, 227.00812, 0.34085584, 44.470993)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
-[node name="MilitaryWallBlock (89)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1412216600 instance=ExtResource("6_7mycd")]
+[node name="MilitaryWallBlock (89)" parent="Scenery/MilitaryBlockWall" unique_id=1412216600 instance=ExtResource("6_7mycd")]
 transform = Transform3D(0.6383711, 0, -0.5356568, 0, 0.8333334, 0, 0.5356568, 0, 0.6383711, 221.20886, 10.922639, 37.92716)
 metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
+[node name="Fences" type="Node3D" parent="Scenery" unique_id=977762168]
+
+[node name="picket_fence_tall" parent="Scenery/Fences" unique_id=560106294 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.46417955, 0, 0.69208664, 0, 0.8333334, 0, -0.69208664, 0, -0.46417955, 52.500004, -0.40673852, 135)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (1)" parent="Scenery/Fences" unique_id=1395602857 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666767, 0, 0.7216887, 0, 0.8333334, 0, -0.7216887, 0, -0.41666767, 56.49368, -0.40673733, 132.52986)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (2)" parent="Scenery/Fences" unique_id=2063858894 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166678, 0, 0.72168887, 0, 0.8333334, 0, -0.72168887, 0, -0.4166678, 60.55508, -0.40673995, 130.18414)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (3)" parent="Scenery/Fences" unique_id=737641260 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166678, 0, 0.72168887, 0, 0.8333334, 0, -0.72168887, 0, -0.4166678, 64.61446, -0.40673852, 127.85043)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (4)" parent="Scenery/Fences" unique_id=1547667056 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166678, 0, 0.72168887, 0, 0.8333334, 0, -0.72168887, 0, -0.4166678, 68.69168, -0.40673804, 125.48208)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (5)" parent="Scenery/Fences" unique_id=2035541302 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166678, 0, 0.72168887, 0, 0.8333334, 0, -0.72168887, 0, -0.4166678, 72.72273, -0.40673852, 123.17527)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (6)" parent="Scenery/Fences" unique_id=2075696272 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166667, 0, 0.72168833, 0, 0.8333334, 0, -0.72168833, 0, -0.4166667, 76.76384, -0.40673852, 120.85981)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (7)" parent="Scenery/Fences" unique_id=1392708230 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166667, 0, 0.72168833, 0, 0.8333334, 0, -0.72168833, 0, -0.4166667, 80.83373, -0.40673852, 118.552124)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (8)" parent="Scenery/Fences" unique_id=525351062 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166667, 0, 0.72168833, 0, 0.8333334, 0, -0.72168833, 0, -0.4166667, 84.88351, -0.40673804, 116.208984)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (9)" parent="Scenery/Fences" unique_id=1997273896 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166667, 0, 0.72168833, 0, 0.8333334, 0, -0.72168833, 0, -0.4166667, 88.91396, -0.40673923, 113.874565)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (10)" parent="Scenery/Fences" unique_id=2114122764 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166667, 0, 0.72168833, 0, 0.8333334, 0, -0.72168833, 0, -0.4166667, 92.978386, -0.40673923, 111.52184)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (11)" parent="Scenery/Fences" unique_id=1967273786 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166667, 0, 0.72168833, 0, 0.8333334, 0, -0.72168833, 0, -0.4166667, 97.0638, -0.40673852, 109.15994)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (12)" parent="Scenery/Fences" unique_id=617985968 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.4166667, 0, 0.72168833, 0, 0.8333334, 0, -0.72168833, 0, -0.4166667, 101.14471, -0.40673852, 106.80746)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (13)" parent="Scenery/Fences" unique_id=163118654 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, 0.7216889, 0, 0.8333334, 0, -0.7216889, 0, -0.41666698, 105.229576, -0.40673733, 104.43741)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (14)" parent="Scenery/Fences" unique_id=536328910 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, 0.7216889, 0, 0.8333334, 0, -0.7216889, 0, -0.41666698, 109.31903, -0.40673852, 102.09763)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (15)" parent="Scenery/Fences" unique_id=32744861 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, 0.7216889, 0, 0.8333334, 0, -0.7216889, 0, -0.41666698, 113.40785, -0.40673852, 99.71876)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (16)" parent="Scenery/Fences" unique_id=913316905 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, 0.7216889, 0, 0.8333334, 0, -0.7216889, 0, -0.41666698, 117.49465, -0.40673852, 97.34834)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (17)" parent="Scenery/Fences" unique_id=148036973 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 120.89872, -0.40673852, 98.17281)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (18)" parent="Scenery/Fences" unique_id=1459103888 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 123.24985, -0.40673852, 102.281746)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (19)" parent="Scenery/Fences" unique_id=936438441 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 125.61795, -0.40673733, 106.39152)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (20)" parent="Scenery/Fences" unique_id=1541861037 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 127.96601, -0.40673804, 110.48549)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (21)" parent="Scenery/Fences" unique_id=1526336376 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 130.32204, -0.40673852, 114.57511)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (22)" parent="Scenery/Fences" unique_id=231097940 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 132.66945, -0.40673852, 118.674706)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (23)" parent="Scenery/Fences" unique_id=1799104021 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 135.02248, -0.40673804, 122.74875)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (24)" parent="Scenery/Fences" unique_id=2015748067 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 137.37544, -0.40673852, 126.85716)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (25)" parent="Scenery/Fences" unique_id=1450721489 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216892, 0, 0.4166672, 0, 0.8333334, 0, -0.4166672, 0, 0.7216892, 139.73526, -0.40673804, 130.95673)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (26)" parent="Scenery/Fences" unique_id=156203428 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.41666752, 0, -0.7216896, 0, 0.8333334, 0, 0.7216896, 0, 0.41666752, 138.9396, -0.4067359, 134.07599)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (27)" parent="Scenery/Fences" unique_id=386974362 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 134.82724, -0.40673804, 136.44405)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (28)" parent="Scenery/Fences" unique_id=192598215 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 130.72455, -0.40673804, 138.79953)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (29)" parent="Scenery/Fences" unique_id=2020045485 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 126.61592, -0.40673852, 141.15721)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (30)" parent="Scenery/Fences" unique_id=494746957 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 122.498505, -0.40673852, 143.53781)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (31)" parent="Scenery/Fences" unique_id=1884299069 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 118.38349, -0.40673995, 145.92944)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (32)" parent="Scenery/Fences" unique_id=727462452 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 114.29246, -0.40673923, 148.28873)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (33)" parent="Scenery/Fences" unique_id=1849231954 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 110.1987, -0.40673852, 150.64095)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (34)" parent="Scenery/Fences" unique_id=1924281884 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 106.06388, -0.40673852, 153.0113)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (35)" parent="Scenery/Fences" unique_id=915682809 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 101.93323, -0.40673804, 155.37003)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (36)" parent="Scenery/Fences" unique_id=1444783148 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 97.82058, -0.40673804, 157.733)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (37)" parent="Scenery/Fences" unique_id=1678220622 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.4166669, 0, -0.72168803, 0, 0.8333334, 0, 0.72168803, 0, 0.4166669, 93.71246, -0.40673804, 160.1165)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (38)" parent="Scenery/Fences" unique_id=1783589485 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.14470701, 0, -0.8206734, 0, 0.8333334, 0, 0.8206734, 0, 0.14470701, 89.31207, -0.40673923, 161.71797)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (39)" parent="Scenery/Fences" unique_id=2088811899 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.14470701, 0, -0.8206734, 0, 0.8333334, 0, 0.8206734, 0, 0.14470701, 84.650696, -0.40673923, 162.52353)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (40)" parent="Scenery/Fences" unique_id=1309223043 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.14470701, 0, -0.8206734, 0, 0.8333334, 0, 0.8206734, 0, 0.14470701, 79.92994, -0.40673923, 163.34796)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (41)" parent="Scenery/Fences" unique_id=12689186 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.285017, 0, -0.7830775, 0, 0.8333334, 0, 0.7830775, 0, 0.285017, 75.339775, -0.40673995, 164.56804)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (42)" parent="Scenery/Fences" unique_id=1227132225 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.285017, 0, -0.7830775, 0, 0.8333334, 0, 0.7830775, 0, 0.285017, 70.85914, -0.40673995, 166.21558)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="fence_1_post" parent="Scenery/Fences" unique_id=814297782 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.7830784, 0, 0.28501722, 0, 0.8333334, 0, -0.28501722, 0, 0.7830784, 92.80627, -0.40673852, 166.42366)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (1)" parent="Scenery/Fences" unique_id=288301806 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.63837147, 0, 0.53565717, 0, 0.8333334, 0, -0.53565717, 0, 0.63837147, 97.00304, -0.40673852, 173.72182)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (2)" parent="Scenery/Fences" unique_id=1432513773 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.41666743, 0, 0.7216891, 0, 0.8333334, 0, -0.7216891, 0, 0.41666743, 103.49939, -0.40673995, 178.8346)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (3)" parent="Scenery/Fences" unique_id=1747226423 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.53565735, 0, 0.63837147, 0, 0.8333334, 0, -0.63837147, 0, 0.53565735, 110.24014, -0.40673852, 183.64548)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (4)" parent="Scenery/Fences" unique_id=43785216 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.7216894, 0, 0.41666737, 0, 0.8333334, 0, -0.41666737, 0, 0.7216894, 129.32555, -0.40673852, 204.43193)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (5)" parent="Scenery/Fences" unique_id=811829 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.78307885, 0, 0.28501722, 0, 0.8333334, 0, -0.28501722, 0, 0.78307885, 132.86316, -0.40674138, 212.06535)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (6)" parent="Scenery/Fences" unique_id=509756678 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.14470696, 0, 0.8206752, 0, 0.8333334, 0, -0.8206752, 0, -0.14470696, 138.53111, -0.40673733, 215.38805)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (7)" parent="Scenery/Fences" unique_id=551992777 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.14470696, 0, 0.8206752, 0, 0.8333334, 0, -0.8206752, 0, -0.14470696, 146.84355, -0.40673995, 213.93805)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (8)" parent="Scenery/Fences" unique_id=1293685389 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.14470696, 0, 0.8206752, 0, 0.8333334, 0, -0.8206752, 0, -0.14470696, 155.14044, -0.40673852, 212.47324)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (9)" parent="Scenery/Fences" unique_id=1299708986 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 163.4334, -0.40674138, 211.73402)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (10)" parent="Scenery/Fences" unique_id=874546053 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 171.95497, -0.40673852, 211.74867)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (11)" parent="Scenery/Fences" unique_id=1826779047 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 180.4951, -0.40673852, 211.71846)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (12)" parent="Scenery/Fences" unique_id=252173396 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 189.01857, -0.40673733, 211.66595)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (13)" parent="Scenery/Fences" unique_id=641964253 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 197.37039, -0.40673733, 211.67616)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (14)" parent="Scenery/Fences" unique_id=2033088149 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 205.84154, -0.40673852, 211.70584)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (15)" parent="Scenery/Fences" unique_id=1168899957 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 214.31512, -0.40673733, 211.6962)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (16)" parent="Scenery/Fences" unique_id=1388089105 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 231.77199, -0.4067278, 211.76172)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (17)" parent="Scenery/Fences" unique_id=699407540 instance=ExtResource("7_272bh")]
+transform = Transform3D(2.0489098e-07, 0, 0.83333546, 0, 0.8333334, 0, -0.83333546, 0, 2.0489098e-07, 240.36241, -0.40674138, 211.7781)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (18)" parent="Scenery/Fences" unique_id=603795503 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.53565764, 0, 0.63837224, 0, 0.8333334, 0, -0.63837224, 0, -0.53565764, 248.02248, -0.40673852, 208.92838)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (19)" parent="Scenery/Fences" unique_id=1279999861 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.53565764, 0, 0.63837224, 0, 0.8333334, 0, -0.63837224, 0, -0.53565764, 254.74081, -0.4067359, 203.24327)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (20)" parent="Scenery/Fences" unique_id=672894537 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.53565764, 0, 0.63837224, 0, 0.8333334, 0, -0.63837224, 0, -0.53565764, 261.3405, -0.40673995, 197.74576)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (21)" parent="Scenery/Fences" unique_id=33077619 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.53565764, 0, 0.63837224, 0, 0.8333334, 0, -0.63837224, 0, -0.53565764, 267.82834, -0.40673995, 192.37505)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (22)" parent="Scenery/Fences" unique_id=1424956880 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.53565764, 0, 0.63837224, 0, 0.8333334, 0, -0.63837224, 0, -0.53565764, 274.2315, -0.40673852, 187.01399)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (23)" parent="Scenery/Fences" unique_id=1103276291 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.8206758, 0, -0.14470698, 0, 0.8333334, 0, 0.14470698, 0, -0.8206758, 276.78226, -0.40673804, 180.0097)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (24)" parent="Scenery/Fences" unique_id=815448993 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.8206758, 0, -0.14470698, 0, 0.8333334, 0, 0.14470698, 0, -0.8206758, 275.299, -0.40673852, 171.53424)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (25)" parent="Scenery/Fences" unique_id=1063992702 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.8206758, 0, -0.14470698, 0, 0.8333334, 0, 0.14470698, 0, -0.8206758, 273.7919, -0.40673995, 163.08504)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (26)" parent="Scenery/Fences" unique_id=1913621811 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.8206758, 0, -0.14470698, 0, 0.8333334, 0, 0.14470698, 0, -0.8206758, 272.33752, -0.40673852, 154.56021)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (27)" parent="Scenery/Fences" unique_id=394508791 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.8206758, 0, -0.14470698, 0, 0.8333334, 0, 0.14470698, 0, -0.8206758, 270.88843, -0.40673852, 146.06557)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (28)" parent="Scenery/Fences" unique_id=2109477041 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.8206758, 0, -0.14470698, 0, 0.8333334, 0, 0.14470698, 0, -0.8206758, 269.41885, -0.40673995, 137.72319)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (29)" parent="Scenery/Fences" unique_id=1209207270 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.8206758, 0, -0.14470698, 0, 0.8333334, 0, 0.14470698, 0, -0.8206758, 267.95267, -0.40673995, 129.32918)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (30)" parent="Scenery/Fences" unique_id=553369777 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.82067573, -9.251859e-17, -0.14470698, -0.01383687, 0.8295149, 0.07847294, 0.14404392, 0.07968325, -0.81691533, 266.65625, -0.26021266, 120.95161)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (31)" parent="Scenery/Fences" unique_id=1480589733 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.82067573, 0, -0.14470698, -0.009693617, 0.83146155, 0.054975342, 0.14438196, 0.05582324, -0.8188323, 265.20215, 0.70183563, 112.71562)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (32)" parent="Scenery/Fences" unique_id=68806577 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.81895274, 0.07863961, -0.13259299, 0.05721241, 0.8206065, 0.13332762, 0.14314981, 0.12192288, -0.8118445, 263.72192, 1.8515296, 104.23457)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (33)" parent="Scenery/Fences" unique_id=497753397 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.81482744, 0.14877047, -0.09150028, 0.108612545, 0.7734993, 0.29042625, 0.1367787, 0.2720493, -0.77571195, 262.3421, 4.3631716, 95.45724)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (34)" parent="Scenery/Fences" unique_id=331553794 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.725357, 0.034062184, -0.40883455, -0.04210261, 0.81989056, 0.14300853, 0.4080848, 0.14513335, -0.7119354, 260.39444, 6.654072, 88.36801)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (35)" parent="Scenery/Fences" unique_id=1165382743 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.6907559, -0.06880639, -0.4610542, -0.079047546, 0.8295587, -0.0053719124, 0.45940924, 0.039281126, -0.69415367, 256.50543, 7.582487, 81.85244)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (36)" parent="Scenery/Fences" unique_id=70078109 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.62990606, -0.13527264, -0.5285534, -0.051068213, 0.81838715, -0.1485904, 0.5431938, -0.07992633, -0.6268981, 251.6725, 6.758877, 75.30365)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (37)" parent="Scenery/Fences" unique_id=1039355789 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.62315136, -0.18089168, -0.5228856, -0.037103478, 0.7994274, -0.2323446, 0.552046, -0.15046099, -0.60585123, 246.53024, 4.9048505, 69.191536)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (38)" parent="Scenery/Fences" unique_id=1667730693 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.6299763, -0.16784795, -0.5190433, -0.06333173, 0.81004757, -0.18508705, 0.54181933, -0.10047355, -0.62512875, 241.0229, 2.6914225, 62.56456)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (39)" parent="Scenery/Fences" unique_id=1932366983 instance=ExtResource("7_272bh")]
+transform = Transform3D(-0.5413286, -0.1350459, -0.6190113, -0.04071564, 0.81991506, -0.14327098, 0.6322617, -0.06282347, -0.5392102, 235.36128, 1.1660566, 56.517605)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (40)" parent="Scenery/Fences" unique_id=1938483447 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.5356566, 0, 0.6383706, 0, 0.8333334, 0, -0.6383706, 0, 0.5356566, 228.87689, 0.42923093, 51.0756)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_A_single_post" parent="Scenery/Fences" unique_id=238538032 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.83155864, -0.054357477, 0, 0.054357477, 0.83155864, 0, 0, 0, 0.8333334, 238.1119, 2.2454839, 59.1361)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post2" parent="Scenery/Fences" unique_id=243314691 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.83155864, -0.054357477, 0, 0.054357477, 0.83155864, 0, 0, 0, 0.8333334, 231.94774, 1.0858653, 53.54834)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (1)" parent="Scenery/Fences" unique_id=1389561042 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8156216, -0.17089741, 0, 0.17032714, 0.81289995, 0.06802117, -0.01394957, -0.066575445, 0.83055264, 243.74147, 3.9451656, 65.83973)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (2)" parent="Scenery/Fences" unique_id=1469787763 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8307782, -0.065208584, 0, 0.065208584, 0.8307782, 0, 0, 0, 0.8333334, 248.7507, 6.311265, 71.81509)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (3)" parent="Scenery/Fences" unique_id=1702385285 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.82468235, -0.11952243, -0.007607679, 0.11976431, 0.82301694, 0.052385557, 0, -0.052935086, 0.8316505, 254.33932, 7.9382467, 78.52721)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (4)" parent="Scenery/Fences" unique_id=1765908831 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8319444, 0.048007485, -0.0028664202, -0.047739152, 0.8183423, -0.14993727, -0.005822875, 0.14985159, 0.8197287, 258.42438, 7.887457, 85.13463)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (5)" parent="Scenery/Fences" unique_id=1809461678 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8234702, 0.12445106, -0.029210363, -0.12783313, 0.80168366, -0.18816607, 0, 0.19041984, 0.81128585, 262.0719, 6.1799192, 91.87675)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (6)" parent="Scenery/Fences" unique_id=867104453 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8293434, 0.081240915, -0.0058234213, -0.08075627, 0.8124254, -0.16699715, -0.010603088, 0.1667619, 0.8164083, 263.085, 3.3992825, 99.89785)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (7)" parent="Scenery/Fences" unique_id=606205966 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 264.54092, 1.7667089, 108.6945)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (8)" parent="Scenery/Fences" unique_id=1978336360 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 265.93497, 0.9266021, 117.08024)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (9)" parent="Scenery/Fences" unique_id=454492408 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 267.30817, 0.20114326, 125.1249)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (10)" parent="Scenery/Fences" unique_id=1818343404 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 268.78052, -0.010613918, 133.50024)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (11)" parent="Scenery/Fences" unique_id=1420213238 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 270.1516, 0.035814047, 141.72438)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (12)" parent="Scenery/Fences" unique_id=2124513733 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 271.6499, -0.03210044, 150.20035)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (13)" parent="Scenery/Fences" unique_id=710414730 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 273.0883, -0.14411426, 158.61336)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (14)" parent="Scenery/Fences" unique_id=1499477621 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 274.5951, 0.03935504, 167.08905)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (15)" parent="Scenery/Fences" unique_id=751745219 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 276.06998, -0.12314415, 175.82675)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (16)" parent="Scenery/Fences" unique_id=1381101636 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 277.5017, 0.06725645, 184.13972)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (17)" parent="Scenery/Fences" unique_id=1929449212 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 271.06995, -0.07899022, 189.66959)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (18)" parent="Scenery/Fences" unique_id=598270292 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 264.5616, -0.0028703213, 195.0481)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (19)" parent="Scenery/Fences" unique_id=1823110937 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 258.074, -0.057605505, 200.47035)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (20)" parent="Scenery/Fences" unique_id=154465759 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 251.3545, -0.036759138, 206.08064)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (21)" parent="Scenery/Fences" unique_id=791059839 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.7809, 0.14581227, 211.71495)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (22)" parent="Scenery/Fences" unique_id=925185743 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 236.12025, 0.14581227, 211.7857)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (23)" parent="Scenery/Fences" unique_id=1044100745 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 227.4866, 0.14581227, 211.72707)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (24)" parent="Scenery/Fences" unique_id=1628266000 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 218.52077, 0.14581108, 211.73851)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (25)" parent="Scenery/Fences" unique_id=1577501626 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 210.07745, -0.01107192, 211.69012)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (26)" parent="Scenery/Fences" unique_id=1791179078 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 201.58159, -0.01107192, 211.7415)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (27)" parent="Scenery/Fences" unique_id=1511657617 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 193.21169, -0.10338616, 211.67741)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (28)" parent="Scenery/Fences" unique_id=362105841 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 184.77147, -0.1033864, 211.63925)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (29)" parent="Scenery/Fences" unique_id=1527133657 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 176.33685, -0.10338521, 211.77312)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (30)" parent="Scenery/Fences" unique_id=1392967078 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 167.67548, -0.10338521, 211.73474)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (31)" parent="Scenery/Fences" unique_id=612347025 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 159.36638, -0.15565133, 211.77122)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (32)" parent="Scenery/Fences" unique_id=1171634238 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 150.87355, -0.19859362, 213.26888)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (33)" parent="Scenery/Fences" unique_id=1493979372 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 142.59497, -0.19859362, 214.68779)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (34)" parent="Scenery/Fences" unique_id=726747911 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 134.3315, 0.06687355, 215.90381)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (35)" parent="Scenery/Fences" unique_id=1376401254 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 131.43343, -0.2668259, 207.96341)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (36)" parent="Scenery/Fences" unique_id=788517363 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 127.220924, -0.2668271, 200.57507)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (37)" parent="Scenery/Fences" unique_id=1998837223 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 113.51354, 0.0054147243, 186.23463)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (38)" parent="Scenery/Fences" unique_id=810077767 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 106.99527, 0.0054147243, 180.7911)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (39)" parent="Scenery/Fences" unique_id=1857675639 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 99.69922, 0.0054135323, 176.63434)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (40)" parent="Scenery/Fences" unique_id=1572222428 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 94.13466, 0.0054135323, 170.34563)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (41)" parent="Scenery/Fences" unique_id=532936911 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 91.391396, 0.005416155, 162.29445)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="picket_fence_tall (43)" parent="Scenery/Fences" unique_id=2116486047 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.89561, -0.40673995, 214.88681)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (44)" parent="Scenery/Fences" unique_id=1328476874 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.87436, -0.40673733, 219.63586)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (45)" parent="Scenery/Fences" unique_id=185769473 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.87148, -0.40673852, 224.38513)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (46)" parent="Scenery/Fences" unique_id=1421322127 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.91365, -0.40673804, 229.18433)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (47)" parent="Scenery/Fences" unique_id=332761994 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.94409, -0.40673804, 233.95445)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (48)" parent="Scenery/Fences" unique_id=343174446 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.9618, -0.40673852, 238.75148)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (49)" parent="Scenery/Fences" unique_id=1517252751 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.96553, -0.40673852, 243.50157)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (50)" parent="Scenery/Fences" unique_id=863096492 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.98096, -0.40673923, 248.29398)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (51)" parent="Scenery/Fences" unique_id=801951174 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 245.01039, -0.40673923, 253.06596)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (52)" parent="Scenery/Fences" unique_id=1915749053 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 245.01375, -0.40673995, 257.8664)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (53)" parent="Scenery/Fences" unique_id=364949884 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.9858, -0.40673804, 262.63098)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (54)" parent="Scenery/Fences" unique_id=439183928 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.98325, -0.40673852, 267.4023)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (55)" parent="Scenery/Fences" unique_id=1566681242 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 244.96858, -0.40673804, 272.1637)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (56)" parent="Scenery/Fences" unique_id=215725467 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 243.79558, -0.40673804, 276.60843)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (57)" parent="Scenery/Fences" unique_id=1613657353 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 241.42229, -0.40673923, 280.70212)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (58)" parent="Scenery/Fences" unique_id=1611871044 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 239.04196, -0.40673852, 284.83374)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (59)" parent="Scenery/Fences" unique_id=246897732 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 236.68207, -0.40673923, 288.97583)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (60)" parent="Scenery/Fences" unique_id=152284108 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 234.30533, -0.40673733, 293.08716)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (61)" parent="Scenery/Fences" unique_id=636175010 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 231.89825, -0.40673804, 297.18628)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (62)" parent="Scenery/Fences" unique_id=177450349 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 229.52495, -0.40673804, 301.2753)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (63)" parent="Scenery/Fences" unique_id=27486126 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 227.1533, -0.40673804, 305.37405)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (64)" parent="Scenery/Fences" unique_id=1641770443 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 224.79391, -0.40673733, 309.4657)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (65)" parent="Scenery/Fences" unique_id=684518677 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7216881, 0, -0.41666675, 0, 0.8333334, 0, 0.41666675, 0, 0.7216881, 222.41415, -0.40673852, 313.56735)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (66)" parent="Scenery/Fences" unique_id=2058601129 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 219.03268, -0.40673995, 314.431)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (67)" parent="Scenery/Fences" unique_id=920071127 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 214.92697, -0.40673852, 312.0607)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (68)" parent="Scenery/Fences" unique_id=2101699101 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 210.83452, -0.40673995, 309.71664)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (69)" parent="Scenery/Fences" unique_id=600504716 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 206.70189, -0.40673995, 307.345)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (70)" parent="Scenery/Fences" unique_id=1455694240 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 202.51852, -0.40673852, 304.99585)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (71)" parent="Scenery/Fences" unique_id=1612754118 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 198.3963, -0.40673852, 302.62067)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (72)" parent="Scenery/Fences" unique_id=1380625644 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 194.31415, -0.40673733, 300.22906)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (73)" parent="Scenery/Fences" unique_id=1578922643 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666698, 0, -0.72168857, 0, 0.8333334, 0, 0.72168857, 0, -0.41666698, 190.18777, -0.40673733, 297.8455)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (74)" parent="Scenery/Fences" unique_id=1308376718 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.28501704, 0, -0.783078, 0, 0.8333334, 0, 0.783078, 0, -0.28501704, 185.89124, -0.40673852, 295.82236)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (75)" parent="Scenery/Fences" unique_id=118681715 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.28501704, 0, -0.783078, 0, 0.8333334, 0, 0.783078, 0, -0.28501704, 181.39774, -0.40673852, 294.21674)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (76)" parent="Scenery/Fences" unique_id=1897008561 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.28501704, 0, -0.783078, 0, 0.8333334, 0, 0.783078, 0, -0.28501704, 176.91113, -0.40673804, 292.5894)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (77)" parent="Scenery/Fences" unique_id=1333777451 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.28501704, 0, -0.783078, 0, 0.8333334, 0, 0.783078, 0, -0.28501704, 172.46326, -0.40673852, 290.96567)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (78)" parent="Scenery/Fences" unique_id=1040335585 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.28501704, 0, -0.783078, 0, 0.8333334, 0, 0.783078, 0, -0.28501704, 167.98906, -0.40673733, 289.35684)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (79)" parent="Scenery/Fences" unique_id=1167357291 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666704, 0, -0.7216886, 0, 0.8333334, 0, 0.7216886, 0, -0.41666704, 163.75734, -0.40673733, 287.38892)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (80)" parent="Scenery/Fences" unique_id=723282046 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666704, 0, -0.7216886, 0, 0.8333334, 0, 0.7216886, 0, -0.41666704, 159.65936, -0.40673852, 285.01517)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (81)" parent="Scenery/Fences" unique_id=1225729820 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666704, 0, -0.7216886, 0, 0.8333334, 0, 0.7216886, 0, -0.41666704, 155.52814, -0.40673995, 282.59903)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (82)" parent="Scenery/Fences" unique_id=1212677189 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666704, 0, -0.7216886, 0, 0.8333334, 0, 0.7216886, 0, -0.41666704, 151.45667, -0.40673733, 280.15457)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (83)" parent="Scenery/Fences" unique_id=2079783571 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666704, 0, -0.7216886, 0, 0.8333334, 0, 0.7216886, 0, -0.41666704, 147.29367, -0.40673733, 277.7507)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (84)" parent="Scenery/Fences" unique_id=583433273 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666704, 0, -0.7216886, 0, 0.8333334, 0, 0.7216886, 0, -0.41666704, 143.13472, -0.40674138, 275.39755)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (85)" parent="Scenery/Fences" unique_id=1146046191 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666704, 0, -0.7216886, 0, 0.8333334, 0, 0.7216886, 0, -0.41666704, 139.03593, -0.40673995, 273.0655)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (86)" parent="Scenery/Fences" unique_id=969096171 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.41666707, 0, -0.7216887, 0, 0.8333334, 0, 0.7216887, 0, -0.41666707, 134.91539, -0.40673852, 270.6964)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (87)" type="Node3D" parent="Scenery/Fences" unique_id=2063847628 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 219.86502, -0.40673804, 317.7552)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (88)" type="Node3D" parent="Scenery/Fences" unique_id=1230967622 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 217.41939, -0.40673733, 321.77277)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (89)" type="Node3D" parent="Scenery/Fences" unique_id=547547948 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 214.9254, -0.40674138, 325.8657)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (90)" type="Node3D" parent="Scenery/Fences" unique_id=1044355454 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 212.44508, -0.40667605, 329.9063)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (91)" type="Node3D" parent="Scenery/Fences" unique_id=836864029 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 210.01692, -0.40624237, 333.80643)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (92)" type="Node3D" parent="Scenery/Fences" unique_id=1084160838 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 207.5201, -0.40585065, 337.84576)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (93)" type="Node3D" parent="Scenery/Fences" unique_id=1329382251 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 205.03374, -0.38183022, 341.89124)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (94)" type="Node3D" parent="Scenery/Fences" unique_id=1836301121 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 202.5522, -0.32488537, 345.97098)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (95)" type="Node3D" parent="Scenery/Fences" unique_id=1065871115 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 200.08714, -0.27360964, 350.0259)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (96)" type="Node3D" parent="Scenery/Fences" unique_id=1518814969 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 197.6066, -0.1738379, 354.10526)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (97)" type="Node3D" parent="Scenery/Fences" unique_id=885554569 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 195.15169, -0.040771484, 358.2212)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (98)" type="Node3D" parent="Scenery/Fences" unique_id=194074310 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 192.7291, 0.07625699, 362.22864)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (99)" type="Node3D" parent="Scenery/Fences" unique_id=141928205 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 190.29819, 0.118616104, 366.28033)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (100)" type="Node3D" parent="Scenery/Fences" unique_id=1755478923 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 186.7445, 0.07293892, 369.08344)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (101)" type="Node3D" parent="Scenery/Fences" unique_id=915006072 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 182.19482, -0.04156685, 370.56003)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (102)" type="Node3D" parent="Scenery/Fences" unique_id=1645166051 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 177.71956, -0.16008282, 372.02676)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (103)" type="Node3D" parent="Scenery/Fences" unique_id=1825821 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 173.1551, -0.28086305, 373.53384)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (104)" type="Node3D" parent="Scenery/Fences" unique_id=789690401 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 168.65407, -0.35749865, 375.04773)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (105)" type="Node3D" parent="Scenery/Fences" unique_id=1787604261 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 164.1114, -0.37421107, 376.55276)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (106)" type="Node3D" parent="Scenery/Fences" unique_id=221398521 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 159.60796, -0.39042187, 378.09537)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (107)" type="Node3D" parent="Scenery/Fences" unique_id=1748002182 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 155.11908, -0.40230012, 379.61697)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (108)" type="Node3D" parent="Scenery/Fences" unique_id=293012853 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 150.63052, -0.40646124, 381.12378)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (109)" type="Node3D" parent="Scenery/Fences" unique_id=615871392 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 146.11664, -0.40649915, 382.655)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (110)" type="Node3D" parent="Scenery/Fences" unique_id=1571409109 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 141.63216, -0.40661335, 384.17578)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (111)" type="Node3D" parent="Scenery/Fences" unique_id=186194162 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 137.11642, -0.40673852, 385.70517)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (112)" type="Node3D" parent="Scenery/Fences" unique_id=726520110 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 132.6239, -0.40673995, 387.20782)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (113)" type="Node3D" parent="Scenery/Fences" unique_id=271994910 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 128.12491, -0.40673852, 388.725)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (114)" type="Node3D" parent="Scenery/Fences" unique_id=1819731158 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 123.62308, -0.40673995, 390.23874)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (115)" type="Node3D" parent="Scenery/Fences" unique_id=965665140 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 119.12845, -0.40673852, 391.75574)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (116)" type="Node3D" parent="Scenery/Fences" unique_id=63018806 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 114.62881, -0.40673995, 393.27225)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (117)" type="Node3D" parent="Scenery/Fences" unique_id=1545937276 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 110.14265, -0.40673852, 394.7867)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (118)" type="Node3D" parent="Scenery/Fences" unique_id=1101832139 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 105.66468, -0.40362382, 396.3166)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (119)" type="Node3D" parent="Scenery/Fences" unique_id=307691878 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 101.16598, -0.3877995, 397.8349)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (120)" type="Node3D" parent="Scenery/Fences" unique_id=7893974 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 96.660706, -0.36982965, 399.38065)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (121)" type="Node3D" parent="Scenery/Fences" unique_id=611922443 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 92.1289, -0.36096907, 400.9041)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (122)" type="Node3D" parent="Scenery/Fences" unique_id=306788627 instance=ExtResource("9_kek77")]
+transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 87.661865, -0.3930471, 402.43817)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (123)" type="Node3D" parent="Scenery/Fences" unique_id=2108113648 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 83.007195, -0.40359855, 403.14984)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (124)" type="Node3D" parent="Scenery/Fences" unique_id=821065554 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 78.26632, -0.4052317, 403.05347)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (125)" type="Node3D" parent="Scenery/Fences" unique_id=369608097 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 73.52077, -0.40673733, 402.9228)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (126)" type="Node3D" parent="Scenery/Fences" unique_id=757424443 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 68.751335, -0.40673852, 402.80225)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (127)" type="Node3D" parent="Scenery/Fences" unique_id=1061692677 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 63.981956, -0.40673995, 402.66983)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (128)" type="Node3D" parent="Scenery/Fences" unique_id=2034304405 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 59.20198, -0.40673852, 402.5311)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (129)" type="Node3D" parent="Scenery/Fences" unique_id=1601411900 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 54.460987, -0.40673852, 402.4278)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (130)" type="Node3D" parent="Scenery/Fences" unique_id=1725739135 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 49.69231, -0.40673995, 402.31818)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (131)" type="Node3D" parent="Scenery/Fences" unique_id=774609391 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 44.933926, -0.40673852, 402.20746)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (132)" type="Node3D" parent="Scenery/Fences" unique_id=656579736 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 40.19037, -0.40673852, 402.10287)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (133)" type="Node3D" parent="Scenery/Fences" unique_id=1291454546 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 35.468227, -0.40673804, 401.98767)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (134)" type="Node3D" parent="Scenery/Fences" unique_id=1348077238 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 30.688974, -0.40673804, 401.87823)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (135)" type="Node3D" parent="Scenery/Fences" unique_id=1568451108 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 25.922382, -0.40673852, 401.75204)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (136)" type="Node3D" parent="Scenery/Fences" unique_id=1349078146 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 21.13192, -0.40673923, 401.63733)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (137)" type="Node3D" parent="Scenery/Fences" unique_id=1589419738 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 16.37134, -0.40673923, 401.52316)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (138)" type="Node3D" parent="Scenery/Fences" unique_id=67153846 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 11.584426, -0.40673923, 401.39575)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (139)" type="Node3D" parent="Scenery/Fences" unique_id=1188178635 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 6.8410907, -0.40673852, 401.28558)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (140)" type="Node3D" parent="Scenery/Fences" unique_id=1791234664 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 2.0710437, -0.40673852, 401.1808)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (141)" type="Node3D" parent="Scenery/Fences" unique_id=454069146 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -2.6714644, -0.40673852, 401.07175)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (142)" type="Node3D" parent="Scenery/Fences" unique_id=1532786882 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -7.409204, -0.40673733, 400.94595)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (143)" type="Node3D" parent="Scenery/Fences" unique_id=398323771 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -12.170951, -0.40673852, 400.851)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (144)" type="Node3D" parent="Scenery/Fences" unique_id=930303116 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -16.920065, -0.40673852, 400.76205)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (145)" type="Node3D" parent="Scenery/Fences" unique_id=650358620 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -21.66455, -0.40207148, 400.65686)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (146)" type="Node3D" parent="Scenery/Fences" unique_id=1872708799 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -26.407269, -0.40039897, 400.53357)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (147)" type="Node3D" parent="Scenery/Fences" unique_id=301614230 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -30.826475, -0.3858757, 399.24237)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (148)" type="Node3D" parent="Scenery/Fences" unique_id=1756944199 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -34.871178, -0.39834833, 396.76398)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (149)" type="Node3D" parent="Scenery/Fences" unique_id=216284860 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -38.88267, -0.40673852, 394.27982)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (150)" type="Node3D" parent="Scenery/Fences" unique_id=1881503383 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -42.918552, -0.40628576, 391.80408)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (151)" type="Node3D" parent="Scenery/Fences" unique_id=852948603 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -47.01656, -0.39800715, 389.33627)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (152)" type="Node3D" parent="Scenery/Fences" unique_id=1694024043 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -51.090866, -0.37268806, 386.847)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (153)" type="Node3D" parent="Scenery/Fences" unique_id=1829298179 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -55.177742, -0.29924273, 384.3529)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (154)" type="Node3D" parent="Scenery/Fences" unique_id=447103991 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -59.34732, -0.17925954, 381.8542)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (155)" type="Node3D" parent="Scenery/Fences" unique_id=70576909 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -63.40612, 0.006503582, 379.42236)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (156)" type="Node3D" parent="Scenery/Fences" unique_id=868948394 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -67.5972, 0.18382621, 376.9099)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (157)" type="Node3D" parent="Scenery/Fences" unique_id=107787246 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -71.74141, 0.3535869, 374.45392)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (158)" type="Node3D" parent="Scenery/Fences" unique_id=313321170 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -75.8353, 0.43363142, 371.99765)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (159)" type="Node3D" parent="Scenery/Fences" unique_id=895920470 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -79.88945, 0.448272, 369.52612)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (160)" type="Node3D" parent="Scenery/Fences" unique_id=1535376434 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -83.96222, 0.38113976, 367.04526)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (161)" type="Node3D" parent="Scenery/Fences" unique_id=497543372 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -87.94885, 0.27325177, 364.58258)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (162)" type="Node3D" parent="Scenery/Fences" unique_id=314422665 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -91.937836, 0.120201826, 362.1414)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (163)" type="Node3D" parent="Scenery/Fences" unique_id=1907761006 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -95.986946, -0.05324459, 359.64255)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (164)" type="Node3D" parent="Scenery/Fences" unique_id=980705606 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -99.94847, -0.19976997, 357.22104)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (165)" type="Node3D" parent="Scenery/Fences" unique_id=1275795848 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -103.9956, -0.21703577, 354.76126)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (166)" type="Node3D" parent="Scenery/Fences" unique_id=625512298 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -107.12838, -0.176435, 351.44336)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (167)" type="Node3D" parent="Scenery/Fences" unique_id=1799323601 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -109.50933, -0.040641546, 347.22894)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (168)" type="Node3D" parent="Scenery/Fences" unique_id=824265063 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -111.88237, 0.10469413, 343.01944)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (169)" type="Node3D" parent="Scenery/Fences" unique_id=891187993 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -114.2191, 0.21471453, 338.80713)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (170)" type="Node3D" parent="Scenery/Fences" unique_id=799625132 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -116.49342, 0.23172283, 334.6506)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (171)" type="Node3D" parent="Scenery/Fences" unique_id=1760188261 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -118.77284, 0.20238757, 330.5013)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (172)" type="Node3D" parent="Scenery/Fences" unique_id=150965976 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -120.99113, 0.10561609, 326.39484)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (173)" type="Node3D" parent="Scenery/Fences" unique_id=1685533024 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -123.24663, -0.004942894, 322.2692)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (174)" type="Node3D" parent="Scenery/Fences" unique_id=734670947 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -125.50661, -0.16371226, 318.23425)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (175)" type="Node3D" parent="Scenery/Fences" unique_id=238598878 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -127.77116, -0.2431438, 314.09412)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (176)" type="Node3D" parent="Scenery/Fences" unique_id=905530989 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -130.00311, -0.3320899, 309.9336)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (177)" type="Node3D" parent="Scenery/Fences" unique_id=1965848623 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -132.21548, -0.3950522, 305.7756)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="picket_fence_tall (178)" type="Node3D" parent="Scenery/Fences" unique_id=1229845422 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -134.48712, -0.40506196, 301.63315)
+metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
+
+[node name="fence_A_single_post (43)" type="Node3D" parent="Scenery/Fences" unique_id=1400750399 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -135.7607, -0.12877655, 299.0032)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_1_post (41)" type="Node3D" parent="Scenery/Fences" unique_id=1187417632 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.6383706, 0, 0.5356564, 0, 0.8333334, 0, -0.5356564, 0, 0.6383706, -138.4233, -0.4067359, 295.8911)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (42)" type="Node3D" parent="Scenery/Fences" unique_id=670161900 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.6383706, 0, 0.5356564, 0, 0.8333334, 0, -0.5356564, 0, 0.6383706, -143.90558, -0.40673733, 289.54053)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (43)" type="Node3D" parent="Scenery/Fences" unique_id=1250412459 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.6383706, 0, 0.5356564, 0, 0.8333334, 0, -0.5356564, 0, 0.6383706, -149.33496, -0.40673852, 283.1061)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (44)" type="Node3D" parent="Scenery/Fences" unique_id=1975677206 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.4166669, 0, 0.721688, 0, 0.8333334, 0, -0.721688, 0, 0.4166669, -155.71918, -0.40673733, 277.8182)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (45)" type="Node3D" parent="Scenery/Fences" unique_id=1942811271 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.4166669, 0, 0.721688, 0, 0.8333334, 0, -0.721688, 0, 0.4166669, -163.1734, -0.40673852, 273.54807)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_A_single_post (44)" type="Node3D" parent="Scenery/Fences" unique_id=1377942039 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -166.87148, -0.1627934, 271.4128)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (45)" type="Node3D" parent="Scenery/Fences" unique_id=1480352879 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -159.44992, -0.057207584, 275.5732)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (46)" type="Node3D" parent="Scenery/Fences" unique_id=1663876687 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -151.95824, -0.05695963, 279.78775)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (47)" type="Node3D" parent="Scenery/Fences" unique_id=732665891 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -146.54222, -0.029360056, 286.34857)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (48)" type="Node3D" parent="Scenery/Fences" unique_id=2007489136 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -141.1467, 0.13551307, 292.6879)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="picket_fence_short" type="Node3D" parent="Scenery/Fences" unique_id=1052335644 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.7713506, 0, -0.315379, 0, 0.8333334, 0, 0.315379, 0, -0.7713506, 124.05473, -0.4067359, 387.41733)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (1)" type="Node3D" parent="Scenery/Fences" unique_id=2023958878 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.7713506, 0, -0.315379, 0, 0.8333334, 0, 0.315379, 0, -0.7713506, 122.27476, -0.40673733, 382.9909)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (2)" type="Node3D" parent="Scenery/Fences" unique_id=1162356208 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 120.45835, -0.40673804, 378.59528)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (3)" type="Node3D" parent="Scenery/Fences" unique_id=1128776716 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 118.65151, -0.40673852, 374.22214)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (4)" type="Node3D" parent="Scenery/Fences" unique_id=224544679 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 116.8731, -0.40673995, 369.79633)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (5)" type="Node3D" parent="Scenery/Fences" unique_id=1541189427 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 115.09572, -0.40673804, 365.40524)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (6)" type="Node3D" parent="Scenery/Fences" unique_id=1793951391 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 113.32549, -0.40673852, 361.00345)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (7)" type="Node3D" parent="Scenery/Fences" unique_id=735708034 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 111.523865, -0.40673804, 356.6221)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (8)" type="Node3D" parent="Scenery/Fences" unique_id=119716811 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 109.73042, -0.40673852, 352.23807)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (9)" type="Node3D" parent="Scenery/Fences" unique_id=96153790 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 107.953125, -0.40673852, 347.80392)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (10)" type="Node3D" parent="Scenery/Fences" unique_id=1538025755 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 106.15442, -0.40673852, 343.36514)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (11)" type="Node3D" parent="Scenery/Fences" unique_id=518704893 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 104.38867, -0.40673852, 338.94522)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (12)" type="Node3D" parent="Scenery/Fences" unique_id=128943469 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 102.60873, -0.40673852, 334.54196)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (13)" type="Node3D" parent="Scenery/Fences" unique_id=452072011 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 100.82293, -0.40673804, 330.12872)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (14)" type="Node3D" parent="Scenery/Fences" unique_id=198525905 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 99.02364, -0.40673852, 325.73642)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (15)" type="Node3D" parent="Scenery/Fences" unique_id=431908982 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 97.20584, -0.40673923, 321.34225)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (16)" type="Node3D" parent="Scenery/Fences" unique_id=261440368 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 95.42562, -0.40673804, 316.94666)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (17)" type="Node3D" parent="Scenery/Fences" unique_id=1074253696 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 93.63305, -0.40673852, 312.5545)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (18)" type="Node3D" parent="Scenery/Fences" unique_id=688946995 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 91.837, -0.40673923, 308.1498)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (19)" type="Node3D" parent="Scenery/Fences" unique_id=48457095 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.285017, 0, 0.78307784, 0, 0.8333334, 0, -0.78307784, 0, -0.285017, 93.2933, -0.40673852, 305.11746)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (20)" type="Node3D" parent="Scenery/Fences" unique_id=871225706 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.285017, 0, 0.78307784, 0, 0.8333334, 0, -0.78307784, 0, -0.285017, 97.755486, -0.40673852, 303.49976)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (21)" type="Node3D" parent="Scenery/Fences" unique_id=2118236618 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.41666698, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, -0.41666698, 102.04017, -0.40673852, 301.4636)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (22)" type="Node3D" parent="Scenery/Fences" unique_id=1911711135 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.41666698, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, -0.41666698, 106.13227, -0.40673923, 299.06067)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (23)" type="Node3D" parent="Scenery/Fences" unique_id=1349751281 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.5356568, 0, 0.6383711, 0, 0.8333334, 0, -0.6383711, 0, 0.5356568, 110.0234, -0.40673804, 299.4429)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (24)" type="Node3D" parent="Scenery/Fences" unique_id=1565149191 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.28501728, 0, 0.7830784, 0, 0.8333334, 0, -0.7830784, 0, -0.28501728, 88.70804, -0.40673852, 306.67114)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (25)" type="Node3D" parent="Scenery/Fences" unique_id=1529064823 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.1447071, 0, 0.82067436, 0, 0.8333334, 0, -0.82067436, 0, -0.1447071, 84.08423, -0.40673852, 307.8967)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (26)" type="Node3D" parent="Scenery/Fences" unique_id=64676017 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.1447071, 0, 0.82067436, 0, 0.8333334, 0, -0.82067436, 0, -0.1447071, 79.38884, -0.40673852, 308.69354)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (27)" type="Node3D" parent="Scenery/Fences" unique_id=898351710 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.83333504, 0, 5.5879358e-08, 0, 0.8333334, 0, -5.5879358e-08, 0, -0.83333504, 77.092606, -0.40673852, 311.35092)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (28)" type="Node3D" parent="Scenery/Fences" unique_id=962279021 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, 39.182056, -0.40673852, 315.86942)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (29)" type="Node3D" parent="Scenery/Fences" unique_id=955751313 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, 40.00293, -0.40673852, 311.2497)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (30)" type="Node3D" parent="Scenery/Fences" unique_id=1730150869 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, 40.844494, -0.40673852, 306.59232)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (31)" type="Node3D" parent="Scenery/Fences" unique_id=729991785 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 38.42095, -0.40673804, 320.63977)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (32)" type="Node3D" parent="Scenery/Fences" unique_id=921513774 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 37.737278, -0.40673804, 325.37097)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (33)" type="Node3D" parent="Scenery/Fences" unique_id=1924354092 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 37.16318, -0.40673876, 330.10867)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (34)" type="Node3D" parent="Scenery/Fences" unique_id=1218768164 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 36.552765, -0.40673995, 334.8312)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (35)" type="Node3D" parent="Scenery/Fences" unique_id=53749119 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 36.0104, -0.4067409, 339.53632)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (36)" type="Node3D" parent="Scenery/Fences" unique_id=1466415607 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 35.302467, -0.40673852, 344.22455)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (37)" type="Node3D" parent="Scenery/Fences" unique_id=496557877 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 34.474087, -0.40673852, 348.89517)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (38)" type="Node3D" parent="Scenery/Fences" unique_id=130029129 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 33.66396, -0.40673804, 353.5671)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (39)" type="Node3D" parent="Scenery/Fences" unique_id=1382997984 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 32.847313, -0.40673923, 358.23813)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (40)" type="Node3D" parent="Scenery/Fences" unique_id=1192112616 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 32.036682, -0.40673852, 362.89755)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (41)" type="Node3D" parent="Scenery/Fences" unique_id=751429099 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 31.201376, -0.40673852, 367.5842)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (42)" type="Node3D" parent="Scenery/Fences" unique_id=2035313634 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 30.348614, -0.40673852, 372.2512)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (43)" type="Node3D" parent="Scenery/Fences" unique_id=920905053 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 29.556581, -0.40673852, 376.92572)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (44)" type="Node3D" parent="Scenery/Fences" unique_id=2141496569 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 28.736332, -0.40673804, 381.59702)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (45)" type="Node3D" parent="Scenery/Fences" unique_id=1451479109 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 27.899248, -0.40673828, 386.3155)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (46)" type="Node3D" parent="Scenery/Fences" unique_id=1596845676 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 27.068743, -0.40673923, 390.99637)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (47)" type="Node3D" parent="Scenery/Fences" unique_id=1761603888 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 26.269295, -0.40673804, 395.72034)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="picket_fence_short (48)" type="Node3D" parent="Scenery/Fences" unique_id=1871049343 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 25.443247, -0.40673852, 400.38113)
+metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
+
+[node name="fence_1_post (46)" type="Node3D" parent="Scenery/Fences" unique_id=617578595 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 48.57779, -0.40673733, 132.01564)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (47)" type="Node3D" parent="Scenery/Fences" unique_id=1006548897 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.41666675, 0, 0.8333334, 0, -0.41666675, 0, 0.72168803, 44.62849, -0.40673733, 124.67212)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (48)" type="Node3D" parent="Scenery/Fences" unique_id=495988475 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.41666675, 0, 0.8333334, 0, -0.41666675, 0, 0.72168803, 40.429276, -0.40673852, 117.45387)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_A_single_post (49)" type="Node3D" parent="Scenery/Fences" unique_id=326511201 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 42.586662, -0.023820877, 121.006905)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (50)" type="Node3D" parent="Scenery/Fences" unique_id=426595174 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 46.61277, -0.023820877, 128.3073)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (51)" type="Node3D" parent="Scenery/Fences" unique_id=1088882601 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 50.607, -0.023819447, 135.54932)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (52)" type="Node3D" parent="Scenery/Fences" unique_id=1415867472 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 38.28463, -0.023822308, 113.77963)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_1_post (49)" type="Node3D" parent="Scenery/Fences" unique_id=163018656 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 15.412821, -0.40674686, 70.96561)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (50)" type="Node3D" parent="Scenery/Fences" unique_id=168624847 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 11.230241, -0.4067359, 63.704647)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (51)" type="Node3D" parent="Scenery/Fences" unique_id=804740481 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 7.0912013, -0.40674138, 56.460663)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (52)" type="Node3D" parent="Scenery/Fences" unique_id=829962655 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 2.9540126, -0.40674138, 49.233185)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (53)" type="Node3D" parent="Scenery/Fences" unique_id=299266723 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, -1.1366781, -0.40673852, 42.062214)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (54)" type="Node3D" parent="Scenery/Fences" unique_id=1449417746 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.78307736, 0, 0.28501683, 0, 0.8333334, 0, -0.28501683, 0, 0.78307736, -4.655349, -0.40673852, 34.54927)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (55)" type="Node3D" parent="Scenery/Fences" unique_id=1385832738 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.72168803, 0, 0.41666675, 0, 0.8333334, 0, -0.41666675, 0, 0.72168803, -8.105469, -0.40673852, 27.021244)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_1_post (56)" type="Node3D" parent="Scenery/Fences" unique_id=2082460664 instance=ExtResource("7_272bh")]
+transform = Transform3D(0.8206733, 0, 0.14470688, 0, 0.8333334, 0, -0.14470688, 0, 0.8206733, -11.009833, -0.40673995, 19.391201)
+metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
+
+[node name="fence_A_single_post (53)" type="Node3D" parent="Scenery/Fences" unique_id=756189670 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -10.11165, 0.19723344, 23.20408)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (54)" type="Node3D" parent="Scenery/Fences" unique_id=631969071 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -5.887216, 0.19723201, 30.643337)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (55)" type="Node3D" parent="Scenery/Fences" unique_id=848319042 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -3.0832675, 0.19723201, 38.489876)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (56)" type="Node3D" parent="Scenery/Fences" unique_id=1478523862 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 1.1119461, 0.19723344, 45.51641)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (57)" type="Node3D" parent="Scenery/Fences" unique_id=907143487 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 4.976432, 0.19723344, 52.902542)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (58)" type="Node3D" parent="Scenery/Fences" unique_id=1607510419 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 9.171944, 0.19723344, 60.09111)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (59)" type="Node3D" parent="Scenery/Fences" unique_id=1184961177 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 13.275901, 0.19723344, 67.34838)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="fence_A_single_post (60)" type="Node3D" parent="Scenery/Fences" unique_id=607582404 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 17.31328, 0.19723201, 74.37786)
+metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
 [editable path="PlayerCharacter"]
-[editable path="Terrain"]
