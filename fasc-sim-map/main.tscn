@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bblch3hlr4c75" path="res://Map/Fences/fence_A_single_post.gltf" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dwrbhwhl67s4c" path="res://Map/Fences/picket_fence_tall.gltf" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://ccwiioata2y5n" path="res://Map/Fences/picket_fence_short.gltf" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://6ouvs2gcmubk" path="res://Map/street_lamp.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://5y2lc6m0p2tv" path="res://Map/telephone_pole.gltf" id="12_dg77c"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -1781,5 +1783,97 @@ metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 [node name="fence_A_single_post (60)" type="Node3D" parent="Scenery/Fences" unique_id=607582404 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 17.31328, 0.19723201, 74.37786)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
+
+[node name="StreetLamp" type="Node3D" parent="." unique_id=2057073631 instance=ExtResource("11_efxa6")]
+transform = Transform3D(2.3492322, 0, 0.85505044, 0, 2.5, 0, -0.85505044, 0, 2.3492322, 83.93851, 2.8715065, 202.191)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (1)" type="Node3D" parent="." unique_id=1648262827 instance=ExtResource("11_efxa6")]
+transform = Transform3D(2.1650653, 0, -1.2500008, 0, 2.5, 0, 1.2500008, 0, 2.1650653, 158.44147, 2.8715098, 325.38025)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (2)" type="Node3D" parent="." unique_id=1134048152 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-2.165067, 0, -1.2500032, 0, 2.5, 0, 1.2500032, 0, -2.165067, 10.760769, 2.8715034, 240.92952)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (3)" type="Node3D" parent="." unique_id=1402441211 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-2.165067, 0, -1.2500032, 0, 2.5, 0, 1.2500032, 0, -2.165067, -25.351646, 2.8714967, 175.6362)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (4)" type="Node3D" parent="." unique_id=1745456177 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-2.165067, 0, -1.2500032, 0, 2.5, 0, 1.2500032, 0, -2.165067, -65.77365, 2.8715098, 100.98065)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (5)" type="Node3D" parent="." unique_id=190424507 instance=ExtResource("11_efxa6")]
+transform = Transform3D(2.1650698, 0, 1.2500044, 0, 2.5, 0, -1.2500044, 0, 2.1650698, 7.36438, 2.8715162, 60.08278)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (6)" type="Node3D" parent="." unique_id=1470362397 instance=ExtResource("11_efxa6")]
+transform = Transform3D(2.1650698, 0, 1.2500044, 0, 2.5, 0, -1.2500044, 0, 2.1650698, 45.880745, 2.8715162, 134.23445)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (7)" type="Node3D" parent="." unique_id=1098317483 instance=ExtResource("11_efxa6")]
+transform = Transform3D(2.1650643, 0, 1.2500002, 0, 2.5, 0, -1.2500002, 0, 2.1650643, -35.735344, 2.8715098, -15.4644165)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (8)" type="Node3D" parent="." unique_id=2128645743 instance=ExtResource("11_efxa6")]
+transform = Transform3D(2.1650643, 0, 1.2500002, 0, 2.5, 0, -1.2500002, 0, 2.1650643, -73.301636, 2.8715065, -83.65134)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (9)" type="Node3D" parent="." unique_id=261307683 instance=ExtResource("11_efxa6")]
+transform = Transform3D(2.1650643, 0, 1.2500002, 0, 2.5, 0, -1.2500002, 0, 2.1650643, -110.16838, 2.8715162, -151.1553)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (10)" type="Node3D" parent="." unique_id=1930615973 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-2.1650672, 0, -1.2500006, 0, 2.5, 0, 1.2500006, 0, -2.1650672, -181.41208, 2.8715098, -106.76404)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (11)" type="Node3D" parent="." unique_id=2025066358 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-2.1650672, 0, -1.2500006, 0, 2.5, 0, 1.2500006, 0, -2.1650672, -144.86183, 2.8715098, -41.07608)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (12)" type="Node3D" parent="." unique_id=549240589 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-2.1650672, 0, -1.2500006, 0, 2.5, 0, 1.2500006, 0, -2.1650672, -104.96559, 2.8715098, 30.679932)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (13)" type="Node3D" parent="." unique_id=1820984294 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-0.8550534, 0, -2.349235, 0, 2.5, 0, 2.349235, 0, -0.8550534, 47.05168, 2.8715098, 364.92728)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (14)" type="Node3D" parent="." unique_id=861570695 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-2.4620245, 0, -0.4341199, 0, 2.5, 0, 0.4341199, 0, -2.4620245, -1.1576004, 2.8715098, 302.84814)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="StreetLamp (15)" type="Node3D" parent="." unique_id=874800605 instance=ExtResource("11_efxa6")]
+transform = Transform3D(1.915117, 0, 1.6069733, 0, 2.5, 0, -1.6069733, 0, 1.915117, 154.04097, 2.8714967, 240.69226)
+metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
+
+[node name="telephone_pole" type="Node3D" parent="." unique_id=220095021 instance=ExtResource("12_dg77c")]
+transform = Transform3D(-0.17364803, 0, 0.98480815, 0, 1, 0, -0.98480815, 0, -0.17364803, 290.3343, 7.8384876, 46.3732)
+metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
+
+[node name="telephone_pole (1)" type="Node3D" parent="." unique_id=1556135418 instance=ExtResource("12_dg77c")]
+transform = Transform3D(0.5000005, 0, -0.8660265, 0, 1, 0, 0.8660265, 0, 0.5000005, 143.01996, 2.8715098, 114.11467)
+metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
+
+[node name="telephone_pole (2)" type="Node3D" parent="." unique_id=757542167 instance=ExtResource("12_dg77c")]
+transform = Transform3D(0.5000005, 0, -0.8660265, 0, 1, 0, 0.8660265, 0, 0.5000005, -10.742706, 2.871523, 198.41066)
+metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
+
+[node name="telephone_pole (3)" type="Node3D" parent="." unique_id=1051383089 instance=ExtResource("12_dg77c")]
+transform = Transform3D(1.0000014, 0, -2.4586916e-07, 0, 1, 0, 2.4586916e-07, 0, 1.0000014, -45.46398, 2.8714967, 320.59937)
+metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
+
+[node name="telephone_pole (4)" type="Node3D" parent="." unique_id=13231221 instance=ExtResource("12_dg77c")]
+transform = Transform3D(0.939694, 0, -0.34202084, 0, 1, 0, 0.34202084, 0, 0.939694, 36.298714, 2.8715098, 429.06104)
+metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
+
+[node name="telephone_pole (5)" type="Node3D" parent="." unique_id=1653609948 instance=ExtResource("12_dg77c")]
+transform = Transform3D(0.3420211, 0, 0.9396942, 0, 1, 0, -0.9396942, 0, 0.3420211, 223.25235, 2.8715131, 355.1155)
+metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
+
+[node name="telephone_pole (6)" type="Node3D" parent="." unique_id=107150339 instance=ExtResource("12_dg77c")]
+transform = Transform3D(-0.17364816, 0, -0.9848085, 0, 1, 0, 0.9848085, 0, -0.17364816, 292.2854, 2.8715162, 251.23163)
+metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
 [editable path="PlayerCharacter"]
