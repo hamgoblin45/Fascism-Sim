@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://ccwiioata2y5n" path="res://Map/Fences/picket_fence_short.gltf" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://6ouvs2gcmubk" path="res://Map/street_lamp.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://5y2lc6m0p2tv" path="res://Map/telephone_pole.gltf" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://daxf6jtqfqyuh" path="res://Map/car1.gltf" id="13_w48qg"]
+[ext_resource type="PackedScene" uid="uid://csso27phrjcmt" path="res://Map/pickup.gltf" id="14_vivmo"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -1875,5 +1877,17 @@ metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 [node name="telephone_pole (6)" type="Node3D" parent="." unique_id=107150339 instance=ExtResource("12_dg77c")]
 transform = Transform3D(-0.17364816, 0, -0.9848085, 0, 1, 0, 0.9848085, 0, -0.17364816, 292.2854, 2.8715162, 251.23163)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
+
+[node name="car1" type="Node3D" parent="." unique_id=1465904428 instance=ExtResource("13_w48qg")]
+transform = Transform3D(0.058400583, 0, 0.9982936, 0, 1, 0, -0.9982936, 0, 0.058400583, 80.178215, 2.8715098, 351.7671)
+metadata/asset_placer_res_id = "uid://daxf6jtqfqyuh"
+
+[node name="@Node3D@33814" type="Node3D" parent="." unique_id=1372859331 instance=ExtResource("5_lquwl")]
+transform = Transform3D(2.1606684e-07, 0, -1.0000004, 0, 1, 0, 1.0000004, 0, 2.1606684e-07, 167.65509, 2.871523, 270.5899)
+metadata/asset_placer_res_id = "uid://ckqfi05gehmb6"
+
+[node name="pickup" type="Node3D" parent="." unique_id=1305557820 instance=ExtResource("14_vivmo")]
+transform = Transform3D(0.8747975, 0, 0.48448902, 0, 1, 0, -0.48448902, 0, 0.8747975, 46.90056, 2.8714967, 181.89656)
+metadata/asset_placer_res_id = "uid://csso27phrjcmt"
 
 [editable path="PlayerCharacter"]
