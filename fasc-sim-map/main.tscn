@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://btml3xrwculls" path="res://Map/map_terrain.gltf" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btcbf58h7yvlx" path="res://day_night_cycle.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://lx7gpi1nvcv2" path="res://Map/Buildings/checkpoint.gltf" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ckqfi05gehmb6" path="res://Map/car2.gltf" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cbxnnbyabl534" path="res://Map/military_wall_block.tscn" id="6_7mycd"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -12,11 +15,589 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.520313, 7.485712, 314.0281
 [node name="DayNightCycle" parent="." unique_id=1429322333 instance=ExtResource("3_h2yge")]
 script = null
 
-[node name="Terrain" parent="." unique_id=696210053 instance=ExtResource("3_1bvp3")]
+[node name="Terrain" parent="." unique_id=1811752975 instance=ExtResource("3_1bvp3")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Scenery" type="Node3D" parent="Terrain" unique_id=751881669]
-
 [node name="Structures" type="Node3D" parent="Terrain" unique_id=1680364581]
+visible = false
+
+[node name="Commisary" parent="Terrain" index="3" unique_id=1436026411]
+visible = false
+
+[node name="Cylinder_004" parent="Terrain" index="22" unique_id=502730781]
+visible = false
+
+[node name="Barbwire" parent="Terrain" index="23" unique_id=1194658439]
+visible = false
+
+[node name="Building" parent="Terrain" index="24" unique_id=604503496]
+visible = false
+
+[node name="Gate" parent="Terrain" index="25" unique_id=81395298]
+visible = false
+
+[node name="MilitaryWallBlock" parent="Terrain" index="26" unique_id=623060657]
+visible = false
+
+[node name="MilitaryWallBlock_001" parent="Terrain" index="27" unique_id=461445785]
+visible = false
+
+[node name="MilitaryWallBlock_002" parent="Terrain" index="28" unique_id=1868661715]
+visible = false
+
+[node name="MilitaryWallBlock_003" parent="Terrain" index="29" unique_id=1113108152]
+visible = false
+
+[node name="MilitaryWallBlock_004" parent="Terrain" index="30" unique_id=1443218667]
+visible = false
+
+[node name="MilitaryWallBlock_005" parent="Terrain" index="31" unique_id=1371774600]
+visible = false
+
+[node name="MilitaryWallBlock_006" parent="Terrain" index="32" unique_id=488264563]
+visible = false
+
+[node name="MilitaryWallBlock_007" parent="Terrain" index="33" unique_id=1970180893]
+visible = false
+
+[node name="MilitaryWallBlock_008" parent="Terrain" index="34" unique_id=243982075]
+visible = false
+
+[node name="MilitaryWallBlock_009" parent="Terrain" index="35" unique_id=1074740805]
+visible = false
+
+[node name="MilitaryWallBlock_010" parent="Terrain" index="36" unique_id=1591906861]
+visible = false
+
+[node name="MilitaryWallBlock_011" parent="Terrain" index="37" unique_id=21018312]
+visible = false
+
+[node name="MilitaryWallBlock_012" parent="Terrain" index="38" unique_id=122230959]
+visible = false
+
+[node name="MilitaryWallBlock_013" parent="Terrain" index="39" unique_id=63210434]
+visible = false
+
+[node name="MilitaryWallBlock_014" parent="Terrain" index="40" unique_id=2044861316]
+visible = false
+
+[node name="MilitaryWallBlock_015" parent="Terrain" index="41" unique_id=1922668335]
+visible = false
+
+[node name="MilitaryWallBlock_016" parent="Terrain" index="42" unique_id=757005148]
+visible = false
+
+[node name="MilitaryWallBlock_017" parent="Terrain" index="43" unique_id=248039569]
+visible = false
+
+[node name="MilitaryWallBlock_018" parent="Terrain" index="44" unique_id=2138596306]
+visible = false
+
+[node name="MilitaryWallBlock_019" parent="Terrain" index="45" unique_id=1584844345]
+visible = false
+
+[node name="MilitaryWallBlock_020" parent="Terrain" index="46" unique_id=1540122005]
+visible = false
+
+[node name="MilitaryWallBlock_021" parent="Terrain" index="47" unique_id=630289567]
+visible = false
+
+[node name="MilitaryWallBlock_022" parent="Terrain" index="48" unique_id=637543733]
+visible = false
+
+[node name="MilitaryWallBlock_023" parent="Terrain" index="49" unique_id=192747726]
+visible = false
+
+[node name="MilitaryWallBlock_024" parent="Terrain" index="50" unique_id=877794672]
+visible = false
+
+[node name="MilitaryWallBlock_025" parent="Terrain" index="51" unique_id=973305328]
+visible = false
+
+[node name="MilitaryWallBlock_026" parent="Terrain" index="52" unique_id=1773449882]
+visible = false
+
+[node name="MilitaryWallBlock_027" parent="Terrain" index="53" unique_id=5296483]
+visible = false
+
+[node name="MilitaryWallBlock_028" parent="Terrain" index="54" unique_id=1856581893]
+visible = false
+
+[node name="MilitaryWallBlock_029" parent="Terrain" index="55" unique_id=949273756]
+visible = false
+
+[node name="MilitaryWallBlock_030" parent="Terrain" index="56" unique_id=321358472]
+visible = false
+
+[node name="MilitaryWallBlock_031" parent="Terrain" index="57" unique_id=370033033]
+visible = false
+
+[node name="MilitaryWallBlock_032" parent="Terrain" index="58" unique_id=567845627]
+visible = false
+
+[node name="MilitaryWallBlock_033" parent="Terrain" index="59" unique_id=2074168256]
+visible = false
+
+[node name="MilitaryWallBlock_034" parent="Terrain" index="60" unique_id=1274657228]
+visible = false
+
+[node name="MilitaryWallBlock_035" parent="Terrain" index="61" unique_id=2006035076]
+visible = false
+
+[node name="MilitaryWallBlock_036" parent="Terrain" index="62" unique_id=1955648778]
+visible = false
+
+[node name="MilitaryWallBlock_037" parent="Terrain" index="63" unique_id=146731550]
+visible = false
+
+[node name="MilitaryWallBlock_038" parent="Terrain" index="64" unique_id=1622753483]
+visible = false
+
+[node name="MilitaryWallBlock_039" parent="Terrain" index="65" unique_id=66793620]
+visible = false
+
+[node name="MilitaryWallBlock_040" parent="Terrain" index="66" unique_id=1559513746]
+visible = false
+
+[node name="MilitaryWallBlock_041" parent="Terrain" index="67" unique_id=1219330226]
+visible = false
+
+[node name="MilitaryWallBlock_042" parent="Terrain" index="68" unique_id=714178894]
+visible = false
+
+[node name="MilitaryWallBlock_043" parent="Terrain" index="69" unique_id=470099031]
+visible = false
+
+[node name="MilitaryWallBlock_044" parent="Terrain" index="70" unique_id=1978429724]
+visible = false
+
+[node name="MilitaryWallBlock_045" parent="Terrain" index="71" unique_id=1552631019]
+visible = false
+
+[node name="MilitaryWallBlock_046" parent="Terrain" index="72" unique_id=546623802]
+visible = false
+
+[node name="MilitaryWallBlock_047" parent="Terrain" index="73" unique_id=1073212181]
+visible = false
+
+[node name="MilitaryWallBlock_048" parent="Terrain" index="74" unique_id=1267606857]
+visible = false
+
+[node name="MilitaryWallBlock_049" parent="Terrain" index="75" unique_id=1499003163]
+visible = false
+
+[node name="MilitaryWallBlock_050" parent="Terrain" index="76" unique_id=167484441]
+visible = false
+
+[node name="MilitaryWallBlock_051" parent="Terrain" index="77" unique_id=725896244]
+visible = false
+
+[node name="MilitaryWallBlock_052" parent="Terrain" index="78" unique_id=1053831879]
+visible = false
+
+[node name="MilitaryWallBlock_053" parent="Terrain" index="79" unique_id=797629871]
+visible = false
+
+[node name="MilitaryWallBlock_054" parent="Terrain" index="80" unique_id=115150739]
+visible = false
+
+[node name="MilitaryWallBlock_055" parent="Terrain" index="81" unique_id=1496483150]
+visible = false
+
+[node name="MilitaryWallBlock_056" parent="Terrain" index="82" unique_id=1142749562]
+visible = false
+
+[node name="MilitaryWallBlock_057" parent="Terrain" index="83" unique_id=1026887743]
+visible = false
+
+[node name="MilitaryWallBlock_058" parent="Terrain" index="84" unique_id=532000326]
+visible = false
+
+[node name="MilitaryWallBlock_059" parent="Terrain" index="85" unique_id=786607711]
+visible = false
+
+[node name="MilitaryWallBlock_060" parent="Terrain" index="86" unique_id=1445721744]
+visible = false
+
+[node name="MilitaryWallBlock_061" parent="Terrain" index="87" unique_id=957738598]
+visible = false
+
+[node name="MilitaryWallBlock_062" parent="Terrain" index="88" unique_id=1512970760]
+visible = false
+
+[node name="MilitaryWallBlock_063" parent="Terrain" index="89" unique_id=1751596168]
+visible = false
+
+[node name="car2" parent="." unique_id=2125822609 instance=ExtResource("5_lquwl")]
+
+[node name="Scenery" type="Node3D" parent="." unique_id=751881669]
+transform = Transform3D(1.1999999, 0, 0, 0, 1.1999999, 0, 0, 0, 1.1999999, 0, 3.359596, 0)
+
+[node name="checkpoint" parent="Scenery" unique_id=1817816756 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(-2.3055272, 0, -1.2126708, 0, 2.605, 0, 1.2126708, 0, -2.3055272, -21.66757, -3.33786e-06, -25.428799)
+metadata/asset_placer_res_id = "uid://lx7gpi1nvcv2"
+
+[node name="MilitaryBlockWall" type="Node3D" parent="Scenery" unique_id=1500551022]
+
+[node name="MilitaryWallBlock" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=106517638 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -84.45382, -0.40673327, 39.73362)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (1)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1475957162 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, 0.2850168, 0, 0.8333334, 0, -0.2850168, 0, 0.78307724, -82.24317, -0.40673852, 51.41523)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (2)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=234519771 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.82067317, 0, 0.14470682, 0, 0.8333334, 0, -0.14470682, 0, 0.82067317, -79.72926, -0.40673327, 62.02725)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (3)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1491241074 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.82067317, 0, 0.14470682, 0, 0.8333334, 0, -0.14470682, 0, 0.82067317, -77.76472, -0.40673327, 72.96188)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (4)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1036791342 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, 0.2850168, 0, 0.8333334, 0, -0.2850168, 0, 0.78307724, -75.85297, -0.40673327, 83.275314)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (5)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=275193610 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8333335, 0, 6.2088175e-09, 0, 0.8333334, 0, -6.2088175e-09, 0, 0.8333335, -83.62021, 10.371913, 40.607544)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (6)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1856980408 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206733, 0, 0.14470683, 0, 0.8333334, 0, -0.14470683, 0, 0.8206733, -81.84196, 10.371907, 50.969784)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (7)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=932285339 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206733, 0, 0.14470685, 0, 0.8333334, 0, -0.14470685, 0, 0.8206733, -79.50924, 10.371913, 62.21526)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (8)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1425820052 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206733, 0, 0.14470685, 0, 0.8333334, 0, -0.14470685, 0, 0.8206733, -77.615555, 10.371913, 73.43315)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (9)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1412536704 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7830775, 0, 0.2850169, 0, 0.8333334, 0, -0.2850169, 0, 0.7830775, -75.86636, 10.371913, 83.79514)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (10)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=544733691 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -86.203835, -0.40673852, 89.4518)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (11)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=392358761 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -86.11682, 10.371907, 89.178856)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (12)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1657034408 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -96.13419, -0.40673852, 94.25935)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (13)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=193384401 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216881, 0, 0.4166669, 0, 0.8333334, 0, -0.4166669, 0, 0.7216881, -95.43586, 10.371907, 94.709564)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (14)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1814683561 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.63837063, 0, 0.53565663, 0, 0.8333334, 0, -0.53565663, 0, 0.63837063, -105.60472, -0.40673852, 100.18358)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (15)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=280994639 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216882, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216882, -114.54984, -0.40673852, 105.876144)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (16)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=803379786 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216882, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216882, -105.455215, 10.371907, 100.03627)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (17)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2001355717 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216882, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216882, -114.62335, 10.371913, 106.15824)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (18)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1388763969 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.41666692, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, 0.41666692, -123.65567, -0.406744, 115.99685)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (19)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1377317630 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -130.22281, -0.40673852, 125.16073)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (20)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=439951567 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -137.82727, -0.406744, 133.61664)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (21)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=61484499 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -144.72456, -0.406744, 142.20322)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (22)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=23130300 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -123.085915, 10.371902, 115.70098)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (23)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=378379210 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -130.40121, 10.371907, 124.30215)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (24)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=810292385 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.41666692, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, 0.41666692, -137.65643, 10.371901, 133.63812)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (25)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=779273059 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565675, 0, 0.6383709, 0, 0.8333334, 0, -0.6383709, 0, 0.53565675, -144.60832, 10.371902, 142.72958)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (26)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2127482956 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -150.95552, -0.40673852, 153.44887)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (27)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=672745355 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -151.04646, 10.371913, 154.38301)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (28)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1224835161 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -155.00137, -0.40675497, 164.46428)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (29)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=419971738 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, -158.01598, -0.4068148, 175.87383)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (30)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1436365554 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -161.98637, -0.40656996, 185.52098)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (31)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1215929286 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, -166.09618, -0.4066298, 195.67363)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (32)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1472392431 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.72168803, 0, -0.4166667, 0, 0.8333334, 0, 0.4166667, 0, 0.72168803, -155.18985, 10.371891, 166.12056)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (33)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1720285752 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307736, 0, -0.28501683, 0, 0.8333334, 0, 0.28501683, 0, 0.78307736, -159.01123, 10.371831, 177.2772)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (34)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=985744163 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307736, 0, -0.28501683, 0, 0.8333334, 0, 0.28501683, 0, 0.78307736, -162.54602, 10.372076, 187.93529)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (35)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1130706801 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8333337, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333337, -167.88654, -0.40673852, 208.14691)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (36)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2141491100 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8333337, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333337, -168.1917, -0.406744, 219.38036)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (37)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=70158879 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.82067347, 0, -0.14470689, 0, 0.8333334, 0, 0.14470689, 0, 0.82067347, -169.73303, -0.40673852, 230.14528)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (38)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=632435542 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8333338, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333338, -170.67964, -0.406744, 241.89632)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (39)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2043444801 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8333338, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.8333338, -171.16064, -0.40673852, 253.02794)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (40)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=402287809 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206736, 0, -0.14470689, 0, 0.8333334, 0, 0.14470689, 0, 0.8206736, -172.31691, -0.40673852, 264.51477)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (41)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=132891047 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206736, 0, -0.14470689, 0, 0.8333334, 0, 0.14470689, 0, 0.8206736, -166.44705, 10.372016, 199.1066)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (42)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1664925074 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333385, 0, -1.2417635e-08, 0, 0.8333334, 0, 1.2417635e-08, 0, 0.83333385, -167.95483, 10.371907, 210.79712)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (43)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=262255609 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333385, 0, -1.2417635e-08, 0, 0.8333334, 0, 1.2417635e-08, 0, 0.83333385, -168.42148, 10.371902, 222.08041)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (44)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1560882632 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206737, 0, -0.1447069, 0, 0.8333334, 0, 0.1447069, 0, 0.8206737, -170.2575, 10.371907, 234.22794)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (45)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=614460699 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333397, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333397, -171.18968, 10.371902, 246.11766)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (46)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1430126101 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333397, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333397, -171.20279, 10.371907, 257.26627)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (47)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=161027465 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216884, 0, 0.41666692, 0, 0.8333334, 0, -0.41666692, 0, 0.7216884, 8.075785, -0.40673852, 16.279247)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (48)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1259820553 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565687, 0, 0.63837093, 0, 0.8333334, 0, -0.63837093, 0, 0.53565687, 15.876805, -0.40673852, 23.045986)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (49)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2050718665 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565687, 0, 0.63837093, 0, 0.8333334, 0, -0.63837093, 0, 0.53565687, 24.475817, -0.40673852, 30.020956)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (50)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=418951341 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.63837105, 0, 0.5356568, 0, 0.8333334, 0, -0.5356568, 0, 0.63837105, 32.72247, -0.40673852, 21.256168)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (51)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=38145276 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216887, 0, 0.41666707, 0, 0.8333334, 0, -0.41666707, 0, 0.7216887, 43.437935, -0.40673852, 15.935606)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (52)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=878193916 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216887, 0, 0.41666707, 0, 0.8333334, 0, -0.41666707, 0, 0.7216887, 53.061626, -0.40673852, 10.50527)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (53)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2134320346 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206743, 0, 0.14470698, 0, 0.8333334, 0, -0.14470698, 0, 0.8206743, 64.95888, -0.4067359, 6.5406547)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (54)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=340624673 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333457, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.83333457, 76.832, -0.40673327, 5.414251)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (55)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1789365554 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.82067436, 0, 0.144707, 0, 0.8333334, 0, -0.144707, 0, 0.82067436, 87.061516, -0.40674138, 4.2686462)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (56)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=56906108 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333474, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333474, 98.87822, -0.40673852, 3.2240298)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (57)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=566628913 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333474, 0, -6.2088175e-09, 0, 0.8333334, 0, 6.2088175e-09, 0, 0.83333474, 109.842735, -0.40673852, 3.1802878)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (58)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=694829997 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333486, 0, -1.8626451e-08, 0, 0.8333334, 0, 1.8626451e-08, 0, 0.83333486, 120.79063, -0.40673852, 4.1955185)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (59)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1889531990 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.82067466, 0, 0.14470704, 0, 0.8333334, 0, -0.14470704, 0, 0.82067466, 131.59258, -0.40673852, 3.111674)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (60)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=8373482 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206748, 0, -0.14470711, 0, 0.8333334, 0, 0.14470711, 0, 0.8206748, 144.22662, -0.40673327, 3.705648)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (61)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1811035610 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206748, 0, -0.14470711, 0, 0.8333334, 0, 0.14470711, 0, 0.8206748, 155.17938, -0.406744, 5.826556)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (62)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=117737702 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216895, 0, 0.41666758, 0, 0.8333334, 0, -0.41666758, 0, 0.7216895, 8.377988, 10.3719015, 16.546385)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (63)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=177327931 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565776, 0, 0.638372, 0, 0.8333334, 0, -0.638372, 0, 0.53565776, 16.458664, 10.371907, 23.745022)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (64)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1810714301 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.53565776, 0, 0.638372, 0, 0.8333334, 0, -0.638372, 0, 0.53565776, 25.664436, 10.371907, 29.708546)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (65)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1056878741 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.6383721, 0, 0.53565776, 0, 0.8333334, 0, -0.53565776, 0, 0.6383721, 33.856163, 10.371907, 21.290768)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (66)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=380800819 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216899, 0, 0.4166678, 0, 0.8333334, 0, -0.4166678, 0, 0.7216899, 43.83535, 10.371907, 15.000169)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (67)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=440072952 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7830794, 0, 0.28501755, 0, 0.8333334, 0, -0.28501755, 0, 0.7830794, 54.577187, 10.371907, 9.737496)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (68)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=885252542 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8333359, 0, -2.483527e-08, 0, 0.8333334, 0, 2.483527e-08, 0, 0.8333359, 66.53616, 10.371916, 5.8794756)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (69)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1786549996 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333594, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333594, 77.68893, 10.371913, 4.9553947)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (70)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1611603404 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206758, 0, 0.14470723, 0, 0.8333334, 0, -0.14470723, 0, 0.8206758, 89.56484, 10.371905, 4.050372)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (71)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=301178916 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 101.43839, 10.371907, 3.1220908)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (72)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1021862120 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 112.705795, 10.371907, 3.2874932)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (73)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1610062241 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 123.76946, 10.371907, 3.4180484)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (74)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1277590709 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.83333606, 0, -3.1044088e-08, 0, 0.8333334, 0, 3.1044088e-08, 0, 0.83333606, 134.74179, 10.371907, 2.772299)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (75)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=518144411 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.8206759, 0, -0.14470734, 0, 0.8333334, 0, 0.14470734, 0, 0.8206759, 146.62782, 10.371913, 3.790739)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (76)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=906570254 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, 166.6825, -0.40673852, 8.87085)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (77)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=322317423 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307724, 0, -0.2850168, 0, 0.8333334, 0, 0.2850168, 0, 0.78307724, 177.16165, -0.4067359, 12.590968)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (78)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1363273862 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.72168803, 0, -0.4166667, 0, 0.8333334, 0, 0.4166667, 0, 0.72168803, 187.8265, -0.40673852, 17.484526)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (79)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1518439712 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.72168803, 0, -0.4166667, 0, 0.8333334, 0, 0.4166667, 0, 0.72168803, 197.7002, -0.406744, 23.268587)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (80)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1112571291 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7830775, 0, -0.28501686, 0, 0.8333334, 0, 0.28501686, 0, 0.7830775, 207.71269, -0.23240352, 28.98828)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (81)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=455255295 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.5356568, 0, -0.63837075, 0, 0.8333334, 0, 0.63837075, 0, 0.5356568, 219.02246, 0.14399362, 37.432163)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (82)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1267863215 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307784, 0, -0.28501695, 0, 0.8333334, 0, 0.28501695, 0, 0.78307784, 158.19984, 10.371902, 6.6327815)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (83)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2043992594 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.78307784, 0, -0.28501695, 0, 0.8333334, 0, 0.28501695, 0, 0.78307784, 168.72522, 10.371907, 10.10458)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (84)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1962651729 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.82067376, 0, -0.14470688, 0, 0.8333334, 0, 0.14470688, 0, 0.82067376, 179.72418, 10.37191, 13.430096)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (85)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=2034067670 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.72168845, 0, -0.41666692, 0, 0.8333334, 0, 0.41666692, 0, 0.72168845, 191.14114, 10.371907, 18.446878)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (86)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1353366217 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.72168845, 0, -0.41666692, 0, 0.8333334, 0, 0.41666692, 0, 0.72168845, 202.11221, 10.371902, 25.380745)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (87)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1004756889 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.7216885, 0, -0.41666698, 0, 0.8333334, 0, 0.41666698, 0, 0.7216885, 211.8754, 10.546243, 30.914429)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (88)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=114296975 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.6383711, 0, -0.5356568, 0, 0.8333334, 0, 0.5356568, 0, 0.6383711, 227.00812, 0.34085584, 44.470993)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
+
+[node name="MilitaryWallBlock (89)" type="Node3D" parent="Scenery/MilitaryBlockWall" unique_id=1412216600 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.6383711, 0, -0.5356568, 0, 0.8333334, 0, 0.5356568, 0, 0.6383711, 221.20886, 10.922639, 37.92716)
+metadata/asset_placer_res_id = "uid://cbxnnbyabl534"
 
 [editable path="PlayerCharacter"]
+[editable path="Terrain"]
