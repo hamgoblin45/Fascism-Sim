@@ -10,16 +10,16 @@ class_name PlayerCharacter
 ## The settings for the character's movement and feel.
 @export_category("Character")
 ## The speed that the character moves at without crouching or sprinting.
-@export var base_speed : float = 9.5
+@export var base_speed : float = 19.5
 ### The speed that the character moves at when sprinting.
-@export var sprint_speed : float = 15.0
+@export var sprint_speed : float = 25.0
 ### The speed that the character moves at when crouching.
 @export var crouch_speed : float = 4.5
 #
 ### How fast the character speeds up and slows down when Motion Smoothing is on.
-@export var acceleration : float = 9.0
+@export var acceleration : float = 2.0
 ### How high the player jumps.
-@export var jump_velocity : float = 2.5
+@export var jump_velocity : float = 12.5
 ### How far the player turns when the mouse is moved.
 @export var mouse_sensitivity : float = 0.1
 ## Invert the Y input for mouse and joystick
@@ -63,7 +63,7 @@ class_name PlayerCharacter
 ## Wether the player can move in the air or not.
 @export var in_air_momentum : bool = true
 ## Smooths the feel of walking.
-@export var motion_smoothing : bool = true
+@export var motion_smoothing : bool = false
 @export var sprint_enabled : bool = true
 @export var crouch_enabled : bool = true
 @export_enum("Hold to Crouch", "Toggle Crouch") var crouch_mode : int = 0

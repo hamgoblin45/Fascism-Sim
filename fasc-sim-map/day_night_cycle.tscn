@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://btcbf58h7yvlx"]
+[gd_scene format=3 uid="uid://btcbf58h7yvlx"]
 
 [ext_resource type="Script" uid="uid://u2pju0m8wtg2" path="res://DayNightCycle.gd" id="1_vxjp2"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="2_t2ff6"]
@@ -37,25 +37,16 @@ sky_material = ExtResource("2_t2ff6")
 [sub_resource type="Environment" id="Environment_1eoep"]
 background_mode = 2
 sky = SubResource("Sky_ieg05")
-ambient_light_source = 3
-ambient_light_color = Color(0.500095, 0.50009507, 0.500095, 1)
 ambient_light_sky_contribution = 0.25
-tonemap_mode = 2
-tonemap_exposure = 0.8
-tonemap_white = 0.8
-glow_enabled = true
-glow_strength = 0.8
-glow_bloom = 0.05
 fog_enabled = true
 fog_mode = 1
-fog_light_energy = 0.01
-fog_sun_scatter = 1.0
-fog_density = 1.0
-fog_sky_affect = 0.07
-fog_depth_begin = 0.0
-fog_depth_end = 600.0
+fog_light_color = Color(0.31117395, 0.54233754, 0.9188102, 1)
+fog_density = 0.8
+fog_sky_affect = 0.2
+fog_depth_curve = 2.000001
+fog_depth_end = 500.0
 
-[node name="DayNightCycle" type="Node3D"]
+[node name="DayNightCycle" type="Node3D" unique_id=1284613764]
 process_mode = 1
 script = ExtResource("1_vxjp2")
 sun_color = SubResource("Gradient_pmrgb")
@@ -66,25 +57,25 @@ sky_top_color = SubResource("Gradient_6r5st")
 sky_horizon_color = SubResource("Gradient_twtk7")
 cloud_light_color = SubResource("Gradient_t2ff6")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1526717588]
 transform = Transform3D(0.988054, 0.0927073, 0.123103, -0.154107, 0.594392, 0.789272, 6.57169e-09, -0.798814, 0.601578, 0, 9.45001, 0)
 light_volumetric_fog_energy = 1.5
 light_specular = 0.75
 shadow_enabled = true
 shadow_opacity = 0.75
 
-[node name="Moon" type="DirectionalLight3D" parent="."]
+[node name="Moon" type="DirectionalLight3D" parent="." unique_id=1920913177]
 transform = Transform3D(0.988054, 0.0927073, 0.123103, -0.154107, 0.594392, 0.789272, 6.57169e-09, -0.798814, 0.601578, 0, 9.45001, 0)
 shadow_enabled = true
 sky_mode = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1776241812]
 wait_time = 0.1
 autostart = true
 
-[node name="Sky" type="Node3D" parent="."]
+[node name="Sky" type="Node3D" parent="." unique_id=872673801]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Sky"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Sky" unique_id=1154141189]
 environment = SubResource("Environment_1eoep")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

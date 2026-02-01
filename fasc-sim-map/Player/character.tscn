@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cc1m2a1obsyn4"]
+[gd_scene format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://cvyrqfy6x3x1l" path="res://Player/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://d04xmgme67dv2" path="res://Player/EditorModule.gd" id="3_v3ckk"]
@@ -290,7 +290,7 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1944575658 node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 collision_layer = 257
 collision_mask = 257
@@ -303,44 +303,38 @@ JUMP_ANIMATION = NodePath("Head/JumpAnimation")
 CROUCH_ANIMATION = NodePath("CrouchAnimation")
 COLLISION_MESH = NodePath("Collision")
 
-[node name="Collision" type="CollisionShape3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=2077306573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_uy03j")
 
-[node name="CrouchAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_5e5t5")
-}
+[node name="CrouchAnimation" type="AnimationPlayer" parent="." unique_id=549004521]
+libraries/ = SubResource("AnimationLibrary_5e5t5")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=763172307]
 unique_name_in_owner = true
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0)
 
-[node name="Camera" type="Camera3D" parent="Head"]
+[node name="Camera" type="Camera3D" parent="Head" unique_id=43421462]
 process_mode = 1
 
-[node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
+[node name="HeadbobAnimation" type="AnimationPlayer" parent="Head" unique_id=850101117]
 process_mode = 1
-libraries = {
-&"": SubResource("AnimationLibrary_o0unb")
-}
+libraries/ = SubResource("AnimationLibrary_o0unb")
 blend_times = [&"RESET", &"RESET", 0.5, &"RESET", &"walk", 0.5, &"walk", &"RESET", 0.5]
 
-[node name="JumpAnimation" type="AnimationPlayer" parent="Head"]
-libraries = {
-&"": SubResource("AnimationLibrary_qeg5r")
-}
+[node name="JumpAnimation" type="AnimationPlayer" parent="Head" unique_id=1841159725]
+libraries/ = SubResource("AnimationLibrary_qeg5r")
 speed_scale = 4.0
 
-[node name="CrouchCeilingDetection" type="ShapeCast3D" parent="."]
+[node name="CrouchCeilingDetection" type="ShapeCast3D" parent="." unique_id=1544327524]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.285423, 0)
 shape = SubResource("SphereShape3D_k4wwl")
 target_position = Vector3(0, 0.5, 0)
 
-[node name="EditorModule" type="Node" parent="."]
+[node name="EditorModule" type="Node" parent="." unique_id=365229462]
 script = ExtResource("3_v3ckk")
 
-[node name="GroundRay" type="RayCast3D" parent="."]
+[node name="GroundRay" type="RayCast3D" parent="." unique_id=476182392]
 unique_name_in_owner = true
 target_position = Vector3(0, -0.1, 0)

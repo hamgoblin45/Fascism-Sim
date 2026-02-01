@@ -38,7 +38,7 @@
 [node name="Main" type="Node3D" unique_id=482726971]
 
 [node name="PlayerCharacter" parent="." unique_id=932409528 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.520313, 7.485712, 314.02817)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 62.520313, 7.485712, 314.02817)
 
 [node name="DayNightCycle" parent="." unique_id=1429322333 instance=ExtResource("3_h2yge")]
 script = null
@@ -52,9 +52,8 @@ visible = false
 [node name="Scenery" type="Node3D" parent="." unique_id=751881669]
 transform = Transform3D(1.1999999, 0, 0, 0, 1.1999999, 0, 0, 0, 1.1999999, 0, 3.359596, 0)
 
-[node name="checkpoint" parent="Scenery" unique_id=1817816756 instance=ExtResource("4_1bvp3")]
+[node name="checkpoint" parent="Scenery" unique_id=1840266251 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(-2.3055272, 0, -1.2126708, 0, 2.605, 0, 1.2126708, 0, -2.3055272, -21.66757, -3.33786e-06, -25.428799)
-metadata/asset_placer_res_id = "uid://lx7gpi1nvcv2"
 
 [node name="MilitaryBlockWall" type="Node3D" parent="Scenery" unique_id=1500551022]
 
@@ -1818,29 +1817,23 @@ metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 transform = Transform3D(5.606251, 0, 0, 0, 5.606251, 0, 0, 0, 5.606251, 7.043877, -0.40673852, 379.18036)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="alpine_tree_1" parent="Scenery/Trees" unique_id=1333806243 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1" parent="Scenery/Trees" unique_id=1069172130 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, 197.0713, -0.40673852, 196.6208)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (1)" parent="Scenery/Trees" unique_id=1601315838 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (1)" parent="Scenery/Trees" unique_id=129801132 instance=ExtResource("22_0odxb")]
 transform = Transform3D(4.541063, 0, 0, 0, 4.541063, 0, 0, 0, 4.541063, 109.46737, -0.40673852, 381.8643)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (2)" parent="Scenery/Trees" unique_id=1440489998 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (2)" parent="Scenery/Trees" unique_id=1673075433 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, 191.83844, -0.4067278, 486.16263)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (3)" parent="Scenery/Trees" unique_id=508656748 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (3)" parent="Scenery/Trees" unique_id=764848646 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, 327.66794, 11.685666, 91.335045)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (4)" parent="Scenery/Trees" unique_id=1812591186 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (4)" parent="Scenery/Trees" unique_id=1338053479 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, -133.22144, 5.212494, 526.5066)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (5)" parent="Scenery/Trees" unique_id=1658255062 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (5)" parent="Scenery/Trees" unique_id=43617656 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, 185.71272, -0.40676045, -89.833405)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
 [node name="alpine_tree_2" parent="Scenery/Trees" unique_id=966422117 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-2.9332986, 0, -2.461328, 0, 3.8291447, 0, 2.461328, 0, -2.9332986, 256.5712, -0.40673852, 165.74243)
@@ -1914,45 +1907,35 @@ metadata/asset_placer_res_id = "uid://cal2b1y6wpmj"
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, -43.108166, -0.10281849, 356.46518)
 metadata/asset_placer_res_id = "uid://db2xvhvntk6fu"
 
-[node name="alpine_tree_1 (6)" parent="Scenery/Trees" unique_id=1603259137 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (6)" parent="Scenery/Trees" unique_id=1021322572 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7863243, 0, 0, 0, 1.7863243, 0, 0, 0, 1.7863243, -67.70616, 0.04869008, 346.52774)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (7)" parent="Scenery/Trees" unique_id=67077060 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (7)" parent="Scenery/Trees" unique_id=1247550443 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7863243, 0, 0, 0, 1.7863243, 0, 0, 0, 1.7863243, -129.39832, -0.40676045, 174.80264)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (8)" parent="Scenery/Trees" unique_id=1057442059 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (8)" parent="Scenery/Trees" unique_id=1006922265 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.3101928, 0, 1.7591863, 0, 1.7863243, 0, -1.7591863, 0, 0.3101928, -77.13108, -0.4067278, 102.70489)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (9)" parent="Scenery/Trees" unique_id=1148796280 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (9)" parent="Scenery/Trees" unique_id=1470441827 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.1482269, 0, 1.3684049, 0, 1.7863243, 0, -1.3684049, 0, -1.1482269, 68.31546, -0.406744, 29.076641)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (10)" parent="Scenery/Trees" unique_id=1956294575 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (10)" parent="Scenery/Trees" unique_id=700692719 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.524374, 0, 0.44511688, 0, 2.5633118, 0, -0.44511688, 0, -2.524374, 144.54436, -0.4067359, 111.76425)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (11)" parent="Scenery/Trees" unique_id=201987960 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (11)" parent="Scenery/Trees" unique_id=381895934 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.5243785, 0, -0.4451142, 0, 2.5633118, 0, 0.4451142, 0, -2.5243785, 239.80296, -0.40673852, 141.52644)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (12)" parent="Scenery/Trees" unique_id=393310554 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (12)" parent="Scenery/Trees" unique_id=295412582 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.87670964, 0, -2.4087338, 0, 2.5633118, 0, 2.4087338, 0, -0.87670964, 229.12573, -0.40673327, 325.01093)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (13)" parent="Scenery/Trees" unique_id=2003531547 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (13)" parent="Scenery/Trees" unique_id=1400476978 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.44511414, 0, -2.5243807, 0, 2.5633118, 0, 2.5243807, 0, 0.44511414, -74.77569, -0.4067495, 252.44836)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (14)" parent="Scenery/Trees" unique_id=1240017714 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (14)" parent="Scenery/Trees" unique_id=1227281997 instance=ExtResource("22_0odxb")]
 transform = Transform3D(2.4087348, 0, -0.87671065, 0, 2.5633118, 0, 0.87671065, 0, 2.4087348, -103.823784, -0.3050766, 450.60016)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (15)" parent="Scenery/Trees" unique_id=838311664 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (15)" parent="Scenery/Trees" unique_id=855827965 instance=ExtResource("22_0odxb")]
 transform = Transform3D(5.173161, 0, -5.5634528e-06, 0, 5.173138, 0, 5.5634528e-06, 0, 5.173161, -278.81116, -0.40673852, 205.1731)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
 [node name="alpine_tree_2 (5)" parent="Scenery/Trees" unique_id=1342683168 instance=ExtResource("23_lswn8")]
 transform = Transform3D(2.1614523, 0, 0, 0, 2.1614523, 0, 0, 0, 2.1614523, 118.48577, 23.471474, 482.7735)
@@ -2054,57 +2037,44 @@ metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 transform = Transform3D(3.6050644, 0, 0, 0, 3.6050644, 0, 0, 0, 3.6050644, 138.92947, -0.40673852, 208.61244)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_1 (16)" parent="Scenery/Trees" unique_id=653507806 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (16)" parent="Scenery/Trees" unique_id=1160947943 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.4564719, 0, 0.8408944, 0, 1.6817887, 0, -0.8408944, 0, 1.4564719, 296.969, 0.1824665, 111.704)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (17)" parent="Scenery/Trees" unique_id=1961587154 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (17)" parent="Scenery/Trees" unique_id=1553149041 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.5752058, 0, 1.5803648, 0, 1.6817887, 0, -1.5803648, 0, 0.5752058, 285.61676, -0.40673852, 197.06273)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (18)" parent="Scenery/Trees" unique_id=234181446 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (18)" parent="Scenery/Trees" unique_id=1433234697 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.57520586, 0, 1.580365, 0, 1.6817887, 0, -1.580365, 0, 0.57520586, 270.0562, -0.4061947, 282.1907)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (19)" parent="Scenery/Trees" unique_id=1655024878 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (19)" parent="Scenery/Trees" unique_id=1669043474 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.57520586, 0, 1.580365, 0, 1.6817887, 0, -1.580365, 0, 0.57520586, 398.1003, 30.841045, 279.0712)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (20)" parent="Scenery/Trees" unique_id=1912765035 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (20)" parent="Scenery/Trees" unique_id=1457517000 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.57520586, 0, 1.580365, 0, 1.6817887, 0, -1.580365, 0, 0.57520586, 399.54398, 22.432844, 150.82379)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (21)" parent="Scenery/Trees" unique_id=1893400598 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (21)" parent="Scenery/Trees" unique_id=1618602545 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.3533679, 0, 2.0040493, 0, 2.0349643, 0, -2.0040493, 0, -0.3533679, 272.95718, -0.25759077, 13.404046)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (22)" parent="Scenery/Trees" unique_id=100804899 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (22)" parent="Scenery/Trees" unique_id=1214938739 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.35336792, 0, 2.0040495, 0, 2.0349643, 0, -2.0040495, 0, -0.35336792, 397.97006, 18.308727, 40.3085)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (23)" parent="Scenery/Trees" unique_id=1031948534 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (23)" parent="Scenery/Trees" unique_id=729328365 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.35336792, 0, 2.0040495, 0, 2.0349643, 0, -2.0040495, 0, -0.35336792, 282.07977, -0.28624535, 435.98013)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (24)" parent="Scenery/Trees" unique_id=922895848 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (24)" parent="Scenery/Trees" unique_id=433114649 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.35336792, 0, 2.0040495, 0, 2.0349643, 0, -2.0040495, 0, -0.35336792, 27.758848, -0.40671682, 413.77365)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (25)" parent="Scenery/Trees" unique_id=1797756807 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (25)" parent="Scenery/Trees" unique_id=634491928 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.1924138, 0, 1.8396537, 0, 2.8619914, 0, -1.8396537, 0, -2.1924138, -152.7646, -0.4067495, 299.0002)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (26)" parent="Scenery/Trees" unique_id=19224563 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (26)" parent="Scenery/Trees" unique_id=1459696689 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.1924138, 0, 1.8396537, 0, 2.8619914, 0, -1.8396537, 0, -2.1924138, -207.07994, -0.4067495, 395.85516)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (27)" parent="Scenery/Trees" unique_id=1342765304 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (27)" parent="Scenery/Trees" unique_id=1512374120 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.1924138, 0, 1.8396537, 0, 2.8619914, 0, -1.8396537, 0, -2.1924138, 330.4356, 1.5108619, 168.39023)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (28)" parent="Scenery/Trees" unique_id=2083717501 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (28)" parent="Scenery/Trees" unique_id=712926920 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.8619933, 0, 4.2219958e-07, 0, 2.8619914, 0, -4.2219958e-07, 0, -2.8619933, 333.1147, -0.40673852, 323.65033)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
 [node name="alpine_tree_2 (7)" parent="Scenery/Trees" unique_id=1001106263 instance=ExtResource("23_lswn8")]
 transform = Transform3D(1.6557686, 0, 1.3893551, 0, 2.1614523, 0, -1.3893551, 0, 1.6557686, 302.57132, -0.40673852, 211.61592)
@@ -2238,41 +2208,32 @@ metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 transform = Transform3D(-1.9636123, 0, 1.6476673, 0, 2.5633116, 0, -1.6476673, 0, -1.9636123, 151.13817, 22.77285, 548.62195)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_1 (29)" parent="Scenery/Trees" unique_id=680002214 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (29)" parent="Scenery/Trees" unique_id=857270375 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.4763011, 0, 0, 0, 1.4763011, 0, 0, 0, 1.4763011, 110.386444, 37.754444, 528.05853)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (30)" parent="Scenery/Trees" unique_id=493294478 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (30)" parent="Scenery/Trees" unique_id=1306686171 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.9122409, 0, 0.6959988, 0, 2.0349646, 0, -0.6959988, 0, 1.9122409, 146.52917, -0.35232306, 395.84756)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (31)" parent="Scenery/Trees" unique_id=1856867742 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (31)" parent="Scenery/Trees" unique_id=1500800150 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7623312, 0, 1.0174823, 0, 2.0349646, 0, -1.0174823, 0, 1.7623312, 284.04147, -0.40676045, 332.95663)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (32)" parent="Scenery/Trees" unique_id=974181481 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (32)" parent="Scenery/Trees" unique_id=867108350 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7623312, 0, 1.0174823, 0, 2.0349646, 0, -1.0174823, 0, 1.7623312, 259.16782, -0.406744, 257.52652)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (33)" parent="Scenery/Trees" unique_id=1865017314 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (33)" parent="Scenery/Trees" unique_id=794518605 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7623312, 0, 1.0174823, 0, 2.0349646, 0, -1.0174823, 0, 1.7623312, 291.27084, -0.37135005, 229.52325)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (34)" parent="Scenery/Trees" unique_id=2096934145 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (34)" parent="Scenery/Trees" unique_id=1895644968 instance=ExtResource("22_0odxb")]
 transform = Transform3D(4.7187012e-07, 0, 2.034965, 0, 2.0349646, 0, -2.034965, 0, 4.7187012e-07, 346.9315, 2.212325, 267.5292)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (35)" parent="Scenery/Trees" unique_id=1124775531 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (35)" parent="Scenery/Trees" unique_id=1568561181 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.5588735, 0, 1.3080512, 0, 2.0349646, 0, -1.3080512, 0, -1.5588735, 294.1067, -0.40092945, 144.06836)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (36)" parent="Scenery/Trees" unique_id=640268756 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (36)" parent="Scenery/Trees" unique_id=1737219885 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.5588735, 0, 1.3080512, 0, 2.0349646, 0, -1.3080512, 0, -1.5588735, 360.8473, -0.07185745, 2.1484375)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (37)" parent="Scenery/Trees" unique_id=1212647679 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (37)" parent="Scenery/Trees" unique_id=1392313408 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.9122429, 0, -0.6959984, 0, 2.0349646, 0, 0.6959984, 0, -1.9122429, 360.48404, -0.4067278, -55.80386)
-metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
 [node name="leafy_stump_1 (1)" parent="Scenery/Trees" unique_id=670208174 instance=ExtResource("26_a6jrf")]
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, 320.36435, 26.184809, 68.65732)
@@ -2473,11 +2434,11 @@ transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 18.18
 metadata/asset_placer_res_id = "uid://c6fjk4hgs18ax"
 
 [node name="fire_hydrant" parent="Scenery" unique_id=1332314300 instance=ExtResource("31_jq2sk")]
-transform = Transform3D(1.2311544, 0, -2.1324215, 0, 2.4623072, 0, 2.1324215, 0, 1.2311544, 3.855807, -0.40673995, 76.05457)
+transform = Transform3D(1.2311544, 0, -2.1324215, 0, 2.4623072, 0, 2.1324215, 0, 1.2311544, 4.141382, -0.40673995, 76.03214)
 metadata/asset_placer_res_id = "uid://bsxpyngp6b7ei"
 
 [node name="fire_hydrant (1)" parent="Scenery" unique_id=1269068888 instance=ExtResource("31_jq2sk")]
-transform = Transform3D(-2.3138154, 0, -0.84216094, 0, 2.4623072, 0, 0.84216094, 0, -2.3138154, 99.49536, -0.40673995, 290.1866)
+transform = Transform3D(-2.1805136, 0, -1.1438255, 0, 2.4623072, 0, 1.1438255, 0, -2.1805136, 99.382576, -0.40673923, 290.5049)
 metadata/asset_placer_res_id = "uid://bsxpyngp6b7ei"
 
 [node name="commisary" parent="Scenery" unique_id=1700063179 instance=ExtResource("32_4k2k6")]
@@ -2492,15 +2453,15 @@ metadata/asset_placer_res_id = "uid://bry5nwcbt3x70"
 transform = Transform3D(0.504167, 0, -0.87324274, 0, 1.0083334, 0, 0.87324274, 0, 0.504167, 54.972473, -0.40673852, 136.63596)
 metadata/asset_placer_res_id = "uid://bry5nwcbt3x70"
 
-[node name="rollaway_dumpster" type="Node3D" parent="." unique_id=427006016 instance=ExtResource("34_4k2k6")]
+[node name="rollaway_dumpster" parent="." unique_id=427006016 instance=ExtResource("34_4k2k6")]
 transform = Transform3D(-1.1996917, 0, -0.027206179, 0, 1.2, 0, 0.027206179, 0, -1.1996917, 177.40744, 2.8715115, 307.65536)
 metadata/asset_placer_res_id = "uid://dh4mers48tj3a"
 
-[node name="rollaway_dumpster (1)" type="Node3D" parent="." unique_id=675631913 instance=ExtResource("34_4k2k6")]
+[node name="rollaway_dumpster (1)" parent="." unique_id=675631913 instance=ExtResource("34_4k2k6")]
 transform = Transform3D(-0.9365048, 0, 0.7503059, 0, 1.2, 0, -0.7503059, 0, -0.9365048, 135.49208, 3.1357386, 330.2478)
 metadata/asset_placer_res_id = "uid://dh4mers48tj3a"
 
-[node name="rollaway_dumpster (2)" type="Node3D" parent="." unique_id=1704638396 instance=ExtResource("34_4k2k6")]
+[node name="rollaway_dumpster (2)" parent="." unique_id=1704638396 instance=ExtResource("34_4k2k6")]
 transform = Transform3D(-0.027206192, 0, 1.1996917, 0, 1.2, 0, -1.1996917, 0, -0.027206192, 90.20148, 2.8715098, 373.29178)
 metadata/asset_placer_res_id = "uid://dh4mers48tj3a"
 
