@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://bsxpyngp6b7ei" path="res://Map/fire_hydrant.gltf" id="31_jq2sk"]
 [ext_resource type="PackedScene" uid="uid://d350gy73blt0f" path="res://Map/Buildings/commisary.gltf" id="32_4k2k6"]
 [ext_resource type="PackedScene" uid="uid://bry5nwcbt3x70" path="res://Map/dumpster.gltf" id="33_jq2sk"]
+[ext_resource type="PackedScene" uid="uid://dh4mers48tj3a" path="res://Map/Furniture-Fixtures/rollaway_dumpster.gltf" id="34_4k2k6"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -1103,1392 +1104,1404 @@ metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 transform = Transform3D(-0.41666707, 0, -0.7216887, 0, 0.8333334, 0, 0.7216887, 0, -0.41666707, 134.91539, -0.40673852, 270.6964)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (87)" type="Node3D" parent="Scenery/Fences" unique_id=2063847628 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (87)" parent="Scenery/Fences" unique_id=2063847628 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 219.86502, -0.40673804, 317.7552)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (88)" type="Node3D" parent="Scenery/Fences" unique_id=1230967622 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (88)" parent="Scenery/Fences" unique_id=1230967622 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 217.41939, -0.40673733, 321.77277)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (89)" type="Node3D" parent="Scenery/Fences" unique_id=547547948 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (89)" parent="Scenery/Fences" unique_id=547547948 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 214.9254, -0.40674138, 325.8657)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (90)" type="Node3D" parent="Scenery/Fences" unique_id=1044355454 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (90)" parent="Scenery/Fences" unique_id=1044355454 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 212.44508, -0.40667605, 329.9063)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (91)" type="Node3D" parent="Scenery/Fences" unique_id=836864029 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (91)" parent="Scenery/Fences" unique_id=836864029 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 210.01692, -0.40624237, 333.80643)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (92)" type="Node3D" parent="Scenery/Fences" unique_id=1084160838 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (92)" parent="Scenery/Fences" unique_id=1084160838 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 207.5201, -0.40585065, 337.84576)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (93)" type="Node3D" parent="Scenery/Fences" unique_id=1329382251 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (93)" parent="Scenery/Fences" unique_id=1329382251 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 205.03374, -0.38183022, 341.89124)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (94)" type="Node3D" parent="Scenery/Fences" unique_id=1836301121 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (94)" parent="Scenery/Fences" unique_id=1836301121 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 202.5522, -0.32488537, 345.97098)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (95)" type="Node3D" parent="Scenery/Fences" unique_id=1065871115 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (95)" parent="Scenery/Fences" unique_id=1065871115 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 200.08714, -0.27360964, 350.0259)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (96)" type="Node3D" parent="Scenery/Fences" unique_id=1518814969 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (96)" parent="Scenery/Fences" unique_id=1518814969 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 197.6066, -0.1738379, 354.10526)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (97)" type="Node3D" parent="Scenery/Fences" unique_id=885554569 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (97)" parent="Scenery/Fences" unique_id=885554569 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 195.15169, -0.040771484, 358.2212)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (98)" type="Node3D" parent="Scenery/Fences" unique_id=194074310 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (98)" parent="Scenery/Fences" unique_id=194074310 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 192.7291, 0.07625699, 362.22864)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (99)" type="Node3D" parent="Scenery/Fences" unique_id=141928205 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (99)" parent="Scenery/Fences" unique_id=141928205 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.7118284, 0, -0.43329558, 0, 0.8333334, 0, 0.43329558, 0, 0.7118284, 190.29819, 0.118616104, 366.28033)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (100)" type="Node3D" parent="Scenery/Fences" unique_id=1755478923 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (100)" parent="Scenery/Fences" unique_id=1755478923 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 186.7445, 0.07293892, 369.08344)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (101)" type="Node3D" parent="Scenery/Fences" unique_id=915006072 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (101)" parent="Scenery/Fences" unique_id=915006072 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 182.19482, -0.04156685, 370.56003)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (102)" type="Node3D" parent="Scenery/Fences" unique_id=1645166051 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (102)" parent="Scenery/Fences" unique_id=1645166051 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 177.71956, -0.16008282, 372.02676)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (103)" type="Node3D" parent="Scenery/Fences" unique_id=1825821 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (103)" parent="Scenery/Fences" unique_id=1825821 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 173.1551, -0.28086305, 373.53384)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (104)" type="Node3D" parent="Scenery/Fences" unique_id=789690401 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (104)" parent="Scenery/Fences" unique_id=789690401 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 168.65407, -0.35749865, 375.04773)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (105)" type="Node3D" parent="Scenery/Fences" unique_id=1787604261 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (105)" parent="Scenery/Fences" unique_id=1787604261 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 164.1114, -0.37421107, 376.55276)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (106)" type="Node3D" parent="Scenery/Fences" unique_id=221398521 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (106)" parent="Scenery/Fences" unique_id=221398521 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 159.60796, -0.39042187, 378.09537)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (107)" type="Node3D" parent="Scenery/Fences" unique_id=1748002182 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (107)" parent="Scenery/Fences" unique_id=1748002182 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 155.11908, -0.40230012, 379.61697)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (108)" type="Node3D" parent="Scenery/Fences" unique_id=293012853 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (108)" parent="Scenery/Fences" unique_id=293012853 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 150.63052, -0.40646124, 381.12378)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (109)" type="Node3D" parent="Scenery/Fences" unique_id=615871392 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (109)" parent="Scenery/Fences" unique_id=615871392 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 146.11664, -0.40649915, 382.655)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (110)" type="Node3D" parent="Scenery/Fences" unique_id=1571409109 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (110)" parent="Scenery/Fences" unique_id=1571409109 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 141.63216, -0.40661335, 384.17578)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (111)" type="Node3D" parent="Scenery/Fences" unique_id=186194162 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (111)" parent="Scenery/Fences" unique_id=186194162 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 137.11642, -0.40673852, 385.70517)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (112)" type="Node3D" parent="Scenery/Fences" unique_id=726520110 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (112)" parent="Scenery/Fences" unique_id=726520110 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 132.6239, -0.40673995, 387.20782)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (113)" type="Node3D" parent="Scenery/Fences" unique_id=271994910 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (113)" parent="Scenery/Fences" unique_id=271994910 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 128.12491, -0.40673852, 388.725)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (114)" type="Node3D" parent="Scenery/Fences" unique_id=1819731158 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (114)" parent="Scenery/Fences" unique_id=1819731158 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 123.62308, -0.40673995, 390.23874)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (115)" type="Node3D" parent="Scenery/Fences" unique_id=965665140 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (115)" parent="Scenery/Fences" unique_id=965665140 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 119.12845, -0.40673852, 391.75574)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (116)" type="Node3D" parent="Scenery/Fences" unique_id=63018806 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (116)" parent="Scenery/Fences" unique_id=63018806 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 114.62881, -0.40673995, 393.27225)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (117)" type="Node3D" parent="Scenery/Fences" unique_id=1545937276 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (117)" parent="Scenery/Fences" unique_id=1545937276 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 110.14265, -0.40673852, 394.7867)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (118)" type="Node3D" parent="Scenery/Fences" unique_id=1101832139 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (118)" parent="Scenery/Fences" unique_id=1101832139 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 105.66468, -0.40362382, 396.3166)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (119)" type="Node3D" parent="Scenery/Fences" unique_id=307691878 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (119)" parent="Scenery/Fences" unique_id=307691878 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 101.16598, -0.3877995, 397.8349)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (120)" type="Node3D" parent="Scenery/Fences" unique_id=7893974 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (120)" parent="Scenery/Fences" unique_id=7893974 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 96.660706, -0.36982965, 399.38065)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (121)" type="Node3D" parent="Scenery/Fences" unique_id=611922443 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (121)" parent="Scenery/Fences" unique_id=611922443 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 92.1289, -0.36096907, 400.9041)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (122)" type="Node3D" parent="Scenery/Fences" unique_id=306788627 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (122)" parent="Scenery/Fences" unique_id=306788627 instance=ExtResource("9_kek77")]
 transform = Transform3D(0.26677516, 0, -0.78947824, 0, 0.8333334, 0, 0.78947824, 0, 0.26677516, 87.661865, -0.3930471, 402.43817)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (123)" type="Node3D" parent="Scenery/Fences" unique_id=2108113648 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (123)" parent="Scenery/Fences" unique_id=2108113648 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 83.007195, -0.40359855, 403.14984)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (124)" type="Node3D" parent="Scenery/Fences" unique_id=821065554 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (124)" parent="Scenery/Fences" unique_id=821065554 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 78.26632, -0.4052317, 403.05347)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (125)" type="Node3D" parent="Scenery/Fences" unique_id=369608097 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (125)" parent="Scenery/Fences" unique_id=369608097 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 73.52077, -0.40673733, 402.9228)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (126)" type="Node3D" parent="Scenery/Fences" unique_id=757424443 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (126)" parent="Scenery/Fences" unique_id=757424443 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 68.751335, -0.40673852, 402.80225)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (127)" type="Node3D" parent="Scenery/Fences" unique_id=1061692677 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (127)" parent="Scenery/Fences" unique_id=1061692677 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 63.981956, -0.40673995, 402.66983)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (128)" type="Node3D" parent="Scenery/Fences" unique_id=2034304405 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (128)" parent="Scenery/Fences" unique_id=2034304405 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 59.20198, -0.40673852, 402.5311)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (129)" type="Node3D" parent="Scenery/Fences" unique_id=1601411900 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (129)" parent="Scenery/Fences" unique_id=1601411900 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 54.460987, -0.40673852, 402.4278)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (130)" type="Node3D" parent="Scenery/Fences" unique_id=1725739135 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (130)" parent="Scenery/Fences" unique_id=1725739135 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 49.69231, -0.40673995, 402.31818)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (131)" type="Node3D" parent="Scenery/Fences" unique_id=774609391 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (131)" parent="Scenery/Fences" unique_id=774609391 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 44.933926, -0.40673852, 402.20746)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (132)" type="Node3D" parent="Scenery/Fences" unique_id=656579736 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (132)" parent="Scenery/Fences" unique_id=656579736 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 40.19037, -0.40673852, 402.10287)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (133)" type="Node3D" parent="Scenery/Fences" unique_id=1291454546 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (133)" parent="Scenery/Fences" unique_id=1291454546 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 35.468227, -0.40673804, 401.98767)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (134)" type="Node3D" parent="Scenery/Fences" unique_id=1348077238 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (134)" parent="Scenery/Fences" unique_id=1348077238 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 30.688974, -0.40673804, 401.87823)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (135)" type="Node3D" parent="Scenery/Fences" unique_id=1568451108 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (135)" parent="Scenery/Fences" unique_id=1568451108 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 25.922382, -0.40673852, 401.75204)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (136)" type="Node3D" parent="Scenery/Fences" unique_id=1349078146 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (136)" parent="Scenery/Fences" unique_id=1349078146 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 21.13192, -0.40673923, 401.63733)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (137)" type="Node3D" parent="Scenery/Fences" unique_id=1589419738 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (137)" parent="Scenery/Fences" unique_id=1589419738 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 16.37134, -0.40673923, 401.52316)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (138)" type="Node3D" parent="Scenery/Fences" unique_id=67153846 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (138)" parent="Scenery/Fences" unique_id=67153846 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 11.584426, -0.40673923, 401.39575)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (139)" type="Node3D" parent="Scenery/Fences" unique_id=1188178635 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (139)" parent="Scenery/Fences" unique_id=1188178635 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 6.8410907, -0.40673852, 401.28558)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (140)" type="Node3D" parent="Scenery/Fences" unique_id=1791234664 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (140)" parent="Scenery/Fences" unique_id=1791234664 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, 2.0710437, -0.40673852, 401.1808)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (141)" type="Node3D" parent="Scenery/Fences" unique_id=454069146 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (141)" parent="Scenery/Fences" unique_id=454069146 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -2.6714644, -0.40673852, 401.07175)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (142)" type="Node3D" parent="Scenery/Fences" unique_id=1532786882 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (142)" parent="Scenery/Fences" unique_id=1532786882 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -7.409204, -0.40673733, 400.94595)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (143)" type="Node3D" parent="Scenery/Fences" unique_id=398323771 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (143)" parent="Scenery/Fences" unique_id=398323771 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -12.170951, -0.40673852, 400.851)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (144)" type="Node3D" parent="Scenery/Fences" unique_id=930303116 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (144)" parent="Scenery/Fences" unique_id=930303116 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -16.920065, -0.40673852, 400.76205)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (145)" type="Node3D" parent="Scenery/Fences" unique_id=650358620 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (145)" parent="Scenery/Fences" unique_id=650358620 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -21.66455, -0.40207148, 400.65686)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (146)" type="Node3D" parent="Scenery/Fences" unique_id=1872708799 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (146)" parent="Scenery/Fences" unique_id=1872708799 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.019330805, 0, -0.83310944, 0, 0.8333334, 0, 0.83310944, 0, -0.019330805, -26.407269, -0.40039897, 400.53357)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (147)" type="Node3D" parent="Scenery/Fences" unique_id=301614230 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (147)" parent="Scenery/Fences" unique_id=301614230 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -30.826475, -0.3858757, 399.24237)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (148)" type="Node3D" parent="Scenery/Fences" unique_id=1756944199 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (148)" parent="Scenery/Fences" unique_id=1756944199 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -34.871178, -0.39834833, 396.76398)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (149)" type="Node3D" parent="Scenery/Fences" unique_id=216284860 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (149)" parent="Scenery/Fences" unique_id=216284860 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -38.88267, -0.40673852, 394.27982)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (150)" type="Node3D" parent="Scenery/Fences" unique_id=1881503383 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (150)" parent="Scenery/Fences" unique_id=1881503383 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -42.918552, -0.40628576, 391.80408)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (151)" type="Node3D" parent="Scenery/Fences" unique_id=852948603 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (151)" parent="Scenery/Fences" unique_id=852948603 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -47.01656, -0.39800715, 389.33627)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (152)" type="Node3D" parent="Scenery/Fences" unique_id=1694024043 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (152)" parent="Scenery/Fences" unique_id=1694024043 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -51.090866, -0.37268806, 386.847)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (153)" type="Node3D" parent="Scenery/Fences" unique_id=1829298179 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (153)" parent="Scenery/Fences" unique_id=1829298179 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -55.177742, -0.29924273, 384.3529)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (154)" type="Node3D" parent="Scenery/Fences" unique_id=447103991 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (154)" parent="Scenery/Fences" unique_id=447103991 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -59.34732, -0.17925954, 381.8542)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (155)" type="Node3D" parent="Scenery/Fences" unique_id=70576909 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (155)" parent="Scenery/Fences" unique_id=70576909 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -63.40612, 0.006503582, 379.42236)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (156)" type="Node3D" parent="Scenery/Fences" unique_id=868948394 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (156)" parent="Scenery/Fences" unique_id=868948394 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -67.5972, 0.18382621, 376.9099)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (157)" type="Node3D" parent="Scenery/Fences" unique_id=107787246 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (157)" parent="Scenery/Fences" unique_id=107787246 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -71.74141, 0.3535869, 374.45392)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (158)" type="Node3D" parent="Scenery/Fences" unique_id=313321170 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (158)" parent="Scenery/Fences" unique_id=313321170 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -75.8353, 0.43363142, 371.99765)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (159)" type="Node3D" parent="Scenery/Fences" unique_id=895920470 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (159)" parent="Scenery/Fences" unique_id=895920470 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -79.88945, 0.448272, 369.52612)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (160)" type="Node3D" parent="Scenery/Fences" unique_id=1535376434 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (160)" parent="Scenery/Fences" unique_id=1535376434 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -83.96222, 0.38113976, 367.04526)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (161)" type="Node3D" parent="Scenery/Fences" unique_id=497543372 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (161)" parent="Scenery/Fences" unique_id=497543372 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -87.94885, 0.27325177, 364.58258)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (162)" type="Node3D" parent="Scenery/Fences" unique_id=314422665 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (162)" parent="Scenery/Fences" unique_id=314422665 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -91.937836, 0.120201826, 362.1414)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (163)" type="Node3D" parent="Scenery/Fences" unique_id=1907761006 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (163)" parent="Scenery/Fences" unique_id=1907761006 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -95.986946, -0.05324459, 359.64255)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (164)" type="Node3D" parent="Scenery/Fences" unique_id=980705606 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (164)" parent="Scenery/Fences" unique_id=980705606 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -99.94847, -0.19976997, 357.22104)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (165)" type="Node3D" parent="Scenery/Fences" unique_id=1275795848 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (165)" parent="Scenery/Fences" unique_id=1275795848 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.43329573, 0, -0.71182865, 0, 0.8333334, 0, 0.71182865, 0, -0.43329573, -103.9956, -0.21703577, 354.76126)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (166)" type="Node3D" parent="Scenery/Fences" unique_id=625512298 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (166)" parent="Scenery/Fences" unique_id=625512298 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -107.12838, -0.176435, 351.44336)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (167)" type="Node3D" parent="Scenery/Fences" unique_id=1799323601 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (167)" parent="Scenery/Fences" unique_id=1799323601 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -109.50933, -0.040641546, 347.22894)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (168)" type="Node3D" parent="Scenery/Fences" unique_id=824265063 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (168)" parent="Scenery/Fences" unique_id=824265063 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -111.88237, 0.10469413, 343.01944)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (169)" type="Node3D" parent="Scenery/Fences" unique_id=891187993 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (169)" parent="Scenery/Fences" unique_id=891187993 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -114.2191, 0.21471453, 338.80713)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (170)" type="Node3D" parent="Scenery/Fences" unique_id=799625132 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (170)" parent="Scenery/Fences" unique_id=799625132 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -116.49342, 0.23172283, 334.6506)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (171)" type="Node3D" parent="Scenery/Fences" unique_id=1760188261 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (171)" parent="Scenery/Fences" unique_id=1760188261 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -118.77284, 0.20238757, 330.5013)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (172)" type="Node3D" parent="Scenery/Fences" unique_id=150965976 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (172)" parent="Scenery/Fences" unique_id=150965976 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -120.99113, 0.10561609, 326.39484)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (173)" type="Node3D" parent="Scenery/Fences" unique_id=1685533024 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (173)" parent="Scenery/Fences" unique_id=1685533024 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -123.24663, -0.004942894, 322.2692)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (174)" type="Node3D" parent="Scenery/Fences" unique_id=734670947 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (174)" parent="Scenery/Fences" unique_id=734670947 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -125.50661, -0.16371226, 318.23425)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (175)" type="Node3D" parent="Scenery/Fences" unique_id=238598878 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (175)" parent="Scenery/Fences" unique_id=238598878 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -127.77116, -0.2431438, 314.09412)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (176)" type="Node3D" parent="Scenery/Fences" unique_id=905530989 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (176)" parent="Scenery/Fences" unique_id=905530989 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -130.00311, -0.3320899, 309.9336)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (177)" type="Node3D" parent="Scenery/Fences" unique_id=1965848623 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (177)" parent="Scenery/Fences" unique_id=1965848623 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -132.21548, -0.3950522, 305.7756)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="picket_fence_tall (178)" type="Node3D" parent="Scenery/Fences" unique_id=1229845422 instance=ExtResource("9_kek77")]
+[node name="picket_fence_tall (178)" parent="Scenery/Fences" unique_id=1229845422 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.7311595, 0, -0.39981392, 0, 0.8333334, 0, 0.39981392, 0, -0.7311595, -134.48712, -0.40506196, 301.63315)
 metadata/asset_placer_res_id = "uid://dwrbhwhl67s4c"
 
-[node name="fence_A_single_post (43)" type="Node3D" parent="Scenery/Fences" unique_id=1400750399 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (43)" parent="Scenery/Fences" unique_id=1400750399 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -135.7607, -0.12877655, 299.0032)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_1_post (41)" type="Node3D" parent="Scenery/Fences" unique_id=1187417632 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (41)" parent="Scenery/Fences" unique_id=1187417632 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.6383706, 0, 0.5356564, 0, 0.8333334, 0, -0.5356564, 0, 0.6383706, -138.4233, -0.4067359, 295.8911)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (42)" type="Node3D" parent="Scenery/Fences" unique_id=670161900 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (42)" parent="Scenery/Fences" unique_id=670161900 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.6383706, 0, 0.5356564, 0, 0.8333334, 0, -0.5356564, 0, 0.6383706, -143.90558, -0.40673733, 289.54053)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (43)" type="Node3D" parent="Scenery/Fences" unique_id=1250412459 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (43)" parent="Scenery/Fences" unique_id=1250412459 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.6383706, 0, 0.5356564, 0, 0.8333334, 0, -0.5356564, 0, 0.6383706, -149.33496, -0.40673852, 283.1061)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (44)" type="Node3D" parent="Scenery/Fences" unique_id=1975677206 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (44)" parent="Scenery/Fences" unique_id=1975677206 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.4166669, 0, 0.721688, 0, 0.8333334, 0, -0.721688, 0, 0.4166669, -155.71918, -0.40673733, 277.8182)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (45)" type="Node3D" parent="Scenery/Fences" unique_id=1942811271 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (45)" parent="Scenery/Fences" unique_id=1942811271 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.4166669, 0, 0.721688, 0, 0.8333334, 0, -0.721688, 0, 0.4166669, -163.1734, -0.40673852, 273.54807)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_A_single_post (44)" type="Node3D" parent="Scenery/Fences" unique_id=1377942039 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (44)" parent="Scenery/Fences" unique_id=1377942039 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -166.87148, -0.1627934, 271.4128)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (45)" type="Node3D" parent="Scenery/Fences" unique_id=1480352879 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (45)" parent="Scenery/Fences" unique_id=1480352879 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -159.44992, -0.057207584, 275.5732)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (46)" type="Node3D" parent="Scenery/Fences" unique_id=1663876687 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (46)" parent="Scenery/Fences" unique_id=1663876687 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -151.95824, -0.05695963, 279.78775)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (47)" type="Node3D" parent="Scenery/Fences" unique_id=732665891 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (47)" parent="Scenery/Fences" unique_id=732665891 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -146.54222, -0.029360056, 286.34857)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (48)" type="Node3D" parent="Scenery/Fences" unique_id=2007489136 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (48)" parent="Scenery/Fences" unique_id=2007489136 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -141.1467, 0.13551307, 292.6879)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="picket_fence_short" type="Node3D" parent="Scenery/Fences" unique_id=1052335644 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short" parent="Scenery/Fences" unique_id=1052335644 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.7713506, 0, -0.315379, 0, 0.8333334, 0, 0.315379, 0, -0.7713506, 124.05473, -0.4067359, 387.41733)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (1)" type="Node3D" parent="Scenery/Fences" unique_id=2023958878 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (1)" parent="Scenery/Fences" unique_id=2023958878 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.7713506, 0, -0.315379, 0, 0.8333334, 0, 0.315379, 0, -0.7713506, 122.27476, -0.40673733, 382.9909)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (2)" type="Node3D" parent="Scenery/Fences" unique_id=1162356208 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (2)" parent="Scenery/Fences" unique_id=1162356208 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 120.45835, -0.40673804, 378.59528)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (3)" type="Node3D" parent="Scenery/Fences" unique_id=1128776716 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (3)" parent="Scenery/Fences" unique_id=1128776716 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 118.65151, -0.40673852, 374.22214)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (4)" type="Node3D" parent="Scenery/Fences" unique_id=224544679 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (4)" parent="Scenery/Fences" unique_id=224544679 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 116.8731, -0.40673995, 369.79633)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (5)" type="Node3D" parent="Scenery/Fences" unique_id=1541189427 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (5)" parent="Scenery/Fences" unique_id=1541189427 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 115.09572, -0.40673804, 365.40524)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (6)" type="Node3D" parent="Scenery/Fences" unique_id=1793951391 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (6)" parent="Scenery/Fences" unique_id=1793951391 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 113.32549, -0.40673852, 361.00345)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (7)" type="Node3D" parent="Scenery/Fences" unique_id=735708034 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (7)" parent="Scenery/Fences" unique_id=735708034 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 111.523865, -0.40673804, 356.6221)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (8)" type="Node3D" parent="Scenery/Fences" unique_id=119716811 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (8)" parent="Scenery/Fences" unique_id=119716811 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 109.73042, -0.40673852, 352.23807)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (9)" type="Node3D" parent="Scenery/Fences" unique_id=96153790 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (9)" parent="Scenery/Fences" unique_id=96153790 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 107.953125, -0.40673852, 347.80392)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (10)" type="Node3D" parent="Scenery/Fences" unique_id=1538025755 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (10)" parent="Scenery/Fences" unique_id=1538025755 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 106.15442, -0.40673852, 343.36514)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (11)" type="Node3D" parent="Scenery/Fences" unique_id=518704893 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (11)" parent="Scenery/Fences" unique_id=518704893 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 104.38867, -0.40673852, 338.94522)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (12)" type="Node3D" parent="Scenery/Fences" unique_id=128943469 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (12)" parent="Scenery/Fences" unique_id=128943469 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 102.60873, -0.40673852, 334.54196)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (13)" type="Node3D" parent="Scenery/Fences" unique_id=452072011 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (13)" parent="Scenery/Fences" unique_id=452072011 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 100.82293, -0.40673804, 330.12872)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (14)" type="Node3D" parent="Scenery/Fences" unique_id=198525905 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (14)" parent="Scenery/Fences" unique_id=198525905 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 99.02364, -0.40673852, 325.73642)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (15)" type="Node3D" parent="Scenery/Fences" unique_id=431908982 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (15)" parent="Scenery/Fences" unique_id=431908982 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 97.20584, -0.40673923, 321.34225)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (16)" type="Node3D" parent="Scenery/Fences" unique_id=261440368 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (16)" parent="Scenery/Fences" unique_id=261440368 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 95.42562, -0.40673804, 316.94666)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (17)" type="Node3D" parent="Scenery/Fences" unique_id=1074253696 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (17)" parent="Scenery/Fences" unique_id=1074253696 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 93.63305, -0.40673852, 312.5545)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (18)" type="Node3D" parent="Scenery/Fences" unique_id=688946995 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (18)" parent="Scenery/Fences" unique_id=688946995 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.77135074, 0, -0.31537893, 0, 0.8333334, 0, 0.31537893, 0, -0.77135074, 91.837, -0.40673923, 308.1498)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (19)" type="Node3D" parent="Scenery/Fences" unique_id=48457095 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (19)" parent="Scenery/Fences" unique_id=48457095 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.285017, 0, 0.78307784, 0, 0.8333334, 0, -0.78307784, 0, -0.285017, 93.2933, -0.40673852, 305.11746)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (20)" type="Node3D" parent="Scenery/Fences" unique_id=871225706 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (20)" parent="Scenery/Fences" unique_id=871225706 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.285017, 0, 0.78307784, 0, 0.8333334, 0, -0.78307784, 0, -0.285017, 97.755486, -0.40673852, 303.49976)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (21)" type="Node3D" parent="Scenery/Fences" unique_id=2118236618 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (21)" parent="Scenery/Fences" unique_id=2118236618 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.41666698, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, -0.41666698, 102.04017, -0.40673852, 301.4636)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (22)" type="Node3D" parent="Scenery/Fences" unique_id=1911711135 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (22)" parent="Scenery/Fences" unique_id=1911711135 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.41666698, 0, 0.7216884, 0, 0.8333334, 0, -0.7216884, 0, -0.41666698, 106.13227, -0.40673923, 299.06067)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (23)" type="Node3D" parent="Scenery/Fences" unique_id=1349751281 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (23)" parent="Scenery/Fences" unique_id=1349751281 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.5356568, 0, 0.6383711, 0, 0.8333334, 0, -0.6383711, 0, 0.5356568, 110.0234, -0.40673804, 299.4429)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (24)" type="Node3D" parent="Scenery/Fences" unique_id=1565149191 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (24)" parent="Scenery/Fences" unique_id=1565149191 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.28501728, 0, 0.7830784, 0, 0.8333334, 0, -0.7830784, 0, -0.28501728, 88.70804, -0.40673852, 306.67114)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (25)" type="Node3D" parent="Scenery/Fences" unique_id=1529064823 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (25)" parent="Scenery/Fences" unique_id=1529064823 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.1447071, 0, 0.82067436, 0, 0.8333334, 0, -0.82067436, 0, -0.1447071, 84.08423, -0.40673852, 307.8967)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (26)" type="Node3D" parent="Scenery/Fences" unique_id=64676017 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (26)" parent="Scenery/Fences" unique_id=64676017 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.1447071, 0, 0.82067436, 0, 0.8333334, 0, -0.82067436, 0, -0.1447071, 79.38884, -0.40673852, 308.69354)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (27)" type="Node3D" parent="Scenery/Fences" unique_id=898351710 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (27)" parent="Scenery/Fences" unique_id=898351710 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.83333504, 0, 5.5879358e-08, 0, 0.8333334, 0, -5.5879358e-08, 0, -0.83333504, 77.092606, -0.40673852, 311.35092)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (28)" type="Node3D" parent="Scenery/Fences" unique_id=962279021 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (28)" parent="Scenery/Fences" unique_id=962279021 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, 39.182056, -0.40673852, 315.86942)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (29)" type="Node3D" parent="Scenery/Fences" unique_id=955751313 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (29)" parent="Scenery/Fences" unique_id=955751313 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, 40.00293, -0.40673852, 311.2497)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (30)" type="Node3D" parent="Scenery/Fences" unique_id=1730150869 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (30)" parent="Scenery/Fences" unique_id=1730150869 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82067317, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.82067317, 40.844494, -0.40673852, 306.59232)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (31)" type="Node3D" parent="Scenery/Fences" unique_id=729991785 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (31)" parent="Scenery/Fences" unique_id=729991785 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 38.42095, -0.40673804, 320.63977)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (32)" type="Node3D" parent="Scenery/Fences" unique_id=921513774 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (32)" parent="Scenery/Fences" unique_id=921513774 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 37.737278, -0.40673804, 325.37097)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (33)" type="Node3D" parent="Scenery/Fences" unique_id=1924354092 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (33)" parent="Scenery/Fences" unique_id=1924354092 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 37.16318, -0.40673876, 330.10867)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (34)" type="Node3D" parent="Scenery/Fences" unique_id=1218768164 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (34)" parent="Scenery/Fences" unique_id=1218768164 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 36.552765, -0.40673995, 334.8312)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (35)" type="Node3D" parent="Scenery/Fences" unique_id=53749119 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (35)" parent="Scenery/Fences" unique_id=53749119 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.82687306, 0, -0.10356408, 0, 0.8333334, 0, 0.10356408, 0, 0.82687306, 36.0104, -0.4067409, 339.53632)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (36)" type="Node3D" parent="Scenery/Fences" unique_id=1466415607 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (36)" parent="Scenery/Fences" unique_id=1466415607 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 35.302467, -0.40673852, 344.22455)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (37)" type="Node3D" parent="Scenery/Fences" unique_id=496557877 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (37)" parent="Scenery/Fences" unique_id=496557877 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 34.474087, -0.40673852, 348.89517)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (38)" type="Node3D" parent="Scenery/Fences" unique_id=130029129 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (38)" parent="Scenery/Fences" unique_id=130029129 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 33.66396, -0.40673804, 353.5671)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (39)" type="Node3D" parent="Scenery/Fences" unique_id=1382997984 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (39)" parent="Scenery/Fences" unique_id=1382997984 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 32.847313, -0.40673923, 358.23813)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (40)" type="Node3D" parent="Scenery/Fences" unique_id=1192112616 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (40)" parent="Scenery/Fences" unique_id=1192112616 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 32.036682, -0.40673852, 362.89755)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (41)" type="Node3D" parent="Scenery/Fences" unique_id=751429099 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (41)" parent="Scenery/Fences" unique_id=751429099 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 31.201376, -0.40673852, 367.5842)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (42)" type="Node3D" parent="Scenery/Fences" unique_id=2035313634 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (42)" parent="Scenery/Fences" unique_id=2035313634 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 30.348614, -0.40673852, 372.2512)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (43)" type="Node3D" parent="Scenery/Fences" unique_id=920905053 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (43)" parent="Scenery/Fences" unique_id=920905053 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 29.556581, -0.40673852, 376.92572)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (44)" type="Node3D" parent="Scenery/Fences" unique_id=2141496569 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (44)" parent="Scenery/Fences" unique_id=2141496569 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 28.736332, -0.40673804, 381.59702)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (45)" type="Node3D" parent="Scenery/Fences" unique_id=1451479109 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (45)" parent="Scenery/Fences" unique_id=1451479109 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 27.899248, -0.40673828, 386.3155)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (46)" type="Node3D" parent="Scenery/Fences" unique_id=1596845676 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (46)" parent="Scenery/Fences" unique_id=1596845676 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 27.068743, -0.40673923, 390.99637)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (47)" type="Node3D" parent="Scenery/Fences" unique_id=1761603888 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (47)" parent="Scenery/Fences" unique_id=1761603888 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 26.269295, -0.40673804, 395.72034)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="picket_fence_short (48)" type="Node3D" parent="Scenery/Fences" unique_id=1871049343 instance=ExtResource("10_4c57u")]
+[node name="picket_fence_short (48)" parent="Scenery/Fences" unique_id=1871049343 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.8206733, 0, -0.14470682, 0, 0.8333334, 0, 0.14470682, 0, 0.8206733, 25.443247, -0.40673852, 400.38113)
 metadata/asset_placer_res_id = "uid://ccwiioata2y5n"
 
-[node name="fence_1_post (46)" type="Node3D" parent="Scenery/Fences" unique_id=617578595 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (46)" parent="Scenery/Fences" unique_id=617578595 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 48.57779, -0.40673733, 132.01564)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (47)" type="Node3D" parent="Scenery/Fences" unique_id=1006548897 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (47)" parent="Scenery/Fences" unique_id=1006548897 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.41666675, 0, 0.8333334, 0, -0.41666675, 0, 0.72168803, 44.62849, -0.40673733, 124.67212)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (48)" type="Node3D" parent="Scenery/Fences" unique_id=495988475 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (48)" parent="Scenery/Fences" unique_id=495988475 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.41666675, 0, 0.8333334, 0, -0.41666675, 0, 0.72168803, 40.429276, -0.40673852, 117.45387)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_A_single_post (49)" type="Node3D" parent="Scenery/Fences" unique_id=326511201 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (49)" parent="Scenery/Fences" unique_id=326511201 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 42.586662, -0.023820877, 121.006905)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (50)" type="Node3D" parent="Scenery/Fences" unique_id=426595174 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (50)" parent="Scenery/Fences" unique_id=426595174 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 46.61277, -0.023820877, 128.3073)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (51)" type="Node3D" parent="Scenery/Fences" unique_id=1088882601 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (51)" parent="Scenery/Fences" unique_id=1088882601 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 50.607, -0.023819447, 135.54932)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (52)" type="Node3D" parent="Scenery/Fences" unique_id=1415867472 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (52)" parent="Scenery/Fences" unique_id=1415867472 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 38.28463, -0.023822308, 113.77963)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_1_post (49)" type="Node3D" parent="Scenery/Fences" unique_id=163018656 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (49)" parent="Scenery/Fences" unique_id=163018656 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 15.412821, -0.40674686, 70.96561)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (50)" type="Node3D" parent="Scenery/Fences" unique_id=168624847 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (50)" parent="Scenery/Fences" unique_id=168624847 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 11.230241, -0.4067359, 63.704647)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (51)" type="Node3D" parent="Scenery/Fences" unique_id=804740481 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (51)" parent="Scenery/Fences" unique_id=804740481 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 7.0912013, -0.40674138, 56.460663)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (52)" type="Node3D" parent="Scenery/Fences" unique_id=829962655 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (52)" parent="Scenery/Fences" unique_id=829962655 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 2.9540126, -0.40674138, 49.233185)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (53)" type="Node3D" parent="Scenery/Fences" unique_id=299266723 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (53)" parent="Scenery/Fences" unique_id=299266723 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, -1.1366781, -0.40673852, 42.062214)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (54)" type="Node3D" parent="Scenery/Fences" unique_id=1449417746 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (54)" parent="Scenery/Fences" unique_id=1449417746 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.78307736, 0, 0.28501683, 0, 0.8333334, 0, -0.28501683, 0, 0.78307736, -4.655349, -0.40673852, 34.54927)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (55)" type="Node3D" parent="Scenery/Fences" unique_id=1385832738 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (55)" parent="Scenery/Fences" unique_id=1385832738 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.72168803, 0, 0.41666675, 0, 0.8333334, 0, -0.41666675, 0, 0.72168803, -8.105469, -0.40673852, 27.021244)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_1_post (56)" type="Node3D" parent="Scenery/Fences" unique_id=2082460664 instance=ExtResource("7_272bh")]
+[node name="fence_1_post (56)" parent="Scenery/Fences" unique_id=2082460664 instance=ExtResource("7_272bh")]
 transform = Transform3D(0.8206733, 0, 0.14470688, 0, 0.8333334, 0, -0.14470688, 0, 0.8206733, -11.009833, -0.40673995, 19.391201)
 metadata/asset_placer_res_id = "uid://btf8mxmrr3ep"
 
-[node name="fence_A_single_post (53)" type="Node3D" parent="Scenery/Fences" unique_id=756189670 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (53)" parent="Scenery/Fences" unique_id=756189670 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -10.11165, 0.19723344, 23.20408)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (54)" type="Node3D" parent="Scenery/Fences" unique_id=631969071 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (54)" parent="Scenery/Fences" unique_id=631969071 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -5.887216, 0.19723201, 30.643337)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (55)" type="Node3D" parent="Scenery/Fences" unique_id=848319042 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (55)" parent="Scenery/Fences" unique_id=848319042 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, -3.0832675, 0.19723201, 38.489876)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (56)" type="Node3D" parent="Scenery/Fences" unique_id=1478523862 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (56)" parent="Scenery/Fences" unique_id=1478523862 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 1.1119461, 0.19723344, 45.51641)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (57)" type="Node3D" parent="Scenery/Fences" unique_id=907143487 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (57)" parent="Scenery/Fences" unique_id=907143487 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 4.976432, 0.19723344, 52.902542)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (58)" type="Node3D" parent="Scenery/Fences" unique_id=1607510419 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (58)" parent="Scenery/Fences" unique_id=1607510419 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 9.171944, 0.19723344, 60.09111)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (59)" type="Node3D" parent="Scenery/Fences" unique_id=1184961177 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (59)" parent="Scenery/Fences" unique_id=1184961177 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 13.275901, 0.19723344, 67.34838)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
-[node name="fence_A_single_post (60)" type="Node3D" parent="Scenery/Fences" unique_id=607582404 instance=ExtResource("8_5vw27")]
+[node name="fence_A_single_post (60)" parent="Scenery/Fences" unique_id=607582404 instance=ExtResource("8_5vw27")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 17.31328, 0.19723201, 74.37786)
 metadata/asset_placer_res_id = "uid://bblch3hlr4c75"
 
 [node name="Trees" type="Node3D" parent="Scenery" unique_id=1468871931]
 
-[node name="leafy_tree_1" type="Node3D" parent="Scenery/Trees" unique_id=1750675691 instance=ExtResource("19_d13ii")]
+[node name="leafy_tree_1" parent="Scenery/Trees" unique_id=1750675691 instance=ExtResource("19_d13ii")]
 transform = Transform3D(4.5410633, 0, 0, 0, 4.5410633, 0, 0, 0, 4.5410633, 55.543495, -0.40673327, 121.63722)
 metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
 
-[node name="leafy_tree_2" type="Node3D" parent="Scenery/Trees" unique_id=1697504338 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2" parent="Scenery/Trees" unique_id=1697504338 instance=ExtResource("20_d13ii")]
 transform = Transform3D(4.758539, 0, 2.7473435, 0, 5.4946866, 0, -2.7473435, 0, 4.758539, -52.840603, -0.40673852, 236.03323)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_3" type="Node3D" parent="Scenery/Trees" unique_id=1098231850 instance=ExtResource("21_1u8w0")]
+[node name="leafy_tree_3" parent="Scenery/Trees" unique_id=1098231850 instance=ExtResource("21_1u8w0")]
 transform = Transform3D(5.606251, 0, 0, 0, 5.606251, 0, 0, 0, 5.606251, 7.043877, -0.40673852, 379.18036)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="alpine_tree_1" type="Node3D" parent="Scenery/Trees" unique_id=1333806243 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1" parent="Scenery/Trees" unique_id=1333806243 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, 197.0713, -0.40673852, 196.6208)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (1)" type="Node3D" parent="Scenery/Trees" unique_id=1601315838 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (1)" parent="Scenery/Trees" unique_id=1601315838 instance=ExtResource("22_0odxb")]
 transform = Transform3D(4.541063, 0, 0, 0, 4.541063, 0, 0, 0, 4.541063, 109.46737, -0.40673852, 381.8643)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (2)" type="Node3D" parent="Scenery/Trees" unique_id=1440489998 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (2)" parent="Scenery/Trees" unique_id=1440489998 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, 191.83844, -0.4067278, 486.16263)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (3)" type="Node3D" parent="Scenery/Trees" unique_id=508656748 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (3)" parent="Scenery/Trees" unique_id=508656748 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, 327.66794, 11.685666, 91.335045)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (4)" type="Node3D" parent="Scenery/Trees" unique_id=1812591186 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (4)" parent="Scenery/Trees" unique_id=1812591186 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, -133.22144, 5.212494, 526.5066)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (5)" type="Node3D" parent="Scenery/Trees" unique_id=1658255062 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (5)" parent="Scenery/Trees" unique_id=1658255062 instance=ExtResource("22_0odxb")]
 transform = Transform3D(3.6050632, 0, 0, 0, 3.6050632, 0, 0, 0, 3.6050632, 185.71272, -0.40676045, -89.833405)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_2" type="Node3D" parent="Scenery/Trees" unique_id=966422117 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2" parent="Scenery/Trees" unique_id=966422117 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-2.9332986, 0, -2.461328, 0, 3.8291447, 0, 2.461328, 0, -2.9332986, 256.5712, -0.40673852, 165.74243)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (1)" type="Node3D" parent="Scenery/Trees" unique_id=1096134551 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (1)" parent="Scenery/Trees" unique_id=1096134551 instance=ExtResource("23_lswn8")]
 transform = Transform3D(1.0397023, 0, -2.8565621, 0, 3.0398858, 0, 2.8565621, 0, 1.0397023, 257.851, -0.39178014, 447.50037)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (2)" type="Node3D" parent="Scenery/Trees" unique_id=1950098169 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (2)" parent="Scenery/Trees" unique_id=1950098169 instance=ExtResource("23_lswn8")]
 transform = Transform3D(1.519947, 0, 2.632623, 0, 3.0398858, 0, -2.632623, 0, 1.519947, -90.352455, -0.40289855, 313.04495)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (3)" type="Node3D" parent="Scenery/Trees" unique_id=1940999114 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (3)" parent="Scenery/Trees" unique_id=1940999114 instance=ExtResource("23_lswn8")]
 transform = Transform3D(1.8391358, 0, -3.1854792, 0, 3.6782615, 0, 3.1854792, 0, 1.8391358, -116.902016, -0.4067278, 149.48714)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (4)" type="Node3D" parent="Scenery/Trees" unique_id=533215562 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (4)" parent="Scenery/Trees" unique_id=533215562 instance=ExtResource("23_lswn8")]
 transform = Transform3D(2.236935, 0, -1.8770131, 0, 2.9201021, 0, 1.8770131, 0, 2.236935, 91.57508, -0.40676045, 22.856739)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_3" type="Node3D" parent="Scenery/Trees" unique_id=2010630135 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3" parent="Scenery/Trees" unique_id=2010630135 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(3.1645825, 0, 0, 0, 3.1645825, 0, 0, 0, 3.1645825, 142.51678, -0.40678215, 142.24785)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (1)" type="Node3D" parent="Scenery/Trees" unique_id=1139947608 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (1)" parent="Scenery/Trees" unique_id=1139947608 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(3.1645825, 0, 0, 0, 3.1645825, 0, 0, 0, 3.1645825, -196.39052, -0.40676045, 335.9573)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (2)" type="Node3D" parent="Scenery/Trees" unique_id=1840673934 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (2)" parent="Scenery/Trees" unique_id=1840673934 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(3.7529447, 0, 0, 0, 3.7529447, 0, 0, 0, 3.7529447, 274.26996, -0.40678215, -32.05503)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (3)" type="Node3D" parent="Scenery/Trees" unique_id=330568145 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (3)" parent="Scenery/Trees" unique_id=330568145 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-1.876473, 0, 3.250147, 0, 3.7529447, 0, -3.250147, 0, -1.876473, -207.54787, -0.40636873, 151.45267)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (4)" type="Node3D" parent="Scenery/Trees" unique_id=1150734632 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (4)" parent="Scenery/Trees" unique_id=1150734632 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-1.876473, 0, 3.2501473, 0, 3.7529447, 0, -3.2501473, 0, -1.876473, 52.40865, -0.40673852, -40.85284)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (5)" type="Node3D" parent="Scenery/Trees" unique_id=592956203 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (5)" parent="Scenery/Trees" unique_id=592956203 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-1.876473, 0, 3.2501473, 0, 3.7529447, 0, -3.2501473, 0, -1.876473, 294.5322, -0.40676045, 308.60687)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (6)" type="Node3D" parent="Scenery/Trees" unique_id=532438810 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (6)" parent="Scenery/Trees" unique_id=532438810 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-1.876473, 0, 3.2501473, 0, 3.7529447, 0, -3.2501473, 0, -1.876473, 328.37003, 0.31874466, 484.16342)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (7)" type="Node3D" parent="Scenery/Trees" unique_id=446152279 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (7)" parent="Scenery/Trees" unique_id=446152279 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-0.7885491, 0, -4.472078, 0, 4.541063, 0, 4.472078, 0, -0.7885491, 321.00235, -0.40523744, 197.50458)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (8)" type="Node3D" parent="Scenery/Trees" unique_id=1973850017 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (8)" parent="Scenery/Trees" unique_id=1973850017 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-0.7885491, 0, -4.472078, 0, 4.541063, 0, 4.472078, 0, -0.7885491, -161.4837, -0.14197111, 412.29092)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (9)" type="Node3D" parent="Scenery/Trees" unique_id=1563586881 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (9)" parent="Scenery/Trees" unique_id=1563586881 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(1.8770077, 0, -2.2369313, 0, 2.920101, 0, 2.2369313, 0, 1.8770077, -259.82452, 2.8399644, 427.93362)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (10)" type="Node3D" parent="Scenery/Trees" unique_id=580403146 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (10)" parent="Scenery/Trees" unique_id=580403146 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(2.5288868, 0, 1.4600528, 0, 2.920101, 0, -1.4600528, 0, 2.5288868, -25.932167, -0.40230012, 470.72562)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_stump_1" type="Node3D" parent="Scenery/Trees" unique_id=1736263095 instance=ExtResource("25_lswn8")]
+[node name="alpine_stump_1" parent="Scenery/Trees" unique_id=1736263095 instance=ExtResource("25_lswn8")]
 transform = Transform3D(5.3853426, 0, 0, 0, 5.3853426, 0, 0, 0, 5.3853426, 249.27051, -0.3949895, 122.72283)
 metadata/asset_placer_res_id = "uid://cal2b1y6wpmj"
 
-[node name="leafy_stump_1" type="Node3D" parent="Scenery/Trees" unique_id=25642270 instance=ExtResource("26_a6jrf")]
+[node name="leafy_stump_1" parent="Scenery/Trees" unique_id=25642270 instance=ExtResource("26_a6jrf")]
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, -43.108166, -0.10281849, 356.46518)
 metadata/asset_placer_res_id = "uid://db2xvhvntk6fu"
 
-[node name="alpine_tree_1 (6)" type="Node3D" parent="Scenery/Trees" unique_id=1603259137 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (6)" parent="Scenery/Trees" unique_id=1603259137 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7863243, 0, 0, 0, 1.7863243, 0, 0, 0, 1.7863243, -67.70616, 0.04869008, 346.52774)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (7)" type="Node3D" parent="Scenery/Trees" unique_id=67077060 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (7)" parent="Scenery/Trees" unique_id=67077060 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7863243, 0, 0, 0, 1.7863243, 0, 0, 0, 1.7863243, -129.39832, -0.40676045, 174.80264)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (8)" type="Node3D" parent="Scenery/Trees" unique_id=1057442059 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (8)" parent="Scenery/Trees" unique_id=1057442059 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.3101928, 0, 1.7591863, 0, 1.7863243, 0, -1.7591863, 0, 0.3101928, -77.13108, -0.4067278, 102.70489)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (9)" type="Node3D" parent="Scenery/Trees" unique_id=1148796280 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (9)" parent="Scenery/Trees" unique_id=1148796280 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.1482269, 0, 1.3684049, 0, 1.7863243, 0, -1.3684049, 0, -1.1482269, 68.31546, -0.406744, 29.076641)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (10)" type="Node3D" parent="Scenery/Trees" unique_id=1956294575 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (10)" parent="Scenery/Trees" unique_id=1956294575 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.524374, 0, 0.44511688, 0, 2.5633118, 0, -0.44511688, 0, -2.524374, 144.54436, -0.4067359, 111.76425)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (11)" type="Node3D" parent="Scenery/Trees" unique_id=201987960 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (11)" parent="Scenery/Trees" unique_id=201987960 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.5243785, 0, -0.4451142, 0, 2.5633118, 0, 0.4451142, 0, -2.5243785, 239.80296, -0.40673852, 141.52644)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (12)" type="Node3D" parent="Scenery/Trees" unique_id=393310554 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (12)" parent="Scenery/Trees" unique_id=393310554 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.87670964, 0, -2.4087338, 0, 2.5633118, 0, 2.4087338, 0, -0.87670964, 229.12573, -0.40673327, 325.01093)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (13)" type="Node3D" parent="Scenery/Trees" unique_id=2003531547 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (13)" parent="Scenery/Trees" unique_id=2003531547 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.44511414, 0, -2.5243807, 0, 2.5633118, 0, 2.5243807, 0, 0.44511414, -74.77569, -0.4067495, 252.44836)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (14)" type="Node3D" parent="Scenery/Trees" unique_id=1240017714 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (14)" parent="Scenery/Trees" unique_id=1240017714 instance=ExtResource("22_0odxb")]
 transform = Transform3D(2.4087348, 0, -0.87671065, 0, 2.5633118, 0, 0.87671065, 0, 2.4087348, -103.823784, -0.3050766, 450.60016)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (15)" type="Node3D" parent="Scenery/Trees" unique_id=838311664 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (15)" parent="Scenery/Trees" unique_id=838311664 instance=ExtResource("22_0odxb")]
 transform = Transform3D(5.173161, 0, -5.5634528e-06, 0, 5.173138, 0, 5.5634528e-06, 0, 5.173161, -278.81116, -0.40673852, 205.1731)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_2 (5)" type="Node3D" parent="Scenery/Trees" unique_id=1342683168 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (5)" parent="Scenery/Trees" unique_id=1342683168 instance=ExtResource("23_lswn8")]
 transform = Transform3D(2.1614523, 0, 0, 0, 2.1614523, 0, 0, 0, 2.1614523, 118.48577, 23.471474, 482.7735)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (6)" type="Node3D" parent="Scenery/Trees" unique_id=1409328775 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (6)" parent="Scenery/Trees" unique_id=1409328775 instance=ExtResource("23_lswn8")]
 transform = Transform3D(2.5633116, 0, 0, 0, 2.5633116, 0, 0, 0, 2.5633116, 236.85095, -0.40673852, 274.33743)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="leafy_tree_1 (1)" type="Node3D" parent="Scenery/Trees" unique_id=947485028 instance=ExtResource("19_d13ii")]
+[node name="leafy_tree_1 (1)" parent="Scenery/Trees" unique_id=947485028 instance=ExtResource("19_d13ii")]
 transform = Transform3D(2.6153574, 0, 0, 0, 2.6153574, 0, 0, 0, 2.6153574, -19.206104, -0.40673852, 325.73737)
 metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
 
-[node name="leafy_tree_1 (2)" type="Node3D" parent="Scenery/Trees" unique_id=1014398306 instance=ExtResource("19_d13ii")]
+[node name="leafy_tree_1 (2)" parent="Scenery/Trees" unique_id=1014398306 instance=ExtResource("19_d13ii")]
 transform = Transform3D(2.3759696, 0, 1.9936751, 0, 3.1016073, 0, -1.9936751, 0, 2.3759696, -13.402526, 0.49086857, 495.7481)
 metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
 
-[node name="leafy_tree_1 (3)" type="Node3D" parent="Scenery/Trees" unique_id=2117840141 instance=ExtResource("19_d13ii")]
+[node name="leafy_tree_1 (3)" parent="Scenery/Trees" unique_id=2117840141 instance=ExtResource("19_d13ii")]
 transform = Transform3D(1.0608125, 0, 2.9145586, 0, 3.1016073, 0, -2.9145586, 0, 1.0608125, -196.79561, -0.40676045, 363.25937)
 metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
 
-[node name="leafy_tree_1 (4)" type="Node3D" parent="Scenery/Trees" unique_id=2110234054 instance=ExtResource("19_d13ii")]
+[node name="leafy_tree_1 (4)" parent="Scenery/Trees" unique_id=2110234054 instance=ExtResource("19_d13ii")]
 transform = Transform3D(2.914559, 0, 1.0608131, 0, 3.1016073, 0, -1.0608131, 0, 2.914559, -226.01976, -0.40691257, 187.77017)
 metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
 
-[node name="leafy_tree_1 (5)" type="Node3D" parent="Scenery/Trees" unique_id=1230856861 instance=ExtResource("19_d13ii")]
+[node name="leafy_tree_1 (5)" parent="Scenery/Trees" unique_id=1230856861 instance=ExtResource("19_d13ii")]
 transform = Transform3D(2.270534, 0, 3.9326792, 0, 4.541063, 0, -3.9326792, 0, 2.270534, -142.9657, -0.40673852, 96.60962)
 metadata/asset_placer_res_id = "uid://c65ikvyc1v7nf"
 
-[node name="leafy_tree_2 (1)" type="Node3D" parent="Scenery/Trees" unique_id=20547583 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (1)" parent="Scenery/Trees" unique_id=20547583 instance=ExtResource("20_d13ii")]
 transform = Transform3D(2.1614523, 0, 0, 0, 2.1614523, 0, 0, 0, 2.1614523, -153.62538, 0.3838215, 384.26614)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (2)" type="Node3D" parent="Scenery/Trees" unique_id=926950553 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (2)" parent="Scenery/Trees" unique_id=926950553 instance=ExtResource("20_d13ii")]
 transform = Transform3D(2.1614523, 0, 0, 0, 2.1614523, 0, 0, 0, 2.1614523, 214.53798, 0.035614014, 448.91446)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (3)" type="Node3D" parent="Scenery/Trees" unique_id=634974258 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (3)" parent="Scenery/Trees" unique_id=634974258 instance=ExtResource("20_d13ii")]
 transform = Transform3D(2.1614523, 0, 0, 0, 2.1614523, 0, 0, 0, 2.1614523, 80.3041, 44.614525, 505.0922)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (4)" type="Node3D" parent="Scenery/Trees" unique_id=1193553907 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (4)" parent="Scenery/Trees" unique_id=1193553907 instance=ExtResource("20_d13ii")]
 transform = Transform3D(1.3076793, 0, 2.264966, 0, 2.6153574, 0, -2.264966, 0, 1.3076793, 48.35322, -0.40673852, 418.45578)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (5)" type="Node3D" parent="Scenery/Trees" unique_id=1787138585 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (5)" parent="Scenery/Trees" unique_id=1787138585 instance=ExtResource("20_d13ii")]
 transform = Transform3D(1.3076794, 0, 2.264966, 0, 2.6153574, 0, -2.264966, 0, 1.3076794, -56.93234, -0.2781949, 399.53952)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (6)" type="Node3D" parent="Scenery/Trees" unique_id=1204631975 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (6)" parent="Scenery/Trees" unique_id=1204631975 instance=ExtResource("20_d13ii")]
 transform = Transform3D(-2.0034802, 0, 1.6811206, 0, 2.6153574, 0, -1.6811206, 0, -2.0034802, -82.54613, 0.8883574, 481.50198)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (7)" type="Node3D" parent="Scenery/Trees" unique_id=1857793034 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (7)" parent="Scenery/Trees" unique_id=1857793034 instance=ExtResource("20_d13ii")]
 transform = Transform3D(-4.4720764, 0, 0.7885493, 0, 4.5410633, 0, -0.7885493, 0, -4.4720764, 126.94817, -0.40673852, -23.55296)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_3 (1)" type="Node3D" parent="Scenery/Trees" unique_id=164600456 instance=ExtResource("21_1u8w0")]
+[node name="leafy_tree_3 (1)" parent="Scenery/Trees" unique_id=164600456 instance=ExtResource("21_1u8w0")]
 transform = Transform3D(4.633265, 0, 0, 0, 4.633265, 0, 0, 0, 4.633265, 269.06528, -0.39340138, 235.28041)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="leafy_tree_3 (2)" type="Node3D" parent="Scenery/Trees" unique_id=1101491138 instance=ExtResource("21_1u8w0")]
+[node name="leafy_tree_3 (2)" parent="Scenery/Trees" unique_id=1101491138 instance=ExtResource("21_1u8w0")]
 transform = Transform3D(2.4123473, 0, 2.8749232, 0, 3.752945, 0, -2.8749232, 0, 2.4123473, 96.17087, -0.40673852, 167.94136)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="leafy_tree_2 (8)" type="Node3D" parent="Scenery/Trees" unique_id=1454842968 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (8)" parent="Scenery/Trees" unique_id=1454842968 instance=ExtResource("20_d13ii")]
 transform = Transform3D(-3.7709734, 0, 0.6649253, 0, 3.8291447, 0, -0.6649253, 0, -3.7709734, 143.32217, -0.406744, 278.7124)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (9)" type="Node3D" parent="Scenery/Trees" unique_id=685303997 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (9)" parent="Scenery/Trees" unique_id=685303997 instance=ExtResource("20_d13ii")]
 transform = Transform3D(-3.7709734, 0, 0.6649253, 0, 3.8291447, 0, -0.6649253, 0, -3.7709734, 254.59006, -0.40673852, 297.04684)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (10)" type="Node3D" parent="Scenery/Trees" unique_id=1375190751 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (10)" parent="Scenery/Trees" unique_id=1375190751 instance=ExtResource("20_d13ii")]
 transform = Transform3D(-5.521082, 0, 0.97351766, 0, 5.606251, 0, -0.97351766, 0, -5.521082, 336.81955, -0.27086282, 294.19995)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (11)" type="Node3D" parent="Scenery/Trees" unique_id=808006968 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (11)" parent="Scenery/Trees" unique_id=808006968 instance=ExtResource("20_d13ii")]
 transform = Transform3D(-1.9174553, 0, -5.268156, 0, 5.606251, 0, 5.268156, 0, -1.9174553, 275.68298, 2.2390542, 100.8323)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_2 (12)" type="Node3D" parent="Scenery/Trees" unique_id=161744535 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (12)" parent="Scenery/Trees" unique_id=161744535 instance=ExtResource("20_d13ii")]
 transform = Transform3D(-1.5531389, 0, -4.267206, 0, 4.5410633, 0, 4.267206, 0, -1.5531389, 230.04451, -0.38956094, 1.4847947)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="leafy_tree_3 (3)" type="Node3D" parent="Scenery/Trees" unique_id=1666898961 instance=ExtResource("21_1u8w0")]
+[node name="leafy_tree_3 (3)" parent="Scenery/Trees" unique_id=1666898961 instance=ExtResource("21_1u8w0")]
 transform = Transform3D(7.8846793, 0, 0, 0, 7.8846793, 0, 0, 0, 7.8846793, 308.54407, -0.4067278, 4.983686)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="leafy_tree_3 (4)" type="Node3D" parent="Scenery/Trees" unique_id=422354577 instance=ExtResource("21_1u8w0")]
+[node name="leafy_tree_3 (4)" parent="Scenery/Trees" unique_id=422354577 instance=ExtResource("21_1u8w0")]
 transform = Transform3D(0.8804304, 0, 4.993166, 0, 5.0701923, 0, -4.993166, 0, 0.8804304, 254.65166, 8.620954, 64.22645)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="leafy_tree_3 (5)" type="Node3D" parent="Scenery/Trees" unique_id=1606629 instance=ExtResource("21_1u8w0")]
+[node name="leafy_tree_3 (5)" parent="Scenery/Trees" unique_id=1606629 instance=ExtResource("21_1u8w0")]
 transform = Transform3D(0.8804304, 0, 4.993166, 0, 5.0701923, 0, -4.993166, 0, 0.8804304, 179.91434, -0.3082204, 361.99265)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="alpine_tree_3 (11)" type="Node3D" parent="Scenery/Trees" unique_id=974393145 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (11)" parent="Scenery/Trees" unique_id=974393145 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(3.6050644, 0, 0, 0, 3.6050644, 0, 0, 0, 3.6050644, 138.92947, -0.40673852, 208.61244)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_1 (16)" type="Node3D" parent="Scenery/Trees" unique_id=653507806 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (16)" parent="Scenery/Trees" unique_id=653507806 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.4564719, 0, 0.8408944, 0, 1.6817887, 0, -0.8408944, 0, 1.4564719, 296.969, 0.1824665, 111.704)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (17)" type="Node3D" parent="Scenery/Trees" unique_id=1961587154 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (17)" parent="Scenery/Trees" unique_id=1961587154 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.5752058, 0, 1.5803648, 0, 1.6817887, 0, -1.5803648, 0, 0.5752058, 285.61676, -0.40673852, 197.06273)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (18)" type="Node3D" parent="Scenery/Trees" unique_id=234181446 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (18)" parent="Scenery/Trees" unique_id=234181446 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.57520586, 0, 1.580365, 0, 1.6817887, 0, -1.580365, 0, 0.57520586, 270.0562, -0.4061947, 282.1907)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (19)" type="Node3D" parent="Scenery/Trees" unique_id=1655024878 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (19)" parent="Scenery/Trees" unique_id=1655024878 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.57520586, 0, 1.580365, 0, 1.6817887, 0, -1.580365, 0, 0.57520586, 398.1003, 30.841045, 279.0712)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (20)" type="Node3D" parent="Scenery/Trees" unique_id=1912765035 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (20)" parent="Scenery/Trees" unique_id=1912765035 instance=ExtResource("22_0odxb")]
 transform = Transform3D(0.57520586, 0, 1.580365, 0, 1.6817887, 0, -1.580365, 0, 0.57520586, 399.54398, 22.432844, 150.82379)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (21)" type="Node3D" parent="Scenery/Trees" unique_id=1893400598 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (21)" parent="Scenery/Trees" unique_id=1893400598 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.3533679, 0, 2.0040493, 0, 2.0349643, 0, -2.0040493, 0, -0.3533679, 272.95718, -0.25759077, 13.404046)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (22)" type="Node3D" parent="Scenery/Trees" unique_id=100804899 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (22)" parent="Scenery/Trees" unique_id=100804899 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.35336792, 0, 2.0040495, 0, 2.0349643, 0, -2.0040495, 0, -0.35336792, 397.97006, 18.308727, 40.3085)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (23)" type="Node3D" parent="Scenery/Trees" unique_id=1031948534 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (23)" parent="Scenery/Trees" unique_id=1031948534 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.35336792, 0, 2.0040495, 0, 2.0349643, 0, -2.0040495, 0, -0.35336792, 282.07977, -0.28624535, 435.98013)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (24)" type="Node3D" parent="Scenery/Trees" unique_id=922895848 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (24)" parent="Scenery/Trees" unique_id=922895848 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-0.35336792, 0, 2.0040495, 0, 2.0349643, 0, -2.0040495, 0, -0.35336792, 27.758848, -0.40671682, 413.77365)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (25)" type="Node3D" parent="Scenery/Trees" unique_id=1797756807 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (25)" parent="Scenery/Trees" unique_id=1797756807 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.1924138, 0, 1.8396537, 0, 2.8619914, 0, -1.8396537, 0, -2.1924138, -152.7646, -0.4067495, 299.0002)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (26)" type="Node3D" parent="Scenery/Trees" unique_id=19224563 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (26)" parent="Scenery/Trees" unique_id=19224563 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.1924138, 0, 1.8396537, 0, 2.8619914, 0, -1.8396537, 0, -2.1924138, -207.07994, -0.4067495, 395.85516)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (27)" type="Node3D" parent="Scenery/Trees" unique_id=1342765304 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (27)" parent="Scenery/Trees" unique_id=1342765304 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.1924138, 0, 1.8396537, 0, 2.8619914, 0, -1.8396537, 0, -2.1924138, 330.4356, 1.5108619, 168.39023)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (28)" type="Node3D" parent="Scenery/Trees" unique_id=2083717501 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (28)" parent="Scenery/Trees" unique_id=2083717501 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-2.8619933, 0, 4.2219958e-07, 0, 2.8619914, 0, -4.2219958e-07, 0, -2.8619933, 333.1147, -0.40673852, 323.65033)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_2 (7)" type="Node3D" parent="Scenery/Trees" unique_id=1001106263 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (7)" parent="Scenery/Trees" unique_id=1001106263 instance=ExtResource("23_lswn8")]
 transform = Transform3D(1.6557686, 0, 1.3893551, 0, 2.1614523, 0, -1.3893551, 0, 1.6557686, 302.57132, -0.40673852, 211.61592)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (8)" type="Node3D" parent="Scenery/Trees" unique_id=1752064674 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (8)" parent="Scenery/Trees" unique_id=1752064674 instance=ExtResource("23_lswn8")]
 transform = Transform3D(1.3659398e-07, 0, 2.1614528, 0, 2.1614523, 0, -2.1614528, 0, 1.3659398e-07, 360.4145, 6.175374, 140.88875)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (9)" type="Node3D" parent="Scenery/Trees" unique_id=1202017584 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (9)" parent="Scenery/Trees" unique_id=1202017584 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-1.3893551, 0, 1.655769, 0, 2.1614523, 0, -1.655769, 0, -1.3893551, 351.357, 14.968769, 48.529144)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (10)" type="Node3D" parent="Scenery/Trees" unique_id=1036294277 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (10)" parent="Scenery/Trees" unique_id=1036294277 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-1.3893551, 0, 1.6557691, 0, 2.1614523, 0, -1.6557691, 0, -1.3893551, 244.159, 4.7282367, 49.96347)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (11)" type="Node3D" parent="Scenery/Trees" unique_id=1159287177 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (11)" parent="Scenery/Trees" unique_id=1159287177 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-1.3893551, 0, 1.6557691, 0, 2.1614523, 0, -1.6557691, 0, -1.3893551, 267.35913, -0.40676045, 320.44113)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (12)" type="Node3D" parent="Scenery/Trees" unique_id=664944118 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (12)" parent="Scenery/Trees" unique_id=664944118 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-2.4576325, 0, 0.89450544, 0, 2.6153574, 0, -0.89450544, 0, -2.4576325, 297.38754, 1.3379331, 263.36594)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (13)" type="Node3D" parent="Scenery/Trees" unique_id=2105165963 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (13)" parent="Scenery/Trees" unique_id=2105165963 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-2.4576325, 0, 0.89450544, 0, 2.6153574, 0, -0.89450544, 0, -2.4576325, 267.02225, -0.40673852, 212.4301)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (14)" type="Node3D" parent="Scenery/Trees" unique_id=540752551 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (14)" parent="Scenery/Trees" unique_id=540752551 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-2.4576325, 0, 0.89450544, 0, 2.6153574, 0, -0.89450544, 0, -2.4576325, 281.66565, -0.40671682, 135.32628)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (15)" type="Node3D" parent="Scenery/Trees" unique_id=1482594783 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (15)" parent="Scenery/Trees" unique_id=1482594783 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-2.4576325, 0, 0.89450544, 0, 2.6153574, 0, -0.89450544, 0, -2.4576325, 396.14856, 28.071812, 221.15184)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (16)" type="Node3D" parent="Scenery/Trees" unique_id=2007572208 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (16)" parent="Scenery/Trees" unique_id=2007572208 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-3.1220791, 0, -1.8025323, 0, 3.6050634, 0, 1.8025323, 0, -3.1220791, 396.09195, 34.697636, 106.403564)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (17)" type="Node3D" parent="Scenery/Trees" unique_id=1568564488 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (17)" parent="Scenery/Trees" unique_id=1568564488 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-3.1220791, 0, -1.8025323, 0, 3.6050634, 0, 1.8025323, 0, -3.1220791, 281.1177, -0.38136935, 382.2929)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (18)" type="Node3D" parent="Scenery/Trees" unique_id=896526382 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (18)" parent="Scenery/Trees" unique_id=896526382 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-3.1220794, 0, 1.8025335, 0, 3.6050634, 0, -1.8025335, 0, -3.1220794, 167.94118, 0.6999693, 417.18112)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (19)" type="Node3D" parent="Scenery/Trees" unique_id=556399529 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (19)" parent="Scenery/Trees" unique_id=556399529 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-3.1220794, 0, 1.8025335, 0, 3.6050634, 0, -1.8025335, 0, -3.1220794, -192.30226, -0.40673852, 222.9462)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (20)" type="Node3D" parent="Scenery/Trees" unique_id=442786467 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (20)" parent="Scenery/Trees" unique_id=442786467 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-3.1220794, 0, 1.8025335, 0, 3.6050634, 0, -1.8025335, 0, -3.1220794, -141.88298, 0.30496144, 365.58044)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (21)" type="Node3D" parent="Scenery/Trees" unique_id=72163268 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (21)" parent="Scenery/Trees" unique_id=72163268 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-0.9788612, 0, -2.6893964, 0, 2.8619914, 0, 2.6893964, 0, -0.9788612, -86.52718, 0.29414797, 377.62866)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (22)" type="Node3D" parent="Scenery/Trees" unique_id=1841826851 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (22)" parent="Scenery/Trees" unique_id=1841826851 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-2.237568, 0, -0.39454275, 0, 2.2720807, 0, 0.39454275, 0, -2.237568, 5.0938544, -0.4067278, 411.88004)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_3 (12)" type="Node3D" parent="Scenery/Trees" unique_id=483550120 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (12)" parent="Scenery/Trees" unique_id=483550120 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(1.5470028, 0, 0.8931623, 0, 1.7863243, 0, -0.8931623, 0, 1.5470028, -16.517405, -0.4040842, 408.43732)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (13)" type="Node3D" parent="Scenery/Trees" unique_id=107003843 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (13)" parent="Scenery/Trees" unique_id=107003843 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(1.5470028, 0, 0.8931623, 0, 1.7863243, 0, -0.8931623, 0, 1.5470028, -103.2023, -0.12442374, 366.50687)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (14)" type="Node3D" parent="Scenery/Trees" unique_id=801770478 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (14)" parent="Scenery/Trees" unique_id=801770478 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(1.1482279, 0, 1.3684045, 0, 1.7863243, 0, -1.3684045, 0, 1.1482279, -43.34192, -0.33095717, 377.06036)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (15)" type="Node3D" parent="Scenery/Trees" unique_id=412266945 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (15)" parent="Scenery/Trees" unique_id=412266945 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(4.7187012e-07, 0, 2.563314, 0, 2.5633118, 0, -2.563314, 0, 4.7187012e-07, 39.414333, -0.40673852, 385.47156)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (16)" type="Node3D" parent="Scenery/Trees" unique_id=1369889294 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (16)" parent="Scenery/Trees" unique_id=1369889294 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(4.7187012e-07, 0, 2.563314, 0, 2.5633118, 0, -2.563314, 0, 4.7187012e-07, 35.316944, 0.346725, 444.415)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (17)" type="Node3D" parent="Scenery/Trees" unique_id=1500950571 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (17)" parent="Scenery/Trees" unique_id=1500950571 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-1.6476667, 0, 1.9636137, 0, 2.5633118, 0, -1.9636137, 0, -1.6476667, 65.650276, 26.8455, 487.17572)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (18)" type="Node3D" parent="Scenery/Trees" unique_id=9274235 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (18)" parent="Scenery/Trees" unique_id=9274235 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-1.6476667, 0, 1.9636137, 0, 2.5633118, 0, -1.9636137, 0, -1.6476667, 274.71878, 27.269072, 549.42316)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (19)" type="Node3D" parent="Scenery/Trees" unique_id=1804994735 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (19)" parent="Scenery/Trees" unique_id=1804994735 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-2.524373, 0, 0.44511583, 0, 2.5633118, 0, -0.44511583, 0, -2.524373, 367.30927, 34.90946, 540.4296)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (20)" type="Node3D" parent="Scenery/Trees" unique_id=873088070 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (20)" parent="Scenery/Trees" unique_id=873088070 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-2.2198975, 0, -1.2816576, 0, 2.5633118, 0, 1.2816576, 0, -2.2198975, 377.7553, 20.935738, 452.1458)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (21)" type="Node3D" parent="Scenery/Trees" unique_id=1301649158 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (21)" parent="Scenery/Trees" unique_id=1301649158 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-1.281659, 0, -2.2198968, 0, 2.5633118, 0, 2.2198968, 0, -1.281659, 401.3658, 30.12727, 364.68982)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (22)" type="Node3D" parent="Scenery/Trees" unique_id=494027897 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (22)" parent="Scenery/Trees" unique_id=494027897 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(-0.44511628, 0, -2.5243742, 0, 2.5633118, 0, 2.5243742, 0, -0.44511628, 328.7175, -0.4067278, 353.69983)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_3 (23)" type="Node3D" parent="Scenery/Trees" unique_id=515494517 instance=ExtResource("24_1u8w0")]
+[node name="alpine_tree_3 (23)" parent="Scenery/Trees" unique_id=515494517 instance=ExtResource("24_1u8w0")]
 transform = Transform3D(0.8767051, 0, -2.4087312, 0, 2.5633118, 0, 2.4087312, 0, 0.8767051, 239.13799, -0.40673852, 355.98904)
 metadata/asset_placer_res_id = "uid://rd6xro7aqi8e"
 
-[node name="alpine_tree_2 (23)" type="Node3D" parent="Scenery/Trees" unique_id=461983004 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (23)" parent="Scenery/Trees" unique_id=461983004 instance=ExtResource("23_lswn8")]
 transform = Transform3D(2.2198937, 0, 1.2816559, 0, 2.5633116, 0, -1.2816559, 0, 2.2198937, 240.02048, -0.33353543, 394.78232)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (24)" type="Node3D" parent="Scenery/Trees" unique_id=260164958 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (24)" parent="Scenery/Trees" unique_id=260164958 instance=ExtResource("23_lswn8")]
 transform = Transform3D(2.2198937, 0, 1.2816559, 0, 2.5633116, 0, -1.2816559, 0, 2.2198937, 373.122, 16.428429, 425.36334)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (25)" type="Node3D" parent="Scenery/Trees" unique_id=136770864 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (25)" parent="Scenery/Trees" unique_id=136770864 instance=ExtResource("23_lswn8")]
 transform = Transform3D(0.4451148, 0, 2.5243702, 0, 2.5633116, 0, -2.5243702, 0, 0.4451148, 392.63446, 23.321505, 332.84152)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (26)" type="Node3D" parent="Scenery/Trees" unique_id=662446254 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (26)" parent="Scenery/Trees" unique_id=662446254 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-1.2816565, 0, 2.2198951, 0, 2.5633116, 0, -2.2198951, 0, -1.2816565, 238.59091, -0.34573054, 519.29346)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_2 (27)" type="Node3D" parent="Scenery/Trees" unique_id=362127005 instance=ExtResource("23_lswn8")]
+[node name="alpine_tree_2 (27)" parent="Scenery/Trees" unique_id=362127005 instance=ExtResource("23_lswn8")]
 transform = Transform3D(-1.9636123, 0, 1.6476673, 0, 2.5633116, 0, -1.6476673, 0, -1.9636123, 151.13817, 22.77285, 548.62195)
 metadata/asset_placer_res_id = "uid://caakuikmt1e0u"
 
-[node name="alpine_tree_1 (29)" type="Node3D" parent="Scenery/Trees" unique_id=680002214 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (29)" parent="Scenery/Trees" unique_id=680002214 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.4763011, 0, 0, 0, 1.4763011, 0, 0, 0, 1.4763011, 110.386444, 37.754444, 528.05853)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (30)" type="Node3D" parent="Scenery/Trees" unique_id=493294478 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (30)" parent="Scenery/Trees" unique_id=493294478 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.9122409, 0, 0.6959988, 0, 2.0349646, 0, -0.6959988, 0, 1.9122409, 146.52917, -0.35232306, 395.84756)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (31)" type="Node3D" parent="Scenery/Trees" unique_id=1856867742 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (31)" parent="Scenery/Trees" unique_id=1856867742 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7623312, 0, 1.0174823, 0, 2.0349646, 0, -1.0174823, 0, 1.7623312, 284.04147, -0.40676045, 332.95663)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (32)" type="Node3D" parent="Scenery/Trees" unique_id=974181481 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (32)" parent="Scenery/Trees" unique_id=974181481 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7623312, 0, 1.0174823, 0, 2.0349646, 0, -1.0174823, 0, 1.7623312, 259.16782, -0.406744, 257.52652)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (33)" type="Node3D" parent="Scenery/Trees" unique_id=1865017314 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (33)" parent="Scenery/Trees" unique_id=1865017314 instance=ExtResource("22_0odxb")]
 transform = Transform3D(1.7623312, 0, 1.0174823, 0, 2.0349646, 0, -1.0174823, 0, 1.7623312, 291.27084, -0.37135005, 229.52325)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (34)" type="Node3D" parent="Scenery/Trees" unique_id=2096934145 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (34)" parent="Scenery/Trees" unique_id=2096934145 instance=ExtResource("22_0odxb")]
 transform = Transform3D(4.7187012e-07, 0, 2.034965, 0, 2.0349646, 0, -2.034965, 0, 4.7187012e-07, 346.9315, 2.212325, 267.5292)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (35)" type="Node3D" parent="Scenery/Trees" unique_id=1124775531 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (35)" parent="Scenery/Trees" unique_id=1124775531 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.5588735, 0, 1.3080512, 0, 2.0349646, 0, -1.3080512, 0, -1.5588735, 294.1067, -0.40092945, 144.06836)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (36)" type="Node3D" parent="Scenery/Trees" unique_id=640268756 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (36)" parent="Scenery/Trees" unique_id=640268756 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.5588735, 0, 1.3080512, 0, 2.0349646, 0, -1.3080512, 0, -1.5588735, 360.8473, -0.07185745, 2.1484375)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="alpine_tree_1 (37)" type="Node3D" parent="Scenery/Trees" unique_id=1212647679 instance=ExtResource("22_0odxb")]
+[node name="alpine_tree_1 (37)" parent="Scenery/Trees" unique_id=1212647679 instance=ExtResource("22_0odxb")]
 transform = Transform3D(-1.9122429, 0, -0.6959984, 0, 2.0349646, 0, 0.6959984, 0, -1.9122429, 360.48404, -0.4067278, -55.80386)
 metadata/asset_placer_res_id = "uid://ellpid88d70y"
 
-[node name="leafy_stump_1 (1)" type="Node3D" parent="Scenery/Trees" unique_id=670208174 instance=ExtResource("26_a6jrf")]
+[node name="leafy_stump_1 (1)" parent="Scenery/Trees" unique_id=670208174 instance=ExtResource("26_a6jrf")]
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, 320.36435, 26.184809, 68.65732)
 metadata/asset_placer_res_id = "uid://db2xvhvntk6fu"
 
-[node name="leafy_stump_1 (2)" type="Node3D" parent="Scenery/Trees" unique_id=1335606797 instance=ExtResource("26_a6jrf")]
+[node name="leafy_stump_1 (2)" parent="Scenery/Trees" unique_id=1335606797 instance=ExtResource("26_a6jrf")]
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, 207.47697, -0.40673852, 204.56593)
 metadata/asset_placer_res_id = "uid://db2xvhvntk6fu"
 
-[node name="leafy_tree_3 (6)" type="Node3D" parent="Scenery/Trees" unique_id=1970894116 instance=ExtResource("21_1u8w0")]
+[node name="leafy_tree_3 (6)" parent="Scenery/Trees" unique_id=1970894116 instance=ExtResource("21_1u8w0")]
 transform = Transform3D(3.1016073, 0, 0, 0, 3.1016073, 0, 0, 0, 3.1016073, 240.4978, -0.40673852, 238.15088)
 metadata/asset_placer_res_id = "uid://dnpc6v770ptmo"
 
-[node name="leafy_tree_2 (13)" type="Node3D" parent="Scenery/Trees" unique_id=416390718 instance=ExtResource("20_d13ii")]
+[node name="leafy_tree_2 (13)" parent="Scenery/Trees" unique_id=416390718 instance=ExtResource("20_d13ii")]
 transform = Transform3D(1.3893551, 0, 1.6557689, 0, 2.1614523, 0, -1.6557689, 0, 1.3893551, 218.19612, -0.40673852, 306.59286)
 metadata/asset_placer_res_id = "uid://bvuoug0kjqyre"
 
-[node name="town_square_tree" type="Node3D" parent="Scenery/Trees" unique_id=845578751 instance=ExtResource("15_cegan")]
+[node name="town_square_tree" parent="Scenery/Trees" unique_id=845578751 instance=ExtResource("15_cegan")]
 transform = Transform3D(2.3652823, 0, 0, 0, 2.3652823, 0, 0, 0, 2.3652823, 170.70525, -0.406744, 67.44344)
 metadata/asset_placer_res_id = "uid://12tgaag32x0d"
 
 [node name="LampsAndPoles" type="Node3D" parent="Scenery" unique_id=1382806184]
 
-[node name="StreetLamp" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=2057073631 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp" parent="Scenery/LampsAndPoles" unique_id=2057073631 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.9576936, 0, 0.71254206, 0, 2.0833335, 0, -0.71254206, 0, 1.9576936, 69.94876, -0.40674138, 168.49251)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (1)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1648262827 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (1)" parent="Scenery/LampsAndPoles" unique_id=1648262827 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.8042212, 0, -1.0416675, 0, 2.0833335, 0, 1.0416675, 0, 1.8042212, 132.03456, -0.40673852, 271.1502)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (2)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1134048152 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (2)" parent="Scenery/LampsAndPoles" unique_id=1134048152 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-1.8042226, 0, -1.0416694, 0, 2.0833335, 0, 1.0416694, 0, -1.8042226, 8.967308, -0.406744, 200.77461)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (3)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1402441211 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (3)" parent="Scenery/LampsAndPoles" unique_id=1402441211 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-1.8042226, 0, -1.0416694, 0, 2.0833335, 0, 1.0416694, 0, -1.8042226, -21.126373, -0.4067495, 146.36351)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (4)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1745456177 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (4)" parent="Scenery/LampsAndPoles" unique_id=1745456177 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-1.8042226, 0, -1.0416694, 0, 2.0833335, 0, 1.0416694, 0, -1.8042226, -54.81138, -0.40673852, 84.15055)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (5)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=190424507 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (5)" parent="Scenery/LampsAndPoles" unique_id=190424507 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.804225, 0, 1.0416704, 0, 2.0833335, 0, -1.0416704, 0, 1.804225, 6.1369834, -0.40673327, 50.068985)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (6)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1470362397 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (6)" parent="Scenery/LampsAndPoles" unique_id=1470362397 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.804225, 0, 1.0416704, 0, 2.0833335, 0, -1.0416704, 0, 1.804225, 38.233955, -0.40673327, 111.862045)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (7)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1098317483 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (7)" parent="Scenery/LampsAndPoles" unique_id=1098317483 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.8042203, 0, 1.0416669, 0, 2.0833335, 0, -1.0416669, 0, 1.8042203, -29.779455, -0.40673852, -12.887014)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (8)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=2128645743 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (8)" parent="Scenery/LampsAndPoles" unique_id=2128645743 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.8042203, 0, 1.0416669, 0, 2.0833335, 0, -1.0416669, 0, 1.8042203, -61.084698, -0.40674138, -69.70945)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (9)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=261307683 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (9)" parent="Scenery/LampsAndPoles" unique_id=261307683 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.8042203, 0, 1.0416669, 0, 2.0833335, 0, -1.0416669, 0, 1.8042203, -91.80699, -0.40673327, -125.96276)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (10)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1930615973 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (10)" parent="Scenery/LampsAndPoles" unique_id=1930615973 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-1.8042227, 0, -1.0416672, 0, 2.0833335, 0, 1.0416672, 0, -1.8042227, -151.17674, -0.40673852, -88.97004)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (11)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=2025066358 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (11)" parent="Scenery/LampsAndPoles" unique_id=2025066358 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-1.8042227, 0, -1.0416672, 0, 2.0833335, 0, 1.0416672, 0, -1.8042227, -120.7182, -0.40673852, -34.23007)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (12)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=549240589 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (12)" parent="Scenery/LampsAndPoles" unique_id=549240589 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-1.8042227, 0, -1.0416672, 0, 2.0833335, 0, 1.0416672, 0, -1.8042227, -87.47133, -0.40673852, 25.56661)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (13)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1820984294 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (13)" parent="Scenery/LampsAndPoles" unique_id=1820984294 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-0.71254456, 0, -1.957696, 0, 2.0833335, 0, 1.957696, 0, -0.71254456, 39.209736, -0.40673852, 304.10608)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (14)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=861570695 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (14)" parent="Scenery/LampsAndPoles" unique_id=861570695 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-2.0516872, 0, -0.3617666, 0, 2.0833335, 0, 0.3617666, 0, -2.0516872, -0.964667, -0.40673852, 252.37346)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (15)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=874800605 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (15)" parent="Scenery/LampsAndPoles" unique_id=874800605 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.5959309, 0, 1.3391445, 0, 2.0833335, 0, -1.3391445, 0, 1.5959309, 128.36748, -0.4067495, 200.57689)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="telephone_pole" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=220095021 instance=ExtResource("12_dg77c")]
+[node name="telephone_pole" parent="Scenery/LampsAndPoles" unique_id=220095021 instance=ExtResource("12_dg77c")]
 transform = Transform3D(-0.1447067, 0, 0.82067347, 0, 0.8333334, 0, -0.82067347, 0, -0.1447067, 241.94525, 3.73241, 38.644333)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
-[node name="telephone_pole (1)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1556135418 instance=ExtResource("12_dg77c")]
+[node name="telephone_pole (1)" parent="Scenery/LampsAndPoles" unique_id=1556135418 instance=ExtResource("12_dg77c")]
 transform = Transform3D(0.41666707, 0, -0.7216888, 0, 0.8333334, 0, 0.7216888, 0, 0.41666707, 119.183304, -0.40673852, 95.095566)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
-[node name="telephone_pole (2)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=757542167 instance=ExtResource("12_dg77c")]
+[node name="telephone_pole (2)" parent="Scenery/LampsAndPoles" unique_id=757542167 instance=ExtResource("12_dg77c")]
 transform = Transform3D(0.41666707, 0, -0.7216888, 0, 0.8333334, 0, 0.7216888, 0, 0.41666707, -8.952255, -0.4067278, 165.34222)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
-[node name="telephone_pole (3)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1051383089 instance=ExtResource("12_dg77c")]
+[node name="telephone_pole (3)" parent="Scenery/LampsAndPoles" unique_id=1051383089 instance=ExtResource("12_dg77c")]
 transform = Transform3D(0.83333457, 0, -2.0489098e-07, 0, 0.8333334, 0, 2.0489098e-07, 0, 0.83333457, -37.886654, -0.4067495, 267.16614)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
-[node name="telephone_pole (4)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=13231221 instance=ExtResource("12_dg77c")]
+[node name="telephone_pole (4)" parent="Scenery/LampsAndPoles" unique_id=13231221 instance=ExtResource("12_dg77c")]
 transform = Transform3D(0.7830784, 0, -0.28501737, 0, 0.8333334, 0, 0.28501737, 0, 0.7830784, 30.24893, -0.40673852, 357.55087)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
-[node name="telephone_pole (5)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=1653609948 instance=ExtResource("12_dg77c")]
+[node name="telephone_pole (5)" parent="Scenery/LampsAndPoles" unique_id=1653609948 instance=ExtResource("12_dg77c")]
 transform = Transform3D(0.2850176, 0, 0.78307855, 0, 0.8333334, 0, -0.78307855, 0, 0.2850176, 186.04364, -0.4067359, 295.9296)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
-[node name="telephone_pole (6)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=107150339 instance=ExtResource("12_dg77c")]
+[node name="telephone_pole (6)" parent="Scenery/LampsAndPoles" unique_id=107150339 instance=ExtResource("12_dg77c")]
 transform = Transform3D(-0.14470682, 0, -0.82067376, 0, 0.8333334, 0, 0.82067376, 0, -0.14470682, 243.57118, -0.40673327, 209.3597)
 metadata/asset_placer_res_id = "uid://5y2lc6m0p2tv"
 
-[node name="StreetLamp (16)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=380876779 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (16)" parent="Scenery/LampsAndPoles" unique_id=380876779 instance=ExtResource("11_efxa6")]
 transform = Transform3D(-2.0516849, 0, 0.36176795, 0, 2.0833335, 0, -0.36176795, 0, -2.0516849, 145.15971, -0.406744, 127.97402)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (17)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=748463882 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (17)" parent="Scenery/LampsAndPoles" unique_id=748463882 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1.5959288, 0, 1.3391424, 0, 2.0833335, 0, -1.3391424, 0, 1.5959288, 227.78139, 0.053406, 59.219578)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="StreetLamp (18)" type="Node3D" parent="Scenery/LampsAndPoles" unique_id=528311890 instance=ExtResource("11_efxa6")]
+[node name="StreetLamp (18)" parent="Scenery/LampsAndPoles" unique_id=528311890 instance=ExtResource("11_efxa6")]
 transform = Transform3D(2.0833368, 0, -5.2154064e-07, 0, 2.0833335, 0, 5.2154064e-07, 0, 2.0833368, 271.94067, -0.40673327, 184.8209)
 metadata/asset_placer_res_id = "uid://6ouvs2gcmubk"
 
-[node name="car1" type="Node3D" parent="Scenery" unique_id=1465904428 instance=ExtResource("13_w48qg")]
+[node name="car1" parent="Scenery" unique_id=1465904428 instance=ExtResource("13_w48qg")]
 transform = Transform3D(0.048667155, 0, 0.8319113, 0, 0.8333334, 0, -0.8319113, 0, 0.048667155, 66.815186, -0.40673852, 293.13925)
 metadata/asset_placer_res_id = "uid://daxf6jtqfqyuh"
 
-[node name="car2" type="Node3D" parent="Scenery" unique_id=1372859331 instance=ExtResource("5_lquwl")]
+[node name="car2" parent="Scenery" unique_id=1372859331 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1.8005571e-07, 0, -0.8333337, 0, 0.8333334, 0, 0.8333337, 0, 1.8005571e-07, 139.71259, -0.4067278, 225.4916)
 metadata/asset_placer_res_id = "uid://ckqfi05gehmb6"
 
-[node name="pickup" type="Node3D" parent="Scenery" unique_id=1305557820 instance=ExtResource("14_vivmo")]
+[node name="pickup" parent="Scenery" unique_id=1305557820 instance=ExtResource("14_vivmo")]
 transform = Transform3D(0.72899795, 0, 0.40374088, 0, 0.8333334, 0, -0.40374088, 0, 0.72899795, 39.0838, -0.4067495, 151.58047)
 metadata/asset_placer_res_id = "uid://csso27phrjcmt"
 
-[node name="rock3" type="Node3D" parent="Scenery" unique_id=944758764 instance=ExtResource("16_82xsv")]
+[node name="rock3" parent="Scenery" unique_id=944758764 instance=ExtResource("16_82xsv")]
 transform = Transform3D(4.9692965, 0, 0, 0, 4.9692965, 0, 0, 0, 4.9692965, 242.71106, -0.406744, 181.78728)
 metadata/asset_placer_res_id = "uid://ci8hpi5w65xhg"
 
-[node name="rock2" type="Node3D" parent="Scenery" unique_id=290409338 instance=ExtResource("17_getpj")]
+[node name="rock2" parent="Scenery" unique_id=290409338 instance=ExtResource("17_getpj")]
 transform = Transform3D(12.632577, 0, 0, 0, 12.632577, 0, 0, 0, 12.632577, 242.90228, 3.71563, 80.79152)
 metadata/asset_placer_res_id = "uid://b4a84wbhr1djw"
 
-[node name="rock1" type="Node3D" parent="Scenery" unique_id=2109378129 instance=ExtResource("18_ryguw")]
+[node name="rock1" parent="Scenery" unique_id=2109378129 instance=ExtResource("18_ryguw")]
 transform = Transform3D(3.864985, 0, 4.606109, 0, 6.012847, 0, -4.606109, 0, 3.864985, 232.05806, 1.0546663, 70.492035)
 metadata/asset_placer_res_id = "uid://cbbhomn83epg5"
 
-[node name="rock1 (1)" type="Node3D" parent="Scenery" unique_id=768111606 instance=ExtResource("18_ryguw")]
+[node name="rock1 (1)" parent="Scenery" unique_id=768111606 instance=ExtResource("18_ryguw")]
 transform = Transform3D(3.864985, 0, 4.606109, 0, 6.012847, 0, -4.606109, 0, 3.864985, -149.87106, -0.34363627, 322.11792)
 metadata/asset_placer_res_id = "uid://cbbhomn83epg5"
 
-[node name="rock3 (1)" type="Node3D" parent="Scenery" unique_id=653200378 instance=ExtResource("16_82xsv")]
+[node name="rock3 (1)" parent="Scenery" unique_id=653200378 instance=ExtResource("16_82xsv")]
 transform = Transform3D(5.5309505, 0, -3.1932952, 0, 6.386591, 0, 3.1932952, 0, 5.5309505, -165.15077, -0.40673852, 288.50406)
 metadata/asset_placer_res_id = "uid://ci8hpi5w65xhg"
 
-[node name="transmission_tower" type="Node3D" parent="Scenery" unique_id=144356961 instance=ExtResource("27_a6jrf")]
+[node name="transmission_tower" parent="Scenery" unique_id=144356961 instance=ExtResource("27_a6jrf")]
 transform = Transform3D(3.3252745, 0, 0.23165098, 0, 3.3333335, 0, -0.23165098, 0, 3.3252745, 370.37662, 21.429508, 598.7313)
 metadata/asset_placer_res_id = "uid://u42dc3gashuo"
 
-[node name="picnic_table" type="Node3D" parent="Scenery" unique_id=492331163 instance=ExtResource("15_vivmo")]
+[node name="picnic_table" parent="Scenery" unique_id=492331163 instance=ExtResource("15_vivmo")]
 transform = Transform3D(0.90210986, 0, -0.5208333, 0, 1.0416667, 0, 0.5208333, 0, 0.90210986, 190.61967, -1.1102451, 189.62047)
 metadata/asset_placer_res_id = "uid://b64nkpguqysp0"
 
-[node name="picnic_table (1)" type="Node3D" parent="Scenery" unique_id=1562631733 instance=ExtResource("15_vivmo")]
+[node name="picnic_table (1)" parent="Scenery" unique_id=1562631733 instance=ExtResource("15_vivmo")]
 transform = Transform3D(1.0258415, 0, 0.18088354, 0, 1.0416667, 0, -0.18088354, 0, 1.0258415, 206.33022, -1.1102451, 192.64993)
 metadata/asset_placer_res_id = "uid://b64nkpguqysp0"
 
-[node name="picnic_table (2)" type="Node3D" parent="Scenery" unique_id=1914874239 instance=ExtResource("15_vivmo")]
+[node name="picnic_table (2)" parent="Scenery" unique_id=1914874239 instance=ExtResource("15_vivmo")]
 transform = Transform3D(1.0258415, 0, 0.18088354, 0, 1.0416667, 0, -0.18088354, 0, 1.0258415, 158.20384, -0.9428228, 63.083817)
 metadata/asset_placer_res_id = "uid://b64nkpguqysp0"
 
-[node name="park_bench" type="Node3D" parent="Scenery" unique_id=1533868620 instance=ExtResource("29_qsp4k")]
+[node name="park_bench" parent="Scenery" unique_id=1533868620 instance=ExtResource("29_qsp4k")]
 transform = Transform3D(0.72168803, 0, 0.4166667, 0, 0.8333334, 0, -0.4166667, 0, 0.72168803, 16.543974, -0.40673852, 68.29668)
 metadata/asset_placer_res_id = "uid://cp0ovvynlli5i"
 
-[node name="park_bench (1)" type="Node3D" parent="Scenery" unique_id=627670887 instance=ExtResource("29_qsp4k")]
+[node name="park_bench (1)" parent="Scenery" unique_id=627670887 instance=ExtResource("29_qsp4k")]
 transform = Transform3D(0.54561764, 0, -0.62987804, 0, 0.8333334, 0, 0.62987804, 0, 0.54561764, 110.00491, -0.40674138, 154.34581)
 metadata/asset_placer_res_id = "uid://cp0ovvynlli5i"
 
-[node name="park_bench (2)" type="Node3D" parent="Scenery" unique_id=337902540 instance=ExtResource("29_qsp4k")]
+[node name="park_bench (2)" parent="Scenery" unique_id=337902540 instance=ExtResource("29_qsp4k")]
 transform = Transform3D(0.28501707, 0, -0.7830775, 0, 0.8333334, 0, 0.7830775, 0, 0.28501707, 118.61629, -0.40673852, 149.7988)
 metadata/asset_placer_res_id = "uid://cp0ovvynlli5i"
 
-[node name="TrashCan" type="Node3D" parent="Scenery" unique_id=1560570724 instance=ExtResource("30_htxhm")]
+[node name="TrashCan" parent="Scenery" unique_id=1560570724 instance=ExtResource("30_htxhm")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 198.0225, -0.40673995, 193.08968)
 metadata/asset_placer_res_id = "uid://c6fjk4hgs18ax"
 
-[node name="TrashCan (1)" type="Node3D" parent="Scenery" unique_id=1271325986 instance=ExtResource("30_htxhm")]
+[node name="TrashCan (1)" parent="Scenery" unique_id=1271325986 instance=ExtResource("30_htxhm")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 113.85617, -0.40673995, 150.76613)
 metadata/asset_placer_res_id = "uid://c6fjk4hgs18ax"
 
-[node name="TrashCan (2)" type="Node3D" parent="Scenery" unique_id=644528224 instance=ExtResource("30_htxhm")]
+[node name="TrashCan (2)" parent="Scenery" unique_id=644528224 instance=ExtResource("30_htxhm")]
 transform = Transform3D(0.8333334, 0, 0, 0, 0.8333334, 0, 0, 0, 0.8333334, 18.184393, -0.406744, 75.392166)
 metadata/asset_placer_res_id = "uid://c6fjk4hgs18ax"
 
-[node name="fire_hydrant" type="Node3D" parent="Scenery" unique_id=1332314300 instance=ExtResource("31_jq2sk")]
+[node name="fire_hydrant" parent="Scenery" unique_id=1332314300 instance=ExtResource("31_jq2sk")]
 transform = Transform3D(1.2311544, 0, -2.1324215, 0, 2.4623072, 0, 2.1324215, 0, 1.2311544, 3.855807, -0.40673995, 76.05457)
 metadata/asset_placer_res_id = "uid://bsxpyngp6b7ei"
 
-[node name="fire_hydrant (1)" type="Node3D" parent="Scenery" unique_id=1269068888 instance=ExtResource("31_jq2sk")]
+[node name="fire_hydrant (1)" parent="Scenery" unique_id=1269068888 instance=ExtResource("31_jq2sk")]
 transform = Transform3D(-2.3138154, 0, -0.84216094, 0, 2.4623072, 0, 0.84216094, 0, -2.3138154, 99.49536, -0.40673995, 290.1866)
 metadata/asset_placer_res_id = "uid://bsxpyngp6b7ei"
 
-[node name="commisary" type="Node3D" parent="Scenery" unique_id=1700063179 instance=ExtResource("32_4k2k6")]
+[node name="commisary" parent="Scenery" unique_id=1700063179 instance=ExtResource("32_4k2k6")]
 transform = Transform3D(0.79168516, 0, -1.3712391, 0, 1.5833704, 0, 1.3712391, 0, 0.79168516, -39.28823, -0.406744, 133.64085)
 metadata/asset_placer_res_id = "uid://d350gy73blt0f"
 
-[node name="dumpster" type="Node3D" parent="Scenery" unique_id=1553059587 instance=ExtResource("33_jq2sk")]
+[node name="dumpster" parent="Scenery" unique_id=1553059587 instance=ExtResource("33_jq2sk")]
 transform = Transform3D(0.9930147, 0, 0.17509526, 0, 1.0083334, 0, -0.17509526, 0, 0.9930147, -69.45188, -0.40673852, 71.622116)
 metadata/asset_placer_res_id = "uid://bry5nwcbt3x70"
 
-[node name="dumpster (1)" type="Node3D" parent="Scenery" unique_id=491137697 instance=ExtResource("33_jq2sk")]
+[node name="dumpster (1)" parent="Scenery" unique_id=491137697 instance=ExtResource("33_jq2sk")]
 transform = Transform3D(0.504167, 0, -0.87324274, 0, 1.0083334, 0, 0.87324274, 0, 0.504167, 54.972473, -0.40673852, 136.63596)
 metadata/asset_placer_res_id = "uid://bry5nwcbt3x70"
+
+[node name="rollaway_dumpster" type="Node3D" parent="." unique_id=427006016 instance=ExtResource("34_4k2k6")]
+transform = Transform3D(-1.1996917, 0, -0.027206179, 0, 1.2, 0, 0.027206179, 0, -1.1996917, 177.40744, 2.8715115, 307.65536)
+metadata/asset_placer_res_id = "uid://dh4mers48tj3a"
+
+[node name="rollaway_dumpster (1)" type="Node3D" parent="." unique_id=675631913 instance=ExtResource("34_4k2k6")]
+transform = Transform3D(-0.9365048, 0, 0.7503059, 0, 1.2, 0, -0.7503059, 0, -0.9365048, 135.49208, 3.1357386, 330.2478)
+metadata/asset_placer_res_id = "uid://dh4mers48tj3a"
+
+[node name="rollaway_dumpster (2)" type="Node3D" parent="." unique_id=1704638396 instance=ExtResource("34_4k2k6")]
+transform = Transform3D(-0.027206192, 0, 1.1996917, 0, 1.2, 0, -1.1996917, 0, -0.027206192, 90.20148, 2.8715098, 373.29178)
+metadata/asset_placer_res_id = "uid://dh4mers48tj3a"
 
 [editable path="PlayerCharacter"]
