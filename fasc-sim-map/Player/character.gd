@@ -84,7 +84,7 @@ class_name PlayerCharacter
 
 ## Member variables
 var speed : float = 7.0
-var current_speed : float = 0.0
+var current_speed : float = 7.0
 ## States: normal, crouching, sprinting
 var state : String = "normal"
 var low_ceiling : bool = false # This is for when the cieling is too low and the player needs to crouch.

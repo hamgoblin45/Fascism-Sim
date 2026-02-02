@@ -142,6 +142,8 @@ func _drop_equipped():
 
 ## -- INVENTORY INTERACTION
 func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_data: InventorySlotData, type: String):
+	# Prevent looting during a container search
+	
 	match type:
 		"shift_click":
 			if slot_data and slot_data.item_data:
@@ -238,6 +240,10 @@ func _physics_process(_delta: float) -> void:
 		grabbed_slot_ui.position = inv_ui.get_global_mouse_position()
 
 func _set_external_inventory(inv_data: InventoryData):
+	if SearchManager.is_searching and SearchManager.is_silent_search and inv_data == SearchManager.current_search_inventory:
+		print("Player trying to open an external inventory while it is being searched")
+		# Emit a signal that makes the searcher talk to the player and ask wtf they are doing
+		return
 	print("InventoryManager: setting external inv")
 	external_inventory_data = inv_data
 	EventBus.external_inventory_set.emit(inv_data)
