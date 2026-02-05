@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://vesf8xtd74rn" path="res://Items/Interactables/lamp.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://b2hcxcswf614y" path="res://Map/Buildings/player_house.glb" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://bkqltx6hl064x" path="res://Items/door.tscn" id="10_4c57u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 
@@ -63,3 +64,15 @@ container_inventory = SubResource("Resource_5vw27")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3106384, 1, -7.632044)
 
 [node name="player_house" parent="." unique_id=1939223923 instance=ExtResource("9_kek77")]
+
+[node name="Door" parent="player_house" unique_id=983619317 instance=ExtResource("10_4c57u")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -18.716526, -0.13075042, -3.6849256)
+
+[node name="Door2" parent="player_house" unique_id=1775857434 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.00069806725, 0, 1.5999995, 0, 1.5999998, 0, -1.5999995, 0, -0.00069806725, -9.211445, -0.08569169, 4.71878)
+
+[node name="Door4" parent="player_house" unique_id=1757735991 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.00070688647, 0, 1.6199998, 0, 1.62, 0, -1.6199998, 0, -0.00070688647, 15.140961, -0.08569169, 4.6999927)
+
+[node name="Door3" parent="player_house" unique_id=2059241498 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.0027925037, 0, 1.299998, 0, 1.6, 0, -1.5999976, 0, 0.0022689179, 1.8669302, -0.08569169, 4.752642)
