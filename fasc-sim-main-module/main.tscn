@@ -3,12 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/inventory_ui.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://j22i50g5odp8" path="res://Items/grabbable.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bp6vi1mqo4n5a" path="res://Items/container.tscn" id="4_1bvp3"]
 [ext_resource type="Resource" uid="uid://ib385dgptwrd" path="res://Data/Items/Food/wine.tres" id="4_5vw27"]
-[ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="6_272bh"]
+[ext_resource type="Script" uid="uid://mcdm8xr3sdvh" path="res://Items/container.gd" id="6_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://vesf8xtd74rn" path="res://Items/Interactables/lamp.tscn" id="7_272bh"]
+[ext_resource type="Resource" uid="uid://byolvrc0xdcmv" path="res://Data/Containers/fridge.tres" id="7_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cpgeyy1mbt8q4" path="res://Map/fridge.glb" id="8_efxa6"]
+[ext_resource type="Script" uid="uid://8yo1utsr8bth" path="res://Items/interactable.gd" id="8_w48qg"]
 [ext_resource type="PackedScene" uid="uid://b2hcxcswf614y" path="res://Map/Buildings/player_house.glb" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="9_vivmo"]
 [ext_resource type="PackedScene" uid="uid://bkqltx6hl064x" path="res://Items/door.tscn" id="10_4c57u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
@@ -25,10 +28,18 @@ script = ExtResource("6_272bh")
 item_data = ExtResource("4_5vw27")
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
-[sub_resource type="Resource" id="Resource_5vw27"]
-script = ExtResource("5_7mycd")
-slot_datas = Array[ExtResource("6_272bh")]([null, null, null, null, null])
-metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(1, 1, 0.39215687, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
+material = SubResource("StandardMaterial3D_h2yge")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_272bh"]
+atlas = ExtResource("9_vivmo")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2cqfq"]
+size = Vector3(1, 6.5234375, 3.0615234)
 
 [node name="Main" type="Node3D" unique_id=923260690]
 
@@ -56,9 +67,33 @@ slot_data = SubResource("Resource_kek77")
 
 [node name="Containers" type="Node3D" parent="." unique_id=1755705583]
 
-[node name="Container" parent="Containers" unique_id=93282791 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0667577, 0.55466557, -7.2458134)
-container_inventory = SubResource("Resource_5vw27")
+[node name="Fridge" type="StaticBody3D" parent="Containers" unique_id=93282791]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.110906, -0.10949898, -10.73159)
+script = ExtResource("6_ycdy4")
+container_inventory = ExtResource("7_efxa6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Containers/Fridge" unique_id=57309622]
+visible = false
+mesh = SubResource("BoxMesh_1bvp3")
+
+[node name="Interactable" type="Area3D" parent="Containers/Fridge" unique_id=844407554]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("8_w48qg")
+id = "fridge"
+interact_icon = SubResource("AtlasTexture_272bh")
+interact_text = "Open"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Containers/Fridge/Interactable" unique_id=595969542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7910948, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="Containers/Fridge" unique_id=1340977184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7617188, 0)
+shape = SubResource("BoxShape3D_2cqfq")
+
+[node name="fridge" parent="Containers/Fridge" unique_id=661021462 instance=ExtResource("8_efxa6")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="Lamp" parent="." unique_id=1271117152 instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3106384, 1, -7.632044)

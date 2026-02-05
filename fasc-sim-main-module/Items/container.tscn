@@ -22,6 +22,7 @@ region = Rect2(192, 0, 64, 64)
 script = ExtResource("1_b1gkk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=57309622]
+visible = false
 mesh = SubResource("BoxMesh_1bvp3")
 
 [node name="Interactable" type="Area3D" parent="." unique_id=844407554]
