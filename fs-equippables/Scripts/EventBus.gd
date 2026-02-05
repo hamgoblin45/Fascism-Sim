@@ -13,10 +13,6 @@ signal item_grabbed(body)
 
 #####-----INTERFACE
 
-signal money_updated(new_total: float)
-## --- Dialogue
-signal dialogue_started # will likely be a Dialogic signal once connected to dialogue system
-signal dialogue_ended # will likely be a Dialogic signal once connected to dialogue system
 ## --- Inventory
 signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String) # Goes to managers, which then emit confirmation signals like "select_item"
 signal inventory_item_updated(inv_data: InventorySlotData, index: int) # Emit from Manager to confirm something changed a slot
@@ -46,9 +42,3 @@ signal hotbar_index_changed(index: int)
 signal open_split_stack_ui(slot_data: InventorySlotData)
 signal splitting_item_stack(grab_slot_data: InventorySlotData) # Requests splitting a slot
 signal item_stack_split(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Confirms a slot was split
-
-## - Shopping
-# Consider changing shopping to emit a string id for shop type if you want different kinds of vendors
-signal shopping(legal: bool) # Opens up either the legal shop or the black market
-signal shop_closed # Resets player inventory slots if they had been disabled for selling
-signal selling_item(slot: InventorySlotData) # Requests sale

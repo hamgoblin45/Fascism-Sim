@@ -264,6 +264,7 @@ func _set_equipped_item(item_data: InventoryItemData):
 	for child in hold_item_point.get_children():
 		child.queue_free()
 	if item_data == null:
+		GameState.equipped_item = null
 		return
 	if item_data.equipped_scene:
 		var mesh_instance = item_data.equipped_scene.instantiate()

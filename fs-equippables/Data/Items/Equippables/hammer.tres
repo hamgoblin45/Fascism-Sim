@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EquippableData" load_steps=4 format=3 uid="uid://371084472b42"]
+[gd_resource type="Resource" script_class="EquippableData" format=3 uid="uid://371084472b42"]
 
 [ext_resource type="Script" uid="uid://2xssdkvk52q0" path="res://Data/EquippableData.gd" id="1_jk83p"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="2_6pf3u"]

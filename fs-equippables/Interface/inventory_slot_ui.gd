@@ -24,8 +24,6 @@ func _ready() -> void:
 	#Hover effect
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	EventBus.shopping.connect(_check_if_sellable)
-	EventBus.shop_closed.connect(_on_shop_closed)
 
 func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data

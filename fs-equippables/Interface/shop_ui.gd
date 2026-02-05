@@ -36,9 +36,7 @@ var legal: bool = true
 var duplicate_stock_allowed: bool = false
 
 func _ready():
-	EventBus.shopping.connect(_handle_shop_ui)
 	EventBus.select_item.connect(_on_item_select)
-	EventBus.selling_item.connect(_sell_item)
 	
 
 ## --------- SHOP POPULATION

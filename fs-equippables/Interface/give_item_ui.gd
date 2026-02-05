@@ -6,9 +6,6 @@ extends PanelContainer
 @onready var quantity: Label = %Quantity
 
 
-func _ready() -> void:
-	EventBus.dialogue_started.connect(show)
-	EventBus.dialogue_ended.connect(hide)
 
 
 func _give_item(new_slot_data: InventorySlotData):

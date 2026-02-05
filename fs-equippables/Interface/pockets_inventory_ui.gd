@@ -14,7 +14,6 @@ const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 
 func _ready() -> void:
 	EventBus.pockets_inventory_set.connect(_set_inventory)
-	EventBus.money_updated.connect(_update_money)
 	EventBus.request_pockets_inventory.emit()
 
 func _set_inventory(inv_data: InventoryData):
