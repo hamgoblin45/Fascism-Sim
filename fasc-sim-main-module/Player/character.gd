@@ -17,7 +17,7 @@ class_name PlayerCharacter
 @export var crouch_speed : float = 2.5
 #
 ### How fast the character speeds up and slows down when Motion Smoothing is on.
-@export var acceleration : float = 5.0
+@export var acceleration : float = 2.0
 ### How high the player jumps.
 @export var jump_velocity : float = 2.5
 ### How far the player turns when the mouse is moved.
@@ -63,7 +63,7 @@ class_name PlayerCharacter
 ## Wether the player can move in the air or not.
 @export var in_air_momentum : bool = true
 ## Smooths the feel of walking.
-@export var motion_smoothing : bool = true
+@export var motion_smoothing : bool = false
 @export var sprint_enabled : bool = true
 @export var crouch_enabled : bool = true
 @export_enum("Hold to Crouch", "Toggle Crouch") var crouch_mode : int = 0
