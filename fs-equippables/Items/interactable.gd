@@ -1,7 +1,7 @@
 extends Area3D
 class_name Interactable
 
-const INTERACT_OUTLINE = preload("uid://c3rhvr6bla26v")
+#const INTERACT_OUTLINE = preload("uid://c3rhvr6bla26v")
 
 
 @export var id: String = ""
@@ -15,7 +15,7 @@ signal interacted(type: String, engaged: bool)
 
 func _ready() -> void:
 	EventBus.item_interacted.connect(_interacted)
-	EventBus.looking_at_interactable.connect(_look_at_interactable)
+	#EventBus.looking_at_interactable.connect(_look_at_interactable)
 	_set_meshes()
 
 func _set_meshes():
@@ -37,12 +37,12 @@ func _interacted(object: Interactable, type: String, engaged: bool):
 	# i.e., turning on a light, playing a sound, etc
 	
 
-func _look_at_interactable(interact: Interactable, looking: bool):
-	if interact != self:
-		return
-	if looking:
-		for mesh in meshes:
-			mesh.material_overlay = INTERACT_OUTLINE
-	else:
-		for mesh in meshes:
-			mesh.material_overlay = null
+#func _look_at_interactable(interact: Interactable, looking: bool):
+	#if interact != self:
+		#return
+	#if looking:
+		#for mesh in meshes:
+			##mesh.material_overlay = INTERACT_OUTLINE
+	#else:
+		#for mesh in meshes:
+			#mesh.material_overlay = null
