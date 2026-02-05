@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d04xmgme67dv2" path="res://Player/EditorModule.gd" id="3_v3ckk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
-height = 2.5
+height = 3.213379
 
 [sub_resource type="Animation" id="Animation_j8cx7"]
 resource_name = "RESET"
@@ -32,7 +32,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1, 0)]
+"values": [Vector3(0, 1.65, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -44,7 +44,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.5, 0)]
+"values": [Vector3(0, 2.5, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5ec5e"]
@@ -72,7 +72,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 1, 0), Vector3(0, 0.75, 0)]
+"values": [Vector3(0, 1.65, 0), Vector3(0, 1.25, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -84,7 +84,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5, 0), Vector3(0, 1.12508, 0)]
+"values": [Vector3(0, 2.5, 0), Vector3(0, 2, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5e5t5"]
@@ -324,6 +324,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
 [node name="PlayerCharacter" type="CharacterBody3D" unique_id=1054369776 node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "ground_ray")]
+transform = Transform3D(2.855, 0, 0, 0, 2.855, 0, 0, 0, 2.855, 0, 0, 0)
 collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_0t4e8")
@@ -340,7 +341,7 @@ ground_ray = NodePath("GroundRay")
 [node name="LookAtNode" type="Node3D" parent="." unique_id=1947893186]
 unique_name_in_owner = true
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9377, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7473736, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="LookAtNode" unique_id=6845103]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -348,7 +349,7 @@ target_position = Vector3(0, -5, 0)
 debug_shape_custom_color = Color(0.927841, 0.346608, 0.588068, 1)
 
 [node name="Collision" type="CollisionShape3D" parent="." unique_id=671325077]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
 shape = SubResource("CapsuleShape3D_uy03j")
 
 [node name="CrouchAnimation" type="AnimationPlayer" parent="." unique_id=74418944]
@@ -357,7 +358,7 @@ libraries/ = SubResource("AnimationLibrary_5e5t5")
 [node name="Head" type="Node3D" parent="." unique_id=1932335596]
 unique_name_in_owner = true
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head" unique_id=759016982]
 process_mode = 1
@@ -397,7 +398,7 @@ script = ExtResource("2_6j38j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.518397, -1.07424)
 
 [node name="CrouchCeilingDetection" type="ShapeCast3D" parent="." unique_id=1851315159]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.146402, 0)
 shape = SubResource("SphereShape3D_k4wwl")
 target_position = Vector3(0, 0.5, 0)
 

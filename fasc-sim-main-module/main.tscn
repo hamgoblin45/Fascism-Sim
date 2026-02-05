@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="6_272bh"]
 [ext_resource type="PackedScene" uid="uid://vesf8xtd74rn" path="res://Items/Interactables/lamp.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://b2hcxcswf614y" path="res://Map/Buildings/player_house.glb" id="9_kek77"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 
@@ -37,12 +38,13 @@ environment = SubResource("Environment_7dm0k")
 transform = Transform3D(1, 0, 0, 0, 0.005113774, 0.99998695, 0, -0.99998695, 0.005113774, 0, 0, 0)
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1653129422]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08818102, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23692656, 0)
+visible = false
 use_collision = true
 size = Vector3(80, 0.1, 80)
 
 [node name="PlayerCharacter" parent="." unique_id=395488164 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31503916, 0)
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.31503916, 0)
 
 [node name="InventoryUI" parent="." unique_id=1602292331 instance=ExtResource("2_0xm2m")]
 
@@ -59,3 +61,5 @@ container_inventory = SubResource("Resource_5vw27")
 
 [node name="Lamp" parent="." unique_id=1271117152 instance=ExtResource("7_272bh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3106384, 1, -7.632044)
+
+[node name="player_house" parent="." unique_id=1939223923 instance=ExtResource("9_kek77")]
