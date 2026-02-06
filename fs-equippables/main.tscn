@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/inventory_ui.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" path="res://Interface/hud.tscn" id="3_h2yge"]
 
 [sub_resource type="Environment" id="Environment_7dm0k"]
 
@@ -21,3 +22,5 @@ size = Vector3(60, 0.1, 60)
 [node name="PlayerCharacter" parent="." unique_id=1054369776 instance=ExtResource("1_ig7tw")]
 
 [node name="InventoryUI" parent="." unique_id=1947418699 instance=ExtResource("2_0xm2m")]
+
+[node name="HUD" parent="." unique_id=592067759 instance=ExtResource("3_h2yge")]

@@ -12,6 +12,9 @@ signal item_grabbed(body)
 
 
 #####-----INTERFACE
+## --- Status
+signal change_stat(stat: String, value: float)
+signal stat_changed(_stat: String)
 
 ## --- Inventory
 signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String) # Goes to managers, which then emit confirmation signals like "select_item"
