@@ -80,7 +80,7 @@ func _on_release():
 	swing_tween.tween_callback(_reset_to_idle)
 	
 	# Hit detection only during movement
-	await get_tree().create_timer(swing_time * 0.6).timeout
+	await get_tree().create_timer(swing_time * 0.6).timeout # Wait about 60% of the way through the swing for a hit
 	
 	shapecast.target_position.z = -effective_dist
 	
@@ -92,13 +92,17 @@ func _on_release():
 func _check_hit() -> bool:
 	print("CHECKING HIT")
 	shapecast.enabled = true
-	# Manually force shapecast to update while swinging
 	shapecast.force_shapecast_update()
 	
 	if shapecast.is_colliding():
 		
 		var target = shapecast.get_collider(0) # get the first thing we hit
+		var hit_point = shapecast.get_collision_point(0) # Locate where to instance particles
+		
+		_apply_hit_stop()
+		# Impact sound here
 		print("COLLIDING with ", target)
+		# If you can damage the target, do so
 		if target.has_method("take_damage"): # Maybe change this to a class name or something
 			# Apply damage based on swing power
 			var damage = 10.0 * (1.0 + swing_power)
@@ -123,6 +127,11 @@ func _trigger_recoil():
 	#recoil_tween.set_parallel(false)
 	recoil_tween.tween_interval(0.06)
 	recoil_tween.tween_callback(_reset_to_idle)
+
+func _apply_hit_stop(dur: float = 0.05):
+	Engine.time_scale = 0.05 # Slow everything way down
+	await get_tree().create_timer(dur * 0.05).timeout
+	Engine.time_scale = 1.0 # back to normal
 
 func _reset_to_idle():
 	var reset_tween = create_tween().set_parallel(true)
