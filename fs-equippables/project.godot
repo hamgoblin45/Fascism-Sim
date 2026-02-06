@@ -132,6 +132,10 @@ hotbar_6={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_4="hit_detect"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

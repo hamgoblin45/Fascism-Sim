@@ -79,7 +79,9 @@ func _input(event: InputEvent) -> void:
 		
 		# Use item on click if mouse captured
 		if event.is_action_pressed("click"):
-			_use_equipped()
+			if GameState.ui_open: pass
+			else:
+				_use_equipped()
 		
 		# Drop item
 		if event.is_action_pressed("drop"):
