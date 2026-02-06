@@ -393,7 +393,10 @@ func handle_state(moving):
 						"normal":
 							enter_sprint_state()
 						"sprinting":
-							enter_normal_state()
+							if GameState.stamina > 0:
+								GameState.stamina -= 15.0 * get_physics_process_delta_time()
+							else:
+								enter_normal_state()
 			elif state == "sprinting":
 				enter_normal_state()
 	

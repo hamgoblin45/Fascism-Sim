@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	match current_state:
 		State.IDLE:
-			if Input.is_action_just_pressed("click"):
+			if Input.is_action_just_pressed("click") and GameState.stamina > 5.0:
 				current_state = State.CHARGING
 		State.CHARGING:
 			if Input.is_action_pressed("click"):
