@@ -13,7 +13,7 @@ var power_build_speed: float = 1.5
 @export_group("Visual Offsets")
 var default_pos: Vector3 = Vector3.ZERO
 var windup_offset: Vector3 = Vector3(0.1, -0.1, 0.2) # Pull back and to the side
-var swing_forward_dist: float = -1.0 # How far it swings
+#var swing_forward_dist: float = -1.0 # How far it swings
 
 enum State {IDLE, CHARGING, SWINGING, RECOVERING}
 var current_state = State.IDLE
@@ -62,40 +62,73 @@ func _on_release():
 	if current_state != State.CHARGING: return
 	current_state = State.SWINGING
 	
-	# Create swing movement
-	var tween = create_tween().set_parallel(true)
-	var swing_time = 0.15 # Fast forward movement
+	# Calculate how far it swings based on power
+	var effective_dist = lerp(0.5, 1.8, swing_power / power_max)
+	var swing_time = 0.12 # Keep it snappy
 	
-	# Lunge forward
-	tween.tween_property(self, "position", Vector3(0, 0, swing_forward_dist), swing_time).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(self, "rotation_degrees:x", -45.0, swing_time)
+	# Create swing movement
+	var swing_tween = create_tween().set_parallel(true)
+	
+	
+	#Hook motion
+	swing_tween.tween_property(self, "position:z", -effective_dist, swing_time).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	swing_tween.tween_property(self, "position:x", -0.5, swing_time).set_trans(Tween.TRANS_CUBIC) # sweeps across
+	
+	# Hook rotation
+	swing_tween.tween_property(self, "rotation_degrees:y", 45.0, swing_time)
+	swing_tween.tween_property(self, "rotation_degrees:z", -20.0, swing_time)
+	
+	# If we don't hit anything
+	swing_tween.set_parallel(false)
+	swing_tween.tween_interval(0.1)
+	swing_tween.tween_callback(_reset_to_idle)
 	
 	# Hit detection only during movement
-	_check_hit()
+	await get_tree().create_timer(swing_time * 0.5).timeout
 	
-	# Reset to idle after a recovery interval
-	tween.chain().tween_interval(0.2)
-	tween.chain().tween_callback(_reset_to_idle)
+	if _check_hit():
+		swing_tween.kill() # Stop movement immediately on impact
+		_trigger_recoil()
+		
+	
+	## Reset to idle after a recovery interval
+	#tween.chain().tween_interval(0.2)
+	#tween.chain().tween_callback(_reset_to_idle)
 
-func _check_hit():
+func _check_hit() -> bool:
 	shapecast.enabled = true
 	# Manually force shapecast to update while swinging
 	shapecast.force_shapecast_update()
 	
 	if shapecast.is_colliding():
-		for i in range(shapecast.get_collision_count()):
-			var target = shapecast.get_collider(i)
-			if target.has_method("take_damage"): # Maybe change this to a class name or something
-				# Apply damage based on swing power
-				var damage = 10.0 * (1.0 + swing_power)
-				target.take_damage(damage)
-				print("Hit ", target, " for ", damage)
+		var target = shapecast.get_collider(0) # get the first thing we hit
+		if target.has_method("take_damage"): # Maybe change this to a class name or something
+			# Apply damage based on swing power
+			var damage = 10.0 * (1.0 + swing_power)
+			target.take_damage(damage)
+			print("Hit ", target, " for ", damage)
+		shapecast.enabled = false
+		return true
+	return false
+	#shapecast.enabled = false
+
+func _trigger_recoil():
+	var recoil_tween = create_tween().set_parallel(true)
 	
-	shapecast.enabled = false
+	# Move a lil back
+	recoil_tween.tween_property(self, "position", position + Vector3(0.1, 0.1, 0.2), 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	recoil_tween.tween_property(self, "rotation_degrees:x", rotation_degrees.x + 20, 0.1)
+	
+	# Then back to normal
+	recoil_tween.set_parallel(false)
+	recoil_tween.chain().tween_interval(0.06)
+	recoil_tween.chain().tween_callback(_reset_to_idle)
 
 func _reset_to_idle():
-	var tween = create_tween().set_parallel(true)
-	tween.tween_property(self, "position", default_pos, 0.3)
-	tween.tween_property(self, "rotation_degrees", Vector3.ZERO, 0.3)
+	var reset_tween = create_tween().set_parallel(true)
+	reset_tween.tween_property(self, "position", default_pos, 0.3).set_trans(Tween.TRANS_SINE)
+	reset_tween.tween_property(self, "rotation_degrees", Vector3.ZERO, 0.3)
+	
 	swing_power = 0.0
 	current_state = State.IDLE
+	shapecast.enabled = false
