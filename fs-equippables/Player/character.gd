@@ -266,6 +266,7 @@ func _set_equipped_item(item_data: InventoryItemData):
 	if item_data == null:
 		GameState.equipped_item = null
 		return
+	GameState.equipped_item = item_data
 	if item_data.equipped_scene:
 		var mesh_instance = item_data.equipped_scene.instantiate()
 		hold_item_point.add_child(mesh_instance)

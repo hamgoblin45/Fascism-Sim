@@ -41,6 +41,8 @@ signal use_equipped_item
 signal drop_equipped_item
 signal hotbar_index_changed(index: int)
 
+signal consume_progress(value: float)
+
 ## - Splitting
 signal open_split_stack_ui(slot_data: InventorySlotData)
 signal splitting_item_stack(grab_slot_data: InventorySlotData) # Requests splitting a slot

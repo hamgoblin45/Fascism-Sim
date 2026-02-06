@@ -1,45 +1,58 @@
 extends Node3D
 
 @export var item_data: ConsumableData
-@export var consume_speed: float = 0.25 # percent (0.0-1.0) consumed per second
+@export var consume_speed: float = 2.0 # seconds to eat whole thing
+
+var timer: float = 0.0
+var is_eating: bool = false
 
 var default_pos: Vector3 = Vector3.ZERO
 var eating_pos: Vector3 = Vector3(0, -0.15, -0.25) # Closer to face
 
 func _physics_process(delta: float) -> void:
 	if GameState.equipped_item != item_data:
+		_reset_consume()
 		return
 	
-	if Input.is_action_pressed("click") and item_data.remaining > 0:
+	if Input.is_action_pressed("click"):
 		_process_consume(delta)
 	else:
-		_animate(false)
+		_reset_consume()
 
 func _process_consume(delta: float):
-	var amount_to_consume = consume_speed * delta
+	is_eating = true
+	timer += delta
 	
-	amount_to_consume = min(amount_to_consume, item_data.remaining)
+	var progress = timer / consume_speed
 	
-	item_data.remaining -= amount_to_consume
+	var shake = Vector3(randf_range(-0.005, 0.005), randf_range(-0.005, 0.005), 0) * progress
+	position = lerp(position, eating_pos + shake, 0.1)
 	
-	for stat_name in item_data.effects:
-		var total_benefit = item_data.effects[stat_name]
-		var frame_benefit = total_benefit * amount_to_consume
-		
-		EventBus.change_stat.emit(stat_name, frame_benefit)
+	if timer >= consume_speed:
+		_on_consume_complete()
 	
-	if item_data.remaining <= 0:
-		_on_finished()
+	EventBus.consume_progress.emit(timer / consume_speed)
 
-func _animate(active: bool):
-	var target_pos = eating_pos if active else default_pos
-	var jitter = Vector3.ZERO
-	if active:
-		jitter = Vector3(randf_range(-0.002, 0.002), randf_range(-0.002, 0.002), 0)
-	position = lerp(position, target_pos + jitter, 0.1)
-	rotation_degrees.x = lerp(rotation_degrees.x, (15.0 if active else 0.0), 0.1)
+func _reset_consume():
+	if not is_eating: return
+	is_eating = false
+	timer = 0.0
+	EventBus.consume_progress.emit(0.0)
+	#Smootly return to idle
+	var tween = create_tween()
+	tween.tween_property(self, "position", default_pos, 0.2)
 
-func _on_finished():
+func _on_consume_complete():
 	print("Item consumed!")
+	for stat_name in item_data.effects:
+		var amount = item_data.effects[stat_name]
+		if amount != 0:
+			EventBus.change_stat.emit(stat_name, amount)
+	
 	EventBus.removing_item.emit(item_data, 1, null)
-	GameState.equipped_item
+	_check_stack_depleted()
+	_reset_consume()
+
+func _check_stack_depleted():
+	if GameState.equipped_item == item_data:
+		pass
