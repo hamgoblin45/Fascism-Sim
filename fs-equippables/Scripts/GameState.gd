@@ -47,3 +47,11 @@ var working: bool = false
 func _process(delta: float) -> void:
 	if stamina < energy:
 		stamina += stamina_regen_rate * delta
+
+func adjust_stat(stat: String, amount: float):
+	# If the stat exists as a var in this GameState script, add amount to it. This can be negative
+	if stat in self:
+		set(stat, get(stat) + amount)
+		EventBus.stat_changed.emit(stat)
+	else:
+		push_warning("GameState has no stat named: ", stat)
