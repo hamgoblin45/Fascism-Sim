@@ -66,8 +66,8 @@ func _change_stat(stat: String, value: float):
 
 func _on_status_check_timer_timeout() -> void:
 	var total_minutes: float = (GameState.hour * 60) + GameState.minute
-	print("There have been %s minutes in the day so far.
-	Prev hunger check: %s ago. Prev status check %s ago" % [str(total_minutes), str(total_minutes - prev_hunger_check), str(total_minutes - prev_status_check)])
+	#print("There have been %s minutes in the day so far.
+	#Prev hunger check: %s ago. Prev status check %s ago" % [str(total_minutes), str(total_minutes - prev_hunger_check), str(total_minutes - prev_status_check)])
 	
 	# Check for times past midnight
 	if prev_status_check - total_minutes > 1000:

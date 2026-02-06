@@ -134,6 +134,7 @@ hotbar_6={
 
 [layer_names]
 
+3d_physics/layer_2="ground"
 3d_physics/layer_4="hit_detect"
 
 [physics]
