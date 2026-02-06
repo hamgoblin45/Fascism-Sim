@@ -7,11 +7,13 @@ extends Node3D
 var swing_power: float = 0.0
 var power_max: float = 1.0
 var power_build_speed: float = 1.5
+@export var stamina_cost_per_sec: float = 20.0
+@export var shake_intensity: float = 0.05
 
 @export_group("Visual Offsets")
 var default_pos: Vector3 = Vector3.ZERO
-var windup_offset: Vector3 = Vector3(0.2, -0.2, 0.4) # Pull back and to the side
-var swing_forward_dist: float = -1.5 # How far it swings
+var windup_offset: Vector3 = Vector3(0.1, -0.1, 0.2) # Pull back and to the side
+var swing_forward_dist: float = -1.0 # How far it swings
 
 enum State {IDLE, CHARGING, SWINGING, RECOVERING}
 var current_state = State.IDLE
@@ -26,8 +28,22 @@ func _physics_process(delta: float) -> void:
 				current_state = State.CHARGING
 		State.CHARGING:
 			if Input.is_action_pressed("click"):
+				# Drain stamina
+				GameState.stamina -= stamina_cost_per_sec
+				
+				# Build up swing power
 				swing_power = move_toward(swing_power, power_max, power_build_speed * delta)
-				position = position.lerp(default_pos + windup_offset, 0.1)
+				
+				# Procedural shaking
+				var current_shake = (swing_power / power_max) * shake_intensity
+				var shake_offset = Vector3(
+					randf_range(-current_shake, current_shake),
+					randf_range(-current_shake, current_shake),
+					randf_range(-current_shake, current_shake)
+				)
+				
+				# Windup position + shake
+				position = lerp(position, default_pos + windup_offset + shake_offset, 0.1)
 				rotation_degrees.x = lerp(rotation_degrees.x, 15.0, 0.1)
 	
 			else:

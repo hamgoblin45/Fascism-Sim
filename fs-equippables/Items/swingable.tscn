@@ -4,16 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://66oowgb5nudm" path="res://Items/Meshes/axe.gltf" id="1_ygndu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0p6w6"]
-size = Vector3(0.065, 0.605, 0.18)
+size = Vector3(0.065, 0.375, 0.155)
 
 [node name="Swingable" type="Node3D" unique_id=777916753]
 script = ExtResource("1_0p6w6")
 
-[node name="axe" parent="." unique_id=1798768062 instance=ExtResource("1_ygndu")]
+[node name="axe" parent="." unique_id=568483005 instance=ExtResource("1_ygndu")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=532958718]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1336937, -0.41010565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4821892, -0.11894667)
 shape = SubResource("BoxShape3D_0p6w6")
 
 [editable path="axe"]

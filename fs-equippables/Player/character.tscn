@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvyrqfy6x3x1l" path="res://Player/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://bcllo70t6g0an" path="res://Player/interact_ray.gd" id="2_6j38j"]
+[ext_resource type="PackedScene" uid="uid://ci3ahqvuqvbyo" path="res://Items/swingable.tscn" id="2_bis3e"]
 [ext_resource type="Script" uid="uid://d04xmgme67dv2" path="res://Player/EditorModule.gd" id="3_v3ckk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
@@ -379,11 +380,13 @@ libraries/ = SubResource("AnimationLibrary_78wew")
 [node name="ConsumeAudio" type="AudioStreamPlayer" parent="Head" unique_id=350575378]
 
 [node name="ToolPoint" type="Node3D" parent="Head" unique_id=831791176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.548226, -0.369346, -0.706932)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89848864, -0.36934614, -0.70693207)
 
 [node name="HoldItemPoint" type="Node3D" parent="Head" unique_id=994079019]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0664444, -0.168296, -0.435361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3665125, -0.33265877, -0.5826795)
+
+[node name="Swingable" parent="Head/HoldItemPoint" unique_id=777916753 instance=ExtResource("2_bis3e")]
 
 [node name="InteractRay" type="RayCast3D" parent="Head" unique_id=1223219909]
 unique_name_in_owner = true
