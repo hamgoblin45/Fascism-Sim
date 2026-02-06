@@ -24,10 +24,16 @@ var hp: float = 100.0
 var max_hp: float = 100.0
 
 var max_energy: float = 100.0
-var energy: float = 100.0 # Only refills on a new day / eating
+var energy: float = 100.0: # Only refills on a new day / eating
+	set(value):
+		energy = clamp(value, 0 , max_energy)
+		if stamina > energy:
+			stamina = energy
 var energy_drain_rate: float = 0.05 # How fast energy drains over time
 
-var stamina: float = 100.0
+var stamina: float = 100.0:
+	set(value):
+		stamina = clamp(value, 0, energy)
 var stamina_regen_rate: float = 15.0
 
 var hunger: float = 0.0
@@ -37,3 +43,7 @@ var hunger_drain_rate: float = 0.05 # How quickly you get hungry
 var hp_starve_drain_rate: float = 0.05 # How much dmg you take when starving
 
 var working: bool = false
+
+func _process(delta: float) -> void:
+	if stamina < energy:
+		stamina += stamina_regen_rate * delta
