@@ -324,7 +324,6 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
 [node name="PlayerCharacter" type="CharacterBody3D" unique_id=1054369776 node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "ground_ray")]
-transform = Transform3D(2.855, 0, 0, 0, 2.855, 0, 0, 0, 2.855, 0, 0, 0)
 collision_layer = 257
 collision_mask = 257
 script = ExtResource("1_0t4e8")
@@ -378,15 +377,13 @@ libraries/ = SubResource("AnimationLibrary_78wew")
 
 [node name="ConsumeAudio" type="AudioStreamPlayer" parent="Head" unique_id=350575378]
 
-[node name="ToolPoint" type="Node3D" parent="Head" unique_id=831791176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.548226, -0.369346, -0.706932)
-
 [node name="HoldItemPoint" type="Node3D" parent="Head" unique_id=994079019]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0664444, -0.168296, -0.435361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3665125, -0.33265877, -0.5826795)
 
 [node name="InteractRay" type="RayCast3D" parent="Head" unique_id=1223219909]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.46523315)
 target_position = Vector3(0, 0, -3)
 collision_mask = 6
 hit_from_inside = true

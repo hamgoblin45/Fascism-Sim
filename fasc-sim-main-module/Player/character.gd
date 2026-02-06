@@ -10,16 +10,16 @@ class_name PlayerCharacter
 ## The settings for the character's movement and feel.
 @export_category("Character")
 ## The speed that the character moves at without crouching or sprinting.
-@export var base_speed : float = 7
+@export var base_speed : float = 11
 ### The speed that the character moves at when sprinting.
-@export var sprint_speed : float = 12.0
+@export var sprint_speed : float = 19.0
 ### The speed that the character moves at when crouching.
-@export var crouch_speed : float = 2.5
+@export var crouch_speed : float = 6.5
 #
 ### How fast the character speeds up and slows down when Motion Smoothing is on.
 @export var acceleration : float = 2.0
 ### How high the player jumps.
-@export var jump_velocity : float = 2.5
+@export var jump_velocity : float = 2.0
 ### How far the player turns when the mouse is moved.
 @export var mouse_sensitivity : float = 0.1
 ## Invert the Y input for mouse and joystick
@@ -83,7 +83,7 @@ class_name PlayerCharacter
 
 
 ## Member variables
-var speed : float = 7.0
+var speed = base_speed
 var current_speed : float = 0.0
 ## States: normal, crouching, sprinting
 var state : String = "normal"
@@ -264,11 +264,17 @@ func _set_equipped_item(item_data: InventoryItemData):
 	for child in hold_item_point.get_children():
 		child.queue_free()
 	if item_data == null:
+		GameState.equipped_item = null
 		return
+	GameState.equipped_item = item_data
 	if item_data.equipped_scene:
 		var mesh_instance = item_data.equipped_scene.instantiate()
 		hold_item_point.add_child(mesh_instance)
+		
 		equipped_item_mesh = mesh_instance
+		
+		if "item_data" in equipped_item_mesh:
+			equipped_item_mesh.item_data = item_data
 
 
 #### ---- FPS CONTROLLER ADDON CODE START -------- ####
@@ -392,7 +398,10 @@ func handle_state(moving):
 						"normal":
 							enter_sprint_state()
 						"sprinting":
-							enter_normal_state()
+							if GameState.stamina > 0:
+								GameState.stamina -= 15.0 * get_physics_process_delta_time()
+							else:
+								enter_normal_state()
 			elif state == "sprinting":
 				enter_normal_state()
 	
@@ -457,7 +466,8 @@ func headbob_animation(moving):
 			was_playing = true
 		
 		HEADBOB_ANIMATION.play(use_headbob_animation, 0.25)
-		HEADBOB_ANIMATION.speed_scale = (current_speed / base_speed) * 2.25
+		HEADBOB_ANIMATION.speed_scale = (current_speed / base_speed) * 2.0
+		
 		if !was_playing:
 			HEADBOB_ANIMATION.seek(float(randi() % 2)) # Randomize the initial headbob direction
 			# Let me explain that piece of code because it looks like it does the opposite of what it actually does.
