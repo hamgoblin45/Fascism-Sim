@@ -20,11 +20,11 @@ var player: CharacterBody3D
 var held_item
 
 ## -- Status
-var hp: float = 100.0
+var hp: float = 50.0
 var max_hp: float = 100.0
 
 var max_energy: float = 100.0
-var energy: float = 100.0: # Only refills on a new day / eating
+var energy: float = 40.0: # Only refills on a new day / eating
 	set(value):
 		energy = clamp(value, 0 , max_energy)
 		if stamina > energy:
@@ -36,7 +36,7 @@ var stamina: float = 100.0:
 		stamina = clamp(value, 0, energy)
 var stamina_regen_rate: float = 15.0
 
-var hunger: float = 0.0
+var hunger: float = 12.0
 var max_hunger: float = 100.0
 var hunger_level: int = 0
 var hunger_drain_rate: float = 0.05 # How quickly you get hungry

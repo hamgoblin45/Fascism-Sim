@@ -47,6 +47,7 @@ func _on_consume_complete():
 	for stat_name in item_data.effects:
 		var amount = item_data.effects[stat_name]
 		if amount != 0:
+			print("Recovered %s %s" % [str(amount), stat_name])
 			EventBus.change_stat.emit(stat_name, amount)
 	
 	EventBus.removing_item.emit(item_data, 1, null)
