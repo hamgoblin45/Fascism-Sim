@@ -111,16 +111,18 @@ func _check_hit() -> bool:
 
 func _trigger_recoil():
 	print("RECOIL")
-	var recoil_tween = create_tween().set_parallel(true)
+	var recoil_tween = create_tween()
 	
+	var bounce_pos = position + Vector3(0.1, 0.1, 0.3)
+	recoil_tween.tween_property(self, "position", bounce_pos, 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	# Move a lil back
-	recoil_tween.tween_property(self, "position", position + Vector3(0.1, 0.1, 0.2), 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	recoil_tween.tween_property(self, "rotation_degrees:x", rotation_degrees.x + 20, 0.1)
+	#recoil_tween.tween_property(self, "position", position + Vector3(0.1, 0.1, 0.2), 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	#recoil_tween.tween_property(self, "rotation_degrees:x", rotation_degrees.x + 20, 0.1)
 	
 	# Then back to normal
-	recoil_tween.set_parallel(false)
-	recoil_tween.chain().tween_interval(0.06)
-	recoil_tween.chain().tween_callback(_reset_to_idle)
+	#recoil_tween.set_parallel(false)
+	recoil_tween.tween_interval(0.06)
+	recoil_tween.tween_callback(_reset_to_idle)
 
 func _reset_to_idle():
 	var reset_tween = create_tween().set_parallel(true)
