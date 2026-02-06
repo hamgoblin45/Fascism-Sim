@@ -45,6 +45,11 @@ func _change_stat(stat: String, value: float):
 			if GameState.hunger <= 0:
 				GameState.hunger = 0
 			
+			
+			
+			if GameState.hunger > GameState.max_hunger:
+				GameState.hunger = GameState.max_hunger
+			
 			if GameState.hunger < 25:
 				GameState.hunger_level = 1
 			elif GameState.hunger < 50:
@@ -53,10 +58,6 @@ func _change_stat(stat: String, value: float):
 				GameState.hunger_level = 3
 			else:
 				GameState.hunger_level = 4
-			
-			if GameState.hunger > GameState.max_hunger:
-				GameState.hunger = GameState.max_hunger
-			
 				print("You are starving to death")
 			#print("New Hunger value: %s, now at Hunger Level %s" % [str(GameState.hunger), str(GameState.hunger_level)])
 		

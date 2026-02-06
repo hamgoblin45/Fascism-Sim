@@ -269,7 +269,11 @@ func _set_equipped_item(item_data: InventoryItemData):
 	if item_data.equipped_scene:
 		var mesh_instance = item_data.equipped_scene.instantiate()
 		hold_item_point.add_child(mesh_instance)
+		
 		equipped_item_mesh = mesh_instance
+		
+		if "item_data" in equipped_item_mesh:
+			equipped_item_mesh.item_data = item_data
 
 
 #### ---- FPS CONTROLLER ADDON CODE START -------- ####
