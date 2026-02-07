@@ -10,6 +10,11 @@ class_name ObjectiveData
 
 var current_step: ObjectiveStepData
 
+@export_group("World Impact")
+@export var suspicion_change: float = 0.0
+@export var resistance_change: float = 0.0
+@export var world_state_flags: Dictionary = {} # Populate with things like {neighbor_arrested: true} based on quest completion
+
 @export var turn_in_npc: String = "" # Not sure if this is necessary but putting it here in case
 var complete: bool = false
 var turned_in: bool = false
@@ -43,3 +48,10 @@ func advance_objective():
 	
 	current_step = step_datas[next_step_index]
 	EventBus.objective_advanced.emit(self)
+
+func apply_consequences():
+	GameState.suspicion += suspicion_change
+	GameState.resistence += resistance_change
+	
+	for flag in world_state_flags:
+		GameState.set_flag(flag, world_state_flags[flag])

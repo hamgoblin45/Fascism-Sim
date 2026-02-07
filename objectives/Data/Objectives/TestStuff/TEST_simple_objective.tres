@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ObjectiveData" load_steps=5 format=3 uid="uid://dkfaqm5wac657"]
+[gd_resource type="Resource" script_class="ObjectiveData" format=3 uid="uid://dkfaqm5wac657"]
 
 [ext_resource type="Script" uid="uid://dl860ocyo52gv" path="res://Data/Objectives/ObjectiveData.gd" id="1_bxl6v"]
 [ext_resource type="Script" uid="uid://bu00q3p03457u" path="res://Data/InventoryItemData.gd" id="1_nvpou"]
