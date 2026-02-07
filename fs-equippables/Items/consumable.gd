@@ -31,7 +31,7 @@ func _process_consume(delta: float):
 	if timer >= consume_speed:
 		_on_consume_complete()
 	
-	EventBus.consume_progress.emit(timer / consume_speed)
+	EventBus.consume_progress.emit(progress)
 
 func _reset_consume():
 	if not is_eating: return
