@@ -380,30 +380,32 @@ func handle_state(moving):
 	if sprint_enabled:
 		if sprint_mode == 0:
 			if Input.is_action_pressed(SPRINT) and state != "crouching":
-				if moving:
+				if moving and GameState.stamina > 0:
 					if state != "sprinting":
 						enter_sprint_state()
+					EventBus.change_stat.emit("stamina", -15.0 * get_physics_process_delta_time())
 				else:
 					if state == "sprinting":
 						enter_normal_state()
 			elif state == "sprinting":
 				enter_normal_state()
-		elif sprint_mode == 1:
-			if moving:
-				# If the player is holding sprint before moving, handle that cenerio
-				if Input.is_action_pressed(SPRINT) and state == "normal":
-					enter_sprint_state()
-				if Input.is_action_just_pressed(SPRINT):
-					match state:
-						"normal":
-							enter_sprint_state()
-						"sprinting":
-							if GameState.stamina > 0:
-								GameState.stamina -= 15.0 * get_physics_process_delta_time()
-							else:
-								enter_normal_state()
-			elif state == "sprinting":
-				enter_normal_state()
+		#elif sprint_mode == 1:
+			#if moving:
+				## If the player is holding sprint before moving, handle that cenerio
+				#if Input.is_action_pressed(SPRINT) and state == "normal":
+					#enter_sprint_state()
+				#if Input.is_action_just_pressed(SPRINT):
+					#match state:
+						#"normal":
+							#enter_sprint_state()
+						#"sprinting":
+							#if GameState.stamina > 0:
+								#EventBus.change_stat.emit("stamina", -15.0 * get_physics_process_delta_time())
+								##GameState.stamina -= 15.0 * get_physics_process_delta_time()
+							#else:
+								#enter_normal_state()
+			#elif state == "sprinting":
+				#enter_normal_state()
 	
 	if crouch_enabled:
 		if crouch_mode == 0:

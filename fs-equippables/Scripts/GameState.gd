@@ -35,7 +35,7 @@ var max_stamina: float = 100.0
 var stamina: float = 100.0:
 	set(value):
 		stamina = clamp(value, 0, energy)
-var stamina_regen_rate: float = 4.5
+var stamina_regen_rate: float = 10.0
 
 
 var hunger: float = 12.0
@@ -46,9 +46,6 @@ var hp_starve_drain_rate: float = 0.05 # How much dmg you take when starving
 
 var working: bool = false
 
-func _process(delta: float) -> void:
-	if stamina < energy:
-		stamina += stamina_regen_rate * delta
 
 func adjust_stat(stat: String, amount: float):
 	# If the stat exists as a var in this GameState script, add amount to it. This can be negative
