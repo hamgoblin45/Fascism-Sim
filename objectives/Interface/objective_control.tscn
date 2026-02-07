@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ci8qlujuy7ma5"]
 
-[ext_resource type="Script" uid="uid://cugngl2iwo01j" path="res://Interface/objective_manager.gd" id="1_76m2h"]
+[ext_resource type="Script" uid="uid://cugngl2iwo01j" path="res://Scripts/Managers/objective_manager.gd" id="1_76m2h"]
 [ext_resource type="Script" uid="uid://cbrq0qtlgucg7" path="res://Interface/objective_tracker_ui.gd" id="2_7d15p"]
 [ext_resource type="Script" uid="uid://cmnfp80lkroyp" path="res://test_control.gd" id="4_mdw3h"]
 

@@ -11,6 +11,7 @@ var resistance: float = 0.0:
 # - Memory
 var world_flags: Dictionary = {
 	# This is where you will keep keys like "first_warning_received" or "doug_arrested" with bool values
+	# Can just use something like "set GameState.world_flags.neighbor_arrested = true" in Dialogic
 }
 
 var objectives: Array[ObjectiveData]
