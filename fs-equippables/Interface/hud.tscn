@@ -90,15 +90,40 @@ grow_vertical = 2
 text = "10/10"
 horizontal_alignment = 1
 
+[node name="StaminaLabel" type="Label" parent="StatusUI/VBoxContainer" unique_id=1294042997]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36328852, 0.6186858, 0.2774686, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.84705883)
+text = "STAMINA"
+horizontal_alignment = 1
+
+[node name="StaminaBar" type="ProgressBar" parent="StatusUI/VBoxContainer" unique_id=1420224168]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="StaminaValue" type="Label" parent="StatusUI/VBoxContainer/StaminaBar" unique_id=670983416]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100/100"
+horizontal_alignment = 1
+
 [node name="HungerUI" type="PanelContainer" parent="." unique_id=1682203168]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -263.0
-offset_top = 21.0
-offset_right = 20.0
-offset_bottom = 98.0
+offset_left = -354.0
+offset_top = 31.0
+offset_right = -261.0
+offset_bottom = 85.0
 grow_horizontal = 2
 mouse_filter = 2
 
@@ -107,14 +132,10 @@ layout_mode = 2
 
 [node name="HungerLabel" type="Label" parent="HungerUI/VBoxContainer" unique_id=2047885197]
 layout_mode = 2
-text = "Hunger (semi-hidden stat)"
+text = "Hunger "
 horizontal_alignment = 1
 
 [node name="HungerBar" type="ProgressBar" parent="HungerUI/VBoxContainer" unique_id=876787057]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="HungerValue" type="Label" parent="HungerUI/VBoxContainer" unique_id=1827320320]
 unique_name_in_owner = true
 layout_mode = 2
 

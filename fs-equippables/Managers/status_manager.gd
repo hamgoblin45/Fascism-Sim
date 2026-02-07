@@ -8,6 +8,7 @@ func _ready():
 	# Start everything at max
 	GameState.hp = GameState.max_hp
 	GameState.energy = GameState.max_energy
+	GameState.stamina = GameState.max_stamina
 	GameState.hunger = 0
 	
 	var total_minutes: float = (GameState.hour * 24) + GameState.minute
@@ -60,7 +61,12 @@ func _change_stat(stat: String, value: float):
 				GameState.hunger_level = 4
 				print("You are starving to death")
 			#print("New Hunger value: %s, now at Hunger Level %s" % [str(GameState.hunger), str(GameState.hunger_level)])
-		
+		"stamina":
+			GameState.stamina += value
+			if GameState.stamina <= 0:
+				GameState.stamina = 0
+			if GameState.stamina > GameState.max_stamina:
+				GameState.stamina = GameState.max_stamina
 	
 	EventBus.stat_changed.emit(stat)
 
