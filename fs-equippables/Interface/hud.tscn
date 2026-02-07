@@ -29,6 +29,10 @@ script = ExtResource("2_4i735")
 unique_name_in_owner = true
 autostart = true
 
+[node name="RecoveryDelayTimer" type="Timer" parent="StatusManager" unique_id=713717736]
+unique_name_in_owner = true
+one_shot = true
+
 [node name="StatusUI" type="PanelContainer" parent="." unique_id=1249952142]
 layout_mode = 0
 offset_left = 21.0
@@ -161,3 +165,4 @@ texture_progress = ExtResource("3_28tah")
 
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]
+[connection signal="timeout" from="StatusManager/RecoveryDelayTimer" to="StatusManager" method="_on_recovery_delay_timeout"]

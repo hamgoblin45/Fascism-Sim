@@ -35,7 +35,8 @@ var max_stamina: float = 100.0
 var stamina: float = 100.0:
 	set(value):
 		stamina = clamp(value, 0, energy)
-var stamina_regen_rate: float = 15.0
+var stamina_regen_rate: float = 4.5
+
 
 var hunger: float = 12.0
 var max_hunger: float = 100.0
