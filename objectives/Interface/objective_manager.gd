@@ -39,8 +39,25 @@ func _complete_objective(objective: ObjectiveData):
 
 func _turn_in_objective(objective: ObjectiveData):
 	print("Objective %s turned in as acknowledge by ObjectiveManager" % objective)
+	
+	# Take any required items
+	for step in objective.step_datas:
+		if step is ObjectiveStepGatherData:
+			for item_slot in step.required_items:
+				EventBus.removing_item.emit(item_slot.item_data, item_slot.quantity) # This is an Inv project signal, add those or comment out to avoid crash
+	
+	# Give rewards
+	for reward_item in objective.rewards:
+		EventBus.adding_item.emit(reward_item, 1)
+	
+	objective.apply_consequences()
+	
 	objective.turned_in = true
 	EventBus.objective_turned_in.emit(objective)
+	
+	# Assign follow-up if one exists
+	if objective.follow_up_objective:
+		_assign_objective(objective.follow_up_objective)
 
 func _remove_objective(objective: ObjectiveData):
 	pass
