@@ -18,3 +18,6 @@ signal objective_turned_in(objective: ObjectiveData)
 signal objective_removed(objective: ObjectiveData)
 
 signal update_objective(objective: ObjectiveData)
+
+
+signal world_changed(id: String, value: bool)
