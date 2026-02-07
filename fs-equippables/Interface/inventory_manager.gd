@@ -334,8 +334,7 @@ func _take_from_slot(slot: InventorySlotData, amount_needed: int) -> int:
 	if slot.quantity <= 0:
 		if equipped_slot_data == slot:
 			_unequip()
-		else:
-			_nullify_slot_in_data(slot)
+		_nullify_slot_in_data(slot)
 	else:
 		# Otherwise, update the slot
 		var idx = target_inv.slot_datas.find(slot)
