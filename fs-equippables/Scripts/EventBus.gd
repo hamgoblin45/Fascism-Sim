@@ -47,3 +47,9 @@ signal consume_progress(value: float)
 signal open_split_stack_ui(slot_data: InventorySlotData)
 signal splitting_item_stack(grab_slot_data: InventorySlotData) # Requests splitting a slot
 signal item_stack_split(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Confirms a slot was split
+
+## - Shopping
+# Consider changing shopping to emit a string id for shop type if you want different kinds of vendors
+signal shopping(legal: bool) # Opens up either the legal shop or the black market
+signal shop_closed # Resets player inventory slots if they had been disabled for selling
+signal selling_item(slot: InventorySlotData) # Requests sale

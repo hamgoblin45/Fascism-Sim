@@ -79,7 +79,9 @@ func _input(event: InputEvent) -> void:
 		
 		# Use item on click if mouse captured
 		if event.is_action_pressed("click"):
-			_use_equipped()
+			if GameState.ui_open: pass
+			else:
+				_use_equipped()
 		
 		# Drop item
 		if event.is_action_pressed("drop"):
@@ -330,7 +332,10 @@ func _take_from_slot(slot: InventorySlotData, amount_needed: int) -> int:
 	
 	# Update whatever inventory if we null out a slot
 	if slot.quantity <= 0:
-		_nullify_slot_in_data(slot)
+		if equipped_slot_data == slot:
+			_unequip()
+		else:
+			_nullify_slot_in_data(slot)
 	else:
 		# Otherwise, update the slot
 		var idx = target_inv.slot_datas.find(slot)

@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://dqoxbykl7fg8w"]
+
+[ext_resource type="Script" uid="uid://dwscylx3xk7p8" path="res://Interface/hud.gd" id="1_jq685"]
+[ext_resource type="Script" uid="uid://di83xpkcqfpbw" path="res://Managers/status_manager.gd" id="2_4i735"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uf33"]
+
+[node name="HUD" type="Control" unique_id=758873281]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jq685")
+
+[node name="TimeManager" type="Node" parent="." unique_id=218433389]
+
+[node name="Timer" type="Timer" parent="TimeManager" unique_id=935979013]
+autostart = true
+
+[node name="StatusManager" type="Node" parent="." unique_id=769540176]
+unique_name_in_owner = true
+script = ExtResource("2_4i735")
+
+[node name="StatusCheckTimer" type="Timer" parent="StatusManager" unique_id=1351879860]
+unique_name_in_owner = true
+autostart = true
+
+[node name="StatusUI" type="PanelContainer" parent="." unique_id=1249952142]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 16.0
+offset_right = 257.0
+offset_bottom = 149.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1uf33")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatusUI" unique_id=483748171]
+layout_mode = 2
+
+[node name="HPLabel" type="Label" parent="StatusUI/VBoxContainer" unique_id=1763056091]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99999994, 0.10443371, 0.056671128, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.84705883)
+text = "HP"
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="StatusUI/VBoxContainer" unique_id=888025147]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="HPValue" type="Label" parent="StatusUI/VBoxContainer/HPBar" unique_id=1901457213]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10/10"
+horizontal_alignment = 1
+
+[node name="EnergyLabel" type="Label" parent="StatusUI/VBoxContainer" unique_id=21904112]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78260213, 0.44826764, 0.029553052, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.84705883)
+text = "ENERGY"
+horizontal_alignment = 1
+
+[node name="EnergyBar" type="ProgressBar" parent="StatusUI/VBoxContainer" unique_id=1364257726]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="EnergyValue" type="Label" parent="StatusUI/VBoxContainer/EnergyBar" unique_id=1491364799]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10/10"
+horizontal_alignment = 1
+
+[node name="HungerUI" type="PanelContainer" parent="." unique_id=1682203168]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -263.0
+offset_top = 21.0
+offset_right = 20.0
+offset_bottom = 98.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HungerUI" unique_id=808967914]
+layout_mode = 2
+
+[node name="HungerLabel" type="Label" parent="HungerUI/VBoxContainer" unique_id=2047885197]
+layout_mode = 2
+text = "Hunger (semi-hidden stat)"
+horizontal_alignment = 1
+
+[node name="HungerBar" type="ProgressBar" parent="HungerUI/VBoxContainer" unique_id=876787057]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HungerValue" type="Label" parent="HungerUI/VBoxContainer" unique_id=1827320320]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]

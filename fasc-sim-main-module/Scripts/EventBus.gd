@@ -12,6 +12,9 @@ signal item_grabbed(body)
 
 
 #####-----INTERFACE
+## --- Status
+signal change_stat(stat: String, value: float)
+signal stat_changed(_stat: String)
 
 signal money_updated(new_total: float)
 ## --- Dialogue
@@ -41,6 +44,7 @@ signal equipping_item(item: InventoryItemData)
 signal use_equipped_item
 signal drop_equipped_item
 signal hotbar_index_changed(index: int)
+signal consume_progress(value: float)
 
 ## - Splitting
 signal open_split_stack_ui(slot_data: InventorySlotData)

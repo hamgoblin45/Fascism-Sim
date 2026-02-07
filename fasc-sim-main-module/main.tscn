@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/inventory_ui.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" path="res://Interface/hud.tscn" id="2_074og"]
 [ext_resource type="PackedScene" uid="uid://j22i50g5odp8" path="res://Items/grabbable.tscn" id="3_h2yge"]
 [ext_resource type="Resource" uid="uid://ib385dgptwrd" path="res://Data/Items/Food/wine.tres" id="4_5vw27"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
@@ -79,6 +80,8 @@ size = Vector3(80, 0.1, 80)
 
 [node name="PlayerCharacter" parent="." unique_id=395488164 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.31503916, 0)
+
+[node name="HUD" parent="." unique_id=758873281 instance=ExtResource("2_074og")]
 
 [node name="InventoryUI" parent="." unique_id=1602292331 instance=ExtResource("2_0xm2m")]
 
