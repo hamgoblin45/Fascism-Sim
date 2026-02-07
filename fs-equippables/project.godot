@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="FS-Equippables"
+config/tags=PackedStringArray("fasc")
 run/main_scene="uid://bpn2tkggxlsas"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
-config/tags=PackedStringArray("fasc")
 
 [autoload]
 

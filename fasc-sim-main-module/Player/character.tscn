@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvyrqfy6x3x1l" path="res://Player/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://bcllo70t6g0an" path="res://Player/interact_ray.gd" id="2_6j38j"]
+[ext_resource type="PackedScene" uid="uid://by521mbgxnhr5" path="res://Items/consumable.tscn" id="2_bis3e"]
 [ext_resource type="Script" uid="uid://d04xmgme67dv2" path="res://Player/EditorModule.gd" id="3_v3ckk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
@@ -380,6 +381,8 @@ libraries/ = SubResource("AnimationLibrary_78wew")
 [node name="HoldItemPoint" type="Node3D" parent="Head" unique_id=994079019]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3665125, -0.33265877, -0.5826795)
+
+[node name="Consumable" parent="Head/HoldItemPoint" unique_id=356965529 instance=ExtResource("2_bis3e")]
 
 [node name="InteractRay" type="RayCast3D" parent="Head" unique_id=1223219909]
 unique_name_in_owner = true
