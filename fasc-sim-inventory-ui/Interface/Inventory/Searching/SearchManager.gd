@@ -4,7 +4,6 @@ signal search_step_started(index: int, duration: float)
 signal search_finished(caught: bool, item: InventoryItemData, qty: int)
 
 var current_search_inventory: InventoryData = null
-
 var current_search_index: int = -1 # Where the searcher's "hands" are
 var suspicion_level: float = 0.0 # Increases when moving an item mid search ( I think)
 
@@ -47,7 +46,7 @@ func start_search(inventory: InventoryData):
 		if slot and slot.item_data:
 			
 			if _discovered_contraband(slot.item_data):
-				player_busted(slot.item_data, slot.quantity)
+				player_busted(slot.item_data, slot.quantity, i)
 				
 				return
 	_finish_search(false, null, 0)
@@ -84,7 +83,7 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 
 func _discovered_contraband(item: InventoryItemData) -> bool:
 	
-	if item.contraband_level == 0:
+	if item.contraband_level <= GameState.regime_tolerance:
 		return false
 	
 	# Higher concealability reduces RNG chance of discovery
@@ -101,12 +100,25 @@ func _finish_search(caught: bool, item: InventoryItemData, qty: int):
 	current_search_index = -1
 	search_finished.emit(caught, item, qty)
 
-func player_busted(item: InventoryItemData, qty: int):
+func player_busted(item: InventoryItemData, qty: int, index: int):
 	print("SearchManager: PLAYER BUSTED with ", item.name)
+	var penalty = (item.contraband_level * qty) * 2.5 # How much suspicion will be added based on the amount of contraband / contraband lvl
+	GameState.suspicion += penalty
+	GameState.world_flags["busted_with_contraband"] = true
+	EventBus.world_changed.emit("busted_with_contraband", true)
+	
+	# Confiscation
+	if current_search_inventory:
+		current_search_inventory.slot_datas[index] = null
+		EventBus.inventory_item_updated.emit(current_search_inventory, index)
+	
 	is_searching = false
 	search_finished.emit(true, item, qty)
 
 func player_busted_external(inventory: InventoryData, slot: InventorySlotData, index: int):
+	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # How much suspicion will be added based on the amount of contraband / contraband lvl
+	GameState.suspicion += penalty
+	
 	is_searching = false
 	search_finished.emit(true, slot.item_data, slot.quantity)
 	# Confiscation
