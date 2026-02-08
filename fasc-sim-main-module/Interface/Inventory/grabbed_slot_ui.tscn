@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bawdwtvn8vrja"]
+[gd_scene format=3 uid="uid://cb06vgbnsed6c"]
 
-[ext_resource type="Script" path="res://Interface/grabbed_slot_ui.gd" id="1_04ctf"]
+[ext_resource type="Script" uid="uid://c2pgrodfpcdpw" path="res://Interface/grabbed_slot_ui.gd" id="1_04ctf"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="2_7lhxo"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bjljn"]

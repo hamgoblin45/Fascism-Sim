@@ -55,3 +55,21 @@ signal item_stack_split(slot_data: InventorySlotData, orig_slot: InventorySlotDa
 signal shopping(legal: bool) # Opens up either the legal shop or the black market
 signal shop_closed # Resets player inventory slots if they had been disabled for selling
 signal selling_item(slot: InventorySlotData) # Requests sale
+
+# Request signals (when attempting)
+signal assign_objective(objective: ObjectiveData)
+signal advance_objective(objective: ObjectiveData)
+signal complete_objective(objective: ObjectiveData)
+signal turn_in_objective(objective: ObjectiveData)
+signal remove_objective(objective: ObjectiveData)
+
+# Confirmation signals (when succeeded)
+signal objective_assigned(objective: ObjectiveData)
+signal objective_advanced(objective: ObjectiveData)
+signal objective_completed(objective: ObjectiveData)
+signal objective_turned_in(objective: ObjectiveData)
+signal objective_removed(objective: ObjectiveData)
+
+signal update_objective(objective: ObjectiveData)
+
+signal world_changed(id: String, value: bool)
