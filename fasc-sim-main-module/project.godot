@@ -24,8 +24,8 @@ config/icon="res://icon.svg"
 
 EventBus="*res://Scripts/EventBus.gd"
 GameState="*res://Scripts/GameState.gd"
-Dialogic="*uid://ds2q0uclmolvu"
 WorldManager="*uid://bp12kglfjfa8g"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
@@ -44,6 +44,10 @@ project/assembly_name="FascSim-MainModule"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+
+[gui]
+
+theme/custom_font="uid://bac8hyfa4piml"
 
 [input]
 

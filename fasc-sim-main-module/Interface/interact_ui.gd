@@ -1,7 +1,7 @@
 extends PanelContainer
 
-@onready var interact_icon: TextureRect = %InteractIcon
 @onready var interact_label: RichTextLabel = %InteractLabel
+@onready var interact_icon: TextureRect = %InteractIcon
 
 
 func _ready() -> void:

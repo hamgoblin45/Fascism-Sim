@@ -1,10 +1,18 @@
 [gd_scene format=3 uid="uid://dqoxbykl7fg8w"]
 
 [ext_resource type="Script" uid="uid://dvqtbq1xcbrvv" path="res://Interface/hud.gd" id="1_jq685"]
-[ext_resource type="Script" uid="uid://di83xpkcqfpbw" path="res://Managers/status_manager.gd" id="2_4i735"]
+[ext_resource type="Script" uid="uid://di83xpkcqfpbw" path="res://Scripts/Managers/status_manager.gd" id="2_4i735"]
 [ext_resource type="Texture2D" uid="uid://b7tghv14w810u" path="res://Interface/circle_progress.png" id="3_28tah"]
+[ext_resource type="Script" uid="uid://c6aj1rblivlac" path="res://Interface/interact_ui.gd" id="4_mb2mj"]
+[ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="5_jsbdt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uf33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4i735"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yux2m"]
+atlas = ExtResource("5_jsbdt")
+region = Rect2(0, 0, 64, 64)
 
 [node name="HUD" type="Control" unique_id=758873281]
 layout_mode = 3
@@ -34,11 +42,16 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="StatusUI" type="PanelContainer" parent="." unique_id=1249952142]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 16.0
-offset_right = 257.0
-offset_bottom = 149.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -183.0
+grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1uf33")
 
@@ -122,14 +135,17 @@ horizontal_alignment = 1
 
 [node name="HungerUI" type="PanelContainer" parent="." unique_id=1682203168]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -354.0
-offset_top = 31.0
-offset_right = -261.0
-offset_bottom = 85.0
-grow_horizontal = 2
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -27.0
+offset_right = -72.0
+offset_bottom = 27.0
+grow_horizontal = 0
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HungerUI" unique_id=808967914]
@@ -162,6 +178,43 @@ grow_vertical = 2
 mouse_filter = 2
 fill_mode = 4
 texture_progress = ExtResource("3_28tah")
+
+[node name="InteractUI" type="PanelContainer" parent="." unique_id=1490746018]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -42.0
+offset_right = 47.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4i735")
+script = ExtResource("4_mb2mj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InteractUI" unique_id=569730731]
+layout_mode = 2
+
+[node name="InteractIcon" type="TextureRect" parent="InteractUI/VBoxContainer" unique_id=1693853530]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+texture = SubResource("AtlasTexture_yux2m")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="InteractLabel" type="RichTextLabel" parent="InteractUI/VBoxContainer" unique_id=647827917]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Interact"
+fit_content = true
 
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]
