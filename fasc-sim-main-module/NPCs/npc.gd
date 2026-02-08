@@ -9,39 +9,35 @@ class_name NPC
 #@export var recovery_time: float = 4.0
 
 #@onready var npc_mesh: Node3D = $NPCMesh
-@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var look_at_node: Node3D = $LookAtNode
 
 var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") # Don't set this as a const, see the gravity section in _physics_process
 var gravity_enabled: bool = true
 
+@onready var interact_area: Interactable = $Interactable
 var interactable: bool = true
-var last_schedule_check: float = -1.0 #Based on time, full numbers being hours
 
+@export_category("Anim Control")
+var anim: AnimationPlayer
+@export var blend_speed = 2
+var walk_blend_value = 0
+var prev_walk_blend_value: float
+var sit_blend_value = 0
+# Looking at stuff
 @onready var head: Node3D = $Head
-
 var looking_at: Node3D
 var player_nearby: bool
-
+## --- STATES
 enum {IDLE, WALK, WAIT, ANIMATING}
 var state = IDLE
 #var recovery_timer:float = 0.0
 var is_interrupted: bool = false
 var prev_state
-var anim: AnimationPlayer
 
-#@onready var anim_tree: AnimationTree = $AnimationTree
-
-@export_category("Anim Control")
-@export var blend_speed = 2
-var walk_blend_value = 0
-var prev_walk_blend_value: float
-var sit_blend_value = 0
-
-var path_follow: PathFollow3D
-
+## -- PATHING
+var last_schedule_check: float = -1.0 #Based on time, full numbers being hours
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var proximity_detect_area: Area3D = $ProximityDetectArea
-
 var start_basis
 var target_basis
 var target_pos: Vector3
@@ -86,6 +82,7 @@ func instance_npc():
 		gravity_enabled = true
 
 func _on_interact(object: Interactable, interact_type: String, engaged: bool):
+	if object.id != interact_area.id: return
 	match interact_type:
 		"interact":
 			DialogueManager.start_dialogue()
