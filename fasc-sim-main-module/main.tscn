@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dhy5f81eytswm"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/inventory_ui.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" path="res://Interface/hud.tscn" id="2_074og"]
+[ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/Inventory/inventory_ui.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dqoxbykl7fg8w" path="res://Interface/hud.tscn" id="2_074og"]
 [ext_resource type="PackedScene" uid="uid://j22i50g5odp8" path="res://Items/grabbable.tscn" id="3_h2yge"]
 [ext_resource type="Resource" uid="uid://ib385dgptwrd" path="res://Data/Items/Food/wine.tres" id="4_5vw27"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://ble4a155lchnx" path="res://Map/basic_wood_nightstand.glb" id="11_w48qg"]
 [ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/item_hammer.tres" id="12_yaehf"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="13_074og"]
+[ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="19_cegan"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 
@@ -77,6 +78,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23692656, 0)
 visible = false
 use_collision = true
 size = Vector3(80, 0.1, 80)
+
+[node name="player_house" parent="." unique_id=1939223923 instance=ExtResource("9_kek77")]
+
+[node name="Door" parent="player_house" unique_id=983619317 instance=ExtResource("10_4c57u")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -18.716526, -0.13075042, -3.6849256)
+
+[node name="Door2" parent="player_house" unique_id=1775857434 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.00069806725, 0, 1.5999995, 0, 1.5999998, 0, -1.5999995, 0, -0.00069806725, -9.211445, -0.08569169, 4.71878)
+
+[node name="Door4" parent="player_house" unique_id=1757735991 instance=ExtResource("10_4c57u")]
+transform = Transform3D(-0.00070688647, 0, 1.6199998, 0, 1.62, 0, -1.6199998, 0, -0.00070688647, 15.140961, -0.08569169, 4.6999927)
+
+[node name="Door3" parent="player_house" unique_id=2059241498 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.0027925037, 0, 1.299998, 0, 1.6, 0, -1.5999976, 0, 0.0022689179, 1.8669302, -0.08569169, 4.752642)
 
 [node name="PlayerCharacter" parent="." unique_id=395488164 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.31503916, 0)
@@ -151,16 +166,7 @@ shape = SubResource("BoxShape3D_yaehf")
 [node name="Lamp" parent="Containers/Nightstand" unique_id=1271117152 instance=ExtResource("7_272bh")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0.27019882, 2.6980603, -1.7828655)
 
-[node name="player_house" parent="." unique_id=1939223923 instance=ExtResource("9_kek77")]
+[node name="NPCs" type="Node3D" parent="." unique_id=1576685263]
 
-[node name="Door" parent="player_house" unique_id=983619317 instance=ExtResource("10_4c57u")]
-transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -18.716526, -0.13075042, -3.6849256)
-
-[node name="Door2" parent="player_house" unique_id=1775857434 instance=ExtResource("10_4c57u")]
-transform = Transform3D(-0.00069806725, 0, 1.5999995, 0, 1.5999998, 0, -1.5999995, 0, -0.00069806725, -9.211445, -0.08569169, 4.71878)
-
-[node name="Door4" parent="player_house" unique_id=1757735991 instance=ExtResource("10_4c57u")]
-transform = Transform3D(-0.00070688647, 0, 1.6199998, 0, 1.62, 0, -1.6199998, 0, -0.00070688647, 15.140961, -0.08569169, 4.6999927)
-
-[node name="Door3" parent="player_house" unique_id=2059241498 instance=ExtResource("10_4c57u")]
-transform = Transform3D(0.0027925037, 0, 1.299998, 0, 1.6, 0, -1.5999976, 0, 0.0022689179, 1.8669302, -0.08569169, 4.752642)
+[node name="NPC" parent="NPCs" unique_id=610944064 instance=ExtResource("19_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.838703, 0, -3.702774)

@@ -73,3 +73,19 @@ signal objective_removed(objective: ObjectiveData)
 signal update_objective(objective: ObjectiveData)
 
 signal world_changed(id: String, value: bool)
+
+## -- PATHING ---
+signal setting_path(schedule: ScheduleData, path: PathData)
+signal path_finished(npc: NPCData, path: PathData)
+
+## -- TIME ---
+signal end_day # To initiate day transition
+signal change_day() # to initiate the change
+signal day_changed() # to acknowledge the change and initiate follow-up logic
+signal start_day # To load back into the main scene in a full game
+
+signal hour_changed(hour: int)
+signal time_changed(time: float)
+signal minute_changed(hour: float, minute: int)
+
+signal set_paused(bool)

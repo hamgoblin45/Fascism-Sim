@@ -3,7 +3,7 @@ extends Node3D
 
 @onready var anim: AnimationPlayer = $door/AnimationPlayer
 @onready var interactable: Interactable = $door/Cube/Interactable
-
+@onready var collision_shape: CollisionShape3D = $door/Cube/StaticBody3D/CollisionShape3D
 
 
 var open: bool = false
@@ -21,7 +21,9 @@ func _interact(interact_type: String, engaged: bool):
 			if open:
 				anim.play("Close")
 				interactable.interact_text = "Open"
+				collision_shape.disabled = false
 			else:
 				anim.play("Open")
 				interactable.interact_text = "Close"
+				collision_shape.disabled = true
 			open = not open
