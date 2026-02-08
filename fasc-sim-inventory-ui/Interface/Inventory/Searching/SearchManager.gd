@@ -116,7 +116,7 @@ func player_busted(item: InventoryItemData, qty: int, index: int):
 	search_finished.emit(true, item, qty)
 
 func player_busted_external(inventory: InventoryData, slot: InventorySlotData, index: int):
-	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # How much suspicion will be added based on the amount of contraband / contraband lvl
+	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # Maybe less suspicion because item isn't on the player's person?
 	GameState.suspicion += penalty
 	
 	is_searching = false
