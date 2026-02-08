@@ -380,9 +380,10 @@ func handle_state(moving):
 	if sprint_enabled:
 		if sprint_mode == 0:
 			if Input.is_action_pressed(SPRINT) and state != "crouching":
-				if moving:
+				if moving and GameState.stamina > 0:
 					if state != "sprinting":
 						enter_sprint_state()
+					EventBus.change_stat.emit("stamina", -15.0 * get_physics_process_delta_time())
 				else:
 					if state == "sprinting":
 						enter_normal_state()

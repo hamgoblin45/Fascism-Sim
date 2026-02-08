@@ -30,6 +30,7 @@ var energy: float = 40.0: # Only refills on a new day / eating
 			stamina = energy
 var energy_drain_rate: float = 0.05 # How fast energy drains over time
 
+var max_stamina: float = 100.0
 var stamina: float = 100.0:
 	set(value):
 		stamina = clamp(value, 0, energy)

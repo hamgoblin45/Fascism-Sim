@@ -33,7 +33,8 @@ func _physics_process(delta: float) -> void:
 		State.CHARGING:
 			if Input.is_action_pressed("click"):
 				# Drain stamina
-				GameState.stamina -= stamina_cost_per_sec * delta
+				#GameState.stamina -= stamina_cost_per_sec * delta
+				EventBus.change_stat.emit("stamina", -stamina_cost_per_sec * delta)
 				
 				# Build up swing power
 				swing_power = move_toward(swing_power, power_max, power_build_speed * delta)

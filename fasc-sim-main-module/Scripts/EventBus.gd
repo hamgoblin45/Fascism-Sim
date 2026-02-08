@@ -10,7 +10,6 @@ signal item_interacted(object: Interactable, interact_type: String, engaged: boo
 signal item_dropped() # also handles throwing, force applied by character.gd
 signal item_grabbed(body)
 
-
 #####-----INTERFACE
 ## --- Status
 signal change_stat(stat: String, value: float)
