@@ -1,22 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://ou36sd2tqpba"]
+[gd_scene format=3 uid="uid://ou36sd2tqpba"]
 
-[ext_resource type="Script" uid="uid://blib3dqvs0nbw" path="res://Interface/dialogue_ui.gd" id="1_o8fly"]
-[ext_resource type="Script" uid="uid://ds2ismgl1c212" path="res://Interface/dialogue_manager.gd" id="2_xelw8"]
+[ext_resource type="Script" uid="uid://blib3dqvs0nbw" path="res://Interface/Dialogue/dialogue_ui.gd" id="1_o8fly"]
 
-[node name="DialogueUI" type="Control"]
+[node name="DialogueUI" type="Control" unique_id=2104107280]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_o8fly")
 
-[node name="TestImageDisplay" type="TextureRect" parent="."]
+[node name="TestImageDisplay" type="TextureRect" parent="." unique_id=783613295]
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="DialogueManager" type="Node" parent="."]
-script = ExtResource("2_xelw8")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b1jos7r4f40bc"]
 
 [ext_resource type="Script" uid="uid://jf465a7umsp8" path="res://NPCs/npc.gd" id="1_0ikh5"]
-[ext_resource type="Script" path="res://Data/NPCData.gd" id="2_vxakg"]
+[ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="2_vxakg"]
 [ext_resource type="Script" uid="uid://8yo1utsr8bth" path="res://Items/interactable.gd" id="3_k7mck"]
 [ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="4_k5705"]
 

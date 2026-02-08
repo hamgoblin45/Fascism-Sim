@@ -51,6 +51,7 @@ var target_pos: Vector3
 func _ready() -> void:
 	EventBus.minute_changed.connect(_on_time_updated)
 	_check_schedule(GameState.hour, GameState.minute)
+	EventBus.item_interacted.connect(_on_interact)
 
 
 func _physics_process(delta: float) -> void:
@@ -84,6 +85,12 @@ func instance_npc():
 		
 		gravity_enabled = true
 
+func _on_interact(object: Interactable, interact_type: String, engaged: bool):
+	match interact_type:
+		"interact":
+			DialogueManager.start_dialogue()
+
+## -- SCHEDULE / PATHING ------------
 func _on_time_updated(h: int, m: int):
 	if not is_interrupted:
 		_check_schedule(h, m)

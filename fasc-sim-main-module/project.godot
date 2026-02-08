@@ -26,6 +26,7 @@ EventBus="*res://Scripts/EventBus.gd"
 GameState="*res://Scripts/GameState.gd"
 WorldManager="*uid://bp12kglfjfa8g"
 Dialogic="*uid://ds2q0uclmolvu"
+DialogueManager="*uid://b2rrttx774p65"
 
 [dialogic]
 

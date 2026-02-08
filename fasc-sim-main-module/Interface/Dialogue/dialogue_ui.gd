@@ -4,10 +4,10 @@ extends Control
 
 
 
-func _ready():
+#func _ready():
 	## to TEST the ability to call funcs from dialogue
-	EventBus.dialogue_show_image.connect(_show_image)
-	EventBus.kick_balls.connect(_kicked_in_the_balls)
+	#EventBus.dialogue_show_image.connect(_show_image)
+	#EventBus.kick_balls.connect(_kicked_in_the_balls)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
@@ -22,10 +22,7 @@ func _start_dialogue():
 	get_viewport().set_input_as_handled()
 
 
-## to TEST the ability to call funcs from dialogue
-func _show_image(image_path: String):
-	test_image_display.texture = load(image_path)
-	test_image_display.show()
-
-func _kicked_in_the_balls():
-	print("YOU WERE KICKED IN THE BALLS!@!!!!")
+### to TEST the ability to call funcs from dialogue
+#func _show_image(image_path: String):
+	#test_image_display.texture = load(image_path)
+	#test_image_display.show()
