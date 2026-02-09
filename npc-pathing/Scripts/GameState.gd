@@ -1,7 +1,7 @@
 extends Node
 
 var player: CharacterBody3D
-
+var world_flags: Dictionary = {}
 
 var weekday: String = "Monday"
 

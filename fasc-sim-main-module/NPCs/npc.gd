@@ -46,6 +46,7 @@ var target_pos: Vector3
 
 func _ready() -> void:
 	EventBus.minute_changed.connect(_on_time_updated)
+	EventBus.world_changed.connect(_on_world_changed)
 	_check_schedule(GameState.hour, GameState.minute)
 	EventBus.item_interacted.connect(_on_interact)
 
@@ -88,6 +89,18 @@ func _on_interact(object: Interactable, interact_type: String, engaged: bool):
 			DialogueManager.start_dialogue()
 
 ## -- SCHEDULE / PATHING ------------
+func _on_world_changed(flag_name: String, value: bool):
+	# When the world changes, have it check schedule to see if it should react
+	print("NPC %s reacting to world change: %s" % [npc_data.name, flag_name])
+	# This can be used to play specif anims based on the flag. For example:
+	#if flag_name == "alarm_sounded" and value == true:
+		#state = ANIMATING
+		#anim.play("panic")
+		#await anim.animation_finished # This would have it play the animation, THEN update pathing
+	
+	npc_data.schedule.current_path = null
+	_check_schedule(GameState.hour, GameState.minute)
+
 func _on_time_updated(h: int, m: int):
 	if not is_interrupted:
 		_check_schedule(h, m)

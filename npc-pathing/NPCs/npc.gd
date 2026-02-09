@@ -47,6 +47,7 @@ var target_pos: Vector3
 
 func _ready() -> void:
 	EventBus.minute_changed.connect(_on_time_updated)
+	EventBus.world_changed.connect(_on_world_changed)
 	_check_schedule(GameState.hour, GameState.minute)
 
 
@@ -66,6 +67,18 @@ func instance_npc():
 		print("npc_node.gd: Instancing %s, is on current map" % npc_data.name)
 		
 		gravity_enabled = true
+
+func _on_world_changed(flag_name: String, value: bool):
+	# When the world changes, have it check schedule to see if it should react
+	print("NPC %s reacting to world change: %s" % [npc_data.name, flag_name])
+	# This can be used to play specif anims based on the flag. For example:
+	#if flag_name == "alarm_sounded" and value == true:
+		#state = ANIMATING
+		#anim.play("panic")
+		#await anim.animation_finished # This would have it play the animation, THEN update pathing
+	
+	npc_data.schedule.current_path = null
+	_check_schedule(GameState.hour, GameState.minute)
 
 func _on_time_updated(h: int, m: int):
 	if not is_interrupted:

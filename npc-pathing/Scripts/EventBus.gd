@@ -1,7 +1,7 @@
 extends Node
 
 signal main_scene_loaded
-
+signal world_changed(flag: String, value: bool)
 
 ## -- TIME ---
 signal end_day # To initiate day transition

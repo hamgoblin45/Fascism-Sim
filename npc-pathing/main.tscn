@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c3mnecndcoemi" path="res://Managers/time_manager.gd" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://chab2lmo3yq8n" path="res://Managers/npc_manager.gd" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Maps/sky/examples/sky.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="5_272bh"]
@@ -4012,7 +4011,6 @@ script = ExtResource("2_0xm2m")
 autostart = true
 
 [node name="NPCManager" type="Node3D" parent="." unique_id=622385185]
-script = ExtResource("2_7mycd")
 
 [node name="PathingManager" type="Node" parent="NPCManager" unique_id=1306002829]
 
