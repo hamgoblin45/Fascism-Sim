@@ -12,8 +12,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact"):
 		EventBus.item_interacted.emit(coll, "interact", true)
 	
-	if Input.is_action_just_released("interact"):
-		EventBus.item_interacted.emit(coll, "interact", false)
+	#if Input.is_action_just_released("interact"):
+		#EventBus.item_interacted.emit(coll, "interact", false)
 	
 	if Input.is_action_just_pressed("click"):
 		EventBus.item_interacted.emit(coll, "click", true)

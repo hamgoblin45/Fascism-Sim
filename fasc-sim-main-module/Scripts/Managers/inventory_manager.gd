@@ -60,8 +60,6 @@ func _input(event: InputEvent) -> void:
 			GameState.ui_open = false
 			print("Mouse hidden, in FPS mode")
 	
-	
-	
 	if not GameState.ui_open:
 	
 		# Scroll Wheel
@@ -102,8 +100,6 @@ func _on_hotbar_select(index: int):
 
 	GameState.active_hotbar_index = index
 	_equip(new_slot, index)
-	
-	
 
 func _equip(slot: InventorySlotData, index: int):
 	equipped_slot_data = slot
@@ -111,8 +107,6 @@ func _equip(slot: InventorySlotData, index: int):
 	if slot and slot.item_data:
 		EventBus.equipping_item.emit(slot.item_data)
 		print("EQUIPPED ", slot.item_data.name)
-	#else:
-		#_unequip()
 
 func _unequip():
 	GameState.active_hotbar_index = -1

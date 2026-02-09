@@ -25,8 +25,8 @@ config/icon="res://icon.svg"
 EventBus="*res://Scripts/EventBus.gd"
 GameState="*res://Scripts/GameState.gd"
 WorldManager="*uid://bp12kglfjfa8g"
-Dialogic="*uid://ds2q0uclmolvu"
 DialogueManager="*uid://b2rrttx774p65"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
