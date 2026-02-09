@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cxosfcljv24w3"]
+
+[ext_resource type="Script" uid="uid://bw2bss7mnbogw" path="res://Interface/Dialogue/bark_bubble.gd" id="1_adp5t"]
+
+[node name="BarkBubble" type="Label3D" unique_id=514323061]
+billboard = 1
+no_depth_test = true
+text = "TEST mother fucker!"
+script = ExtResource("1_adp5t")
