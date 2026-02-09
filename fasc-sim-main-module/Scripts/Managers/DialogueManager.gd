@@ -39,6 +39,6 @@ func is_objective_complete(id: String) -> bool:
 func _on_dialogic_signal(arg: Dictionary):
 	match arg["signal_name"]:
 		"show_image":
-			EventBus.dialogue_show_image.emit(arg["image_path"])
+			print("It would be showing you a pic right now if I had that coded")
 		"kick_balls":
-			EventBus.kick_balls.emit()
+			print("Your balls are defeated")
