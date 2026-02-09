@@ -5,6 +5,7 @@ extends Node
 
 func _ready():
 	Dialogic.signal_event.connect(_on_dialogic_signal)
+	Dialogic.timeline_ended.connect(_on_timeline_ended)
 
 
 func start_dialogue():
@@ -14,6 +15,12 @@ func start_dialogue():
 	
 	Dialogic.start("timeline")
 	get_viewport().set_input_as_handled()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	GameState.ui_open = true
+
+func _on_timeline_ended():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	GameState.ui_open = false
 
 # Call this func from Dialogic: DialogueBridge.accept_quest("path to objective")
 func accept_objective(path: String):
@@ -29,7 +36,6 @@ func is_objective_complete(id: String) -> bool:
 	return false
 
 
-	
 func _on_dialogic_signal(arg: Dictionary):
 	match arg["signal_name"]:
 		"show_image":
