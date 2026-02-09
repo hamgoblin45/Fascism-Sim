@@ -42,7 +42,6 @@ func _change_day(): # Have this done during day transition
 	#_start_new_day() # Have this actually run after loading back in for a new day / upon game start
 
 
-
 func _change_weekday():
 	match GameState.weekday:
 		"Monday":
