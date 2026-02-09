@@ -15,6 +15,7 @@ atlas = ExtResource("5_jsbdt")
 region = Rect2(0, 0, 64, 64)
 
 [node name="HUD" type="Control" unique_id=758873281]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

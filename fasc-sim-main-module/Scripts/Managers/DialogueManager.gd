@@ -16,11 +16,11 @@ func start_dialogue():
 	Dialogic.start("timeline")
 	get_viewport().set_input_as_handled()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	GameState.ui_open = true
+	GameState.in_dialogue = true
 
 func _on_timeline_ended():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	GameState.ui_open = false
+	GameState.in_dialogue = false
 
 # Call this func from Dialogic: DialogueBridge.accept_quest("path to objective")
 func accept_objective(path: String):

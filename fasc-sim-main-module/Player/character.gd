@@ -143,7 +143,7 @@ func _unhandled_input(event : InputEvent):
 	### --- FPS ADDON CODE END --- ###
 
 func _physics_process(delta):
-	if not get_tree().paused:
+	if not get_tree().paused and not GameState.in_dialogue:
 	
 	### --- FPS ADDON CODE START --- ###
 	

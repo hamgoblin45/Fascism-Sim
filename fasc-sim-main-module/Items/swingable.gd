@@ -22,7 +22,7 @@ var current_state = State.IDLE
 	#shapecast.add_exception(GameState.player.COLLISION_MESH)
 
 func _physics_process(delta: float) -> void:
-	if GameState.equipped_item != item_data:
+	if GameState.equipped_item != item_data or GameState.in_dialogue or GameState.ui_open:
 		return
 	
 	match current_state:

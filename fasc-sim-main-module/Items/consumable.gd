@@ -10,7 +10,7 @@ var default_pos: Vector3 = Vector3.ZERO
 var eating_pos: Vector3 = Vector3(0, -0.15, -0.25) # Closer to face
 
 func _physics_process(delta: float) -> void:
-	if GameState.equipped_item != item_data:
+	if GameState.equipped_item != item_data or GameState.in_dialogue or GameState.ui_open:
 		_reset_consume()
 		return
 	
