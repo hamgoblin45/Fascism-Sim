@@ -42,6 +42,10 @@ var start_basis
 var target_basis
 var target_pos: Vector3
 
+## -- BARKS
+const BARK_BUBBLE = preload("uid://cxosfcljv24w3")
+@onready var bark_anchor: Node3D = $BarkAnchor
+
 
 
 func _ready() -> void:
@@ -87,8 +91,15 @@ func _on_interact(object: Interactable, interact_type: String, engaged: bool):
 	
 	match interact_type:
 		"interact":
-			_start_context_dialogue()
+			_handle_interaction()
+			#_start_context_dialogue()
 			#DialogueManager.start_dialogue()
+
+func _handle_interaction():
+	if npc_data.bark_only:
+		_play_context_bark()
+	else:
+		_start_context_dialogue()
 
 func _start_context_dialogue():
 	if not interactable:
@@ -106,6 +117,27 @@ func _start_context_dialogue():
 		DialogueManager.start_dialogue(timeline_to_play, npc_data.name)
 	else:
 		print("NPC %s has no timeline assigned for this state" % npc_data.name)
+
+func _play_context_bark():
+	var bark_lines = npc_data.conditional_barks.get("default", [])
+	# Check for flag-based overrides
+	for flag in npc_data.conditional_barks.keys():
+		if GameState.world_flags.get(flag, false) == true:
+			bark_lines = npc_data.conditional_barks[flag]
+			break
+	
+	if bark_lines.is_empty(): return
+	
+	# Pick a random line
+	var text = bark_lines.pick_random()
+	spawn_bark(text)
+
+func spawn_bark(text: String):
+	var bubble = BARK_BUBBLE.instantiate()
+	get_tree().root.add_child(bubble) # Adding a root prevents rotating w/ NPC's movement
+	
+	bubble.global_position = bark_anchor.global_position
+	bubble.setup(text, Color.WHITE)
 
 ## -- SCHEDULE / PATHING ------------
 func _on_world_changed(flag_name: String, value: bool):

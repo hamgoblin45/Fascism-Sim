@@ -17,7 +17,11 @@ var waiting_for_player: bool = false
 
 @export_group("Dialogue")
 @export var default_timeline: String = ""
-
 # Key: World Flag (e.g. curfew_active), Value: Timeline Name in Dialogic (e.g. "frank_nervous")
 @export var condition_timelines: Dictionary = {}
 @export var interactable: bool = true # Have this get controlled by something like FLEE state too to make them unwilling to talk while scared
+@export var conditional_barks: Dictionary = {
+	"default": ["Hmm?", "Ahoy there", "What up?"]
+	# Key: World Flag, Value: Array of Strings
+}
+@export var bark_only: bool = false

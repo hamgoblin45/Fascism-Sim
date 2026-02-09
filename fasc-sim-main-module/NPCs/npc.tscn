@@ -99,5 +99,8 @@ show_highlight = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635742, 0)
 shape = SubResource("CapsuleShape3D_k5705")
 
+[node name="BarkAnchor" type="Node3D" parent="." unique_id=669773913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.752794, 0)
+
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]
 [connection signal="body_exited" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_exited"]
