@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bllcwma07j3aa"]
+[gd_scene format=3 uid="uid://bllcwma07j3aa"]
 
 [ext_resource type="Script" uid="uid://cq362a8jqvadw" path="res://Maps/time_control_ui.gd" id="1_fmb6u"]
 
-[node name="TimeControlUI" type="PanelContainer"]
+[node name="TimeControlUI" type="PanelContainer" unique_id=1916224619]
 process_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -12,58 +12,58 @@ offset_bottom = 184.0
 grow_horizontal = 0
 script = ExtResource("1_fmb6u")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=226575088]
 layout_mode = 2
 theme_override_constants/margin_left = 22
 theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 22
 theme_override_constants/margin_bottom = 22
 
-[node name="MainVBox" type="VBoxContainer" parent="MarginContainer"]
+[node name="MainVBox" type="VBoxContainer" parent="MarginContainer" unique_id=1452405663]
 layout_mode = 2
 
-[node name="Header" type="Label" parent="MarginContainer/MainVBox"]
+[node name="Header" type="Label" parent="MarginContainer/MainVBox" unique_id=550118317]
 layout_mode = 2
 text = "TIME"
 horizontal_alignment = 1
 
-[node name="DayTimeRow" type="HBoxContainer" parent="MarginContainer/MainVBox"]
+[node name="DayTimeRow" type="HBoxContainer" parent="MarginContainer/MainVBox" unique_id=698462379]
 layout_mode = 2
 theme_override_constants/separation = 14
 alignment = 1
 
-[node name="WeekdayLabel" type="Label" parent="MarginContainer/MainVBox/DayTimeRow"]
+[node name="WeekdayLabel" type="Label" parent="MarginContainer/MainVBox/DayTimeRow" unique_id=1493286961]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Weekday"
 
-[node name="DayLabel" type="Label" parent="MarginContainer/MainVBox/DayTimeRow"]
+[node name="DayLabel" type="Label" parent="MarginContainer/MainVBox/DayTimeRow" unique_id=1302716529]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Day"
 
-[node name="TimeLabel" type="Label" parent="MarginContainer/MainVBox/DayTimeRow"]
+[node name="TimeLabel" type="Label" parent="MarginContainer/MainVBox/DayTimeRow" unique_id=660022748]
 unique_name_in_owner = true
 layout_mode = 2
 text = "XX:XX"
 
-[node name="SpeedContainer" type="VBoxContainer" parent="MarginContainer/MainVBox"]
+[node name="SpeedContainer" type="VBoxContainer" parent="MarginContainer/MainVBox" unique_id=1092911259]
 layout_mode = 2
 
-[node name="Header" type="Label" parent="MarginContainer/MainVBox/SpeedContainer"]
+[node name="Header" type="Label" parent="MarginContainer/MainVBox/SpeedContainer" unique_id=1513225490]
 layout_mode = 2
 text = "Time Speed"
 horizontal_alignment = 1
 
-[node name="SpeedRow" type="HBoxContainer" parent="MarginContainer/MainVBox/SpeedContainer"]
+[node name="SpeedRow" type="HBoxContainer" parent="MarginContainer/MainVBox/SpeedContainer" unique_id=521090555]
 layout_mode = 2
 
-[node name="SpeedLabel" type="Label" parent="MarginContainer/MainVBox/SpeedContainer/SpeedRow"]
+[node name="SpeedLabel" type="Label" parent="MarginContainer/MainVBox/SpeedContainer/SpeedRow" unique_id=804161635]
 unique_name_in_owner = true
 layout_mode = 2
 text = "1.0"
 
-[node name="SpeedSlider" type="HSlider" parent="MarginContainer/MainVBox/SpeedContainer/SpeedRow"]
+[node name="SpeedSlider" type="HSlider" parent="MarginContainer/MainVBox/SpeedContainer/SpeedRow" unique_id=711829497]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -72,10 +72,15 @@ min_value = -10.0
 max_value = 10.0
 value = 1.0
 
-[node name="PauseButton" type="Button" parent="MarginContainer/MainVBox"]
+[node name="PauseButton" type="Button" parent="MarginContainer/MainVBox" unique_id=191730943]
 unique_name_in_owner = true
 layout_mode = 2
 text = "PAUSE"
 
+[node name="AlarmButton" type="Button" parent="MarginContainer/MainVBox" unique_id=477744034]
+layout_mode = 2
+text = "ALARM!"
+
 [connection signal="value_changed" from="MarginContainer/MainVBox/SpeedContainer/SpeedRow/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/MainVBox/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MainVBox/AlarmButton" to="." method="_on_alarm_button_pressed"]

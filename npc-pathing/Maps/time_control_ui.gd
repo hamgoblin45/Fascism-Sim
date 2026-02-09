@@ -60,3 +60,8 @@ func _on_pause_button_pressed() -> void:
 		%PauseButton.text = "RESUME"
 	else:
 		%PauseButton.text = "PAUSE"
+
+
+func _on_alarm_button_pressed() -> void:
+	GameState.world_flags["alarm_active"] = true
+	EventBus.world_changed.emit("alarm_active", true)

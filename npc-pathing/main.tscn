@@ -4012,8 +4012,6 @@ autostart = true
 
 [node name="NPCManager" type="Node3D" parent="." unique_id=622385185]
 
-[node name="PathingManager" type="Node" parent="NPCManager" unique_id=1306002829]
-
 [node name="NPC" parent="NPCManager" unique_id=1259649320 instance=ExtResource("3_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.40025, 5.837348, -226.70935)
 npc_data = SubResource("Resource_5vw27")
