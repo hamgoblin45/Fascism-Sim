@@ -93,6 +93,7 @@ script = ExtResource("3_k7mck")
 id = "npc"
 interact_icon = SubResource("AtlasTexture_xlwy1")
 interact_text = "Talk"
+show_highlight = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=459875667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635742, 0)

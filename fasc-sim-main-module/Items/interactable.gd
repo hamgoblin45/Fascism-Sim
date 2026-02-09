@@ -8,6 +8,7 @@ const INTERACT_OUTLINE = preload("uid://c3rhvr6bla26v")
 
 @export var interact_icon: Texture2D
 @export var interact_text: String
+@export var show_highlight: bool = true
 
 var meshes: Array[MeshInstance3D]
 
@@ -38,7 +39,7 @@ func _interacted(object: Interactable, type: String, engaged: bool):
 	
 
 func _look_at_interactable(interact: Interactable, looking: bool):
-	if interact != self:
+	if interact != self or not show_highlight:
 		return
 	if looking:
 		for mesh in meshes:
