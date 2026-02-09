@@ -37,6 +37,9 @@ directories/dtl_directory={
 "timeline": "res://Data/Dialogue/timeline.dtl"
 }
 layout/style_directory={}
+variables={
+"CurrentNPC": ""
+}
 
 [dotnet]
 

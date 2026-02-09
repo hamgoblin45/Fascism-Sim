@@ -8,12 +8,18 @@ func _ready():
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 
 
-func start_dialogue():
+func start_dialogue(timeline_key: String, npc_name: String = ""):
 	# Check if a dialogue is already running
 	if Dialogic.current_timeline != null:
 		return
 	
-	Dialogic.start("timeline")
+	if npc_name != "":
+		Dialogic.VAR.CurrentNPC = npc_name
+		
+	print("Starting dialogue timeline: ", timeline_key)
+	
+	Dialogic.start(timeline_key)
+	
 	get_viewport().set_input_as_handled()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GameState.in_dialogue = true
@@ -21,6 +27,8 @@ func start_dialogue():
 func _on_timeline_ended():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameState.in_dialogue = false
+	
+	EventBus.dialogue_ended.emit()
 
 # Call this func from Dialogic: DialogueBridge.accept_quest("path to objective")
 func accept_objective(path: String):

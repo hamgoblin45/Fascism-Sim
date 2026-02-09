@@ -83,10 +83,29 @@ func instance_npc():
 		gravity_enabled = true
 
 func _on_interact(object: Interactable, interact_type: String, engaged: bool):
-	if object.id != interact_area.id: return
+	if object != interact_area or not engaged: return
+	
 	match interact_type:
 		"interact":
-			DialogueManager.start_dialogue()
+			_start_context_dialogue()
+			#DialogueManager.start_dialogue()
+
+func _start_context_dialogue():
+	if not interactable:
+		return
+	# Default timeline if nothing else is needed
+	var timeline_to_play = npc_data.default_timeline
+	# Checks world flags to see if special dialogue should be selected
+	for flag in npc_data.condition_timelines.keys():
+		if GameState.world_flags.get(flag, false) == true:
+			timeline_to_play = npc_data.condition_timelines[flag]
+			# First match wins; adding a break makes it strictly prioritize dict order
+			break
+	
+	if timeline_to_play != "":
+		DialogueManager.start_dialogue(timeline_to_play, npc_data.name)
+	else:
+		print("NPC %s has no timeline assigned for this state" % npc_data.name)
 
 ## -- SCHEDULE / PATHING ------------
 func _on_world_changed(flag_name: String, value: bool):
@@ -225,14 +244,6 @@ func _finish_path():
 	interactable = true
 	npc_data.waiting_for_player = path.wait_for_player
 	EventBus.path_finished.emit(npc_data, path)
-
-## -- INTERACTION -- ##
-
-# Initiated by pressing E on an NPC or entering its detect area while its waiting for player
-# Currently just initiates dialogue, may have other uses later (trading, etc)
-func interact_with_npc():
-	if interactable:
-		print("npc.gd: Player interacted with %s" % npc_data.name)
 
 
 # Sets the rotation of a Node3D (look_at_node) so that the target lerps in the same rotation to mimic looking at a node
