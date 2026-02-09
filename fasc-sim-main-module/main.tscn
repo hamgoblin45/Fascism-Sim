@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/item_hammer.tres" id="12_yaehf"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="13_074og"]
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="19_cegan"]
+[ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="20_82xsv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 
@@ -64,6 +65,16 @@ metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yaehf"]
 size = Vector3(2.3486938, 3.250122, 3.790039)
+
+[sub_resource type="Resource" id="Resource_getpj"]
+script = ExtResource("20_82xsv")
+name = "Test NPC"
+id = "test"
+conditional_barks = {
+"default": ["Hmm?", "Ahoy there", "What up?", "SUCK MY DICK, SATAN FUCKAHHH!"]
+}
+bark_only = true
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [node name="Main" type="Node3D" unique_id=923260690]
 
@@ -169,5 +180,6 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0.27019882, 2.698060
 
 [node name="NPCs" type="Node3D" parent="." unique_id=1576685263]
 
-[node name="NPC" parent="NPCs" unique_id=610944064 instance=ExtResource("19_cegan")]
+[node name="TestNPC" parent="NPCs" unique_id=610944064 instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.838703, 0, -3.702774)
+npc_data = SubResource("Resource_getpj")

@@ -96,7 +96,7 @@ func _on_interact(object: Interactable, interact_type: String, engaged: bool):
 			#DialogueManager.start_dialogue()
 
 func _handle_interaction():
-	if npc_data.bark_only:
+	if npc_data.bark_only: # also make it pick a bark if there is just no context dialogue available
 		_play_context_bark()
 	else:
 		_start_context_dialogue()
@@ -116,7 +116,8 @@ func _start_context_dialogue():
 	if timeline_to_play != "":
 		DialogueManager.start_dialogue(timeline_to_play, npc_data.name)
 	else:
-		print("NPC %s has no timeline assigned for this state" % npc_data.name)
+		print("NPC %s has no timeline assigned for this state. Attempting to bark" % npc_data.name)
+		_play_context_bark()
 
 func _play_context_bark():
 	var bark_lines = npc_data.conditional_barks.get("default", [])
