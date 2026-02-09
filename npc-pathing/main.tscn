@@ -1,9 +1,8 @@
-[gd_scene load_steps=340 format=4 uid="uid://c2e1wswg0mcea"]
+[gd_scene format=4 uid="uid://c2e1wswg0mcea"]
 
 [ext_resource type="PackedScene" uid="uid://lhsf2quoonbk" path="res://Maps/map.gltf" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://c3mnecndcoemi" path="res://Managers/time_manager.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://chab2lmo3yq8n" path="res://Managers/npc_manager.gd" id="2_7mycd"]
-[ext_resource type="Script" uid="uid://clfwpf54mxbjm" path="res://Managers/pathing_manager.gd" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cg3m5qnyxjev4" path="res://Maps/sky/examples/sky.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="5_272bh"]
@@ -4004,582 +4003,581 @@ shadow_mesh = SubResource("ArrayMesh_xk3l2")
 [sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
 size = Vector3(735.75024, 0.1, 707.39746)
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=1319437203]
 
-[node name="TimeManager" type="Node" parent="."]
+[node name="TimeManager" type="Node" parent="." unique_id=1342296479]
 script = ExtResource("2_0xm2m")
 
-[node name="Timer" type="Timer" parent="TimeManager"]
+[node name="Timer" type="Timer" parent="TimeManager" unique_id=924440539]
 autostart = true
 
-[node name="NPCManager" type="Node3D" parent="."]
+[node name="NPCManager" type="Node3D" parent="." unique_id=622385185]
 script = ExtResource("2_7mycd")
 
-[node name="PathingManager" type="Node" parent="NPCManager"]
-script = ExtResource("2_h2yge")
+[node name="PathingManager" type="Node" parent="NPCManager" unique_id=1306002829]
 
-[node name="NPC" parent="NPCManager" instance=ExtResource("3_lquwl")]
+[node name="NPC" parent="NPCManager" unique_id=1259649320 instance=ExtResource("3_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -158.40025, 5.837348, -226.70935)
 npc_data = SubResource("Resource_5vw27")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1663154903]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.78314, 0, -239.62195)
 navigation_mesh = SubResource("NavigationMesh_1bvp3")
 
-[node name="MapMesh" type="Node3D" parent="NavigationRegion3D"]
+[node name="MapMesh" type="Node3D" parent="NavigationRegion3D" unique_id=167170374]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.78314, 0, -239.62195)
 visible = false
 
-[node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1110353721]
 transform = Transform3D(0.35647547, 0, 0, 0, 0.35647547, 0, 0, 0, 0.35647547, 59.50228, 2.3929248, 206.8282)
 mesh = SubResource("ArrayMesh_8k2mk")
 skeleton = NodePath("")
 
-[node name="Commisary" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Commisary" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1863765584]
 transform = Transform3D(-5.5719113, 0, -9.23148, 0, 10.78269, 0, 9.23148, 0, -5.5719113, -24.569588, 13.154558, 190.17896)
 mesh = SubResource("ArrayMesh_a3k75")
 skeleton = NodePath("")
 
-[node name="Boundary" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Boundary" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1805718153]
 transform = Transform3D(1.1585133, 0, 0, 0, 1.1585133, 0, 0, 0, 1.1585133, 49.506653, 7.9670105, 226.06494)
 mesh = SubResource("ArrayMesh_whncy")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/Boundary"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/Boundary" unique_id=2011413597]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/Boundary/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/Boundary/StaticBody3D" unique_id=824802088]
 shape = SubResource("ConcavePolygonShape3D_1sltp")
 
-[node name="NeighborHouseA" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="NeighborHouseA" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=639298900]
 transform = Transform3D(0.336975, 0, 0, 0, 0.336975, 0, 0, 0, 0.41056693, 69.6065, 6.0959682, 363.19565)
 mesh = SubResource("ArrayMesh_dees7")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseA"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseA" unique_id=1272966756]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseA/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseA/StaticBody3D" unique_id=1717203044]
 shape = SubResource("ConcavePolygonShape3D_a74hw")
 
-[node name="NeighborHouseB" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="NeighborHouseB" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=958437016]
 transform = Transform3D(0.27093542, 0, -0.27541673, 0, 0.35285193, 0, 0.22604974, 0, 0.330105, -15.726555, 6.0959682, 332.16544)
 mesh = SubResource("ArrayMesh_qpqn7")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseB"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseB" unique_id=354468783]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseB/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseB/StaticBody3D" unique_id=1258836428]
 shape = SubResource("ConcavePolygonShape3D_kvdya")
 
-[node name="NeighborHouseC" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="NeighborHouseC" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1216455652]
 transform = Transform3D(-0.0056718905, 0, 0.42985567, 0, 0.35285193, 0, -0.35280636, 0, -0.006910574, 191.63876, 6.0959682, 238.4781)
 mesh = SubResource("ArrayMesh_c1f1w")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseC"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseC" unique_id=993468304]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseC/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseC/StaticBody3D" unique_id=331730568]
 shape = SubResource("ConcavePolygonShape3D_rch86")
 
-[node name="NeighborHouseD" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="NeighborHouseD" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=127349996]
 transform = Transform3D(0.3258339, 0, -0.1649863, 0, 0.35285193, 0, 0.13541335, 0, 0.39699277, 121.820786, 6.0959682, 125.99362)
 mesh = SubResource("ArrayMesh_6kpxj")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseD"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseD" unique_id=665872156]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseD/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseD/StaticBody3D" unique_id=885737324]
 shape = SubResource("ConcavePolygonShape3D_5oby4")
 
-[node name="NeighborHouseE" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="NeighborHouseE" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1376208486]
 transform = Transform3D(-0.0004431782, 0, -0.42991087, 0, 0.35285193, 0, 0.3528517, 0, -0.0005399638, -53.0225, 6.0959682, 242.35687)
 mesh = SubResource("ArrayMesh_a0ci7")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseE"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/NeighborHouseE" unique_id=2124245619]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseE/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/NeighborHouseE/StaticBody3D" unique_id=526297495]
 shape = SubResource("ConcavePolygonShape3D_tis8a")
 
-[node name="PlayerHouse" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="PlayerHouse" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1725664440]
 transform = Transform3D(0.2572958, 0, -0.26901618, 0, 0.16342787, 0, 0.26901618, 0, 0.2572958, 154.13348, 10.580261, 325.32556)
 mesh = SubResource("ArrayMesh_y42jh")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/PlayerHouse"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MapMesh/PlayerHouse" unique_id=386888257]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/PlayerHouse/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MapMesh/PlayerHouse/StaticBody3D" unique_id=1667805692]
 shape = SubResource("ConcavePolygonShape3D_aeot4")
 
-[node name="Cylinder" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cylinder" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1420097405]
 transform = Transform3D(0.8879635, 0, 0.459914, 0, 1, 0, -0.459914, 0, 0.8879635, -2.3525934, 10.407526, 12.937169)
 mesh = SubResource("ArrayMesh_43gtm")
 skeleton = NodePath("")
 
-[node name="Cube" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cube" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=947996961]
 transform = Transform3D(9.945074, 0, 0.20933798, 0, 1, 0, -5.150976, 0, 0.40417224, -1.7775965, 40.658066, 14.047326)
 mesh = SubResource("ArrayMesh_wehuc")
 skeleton = NodePath("")
 
-[node name="Cube_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cube_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=501404234]
 transform = Transform3D(10.22755, 0, -0.1855016, 0, 1, 0, 4.564458, 0, 0.4156522, 69.64076, 40.658066, 143.44923)
 mesh = SubResource("ArrayMesh_rwifb")
 skeleton = NodePath("")
 
-[node name="Cylinder_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cylinder_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=782421365]
 transform = Transform3D(0.9131848, 0, -0.4075457, 0, 1, 0, 0.4075457, 0, 0.9131848, 70.1503, 10.407526, 142.30754)
 mesh = SubResource("ArrayMesh_ei07m")
 skeleton = NodePath("")
 
-[node name="Cube_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cube_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=418795022]
 transform = Transform3D(-4.606123, 0, -0.41489235, 0, 1, 0, 10.208853, 0, -0.1871949, 159.39566, 40.658066, 274.3902)
 mesh = SubResource("ArrayMesh_cwbs6")
 skeleton = NodePath("")
 
-[node name="Cylinder_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cylinder_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1462519864]
 transform = Transform3D(-0.4112656, 0, -0.9115155, 0, 1, 0, 0.9115155, 0, -0.4112656, 160.53525, 10.407526, 274.9044)
 mesh = SubResource("ArrayMesh_q67e5")
 skeleton = NodePath("")
 
-[node name="Cube_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cube_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1318772050]
 transform = Transform3D(-5.86063, 0, 0.387877, 0, 1, 0, -9.544112, 0, -0.23817863, -17.497162, 40.658066, 298.38654)
 mesh = SubResource("ArrayMesh_nvc8x")
 skeleton = NodePath("")
 
-[node name="Cylinder_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cylinder_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=633217140]
 transform = Transform3D(-0.5232767, 0, 0.8521629, 0, 1, 0, -0.8521629, 0, -0.5232767, -18.562576, 10.407526, 299.0407)
 mesh = SubResource("ArrayMesh_eb4d1")
 skeleton = NodePath("")
 
-[node name="Cube_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cube_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1032053280]
 transform = Transform3D(-2.842964, 0, -0.44025934, 0, 1, 0, 10.833034, 0, -0.11553932, -20.302473, 40.658066, 176.31717)
 mesh = SubResource("ArrayMesh_uy7wy")
 skeleton = NodePath("")
 
-[node name="Cylinder_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Cylinder_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=866694731]
 transform = Transform3D(-0.25383902, 0, -0.9672465, 0, 1, 0, 0.9672465, 0, -0.25383902, -19.093203, 10.407526, 176.63455)
 mesh = SubResource("ArrayMesh_4hifg")
 skeleton = NodePath("")
 
-[node name="Barbwire" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Barbwire" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1274320911]
 transform = Transform3D(0.0009952103, -31.946241, -1.3734959, -2.8180351, -0.014793011, -5.927937e-07, -0.00055484026, 17.832159, -2.4606125, -34.02633, 27.578197, 67.65726)
 mesh = SubResource("ArrayMesh_geen5")
 skeleton = NodePath("")
 
-[node name="Building" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Building" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1038672244]
 transform = Transform3D(-11.33872, 0, -6.3291893, 0, 12.985578, 0, 6.3291893, 0, -11.33872, 12.8686695, 15.137986, 50.6429)
 mesh = SubResource("ArrayMesh_l78kq")
 skeleton = NodePath("")
 
-[node name="Gate" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Gate" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2045589087]
 transform = Transform3D(-2.4606123, 0, -1.3734955, 0, 11.103851, 0, 1.3734955, 0, -2.4606123, -4.17929, 13.893919, 51.114353)
 mesh = SubResource("ArrayMesh_gfiqg")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=986292768]
 transform = Transform3D(3.919955, 0, 2.1567523, 0, 4.4741063, 0, -2.1567523, 0, 3.919955, 25.355516, 6.738848, 36.812298)
 mesh = SubResource("ArrayMesh_kgo8u")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1605373820]
 transform = Transform3D(3.8779883, 0, 2.23133, 0, 4.4741063, 0, -2.23133, 0, 3.8779883, 25.355516, 15.615194, 36.812298)
 mesh = SubResource("ArrayMesh_im31s")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1365315231]
 transform = Transform3D(3.8779883, 0, 2.23133, 0, 4.4741063, 0, -2.23133, 0, 3.8779883, 33.207787, 15.615194, 32.215847)
 mesh = SubResource("ArrayMesh_uk4dj")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1012622262]
 transform = Transform3D(3.919955, 0, 2.1567523, 0, 4.4741063, 0, -2.1567523, 0, 3.919955, 33.207787, 6.738848, 32.215847)
 mesh = SubResource("ArrayMesh_g2s2r")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1149857448]
 transform = Transform3D(3.9821887, 0, 2.0395594, 0, 4.4741063, 0, -2.0395594, 0, 3.9821887, 41.25158, 15.615194, 27.715155)
 mesh = SubResource("ArrayMesh_ub8hh")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_005" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_005" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=832571383]
 transform = Transform3D(4.020468, 0, 1.963024, 0, 4.4741063, 0, -1.963024, 0, 4.020468, 41.25158, 6.738848, 27.715155)
 mesh = SubResource("ArrayMesh_0wd57")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_006" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_006" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1219249265]
 transform = Transform3D(3.721641, 0, 2.4833477, 0, 4.4741063, 0, -2.4833477, 0, 3.721641, 49.582645, 15.615194, 22.927183)
 mesh = SubResource("ArrayMesh_21p3c")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_007" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_007" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=888134390]
 transform = Transform3D(3.768456, 0, 2.4117143, 0, 4.4741063, 0, -2.4117143, 0, 3.768456, 49.582645, 6.738848, 22.927183)
 mesh = SubResource("ArrayMesh_d8eae")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_008" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_008" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=418996903]
 transform = Transform3D(3.9529698, 0, 2.0956278, 0, 4.4741063, 0, -2.0956278, 0, 3.9529698, 57.87542, 15.615194, 18.311573)
 mesh = SubResource("ArrayMesh_pjtb3")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_009" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_009" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1661533466]
 transform = Transform3D(3.9923275, 0, 2.0196407, 0, 4.4741063, 0, -2.0196407, 0, 3.9923275, 57.87542, 6.738848, 18.311573)
 mesh = SubResource("ArrayMesh_f22qw")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_010" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_010" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1200220039]
 transform = Transform3D(4.2922773, 0, 1.2625303, 0, 4.4741063, 0, -1.2625303, 0, 4.2922773, 66.953415, 15.615194, 14.634411)
 mesh = SubResource("ArrayMesh_1ygo6")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_011" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_011" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1289084310]
 transform = Transform3D(4.315639, 0, 1.1802062, 0, 4.4741063, 0, -1.1802062, 0, 4.315639, 66.953415, 6.738848, 14.634411)
 mesh = SubResource("ArrayMesh_isji4")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_012" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_012" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=118075029]
 transform = Transform3D(4.4731827, 0, 0.09091476, 0, 4.4741063, 0, -0.09091476, 0, 4.4731827, 77.06561, 6.738848, 13.140563)
 mesh = SubResource("ArrayMesh_jolrk")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_013" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_013" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=653802241]
 transform = Transform3D(4.4706254, 0, 0.17645146, 0, 4.4741063, 0, -0.17645146, 0, 4.4706254, 77.06561, 15.615194, 13.140563)
 mesh = SubResource("ArrayMesh_qxwcv")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_014" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_014" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1985994465]
 transform = Transform3D(4.395985, 0, 0.83243173, 0, 4.4741063, 0, -0.83243173, 0, 4.395985, 86.8351, 15.615194, 13.378843)
 mesh = SubResource("ArrayMesh_u8jwg")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_015" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_015" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1840362406]
 transform = Transform3D(4.411102, 0, 0.7482026, 0, 4.4741063, 0, -0.7482026, 0, 4.411102, 86.8351, 6.738848, 13.378843)
 mesh = SubResource("ArrayMesh_mj6ed")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_016" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_016" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1960078239]
 transform = Transform3D(0.87385464, 0, -4.3879395, 0, 4.4741063, 0, 4.3879395, 0, 0.87385464, 96.36631, 15.615194, 12.902283)
 mesh = SubResource("ArrayMesh_4p4j7")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_017" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_017" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=208517756]
 transform = Transform3D(0.7897713, 0, -4.403849, 0, 4.4741063, 0, 4.403849, 0, 0.7897713, 96.36631, 6.738848, 12.902283)
 mesh = SubResource("ArrayMesh_twprr")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_018" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_018" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=998903708]
 transform = Transform3D(4.4725533, 0, 0.11790221, 0, 4.4741063, 0, -0.11790221, 0, 4.4725533, 106.61235, 15.615194, 11.949162)
 mesh = SubResource("ArrayMesh_k48r3")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_019" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_019" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1508899290]
 transform = Transform3D(4.4739895, 0, 0.03233932, 0, 4.4741063, 0, -0.03233932, 0, 4.4739895, 106.61235, 6.738848, 11.949162)
 mesh = SubResource("ArrayMesh_ewws5")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_020" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_020" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=542796302]
 transform = Transform3D(4.4514613, 0, -0.4495779, 0, 4.4741063, 0, 0.4495779, 0, 4.4514613, 116.38184, 15.615194, 12.425722)
 mesh = SubResource("ArrayMesh_u3sco")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_021" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_021" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1721479131]
 transform = Transform3D(4.442049, 0, -0.53463346, 0, 4.4741063, 0, 0.53463346, 0, 4.442049, 116.38184, 6.738848, 12.425722)
 mesh = SubResource("ArrayMesh_d6i7m")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_022" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_022" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1628120193]
 transform = Transform3D(4.4071274, 0, 0.77126825, 0, 4.4741063, 0, -0.77126825, 0, 4.4071274, 125.913055, 15.615194, 12.664002)
 mesh = SubResource("ArrayMesh_caket")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_023" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_023" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=463708813]
 transform = Transform3D(4.4210725, 0, 0.68683743, 0, 4.4741063, 0, -0.68683743, 0, 4.4210725, 125.913055, 6.738848, 12.664002)
 mesh = SubResource("ArrayMesh_ch1kb")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_024" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_024" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1764384407]
 transform = Transform3D(3.9923275, 0, 2.0196407, 0, 4.4741063, 0, -2.0196407, 0, 3.9923275, -70.081055, 6.738848, 88.36595)
 mesh = SubResource("ArrayMesh_ajjkh")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_025" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_025" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1232755701]
 transform = Transform3D(3.9529698, 0, 2.0956278, 0, 4.4741063, 0, -2.0956278, 0, 3.9529698, -70.081055, 15.615194, 88.36595)
 mesh = SubResource("ArrayMesh_gcxj3")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_026" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_026" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1540028040]
 transform = Transform3D(3.768456, 0, 2.4117143, 0, 4.4741063, 0, -2.4117143, 0, 3.768456, -78.373825, 6.738848, 92.98157)
 mesh = SubResource("ArrayMesh_5858k")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_027" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_027" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1720919238]
 transform = Transform3D(3.721641, 0, 2.4833477, 0, 4.4741063, 0, -2.4833477, 0, 3.721641, -78.373825, 15.615194, 92.98157)
 mesh = SubResource("ArrayMesh_y5md8")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_028" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_028" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1851547336]
 transform = Transform3D(4.020468, 0, 1.963024, 0, 4.4741063, 0, -1.963024, 0, 4.020468, -86.704895, 6.738848, 97.76954)
 mesh = SubResource("ArrayMesh_coruf")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_029" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_029" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1557649644]
 transform = Transform3D(3.9821887, 0, 2.0395594, 0, 4.4741063, 0, -2.0395594, 0, 3.9821887, -86.704895, 15.615194, 97.76954)
 mesh = SubResource("ArrayMesh_kejt3")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_030" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_030" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=387045225]
 transform = Transform3D(3.919955, 0, 2.1567523, 0, 4.4741063, 0, -2.1567523, 0, 3.919955, -94.74869, 6.738848, 102.27023)
 mesh = SubResource("ArrayMesh_j524k")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_031" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_031" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=97767562]
 transform = Transform3D(3.8779883, 0, 2.23133, 0, 4.4741063, 0, -2.23133, 0, 3.8779883, -94.74869, 15.615194, 102.27023)
 mesh = SubResource("ArrayMesh_s0kpf")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_032" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_032" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1297223321]
 transform = Transform3D(3.309548, 0, 3.0107343, 0, 4.4741063, 0, -3.0107343, 0, 3.309548, -124.55149, 15.615194, 126.78069)
 mesh = SubResource("ArrayMesh_b2pgt")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_033" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_033" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1529396245]
 transform = Transform3D(3.366525, 0, 2.946886, 0, 4.4741063, 0, -2.946886, 0, 3.366525, -124.55149, 6.738848, 126.78069)
 mesh = SubResource("ArrayMesh_65de4")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_034" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_034" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1851146262]
 transform = Transform3D(3.4524336, 0, 2.8457568, 0, 4.4741063, 0, -2.8457568, 0, 3.4524336, -117.65943, 15.615194, 120.660385)
 mesh = SubResource("ArrayMesh_f88q8")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_035" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_035" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1478706537]
 transform = Transform3D(3.5062294, 0, 2.7792058, 0, 4.4741063, 0, -2.7792058, 0, 3.5062294, -117.65943, 6.738848, 120.660385)
 mesh = SubResource("ArrayMesh_7rkpk")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_036" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_036" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=278350741]
 transform = Transform3D(3.1028135, 0, 3.2233796, 0, 4.4741063, 0, -3.2233796, 0, 3.1028135, -110.54834, 15.615194, 114.19789)
 mesh = SubResource("ArrayMesh_wemfy")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_037" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_037" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1985310882]
 transform = Transform3D(3.163895, 0, 3.1634471, 0, 4.4741063, 0, -3.1634471, 0, 3.163895, -110.54834, 6.738848, 114.19789)
 mesh = SubResource("ArrayMesh_rsi4i")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_038" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_038" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=517011768]
 transform = Transform3D(3.4118752, 0, 2.8942585, 0, 4.4741063, 0, -2.8942585, 0, 3.4118752, -103.43772, 15.615194, 107.91196)
 mesh = SubResource("ArrayMesh_o012x")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_039" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_039" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=639093240]
 transform = Transform3D(3.4666064, 0, 2.8284748, 0, 4.4741063, 0, -2.8284748, 0, 3.4666064, -103.43772, 6.738848, 107.91196)
 mesh = SubResource("ArrayMesh_nqy0m")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_040" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_040" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2102229018]
 transform = Transform3D(-2.3734488, 0, -3.7926729, 0, 4.4741063, 0, 3.7926729, 0, -2.3734488, -131.17415, 15.615194, 134.9351)
 mesh = SubResource("ArrayMesh_sao48")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_041" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_041" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1130302176]
 transform = Transform3D(-2.4455523, 0, -3.7465851, 0, 4.4741063, 0, 3.7465851, 0, -2.4455523, -131.17415, 6.738848, 134.9351)
 mesh = SubResource("ArrayMesh_cye6y")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_042" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_042" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=654158132]
 transform = Transform3D(-2.5555792, 0, -3.6724164, 0, 4.4741063, 0, 3.6724164, 0, -2.5555792, -136.15718, 15.615194, 142.68935)
 mesh = SubResource("ArrayMesh_3b04c")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_043" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_043" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=885705606]
 transform = Transform3D(-2.6253498, 0, -3.6228673, 0, 4.4741063, 0, 3.6228673, 0, -2.6253498, -136.15718, 6.738848, 142.68935)
 mesh = SubResource("ArrayMesh_4ivm7")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_044" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_044" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=728241948]
 transform = Transform3D(-2.1169662, 0, -3.9415839, 0, 4.4741063, 0, 3.9415839, 0, -2.1169662, -141.25868, 15.615194, 150.83218)
 mesh = SubResource("ArrayMesh_c1w6m")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_045" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_045" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1489452376]
 transform = Transform3D(-2.1919653, 0, -3.900374, 0, 4.4741063, 0, 3.900374, 0, -2.1919653, -141.25868, 6.738848, 150.83218)
 mesh = SubResource("ArrayMesh_51h2a")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_046" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_046" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=512446965]
 transform = Transform3D(-2.50343, 0, -3.708162, 0, 4.4741063, 0, 3.708162, 0, -2.50343, -146.40742, 15.615194, 158.80492)
 mesh = SubResource("ArrayMesh_ur3so")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_047" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_047" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1318589768]
 transform = Transform3D(-2.5738943, 0, -3.659603, 0, 4.4741063, 0, 3.659603, 0, -2.5738943, -146.40742, 6.738848, 158.80492)
 mesh = SubResource("ArrayMesh_vg0ic")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_048" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_048" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=404102288]
 transform = Transform3D(1.2114632, 0, 4.306969, 0, 4.4741063, 0, -4.306969, 0, 1.2114632, -158.80588, 15.615194, 195.34476)
 mesh = SubResource("ArrayMesh_j2o7c")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_049" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_049" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=548472286]
 transform = Transform3D(1.2936153, 0, 4.2830114, 0, 4.4741063, 0, -4.2830114, 0, 1.2936153, -158.80588, 6.738848, 195.34476)
 mesh = SubResource("ArrayMesh_4subm")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_050" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_050" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=644848127]
 transform = Transform3D(1.4200566, 0, 4.2427664, 0, 4.4741063, 0, -4.2427664, 0, 1.4200566, -156.20383, 15.615194, 186.50237)
 mesh = SubResource("ArrayMesh_1b4xy")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_051" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_051" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2108205773]
 transform = Transform3D(1.5009441, 0, 4.2148304, 0, 4.4741063, 0, -4.2148304, 0, 1.5009441, -156.20383, 6.738848, 186.50237)
 mesh = SubResource("ArrayMesh_wuceq")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_052" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_052" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1138379161]
 transform = Transform3D(0.92345995, 0, 4.3777676, 0, 4.4741063, 0, -4.3777676, 0, 0.92345995, -153.59732, 15.615194, 177.2537)
 mesh = SubResource("ArrayMesh_rlgjl")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_053" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_053" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2062164543]
 transform = Transform3D(1.0070195, 0, 4.3593044, 0, 4.4741063, 0, -4.3593044, 0, 1.0070195, -153.59732, 6.738848, 177.2537)
 mesh = SubResource("ArrayMesh_ney3t")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_054" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_054" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2127707541]
 transform = Transform3D(1.3599609, 0, 4.262409, 0, 4.4741063, 0, -4.262409, 0, 1.3599609, -150.89769, 15.615194, 168.15503)
 mesh = SubResource("ArrayMesh_iqmrx")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_055" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_055" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1173795043]
 transform = Transform3D(1.4412342, 0, 4.235619, 0, 4.4741063, 0, -4.2356195, 0, 1.4412342, -150.89769, 6.738848, 168.15503)
 mesh = SubResource("ArrayMesh_8xcq3")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_056" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_056" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=413216807]
 transform = Transform3D(-0.22381765, 0, -4.468505, 0, 4.4741063, 0, 4.468505, 0, -0.22381765, -160.22856, 15.615194, 205.49171)
 mesh = SubResource("ArrayMesh_8ery3")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_057" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_057" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1480733260]
 transform = Transform3D(-0.30924085, 0, -4.4634066, 0, 4.4741063, 0, 4.4634066, 0, -0.30924085, -160.22856, 6.738848, 205.49171)
 mesh = SubResource("ArrayMesh_im7bh")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_058" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_058" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1661397846]
 transform = Transform3D(-0.4414639, 0, -4.452274, 0, 4.4741063, 0, 4.452274, 0, -0.4414639, -160.80005, 15.615194, 214.69131)
 mesh = SubResource("ArrayMesh_8c0ov")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_059" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_059" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=103838897]
 transform = Transform3D(-0.52653664, 0, -4.4430156, 0, 4.4741063, 0, 4.4430156, 0, -0.52653664, -160.80005, 6.738848, 214.69131)
 mesh = SubResource("ArrayMesh_hnyqw")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_060" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_060" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=962413595]
 transform = Transform3D(0.072716296, 0, -4.4735155, 0, 4.4741063, 0, 4.4735155, 0, 0.072716296, -161.28557, 15.615194, 224.28793)
 mesh = SubResource("ArrayMesh_w72av")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_061" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_061" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=960127644]
 transform = Transform3D(-0.01285599, 0, -4.4740877, 0, 4.4741063, 0, 4.4740877, 0, -0.01285599, -161.28557, 6.738848, 224.28793)
 mesh = SubResource("ArrayMesh_delv1")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_062" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_062" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1617815441]
 transform = Transform3D(-0.37850556, 0, -4.458067, 0, 4.4741063, 0, 4.458067, 0, -0.3785056, -161.89526, 15.615194, 233.75906)
 mesh = SubResource("ArrayMesh_rs6jk")
 skeleton = NodePath("")
 
-[node name="MilitaryWallBlock_063" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="MilitaryWallBlock_063" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2011732480]
 transform = Transform3D(-0.46369997, 0, -4.450012, 0, 4.4741063, 0, 4.450012, 0, -0.46369997, -161.89526, 6.738848, 233.75906)
 mesh = SubResource("ArrayMesh_pknt7")
 skeleton = NodePath("")
 
-[node name="Base" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1791459596]
 transform = Transform3D(2.0957386, 0, 1.0020822, 0, 2.3229914, 0, -1.0020822, 0, 2.0957386, -34.30357, 2.7027874, -13.084232)
 mesh = SubResource("ArrayMesh_uns64")
 skeleton = NodePath("")
 
-[node name="Base_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1819101856]
 transform = Transform3D(2.0957386, 0, 1.0020822, 0, 2.3229914, 0, -1.0020822, 0, 2.0957386, -7.695612, 2.7027874, 38.14602)
 mesh = SubResource("ArrayMesh_ejofq")
 skeleton = NodePath("")
 
-[node name="Base_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_002" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2014723793]
 transform = Transform3D(-2.0495293, 0, -1.0934892, 0, 2.3229914, 0, 1.0934892, 0, -2.0495293, -88.9637, 2.7027874, 13.167199)
 mesh = SubResource("ArrayMesh_7yev6")
 skeleton = NodePath("")
 
-[node name="Base_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_003" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1259739377]
 transform = Transform3D(-2.062411, 0, -1.0689948, 0, 2.3229914, 0, 1.0689948, 0, -2.062411, -59.98051, 2.7027884, 66.36872)
 mesh = SubResource("ArrayMesh_25oyp")
 skeleton = NodePath("")
 
-[node name="Base_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_004" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=2134402205]
 transform = Transform3D(-2.062411, 0, -1.0689948, 0, 2.3229914, 0, 1.0689948, 0, -2.062411, -35.953922, 2.7027884, 108.86203)
 mesh = SubResource("ArrayMesh_n2sq8")
 skeleton = NodePath("")
 
-[node name="Base_005" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_005" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1028658162]
 transform = Transform3D(2.0957386, 0, 1.0020822, 0, 2.3229914, 0, -1.0020822, 0, 2.0957386, 16.330978, 2.7027874, 80.63933)
 mesh = SubResource("ArrayMesh_b4n04")
 skeleton = NodePath("")
 
-[node name="Base_006" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_006" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=717911588]
 transform = Transform3D(-2.3151934, 0, 0.1901805, 0, 2.3229914, 0, -0.1901805, 0, -2.3151934, 5.397935, 2.7027884, 186.75424)
 mesh = SubResource("ArrayMesh_yq511")
 skeleton = NodePath("")
 
-[node name="Base_007" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_007" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1389004355]
 transform = Transform3D(1.2209126, 0, 1.9762747, 0, 2.3229914, 0, -1.9762747, 0, 1.2209126, 60.639065, 2.7027874, 158.2501)
 mesh = SubResource("ArrayMesh_k86x4")
 skeleton = NodePath("")
 
-[node name="Base_008" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_008" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1435177286]
 transform = Transform3D(2.2584035, 0, 0.54396933, 0, 2.3229914, 0, -0.54396933, 0, 2.2584035, 144.74245, 2.7027874, 211.13258)
 mesh = SubResource("ArrayMesh_iv34a")
 skeleton = NodePath("")
 
-[node name="Base_009" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_009" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=8830084]
 transform = Transform3D(-2.1829605, 0, -0.7943377, 0, 2.3229914, 0, 0.7943377, 0, -2.1829605, -8.843098, 2.7027874, 261.95828)
 mesh = SubResource("ArrayMesh_qbl57")
 skeleton = NodePath("")
 
-[node name="Base_010" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_010" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=27189564]
 transform = Transform3D(-0.6030955, 0, -2.2433379, 0, 2.3229914, 0, 2.2433379, 0, -0.6030955, 50.988625, 2.7027874, 319.13965)
 mesh = SubResource("ArrayMesh_1gyb8")
 skeleton = NodePath("")
 
-[node name="Base_011" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="Base_011" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1351393059]
 transform = Transform3D(1.9877084, 0, -1.202208, 0, 2.3229914, 0, 1.202208, 0, 1.9877084, 138.00676, 2.7027874, 283.92926)
 mesh = SubResource("ArrayMesh_3m6ge")
 skeleton = NodePath("")
 
-[node name="FireHydrant" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="FireHydrant" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=1645795764]
 transform = Transform3D(1.2815263, 0, -0.5271898, 0, 0.32759786, 0, 0.5271898, 0, 1.2815263, 39.38244, 2.7367702, 123.60791)
 mesh = SubResource("ArrayMesh_mc28t")
 skeleton = NodePath("")
 
-[node name="FireHydrant_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh"]
+[node name="FireHydrant_001" type="MeshInstance3D" parent="NavigationRegion3D/MapMesh" unique_id=997792779]
 transform = Transform3D(-0.9275435, 0, -1.0295154, 0, 0.32759786, 0, 1.0295154, 0, -0.9275435, 104.290016, 2.7367702, 313.18378)
 mesh = SubResource("ArrayMesh_h87bd")
 skeleton = NodePath("")
 
-[node name="MapMesh" parent="." instance=ExtResource("1_ig7tw")]
+[node name="MapMesh" parent="." unique_id=775478358 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.22948, 0, -479.36972)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MapMesh"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MapMesh" unique_id=1134845153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.508698, 2.6222038, 222.7601)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MapMesh/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapMesh/StaticBody3D" unique_id=1367497612]
 shape = SubResource("BoxShape3D_kek77")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=369141455]
 transform = Transform3D(0.8927982, 0.33855733, -0.29713687, -8.881784e-16, 0.6596345, 0.7515866, 0.45045683, -0.6710152, 0.5889205, -192.6715, 59.112797, -154.67761)
 
-[node name="Sky" parent="." instance=ExtResource("4_1bvp3")]
+[node name="Sky" parent="." unique_id=539394035 instance=ExtResource("4_1bvp3")]
 
-[node name="TimeControlUI" parent="." instance=ExtResource("8_5vw27")]
+[node name="TimeControlUI" parent="." unique_id=2036062167 instance=ExtResource("8_5vw27")]
 mouse_filter = 2
 
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]

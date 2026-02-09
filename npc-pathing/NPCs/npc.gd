@@ -25,12 +25,9 @@ var player_nearby: bool
 
 enum {IDLE, WALK, WAIT, ANIMATING}
 var state = IDLE
-#var recovery_timer:float = 0.0
 var is_interrupted: bool = false
 var prev_state
 var anim: AnimationPlayer
-
-#@onready var anim_tree: AnimationTree = $AnimationTree
 
 @export_category("Anim Control")
 @export var blend_speed = 2
@@ -59,26 +56,12 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and gravity and gravity_enabled:
 		
 		velocity.y -= gravity * delta
-	
-	## Look at a node if a node is set
-	if is_instance_valid(looking_at):
-		##look_at_target(looking_at)
-		look_at_node.look_at(looking_at.global_position)
-		global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 0.75 * delta)
-	
-	#_check_for_interrupt(delta)
-	## Engage with player if within range and waiting for them
-	#if npc_data.waiting_for_player and player_nearby:
-		#_on_player_nearby_detected()
 
-	#update_anim_tree()
 	_handle_state(delta)
 	move_and_slide()
 
 
 func instance_npc():
-	#for child in npc_mesh.get_children():
-		#child.queue_free()
 	if npc_data.on_map:
 		print("npc_node.gd: Instancing %s, is on current map" % npc_data.name)
 		
@@ -91,7 +74,6 @@ func _on_time_updated(h: int, m: int):
 func _check_schedule(h: int, m: int):
 	if not npc_data.schedule:
 		return
-	#print("_check_schedule run in npc.gd")
 	var new_path = npc_data.schedule.get_path_for_time(h, m)
 	
 	if new_path and new_path != npc_data.schedule.current_path:
@@ -99,28 +81,6 @@ func _check_schedule(h: int, m: int):
 		npc_data.schedule.current_path = new_path
 		new_path.reset_path()
 		_start_walking()
-		#set_path(new_path)
-
-#func _check_for_interrupt(delta: float):
-	#var dist = global_position.distance_to(GameState.player.global_position)
-	#var can_see = _can_see_player(dist)
-	#
-	#if can_see and dist < confront_distance:
-		#if state != CONFRONT:
-			#state = CONFRONT
-			#is_interrupted = true
-		#recovery_timer = recovery_time
-	#elif is_interrupted:
-		#recovery_timer -= delta
-		#if recovery_timer <= 0:
-			#_resume_routine()
-
-#func _can_see_player(dist: float) -> bool:
-	#if dist > aggro_distance: return false
-	#var dir_to_player = global_position.direction_to(GameState.player.global_position)
-	#var forward = -global_transform.basis.z # Typical Godot forward
-	#var angle = rad_to_deg(forward.angle_to(dir_to_player))
-	#return angle < vision_angle
 
 func _resume_routine():
 	is_interrupted = false

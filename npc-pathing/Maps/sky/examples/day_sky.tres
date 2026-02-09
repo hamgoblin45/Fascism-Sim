@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=13 format=3 uid="uid://dh6ykun8bv60u"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dh6ykun8bv60u"]
 
 [ext_resource type="Shader" uid="uid://4qiyxw8xru77" path="res://Maps/sky/stylized_sky.gdshader" id="1_i5n5i"]
 [ext_resource type="Texture2D" uid="uid://dvuwb0yce4sb7" path="res://Maps/sky/assets/shooting_star_sampler.png" id="2_1c2nj"]
