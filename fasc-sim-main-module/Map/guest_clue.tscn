@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bkoe4a2utnp6l"]
+
+[ext_resource type="Script" uid="uid://d4i7jbmwi486x" path="res://Map/guest_clue.gd" id="1_5jo8f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6s50"]
+
+[node name="GuestClue" type="Area3D" unique_id=1603691293]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_5jo8f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1409071056]
+shape = SubResource("BoxShape3D_x6s50")

@@ -42,6 +42,9 @@ var start_basis
 var target_basis
 var target_pos: Vector3
 
+var is_inside_house: bool = false
+var is_hiding: bool = false
+
 ## -- BARKS
 const BARK_BUBBLE = preload("uid://cxosfcljv24w3")
 @onready var bark_anchor: Node3D = $BarkAnchor
@@ -326,3 +329,12 @@ func look_at_target(target):
 			#
 		#set_next_path(current_path)
 		##set_next_path(current_path)
+
+func _on_clue_timer_timeout():
+	var GUEST_CLUE = preload("uid://bkoe4a2utnp6l")
+	
+	if is_inside_house and not is_hiding:
+		var clue = GUEST_CLUE.instantiate()
+		get_parent().add_child(clue)
+		clue.global_position = global_position # Drops clue at feet
+		# Add logic to randomize what kinda clue mesh it is; maybe even juist in the clue itself
