@@ -84,7 +84,61 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 		is_silent_search = false
 
 func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interactable]):
+	is_searching = true
+	print("SearchManager: HOUSE RAID COMMENCING")
 	
+	# Determine intensity
+	# Base: search 3 items, +1 for every 10 suspicion. Max is everything
+	var total_targets = hiding_spots.size() + containers.size()
+	var search_count = clamp(3 + int(GameState.suspicion / 10.0), 3, total_targets)
+	
+	# Sort by the "obviousness" of spots
+	# Guards should search things closest and "easy" first
+	var potential_targets = []
+	potential_targets.sort_custom(func(a,b):
+		var a_score = a.concealment_score if a is HidingSpot else 0.1 # Containers are obvious
+		var b_score = b.concealability_score if b is HidingSpot else 0.1
+		return a_score < b_score
+		)
+	
+	# Execution loop
+	for i in range(search_count):
+		if not is_searching: break
+		
+		# Pick one of the first 3 possible targets
+		var slice = potential_targets.slice(0,3)
+		slice.shuffle()
+		var current_target = slice[0]
+		potential_targets.erase(current_target)
+		
+		house_raid_status.emit("Guards are inspecting the " + current_target.name)
+		
+		#Perform the actual check
+		if current_target is HidingSpot:
+			await _search_hiding_spot(current_target)
+		else:
+			# It's a container
+			await start_external_search(current_target.inventory, thoroughness)
+	
+	_finish_search(false, null, 0)
+
+func _search_hiding_spot(spot: HidingSpot):
+	# Time it takes to search
+	var dur = 3.0 + (spot.concealment_score * 5.0)
+	await get_tree().create_timer(dur).timeout
+	
+	if spot.occupant:
+		# Roll to see if the occupant is discovered
+		var discovery_chance = (thoroughness + (GameState.suspicion / 100.0)) / (spot.concealment_score + 0.1)
+		
+		if randf() < discovery_chance:
+			_guest_captured(spot.occupant)
+			is_searching = false
+
+func _guest_captured(npc: NPC):
+	print("SearchManager: GUEST DISCOVERED! ", npc.npc_data.name)
+	var flag_name = npc.npc_data.id + "_captured"
+	GameState.world_flags[flag_name] = true
 
 func _discovered_contraband(item: InventoryItemData) -> bool:
 	
