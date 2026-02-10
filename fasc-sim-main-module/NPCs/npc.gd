@@ -28,7 +28,7 @@ var sit_blend_value = 0
 var looking_at: Node3D
 var player_nearby: bool
 ## --- STATES
-enum {IDLE, WALK, WAIT, ANIMATING}
+enum {IDLE, WALK, WAIT, ANIMATING, FOLLOWING}
 var state = IDLE
 #var recovery_timer:float = 0.0
 var is_interrupted: bool = false
@@ -233,6 +233,12 @@ func _handle_state(delta):
 				#walk_blend_value = lerpf(walk_blend_value, 1, blend_speed * delta)
 				#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
 				handle_nav(delta)
+		
+		FOLLOWING:
+			var target = GameState.player.global_position
+			var dir = global_position.direction_to(target)
+			if global_position.distance_to(target) > 8.0:
+				_move_and_rotate(dir, npc_data.walk_speed, delta)
 
 
 ## -- NAVIGATION -- ##
