@@ -2,6 +2,7 @@ extends Node
 
 signal search_step_started(index: int, duration: float)
 signal search_finished(caught: bool, item: InventoryItemData, qty: int)
+signal house_raid_status(message: String) # For the sake of UI. "The guards are checking the pantry..."
 
 var current_search_inventory: InventoryData = null
 var current_search_index: int = -1 # Where the searcher's "hands" are
@@ -13,6 +14,7 @@ var is_searching: bool = false
 var is_silent_search: bool = false # Determines if search if player inv or not
 
 var temp_elapse_time: float = 0.0 #TESTING
+
 
 func start_search(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
@@ -80,6 +82,9 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 		print("SearchManager: NPC finished search, found nothing")
 		is_searching = false
 		is_silent_search = false
+
+func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interactable]):
+	
 
 func _discovered_contraband(item: InventoryItemData) -> bool:
 	

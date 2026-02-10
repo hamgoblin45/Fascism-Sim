@@ -57,8 +57,11 @@ var world_flags: Dictionary = {
 }
 
 var objectives: Array[ObjectiveData]
-
 var flags = {}
+
+## -- Hiding NPCs
+var hidden_guests: Array[NPCData] = []
+
 
 
 func set_flag(id: String, value: bool):
