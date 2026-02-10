@@ -1,0 +1,7 @@
+major: Good day. We are here to search your home for contraband and fugitives.
+- Come on in
+	major: Your compliance is appreciated.
+- You can't come in
+	set {GameState.suspicion} += 5.0
+	major: It's not up to you. What's the matter? Hiding something?
+major: Begin the search.

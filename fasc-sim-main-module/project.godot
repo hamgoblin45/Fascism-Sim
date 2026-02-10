@@ -31,9 +31,11 @@ Dialogic="*uid://ds2q0uclmolvu"
 [dialogic]
 
 directories/dch_directory={
-"character": "res://Data/Dialogue/Characters/character.dch"
+"character": "res://Data/Dialogue/Characters/character.dch",
+"major": "res://Data/Dialogue/Characters/major.dch"
 }
 directories/dtl_directory={
+"major_search_announce_test": "res://Data/Dialogue/major_search_announce_test.dtl",
 "timeline": "res://Data/Dialogue/timeline.dtl"
 }
 layout/style_directory={}

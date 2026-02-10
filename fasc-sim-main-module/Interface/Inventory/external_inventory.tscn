@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://wkm6jgcm5mys"]
+[gd_scene format=3 uid="uid://wkm6jgcm5mys"]
 
-[ext_resource type="Script" uid="uid://ddtw01iqjw1hk" path="res://Interface/external_inventory.gd" id="1_j51ov"]
+[ext_resource type="Script" uid="uid://ddtw01iqjw1hk" path="res://Interface/Inventory/external_inventory.gd" id="1_j51ov"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="2_uwpdy"]
-[ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/item_context_ui.gd" id="4_5nhhn"]
-[ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/split_stack_ui.gd" id="6_hiijg"]
+[ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/Inventory/item_context_ui.gd" id="4_5nhhn"]
+[ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/Inventory/split_stack_ui.gd" id="6_hiijg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pjc3g"]
 
@@ -29,7 +29,7 @@ corner_radius_top_right = 22
 corner_radius_bottom_right = 22
 corner_radius_bottom_left = 22
 
-[node name="ExternalInventory" type="PanelContainer"]
+[node name="ExternalInventory" type="PanelContainer" unique_id=470250402]
 custom_minimum_size = Vector2(304, 0)
 offset_left = 16.0
 offset_top = 225.0
@@ -39,15 +39,15 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pjc3g")
 script = ExtResource("1_j51ov")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1830612909]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1737407411]
 layout_mode = 2
 alignment = 2
 
-[node name="ExternalNameLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="ExternalNameLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=478076375]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.49803922)
@@ -55,17 +55,17 @@ theme_override_font_sizes/font_size = 20
 text = "CONTAINER"
 horizontal_alignment = 1
 
-[node name="SlotsPanel" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="SlotsPanel" type="PanelContainer" parent="HBoxContainer/VBoxContainer" unique_id=1649064891]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_uwpdy")
 
-[node name="ExternalSlotContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/SlotsPanel"]
+[node name="ExternalSlotContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/SlotsPanel" unique_id=2125358975]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 4
 
-[node name="ExternalItemContextUI" type="PanelContainer" parent="HBoxContainer" node_paths=PackedStringArray("item_name", "item_descript", "item_flavor_text", "trash_button", "use_button", "split_button", "drop_button")]
+[node name="ExternalItemContextUI" type="PanelContainer" parent="HBoxContainer" unique_id=283729632 node_paths=PackedStringArray("item_name", "item_descript", "item_flavor_text", "trash_button", "use_button", "split_button", "drop_button")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(240, 0)
@@ -82,18 +82,18 @@ use_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/UseButton")
 split_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/SplitButton")
 drop_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/DropButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ExternalItemContextUI"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ExternalItemContextUI" unique_id=1447309201]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ExternalItemContextUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ExternalItemContextUI/MarginContainer" unique_id=178705707]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="ItemName" type="Label" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
+[node name="ItemName" type="Label" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer" unique_id=1814619229]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.45080644, 0.603062, 0.86143565, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.54509807)
@@ -102,7 +102,7 @@ theme_override_font_sizes/font_size = 20
 text = "ItemName"
 horizontal_alignment = 1
 
-[node name="ItemDescript" type="RichTextLabel" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
+[node name="ItemDescript" type="RichTextLabel" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer" unique_id=2134013788]
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4392157)
@@ -110,7 +110,7 @@ bbcode_enabled = true
 text = "[center]This is the [color=gold] item [/color] description"
 fit_content = true
 
-[node name="ItemFlavorText" type="RichTextLabel" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
+[node name="ItemFlavorText" type="RichTextLabel" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer" unique_id=1025307663]
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.2784314)
@@ -121,33 +121,33 @@ bbcode_enabled = true
 text = "[i]This is some lore description to add flavor text to a description"
 fit_content = true
 
-[node name="ItemValue" type="Label" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
+[node name="ItemValue" type="Label" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer" unique_id=614983490]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 
-[node name="ButtonContainer" type="HBoxContainer" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer" unique_id=1546175537]
 layout_mode = 2
 alignment = 1
 
-[node name="TrashButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="TrashButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer" unique_id=1984495381]
 layout_mode = 2
 text = "TRASH"
 
-[node name="DropButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="DropButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer" unique_id=1995783669]
 layout_mode = 2
 text = "DROP"
 
-[node name="UseButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="UseButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer" unique_id=1627175253]
 layout_mode = 2
 text = "USE"
 
-[node name="SplitButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="SplitButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/MarginContainer/VBoxContainer/ButtonContainer" unique_id=244187949]
 layout_mode = 2
 text = "SPLIT"
 
-[node name="ExternalSplitStackUI" type="PanelContainer" parent="HBoxContainer/ExternalItemContextUI"]
+[node name="ExternalSplitStackUI" type="PanelContainer" parent="HBoxContainer/ExternalItemContextUI" unique_id=1905538082]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -157,33 +157,33 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_xywkj")
 script = ExtResource("6_hiijg")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI" unique_id=1531143667]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer" unique_id=1021859998]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer" unique_id=740995999]
 layout_mode = 2
 alignment = 1
 
-[node name="SplitSlider" type="HSlider" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SplitSlider" type="HSlider" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1496787939]
 custom_minimum_size = Vector2(105, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="SplitQty" type="Label" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SplitQty" type="Label" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer/HBoxContainer" unique_id=762358896]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "X/XX"
 horizontal_alignment = 1
 
-[node name="SplitButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer"]
+[node name="SplitButton" type="Button" parent="HBoxContainer/ExternalItemContextUI/ExternalSplitStackUI/MarginContainer/VBoxContainer" unique_id=1166667076]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1

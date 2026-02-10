@@ -68,12 +68,27 @@ size = Vector3(2.3486938, 3.250122, 3.790039)
 
 [sub_resource type="Resource" id="Resource_getpj"]
 script = ExtResource("20_82xsv")
-name = "Test NPC"
-id = "test"
+name = "Major"
+id = "major"
+default_timeline = "major_search_announce_test"
 conditional_barks = {
 "default": ["Hmm?", "Ahoy there", "What up?", "SUCK MY DICK, SATAN FUCKAHHH!"]
 }
-bark_only = true
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
+
+[sub_resource type="Resource" id="Resource_d13ii"]
+script = ExtResource("20_82xsv")
+name = "Grunt"
+id = "grunt"
+conditional_barks = {
+"default": ["Mind your business", "Don't cause any trouble", "Eh?", "Get outta my face", "Back up, citizen"]
+}
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
+
+[sub_resource type="Resource" id="Resource_ryguw"]
+script = ExtResource("20_82xsv")
+name = "Refugee"
+id = "refugee"
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [node name="Main" type="Node3D" unique_id=923260690]
@@ -180,6 +195,14 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0.27019882, 2.698060
 
 [node name="NPCs" type="Node3D" parent="." unique_id=1576685263]
 
-[node name="TestNPC" parent="NPCs" unique_id=610944064 instance=ExtResource("19_cegan")]
+[node name="Major" parent="NPCs" unique_id=610944064 instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.838703, 0, -3.702774)
 npc_data = SubResource("Resource_getpj")
+
+[node name="Grunt" parent="NPCs" unique_id=26024771 instance=ExtResource("19_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.863255, 0, -5.8265653)
+npc_data = SubResource("Resource_d13ii")
+
+[node name="TestRefugee" parent="NPCs" unique_id=2024641856 instance=ExtResource("19_cegan")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 9.994558, 0.18164968, 2.5533981)
+npc_data = SubResource("Resource_ryguw")
