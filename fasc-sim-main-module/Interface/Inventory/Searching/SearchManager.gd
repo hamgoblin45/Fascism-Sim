@@ -14,7 +14,7 @@ var is_searching: bool = false
 var is_silent_search: bool = false # Determines if search if player inv or not
 
 var temp_elapse_time: float = 0.0 #TESTING
-
+var active_clues: Array[GuestClue] = []
 
 func start_search(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
@@ -83,8 +83,9 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 		is_searching = false
 		is_silent_search = false
 
-func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interactable]):
+func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interactable], clues: Array[GuestClue]):
 	is_searching = true
+	active_clues = clues
 	print("SearchManager: HOUSE RAID COMMENCING")
 	
 	# Determine intensity
@@ -105,6 +106,14 @@ func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interac
 	for i in range(search_count):
 		if not is_searching: break
 		
+		# If a guard walks past a GuestClue
+		for clue in active_clues:
+			#if guard.global_position.distance_to(clue.global_position) < 2.0: # Figure out what to add as "guard" here
+				print("Guard noticed a GuestClue")
+				search_count += 2 # They will search more spots now
+				thoroughness += 0.1
+				#guard.spawn_bark("Who left this here") or something liek that
+		
 		# Pick one of the first 3 possible targets
 		var slice = potential_targets.slice(0,3)
 		slice.shuffle()
@@ -121,6 +130,17 @@ func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interac
 			await start_external_search(current_target.inventory, thoroughness)
 	
 	_finish_search(false, null, 0)
+
+func _finish_house_raid(hiding_spots: Array[HidingSpot]):
+	print("SearchManager: Guards have left the house")
+	# Automatically have guests come out from hiding
+	for spot in hiding_spots:
+		if spot.occupant:
+			await get_tree().create_timer(2.5).timeout
+			spot._extract_occupant()
+	
+	# Lower suspicion slightly after a "clean" search
+	GameState.suspicion -= 5.0
 
 func _search_hiding_spot(spot: HidingSpot):
 	# Time it takes to search
