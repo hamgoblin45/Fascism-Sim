@@ -26,4 +26,8 @@ func _interact(interact_type: String, engaged: bool):
 				anim.play("Open")
 				interactable.interact_text = "Close"
 				collision_shape.disabled = true
+				
+				if GameState.raid_in_progress and interactable.id == "front_door":
+					EventBus.answering_door.emit()
+				
 			open = not open

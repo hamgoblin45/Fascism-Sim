@@ -5,3 +5,4 @@ major: Good day. We are here to search your home for contraband and fugitives.
 	set {GameState.suspicion} += 5.0
 	major: It's not up to you. What's the matter? Hiding something?
 major: Begin the search.
+[end_timeline]

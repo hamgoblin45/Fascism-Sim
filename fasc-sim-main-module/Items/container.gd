@@ -2,6 +2,7 @@ extends Node3D
 
 @export var container_inventory: InventoryData
 @onready var interactable: Interactable = $Interactable
+@export var concealment_score: float = 0.5
 
 var open: bool = false
 

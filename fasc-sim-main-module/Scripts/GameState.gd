@@ -46,10 +46,12 @@ var hp_starve_drain_rate: float = 0.05 # How much dmg you take when starving
 var working: bool = false
 
 ## -- Regime / World
+var regime_tolerance: float = 0.0
 var suspicion: float = 0.0:
 	set(value): suspicion = clamp(value, 0, 100)
 var resistance: float = 0.0:
 	set(value): resistance = clamp(value, 0, 100)
+var raid_in_progress: bool = false
 
 # - Memory
 var world_flags: Dictionary = {

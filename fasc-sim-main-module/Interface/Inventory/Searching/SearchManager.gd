@@ -16,6 +16,9 @@ var is_silent_search: bool = false # Determines if search if player inv or not
 var temp_elapse_time: float = 0.0 #TESTING
 var active_clues: Array[GuestClue] = []
 
+var assigned_searcher: NPC = null
+
+
 func start_search(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
 	is_searching = true
@@ -83,8 +86,15 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 		is_searching = false
 		is_silent_search = false
 
-func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interactable], clues: Array[GuestClue]):
+func start_house_raid():
 	is_searching = true
+	# Start actually searching the house
+	var hiding_spots: Array[HidingSpot]
+	hiding_spots.assign(get_tree().get_nodes_in_group("hiding_spots"))
+	var containers: Array[Interactable]
+	containers.assign(get_tree().get_nodes_in_group("house_containers"))
+	var clues: Array[GuestClue]
+	clues.assign(get_tree().get_nodes_in_group("guest_clues"))
 	active_clues = clues
 	print("SearchManager: HOUSE RAID COMMENCING")
 	
@@ -92,13 +102,18 @@ func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interac
 	# Base: search 3 items, +1 for every 10 suspicion. Max is everything
 	var total_targets = hiding_spots.size() + containers.size()
 	var search_count = clamp(3 + int(GameState.suspicion / 10.0), 3, total_targets)
+	print("SearchManager: About to search %s of %s total targets" % [search_count, total_targets])
 	
 	# Sort by the "obviousness" of spots
 	# Guards should search things closest and "easy" first
 	var potential_targets = []
+	potential_targets.append_array(hiding_spots)
+	potential_targets.append_array(containers)
+	potential_targets.append_array(clues)
+	
 	potential_targets.sort_custom(func(a,b):
 		var a_score = a.concealment_score if a is HidingSpot else 0.1 # Containers are obvious
-		var b_score = b.concealability_score if b is HidingSpot else 0.1
+		var b_score = b.concealment_score if b is HidingSpot else 0.1
 		return a_score < b_score
 		)
 	
@@ -106,32 +121,56 @@ func start_house_raid(hiding_spots: Array[HidingSpot], containers: Array[Interac
 	for i in range(search_count):
 		if not is_searching: break
 		
+		var target = potential_targets.pop_front() # get the next target
+		#house_raid_status.emit("Searching ", target.name) # Need a target.name for this to work
+		
+		if assigned_searcher:
+			print("SearchManager: Searcher moving to next search target")
+			# Command NPC to walk to target
+			var move_pos = target.global_position + (Vector3(1,0,1).normalized() * 1.0)
+			assigned_searcher.command_move_to(move_pos)
+			
+			await assigned_searcher.destination_reached
+			print("SearchManager: Searcher arrived at target location")
+			# Face the object
+			assigned_searcher.look_at_node.look_at(target.global_position)
+			
+			# Search anim
+			assigned_searcher.state = assigned_searcher.ANIMATING
+			# assigned_searcher.anim.play("search_low" if target is HidingSpot else "search_standing")
+		
 		# If a guard walks past a GuestClue
 		for clue in active_clues:
-			#if guard.global_position.distance_to(clue.global_position) < 2.0: # Figure out what to add as "guard" here
+			if assigned_searcher.global_position.distance_to(clue.global_position) < 2.0: # Figure out what to add as "guard" here
 				print("Guard noticed a GuestClue")
 				search_count += 2 # They will search more spots now
 				thoroughness += 0.1
 				#guard.spawn_bark("Who left this here") or something liek that
 		
-		# Pick one of the first 3 possible targets
-		var slice = potential_targets.slice(0,3)
-		slice.shuffle()
-		var current_target = slice[0]
-		potential_targets.erase(current_target)
-		
-		house_raid_status.emit("Guards are inspecting the " + current_target.name)
+		## Pick one of the first 3 possible targets
+		#var slice = potential_targets.slice(0,3)
+		#slice.shuffle()
+		#var current_target = slice[0]
+		#potential_targets.erase(current_target)
+		#
+		#house_raid_status.emit("Guards are inspecting the " + current_target.name)
 		
 		#Perform the actual check
-		if current_target is HidingSpot:
-			await _search_hiding_spot(current_target)
+		if target is HidingSpot:
+			await _search_hiding_spot(target)
 		else:
 			# It's a container
-			await start_external_search(current_target.inventory, thoroughness)
+			await start_external_search(target.get_parent().container_inventory, thoroughness)
 	
-	_finish_search(false, null, 0)
+	_finish_house_raid(hiding_spots)
 
 func _finish_house_raid(hiding_spots: Array[HidingSpot]):
+	print("SearchManager: Finishing house raid")
+	if assigned_searcher:
+		assigned_searcher.command_move_to(Vector3(0, 0, 50)) # Far coords, change to specific pos to polish it
+		await assigned_searcher.destination_reached
+		GameState.raid_in_progress = false
+		assigned_searcher.queue_free()
 	print("SearchManager: Guards have left the house")
 	# Automatically have guests come out from hiding
 	for spot in hiding_spots:
@@ -143,6 +182,7 @@ func _finish_house_raid(hiding_spots: Array[HidingSpot]):
 	GameState.suspicion -= 5.0
 
 func _search_hiding_spot(spot: HidingSpot):
+	print("SearchManager: Searching hiding spot")
 	# Time it takes to search
 	var dur = 3.0 + (spot.concealment_score * 5.0)
 	await get_tree().create_timer(dur).timeout

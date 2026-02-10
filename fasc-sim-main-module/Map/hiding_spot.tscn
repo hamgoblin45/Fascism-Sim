@@ -4,7 +4,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6s50"]
 
-[node name="HidingSpot" type="Area3D" unique_id=85300068]
+[node name="HidingSpot" type="Area3D" unique_id=85300068 groups=["hiding_spots"]]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_heltn")

@@ -74,6 +74,10 @@ signal update_objective(objective: ObjectiveData)
 
 signal world_changed(id: String, value: bool)
 
+## --- Searches
+signal raid_starting
+signal answering_door
+
 ## -- PATHING ---
 signal setting_path(schedule: ScheduleData, path: PathData)
 signal path_finished(npc: NPCData, path: PathData)
