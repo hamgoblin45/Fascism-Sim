@@ -287,12 +287,12 @@ func _handle_dynamic_nav(delta: float):
 	# Move
 	# Use NavAgent for obstacle avoidance, otherwise simple direction will work in small spaces
 	# Option A - Simple dir
-	var dir = global_position.direction_to(dynamic_target_pos)
+	#var dir = global_position.direction_to(dynamic_target_pos)
 	
 	# Option B - NavAgent
-	#nav_agent.target_position = dynamic_target_pos
-	#var next_pos = nav_agent.get_next_path_position()
-	#var dir = global_position.direction_to(next_pos)
+	nav_agent.target_position = dynamic_target_pos
+	var next_pos = nav_agent.get_next_path_position()
+	var dir = global_position.direction_to(next_pos)
 	
 	_move_and_rotate(dir, npc_data.walk_speed, delta)
 
