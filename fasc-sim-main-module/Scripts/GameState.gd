@@ -17,6 +17,7 @@ var equipped_item: InventoryItemData
 ## -- Player / 3D Controller
 var player: CharacterBody3D
 var held_item
+var talking_to: NPC
 
 ## -- Status
 var hp: float = 50.0
@@ -61,7 +62,7 @@ var flags = {}
 
 ## -- Hiding NPCs
 var hidden_guests: Array[NPCData] = []
-
+var leading_npc: NPC
 
 
 func set_flag(id: String, value: bool):

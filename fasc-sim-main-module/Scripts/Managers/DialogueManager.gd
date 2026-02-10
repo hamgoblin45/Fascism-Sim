@@ -46,6 +46,8 @@ func is_objective_complete(id: String) -> bool:
 
 func _on_dialogic_signal(arg: Dictionary):
 	match arg["signal_name"]:
+		"follow_player":
+			EventBus.follow_player.emit(GameState.talking_to, true)
 		"show_image":
 			print("It would be showing you a pic right now if I had that coded")
 		"kick_balls":

@@ -77,6 +77,7 @@ signal world_changed(id: String, value: bool)
 ## -- PATHING ---
 signal setting_path(schedule: ScheduleData, path: PathData)
 signal path_finished(npc: NPCData, path: PathData)
+signal follow_player(NPC, bool)
 
 ## -- TIME ---
 signal end_day # To initiate day transition

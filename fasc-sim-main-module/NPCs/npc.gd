@@ -56,6 +56,7 @@ func _ready() -> void:
 	EventBus.world_changed.connect(_on_world_changed)
 	_check_schedule(GameState.hour, GameState.minute)
 	EventBus.item_interacted.connect(_on_interact)
+	EventBus.follow_player.connect(follow_player)
 
 
 func _physics_process(delta: float) -> void:
@@ -107,6 +108,8 @@ func _handle_interaction():
 func _start_context_dialogue():
 	if not interactable:
 		return
+	
+	GameState.talking_to = null
 	# Default timeline if nothing else is needed
 	var timeline_to_play = npc_data.default_timeline
 	# Checks world flags to see if special dialogue should be selected
@@ -118,6 +121,7 @@ func _start_context_dialogue():
 	
 	if timeline_to_play != "":
 		DialogueManager.start_dialogue(timeline_to_play, npc_data.name)
+		GameState.talking_to = self
 	else:
 		print("NPC %s has no timeline assigned for this state. Attempting to bark" % npc_data.name)
 		_play_context_bark()
@@ -212,6 +216,15 @@ func set_path(path: PathData):
 		print("set_path() run in NPC.gd, state set to IDLE")
 		state = IDLE
 
+func follow_player(follow_npc: NPC, follow: bool):
+	if follow_npc != self: return
+	if follow:
+		prev_state = state
+		state = FOLLOWING
+		GameState.leading_npc = self
+	else:
+		state = prev_state
+		GameState.leading_npc = null
 
 ## -- STATE MACHINE -- ##
 

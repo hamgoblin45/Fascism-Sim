@@ -12,15 +12,16 @@ func _ready() -> void:
 	# Ensure its on the right collision layer for InteractRay
 	pass
 
-func _on_interact(object, type, engaged):
+func _on_interact(_object, type, engaged):
 	if not engaged: return
 	
-	if occupant:
-		# If someone is inside, tell them to come out
-		_extract_occupant()
-	elif GameState.leading_npc: # I might wanna make this a select and toggle rather than them following me 
-		#(Interact w/ spot has me select a guest and tell them "Get in there!"
-		_assign_occupant(GameState.leading_npc)
+	if type == "interact":
+		if occupant:
+			# If someone is inside, tell them to come out
+			_extract_occupant()
+		elif GameState.leading_npc: # I might wanna make this a select and toggle rather than them following me 
+			#(Interact w/ spot has me select a guest and tell them "Get in there!"
+			_assign_occupant(GameState.leading_npc)
 
 func _assign_occupant(npc: NPC):
 	occupant = npc

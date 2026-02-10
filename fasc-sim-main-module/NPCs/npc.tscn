@@ -87,8 +87,8 @@ mesh = SubResource("SphereMesh_qkxgd")
 
 [node name="Interactable" type="Area3D" parent="." unique_id=1997282885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0900524, 0)
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("3_k7mck")
 id = "npc"
 interact_icon = SubResource("AtlasTexture_xlwy1")

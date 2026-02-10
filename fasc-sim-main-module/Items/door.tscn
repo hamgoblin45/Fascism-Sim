@@ -31,7 +31,7 @@ id = "door"
 interact_icon = SubResource("AtlasTexture_qohlf")
 interact_text = "Open"
 
-[node name="CollisionShape3D" parent="door/Cube/Interactable" index="0"]
+[node name="CollisionShape3D" parent="door/Cube/Interactable" index="0" unique_id=1764402898]
 shape = SubResource("BoxShape3D_qohlf")
 
 [editable path="door"]
