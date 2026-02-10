@@ -28,7 +28,7 @@ var sit_blend_value = 0
 var looking_at: Node3D
 var player_nearby: bool
 ## --- STATES
-enum {IDLE, WALK, WAIT, ANIMATING, FOLLOWING}
+enum {IDLE, WALK, WAIT, ANIMATING, FOLLOWING, COMMAND_MOVE}
 var state = IDLE
 #var recovery_timer:float = 0.0
 var is_interrupted: bool = false
@@ -42,6 +42,9 @@ var start_basis
 var target_basis
 var target_pos: Vector3
 
+var dynamic_target_pos: Vector3 = Vector3.ZERO
+var is_under_command: bool = false # if true, ignore schedule
+
 var is_inside_house: bool = false
 var is_hiding: bool = false
 
@@ -49,6 +52,7 @@ var is_hiding: bool = false
 const BARK_BUBBLE = preload("uid://cxosfcljv24w3")
 @onready var bark_anchor: Node3D = $BarkAnchor
 
+signal destination_reached
 
 
 func _ready() -> void:
@@ -83,8 +87,6 @@ func _physics_process(delta: float) -> void:
 
 
 func instance_npc():
-	#for child in npc_mesh.get_children():
-		#child.queue_free()
 	if npc_data.on_map:
 		print("npc_node.gd: Instancing %s, is on current map" % npc_data.name)
 		
@@ -96,8 +98,6 @@ func _on_interact(object: Interactable, interact_type: String, engaged: bool):
 	match interact_type:
 		"interact":
 			_handle_interaction()
-			#_start_context_dialogue()
-			#DialogueManager.start_dialogue()
 
 func _handle_interaction():
 	if npc_data.bark_only: # also make it pick a bark if there is just no context dialogue available
@@ -248,17 +248,20 @@ func _handle_state(delta):
 			if not get_tree().paused:
 				#walk_blend_value = lerpf(walk_blend_value, 1, blend_speed * delta)
 				#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
-				handle_nav(delta)
+				_handle_schedule_nav(delta)
 		
 		FOLLOWING:
 			var target = GameState.player.global_position
 			var dir = global_position.direction_to(target)
 			if global_position.distance_to(target) > 8.0:
 				_move_and_rotate(dir, npc_data.walk_speed, delta)
+		
+		COMMAND_MOVE:
+			_handle_dynamic_nav(delta)
 
 
 ## -- NAVIGATION -- ##
-func handle_nav(delta: float):
+func _handle_schedule_nav(delta: float):
 	#print("Handling Nav")
 	var path = npc_data.schedule.current_path
 	if not path: return
@@ -273,6 +276,25 @@ func handle_nav(delta: float):
 	var dir = global_position.direction_to(path.target_pos)
 	_move_and_rotate(dir, npc_data.walk_speed, delta)
 
+func _handle_dynamic_nav(delta: float):
+	# Check arrival
+	if global_position.distance_to(dynamic_target_pos) < 1.0:
+		print("NPC %s reached dynamic target" % npc_data.name)
+		state = IDLE
+		destination_reached.emit()
+		return
+	
+	# Move
+	# Use NavAgent for obstacle avoidance, otherwise simple direction will work in small spaces
+	# Option A - Simple dir
+	#var dir = global_position.direction_to(dynamic_target_pos)
+	
+	# Option B - NavAgent
+	nav_agent.target_position = dynamic_target_pos
+	var next_pos = nav_agent.get_next_path_position()
+	var dir = global_position.direction_to(next_pos)
+	
+	_move_and_rotate(dir, npc_data.walk_speed, delta)
 
 func _move_and_rotate(dir: Vector3, speed: float, delta: float):
 	velocity.x = lerp(velocity.x, dir.x * speed, npc_data.walk_accel * delta)
@@ -300,6 +322,17 @@ func _finish_path():
 	npc_data.waiting_for_player = path.wait_for_player
 	EventBus.path_finished.emit(npc_data, path)
 
+func command_move_to(target: Vector3):
+	is_under_command = false
+	dynamic_target_pos = target
+	state = COMMAND_MOVE
+	# Ensure nav agent updates
+	nav_agent.target_position = target
+
+func command_stop():
+	is_under_command = false
+	state = IDLE
+	velocity = Vector3.ZERO
 
 # Sets the rotation of a Node3D (look_at_node) so that the target lerps in the same rotation to mimic looking at a node
 func look_at_target(target):
