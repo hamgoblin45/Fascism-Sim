@@ -9,8 +9,7 @@ class_name HidingSpot
 var occupant: NPC = null
 
 func _ready() -> void:
-	# Ensure its on the right collision layer for InteractRay
-	pass
+	EventBus.item_interacted.connect(_on_interact)
 
 func _on_interact(_object, type, engaged):
 	if not engaged: return
