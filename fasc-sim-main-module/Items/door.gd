@@ -5,6 +5,8 @@ extends Node3D
 @onready var interactable: Interactable = $door/Cube/Interactable
 @onready var collision_shape: CollisionShape3D = $door/Cube/StaticBody3D/CollisionShape3D
 
+@onready var npc_detect: Area3D = $NPCDetect
+
 
 var open: bool = false
 
@@ -18,16 +20,28 @@ func _interact(interact_type: String, engaged: bool):
 	match interact_type:
 		"click","interact":
 			
-			if open:
-				anim.play("Close")
-				interactable.interact_text = "Open"
-				collision_shape.disabled = false
-			else:
-				anim.play("Open")
-				interactable.interact_text = "Close"
-				collision_shape.disabled = true
+			_toggle_door(!open)
 				
-				if GameState.raid_in_progress and interactable.id == "front_door":
+			if GameState.raid_in_progress:
+				if interactable.id == "front_door":
 					EventBus.answering_door.emit()
 				
-			open = not open
+
+func _toggle_door(state: bool):
+	open = state
+	
+	if open:
+		anim.play("Open")
+		interactable.interact_text = "Close"
+		collision_shape.disabled = true
+	else:
+		anim.play("Close")
+		interactable.interact_text = "Open"
+		await anim.animation_finished
+		collision_shape.disabled = false
+
+func _on_npc_detect_body_entered(body: Node3D) -> void:
+	if body is NPC:
+		if not open and interactable.id != "front_door":
+			_toggle_door(true) # force open for npc
+			# Animate the npc opening a door
