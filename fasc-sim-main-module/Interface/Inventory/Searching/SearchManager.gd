@@ -83,7 +83,7 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 				return
 		
 		print("SearchManager: NPC finished search, found nothing")
-		is_searching = false
+		#is_searching = false
 		is_silent_search = false
 
 func start_house_raid():
@@ -160,9 +160,35 @@ func start_house_raid():
 			await _search_hiding_spot(target)
 		else:
 			# It's a container
-			await start_external_search(target.get_parent().container_inventory, thoroughness)
+			print("Searching a container")
+			var inv = target.get_parent().container_inventory
+			await _search_container_during_raid(inv, thoroughness)
 	
 	_finish_house_raid(hiding_spots)
+
+func _search_container_during_raid(inventory: InventoryData, thoroughness_mod: float):
+	#print("Searching ", inventory)
+	for i in range(inventory.slot_datas.size()):
+		# Check if the raid was cancelled (busted, etc) 
+		if not is_searching:
+			break
+		
+		var slot = inventory.slot_datas[i]
+		
+		# Calculate time
+		var search_duration = 1.0
+		if slot and slot.item_data:
+			search_duration += (slot.item_data.concealability * 0.5)
+		
+		print("Searching for ", search_duration)
+		await get_tree().create_timer(search_duration).timeout
+		
+		
+		if slot and slot.item_data:
+			if _discovered_contraband(slot.item_data):
+				player_busted_external(inventory, slot, i)
+				return
+	print("SearchManager: Container cleared")
 
 func _finish_house_raid(hiding_spots: Array[HidingSpot]):
 	print("SearchManager: Finishing house raid")

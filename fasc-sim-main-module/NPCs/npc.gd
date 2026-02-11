@@ -323,7 +323,7 @@ func _finish_path():
 	EventBus.path_finished.emit(npc_data, path)
 
 func command_move_to(target: Vector3):
-	is_under_command = false
+	is_under_command = true
 	dynamic_target_pos = target
 	state = COMMAND_MOVE
 	# Ensure nav agent updates
