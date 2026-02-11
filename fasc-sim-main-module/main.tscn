@@ -188,7 +188,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.962023, 4.7683716e-07, -6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.963692, 0, -3.7396345)
 
 [node name="PlayerCharacter" parent="." unique_id=395488164 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.31503916, 0)
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0.31503916, 0)
 
 [node name="InventoryUI" parent="." unique_id=1602292331 instance=ExtResource("2_0xm2m")]
 process_mode = 3

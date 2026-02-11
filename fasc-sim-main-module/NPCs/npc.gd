@@ -267,7 +267,7 @@ func _handle_schedule_nav(delta: float):
 	if not path: return
 	
 	# Checks if npc has reached target point
-	if global_position.distance_to(path.target_pos) < 0.6:
+	if global_position.distance_to(path.target_pos) < 1.5:
 		if not path.get_next_target():
 			_finish_path()
 			return
@@ -278,7 +278,7 @@ func _handle_schedule_nav(delta: float):
 
 func _handle_dynamic_nav(delta: float):
 	# Check arrival
-	if global_position.distance_to(dynamic_target_pos) < 1.0:
+	if global_position.distance_to(dynamic_target_pos) < 1.5:
 		print("NPC %s reached dynamic target" % npc_data.name)
 		state = IDLE
 		destination_reached.emit()
