@@ -33,7 +33,9 @@ func _toggle_door(state: bool):
 	if open:
 		anim.play("Open")
 		interactable.interact_text = "Close"
-		collision_shape.disabled = true
+		#collision_shape.disabled = true
+		collision_shape.set_deferred("disabled", true)
+		
 	else:
 		anim.play("Close")
 		interactable.interact_text = "Open"

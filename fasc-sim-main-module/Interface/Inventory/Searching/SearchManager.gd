@@ -195,14 +195,16 @@ func _search_container_during_raid(inventory: InventoryData, thoroughness_mod: f
 		##-----------------------------
 		
 		print("Searching for ", search_duration)
-		await get_tree().create_timer(search_duration).timeout
 		
+		await get_tree().create_timer(search_duration).timeout
+		assigned_searcher.spawn_bark("...") # Likely to change but helps show that it is indeed searching
 		
 		if slot and slot.item_data:
 			if _discovered_contraband(slot.item_data):
 				player_busted_external(inventory, slot, i)
 				return
 	print("SearchManager: Container cleared")
+	assigned_searcher.spawn_bark("Hmm, nothing here")
 
 func _finish_house_raid(hiding_spots: Array[HidingSpot]):
 	print("SearchManager: Finishing house raid")

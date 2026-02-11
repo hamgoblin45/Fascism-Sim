@@ -55,7 +55,7 @@ func _send_in_grunt():
 	#Hand control over to the SearchManager
 	search_manager.assigned_searcher = search_grunt_npc
 	
-	
+	# If you make a "RummageProgressUI" thing, have it instance and attach to searcher here or at the beginning of start_house_raid
 	
 	search_manager.start_house_raid()
 	

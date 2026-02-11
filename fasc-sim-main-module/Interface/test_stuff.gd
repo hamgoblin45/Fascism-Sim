@@ -1,6 +1,6 @@
 extends Control
 
-@onready var start_raid_button: Button = $VBoxContainer/StartRaid
+@onready var start_raid_button: Button = $TestHUD/StartRaid
 @onready var hunger_bar: ProgressBar = %HungerBar
 @onready var suspicion_bar: ProgressBar = %SuspicionBar
 @onready var resistance_bar: ProgressBar = %ResistanceBar
