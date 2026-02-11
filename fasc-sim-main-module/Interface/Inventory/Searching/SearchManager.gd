@@ -18,6 +18,12 @@ var active_clues: Array[GuestClue] = []
 
 var assigned_searcher: NPC = null
 
+func emit_test_values():
+	## ---- TESTING-----------
+		EventBus.show_test_value.emit("search_suspicion", suspicion_level)
+		EventBus.show_test_value.emit("patience", patience)
+		EventBus.show_test_value.emit("thoroughness", thoroughness)
+		##-----------------------------
 
 func start_search(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
@@ -43,6 +49,9 @@ func start_search(inventory: InventoryData):
 		
 		search_step_started.emit(i, search_duration)
 		
+		## ---- TESTING-----------
+		emit_test_values()
+		##-----------------------------
 		# Wait for each slot to be searched before running
 		await get_tree().create_timer(search_duration).timeout
 		elapsed_time += search_duration
@@ -73,6 +82,10 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 		var search_duration = 1.0
 		if slot and slot.item_data:
 			search_duration += (slot.item_data.concealability * 0.5)
+			
+		## ---- TESTING-----------
+		emit_test_values()
+		##-----------------------------
 		
 		# Simulates taking the time to search each slot
 		await get_tree().create_timer(search_duration).timeout
@@ -117,6 +130,10 @@ func start_house_raid():
 		return a_score < b_score
 		)
 	
+	## ---- TESTING-----------
+	emit_test_values()
+	##-----------------------------
+	
 	# Execution loop
 	for i in range(search_count):
 		if not is_searching: break
@@ -147,14 +164,7 @@ func start_house_raid():
 				thoroughness += 0.1
 				#guard.spawn_bark("Who left this here") or something liek that
 		
-		## Pick one of the first 3 possible targets
-		#var slice = potential_targets.slice(0,3)
-		#slice.shuffle()
-		#var current_target = slice[0]
-		#potential_targets.erase(current_target)
-		#
-		#house_raid_status.emit("Guards are inspecting the " + current_target.name)
-		
+	
 		#Perform the actual check
 		if target is HidingSpot:
 			await _search_hiding_spot(target)
@@ -179,6 +189,10 @@ func _search_container_during_raid(inventory: InventoryData, thoroughness_mod: f
 		var search_duration = 1.0
 		if slot and slot.item_data:
 			search_duration += (slot.item_data.concealability * 0.5)
+		
+		## ---- TESTING-----------
+		emit_test_values()
+		##-----------------------------
 		
 		print("Searching for ", search_duration)
 		await get_tree().create_timer(search_duration).timeout

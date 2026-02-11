@@ -1,6 +1,6 @@
 extends Node
 
-
+signal show_test_value(key: String, value: float)
 
 signal main_scene_loaded
 

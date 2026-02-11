@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c6aj1rblivlac" path="res://Interface/interact_ui.gd" id="4_mb2mj"]
 [ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="5_jsbdt"]
 [ext_resource type="Script" uid="uid://c8buprwgcbrbt" path="res://Interface/test_stuff.gd" id="6_4i735"]
+[ext_resource type="Script" uid="uid://c7iwts56hctfr" path="res://Interface/search_ui.gd" id="6_yux2m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uf33"]
 
@@ -14,6 +15,8 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_yux2m"]
 atlas = ExtResource("5_jsbdt")
 region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yux2m"]
 
 [node name="HUD" type="Control" unique_id=758873281]
 process_mode = 3
@@ -135,33 +138,6 @@ grow_vertical = 2
 text = "100/100"
 horizontal_alignment = 1
 
-[node name="HungerUI" type="PanelContainer" parent="." unique_id=1682203168]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -165.0
-offset_top = -27.0
-offset_right = -72.0
-offset_bottom = 27.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HungerUI" unique_id=808967914]
-layout_mode = 2
-
-[node name="HungerLabel" type="Label" parent="HungerUI/VBoxContainer" unique_id=2047885197]
-layout_mode = 2
-text = "Hunger "
-horizontal_alignment = 1
-
-[node name="HungerBar" type="ProgressBar" parent="HungerUI/VBoxContainer" unique_id=876787057]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="ActionProgressBar" type="TextureProgressBar" parent="." unique_id=207123865]
 unique_name_in_owner = true
 visible = false
@@ -221,31 +197,132 @@ bbcode_enabled = true
 text = "[center]Interact"
 fit_content = true
 
+[node name="SearchUI" type="Control" parent="." unique_id=1108982129]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_yux2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SearchUI" unique_id=1719165186]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RaidInProgressLabel" type="Label" parent="SearchUI/VBoxContainer" unique_id=325107014]
+visible = false
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8198404, 0.316694, 1.92523e-07, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 28
+text = "RAID IN PROGRESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TestStuff" type="Control" parent="." unique_id=161768506]
-anchors_preset = 0
-offset_left = 970.0
-offset_top = 244.0
-offset_right = 1126.0
-offset_bottom = 284.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("6_4i735")
 
-[node name="StartRaid" type="Button" parent="TestStuff" unique_id=454979144]
+[node name="TestHUD" type="VBoxContainer" parent="TestStuff" unique_id=833593531]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -53.5
-offset_top = -12.0
-offset_right = 53.5
-offset_bottom = 12.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 972.0
+offset_top = 157.0
+offset_right = -15.0
+offset_bottom = -192.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="StartRaid" type="Button" parent="TestStuff/TestHUD" unique_id=454979144]
+layout_mode = 2
 text = "Start Raid!"
+
+[node name="HungerUI" type="PanelContainer" parent="TestStuff/TestHUD" unique_id=1682203168]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yux2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/TestHUD/HungerUI" unique_id=808967914]
+layout_mode = 2
+
+[node name="HungerLabel" type="Label" parent="TestStuff/TestHUD/HungerUI/VBoxContainer" unique_id=2047885197]
+layout_mode = 2
+text = "Hunger "
+horizontal_alignment = 1
+
+[node name="HungerBar" type="ProgressBar" parent="TestStuff/TestHUD/HungerUI/VBoxContainer" unique_id=876787057]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SuspicionUI" type="PanelContainer" parent="TestStuff/TestHUD" unique_id=106634071]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yux2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/TestHUD/SuspicionUI" unique_id=1005037508]
+layout_mode = 2
+
+[node name="SuspicionLabel" type="Label" parent="TestStuff/TestHUD/SuspicionUI/VBoxContainer" unique_id=838127705]
+layout_mode = 2
+text = "Regime Suspicion"
+horizontal_alignment = 1
+
+[node name="SuspicionBar" type="ProgressBar" parent="TestStuff/TestHUD/SuspicionUI/VBoxContainer" unique_id=370519945]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResistanceUI" type="PanelContainer" parent="TestStuff/TestHUD" unique_id=531704246]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yux2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/TestHUD/ResistanceUI" unique_id=1195480322]
+layout_mode = 2
+
+[node name="ResistanceLabel" type="Label" parent="TestStuff/TestHUD/ResistanceUI/VBoxContainer" unique_id=1942168594]
+layout_mode = 2
+text = "Resistance"
+horizontal_alignment = 1
+
+[node name="ResistanceBar" type="ProgressBar" parent="TestStuff/TestHUD/ResistanceUI/VBoxContainer" unique_id=90983283]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SearchLabels" type="VBoxContainer" parent="TestStuff" unique_id=663606075]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PatienceLabel" type="Label" parent="TestStuff/SearchLabels" unique_id=1212187384]
+layout_mode = 2
+text = "Patience: 0"
+
+[node name="ThoroughnessLabel" type="Label" parent="TestStuff/SearchLabels" unique_id=406495153]
+layout_mode = 2
+text = "Thoroughness: 0"
+
+[node name="SearchSuspicionLabel" type="Label" parent="TestStuff/SearchLabels" unique_id=84046074]
+layout_mode = 2
+text = "Searcher Suspicion: 0"
 
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]
 [connection signal="timeout" from="StatusManager/RecoveryDelayTimer" to="StatusManager" method="_on_recovery_delay_timeout"]
-[connection signal="pressed" from="TestStuff/StartRaid" to="TestStuff" method="_on_start_raid_pressed"]
+[connection signal="pressed" from="TestStuff/TestHUD/StartRaid" to="TestStuff" method="_on_start_raid_pressed"]
