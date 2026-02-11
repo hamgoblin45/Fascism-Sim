@@ -223,8 +223,21 @@ func _search_hiding_spot(spot: HidingSpot):
 
 func _guest_captured(npc: NPC):
 	print("SearchManager: GUEST DISCOVERED! ", npc.npc_data.name)
+	
+	is_searching = false
+	
 	var flag_name = npc.npc_data.id + "_captured"
 	GameState.world_flags[flag_name] = true
+	GameState.world_flags["raid_failed_guest_found"] = true
+	
+	if assigned_searcher:
+		assigned_searcher.command_stop()
+		# Make them look at the guest
+		assigned_searcher.look_at_target(npc)
+	
+	# Trigger dialogue
+	DialogueManager.start_dialogue("raid_guest_discovered", "Major")
+	# Set up a signal that starts the game-over arrest sequence upon exiting this dialouge
 
 func _discovered_contraband(item: InventoryItemData) -> bool:
 	
