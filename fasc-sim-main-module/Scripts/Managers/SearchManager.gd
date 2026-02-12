@@ -138,6 +138,7 @@ func start_house_raid():
 	potential_targets.append_array(containers)
 	potential_targets.append_array(clues)
 	
+	# Need to add some more randomness here so they don't always search in the same order. Make the concealment a modifier instead of the main value
 	potential_targets.sort_custom(func(a,b):
 		var a_score = a.concealment_score if a is HidingSpot else 0.1 # Containers are obvious
 		var b_score = b.concealment_score if b is HidingSpot else 0.1
