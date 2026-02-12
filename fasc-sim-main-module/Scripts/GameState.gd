@@ -64,7 +64,8 @@ var objectives: Array[ObjectiveData]
 var flags = {}
 
 ## -- Hiding NPCs
-var hidden_guests: Array[NPCData] = []
+var guests: Array[NPC]
+var hidden_guest_datas: Array[NPCData] = []
 var leading_npc: NPC
 
 

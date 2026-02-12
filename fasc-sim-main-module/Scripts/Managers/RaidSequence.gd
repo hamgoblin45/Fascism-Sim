@@ -126,7 +126,12 @@ func _send_in_grunt():
 	# If you make a "RummageProgressUI" thing, have it instance and attach to searcher here or at the beginning of start_house_raid
 	
 	SearchManager.start_house_raid()
-	
+
+## Set this up to make it where if a grunt sees a guest that isn't hidden, a particular sequence runs
+#func _physics_process(delta: float) -> void:
+	#if not GameState.raid_in_progress or GameState.hidden_guests.size() < 1: return
+	#for npc in GameState.guests:
+		#if search_grunt_npc.can_see
 
 func _handle_consequences():
 	print("RaidSequence: Player caught with something, idk")

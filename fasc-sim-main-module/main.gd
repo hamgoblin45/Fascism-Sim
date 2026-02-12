@@ -4,6 +4,7 @@ extends Node3D
 
 
 func _ready() -> void:
-	GameState.hidden_guests.append(test_refugee.npc_data)
+	GameState.hidden_guest_datas.append(test_refugee.npc_data)
+	GameState.guests.append(test_refugee)
 	#GameState.leading_npc = test_refugee
 	#test_refugee.state = test_refugee.FOLLOWING

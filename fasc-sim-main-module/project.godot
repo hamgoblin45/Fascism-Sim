@@ -54,6 +54,11 @@ project/assembly_name="FascSim-MainModule"
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[global_group]
+
+house_containers=""
+hiding_spots=""
+
 [gui]
 
 theme/custom_font="uid://bac8hyfa4piml"
