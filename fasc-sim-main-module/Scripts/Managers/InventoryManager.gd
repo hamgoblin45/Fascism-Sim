@@ -162,8 +162,8 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 	if SearchManager.is_searching and SearchManager.current_search_inventory == inv:
 		print("InventoryManager: Player is touching items during a search!")
 		# Penalty
-		SearchManager.suspicion_level += 10.0
-		EventBus.show_test_value.emit("search_suspicion", SearchManager.suspicion_level)
+		SearchManager.search_tension += 10.0
+		EventBus.show_test_value.emit("search_tension", SearchManager.search_tension)
 		
 	
 	match type:

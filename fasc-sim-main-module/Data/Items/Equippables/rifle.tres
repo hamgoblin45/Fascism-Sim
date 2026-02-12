@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EquippableData" load_steps=4 format=3 uid="uid://crvqwhmlb552o"]
+[gd_resource type="Resource" script_class="EquippableData" format=3 uid="uid://crvqwhmlb552o"]
 
 [ext_resource type="Script" uid="uid://2xssdkvk52q0" path="res://Data/EquippableData.gd" id="1_udpx3"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="2_h01cs"]
@@ -16,6 +16,6 @@ description = "Holds 11 rounds"
 flavor_text = "Bang bang"
 buy_value = 500.0
 sell_value = 150.0
-concealability = 3.0
+concealability = 1.0
 contraband_level = 4
 metadata/_custom_type_script = "uid://2xssdkvk52q0"

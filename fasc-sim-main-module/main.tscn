@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ble4a155lchnx" path="res://Map/basic_wood_nightstand.glb" id="11_w48qg"]
 [ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/item_hammer.tres" id="12_yaehf"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="13_074og"]
+[ext_resource type="Resource" uid="uid://crvqwhmlb552o" path="res://Data/Items/Equippables/rifle.tres" id="16_qsp4k"]
 [ext_resource type="Resource" uid="uid://bbcvmy2ujko5d" path="res://Data/Items/Equippables/pistol.tres" id="19_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="19_cegan"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="20_82xsv"]
@@ -63,6 +64,11 @@ script = ExtResource("6_272bh")
 item_data = ExtResource("12_yaehf")
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
+[sub_resource type="Resource" id="Resource_kq58d"]
+script = ExtResource("6_272bh")
+item_data = ExtResource("16_qsp4k")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
 [sub_resource type="Resource" id="Resource_82xsv"]
 script = ExtResource("6_272bh")
 item_data = ExtResource("13_074og")
@@ -70,7 +76,7 @@ metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
 [sub_resource type="Resource" id="Resource_vivmo"]
 script = ExtResource("5_7mycd")
-slot_datas = Array[ExtResource("6_272bh")]([SubResource("Resource_cegan"), null, null, SubResource("Resource_82xsv"), null, null])
+slot_datas = Array[ExtResource("6_272bh")]([SubResource("Resource_cegan"), SubResource("Resource_kq58d"), null, SubResource("Resource_82xsv"), null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yaehf"]

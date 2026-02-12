@@ -47,7 +47,7 @@ var hp_starve_drain_rate: float = 0.05 # How much dmg you take when starving
 var working: bool = false
 
 ## -- Regime / World
-var legal_threshold: float = 4.0 # Items w/ a contraband level above this are illegal
+var legal_threshold: float = 2.0 # Items w/ a contraband level above this are illegal
 var regime_suspicion: float = 0.0:
 	set(value): regime_suspicion = clamp(value, 0, 100)
 var resistance: float = 0.0:

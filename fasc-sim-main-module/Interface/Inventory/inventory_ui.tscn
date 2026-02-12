@@ -20,6 +20,11 @@ script = ExtResource("4_c0f0r")
 item_data = ExtResource("5_c0f0r")
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
+[sub_resource type="Resource" id="Resource_8c4yq"]
+script = ExtResource("4_c0f0r")
+item_data = ExtResource("7_hvb16")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
 [sub_resource type="Resource" id="Resource_sxlab"]
 script = ExtResource("4_c0f0r")
 item_data = ExtResource("6_pjc3g")
@@ -33,7 +38,7 @@ metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
 [sub_resource type="Resource" id="Resource_xywkj"]
 script = ExtResource("3_gur8t")
-slot_datas = Array[ExtResource("4_c0f0r")]([SubResource("Resource_pjc3g"), SubResource("Resource_sxlab"), null, null, null, SubResource("Resource_u6hsv")])
+slot_datas = Array[ExtResource("4_c0f0r")]([SubResource("Resource_pjc3g"), SubResource("Resource_8c4yq"), SubResource("Resource_sxlab"), null, null, SubResource("Resource_u6hsv")])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
