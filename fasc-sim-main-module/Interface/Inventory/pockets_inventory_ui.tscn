@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bmqlxplie777"]
 
 [ext_resource type="Script" uid="uid://cmfnyi8auyirc" path="res://Interface/Inventory/pockets_inventory_ui.gd" id="1_x7uns"]
-[ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="2_33qv7"]
+[ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/Styles/InventoryPanelStyle.tres" id="2_33qv7"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="4_wcso4"]
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/Inventory/item_context_ui.gd" id="5_lwv56"]
 [ext_resource type="Script" uid="uid://coyexc2fjsnd0" path="res://Interface/Inventory/split_stack_ui.gd" id="6_phiob"]

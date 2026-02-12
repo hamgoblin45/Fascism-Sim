@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://uoaaf2v3td1e"]
 
-[ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/Inventory/shop_ui.gd" id="1_8js8v"]
+[ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/Inventory/Shop/shop_ui.gd" id="1_8js8v"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_ob0a7"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_e6hud"]
 [ext_resource type="Resource" uid="uid://bu7k1xa16ud57" path="res://Interface/TestStuff/item_carrot.tres" id="4_6qn1n"]
 [ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/item_hammer.tres" id="5_lgrcb"]
 [ext_resource type="Resource" uid="uid://c1cqxlfgintig" path="res://Interface/TestStuff/item_boots.tres" id="6_e6hud"]
 [ext_resource type="Resource" uid="uid://fligqycw40pd" path="res://Interface/TestStuff/item_harp.tres" id="6_l6cp0"]
-[ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/InventoryPanelStyle.tres" id="7_vrdig"]
 [ext_resource type="Resource" uid="uid://bmahi1w8kf6yv" path="res://Interface/TestStuff/cocaine.tres" id="8_6qn1n"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/Inventory/inventory_slot_ui.tscn" id="8_ee1af"]
 [ext_resource type="Resource" uid="uid://c13wc1u5p42sr" path="res://Data/Items/Food/egg.tres" id="8_l0gjo"]
@@ -19,8 +18,9 @@
 [ext_resource type="Resource" uid="uid://jo0gq5u6e4hl" path="res://Data/Items/Misc/parody_movie.tres" id="15_qtknh"]
 [ext_resource type="Resource" uid="uid://bbcvmy2ujko5d" path="res://Data/Items/Equippables/pistol.tres" id="16_jak1g"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="17_6o2oc"]
+[ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/Styles/InventoryPanelStyle.tres" id="18_v4hxh"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="20_241a7"]
-[ext_resource type="Script" uid="uid://c71dv8rsa3jlu" path="res://Interface/Inventory/buyback_ui.gd" id="20_v4hxh"]
+[ext_resource type="Script" uid="uid://c71dv8rsa3jlu" path="res://Interface/Inventory/Shop/buyback_ui.gd" id="20_v4hxh"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="21_v4hxh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvb16"]
@@ -181,7 +181,7 @@ theme_override_constants/separation = 24
 
 [node name="ShopPanel" type="PanelContainer" parent="HBoxContainer" unique_id=773933345]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("7_vrdig")
+theme_override_styles/panel = ExtResource("18_v4hxh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ShopPanel" unique_id=1155913302]
 layout_mode = 2
@@ -251,7 +251,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("7_vrdig")
+theme_override_styles/panel = ExtResource("18_v4hxh")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ShopItemContextUI" unique_id=665360231]
 layout_mode = 2
@@ -334,7 +334,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_styles/panel = ExtResource("7_vrdig")
+theme_override_styles/panel = ExtResource("18_v4hxh")
 script = ExtResource("20_v4hxh")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/BuybackUI" unique_id=635554982]

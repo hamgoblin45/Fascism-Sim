@@ -26,8 +26,8 @@ EventBus="*res://Scripts/EventBus.gd"
 GameState="*res://Scripts/GameState.gd"
 WorldManager="*uid://bp12kglfjfa8g"
 DialogueManager="*uid://b2rrttx774p65"
-Dialogic="*uid://ds2q0uclmolvu"
 SearchManager="*uid://b03qagyiuoc44"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bkqltx6hl064x"]
 
-[ext_resource type="Script" uid="uid://dmuppjmni0hyt" path="res://Items/door.gd" id="1_dwkow"]
+[ext_resource type="Script" uid="uid://dmuppjmni0hyt" path="res://Items/Interactables/door.gd" id="1_dwkow"]
 [ext_resource type="PackedScene" uid="uid://yri13f1x1xgo" path="res://Items/Meshes/door.gltf" id="1_qohlf"]
-[ext_resource type="PackedScene" uid="uid://d3jlrqbf4beyk" path="res://Items/interactable.tscn" id="1_toi8a"]
+[ext_resource type="PackedScene" uid="uid://d3jlrqbf4beyk" path="res://Items/Interactables/interactable.tscn" id="1_toi8a"]
 [ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="2_bxvep"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qohlf"]

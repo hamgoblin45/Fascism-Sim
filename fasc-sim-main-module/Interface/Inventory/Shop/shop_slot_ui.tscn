@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj1cyf80hrqb4"]
+[gd_scene format=3 uid="uid://cj1cyf80hrqb4"]
 
-[ext_resource type="Script" uid="uid://bof061njs5h01" path="res://Interface/shop_slot_ui.gd" id="1_3au0k"]
+[ext_resource type="Script" uid="uid://bof061njs5h01" path="res://Interface/Inventory/Shop/shop_slot_ui.gd" id="1_3au0k"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="2_l76vs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ik1e"]

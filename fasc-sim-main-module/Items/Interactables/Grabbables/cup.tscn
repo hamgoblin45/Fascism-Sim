@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bvm1rgwdwsai0"]
 
-[ext_resource type="Script" uid="uid://0gvfijpq5qdy" path="res://Items/grabbable.gd" id="1_wy3xl"]
-[ext_resource type="Script" uid="uid://8yo1utsr8bth" path="res://Items/interactable.gd" id="2_6qglb"]
+[ext_resource type="Script" uid="uid://0gvfijpq5qdy" path="res://Items/Interactables/Grabbables/grabbable.gd" id="1_wy3xl"]
+[ext_resource type="Script" uid="uid://8yo1utsr8bth" path="res://Items/Interactables/interactable.gd" id="2_6qglb"]
 [ext_resource type="Texture2D" uid="uid://dtysfm7paobyb" path="res://Interface/icon_atlas.tres" id="3_rwfkp"]
 [ext_resource type="PackedScene" uid="uid://baot8cx26xrnf" path="res://Items/Meshes/coffee_cup.gltf" id="4_sfx85"]
 [ext_resource type="Material" uid="uid://c3rhvr6bla26v" path="res://Shaders/interact_outline_shader_material.tres" id="5_4nq8u"]
