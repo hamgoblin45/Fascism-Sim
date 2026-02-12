@@ -25,47 +25,58 @@ func emit_test_values():
 		EventBus.show_test_value.emit("thoroughness", thoroughness)
 		##-----------------------------
 
-func start_search(inventory: InventoryData):
+func start_frisk(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
+	# Temporarily lower patience for a quicker pat down as opposed to external searches
+	var old_patience = patience
+	patience = 5.0
+	
 	is_searching = true
 	suspicion_level = 0.0
-	var elapsed_time = 0.0
-	temp_elapse_time = elapsed_time
 	
-	current_search_inventory = inventory
+	# Minimum pat down time
+	if inventory.slot_datas.is_empty() or inventory.slot_datas.all(func(x): return x == null):
+		search_step_started.emit(0, 2.0) # Fake searching first slot for 2 sec
+		await get_tree().create_timer(2.0).timeout
 	
-	for i in range(inventory.slot_datas.size()):
-		if not is_searching or elapsed_time >= patience:
-			break
-		
-		current_search_index = i
-		var slot = inventory.slot_datas[i]
-		var base_time = 1.5 # The time it takes to search an empty/insignificant slot
-		var search_duration = base_time
-		
-		if slot and slot.item_data:
-			search_duration += (slot.item_data.concealability * 0.8) # Takes longer to seach based on how well hidden slot is
-			print("SearchManager: %s has a contraband level of %s" % [slot.item_data.name, slot.item_data.contraband_level])
-		
-		search_step_started.emit(i, search_duration)
-		
-		## ---- TESTING-----------
-		emit_test_values()
-		##-----------------------------
-		# Wait for each slot to be searched before running
-		await get_tree().create_timer(search_duration).timeout
-		elapsed_time += search_duration
+	else:
+		var elapsed_time = 0.0
 		temp_elapse_time = elapsed_time
 		
-		if slot and slot.item_data:
+		current_search_inventory = inventory
+		
+		for i in range(inventory.slot_datas.size()):
+			if not is_searching or elapsed_time >= patience:
+				break
 			
-			if _discovered_contraband(slot.item_data):
-				player_busted(slot.item_data, slot.quantity, i)
-				
-				return
+			
+			current_search_index = i
+			var slot = inventory.slot_datas[i]
+			if slot == null: continue # skip empty slots faster
+			
+			var base_time = 1.5 # The time it takes to search an empty/insignificant slot
+			var search_duration = base_time
+			
+			if slot.item_data:
+				search_duration += (slot.item_data.concealability * 0.8) # Takes longer to seach based on how well hidden slot is
+				print("SearchManager: %s has a contraband level of %s" % [slot.item_data.name, slot.item_data.contraband_level])
+			
+			search_step_started.emit(i, search_duration)
+			
+			## ---- TESTING-----------
+			emit_test_values()
+			##-----------------------------
+			# Wait for each slot to be searched before running
+			await get_tree().create_timer(search_duration).timeout
+			elapsed_time += search_duration
+			
+			if slot.item_data:
+				if _discovered_contraband(slot.item_data):
+					player_busted(slot.item_data, slot.quantity, i)
+					return
+	
+	patience = old_patience
 	_finish_search(false, null, 0)
-	#search_finished.emit(false, null, 0)
-	#is_searching = false
 
 func start_external_search(inventory: InventoryData, thoroughness_modifier: float = 0.5):
 	is_searching = true

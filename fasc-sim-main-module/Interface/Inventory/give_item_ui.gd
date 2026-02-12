@@ -7,8 +7,8 @@ extends PanelContainer
 
 
 func _ready() -> void:
-	EventBus.dialogue_started.connect(show)
-	EventBus.dialogue_ended.connect(hide)
+	#DialogueManager.dialogue_started.connect(show)
+	DialogueManager.dialogue_ended.connect(hide)
 
 
 func _give_item(new_slot_data: InventorySlotData):

@@ -6,12 +6,10 @@ extends Node
 @export var door_blocker_pos: Node3D # Where the Major stands initially
 @export var major_stand_aside_pos: Node3D # Where Major moves to let Grunt in
 
-@onready var search_manager: Node = %SearchManager
 
 func _ready() -> void:
 	EventBus.raid_starting.connect(start_raid_event)
 	EventBus.answering_door.connect(answer_door)
-	Dialogic.timeline_ended.connect(_send_in_grunt)
 
 func start_raid_event():
 	print("RAID STARTING!!!!")
@@ -35,17 +33,32 @@ func start_raid_event():
 func answer_door():
 	print("RaidSequence: Answering door")
 	# Play dialogue
-	DialogueManager.start_dialogue("major_search_announce_test")
-	#await Dialogic.timeline_ended
-	#
-	#
-	#
-	#_send_in_grunt()
+	DialogueManager.start_dialogue("major_search_announce_test", major_npc.npc_data.name)
+	await DialogueManager.dialogue_ended
+	
+	# Begin frisk
+	EventBus.force_ui_open.emit(true)
+	
+	SearchManager.house_raid_status.emit("The Major is patting you down...")
+	SearchManager.start_frisk(GameState.pockets_inventory)
+	
+	var result = await SearchManager.search_finished # Result will be (caught, item, qty)
+	var caught = result[0]
+	
+	EventBus.force_ui_open.emit(false)
+	
+	if caught:
+		print("Player is naughty and should be punished")
+		#_handle_consequences()
+	else:
+		print("RaidSequence: Calling _send_in_grunt from answer_door")
+		_send_in_grunt()
 
 func _send_in_grunt():
-	if not GameState.raid_in_progress:
-		print("Raid is not in progress")
-		return
+	if not GameState.raid_in_progress: return
+	
+	DialogueManager.start_dialogue("major_raid_frisk_complete", major_npc.npc_data.name)
+	await DialogueManager.dialogue_ended
 	# Major steps aside
 	major_npc.command_move_to(major_stand_aside_pos.global_position)
 	await major_npc.destination_reached
@@ -53,9 +66,12 @@ func _send_in_grunt():
 	
 	print("RaidSequence: Sending in grunt")
 	#Hand control over to the SearchManager
-	search_manager.assigned_searcher = search_grunt_npc
+	SearchManager.assigned_searcher = search_grunt_npc
 	
 	# If you make a "RummageProgressUI" thing, have it instance and attach to searcher here or at the beginning of start_house_raid
 	
-	search_manager.start_house_raid()
+	SearchManager.start_house_raid()
 	
+
+func _handle_consequences():
+	print("RaidSequence: Player caught with something, idk")

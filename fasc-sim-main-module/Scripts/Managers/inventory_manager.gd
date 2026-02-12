@@ -34,6 +34,7 @@ func _ready() -> void:
 	EventBus.setting_external_inventory.connect(_set_external_inventory)
 	EventBus.use_equipped_item.connect(_use_equipped)
 	EventBus.drop_equipped_item.connect(_drop_equipped)
+	EventBus.force_ui_open.connect(_handle_open_ui)
 	
 	call_deferred("_set_player_inventory")
 
@@ -52,13 +53,9 @@ func _on_pockets_request():
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("open_interface"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			GameState.ui_open = true
-			print("Mouse visible again, UI open")
+			_handle_open_ui(true)
 		elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			GameState.ui_open = false
-			print("Mouse hidden, in FPS mode")
+			_handle_open_ui(false)
 	
 	if not GameState.ui_open:
 	
@@ -84,6 +81,16 @@ func _input(event: InputEvent) -> void:
 		# Drop item
 		if event.is_action_pressed("drop"):
 			_drop_equipped()
+
+func _handle_open_ui(open: bool):
+	if open:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GameState.ui_open = true
+		print("Mouse visible again, UI open")
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		GameState.ui_open = false
+		print("Mouse hidden, in FPS mode")
 
 func _on_hotbar_select(index: int):
 	print("Selecting hotbar slot ", str(index))

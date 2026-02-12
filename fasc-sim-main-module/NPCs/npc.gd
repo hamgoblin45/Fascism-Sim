@@ -156,9 +156,9 @@ func _on_world_changed(flag_name: String, value: bool):
 		#state = ANIMATING
 		#anim.play("panic")
 		#await anim.animation_finished # This would have it play the animation, THEN update pathing
-	
-	npc_data.schedule.current_path = null
-	_check_schedule(GameState.hour, GameState.minute)
+	if npc_data and npc_data.schedule:
+		npc_data.schedule.current_path = null
+		_check_schedule(GameState.hour, GameState.minute)
 
 func _on_time_updated(h: int, m: int):
 	if not is_interrupted:

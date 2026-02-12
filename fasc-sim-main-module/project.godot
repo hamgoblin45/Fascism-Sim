@@ -27,6 +27,7 @@ GameState="*res://Scripts/GameState.gd"
 WorldManager="*uid://bp12kglfjfa8g"
 DialogueManager="*uid://b2rrttx774p65"
 Dialogic="*uid://ds2q0uclmolvu"
+SearchManager="*uid://b03qagyiuoc44"
 
 [dialogic]
 
@@ -36,6 +37,7 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "guest_search_imminent": "res://Data/Dialogue/guest_search_imminent.dtl",
+"major_raid_frisk_complete": "res://Data/Dialogue/Characters/Major/major_raid_frisk_complete.dtl",
 "major_search_announce_test": "res://Data/Dialogue/major_search_announce_test.dtl",
 "timeline": "res://Data/Dialogue/timeline.dtl"
 }

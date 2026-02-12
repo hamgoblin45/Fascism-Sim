@@ -4,5 +4,5 @@ major: Good day. We are here to search your home for contraband and fugitives.
 - You can't come in
 	set {GameState.suspicion} += 5.0
 	major: It's not up to you. What's the matter? Hiding something?
-major: Begin the search.
+major: Now spread out your arms. We will start with a frisk.
 [end_timeline]

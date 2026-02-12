@@ -11,14 +11,12 @@ signal item_dropped() # also handles throwing, force applied by character.gd
 signal item_grabbed(body)
 
 #####-----INTERFACE
+signal force_ui_open(open: bool)
 ## --- Status
 signal change_stat(stat: String, value: float)
 signal stat_changed(_stat: String)
 
 signal money_updated(new_total: float)
-## --- Dialogue
-signal dialogue_started # will likely be a Dialogic signal once connected to dialogue system
-signal dialogue_ended # will likely be a Dialogic signal once connected to dialogue system
 ## --- Inventory
 signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String) # Goes to managers, which then emit confirmation signals like "select_item"
 signal inventory_item_updated(inv_data: InventorySlotData, index: int) # Emit from Manager to confirm something changed a slot
