@@ -159,6 +159,13 @@ func _drop_equipped():
 
 ## -- INVENTORY INTERACTION
 func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_data: InventorySlotData, type: String):
+	if SearchManager.is_searching and SearchManager.current_search_inventory == inv:
+		print("InventoryManager: Player is touching items during a search!")
+		# Penalty
+		SearchManager.suspicion_level += 10.0
+		EventBus.show_test_value.emit("search_suspicion", SearchManager.suspicion_level)
+		
+	
 	match type:
 		"shift_click":
 			if slot_data and slot_data.item_data:

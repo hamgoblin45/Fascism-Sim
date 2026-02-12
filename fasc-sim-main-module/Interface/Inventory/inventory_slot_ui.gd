@@ -9,12 +9,16 @@ var parent_inventory: InventoryData
 
 @onready var selected_panel: Panel = %SelectedPanel
 @onready var equip_highlight: Panel = %EquipHighlight
+@onready var search_overlay: ColorRect = %SearchOverlay
 
 @onready var hotbar_number: Label = %HotbarNumber
 var hotbar_index: int = 0
 
 var activated: bool = true
 var tween: Tween
+
+enum SearchState {NONE, PENDING, SEARCHING, CLEARED}
+var current_search_state = SearchState.NONE
 
 
 func _ready() -> void:
@@ -26,6 +30,8 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 	EventBus.shopping.connect(_check_if_sellable)
 	EventBus.shop_closed.connect(_on_shop_closed)
+	SearchManager.search_step_started.connect(_on_search_step)
+	SearchManager.search_finished.connect(_on_search_finished)
 
 func set_slot_data(new_slot_data: InventorySlotData):
 	slot_data = new_slot_data
@@ -158,3 +164,46 @@ func _on_shop_closed():
 	activated = true
 	item_texture.modulate = Color(1,1,1) # Reset to normal
 	tooltip_text = slot_data.item_data.name
+
+func _on_search_step(search_inv: InventoryData, index: int, duration: float):
+	if search_inv != parent_inventory:
+		return
+	if index == get_index():
+		_set_search_visual(SearchState.SEARCHING, duration)
+	elif index < get_index() and SearchManager.is_searching:
+		_set_search_visual(SearchState.PENDING)
+	elif index > get_index():
+		_set_search_visual(SearchState.CLEARED)
+
+func _set_search_visual(state: SearchState, duration: float = 0.0):
+	current_search_state = state
+	search_overlay.show()
+	
+	if tween and tween.is_valid():
+		tween.kill()
+	
+	match state:
+		SearchState.PENDING:
+			search_overlay.color = Color(0,0,0, 0.2) # Dim unsearched slots
+			search_overlay.scale = Vector2(1,1)
+			
+		SearchState.SEARCHING:
+			search_overlay.color = Color(1, 0.3, 0.3, 0.5) # Red Highlight for active slots
+			search_overlay.scale = Vector2(0,1)
+			
+			tween = create_tween()
+			
+			tween.tween_property(search_overlay, "scale:x", 1.0, duration)
+			
+			# Automatically turn green if time runs out
+			tween.tween_callback(func(): search_overlay.color = Color(0.3,1,0.3,0.2))
+		
+		SearchState.CLEARED:
+			search_overlay.color = Color(0.3,1,0.3,0.2) # Green tint if cleared
+			search_overlay.scale = Vector2(1,1)
+		
+		SearchState.NONE:
+			search_overlay.hide()
+
+func _on_search_finished(_caught, _item, _qty):
+	_set_search_visual(SearchState.NONE)

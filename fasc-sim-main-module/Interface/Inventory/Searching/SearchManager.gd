@@ -1,6 +1,6 @@
 extends Node
 
-signal search_step_started(index: int, duration: float)
+signal search_step_started(inv: InventoryData, index: int, duration: float)
 signal search_finished(caught: bool, item: InventoryItemData, qty: int)
 signal house_raid_status(message: String) # For the sake of UI. "The guards are checking the pantry..."
 
@@ -35,8 +35,9 @@ func start_frisk(inventory: InventoryData):
 	suspicion_level = 0.0
 	
 	# Minimum pat down time
-	if inventory.slot_datas.is_empty() or inventory.slot_datas.all(func(x): return x == null):
-		search_step_started.emit(0, 2.0) # Fake searching first slot for 2 sec
+	if inventory.slot_datas.is_empty():
+		#if inventory.slot_datas.all(func(x): return x == null):
+		search_step_started.emit(inventory, 0, 2.0) # Fake searching first slot for 2 sec
 		await get_tree().create_timer(2.0).timeout
 	
 	else:
@@ -61,7 +62,7 @@ func start_frisk(inventory: InventoryData):
 				search_duration += (slot.item_data.concealability * 0.8) # Takes longer to seach based on how well hidden slot is
 				print("SearchManager: %s has a contraband level of %s" % [slot.item_data.name, slot.item_data.contraband_level])
 			
-			search_step_started.emit(i, search_duration)
+			search_step_started.emit(inventory, i, search_duration)
 			
 			## ---- TESTING-----------
 			emit_test_values()
@@ -97,6 +98,8 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 		## ---- TESTING-----------
 		emit_test_values()
 		##-----------------------------
+		
+		search_step_started.emit(inventory, i, search_duration)
 		
 		# Simulates taking the time to search each slot
 		await get_tree().create_timer(search_duration).timeout
