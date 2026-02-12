@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/Inventory/inventory_ui.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dqoxbykl7fg8w" path="res://Interface/hud.tscn" id="2_074og"]
 [ext_resource type="Script" uid="uid://crjy7n1e3nfkj" path="res://Scripts/Managers/RaidSequence.gd" id="2_d13ii"]
-[ext_resource type="Script" uid="uid://b03qagyiuoc44" path="res://Scripts/Managers/SearchManager.gd" id="3_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://j22i50g5odp8" path="res://Items/Interactables/Grabbables/grabbable.tscn" id="3_h2yge"]
 [ext_resource type="Resource" uid="uid://ib385dgptwrd" path="res://Data/Items/Food/wine.tres" id="4_5vw27"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
@@ -140,10 +139,6 @@ major_npc = NodePath("../NPCs/Major")
 search_grunt_npc = NodePath("../NPCs/Grunt")
 door_blocker_pos = NodePath("../NavigationRegion3D/player_house/DoorBlockerPos")
 major_stand_aside_pos = NodePath("../NavigationRegion3D/player_house/MajorStepAsidePos")
-
-[node name="SearchManager" type="Node" parent="RaidSequence" unique_id=41635069]
-unique_name_in_owner = true
-script = ExtResource("3_1u8w0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2094871426]
 environment = SubResource("Environment_7dm0k")

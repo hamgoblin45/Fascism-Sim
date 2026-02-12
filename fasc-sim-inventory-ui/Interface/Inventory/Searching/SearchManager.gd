@@ -5,10 +5,10 @@ signal search_finished(caught: bool, item: InventoryItemData, qty: int)
 
 var current_search_inventory: InventoryData = null
 var current_search_index: int = -1 # Where the searcher's "hands" are
-var suspicion_level: float = 0.0 # Increases when moving an item mid search ( I think)
+var search_tension: float = 0.0 # Increases when moving an item mid search, increases detection
 
 var patience: float = 15.0 # How long the search will take
-var thoroughness: float = 0.5 # 0.0 to 1.0 (searcher's skill, Suspicion will directly impact this)
+var thoroughness: float = 0.5 # Detection chance = (Thoroughness + Regime Suspicion) / Item Concealability
 var is_searching: bool = false
 var is_silent_search: bool = false # Determines if search if player inv or not
 
@@ -17,7 +17,7 @@ var temp_elapse_time: float = 0.0 #TESTING
 func start_search(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
 	is_searching = true
-	suspicion_level = 0.0
+	search_tension = 0.0
 	var elapsed_time = 0.0
 	temp_elapse_time = elapsed_time
 	

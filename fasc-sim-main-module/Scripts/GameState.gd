@@ -37,18 +37,18 @@ var stamina: float = 100.0:
 		stamina = clamp(value, 0, energy)
 var stamina_regen_rate: float = 15.0
 
-var hunger: float = 12.0
-var max_hunger: float = 100.0
-var hunger_level: int = 0
+var hunger: float = 12.0:
+	set(value): hunger = clamp(value, 0, 100)
+var hunger_level: int = 1 # 1-4, incemental hunger categories. This is multiplied by energy drain to make you tired faster when hungry
 var hunger_drain_rate: float = 0.05 # How quickly you get hungry
 var hp_starve_drain_rate: float = 0.05 # How much dmg you take when starving
 
 var working: bool = false
 
 ## -- Regime / World
-var regime_tolerance: float = 0.0
-var suspicion: float = 0.0:
-	set(value): suspicion = clamp(value, 0, 100)
+var legal_threshold: float = 4.0 # Items w/ a contraband level above this are illegal
+var regime_suspicion: float = 0.0:
+	set(value): regime_suspicion = clamp(value, 0, 100)
 var resistance: float = 0.0:
 	set(value): resistance = clamp(value, 0, 100)
 var raid_in_progress: bool = false

@@ -26,17 +26,17 @@ func _on_stat_changed(stat: String):
 		"hunger":
 			hunger_bar.value = GameState.hunger
 		"suspicion":
-			suspicion_bar.value = GameState.suspicion
+			suspicion_bar.value = GameState.regime_suspicion
 		"resistance":
 			resistance_bar.value = GameState.resistance
 
 
 func _show_test_value(key: String, value: float):
 	match key:
-		"search_suspicion":
-			search_suspicion_label.text = "Searcher Suspicion: " + str(value) # The likeliness they will notice something?
+		"search_tesnsion":
+			search_suspicion_label.text = "Searcher Tension: " + str(value) # Modifier to make getting caught more likely when moving items
 			
 		"patience":
-			patience_label.text = "Patience: " + str(value) # How long they will search
+			patience_label.text = "Patience: %s sec" % str(value) # How long they will search
 		"thoroughness":
-			thoroughness_label.text = "Thoroughness: " + str(value) # How hard the searcher will search
+			thoroughness_label.text = "Thoroughness: " + str(value) # How hard the searcher will search (discovery chance)

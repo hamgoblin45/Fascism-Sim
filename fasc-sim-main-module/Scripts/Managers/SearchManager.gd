@@ -6,8 +6,7 @@ signal house_raid_status(message: String) # For the sake of UI. "The guards are 
 
 var current_search_inventory: InventoryData = null
 var current_search_index: int = -1 # Where the searcher's "hands" are
-var suspicion_level: float = 0.0 # Increases when moving an item mid search ( I think)
-
+var search_tension: float = 0.0 # Modifier that increases odds of getting caught
 var patience: float = 15.0 # How long the search will take
 var thoroughness: float = 0.5 # 0.0 to 1.0 (searcher's skill, Suspicion will directly impact this)
 var is_searching: bool = false
@@ -20,7 +19,7 @@ var assigned_searcher: NPC = null
 
 func emit_test_values():
 	## ---- TESTING-----------
-		EventBus.show_test_value.emit("search_suspicion", suspicion_level)
+		EventBus.show_test_value.emit("search_tension", search_tension)
 		EventBus.show_test_value.emit("patience", patience)
 		EventBus.show_test_value.emit("thoroughness", thoroughness)
 		##-----------------------------
@@ -32,7 +31,7 @@ func start_frisk(inventory: InventoryData):
 	patience = 5.0
 	
 	is_searching = true
-	suspicion_level = 0.0
+	search_tension = 0.0
 	
 	# Minimum pat down time
 	if inventory.slot_datas.is_empty():
@@ -128,7 +127,7 @@ func start_house_raid():
 	# Determine intensity
 	# Base: search 3 items, +1 for every 10 suspicion. Max is everything
 	var total_targets = hiding_spots.size() + containers.size()
-	var search_count = clamp(3 + int(GameState.suspicion / 10.0), 3, total_targets)
+	var search_count = clamp(3 + int(GameState.regime_suspicion / 10.0), 3, total_targets)
 	print("SearchManager: About to search %s of %s total targets" % [search_count, total_targets])
 	
 	# Sort by the "obviousness" of spots
@@ -235,7 +234,7 @@ func _finish_house_raid(hiding_spots: Array[HidingSpot]):
 			spot._extract_occupant()
 	
 	# Lower suspicion slightly after a "clean" search
-	GameState.suspicion -= 5.0
+	GameState.regime_suspicion -= 5.0
 
 func _search_hiding_spot(spot: HidingSpot):
 	print("SearchManager: Searching hiding spot")
@@ -245,7 +244,7 @@ func _search_hiding_spot(spot: HidingSpot):
 	
 	if spot.occupant:
 		# Roll to see if the occupant is discovered
-		var discovery_chance = (thoroughness + (GameState.suspicion / 100.0)) / (spot.concealment_score + 0.1)
+		var discovery_chance = (thoroughness + (GameState.regime_suspicion / 100.0)) / (spot.concealment_score + 0.1)
 		
 		if randf() < discovery_chance:
 			_guest_captured(spot.occupant)
@@ -271,7 +270,7 @@ func _guest_captured(npc: NPC):
 
 func _discovered_contraband(item: InventoryItemData) -> bool:
 	
-	if item.contraband_level <= GameState.regime_tolerance:
+	if item.contraband_level <= GameState.legal_threshold:
 		return false
 	
 	# Higher concealability reduces RNG chance of discovery
@@ -291,7 +290,7 @@ func _finish_search(caught: bool, item: InventoryItemData, qty: int):
 func player_busted(item: InventoryItemData, qty: int, index: int):
 	print("SearchManager: PLAYER BUSTED with ", item.name)
 	var penalty = (item.contraband_level * qty) * 2.5 # How much suspicion will be added based on the amount of contraband / contraband lvl
-	GameState.suspicion += penalty
+	GameState.regime_suspicion += penalty
 	GameState.world_flags["busted_with_contraband"] = true
 	EventBus.world_changed.emit("busted_with_contraband", true)
 	
@@ -305,7 +304,7 @@ func player_busted(item: InventoryItemData, qty: int, index: int):
 
 func player_busted_external(inventory: InventoryData, slot: InventorySlotData, index: int):
 	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # Maybe less suspicion because item isn't on the player's person?
-	GameState.suspicion += penalty
+	GameState.regime_suspicion += penalty
 	
 	is_searching = false
 	search_finished.emit(true, slot.item_data, slot.quantity)
