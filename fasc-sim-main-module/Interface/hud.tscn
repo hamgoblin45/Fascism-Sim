@@ -198,6 +198,8 @@ text = "[center]Interact"
 fit_content = true
 
 [node name="SearchUI" type="Control" parent="." unique_id=1108982129]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -218,7 +220,6 @@ mouse_filter = 2
 
 [node name="RaidInProgressLabel" type="Label" parent="SearchUI/VBoxContainer" unique_id=325107014]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8198404, 0.316694, 1.92523e-07, 1)
@@ -232,9 +233,11 @@ vertical_alignment = 1
 [node name="AnswerDoorTimerLabel" type="Label" parent="SearchUI/VBoxContainer" unique_id=1556250405]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="AnswerDoorTimer" type="Timer" parent="SearchUI/VBoxContainer/AnswerDoorTimerLabel" unique_id=1617251687]
-unique_name_in_owner = true
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.90588236)
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/font_size = 36
+text = "TIME LEFT!"
+horizontal_alignment = 1
 
 [node name="TestStuff" type="Control" parent="." unique_id=161768506]
 layout_mode = 1

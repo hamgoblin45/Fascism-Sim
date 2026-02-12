@@ -3,6 +3,7 @@ extends Node
 signal search_step_started(inv: InventoryData, index: int, duration: float)
 signal search_finished(caught: bool, item: InventoryItemData, qty: int)
 signal house_raid_status(message: String) # For the sake of UI. "The guards are checking the pantry..."
+signal raid_finished
 
 var current_search_inventory: InventoryData = null
 var current_search_index: int = -1 # Where the searcher's "hands" are
@@ -221,6 +222,7 @@ func _search_container_during_raid(inventory: InventoryData, thoroughness_mod: f
 
 func _finish_house_raid(hiding_spots: Array[HidingSpot]):
 	print("SearchManager: Finishing house raid")
+	raid_finished.emit()
 	if assigned_searcher:
 		assigned_searcher.command_move_to(Vector3(0, 0, 50)) # Far coords, change to specific pos to polish it
 		await assigned_searcher.destination_reached
@@ -235,6 +237,7 @@ func _finish_house_raid(hiding_spots: Array[HidingSpot]):
 	
 	# Lower suspicion slightly after a "clean" search
 	GameState.regime_suspicion -= 5.0
+	EventBus.stat_changed.emit("suspicion")
 
 func _search_hiding_spot(spot: HidingSpot):
 	print("SearchManager: Searching hiding spot")
@@ -291,6 +294,7 @@ func player_busted(item: InventoryItemData, qty: int, index: int):
 	print("SearchManager: PLAYER BUSTED with ", item.name)
 	var penalty = (item.contraband_level * qty) * 2.5 # How much suspicion will be added based on the amount of contraband / contraband lvl
 	GameState.regime_suspicion += penalty
+	EventBus.stat_changed.emit("suspicion")
 	GameState.world_flags["busted_with_contraband"] = true
 	EventBus.world_changed.emit("busted_with_contraband", true)
 	
@@ -305,6 +309,7 @@ func player_busted(item: InventoryItemData, qty: int, index: int):
 func player_busted_external(inventory: InventoryData, slot: InventorySlotData, index: int):
 	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # Maybe less suspicion because item isn't on the player's person?
 	GameState.regime_suspicion += penalty
+	EventBus.stat_changed.emit("suspicion")
 	
 	is_searching = false
 	search_finished.emit(true, slot.item_data, slot.quantity)

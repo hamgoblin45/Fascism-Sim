@@ -67,7 +67,7 @@ func _force_entry():
 	
 	# Penalty
 	GameState.regime_suspicion += 20.0
-	EventBus.show_test_value.emit("suspicion", GameState.regime_suspicion)
+	EventBus.stat_changed.emit("suspicion")
 	
 	major_npc.spawn_bark("THAT'S IT! BREAK IT DOWN!")
 	await get_tree().create_timer(1.9).timeout

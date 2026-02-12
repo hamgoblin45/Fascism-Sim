@@ -74,6 +74,7 @@ signal world_changed(id: String, value: bool)
 
 ## --- Searches
 signal raid_starting
+signal raid_finished
 signal answering_door
 signal raid_timer_updated(seconds: float)
 
