@@ -20,14 +20,14 @@ func _interact(interact_type: String, engaged: bool):
 	match interact_type:
 		"click","interact":
 			
-			_toggle_door(!open)
+			toggle_door(!open)
 				
 			if GameState.raid_in_progress:
 				if interactable.id == "front_door":
 					EventBus.answering_door.emit()
 				
 
-func _toggle_door(state: bool):
+func toggle_door(state: bool):
 	open = state
 	
 	if open:
@@ -45,5 +45,5 @@ func _toggle_door(state: bool):
 func _on_npc_detect_body_entered(body: Node3D) -> void:
 	if body is NPC:
 		if not open and interactable.id != "front_door":
-			_toggle_door(true) # force open for npc
+			toggle_door(true) # force open for npc
 			# Animate the npc opening a door

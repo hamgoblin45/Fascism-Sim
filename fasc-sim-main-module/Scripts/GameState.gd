@@ -18,6 +18,7 @@ var equipped_item: InventoryItemData
 var player: CharacterBody3D
 var held_item
 var talking_to: NPC
+var can_move: bool = true
 
 ## -- Status
 var hp: float = 50.0

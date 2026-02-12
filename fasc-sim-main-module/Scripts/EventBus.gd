@@ -75,6 +75,7 @@ signal world_changed(id: String, value: bool)
 ## --- Searches
 signal raid_starting
 signal answering_door
+signal raid_timer_updated(seconds: float)
 
 ## -- PATHING ---
 signal setting_path(schedule: ScheduleData, path: PathData)

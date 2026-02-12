@@ -24,11 +24,13 @@ func start_dialogue(timeline_key: String, npc_name: String = ""):
 	get_viewport().set_input_as_handled()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GameState.in_dialogue = true
+	GameState.can_move = false
 	dialogue_started.emit()
 
 func _on_timeline_ended():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameState.in_dialogue = false
+	GameState.can_move = true
 	
 	dialogue_ended.emit()
 

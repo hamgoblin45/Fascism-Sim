@@ -6,15 +6,21 @@ extends Node
 @export var door_blocker_pos: Node3D # Where the Major stands initially
 @export var major_stand_aside_pos: Node3D # Where Major moves to let Grunt in
 
+@export var front_door: Node3D
+
+var door_answered: bool = false
+var countdown_active: bool = false
 
 func _ready() -> void:
 	EventBus.raid_starting.connect(start_raid_event)
 	EventBus.answering_door.connect(answer_door)
 
 func start_raid_event():
-	print("RAID STARTING!!!!")
+	print("RAID STARTING!!!! 20 Second Countdown initiated")
 	# Setup
 	GameState.raid_in_progress = true
+	door_answered = false
+	
 	major_npc.global_position = door_blocker_pos.global_position
 	major_npc.look_at_target(null)
 	major_npc.rotation = door_blocker_pos.rotation
@@ -27,27 +33,76 @@ func start_raid_event():
 	search_grunt_npc.command_stop()
 	#backup_grunt_npc.command_stop()
 	
+	_run_countdown(20.0)
+	
 	# Wait for player interaction
 	major_npc.state = major_npc.WAIT
 
+func _run_countdown(seconds: float):
+	countdown_active = true
+	var time_left = seconds
+	
+	while time_left > 0:
+		if door_answered:
+			countdown_active = false
+			return # Exit loop if player answers door
+		
+		# Periodic Barks/Knocks
+		if int(time_left) % 5 == 0:
+			major_npc.spawn_bark("OPEN THE DOOR!")
+			# Add knocking sound here
+			#AudioManager.play_spatial("door_knock", major_npc.global_position)
+		
+		EventBus.raid_timer_updated.emit(time_left)
+		
+		await get_tree().create_timer(1.0).timeout
+		time_left -= 1
+	
+	if not door_answered:
+		_force_entry()
+
+func _force_entry():
+	door_answered = true # Prevents answering the door after time expires
+	print("RaidSequence: TIMER EXPIRED. FORCING ENTRY!!!")
+	
+	# Penalty
+	GameState.regime_suspicion += 20.0
+	EventBus.show_test_value.emit("suspicion", GameState.regime_suspicion)
+	
+	major_npc.spawn_bark("THAT'S IT! BREAK IT DOWN!")
+	await get_tree().create_timer(1.9).timeout
+	front_door.toggle_door(true) # Kick open the door
+	
+	await get_tree().create_timer(0.9).timeout
+	major_npc.spawn_bark("Get over here! Turn out your pockets!")
+	_begin_frisk()
+
 func answer_door():
+	if door_answered: return # Prevent double-triggering
+	door_answered = true
 	print("RaidSequence: Answering door")
+	
 	# Play dialogue
 	DialogueManager.start_dialogue("major_search_announce_test", major_npc.npc_data.name)
 	await DialogueManager.dialogue_ended
 	
+	_begin_frisk()
+
+func _begin_frisk():
 	# Begin frisk
 	EventBus.force_ui_open.emit(true)
+	GameState.can_move = false
 	
 	SearchManager.house_raid_status.emit("The Major is patting you down...")
 	SearchManager.start_frisk(GameState.pockets_inventory)
 	
 	var result = await SearchManager.search_finished # Result will be (caught, item, qty)
-	var caught = result[0]
 	
 	EventBus.force_ui_open.emit(false)
+	GameState.can_move = true
 	
-	if caught:
+	
+	if result[0]: # Caught
 		print("Player is naughty and should be punished")
 		#_handle_consequences()
 	else:
