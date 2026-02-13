@@ -76,6 +76,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06482768, 2.6315293, -1.3503411)
 mesh = SubResource("BoxMesh_uamu8")
 
+[node name="VisionRay" type="RayCast3D" parent="Head" unique_id=2055719919]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6318436, 0)
+target_position = Vector3(0, 0, -40)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=571848710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7710776, 0)
 mesh = SubResource("SphereMesh_qwsqk")

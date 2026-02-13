@@ -259,6 +259,17 @@ func _search_hiding_spot(spot: HidingSpot):
 			_guest_captured(spot.occupant)
 			is_searching = false
 
+func guest_spotted_in_open(searcher_npc: NPC, guest_npc: NPC):
+	if not is_searching: return
+	
+	print("SearchManager: Guest spotted out in the open, you FOOL!")
+	is_searching = false # stop loop
+	searcher_npc.command_move_to(GameState.player.global_position)
+	
+	# Update GameState
+	_guest_captured(guest_npc)
+	
+
 func _guest_captured(npc: NPC):
 	print("SearchManager: GUEST DISCOVERED! ", npc.npc_data.name)
 	
@@ -270,6 +281,9 @@ func _guest_captured(npc: NPC):
 	
 	if assigned_searcher:
 		assigned_searcher.command_stop()
+		assigned_searcher.spawn_bark("Hey! Who's this!")
+		await get_tree().create_timer(1.0).timeout
+		
 		# Make them look at the guest
 		assigned_searcher.look_at_target(npc)
 	

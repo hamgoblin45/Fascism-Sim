@@ -402,7 +402,7 @@ npc_data = SubResource("Resource_getpj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.863255, 0, -5.8265653)
 npc_data = SubResource("Resource_d13ii")
 
-[node name="TestRefugee" parent="NPCs" unique_id=2024641856 instance=ExtResource("19_cegan")]
+[node name="TestRefugee" parent="NPCs" unique_id=2024641856 groups=["guests"] instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.139555, 0.594924, 2.0548325)
 npc_data = SubResource("Resource_ryguw")
 

@@ -17,6 +17,13 @@ var gravity_enabled: bool = true
 @onready var interact_area: Interactable = $Interactable
 var interactable: bool = true
 
+@export_group("Vision Settings")
+@export var vision_range: float = 10.0
+@export var vision_angle: float = 60.0
+@export var eye_height: float = 2.5
+
+@onready var vision_ray: RayCast3D = %VisionRay
+
 @export_category("Anim Control")
 var anim: AnimationPlayer
 @export var blend_speed = 2
@@ -75,6 +82,9 @@ func _physics_process(delta: float) -> void:
 		##look_at_target(looking_at)
 		look_at_node.look_at(looking_at.global_position)
 		global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 0.75 * delta)
+	
+	if GameState.raid_in_progress and state != IDLE:
+		_scan_for_guests()
 	
 	#_check_for_interrupt(delta)
 	## Engage with player if within range and waiting for them
@@ -346,6 +356,52 @@ func look_at_target(target):
 	else:
 		looking_at = null
 
+func _scan_for_guests():
+	# Optimization: Eventually we will cut this down to not be every frame but that's how it is now for simplicity
+	var guests = get_tree().get_nodes_in_group("guests")
+	
+	for guest in guests:
+		# Skip if guest is hiding; shouldn't need this since the guest queues free but if we change that use this
+		if guest.get("is_hidden"): continue
+		
+		if _can_see_target(guest):
+			print("NPC %s spotted guest %s!" % [npc_data.name, guest.name])
+			command_stop()
+			SearchManager.guest_spotted_in_open(self, guest)
+			return
+
+func _can_see_target(target_node: Node3D) -> bool:
+	var target_pos = target_node.global_position
+	target_pos.y += 2.2 # Look up at head instead of feet
+	
+	# Distance
+	var dist = global_position.distance_to(target_pos)
+	if dist > vision_range:
+		return false
+	
+	# Angle
+	var dir_to_target = global_position.direction_to(target_pos)
+	var forward_vector = -global_transform.basis.z
+	
+	# Dot Product returns 1.0 if looking right at the target, 0 if 90 degrees, and -1 if behind
+	# Compare against cosine of vision angle
+	var angle_dot = forward_vector.dot(dir_to_target)
+	var angle_threshold = cos(deg_to_rad(vision_angle))
+	
+	if angle_dot < angle_threshold:
+		return false # Outside FOV
+	
+	vision_ray.enabled = true
+	vision_ray.target_position = vision_ray.to_local(target_pos)
+	vision_ray.force_raycast_update()
+	
+	if vision_ray.is_colliding():
+		var collider = vision_ray.get_collider()
+		if collider == target_node or collider.get_parent() == target_node:
+			vision_ray.enabled = false
+			return true
+	vision_ray.enabled = false
+	return false
 
 #
 ### Detects if Player is nearby # Set it up to detect other NPCs

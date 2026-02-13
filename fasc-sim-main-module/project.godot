@@ -40,6 +40,7 @@ directories/dtl_directory={
 "guest_search_imminent": "res://Data/Dialogue/guest_search_imminent.dtl",
 "major_raid_frisk_complete": "res://Data/Dialogue/Characters/Major/major_raid_frisk_complete.dtl",
 "major_search_announce_test": "res://Data/Dialogue/major_search_announce_test.dtl",
+"raid_guest_discovered": "res://Data/Dialogue/raid_guest_discovered.dtl",
 "timeline": "res://Data/Dialogue/timeline.dtl"
 }
 layout/style_directory={}
@@ -95,6 +96,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 house_containers=""
 hiding_spots=""
+guests=""
 
 [gui]
 
