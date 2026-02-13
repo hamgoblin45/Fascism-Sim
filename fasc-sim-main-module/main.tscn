@@ -22,13 +22,14 @@
 [ext_resource type="Resource" uid="uid://crvqwhmlb552o" path="res://Data/Items/Equippables/rifle.tres" id="16_qsp4k"]
 [ext_resource type="Resource" uid="uid://bbcvmy2ujko5d" path="res://Data/Items/Equippables/pistol.tres" id="19_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="19_cegan"]
-[ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="20_82xsv"]
 [ext_resource type="PackedScene" uid="uid://dveqicaom7xy5" path="res://Map/filing_cabinet.glb" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cokdko33hqlj1" path="res://Map/hiding_spot.tscn" id="21_getpj"]
 [ext_resource type="Resource" uid="uid://xh53w2i0oo5t" path="res://Data/Items/Food/cookie.tres" id="22_xuqvo"]
 [ext_resource type="Resource" uid="uid://c1cqxlfgintig" path="res://Interface/TestStuff/item_boots.tres" id="23_qsp4k"]
 [ext_resource type="Resource" uid="uid://c762aadnr6q1f" path="res://Data/Items/Misc/rival_pin.tres" id="24_kq58d"]
 [ext_resource type="Resource" uid="uid://c13wc1u5p42sr" path="res://Data/Items/Food/egg.tres" id="25_seu75"]
+[ext_resource type="Script" uid="uid://dpcu4t1mojv2t" path="res://NPCs/OfficerNPC.gd" id="28_kq58d"]
+[ext_resource type="Script" uid="uid://cwpn1uxl5smj" path="res://NPCs/GuestNPC.gd" id="29_seu75"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 
@@ -159,32 +160,6 @@ region = Rect2(192, 0, 64, 64)
 size = Vector3(1.890625, 4.5897217, 1.7265625)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6jrf"]
-
-[sub_resource type="Resource" id="Resource_getpj"]
-script = ExtResource("20_82xsv")
-name = "Major"
-id = "major"
-default_timeline = "major_search_announce_test"
-conditional_barks = {
-"default": ["Hmm?", "Ahoy there", "What up?", "SUCK MY DICK, SATAN FUCKAHHH!"]
-}
-metadata/_custom_type_script = "uid://coai26ivs6uv4"
-
-[sub_resource type="Resource" id="Resource_d13ii"]
-script = ExtResource("20_82xsv")
-name = "Grunt"
-id = "grunt"
-conditional_barks = {
-"default": ["Mind your business", "Don't cause any trouble", "Eh?", "Get outta my face", "Back up, citizen"]
-}
-metadata/_custom_type_script = "uid://coai26ivs6uv4"
-
-[sub_resource type="Resource" id="Resource_ryguw"]
-script = ExtResource("20_82xsv")
-name = "Refugee"
-id = "refugee"
-default_timeline = "guest_search_imminent"
-metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryguw"]
 albedo_color = Color(0.8727669, 0.79216146, 0.38186333, 1)
@@ -396,15 +371,15 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="Major" parent="NPCs" unique_id=610944064 instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.838703, 0, -3.702774)
-npc_data = SubResource("Resource_getpj")
+script = ExtResource("28_kq58d")
 
 [node name="Grunt" parent="NPCs" unique_id=26024771 instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.863255, 0, -5.8265653)
-npc_data = SubResource("Resource_d13ii")
+script = ExtResource("28_kq58d")
 
 [node name="TestRefugee" parent="NPCs" unique_id=2024641856 groups=["guests"] instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.139555, 0.594924, 2.0548325)
-npc_data = SubResource("Resource_ryguw")
+script = ExtResource("29_seu75")
 
 [node name="HidingSpots" type="Node3D" parent="." unique_id=706021514]
 

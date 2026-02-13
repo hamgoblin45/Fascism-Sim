@@ -52,8 +52,6 @@ var target_pos: Vector3
 var dynamic_target_pos: Vector3 = Vector3.ZERO
 var is_under_command: bool = false # if true, ignore schedule
 
-var is_inside_house: bool = false
-var is_hiding: bool = false
 
 ## -- BARKS
 const BARK_BUBBLE = preload("uid://cxosfcljv24w3")
@@ -82,9 +80,6 @@ func _physics_process(delta: float) -> void:
 		##look_at_target(looking_at)
 		look_at_node.look_at(looking_at.global_position)
 		global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 0.75 * delta)
-	
-	if GameState.raid_in_progress and state != IDLE:
-		_scan_for_guests()
 	
 	#_check_for_interrupt(delta)
 	## Engage with player if within range and waiting for them
@@ -356,31 +351,17 @@ func look_at_target(target):
 	else:
 		looking_at = null
 
-func _scan_for_guests():
-	# Optimization: Eventually we will cut this down to not be every frame but that's how it is now for simplicity
-	var guests = get_tree().get_nodes_in_group("guests")
-	
-	for guest in guests:
-		# Skip if guest is hiding; shouldn't need this since the guest queues free but if we change that use this
-		if guest.get("is_hidden"): continue
-		
-		if _can_see_target(guest):
-			print("NPC %s spotted guest %s!" % [npc_data.name, guest.name])
-			command_stop()
-			SearchManager.guest_spotted_in_open(self, guest)
-			return
-
 func _can_see_target(target_node: Node3D) -> bool:
-	var target_pos = target_node.global_position
-	target_pos.y += 2.2 # Look up at head instead of feet
+	var _target_pos = target_node.global_position
+	_target_pos.y += 2.2 # Look up at head instead of feet
 	
 	# Distance
-	var dist = global_position.distance_to(target_pos)
+	var dist = global_position.distance_to(_target_pos)
 	if dist > vision_range:
 		return false
 	
 	# Angle
-	var dir_to_target = global_position.direction_to(target_pos)
+	var dir_to_target = global_position.direction_to(_target_pos)
 	var forward_vector = -global_transform.basis.z
 	
 	# Dot Product returns 1.0 if looking right at the target, 0 if 90 degrees, and -1 if behind
@@ -392,7 +373,7 @@ func _can_see_target(target_node: Node3D) -> bool:
 		return false # Outside FOV
 	
 	vision_ray.enabled = true
-	vision_ray.target_position = vision_ray.to_local(target_pos)
+	vision_ray.target_position = vision_ray.to_local(_target_pos)
 	vision_ray.force_raycast_update()
 	
 	if vision_ray.is_colliding():
@@ -402,41 +383,3 @@ func _can_see_target(target_node: Node3D) -> bool:
 			return true
 	vision_ray.enabled = false
 	return false
-
-#
-### Detects if Player is nearby # Set it up to detect other NPCs
-#func _on_proximity_detect_area_body_entered(body: Node3D) -> void:
-	#if body is Player:
-		#
-		#player_nearby = true
-#
-### Detects when Player is no longer nearby
-#func _on_proximity_detect_area_body_exited(body: Node3D) -> void:
-	#if body is PlayerCharacter:
-		#
-		#player_nearby = false
-#
-### Sets paths based on a final anim, worry about this after setting up anim system
-#func _on_anim_animation_finished(anim_name: StringName) -> void:
-	#if anim_name == current_path.anim:
-		#print("Anim finished is named in current path")
-	##rotation.y = current_path.end_rotation
-		#if current_path.next_map:
-			#change_map(current_path.next_map)
-		#npc_data.waiting_for_player = current_path.wait_for_player
-		#
-		#if npc_data.current_dialogue_data:
-			#interactable = true
-			#interact_area.interact_text = "Press E to talk"
-			#
-		#set_next_path(current_path)
-		##set_next_path(current_path)
-
-func _on_clue_timer_timeout():
-	var GUEST_CLUE = preload("uid://bkoe4a2utnp6l")
-	
-	if is_inside_house and not is_hiding:
-		var clue = GUEST_CLUE.instantiate()
-		get_parent().add_child(clue)
-		clue.global_position = global_position # Drops clue at feet
-		# Add logic to randomize what kinda clue mesh it is; maybe even juist in the clue itself
