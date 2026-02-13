@@ -9,7 +9,9 @@ var current_search_inventory: InventoryData = null
 var current_search_index: int = -1 # Where the searcher's "hands" are
 var search_tension: float = 0.0 # Modifier that increases odds of getting caught
 var patience: float = 15.0 # How long the search will take
+var base_patience: float = 15.0
 var thoroughness: float = 0.5 # 0.0 to 1.0 (searcher's skill, Suspicion will directly impact this)
+var base_thoroughness: float = 0.5
 var is_searching: bool = false
 var is_silent_search: bool = false # Determines if search if player inv or not
 
@@ -29,10 +31,11 @@ func start_frisk(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
 	# Temporarily lower patience for a quicker pat down as opposed to external searches
 	var old_patience = patience
-	patience = 5.0
+	patience = base_patience
 	
 	is_searching = true
-	search_tension = 0.0
+	if not GameState.raid_in_progress:
+		search_tension = 0.0
 	
 	# Minimum pat down time
 	if inventory.slot_datas.is_empty():
@@ -229,6 +232,12 @@ func _search_container_during_raid(inventory: InventoryData, thoroughness_mod: f
 func _finish_house_raid(hiding_spots: Array[HidingSpot]):
 	print("SearchManager: Finishing house raid")
 	raid_finished.emit()
+	
+	# Reset temp vars
+	thoroughness =  base_thoroughness
+	patience = base_patience
+	search_tension = 0.0
+	
 	if assigned_searcher:
 		assigned_searcher.command_move_to(Vector3(0, 0, 50)) # Far coords, change to specific pos to polish it
 		await assigned_searcher.destination_reached
@@ -302,6 +311,13 @@ func _discovered_contraband(item: InventoryItemData) -> bool:
 	var output = str(discovery_chance * 100)
 	print("SearchManager: Chance of contraband being discovered: %s percent" % output)
 	return randf() < discovery_chance
+
+func clue_discovered(clue: GuestClue):
+	print("SearchManager: Officer found evidence of a guest %s" % clue.name)
+	# Search becomes harder
+	patience += 15.0
+	thoroughness = min(thoroughness + 0.15, 1.0)
+	search_tension += 10.0
 
 func _finish_search(caught: bool, item: InventoryItemData, qty: int):
 	print("SearchManager: search finished. Caught: ", caught)

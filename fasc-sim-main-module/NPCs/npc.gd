@@ -352,21 +352,21 @@ func look_at_target(target):
 		looking_at = null
 
 func _can_see_target(target_node: Node3D) -> bool:
+	if not is_instance_valid(target_node): return false
 	var _target_pos = target_node.global_position
-	_target_pos.y += 2.2 # Look up at head instead of feet
+	if target_node is NPC: _target_pos.y += 2.2 # Look up at head instead of feet
 	
 	# Distance
-	var dist = global_position.distance_to(_target_pos)
-	if dist > vision_range:
+	if global_position.distance_to(_target_pos) > vision_range:
 		return false
 	
 	# Angle
-	var dir_to_target = global_position.direction_to(_target_pos)
-	var forward_vector = -global_transform.basis.z
+	var dir = global_position.direction_to(_target_pos)
+	var fwd = -global_transform.basis.z
 	
 	# Dot Product returns 1.0 if looking right at the target, 0 if 90 degrees, and -1 if behind
 	# Compare against cosine of vision angle
-	var angle_dot = forward_vector.dot(dir_to_target)
+	var angle_dot = fwd.dot(dir)
 	var angle_threshold = cos(deg_to_rad(vision_angle))
 	
 	if angle_dot < angle_threshold:
