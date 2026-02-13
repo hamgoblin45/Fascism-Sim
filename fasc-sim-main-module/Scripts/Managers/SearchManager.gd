@@ -292,7 +292,9 @@ func _finish_search(caught: bool, item: InventoryItemData, qty: int):
 	search_finished.emit(caught, item, qty)
 
 func player_busted(item: InventoryItemData, qty: int, index: int):
-	print("SearchManager: PLAYER BUSTED with ", item.name)
+	interrogation_started(item)
+	is_searching = false
+	
 	var penalty = (item.contraband_level * qty) * 2.5 # How much suspicion will be added based on the amount of contraband / contraband lvl
 	GameState.regime_suspicion += penalty
 	EventBus.stat_changed.emit("suspicion")
@@ -304,10 +306,12 @@ func player_busted(item: InventoryItemData, qty: int, index: int):
 		current_search_inventory.slot_datas[index] = null
 		EventBus.inventory_item_updated.emit(current_search_inventory, index)
 	
-	is_searching = false
+	print("SearchManager: PLAYER BUSTED with %s, entering interrogation" % item.name)
 	search_finished.emit(true, item, qty)
 
 func player_busted_external(inventory: InventoryData, slot: InventorySlotData, index: int):
+	interrogation_started(slot.item_data)
+	
 	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # Maybe less suspicion because item isn't on the player's person?
 	GameState.regime_suspicion += penalty
 	EventBus.stat_changed.emit("suspicion")
@@ -317,3 +321,50 @@ func player_busted_external(inventory: InventoryData, slot: InventorySlotData, i
 	# Confiscation
 	inventory.slot_datas[index] = null
 	EventBus.inventory_item_updated.emit(inventory, index)
+
+func interrogation_started(item: InventoryItemData):
+	# Look for any relevant unique dialogue, for example if the item is a weapon
+	var dialogue_key = item.interrogation_dialogue_id + "_questioning"
+	#if not DialogueManager.has_dialogue(dialogue_key):
+	dialogue_key = "default_contraband_questioning"
+	
+	DialogueManager.start_dialogue(dialogue_key, "Officer") # Figure out a way to distinguish if it's Major talking
+	
+	# Wait for player to respond
+	var choice = await DialogueManager.dialogue_choice_selected
+	
+	if choice == "lie":
+		_handle_lie_attempt(item)
+	else:
+		_apply_penalty(item, false) # Fessing up
+
+func _handle_lie_attempt(item: InventoryItemData):
+	# Calculate sucess
+	var chance = (item.concealability * 0.5) / (1.0 + (GameState.regime_suspicion / 100.0))
+	
+	if randf() < chance:
+		print("RaidSequence: They bought your lie")
+		GameState.regime_suspicion += 2.0 # A small slap on the wrist
+		# Progress dialogue here, figure out if you really need to start a new dialogue or not
+	else:
+		print("RaidSequence: They didn't buy your lie")
+		_apply_penalty(item, true) # Increased penalty for lying
+
+
+func _apply_penalty(item: InventoryItemData, was_caught_lying: bool):
+	var multiplier: float = 2.0 if was_caught_lying else 1.0
+	
+	match item.contraband_level:
+		1:
+			print("RaidSequence: Caught with level 1 contraband. Penalty: Scolding, maybe small fine")
+			GameState.regime_suspicion += 5.0 * multiplier
+		2:
+			var fine = (item.contraband_level * 25.0) * multiplier
+			print("RaidSequence: Caught with level 2 contraband. Penalty: Fine")
+			GameState.regime_suspicion += 10.0 * multiplier
+		3:
+			print("RaidSequence: Caught with level 3 contraband. Penalty: Large Fine/Arrest but released")
+			GameState.regime_suspicion += 20.0 * multiplier
+		4:
+			print("RaidSequence: Caught with level 4 contraband. Penalty: Imprisoned / executed")
+			GameState.regime_suspicion += 40.0 * multiplier

@@ -14,6 +14,7 @@ var countdown_active: bool = false
 func _ready() -> void:
 	EventBus.raid_starting.connect(start_raid_event)
 	EventBus.answering_door.connect(answer_door)
+	#EventBus.interrogation_started.connect(_on_interrogation_started)
 
 func start_raid_event():
 	print("RAID STARTING!!!! 20 Second Countdown initiated")
@@ -104,6 +105,7 @@ func _begin_frisk():
 	
 	if result[0]: # Caught
 		print("Player is naughty and should be punished")
+		SearchManager.interrogation_started(result[1])
 		#_handle_consequences()
 	else:
 		print("RaidSequence: Calling _send_in_grunt from answer_door")
@@ -132,6 +134,3 @@ func _send_in_grunt():
 	#if not GameState.raid_in_progress or GameState.hidden_guests.size() < 1: return
 	#for npc in GameState.guests:
 		#if search_grunt_npc.can_see
-
-func _handle_consequences():
-	print("RaidSequence: Player caught with something, idk")

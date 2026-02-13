@@ -77,6 +77,7 @@ signal raid_starting
 signal raid_finished
 signal answering_door
 signal raid_timer_updated(seconds: float)
+signal interrogation_started(item, qty)
 
 ## -- PATHING ---
 signal setting_path(schedule: ScheduleData, path: PathData)

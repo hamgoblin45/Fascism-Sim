@@ -3,6 +3,8 @@ extends Node
 
 signal dialogue_ended
 signal dialogue_started
+signal interrogation_started
+signal dialogue_choice_selected(choice_id: String)
 
 func _ready():
 	Dialogic.signal_event.connect(_on_dialogic_signal)
@@ -52,3 +54,5 @@ func _on_dialogic_signal(arg: Dictionary):
 	match arg["signal_name"]:
 		"follow_player":
 			EventBus.follow_player.emit(GameState.talking_to, true)
+		"choice_selected":
+			dialogue_choice_selected.emit(arg["choice_id"])
