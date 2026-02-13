@@ -142,7 +142,12 @@ func start_house_raid():
 	potential_targets.sort_custom(func(a,b):
 		var a_score = a.concealment_score if a is HidingSpot else 0.1 # Containers are obvious
 		var b_score = b.concealment_score if b is HidingSpot else 0.1
-		return a_score < b_score
+		
+		# Add a bit of RNG
+		var a_fuzzed = a_score + randf_range(-0.3, 0.3)
+		var b_fuzzed = b_score + randf_range(-0.3, 0.3)
+		
+		return a_fuzzed < b_fuzzed
 		)
 	
 	## ---- TESTING-----------
