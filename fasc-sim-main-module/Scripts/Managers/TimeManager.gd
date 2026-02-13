@@ -81,10 +81,6 @@ func _start_new_day():
 	#GameState.cycle_time = 0.33 # between 0.0 and 1.0
 	#EventBus.new_day_started.emit()
 
-
-
-
-
 func _handle_pause(paused: bool):
 	print("Pause handled in TimeManager")
 	get_tree().paused = paused

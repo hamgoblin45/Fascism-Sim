@@ -8,12 +8,11 @@ var stamina_recovery_delay: float = 3.0 # How long after last action before stam
 var recovering_stamina: bool = false
 
 func _ready():
-	
 	# Start everything at max
 	GameState.hp = GameState.max_hp
 	GameState.energy = GameState.max_energy
 	GameState.stamina = GameState.energy
-	GameState.hunger = 0
+	GameState.hunger = 100
 	
 	var total_minutes: float = (GameState.hour * 24) + GameState.minute
 	prev_status_check = total_minutes
@@ -30,49 +29,26 @@ func _change_stat(stat: String, value: float):
 	match stat:
 		"hp":
 			GameState.hp += value
-			#if GameState.hp > GameState.max_hp:
-				#GameState.hp = GameState.max_hp
-			#if GameState.hp <= 0:
-				#GameState.hp = 0
-				#print("You are dead")
-			#print("New HP value: %s" % str(GameState.hp))
+			
 		"energy":
 			
 			GameState.energy += value
-			#if GameState.energy > GameState.max_energy:
-				#GameState.energy = GameState.max_energy
-			#if GameState.energy <= 0:
-				#GameState.energy = 0
-				#print("You ran out of energy")
-			#print("New energy value: %s" % str(GameState.energy))
+			
 		"hunger":
 			GameState.hunger += value
-			#if GameState.hunger <= 0:
-				#GameState.hunger = 0
-			#
-			#
-			#
-			#if GameState.hunger > GameState.max_hunger:
-				#GameState.hunger = GameState.max_hunger
 			
-			if GameState.hunger < 25:
+			if GameState.hunger > 75:
 				GameState.hunger_level = 1
-			elif GameState.hunger < 50:
+			elif GameState.hunger > 50:
 				GameState.hunger_level = 2
-			elif GameState.hunger < 75:
+			elif GameState.hunger > 25:
 				GameState.hunger_level = 3
 			else:
 				GameState.hunger_level = 4
 				print("You are starving to death")
-			#print("New Hunger value: %s, now at Hunger Level %s" % [str(GameState.hunger), str(GameState.hunger_level)])
 		"stamina":
 			# Change GameState value
 			GameState.stamina += value
-			# Cap it between 0 and max
-			#if GameState.stamina <= 0:
-				#GameState.stamina = 0
-			#if GameState.stamina > GameState.max_stamina:
-				#GameState.stamina = GameState.max_stamina
 			
 			# Halt recovery timer if it's running due to a new stamina change
 			if not recovery_delay_timer.is_stopped():
@@ -123,10 +99,8 @@ func _on_status_check_timer_timeout() -> void:
 	
 	_change_stat("energy", energy_change)
 	
-	if GameState.hunger >= 100:
+	if GameState.hunger <= 0:
 		_change_stat("hp", -GameState.hp_starve_drain_rate)
-	
-	
 
 
 func _on_recovery_delay_timeout() -> void:
