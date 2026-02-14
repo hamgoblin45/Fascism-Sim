@@ -80,11 +80,6 @@ func _physics_process(delta: float) -> void:
 		##look_at_target(looking_at)
 		look_at_node.look_at(looking_at.global_position)
 		global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 0.75 * delta)
-	
-	#_check_for_interrupt(delta)
-	## Engage with player if within range and waiting for them
-	#if npc_data.waiting_for_player and player_nearby:
-		#_on_player_nearby_detected()
 
 	#update_anim_tree()
 	_handle_state(delta)
@@ -180,28 +175,6 @@ func _check_schedule(h: int, m: int):
 		npc_data.schedule.current_path = new_path
 		new_path.reset_path()
 		_start_walking()
-		#set_path(new_path)
-
-#func _check_for_interrupt(delta: float):
-	#var dist = global_position.distance_to(GameState.player.global_position)
-	#var can_see = _can_see_player(dist)
-	#
-	#if can_see and dist < confront_distance:
-		#if state != CONFRONT:
-			#state = CONFRONT
-			#is_interrupted = true
-		#recovery_timer = recovery_time
-	#elif is_interrupted:
-		#recovery_timer -= delta
-		#if recovery_timer <= 0:
-			#_resume_routine()
-
-#func _can_see_player(dist: float) -> bool:
-	#if dist > aggro_distance: return false
-	#var dir_to_player = global_position.direction_to(GameState.player.global_position)
-	#var forward = -global_transform.basis.z # Typical Godot forward
-	#var angle = rad_to_deg(forward.angle_to(dir_to_player))
-	#return angle < vision_angle
 
 func _resume_routine():
 	is_interrupted = false
@@ -240,19 +213,12 @@ func _handle_state(delta):
 		
 		IDLE, ANIMATING:
 			
-			#walk_blend_value = lerpf(walk_blend_value, 0, blend_speed * delta)
-			#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
-			
 			velocity.x = move_toward(velocity.x, 0, npc_data.walk_accel * delta)
 			velocity.z = move_toward(velocity.z, 0, npc_data.walk_accel * delta)
 			
-			#if npc_data.waiting_for_player and looking_at != Global.player:
-				#looking_at = Global.player
 		
 		WALK:
 			if not get_tree().paused:
-				#walk_blend_value = lerpf(walk_blend_value, 1, blend_speed * delta)
-				#sit_blend_value = lerpf(sit_blend_value, 0, blend_speed * delta)
 				_handle_schedule_nav(delta)
 		
 		FOLLOWING:
