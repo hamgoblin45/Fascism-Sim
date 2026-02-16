@@ -1,12 +1,14 @@
 extends Control
+class_name InventoryUI
 
-const SLOT_SCENE = preload("uid://d3yl41a7rncgb")
-const SHOP_SLOT_SCENE = preload("uid://cj1cyf80hrqb4")
+const SLOT_SCENE = preload("uid://d3yl41a7rncgb") # Ensure this is correct UID/Path for inventory_slot_ui.tscn
+# const SHOP_SLOT_SCENE = preload("uid://cj1cyf80hrqb4") # Uncomment when needed
 
 # Pockets / Hotbar
 @onready var pockets_ui: PanelContainer = %PocketsInventoryUI
 @onready var pockets_grid: GridContainer = $PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer
 
+# Grabbed Item Cursor
 @onready var grabbed_slot_ui: PanelContainer = %GrabbedSlotUI
 
 # External
@@ -17,30 +19,40 @@ const SHOP_SLOT_SCENE = preload("uid://cj1cyf80hrqb4")
 @onready var shop_ui: PanelContainer = %ShopUI
 @onready var shop_grid: GridContainer = $ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer
 
-# Context
+# Context Menus
 @onready var pocket_item_context_ui: PanelContainer = $PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI
 @onready var external_item_context_ui: PanelContainer = $ExternalInventoryUI/HBoxContainer/ExternalItemContextUI
 @onready var shop_item_context_ui: PanelContainer = $ShopUI/HBoxContainer/ShopItemContextUI
 
-func _ready():
+func _ready() -> void:
+	# Signal Connections
 	EventBus.pockets_inventory_set.connect(_on_pockets_set)
 	EventBus.external_inventory_set.connect(_on_external_set)
 	EventBus.inventory_item_updated.connect(_on_item_updated)
-	# Also put shop connections here, not set up yet
 	EventBus.select_item.connect(_on_context_ui_set)
+	EventBus.update_grabbed_slot.connect(_on_grabbed_slot_updated)
 	
-	# Clear UIs - might need to connect to control interface
+	# Initial State: Hide secondary UIs
 	external_ui.hide()
 	external_item_context_ui.hide()
 	shop_ui.hide()
 	shop_item_context_ui.hide()
 	pocket_item_context_ui.hide()
+	
+	if grabbed_slot_ui:
+		grabbed_slot_ui.hide()
 
-	## --- SETUP ---
-func _on_pockets_set(inventory_data: InventoryData):
+func _process(_delta: float) -> void:
+	# Make the grabbed item follow the mouse
+	if grabbed_slot_ui.visible:
+		grabbed_slot_ui.global_position = get_global_mouse_position() + Vector2(15, 15)
+
+## --- SETUP & POPULATION ---
+
+func _on_pockets_set(inventory_data: InventoryData) -> void:
 	_populate_grid(pockets_grid, inventory_data)
 
-func _on_external_set(inventory_data: InventoryData):
+func _on_external_set(inventory_data: InventoryData) -> void:
 	if inventory_data:
 		external_ui.show()
 		_populate_grid(external_grid, inventory_data)
@@ -48,78 +60,89 @@ func _on_external_set(inventory_data: InventoryData):
 		external_ui.hide()
 		_clear_grid(external_grid)
 
-func _populate_grid(container: GridContainer, inventory_data: InventoryData):
+func _populate_grid(container: GridContainer, inventory_data: InventoryData) -> void:
 	_clear_grid(container)
+	
 	for i in range(inventory_data.slots.size()):
 		var slot_ui = SLOT_SCENE.instantiate()
 		container.add_child(slot_ui)
 		
+		# Set metadata for the UI slot
 		slot_ui.parent_inventory = inventory_data
 		slot_ui.slot_index = i
 		
+		# Render data if it exists
 		if inventory_data.slots[i]:
 			slot_ui.set_slot_data(inventory_data.slots[i])
 
-func _clear_grid(container: GridContainer):
+func _clear_grid(container: GridContainer) -> void:
 	for child in container.get_children():
 		child.queue_free()
 
-## --- UPDATING ----
+## --- UPDATES ---
 
-func _on_item_updated(inventory_data: InventoryData, index: int):
-	# Figure out which container/inv owns the data
+func _on_item_updated(inventory_data: InventoryData, index: int) -> void:
 	var container: GridContainer = null
+	
+	# Identify which grid corresponds to the updated inventory data
 	if inventory_data == GameState.pockets_inventory:
 		container = pockets_grid
-	elif external_ui.visible and external_ui.inventory_data == inventory_data:
+	elif external_ui.visible and external_ui.inventory_data == inventory_data: # Assumes ExternalUI script has inventory_data property
 		container = external_grid
-	elif shop_ui.visible and shop_ui.shop_inventory_data == inventory_data:
+	elif shop_ui.visible and shop_ui.shop_inventory_data == inventory_data: # Assumes ShopUI script has shop_inventory_data property
 		container = shop_grid
 	
-	# Match the indexes and set the correllating slot
+	# Update the specific slot UI
 	if container and index < container.get_child_count():
 		var slot_ui = container.get_child(index)
 		slot_ui.set_slot_data(inventory_data.slots[index])
 
-## --- CONTEXT UIs ----
-func _on_context_ui_set(slot_data: SlotData):
-	var context_ui: PanelContainer = null
-	for slot in GameState.pockets_inventory.slots:
-		if slot == slot_data:
-			context_ui = pocket_item_context_ui
-		
-	if external_ui.visible:
-		for slot in external_ui.inventory_data.slots:
-			if slot == slot_data:
-				context_ui = external_item_context_ui
-	
-	elif shop_ui.visible:
-		for slot in shop_ui.shop_inventory_data.slots:
-			if slot == slot_data:
-				context_ui = shop_item_context_ui
-	
-	if context_ui:
-		context_ui.set_context_menu(slot_data)
+func _on_grabbed_slot_updated(slot_data: SlotData) -> void:
+	if slot_data:
+		grabbed_slot_ui.show()
+		grabbed_slot_ui.set_slot_data(slot_data)
 	else:
-		pocket_item_context_ui.set_context_menu(null)
-		external_item_context_ui.set_context_menu(null)
-		shop_item_context_ui.set_context_menu(null)
+		grabbed_slot_ui.hide()
 
+## --- CONTEXT MENUS ---
 
-## --- SHOP VISIBILITY ---
-func _on_shop_opened(shop_data: InventoryData):
-	shop_ui.show()
-	_populate_grid(shop_grid, shop_data)
+func _on_context_ui_set(slot_data: SlotData) -> void:
+	_hide_all_context_menus()
+	
+	if slot_data == null: return
 
-func _on_shop_closed():
-	shop_ui.hide()
+	# Find where the clicked slot lives and show the appropriate menu
+	if _is_slot_in_inventory(slot_data, GameState.pockets_inventory):
+		pocket_item_context_ui.set_context_menu(slot_data)
+		pocket_item_context_ui.show()
+		
+	elif external_ui.visible and _is_slot_in_inventory(slot_data, external_ui.inventory_data):
+		external_item_context_ui.set_context_menu(slot_data)
+		external_item_context_ui.show()
+		
+	elif shop_ui.visible and _is_slot_in_inventory(slot_data, shop_ui.shop_inventory_data):
+		shop_item_context_ui.set_context_menu(slot_data)
+		shop_item_context_ui.show()
 
-## -- DISCARD ZONE ---
-# Should drop items into the world if clicking outside of UI
+func _is_slot_in_inventory(slot: SlotData, inv: InventoryData) -> bool:
+	if not inv: return false
+	return inv.slots.has(slot)
+
+func _hide_all_context_menus() -> void:
+	pocket_item_context_ui.hide()
+	external_item_context_ui.hide()
+	shop_item_context_ui.hide()
+
+## --- INPUT HANDLING (Discard Zone) ---
+
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("Click discovered outside of UI")
-			EventBus.select_item.emit(null) # Closes any item context ui if clicking outside of inventory ui
+			print("UI: Clicked outside inventory panels (Discard Zone)")
 			
-			EventBus.inventory_interacted.emit(null, null, null, "world_click") # Tells the inventory a player is clicking outside and potentially discarding an item
+			# Close context menu
+			EventBus.select_item.emit(null) 
+			
+			# If holding an item, this counts as dropping it
+			if grabbed_slot_ui.visible:
+				EventBus.inventory_interacted.emit(null, null, null, "world_click")
