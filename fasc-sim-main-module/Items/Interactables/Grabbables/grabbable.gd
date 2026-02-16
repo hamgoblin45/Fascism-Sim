@@ -40,8 +40,7 @@ func _interact(type: String, engaged: bool):
 		
 		"interact":
 			if slot_data and slot_data.item_data:
-				var item_data = ItemData.new()
-				item_data = slot_data.item_data
+				var item_data = slot_data.item_data
 				var qty = slot_data.quantity
 				
 				EventBus.adding_item.emit(item_data, qty)

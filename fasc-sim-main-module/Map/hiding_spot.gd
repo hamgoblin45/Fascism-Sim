@@ -11,8 +11,8 @@ var occupant: NPC = null
 func _ready() -> void:
 	EventBus.item_interacted.connect(_on_interact)
 
-func _on_interact(_object, type, engaged):
-	if not engaged: return
+func _on_interact(object, type, engaged):
+	if not engaged or object != self: return
 	
 	if type == "interact":
 		if occupant:

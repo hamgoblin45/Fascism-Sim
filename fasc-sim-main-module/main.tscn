@@ -16,9 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="9_vivmo"]
 [ext_resource type="PackedScene" uid="uid://bkqltx6hl064x" path="res://Items/Interactables/door.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://ble4a155lchnx" path="res://Map/basic_wood_nightstand.glb" id="11_w48qg"]
+[ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="13_074og"]
+[ext_resource type="Resource" uid="uid://jo0gq5u6e4hl" path="res://Data/Items/Misc/parody_movie.tres" id="15_d13ii"]
+[ext_resource type="Resource" uid="uid://crvqwhmlb552o" path="res://Data/Items/Equippables/rifle.tres" id="16_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="19_cegan"]
 [ext_resource type="PackedScene" uid="uid://dveqicaom7xy5" path="res://Map/filing_cabinet.glb" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cokdko33hqlj1" path="res://Map/hiding_spot.tscn" id="21_getpj"]
+[ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="24_0odxb"]
 [ext_resource type="Script" uid="uid://dpcu4t1mojv2t" path="res://NPCs/OfficerNPC.gd" id="28_kq58d"]
 [ext_resource type="Script" uid="uid://cwpn1uxl5smj" path="res://NPCs/GuestNPC.gd" id="29_seu75"]
 
@@ -51,15 +55,32 @@ size = Vector3(2.241211, 6.5234375, 3.0615234)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2cqfq"]
 size = Vector3(2.0549316, 6.5234375, 3.0615234)
 
+[sub_resource type="Resource" id="Resource_1u8w0"]
+script = ExtResource("6_272bh")
+item_data = ExtResource("15_d13ii")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
+[sub_resource type="Resource" id="Resource_0odxb"]
+script = ExtResource("6_272bh")
+item_data = ExtResource("16_qsp4k")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
 [sub_resource type="Resource" id="Resource_vivmo"]
 script = ExtResource("5_7mycd")
+slots = Array[ExtResource("6_272bh")]([SubResource("Resource_1u8w0"), null, null, SubResource("Resource_0odxb")])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yaehf"]
 size = Vector3(2.3486938, 3.250122, 3.790039)
 
+[sub_resource type="Resource" id="Resource_lswn8"]
+script = ExtResource("6_272bh")
+item_data = ExtResource("13_074og")
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
 [sub_resource type="Resource" id="Resource_xuqvo"]
 script = ExtResource("5_7mycd")
+slots = Array[ExtResource("6_272bh")]([SubResource("Resource_lswn8"), null, null, null, null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsp4k"]
@@ -95,6 +116,13 @@ region = Rect2(192, 0, 64, 64)
 size = Vector3(1.890625, 4.5897217, 1.7265625)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6jrf"]
+
+[sub_resource type="Resource" id="Resource_a6jrf"]
+script = ExtResource("24_0odxb")
+name = "Fugitive"
+id = "fugitive"
+default_timeline = "guest_search_imminent"
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryguw"]
 albedo_color = Color(0.8727669, 0.79216146, 0.38186333, 1)
@@ -315,6 +343,7 @@ script = ExtResource("28_kq58d")
 [node name="TestRefugee" parent="NPCs" unique_id=2024641856 groups=["guests"] instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.139555, 0.594924, 2.0548325)
 script = ExtResource("29_seu75")
+npc_data = SubResource("Resource_a6jrf")
 
 [node name="HidingSpots" type="Node3D" parent="." unique_id=706021514]
 
