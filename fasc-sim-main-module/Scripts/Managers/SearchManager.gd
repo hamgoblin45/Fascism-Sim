@@ -38,8 +38,8 @@ func start_frisk(inventory: InventoryData):
 		search_tension = 0.0
 	
 	# Minimum pat down time
-	if inventory.slot_datas.is_empty():
-		#if inventory.slot_datas.all(func(x): return x == null):
+	if inventory.slots.is_empty():
+		#if inventory.slots.all(func(x): return x == null):
 		search_step_started.emit(inventory, 0, 2.0) # Fake searching first slot for 2 sec
 		await get_tree().create_timer(2.0).timeout
 	
@@ -49,13 +49,13 @@ func start_frisk(inventory: InventoryData):
 		
 		current_search_inventory = inventory
 		
-		for i in range(inventory.slot_datas.size()):
+		for i in range(inventory.slots.size()):
 			if not is_searching or elapsed_time >= patience:
 				break
 			
 			
 			current_search_index = i
-			var slot = inventory.slot_datas[i]
+			var slot = inventory.slots[i]
 			if slot == null: continue # skip empty slots faster
 			
 			var base_time = 1.5 # The time it takes to search an empty/insignificant slot
@@ -89,10 +89,10 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 	
 	print("SearchManager: NPC is beginning to search ", inventory)
 	
-	for i in range(inventory.slot_datas.size()):
+	for i in range(inventory.slots.size()):
 		if not is_searching: break
 		
-		var slot = inventory.slot_datas[i]
+		var slot = inventory.slots[i]
 		
 		var search_duration = 1.0
 		if slot and slot.item_data:
@@ -201,12 +201,12 @@ func start_house_raid():
 
 func _search_container_during_raid(inventory: InventoryData, thoroughness_mod: float):
 	#print("Searching ", inventory)
-	for i in range(inventory.slot_datas.size()):
+	for i in range(inventory.slots.size()):
 		# Check if the raid was cancelled (busted, etc) 
 		if not is_searching:
 			break
 		
-		var slot = inventory.slot_datas[i]
+		var slot = inventory.slots[i]
 		
 		# Calculate time
 		var search_duration = 1.0
@@ -338,7 +338,7 @@ func player_busted(item: ItemData, qty: int, index: int):
 	
 	# Confiscation
 	if current_search_inventory:
-		current_search_inventory.slot_datas[index] = null
+		current_search_inventory.slots[index] = null
 		EventBus.inventory_item_updated.emit(current_search_inventory, index)
 	
 	print("SearchManager: PLAYER BUSTED with %s, entering interrogation" % item.name)
@@ -354,7 +354,7 @@ func player_busted_external(inventory: InventoryData, slot: SlotData, index: int
 	is_searching = false
 	search_finished.emit(true, slot.item_data, slot.quantity)
 	# Confiscation
-	inventory.slot_datas[index] = null
+	inventory.slots[index] = null
 	EventBus.inventory_item_updated.emit(inventory, index)
 
 func interrogation_started(item: ItemData):

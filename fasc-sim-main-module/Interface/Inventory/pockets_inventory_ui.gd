@@ -23,7 +23,7 @@ func _set_inventory(inv_data: InventoryData):
 		#child.queue_free()
 	#
 	#var slot_index: int = 1
-	#for slot in inv_data.slot_datas:
+	#for slot in inv_data.slots:
 		#var slot_ui = INVENTORY_SLOT.instantiate()
 		#slot_container.add_child(slot_ui)
 		#slot_ui.set_slot_data(slot)

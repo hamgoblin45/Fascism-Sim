@@ -84,10 +84,10 @@ func _handle_open_ui(open: bool):
 
 func _on_hotbar_select(index: int):
 	print("Selecting hotbar slot ", str(index))
-	if index < 0 or index >= pockets_inventory_data.slot_datas.size():
+	if index < 0 or index >= pockets_inventory_data.slots.size():
 		return
 	
-	var new_slot = pockets_inventory_data.slot_datas[index]
+	var new_slot = pockets_inventory_data.slots[index]
 	
 	if GameState.active_hotbar_index == index or new_slot == null or not new_slot.item_data:
 		print("Unequipping")
@@ -113,7 +113,7 @@ func _unequip():
 	print("UNEQUIPPED EVERYTHING")
 
 func _scroll_hotbar(dir: int):
-	var max_slots = pockets_inventory_data.slot_datas.size()
+	var max_slots = pockets_inventory_data.slots.size()
 	if max_slots == 0: return
 	if GameState.active_hotbar_index == -1:
 		if dir > 0: GameState.active_hotbar_index = 0
@@ -125,7 +125,7 @@ func _scroll_hotbar(dir: int):
 	elif GameState.active_hotbar_index >= max_slots: GameState.active_hotbar_index = 0
 	
 	
-	var new_slot = pockets_inventory_data.slot_datas[GameState.active_hotbar_index]
+	var new_slot = pockets_inventory_data.slots[GameState.active_hotbar_index]
 	if new_slot and new_slot.item_data:
 		_equip(new_slot, GameState.active_hotbar_index)
 	else:
@@ -194,7 +194,7 @@ func _on_inventory_interact(inv: InventoryData, slot_ui: PanelContainer, slot_da
 					new_slot.item_data = grabbed_slot_data.item_data
 					new_slot.quantity = 1
 					
-					inv.slot_datas[index] = new_slot # Update resource
+					inv.slots[index] = new_slot # Update resource
 					slot_ui.set_slot_data(new_slot) # Update UI
 					grabbed_slot_data.quantity -= 1
 				
@@ -250,8 +250,8 @@ func _add_item_to_inventory(inv: InventoryData, item: ItemData, qty: int) -> int
 	print("InventoryManager: _add_item_to_inventory: attempting to add %s %s to inv %s" % [str(qty), item.name, inv])
 		## Attempt to merge existing slots if stackable
 	if item.stackable:
-		for i in range(inv.slot_datas.size()):
-			var slot = inv.slot_datas[i]
+		for i in range(inv.slots.size()):
+			var slot = inv.slots[i]
 			if slot and slot.item_data and slot.item_data.id == item.id:
 				var space = item.max_stack_size - slot.quantity
 				if space > 0:
@@ -265,12 +265,12 @@ func _add_item_to_inventory(inv: InventoryData, item: ItemData, qty: int) -> int
 				return 0
 		## --- Attempt to fill empty slots
 	if remaining > 0:
-		for i in range(inv.slot_datas.size()):
-			if inv.slot_datas[i] == null:
+		for i in range(inv.slots.size()):
+			if inv.slots[i] == null:
 				var new_slot = SlotData.new()
 				new_slot.item_data = item
 				new_slot.quantity = min(remaining, item.max_stack_size)
-				inv.slot_datas[i] = new_slot
+				inv.slots[i] = new_slot
 				remaining -= new_slot.quantity
 				EventBus.inventory_item_updated.emit(inv, i) # Notify UI
 			if remaining <= 0: return 0
@@ -296,14 +296,14 @@ func _remove_item_from_inventory(item_data: ItemData, qty_to_remove: int, prefer
 	
 	# If we still need to take more, look for other matching slots
 	if remaining > 0:
-		for slot in pockets_inventory_data.slot_datas:
+		for slot in pockets_inventory_data.slots:
 			if slot and slot.item_data == item_data:
 				print("InventoryManager: _remove_item_from_inventory: non-specific match found, attempting to take from it...")
 				remaining = _take_from_slot(slot, remaining)
 				if remaining <= 0: break
 			
 	if remaining > 0 and external_inventory_data:
-		for slot in external_inventory_data.slot_datas:
+		for slot in external_inventory_data.slots:
 			if slot and slot.item_data == item_data:
 				print("InventoryManager: _remove_item_from_inventory: non-specific match found, attempting to take from it...")
 				remaining = _take_from_slot(slot, remaining)
@@ -332,7 +332,7 @@ func _take_from_slot(slot: SlotData, amount_needed: int) -> int:
 			_nullify_slot_in_data(slot)
 	else:
 		# Otherwise, update the slot
-		var idx = target_inv.slot_datas.find(slot)
+		var idx = target_inv.slots.find(slot)
 		EventBus.inventory_item_updated.emit(target_inv, idx)
 	EventBus.select_item.emit(null) # clear context menu out
 	print("InventoryManager: _take_from_slot: took %s from %s, still need to take %s" % [str(amount_needed), slot, str(still_needed)])
@@ -341,9 +341,9 @@ func _take_from_slot(slot: SlotData, amount_needed: int) -> int:
 func _nullify_slot_in_data(slot: SlotData):
 	var target_inv = _get_inv_of_slot(slot)
 	if target_inv:
-		var idx = target_inv.slot_datas.find(slot)
+		var idx = target_inv.slots.find(slot)
 		slot.quantity = 0
-		target_inv.slot_datas[idx] = null
+		target_inv.slots[idx] = null
 	
 		EventBus.inventory_item_updated.emit(target_inv, idx)
 
@@ -378,13 +378,13 @@ func _handle_drop_or_merge(inv: InventoryData, slot_ui: PanelContainer, target_s
 	
 		## SWAP / DROP LOGIC
 	if target_slot_data:
-		var source_idx = source_inventory.slot_datas.find(null) # finds the empty slot we left behind
+		var source_idx = source_inventory.slots.find(null) # finds the empty slot we left behind
 		if source_idx != -1:
-			source_inventory.slot_datas[source_idx] = target_slot_data
+			source_inventory.slots[source_idx] = target_slot_data
 			# Tell the OG inventory that its baby is gone
 			EventBus.inventory_item_updated.emit(source_inventory, source_idx)
 		
-	inv.slot_datas[target_index] = grabbed_slot_data
+	inv.slots[target_index] = grabbed_slot_data
 	EventBus.inventory_item_updated.emit(inv, target_index)
 	
 	grabbed_slot_data = null
@@ -397,9 +397,9 @@ func _on_grab_timer_timeout() -> void:
 		grabbed_slot_data = pending_grab_slot_data
 		source_inventory = pending_grab_slot_ui.parent_inventory
 		
-		var idx = source_inventory.slot_datas.find(grabbed_slot_data)
+		var idx = source_inventory.slots.find(grabbed_slot_data)
 		if idx != -1:
-			source_inventory.slot_datas[idx] = null
+			source_inventory.slots[idx] = null
 		
 		
 		pending_grab_slot_ui.clear_slot_data(grabbed_slot_data) # Clears the original slot
@@ -429,8 +429,8 @@ func _discard_grabbed_item():
 ### ---- Transfering items
 
 func _get_inv_of_slot(slot: SlotData) -> InventoryData:
-	if pockets_inventory_data.slot_datas.has(slot): return pockets_inventory_data
-	if external_inventory_data and external_inventory_data.slot_datas.has(slot): return external_inventory_data
+	if pockets_inventory_data.slots.has(slot): return pockets_inventory_data
+	if external_inventory_data and external_inventory_data.slots.has(slot): return external_inventory_data
 	return null
 
 func _handle_quick_move(source_inv: InventoryData, slot_data: SlotData):
@@ -452,7 +452,7 @@ func _handle_quick_move(source_inv: InventoryData, slot_data: SlotData):
 	else:
 		slot_data.quantity = remaining
 	
-	var idx = source_inv.slot_datas.find(slot_data)
+	var idx = source_inv.slots.find(slot_data)
 	EventBus.inventory_item_updated.emit(source_inv, idx)
 	
 	EventBus.select_item.emit(null)

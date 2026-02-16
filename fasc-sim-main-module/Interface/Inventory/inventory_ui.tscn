@@ -14,6 +14,7 @@
 
 [sub_resource type="Resource" id="Resource_xywkj"]
 script = ExtResource("3_gur8t")
+slots = Array[ExtResource("4_c0f0r")]([null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="GDScript" id="GDScript_8c4yq"]

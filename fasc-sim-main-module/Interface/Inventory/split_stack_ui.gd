@@ -44,7 +44,7 @@ func _on_split_button_pressed() -> void:
 	
 	slot_data.quantity -= int(amount)
 	
-	var idx = current_inventory.slot_datas.find(slot_data)
+	var idx = current_inventory.slots.find(slot_data)
 	
 	EventBus.inventory_item_updated.emit(current_inventory, idx)
 	

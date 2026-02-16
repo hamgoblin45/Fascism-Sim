@@ -50,15 +50,15 @@ func _on_external_set(inventory_data: InventoryData):
 
 func _populate_grid(container: GridContainer, inventory_data: InventoryData):
 	_clear_grid(container)
-	for i in range(inventory_data.slot_datas.size()):
+	for i in range(inventory_data.slots.size()):
 		var slot_ui = SLOT_SCENE.instantiate()
 		container.add_child(slot_ui)
 		
 		slot_ui.parent_inventory = inventory_data
 		slot_ui.slot_index = i
 		
-		if inventory_data.slot_datas[i]:
-			slot_ui.set_slot_data(inventory_data.slot_datas[i])
+		if inventory_data.slots[i]:
+			slot_ui.set_slot_data(inventory_data.slots[i])
 
 func _clear_grid(container: GridContainer):
 	for child in container.get_children():
@@ -79,22 +79,22 @@ func _on_item_updated(inventory_data: InventoryData, index: int):
 	# Match the indexes and set the correllating slot
 	if container and index < container.get_child_count():
 		var slot_ui = container.get_child(index)
-		slot_ui.set_slot_data(inventory_data.slot_datas[index])
+		slot_ui.set_slot_data(inventory_data.slots[index])
 
 ## --- CONTEXT UIs ----
 func _on_context_ui_set(slot_data: SlotData):
 	var context_ui: PanelContainer = null
-	for slot in GameState.pockets_inventory.slot_datas:
+	for slot in GameState.pockets_inventory.slots:
 		if slot == slot_data:
 			context_ui = pocket_item_context_ui
 		
 	if external_ui.visible:
-		for slot in external_ui.inventory_data.slot_datas:
+		for slot in external_ui.inventory_data.slots:
 			if slot == slot_data:
 				context_ui = external_item_context_ui
 	
 	elif shop_ui.visible:
-		for slot in shop_ui.shop_inventory_data.slot_datas:
+		for slot in shop_ui.shop_inventory_data.slots:
 			if slot == slot_data:
 				context_ui = shop_item_context_ui
 	

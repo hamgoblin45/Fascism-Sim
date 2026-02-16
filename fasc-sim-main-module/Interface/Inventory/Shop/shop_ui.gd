@@ -76,9 +76,9 @@ func _handle_shop_ui(legal_shop: bool):
 func _set_legal_inventory():
 	# Checks how much room in the shop inventory isn't already taken by persistant stock
 	# Also removes items in the persistant stock from the pool to avoid dupes
-	for i in legal_shop_inventory.slot_datas:
-		var slot_index = legal_shop_inventory.slot_datas.find(i)
-		var slot_data = legal_shop_inventory.slot_datas[slot_index]
+	for i in legal_shop_inventory.slots:
+		var slot_index = legal_shop_inventory.slots.find(i)
+		var slot_data = legal_shop_inventory.slots[slot_index]
 		var random_slot = _select_random_item(slot_data, legal_inventory_pool)
 		# If a slot was chosen, create a UI for it
 		if random_slot != null:
@@ -86,15 +86,15 @@ func _set_legal_inventory():
 			var new_slot = SlotData.new()
 			new_slot.item_data = random_slot.item_data
 			new_slot.quantity = random_slot.quantity
-			legal_shop_inventory.slot_datas[slot_index] = new_slot
+			legal_shop_inventory.slots[slot_index] = new_slot
 	
 	_populate_shop(legal_shop_inventory)
 
 func _set_illegal_inventory():
 	# Checks how much room in the shop inventory isn't already taken by persistant stock
-	for i in illegal_shop_inventory.slot_datas:
-		var slot_index = illegal_shop_inventory.slot_datas.find(i)
-		var slot_data = illegal_shop_inventory.slot_datas[slot_index]
+	for i in illegal_shop_inventory.slots:
+		var slot_index = illegal_shop_inventory.slots.find(i)
+		var slot_data = illegal_shop_inventory.slots[slot_index]
 		var random_slot = _select_random_item(slot_data, illegal_inventory_pool)
 		# If a slot was chosen, create a UI for it
 		if random_slot != null:
@@ -102,20 +102,20 @@ func _set_illegal_inventory():
 			var new_slot = SlotData.new()
 			new_slot.item_data = random_slot.item_data
 			new_slot.quantity = random_slot.quantity
-			illegal_shop_inventory.slot_datas[slot_index] = new_slot
+			illegal_shop_inventory.slots[slot_index] = new_slot
 	_populate_shop(illegal_shop_inventory)
 
 func _select_random_item(slot_data: SlotData, pool: InventoryData) -> SlotData:
 	# Return if missing slot_data or if there are no more items in the modified_pool
 	if slot_data:
 		return null
-	if pool.slot_datas.size() <= 0:
+	if pool.slots.size() <= 0:
 		return null
 	# Pick a random slot
-	var random_slot = pool.slot_datas.pick_random()
+	var random_slot = pool.slots.pick_random()
 	 # Removes the slot so it won't be selected again
 	if not duplicate_stock_allowed:
-		pool.slot_datas.erase(random_slot)
+		pool.slots.erase(random_slot)
 	
 	if random_slot:
 		return random_slot
@@ -129,8 +129,8 @@ func _populate_shop(inv: InventoryData):
 		child.queue_free()
 	
 	shop_inventory_data = inv
-# Create a slot for each space in slot_datas, even if no slot_data
-	for slot_data in inv.slot_datas:
+# Create a slot for each space in slots, even if no slot_data
+	for slot_data in inv.slots:
 		var new_slot_ui = SHOP_SLOT_UI.instantiate()
 		slot_container.add_child(new_slot_ui)
 		new_slot_ui.parent_inventory = inv
@@ -147,7 +147,7 @@ func _clear_selected_item():
 		slot_ui.selected_panel.hide()
 
 func _on_item_select(slot_data: SlotData):
-	if not shop_inventory_data or not shop_inventory_data.slot_datas.has(slot_data):
+	if not shop_inventory_data or not shop_inventory_data.slots.has(slot_data):
 		print("Shop inv doesn't have slot")
 		_clear_selected_item()
 		return
@@ -221,8 +221,8 @@ func _on_buy_button_pressed() -> void:
 		_on_item_select(selected_slot)
 		
 		if selected_slot.quantity <= 0:
-			var idx = shop_inventory_data.slot_datas.find(selected_slot)
-			shop_inventory_data.slot_datas[idx] = null
+			var idx = shop_inventory_data.slots.find(selected_slot)
+			shop_inventory_data.slots[idx] = null
 			_clear_selected_item()
 		
 		_populate_shop(shop_inventory_data)

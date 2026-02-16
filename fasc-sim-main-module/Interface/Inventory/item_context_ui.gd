@@ -24,7 +24,7 @@ func set_context_menu(slot: SlotData):
 		return
 	
 	# Checks if item is in correlating inventory
-	if not inventory_data or not inventory_data.slot_datas.has(slot):
+	if not inventory_data or not inventory_data.slots.has(slot):
 		hide()
 		return
 	
