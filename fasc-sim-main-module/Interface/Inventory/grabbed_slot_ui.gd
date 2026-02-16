@@ -5,14 +5,14 @@ extends PanelContainer
 
 
 func _ready() -> void:
-	EventBus.update_grabbed_slot.connect(_update_grabbed_slot)
+	EventBus.update_grabbed_slot.connect(set_slot_data)
 
 func _physics_process(_delta: float) -> void: # Not working, not sure why
 	if visible:
 		global_position = get_global_mouse_position() + Vector2(5, 5)
 		
 
-func _update_grabbed_slot(slot: SlotData):
+func set_slot_data(slot: SlotData):
 	print("GrabbedSlotUI: Setting grabbed slot to %s" % slot)
 	_clear_grabbed_slot()
 	if slot == null:

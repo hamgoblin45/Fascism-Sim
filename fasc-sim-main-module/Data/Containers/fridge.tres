@@ -4,18 +4,18 @@
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="2_sg7im"]
 [ext_resource type="Resource" uid="uid://c13wc1u5p42sr" path="res://Data/Items/Food/egg.tres" id="3_64ct4"]
 [ext_resource type="Resource" uid="uid://ijbovam7ggbb" path="res://Data/Items/Food/steak.tres" id="4_h4ntu"]
-[ext_resource type="Resource" uid="uid://crvqwhmlb552o" path="res://Data/Items/Equippables/rifle.tres" id="5_h4ntu"]
+[ext_resource type="Resource" uid="uid://bkihuf3f23auk" path="res://Data/Items/Food/coffee.tres" id="5_h4ntu"]
 
 [sub_resource type="Resource" id="Resource_3uwrh"]
 script = ExtResource("2_sg7im")
 item_data = ExtResource("3_64ct4")
-quantity = 6
+quantity = 12
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
 [sub_resource type="Resource" id="Resource_v6dri"]
 script = ExtResource("2_sg7im")
 item_data = ExtResource("4_h4ntu")
-quantity = 2
+quantity = 3
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
 [sub_resource type="Resource" id="Resource_d54hi"]
@@ -25,5 +25,5 @@ metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
 [resource]
 script = ExtResource("1_s5bwl")
-slot_datas = Array[ExtResource("2_sg7im")]([SubResource("Resource_3uwrh"), SubResource("Resource_v6dri"), SubResource("Resource_d54hi"), null, null, null, null, null])
+slots = Array[ExtResource("2_sg7im")]([null, SubResource("Resource_3uwrh"), SubResource("Resource_v6dri"), SubResource("Resource_d54hi"), null, null, null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"

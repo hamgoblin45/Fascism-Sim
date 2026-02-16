@@ -21,8 +21,10 @@ func _set_pickup():
 	# Also set id and interact text/images in the interactable node
 	original_parent = get_parent()
 	interact_area.interacted.connect(_interact)
+	print("Grabbable: Pickup %s set, qty: %s" % [slot_data.item_data.name, slot_data.quantity])
 
 func _interact(type: String, engaged: bool):
+	print("Grabbable: Pickup %s interacted, qty: %s" % [slot_data.item_data.name, slot_data.quantity])
 	match type:
 		"click":
 			if engaged:
@@ -43,4 +45,5 @@ func _interact(type: String, engaged: bool):
 				var qty = slot_data.quantity
 				
 				EventBus.adding_item.emit(item_data, qty)
+				print("Grabbable: Picking up %s %s" % [item_data.name, qty])
 				queue_free()

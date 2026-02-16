@@ -30,7 +30,7 @@ func _ready() -> void:
 	EventBus.force_ui_open.connect(_handle_open_ui)
 	
 	# 2. Setup Initial State
-	grab_timer.timeout.connect(_on_grab_timer_timeout)
+	#grab_timer.timeout.connect(_on_grab_timer_timeout)
 	call_deferred("_set_player_inventory")
 
 func _set_player_inventory() -> void:
@@ -105,6 +105,7 @@ func _equip(slot: SlotData, index: int) -> void:
 	EventBus.hotbar_index_changed.emit(index)
 	if slot and slot.item_data:
 		EventBus.equipping_item.emit(slot.item_data)
+		GameState.equipped_item = slot.item_data
 		print("EQUIPPED ", slot.item_data.name)
 
 func _unequip() -> void:
@@ -112,6 +113,7 @@ func _unequip() -> void:
 	equipped_slot_data = null
 	EventBus.hotbar_index_changed.emit(-1)
 	EventBus.equipping_item.emit(null)
+	GameState.equipped_item = null
 	print("UNEQUIPPED EVERYTHING")
 
 func _scroll_hotbar(dir: int) -> void:
@@ -146,14 +148,13 @@ func _use_equipped() -> void:
 
 func _drop_equipped() -> void:
 	if equipped_slot_data and equipped_slot_data.item_data:
-		var temp_data = equipped_slot_data
+		var dropped_data = SlotData.new()
+		dropped_data.item_data = equipped_slot_data.item_data
+		dropped_data.quantity = 1
 		# Remove 1 from inventory
-		_remove_item_from_inventory(temp_data.item_data, 1, temp_data)
+		_remove_item_from_inventory(equipped_slot_data.item_data, 1, equipped_slot_data)
 		# Spawn in world
-		EventBus.item_discarded.emit(temp_data, Vector2.ZERO)
-		
-		if temp_data.quantity <= 0:
-			_unequip()
+		EventBus.item_discarded.emit(dropped_data, Vector2.ZERO)
 
 # --- INVENTORY INTERACTION (The Core Logic) --- #
 
@@ -296,6 +297,7 @@ func _on_grab_timer_timeout() -> void:
 
 func _add_item_to_inventory(inv: InventoryData, item: ItemData, qty: int) -> int:
 	var remaining = qty
+	print("InvManager: Adding %s %s to inv %s" % [qty, item.name, inv])
 	
 	# 1. Fill existing stacks
 	if item.stackable:

@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/Inventory/inventory_ui.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dqoxbykl7fg8w" path="res://Interface/hud.tscn" id="2_074og"]
 [ext_resource type="Script" uid="uid://crjy7n1e3nfkj" path="res://Scripts/Managers/RaidSequence.gd" id="2_d13ii"]
-[ext_resource type="Resource" uid="uid://ib385dgptwrd" path="res://Data/Items/Food/wine.tres" id="4_5vw27"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="6_272bh"]
 [ext_resource type="Script" uid="uid://mcdm8xr3sdvh" path="res://Items/Interactables/container.gd" id="6_ycdy4"]
@@ -17,17 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="9_vivmo"]
 [ext_resource type="PackedScene" uid="uid://bkqltx6hl064x" path="res://Items/Interactables/door.tscn" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://ble4a155lchnx" path="res://Map/basic_wood_nightstand.glb" id="11_w48qg"]
-[ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/item_hammer.tres" id="12_yaehf"]
-[ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="13_074og"]
-[ext_resource type="Resource" uid="uid://crvqwhmlb552o" path="res://Data/Items/Equippables/rifle.tres" id="16_qsp4k"]
-[ext_resource type="Resource" uid="uid://bbcvmy2ujko5d" path="res://Data/Items/Equippables/pistol.tres" id="19_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="19_cegan"]
 [ext_resource type="PackedScene" uid="uid://dveqicaom7xy5" path="res://Map/filing_cabinet.glb" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cokdko33hqlj1" path="res://Map/hiding_spot.tscn" id="21_getpj"]
-[ext_resource type="Resource" uid="uid://xh53w2i0oo5t" path="res://Data/Items/Food/cookie.tres" id="22_xuqvo"]
-[ext_resource type="Resource" uid="uid://c1cqxlfgintig" path="res://Interface/TestStuff/item_boots.tres" id="23_qsp4k"]
-[ext_resource type="Resource" uid="uid://c762aadnr6q1f" path="res://Data/Items/Misc/rival_pin.tres" id="24_kq58d"]
-[ext_resource type="Resource" uid="uid://c13wc1u5p42sr" path="res://Data/Items/Food/egg.tres" id="25_seu75"]
 [ext_resource type="Script" uid="uid://dpcu4t1mojv2t" path="res://NPCs/OfficerNPC.gd" id="28_kq58d"]
 [ext_resource type="Script" uid="uid://cwpn1uxl5smj" path="res://NPCs/GuestNPC.gd" id="29_seu75"]
 
@@ -60,43 +51,15 @@ size = Vector3(2.241211, 6.5234375, 3.0615234)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2cqfq"]
 size = Vector3(2.0549316, 6.5234375, 3.0615234)
 
-[sub_resource type="Resource" id="Resource_cegan"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("12_yaehf")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_kq58d"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("16_qsp4k")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_82xsv"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("13_074og")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
 [sub_resource type="Resource" id="Resource_vivmo"]
 script = ExtResource("5_7mycd")
-slot_datas = Array[ExtResource("6_272bh")]([SubResource("Resource_cegan"), SubResource("Resource_kq58d"), null, SubResource("Resource_82xsv"), null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yaehf"]
 size = Vector3(2.3486938, 3.250122, 3.790039)
 
-[sub_resource type="Resource" id="Resource_lswn8"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("19_1u8w0")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_a6jrf"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("4_5vw27")
-quantity = 2
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
 [sub_resource type="Resource" id="Resource_xuqvo"]
 script = ExtResource("5_7mycd")
-slot_datas = Array[ExtResource("6_272bh")]([null, SubResource("Resource_lswn8"), SubResource("Resource_a6jrf"), null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsp4k"]
@@ -114,36 +77,8 @@ size = Vector3(1.8121338, 4.557617, 2.015625)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b1gkk"]
 
-[sub_resource type="Resource" id="Resource_htxhm"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("22_xuqvo")
-quantity = 3
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_jq2sk"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("23_qsp4k")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_4k2k6"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("13_074og")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_0rl1p"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("24_kq58d")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_ok6jj"]
-script = ExtResource("6_272bh")
-item_data = ExtResource("25_seu75")
-quantity = 30
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
 [sub_resource type="Resource" id="Resource_facbu"]
 script = ExtResource("5_7mycd")
-slot_datas = Array[ExtResource("6_272bh")]([SubResource("Resource_htxhm"), SubResource("Resource_jq2sk"), SubResource("Resource_4k2k6"), SubResource("Resource_0rl1p"), SubResource("Resource_ok6jj")])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u8w0"]
@@ -217,7 +152,7 @@ size = Vector3(80, 0.1, 80)
 
 [node name="player_house" parent="NavigationRegion3D" unique_id=1939223923 instance=ExtResource("9_kek77")]
 
-[node name="StaticBody3D" parent="NavigationRegion3D/player_house/Floor" parent_id_path=PackedInt32Array(1939223923, 1318413198) index="0" unique_id=1955355103]
+[node name="StaticBody3D" parent="NavigationRegion3D/player_house/Floor" parent_id_path=PackedInt32Array(1939223923, 806581561) index="0" unique_id=93653087]
 collision_layer = 0
 collision_mask = 0
 
@@ -239,7 +174,7 @@ transform = Transform3D(0.0027925037, 0, 1.299998, 0, 1.6, 0, -1.5999976, 0, 0.0
 [node name="FrontDoor" parent="." unique_id=983619317 instance=ExtResource("10_4c57u")]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -18.716526, -0.13075042, -3.6849256)
 
-[node name="Interactable" parent="FrontDoor/door/Cube" parent_id_path=PackedInt32Array(983619317, 792928833, 588133269) index="2" unique_id=503422902]
+[node name="Interactable" parent="FrontDoor/door/Cube" index="2" unique_id=503422902]
 id = "front_door"
 
 [node name="PlayerCharacter" parent="." unique_id=395488164 instance=ExtResource("1_ig7tw")]
