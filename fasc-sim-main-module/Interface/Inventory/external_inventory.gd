@@ -23,10 +23,10 @@ func _set_inventory(inv_data: InventoryData):
 		hide()
 		return
 	show()
-	for slot in inv_data.slot_datas:
-		var slot_ui = INVENTORY_SLOT.instantiate()
-		slot_container.add_child(slot_ui)
-		slot_ui.parent_inventory = inv_data
-		slot_ui.set_slot_data(slot)
+	#for slot in inv_data.slot_datas:
+		#var slot_ui = INVENTORY_SLOT.instantiate()
+		#slot_container.add_child(slot_ui)
+		#slot_ui.parent_inventory = inv_data
+		#slot_ui.set_slot_data(slot)
 	item_context_ui.inventory_data = inv_data
 	print("ExternalInventoryUI: Set inventory w/ resource: %s" % inventory_data)

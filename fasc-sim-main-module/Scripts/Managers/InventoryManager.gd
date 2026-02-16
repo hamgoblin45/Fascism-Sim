@@ -9,17 +9,8 @@ var grabbed_slot_data: InventorySlotData
 var source_inventory: InventoryData
 var pending_grab_slot_data: InventorySlotData
 var pending_grab_slot_ui: PanelContainer
-#var grab_slot_data: InventorySlotData
 
 var equipped_slot_data: InventorySlotData = null
-
-
-@onready var inv_ui: Control = $".."
-@onready var pockets_inventory_ui: PanelContainer = %PocketsInventoryUI
-var pocket_slot_container: GridContainer
-@onready var external_inventory: PanelContainer = %ExternalInventory
-@onready var shop_ui: PanelContainer = %ShopUI
-@onready var grabbed_slot_ui: PanelContainer = %GrabbedSlotUI
 @onready var grab_timer: Timer = %GrabTimer
 
 
@@ -41,7 +32,6 @@ func _ready() -> void:
 func _set_player_inventory():
 	# Sets player inventory
 	print("InventoryManager: Setting pockets inventory")
-	pocket_slot_container = pockets_inventory_ui.slot_container
 	GameState.pockets_inventory = pockets_inventory_data
 	EventBus.pockets_inventory_set.emit(pockets_inventory_data)
 	# If bags added later, emit setup here
@@ -235,10 +225,6 @@ func _physics_process(_delta: float) -> void:
 			pending_grab_slot_data = null
 			pending_grab_slot_ui = null
 			EventBus.update_grabbed_slot.emit(null)
-	
-		if !grabbed_slot_ui.visible:
-			return
-		grabbed_slot_ui.position = inv_ui.get_global_mouse_position()
 
 func _set_external_inventory(inv_data: InventoryData):
 	print("InventoryManager: setting external inv")
@@ -433,7 +419,7 @@ func _discard_grabbed_item():
 	print("Discarding %s into the world" % grabbed_slot_data.item_data.name)
 	
 	# This signal will be used in the 3D game to spawn a 3D pickup of the discarded item
-	EventBus.item_discarded.emit(grabbed_slot_data, inv_ui.get_global_mouse_position())
+	EventBus.item_discarded.emit(grabbed_slot_data, Vector2.ZERO)
 	
 	# Clean up manager state
 	grabbed_slot_data = null

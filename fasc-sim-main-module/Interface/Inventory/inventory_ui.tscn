@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhpfeub82th3n"]
 
-[ext_resource type="Script" uid="uid://1exja7h0qfdn" path="res://Interface/Inventory/discard_zone.gd" id="1_xywkj"]
+[ext_resource type="Script" uid="uid://1exja7h0qfdn" path="res://Interface/Inventory/InventoryUI.gd" id="1_xywkj"]
 [ext_resource type="Script" uid="uid://jremvvcffik8" path="res://Scripts/Managers/InventoryManager.gd" id="2_3xrn1"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="3_gur8t"]
 [ext_resource type="PackedScene" uid="uid://bmqlxplie777" path="res://Interface/Inventory/pockets_inventory_ui.tscn" id="4_3y5k6"]
@@ -82,7 +82,7 @@ offset_top = -146.0
 offset_right = 455.0
 offset_bottom = -8.0
 
-[node name="ExternalInventory" parent="." unique_id=467885479 instance=ExtResource("5_gur8t")]
+[node name="ExternalInventoryUI" parent="." unique_id=467885479 instance=ExtResource("5_gur8t")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -194,3 +194,7 @@ mouse_filter = 2
 
 [connection signal="timeout" from="InventoryManager/GrabTimer" to="InventoryManager" method="_on_grab_timer_timeout"]
 [connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]
+
+[editable path="PocketsInventoryUI"]
+[editable path="ExternalInventoryUI"]
+[editable path="ShopUI"]

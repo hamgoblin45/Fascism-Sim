@@ -17,8 +17,6 @@ var slot_data
 var mouse_on_ui: bool = false
 var trash_confirmed: bool = false
 
-func _ready() -> void:
-	EventBus.select_item.connect(set_context_menu)
 
 func set_context_menu(slot: InventorySlotData):
 	if not slot or not slot.item_data or not inventory_data:

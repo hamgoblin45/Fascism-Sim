@@ -12,7 +12,7 @@ var parent_inventory: InventoryData
 @onready var search_overlay: ColorRect = %SearchOverlay
 
 @onready var hotbar_number: Label = %HotbarNumber
-var hotbar_index: int = 0
+var slot_index: int = 0
 
 var activated: bool = true
 var tween: Tween
