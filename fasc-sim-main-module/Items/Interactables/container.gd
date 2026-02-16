@@ -1,43 +1,58 @@
 extends Node3D
 
 @export var container_inventory: InventoryData
-@onready var interactable: Interactable = $Interactable
 @export var concealment_score: float = 0.5
+@onready var interactable: Interactable = $Interactable
 
-var open: bool = false
+var is_open: bool = false
 
 func _ready():
-	interactable.interacted.connect(_interact)
+	interactable.interacted.connect(_on_interacted)
 
-func _interact(type: String, engaged: bool):
-	match [type, engaged]:
-		["interact", true]:
-			if !open:
-				EventBus.setting_external_inventory.emit(container_inventory)
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-				GameState.ui_open = true
-				open = true
-				print("Player is trying to open a container")
-				return
-			else:
-				_close()
-				return
+func _on_interacted(type: String, engaged: bool):
+	# We only care about the initial press of the Interact key
+	if type == "interact" and engaged:
+		_toggle_container()
+
+func _toggle_container():
+	if is_open:
+		_close()
+	else:
+		_open()
+
+func _open():
+	is_open = true
+	print("Opening container")
+	
+	# Switch Input Mode
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	GameState.ui_open = true
+	
+	# Send data to Inventory Manager/UI
+	EventBus.setting_external_inventory.emit(container_inventory)
+	EventBus.force_ui_open.emit(true) # Ensures Manager knows UI is open
 
 func _close():
-	EventBus.setting_external_inventory.emit(null)
+	is_open = false
+	
+	# Reset Input Mode
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameState.ui_open = false
-	open = false
+	
+	# Clear external inventory
+	EventBus.setting_external_inventory.emit(null)
+	EventBus.force_ui_open.emit(false)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not open:
-		return
-	if event.is_action_pressed('interact') or event.is_action_pressed("open_interface") or event.is_action_pressed("pause"):
+	if not is_open: return
+	
+	# Close if interact, inventory toggle, or escape is pressed
+	if event.is_action_pressed("interact") or event.is_action_pressed("open_interface") or event.is_action_pressed("pause"):
 		_close()
+		get_viewport().set_input_as_handled()
 
 func _physics_process(_delta: float) -> void:
-	if not open:
-		return
-	if global_position.distance_to(GameState.player.global_position) > 8.0:
-		_close()
-	# Distance check, if too far, close inv
+	if is_open:
+		var dist = global_position.distance_to(GameState.player.global_position)
+		if dist > 3.0: # 3.0 meters is usually a good reach distance
+			_close()
