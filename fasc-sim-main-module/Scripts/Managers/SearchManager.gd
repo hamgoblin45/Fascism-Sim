@@ -1,7 +1,7 @@
 extends Node
 
 signal search_step_started(inv: InventoryData, index: int, duration: float)
-signal search_finished(caught: bool, item: InventoryItemData, qty: int)
+signal search_finished(caught: bool, item: ItemData, qty: int)
 signal house_raid_status(message: String) # For the sake of UI. "The guards are checking the pantry..."
 signal raid_finished
 
@@ -300,7 +300,7 @@ func _guest_captured(npc: NPC):
 	DialogueManager.start_dialogue("raid_guest_discovered", "Major")
 	# Set up a signal that starts the game-over arrest sequence upon exiting this dialouge
 
-func _discovered_contraband(item: InventoryItemData) -> bool:
+func _discovered_contraband(item: ItemData) -> bool:
 	
 	if item.contraband_level <= GameState.legal_threshold:
 		return false
@@ -319,14 +319,14 @@ func clue_discovered(clue: GuestClue):
 	thoroughness = min(thoroughness + 0.15, 1.0)
 	search_tension += 10.0
 
-func _finish_search(caught: bool, item: InventoryItemData, qty: int):
+func _finish_search(caught: bool, item: ItemData, qty: int):
 	print("SearchManager: search finished. Caught: ", caught)
 	is_searching = false
 	current_search_inventory = null
 	current_search_index = -1
 	search_finished.emit(caught, item, qty)
 
-func player_busted(item: InventoryItemData, qty: int, index: int):
+func player_busted(item: ItemData, qty: int, index: int):
 	interrogation_started(item)
 	is_searching = false
 	
@@ -344,7 +344,7 @@ func player_busted(item: InventoryItemData, qty: int, index: int):
 	print("SearchManager: PLAYER BUSTED with %s, entering interrogation" % item.name)
 	search_finished.emit(true, item, qty)
 
-func player_busted_external(inventory: InventoryData, slot: InventorySlotData, index: int):
+func player_busted_external(inventory: InventoryData, slot: SlotData, index: int):
 	interrogation_started(slot.item_data)
 	
 	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # Maybe less suspicion because item isn't on the player's person?
@@ -357,7 +357,7 @@ func player_busted_external(inventory: InventoryData, slot: InventorySlotData, i
 	inventory.slot_datas[index] = null
 	EventBus.inventory_item_updated.emit(inventory, index)
 
-func interrogation_started(item: InventoryItemData):
+func interrogation_started(item: ItemData):
 	# Look for any relevant unique dialogue, for example if the item is a weapon
 	var dialogue_key = item.interrogation_dialogue_id + "_questioning"
 	#if not DialogueManager.has_dialogue(dialogue_key):
@@ -373,7 +373,7 @@ func interrogation_started(item: InventoryItemData):
 	else:
 		_apply_penalty(item, false) # Fessing up
 
-func _handle_lie_attempt(item: InventoryItemData):
+func _handle_lie_attempt(item: ItemData):
 	# Calculate sucess
 	var chance = (item.concealability * 0.5) / (1.0 + (GameState.regime_suspicion / 100.0))
 	
@@ -386,7 +386,7 @@ func _handle_lie_attempt(item: InventoryItemData):
 		_apply_penalty(item, true) # Increased penalty for lying
 
 
-func _apply_penalty(item: InventoryItemData, was_caught_lying: bool):
+func _apply_penalty(item: ItemData, was_caught_lying: bool):
 	var multiplier: float = 2.0 if was_caught_lying else 1.0
 	
 	match item.contraband_level:

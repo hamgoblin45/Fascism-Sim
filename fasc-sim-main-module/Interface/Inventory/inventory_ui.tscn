@@ -41,6 +41,10 @@ script = ExtResource("3_gur8t")
 slot_datas = Array[ExtResource("4_c0f0r")]([SubResource("Resource_pjc3g"), SubResource("Resource_8c4yq"), SubResource("Resource_sxlab"), null, null, SubResource("Resource_u6hsv")])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
+[sub_resource type="GDScript" id="GDScript_8c4yq"]
+script/source = "extends PanelContainer
+"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xrn1"]
@@ -110,6 +114,9 @@ offset_right = 597.0
 offset_bottom = 457.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="BuybackUI" parent="ShopUI/HBoxContainer" index="2"]
+script = SubResource("GDScript_8c4yq")
 
 [node name="GiveItemUI" type="PanelContainer" parent="." unique_id=628832054]
 visible = false

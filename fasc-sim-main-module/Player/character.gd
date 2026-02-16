@@ -241,7 +241,7 @@ func _handle_holding_object():
 		held_object.quaternion = current_quat.slerp(target_quat, rotation_speed * get_physics_process_delta_time())
 
  ## -- Discarding Inv items
-func _on_discard_item(slot_data: InventorySlotData, _drop_position: Vector2):
+func _on_discard_item(slot_data: SlotData, _drop_position: Vector2):
 	var item_instance = GRABBABLE.instantiate()
 	item_instance.slot_data = slot_data
 	get_parent().add_child(item_instance)
@@ -257,7 +257,7 @@ func _on_discard_item(slot_data: InventorySlotData, _drop_position: Vector2):
 func _handle_equipped_item():
 	pass
 
-func _set_equipped_item(item_data: InventoryItemData):
+func _set_equipped_item(item_data: ItemData):
 	print("Set equipped item called")
 	# Clear out old meshes
 	equipped_item_mesh = null

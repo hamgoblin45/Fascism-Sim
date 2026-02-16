@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var slot_data: InventorySlotData
+@export var slot_data: SlotData
 
 @onready var item_texture: TextureRect = %ItemTexture
 @onready var quantity: Label = %Quantity
@@ -11,7 +11,7 @@ func _ready() -> void:
 	DialogueManager.dialogue_ended.connect(hide)
 
 
-func _give_item(new_slot_data: InventorySlotData):
+func _give_item(new_slot_data: SlotData):
 	slot_data = new_slot_data
 	if !slot_data or !slot_data.item_data:
 		print("Setting slot in InventorySlotUI, has no slot and/or item_data")

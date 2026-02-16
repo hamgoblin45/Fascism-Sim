@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var item_data: InventoryItemData
+@export var item_data: ItemData
 @onready var shapecast: ShapeCast3D = $ShapeCast3D
 
 @export_group("Swing Settings")

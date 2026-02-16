@@ -18,7 +18,7 @@ var mouse_on_ui: bool = false
 var trash_confirmed: bool = false
 
 
-func set_context_menu(slot: InventorySlotData):
+func set_context_menu(slot: SlotData):
 	if not slot or not slot.item_data or not inventory_data:
 		_clear_out_context_ui()
 		return

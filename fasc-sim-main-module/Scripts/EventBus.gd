@@ -18,14 +18,14 @@ signal stat_changed(_stat: String)
 
 signal money_updated(new_total: float)
 ## --- Inventory
-signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: InventorySlotData, type: String) # Goes to managers, which then emit confirmation signals like "select_item"
-signal inventory_item_updated(inv_data: InventorySlotData, index: int) # Emit from Manager to confirm something changed a slot
-signal select_item(slot_data: InventorySlotData) # When clicking an item in an inventory, used to set context ui
-signal removing_item(item: InventoryItemData, qty: int, slot: InventorySlotData) # Requests removing an item from an inventory
-signal adding_item(item_data: InventoryItemData, qty: int) # Requests adding an item to an inventory
+signal inventory_interacted(inv: InventoryData, slot: PanelContainer, slot_data: SlotData, type: String) # Goes to managers, which then emit confirmation signals like "select_item"
+signal inventory_item_updated(inv_data: SlotData, index: int) # Emit from Manager to confirm something changed a slot
+signal select_item(slot_data: SlotData) # When clicking an item in an inventory, used to set context ui
+signal removing_item(item: ItemData, qty: int, slot: SlotData) # Requests removing an item from an inventory
+signal adding_item(item_data: ItemData, qty: int) # Requests adding an item to an inventory
 
-signal update_grabbed_slot(slot: InventorySlotData) # for picking up items between inventory slots. emit null to clear out
-signal item_discarded(slot_data: InventorySlotData, drop_position: Vector2) # should do the same as item drop AFTER spawning the object
+signal update_grabbed_slot(slot: SlotData) # for picking up items between inventory slots. emit null to clear out
+signal item_discarded(slot_data: SlotData, drop_position: Vector2) # should do the same as item drop AFTER spawning the object
 
 signal request_pockets_inventory # Sent by UI when it's ready to get data
 signal setting_pockets_inventory(inv: InventoryData)
@@ -36,23 +36,23 @@ signal setting_external_inventory(inv_data: InventoryData) # Populates container
 signal external_inventory_set(inv_data: InventoryData) # Confirms an external inventory was loaded
 
 ## - Hotbar
-signal using_item(slot_data: InventorySlotData) # Requests use of an item
-signal equipping_item(item: InventoryItemData)
+signal using_item(slot_data: SlotData) # Requests use of an item
+signal equipping_item(item: ItemData)
 signal use_equipped_item
 signal drop_equipped_item
 signal hotbar_index_changed(index: int)
 signal consume_progress(value: float)
 
 ## - Splitting
-signal open_split_stack_ui(slot_data: InventorySlotData)
-signal splitting_item_stack(grab_slot_data: InventorySlotData) # Requests splitting a slot
-signal item_stack_split(slot_data: InventorySlotData, orig_slot: InventorySlotData) # Confirms a slot was split
+signal open_split_stack_ui(slot_data: SlotData)
+signal splitting_item_stack(grab_slot_data: SlotData) # Requests splitting a slot
+signal item_stack_split(slot_data: SlotData, orig_slot: SlotData) # Confirms a slot was split
 
 ## - Shopping
 # Consider changing shopping to emit a string id for shop type if you want different kinds of vendors
 signal shopping(legal: bool) # Opens up either the legal shop or the black market
 signal shop_closed # Resets player inventory slots if they had been disabled for selling
-signal selling_item(slot: InventorySlotData) # Requests sale
+signal selling_item(slot: SlotData) # Requests sale
 
 # Request signals (when attempting)
 signal assign_objective(objective: ObjectiveData)

@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://ci8qlujuy7ma5"]
 
-[ext_resource type="Script" uid="uid://cugngl2iwo01j" path="res://Scripts/Managers/objective_manager.gd" id="1_76m2h"]
-[ext_resource type="Script" uid="uid://cbrq0qtlgucg7" path="res://Interface/objective_tracker_ui.gd" id="2_7d15p"]
-[ext_resource type="Script" uid="uid://cmnfp80lkroyp" path="res://test_control.gd" id="4_mdw3h"]
+[ext_resource type="Script" uid="uid://cbrq0qtlgucg7" path="res://Interface/Objectives/objective_tracker_ui.gd" id="2_7d15p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mdw3h"]
 
@@ -19,7 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ObjectiveManager" type="Node" parent="." unique_id=997818787]
-script = ExtResource("1_76m2h")
 
 [node name="OutputControl" type="Control" parent="." unique_id=168914967]
 unique_name_in_owner = true
@@ -89,7 +86,6 @@ offset_right = 234.0
 offset_bottom = 192.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_mdw3h")
 
 [node name="ButtonsPanel" type="PanelContainer" parent="TestControl" unique_id=1951262424]
 layout_mode = 1

@@ -1,6 +1,6 @@
 extends PanelContainer
 
-var slot_data: InventorySlotData
+var slot_data: SlotData
 var current_inventory: InventoryData
 
 @onready var split_slider: HSlider = $MarginContainer/VBoxContainer/HBoxContainer/SplitSlider
@@ -14,7 +14,7 @@ func _ready() -> void:
 	EventBus.open_split_stack_ui.connect(_set_split_ui)
 
 
-func _set_split_ui(inv: InventoryData, slot: InventorySlotData):
+func _set_split_ui(inv: InventoryData, slot: SlotData):
 	if not slot.item_data.stackable: return
 	await get_tree().create_timer(0.01).timeout
 	show()
@@ -38,7 +38,7 @@ func _on_split_button_pressed() -> void:
 		hide()
 		return
 	
-	var stack_data = InventorySlotData.new()
+	var stack_data = SlotData.new()
 	stack_data.item_data = slot_data.item_data
 	stack_data.quantity = amount
 	

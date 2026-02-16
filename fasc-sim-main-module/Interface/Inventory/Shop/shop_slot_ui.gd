@@ -2,14 +2,14 @@ extends PanelContainer
 
 var parent_inventory: InventoryData
 
-@export var slot_data: InventorySlotData
+@export var slot_data: SlotData
 
 @onready var item_texture: TextureRect = %ItemTexture
 @onready var quantity: Label = %Quantity
 @onready var selected_panel: Panel = %SelectedPanel
 
 
-func set_slot_data(new_slot_data: InventorySlotData):
+func set_slot_data(new_slot_data: SlotData):
 	slot_data = new_slot_data
 	if !slot_data or !slot_data.item_data:
 		print("Setting slot in InventorySlotUI, has no slot and/or item_data")
@@ -45,7 +45,7 @@ func clear_visuals():
 	quantity.hide()
 	tooltip_text = ""
 
-func clear_slot_data(slot: InventorySlotData):
+func clear_slot_data(slot: SlotData):
 	if slot and slot != slot_data: return # Verify this slot is the right one
 	
 	print("Clear slot run on InventorySlotUI. Slot: %s" % slot)

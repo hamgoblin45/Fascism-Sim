@@ -2,7 +2,7 @@ extends RigidBody3D
 class_name Grabbable
 
 @export var id: String = ""
-@export var slot_data: InventorySlotData
+@export var slot_data: SlotData
 
 #@onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 @export var interact_area: Interactable
@@ -38,7 +38,7 @@ func _interact(type: String, engaged: bool):
 		
 		"interact":
 			if slot_data and slot_data.item_data:
-				var item_data = InventoryItemData.new()
+				var item_data = ItemData.new()
 				item_data = slot_data.item_data
 				var qty = slot_data.quantity
 				

@@ -10,9 +10,9 @@ const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 @export var illegal_shop_inventory: InventoryData
 
 var shop_inventory_data: InventoryData
-var selected_slot: InventorySlotData = null
-var legal_buyback_slot: InventorySlotData = null
-var illegal_buyback_slot: InventorySlotData = null
+var selected_slot: SlotData = null
+var legal_buyback_slot: SlotData = null
+var illegal_buyback_slot: SlotData = null
 
 @onready var shop_item_name: Label = %ShopItemName
 @onready var shop_item_descript: RichTextLabel = %ShopItemDescript
@@ -83,7 +83,7 @@ func _set_legal_inventory():
 		# If a slot was chosen, create a UI for it
 		if random_slot != null:
 			print("Item selected for empty shop slot: %s" % random_slot.item_data.name)
-			var new_slot = InventorySlotData.new()
+			var new_slot = SlotData.new()
 			new_slot.item_data = random_slot.item_data
 			new_slot.quantity = random_slot.quantity
 			legal_shop_inventory.slot_datas[slot_index] = new_slot
@@ -99,13 +99,13 @@ func _set_illegal_inventory():
 		# If a slot was chosen, create a UI for it
 		if random_slot != null:
 			print("Item selected for empty shop slot: %s" % random_slot.item_data.name)
-			var new_slot = InventorySlotData.new()
+			var new_slot = SlotData.new()
 			new_slot.item_data = random_slot.item_data
 			new_slot.quantity = random_slot.quantity
 			illegal_shop_inventory.slot_datas[slot_index] = new_slot
 	_populate_shop(illegal_shop_inventory)
 
-func _select_random_item(slot_data: InventorySlotData, pool: InventoryData) -> InventorySlotData:
+func _select_random_item(slot_data: SlotData, pool: InventoryData) -> SlotData:
 	# Return if missing slot_data or if there are no more items in the modified_pool
 	if slot_data:
 		return null
@@ -146,7 +146,7 @@ func _clear_selected_item():
 	for slot_ui in slot_container.get_children():
 		slot_ui.selected_panel.hide()
 
-func _on_item_select(slot_data: InventorySlotData):
+func _on_item_select(slot_data: SlotData):
 	if not shop_inventory_data or not shop_inventory_data.slot_datas.has(slot_data):
 		print("Shop inv doesn't have slot")
 		_clear_selected_item()
@@ -227,15 +227,15 @@ func _on_buy_button_pressed() -> void:
 		
 		_populate_shop(shop_inventory_data)
 
-func _sell_item(sell_slot: InventorySlotData):
+func _sell_item(sell_slot: SlotData):
 	if not sell_slot or not sell_slot.item_data:
 		return
 	if legal:
-		legal_buyback_slot = InventorySlotData.new()
+		legal_buyback_slot = SlotData.new()
 		legal_buyback_slot.item_data = sell_slot.item_data
 		legal_buyback_slot.quantity = sell_slot.quantity
 	else:
-		illegal_buyback_slot = InventorySlotData.new()
+		illegal_buyback_slot = SlotData.new()
 		illegal_buyback_slot.item_data = sell_slot.item_data
 		illegal_buyback_slot.quantity = sell_slot.quantity
 	_set_buyback_ui(sell_slot)
@@ -253,7 +253,7 @@ func _on_buy_qty_slider_value_changed(value: float) -> void:
 func _on_close_shop_button_pressed() -> void:
 	_handle_shop_ui(legal)
 
-func _set_buyback_ui(sell_slot: InventorySlotData):
+func _set_buyback_ui(sell_slot: SlotData):
 	buyback_ui.show()
 	buyback_item_texture.texture = sell_slot.item_data.texture
 	buyback_quantity.text  = str(sell_slot.quantity)
@@ -261,7 +261,7 @@ func _set_buyback_ui(sell_slot: InventorySlotData):
 	buyback_ui.tooltip_text = sell_slot.item_data.name
 
 func _on_buyback_button_pressed() -> void:
-	var buyback_slot: InventorySlotData = null
+	var buyback_slot: SlotData = null
 	if legal: buyback_slot = legal_buyback_slot
 	else: buyback_slot = illegal_buyback_slot
 	if not buyback_slot:

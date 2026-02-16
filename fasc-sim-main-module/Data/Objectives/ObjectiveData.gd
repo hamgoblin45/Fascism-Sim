@@ -20,7 +20,7 @@ var complete: bool = false
 var turned_in: bool = false
 var failed: bool = false
 
-@export var rewards: Array[InventoryItemData]
+@export var rewards: Array[ItemData]
 @export var follow_up_objective: ObjectiveData
 
 

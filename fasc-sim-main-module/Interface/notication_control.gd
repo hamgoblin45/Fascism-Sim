@@ -11,14 +11,14 @@ func _ready() -> void:
 	EventBus.adding_item.connect(_received_item)
 	
 
-func _removed_item(item: InventoryItemData, qty: int, _slot: InventorySlotData):
+func _removed_item(item: ItemData, qty: int, _slot: SlotData):
 	var new_notif = INVENTORY_NOTIFICATION_UI.instantiate()
 	notification_container.add_child(new_notif)
 	await get_tree().create_timer(0.05).timeout
 	new_notif.removed_item(item.name, qty)
 	_handle_overflow()
 
-func _received_item(item: InventoryItemData, qty: int):
+func _received_item(item: ItemData, qty: int):
 	var new_notif = INVENTORY_NOTIFICATION_UI.instantiate()
 	notification_container.add_child(new_notif)
 	new_notif.received_item(item.name, qty)

@@ -2,7 +2,7 @@ extends PanelContainer
 class_name SlotUI
 
 var parent_inventory: InventoryData
-@export var slot_data: InventorySlotData
+@export var slot_data: SlotData
 
 @onready var item_texture: TextureRect = %ItemTexture
 @onready var quantity: Label = %Quantity
@@ -33,7 +33,7 @@ func _ready() -> void:
 	SearchManager.search_step_started.connect(_on_search_step)
 	SearchManager.search_finished.connect(_on_search_finished)
 
-func set_slot_data(new_slot_data: InventorySlotData):
+func set_slot_data(new_slot_data: SlotData):
 	slot_data = new_slot_data
 	if !slot_data or !slot_data.item_data:
 		print("InventorySlotUI: set_slot_data: setting empty slot")
@@ -52,7 +52,7 @@ func set_slot_data(new_slot_data: InventorySlotData):
 	if parent_inventory == GameState.pockets_inventory:
 		equip_highlight.visible = (get_index() == GameState.active_hotbar_index)
 
-func _select_item(data: InventorySlotData):
+func _select_item(data: SlotData):
 	# Show if panel being selected, hide if not
 	#print("InventorySlotUI: select_item: selecting %s" % data)
 	selected_panel.visible = (data == slot_data and data != null)
@@ -98,7 +98,7 @@ func clear_visuals():
 	tooltip_text = ""
 	
 
-func clear_slot_data(_slot: InventorySlotData):
+func clear_slot_data(_slot: SlotData):
 	print("InventorySlotUI: clearing slot data")
 	slot_data = null
 	item_texture.texture = null

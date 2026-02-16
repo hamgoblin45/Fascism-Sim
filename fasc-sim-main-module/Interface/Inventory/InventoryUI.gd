@@ -82,7 +82,7 @@ func _on_item_updated(inventory_data: InventoryData, index: int):
 		slot_ui.set_slot_data(inventory_data.slot_datas[index])
 
 ## --- CONTEXT UIs ----
-func _on_context_ui_set(slot_data: InventorySlotData):
+func _on_context_ui_set(slot_data: SlotData):
 	var context_ui: PanelContainer = null
 	for slot in GameState.pockets_inventory.slot_datas:
 		if slot == slot_data:

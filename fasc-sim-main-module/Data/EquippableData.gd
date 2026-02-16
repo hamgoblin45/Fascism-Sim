@@ -1,4 +1,4 @@
-extends InventoryItemData
+extends ItemData
 class_name EquippableData
 
 @export var equippable_scene: PackedScene

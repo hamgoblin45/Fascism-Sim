@@ -22,7 +22,7 @@ var shopping: bool = false # Dictates how inventory UI will react, primarily Usi
 var money: float = 100
 var pockets_inventory: InventoryData
 var active_hotbar_index: int = -1
-var equipped_item: InventoryItemData
+var equipped_item: ItemData
 
 ## -- Player / 3D Controller
 var player: CharacterBody3D

@@ -62,7 +62,7 @@ func _turn_in_objective(objective: ObjectiveData):
 func _remove_objective(objective: ObjectiveData):
 	pass
 
-func _check_for_required_items(_slot: InventorySlotData):
+func _check_for_required_items(_slot: SlotData):
 	print("Check for required items called in ObjectiveManager")
 	# Checks for gather objectives
 	for obj in GameState.objectives:
@@ -76,7 +76,7 @@ func _check_for_required_items(_slot: InventorySlotData):
 				#var amount_held: int = 0
 				for slot_data in GameState.inventory.slot_datas:
 					if slot_data and slot_data.item_data and slot_data.item_data.id == req_item_slot.item_data.id:
-						var held_slot_data = InventorySlotData.new()
+						var held_slot_data = SlotData.new()
 						held_slot_data.item_data = slot_data.item_data
 						held_slot_data.quantity = slot_data.quantity
 						current_step.held_items.append(held_slot_data)
