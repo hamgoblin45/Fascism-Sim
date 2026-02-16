@@ -5,40 +5,15 @@
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="3_gur8t"]
 [ext_resource type="PackedScene" uid="uid://bmqlxplie777" path="res://Interface/Inventory/pockets_inventory_ui.tscn" id="4_3y5k6"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="4_c0f0r"]
-[ext_resource type="Resource" uid="uid://bqn8wysukgnd8" path="res://Interface/TestStuff/item_hammer.tres" id="5_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://wkm6jgcm5mys" path="res://Interface/Inventory/external_inventory.tscn" id="5_gur8t"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/Styles/InventoryPanelStyle.tres" id="6_3y5k6"]
-[ext_resource type="Resource" uid="uid://xh53w2i0oo5t" path="res://Data/Items/Food/cookie.tres" id="6_pjc3g"]
-[ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="7_hvb16"]
 [ext_resource type="PackedScene" uid="uid://cb06vgbnsed6c" path="res://Interface/Inventory/grabbed_slot_ui.tscn" id="9_c0f0r"]
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/Inventory/give_item_ui.gd" id="11_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/Inventory/Shop/shop_ui.tscn" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://bya0l8x7gtw7q" path="res://Interface/notication_control.gd" id="15_sxlab"]
 
-[sub_resource type="Resource" id="Resource_pjc3g"]
-script = ExtResource("4_c0f0r")
-item_data = ExtResource("5_c0f0r")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_8c4yq"]
-script = ExtResource("4_c0f0r")
-item_data = ExtResource("7_hvb16")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_sxlab"]
-script = ExtResource("4_c0f0r")
-item_data = ExtResource("6_pjc3g")
-quantity = 10
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_u6hsv"]
-script = ExtResource("4_c0f0r")
-item_data = ExtResource("7_hvb16")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
 [sub_resource type="Resource" id="Resource_xywkj"]
 script = ExtResource("3_gur8t")
-slot_datas = Array[ExtResource("4_c0f0r")]([SubResource("Resource_pjc3g"), SubResource("Resource_8c4yq"), SubResource("Resource_sxlab"), null, null, SubResource("Resource_u6hsv")])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="GDScript" id="GDScript_8c4yq"]
