@@ -32,22 +32,12 @@ func _ready() -> void:
 	EventBus.shop_closed.connect(_on_shop_closed)
 	SearchManager.search_step_started.connect(_on_search_step)
 	SearchManager.search_finished.connect(_on_search_finished)
+	
+	if search_overlay: search_overlay.hide()
 
 func set_slot_data(new_slot_data: SlotData):
 	slot_data = new_slot_data
-	if !slot_data or !slot_data.item_data:
-		print("InventorySlotUI: set_slot_data: setting empty slot")
-		return
-	
-	print("InventorySlotUI: set_slot_data: DATA: %s, ITEM: %s" % [slot_data, slot_data.item_data.name])
-	item_texture.show()
-	item_texture.texture = slot_data.item_data.texture
-	tooltip_text = slot_data.item_data.name
-	if slot_data.quantity > 1 and slot_data.item_data.stackable:
-		quantity.show()
-		quantity.text = str(slot_data.quantity)
-	else:
-		quantity.hide()
+	_update_visuals()
 	
 	if parent_inventory == GameState.pockets_inventory:
 		equip_highlight.visible = (get_index() == GameState.active_hotbar_index)
@@ -73,8 +63,16 @@ func _on_item_updated(inv_data: InventoryData, index: int):
 
 func _update_visuals():
 	print("UPDATING VISUALS")
+	
+	# CRASH FIX: Ensure we don't access properties on null data
+	if not slot_data or not slot_data.item_data:
+		item_texture.hide()
+		quantity.hide()
+		return
+		
 	item_texture.show()
 	item_texture.texture = slot_data.item_data.texture
+	
 	if slot_data.quantity > 1 and slot_data.item_data.stackable:
 		quantity.show()
 		quantity.text = str(slot_data.quantity)
@@ -179,6 +177,7 @@ func _set_search_visual(state: SearchState, duration: float = 0.0):
 	current_search_state = state
 	search_overlay.show()
 	
+	# RED BAR FIX: Always kill previous tween so red bar doesn't get stuck
 	if tween and tween.is_valid():
 		tween.kill()
 	

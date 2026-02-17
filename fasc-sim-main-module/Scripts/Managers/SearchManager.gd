@@ -118,152 +118,106 @@ func start_external_search(inventory: InventoryData, thoroughness_modifier: floa
 
 func start_house_raid():
 	is_searching = true
-	# Start actually searching the house
-	var hiding_spots: Array[HidingSpot]
-	hiding_spots.assign(get_tree().get_nodes_in_group("hiding_spots"))
-	var containers: Array[Interactable]
-	containers.assign(get_tree().get_nodes_in_group("house_containers"))
-	var clues: Array[GuestClue]
-	clues.assign(get_tree().get_nodes_in_group("guest_clues"))
-	active_clues = clues
+	var hiding_spots: Array = get_tree().get_nodes_in_group("hiding_spots")
+	var containers: Array = get_tree().get_nodes_in_group("house_containers")
+	active_clues.assign(get_tree().get_nodes_in_group("guest_clues"))
+	
 	print("SearchManager: HOUSE RAID COMMENCING")
 	
-	# Determine intensity
-	# Base: search 3 items, +1 for every 10 suspicion. Max is everything
 	var total_targets = hiding_spots.size() + containers.size()
 	var search_count = clamp(3 + int(GameState.regime_suspicion / 10.0), 3, total_targets)
-	print("SearchManager: About to search %s of %s total targets" % [search_count, total_targets])
+	print("SearchManager: Will search %s of %s targets" % [search_count, total_targets])
 	
-	# Sort by the "obviousness" of spots
-	# Guards should search things closest and "easy" first
 	var potential_targets = []
 	potential_targets.append_array(hiding_spots)
 	potential_targets.append_array(containers)
-	potential_targets.append_array(clues)
 	
-	# Need to add some more randomness here so they don't always search in the same order. Make the concealment a modifier instead of the main value
 	potential_targets.sort_custom(func(a,b):
-		var a_score = a.concealment_score if a is HidingSpot else 0.1 # Containers are obvious
+		var a_score = a.concealment_score if a is HidingSpot else 0.1
 		var b_score = b.concealment_score if b is HidingSpot else 0.1
-		
-		# Add a bit of RNG
-		var a_fuzzed = a_score + randf_range(-0.3, 0.3)
-		var b_fuzzed = b_score + randf_range(-0.3, 0.3)
-		
-		return a_fuzzed < b_fuzzed
-		)
+		return (a_score + randf_range(-0.3, 0.3)) < (b_score + randf_range(-0.3, 0.3))
+	)
 	
-	## ---- TESTING-----------
-	emit_test_values()
-	##-----------------------------
-	
-	# Execution loop
 	for i in range(search_count):
 		if not is_searching: break
 		
-		var target = potential_targets.pop_front() # get the next target
-		#house_raid_status.emit("Searching ", target.name) # Need a target.name for this to work
+		var target = potential_targets.pop_front()
+		if not target: break
 		
 		if assigned_searcher:
-			print("SearchManager: Searcher moving to next search target")
-			# Command NPC to walk to target
+			print("SearchManager: Moving to ", target.name)
 			var move_pos = target.global_position + (Vector3(1,0,1).normalized() * 1.0)
 			assigned_searcher.command_move_to(move_pos)
 			
 			await assigned_searcher.destination_reached
-			print("SearchManager: Searcher arrived at target location")
-			# Face the object
 			assigned_searcher.look_at_node.look_at(target.global_position)
-			
-			# Search anim
-			assigned_searcher.state = assigned_searcher.ANIMATING
-			# assigned_searcher.anim.play("search_low" if target is HidingSpot else "search_standing")
 		
-		# If a guard walks past a GuestClue
-		for clue in active_clues:
-			if assigned_searcher.global_position.distance_to(clue.global_position) < 2.0: # Figure out what to add as "guard" here
-				print("Guard noticed a GuestClue")
-				search_count += 2 # They will search more spots now
-				thoroughness += 0.1
-				#guard.spawn_bark("Who left this here") or something liek that
-		
-	
-		#Perform the actual check
 		if target is HidingSpot:
 			await _search_hiding_spot(target)
 		else:
-			# It's a container
-			print("Searching a container")
-			var inv = target.get_parent().container_inventory
-			await _search_container_during_raid(inv, thoroughness)
+			# Handle Container (Target is Interactable child)
+			var container_node = target.get_parent()
+			if container_node and "container_inventory" in container_node:
+				await _search_container_during_raid(container_node.container_inventory, thoroughness)
 	
 	_finish_house_raid(hiding_spots)
 
 func _search_container_during_raid(inventory: InventoryData, thoroughness_mod: float):
-	#print("Searching ", inventory)
+	if not inventory or inventory.slots.is_empty():
+		await get_tree().create_timer(2.0).timeout
+		print("SearchManager: Empty container cleared")
+		return
+
+	# Iterate slots
 	for i in range(inventory.slots.size()):
-		# Check if the raid was cancelled (busted, etc) 
-		if not is_searching:
-			break
+		if not is_searching: break
 		
 		var slot = inventory.slots[i]
-		
-		# Calculate time
 		var search_duration = 1.0
-		if slot and slot.item_data:
+		
+		if slot == null:
+			search_duration = 0.5 # Quick glance at empty slot
+		elif slot.item_data:
 			search_duration += (slot.item_data.concealability * 0.5)
 		
-		## ---- TESTING-----------
-		emit_test_values()
-		##-----------------------------
-		
-		print("Searching for ", search_duration)
-		
+		# CRITICAL FIX: We MUST wait here, even if slot is null, otherwise it loops instantly
 		await get_tree().create_timer(search_duration).timeout
-		assigned_searcher.spawn_bark("...") # Likely to change but helps show that it is indeed searching
+		
+		if assigned_searcher and i % 3 == 0: 
+			assigned_searcher.spawn_bark("...") # Visual feedback
 		
 		if slot and slot.item_data:
 			if _discovered_contraband(slot.item_data):
 				player_busted_external(inventory, slot, i)
 				return
+	
 	print("SearchManager: Container cleared")
-	assigned_searcher.spawn_bark("Hmm, nothing here")
+	if assigned_searcher: assigned_searcher.spawn_bark("Hmm, nothing here")
 
-func _finish_house_raid(hiding_spots: Array[HidingSpot]):
+func _finish_house_raid(hiding_spots: Array):
 	print("SearchManager: Finishing house raid")
 	raid_finished.emit()
-	
-	# Reset temp vars
-	thoroughness =  base_thoroughness
+	assigned_searcher = null # Clear reference
+	thoroughness = base_thoroughness
 	patience = base_patience
 	search_tension = 0.0
-	
-	if assigned_searcher:
-		assigned_searcher.command_move_to(Vector3(0, 0, 50)) # Far coords, change to specific pos to polish it
-		await assigned_searcher.destination_reached
-		GameState.raid_in_progress = false
-		assigned_searcher.queue_free()
-	print("SearchManager: Guards have left the house")
-	# Automatically have guests come out from hiding
-	for spot in hiding_spots:
-		if spot.occupant:
-			await get_tree().create_timer(2.5).timeout
-			spot._extract_occupant()
-	
-	# Lower suspicion slightly after a "clean" search
+	GameState.raid_in_progress = false
 	GameState.regime_suspicion -= 5.0
 	EventBus.stat_changed.emit("suspicion")
+	
+	# Guests emerge
+	for spot in hiding_spots:
+		if spot is HidingSpot and spot.occupant:
+			await get_tree().create_timer(2.5).timeout
+			spot._extract_occupant()
 
 func _search_hiding_spot(spot: HidingSpot):
 	print("SearchManager: Searching hiding spot")
-	# Time it takes to search
 	var dur = 3.0 + (spot.concealment_score * 5.0)
 	await get_tree().create_timer(dur).timeout
 	
 	if spot.occupant:
-		# Roll to see if the occupant is discovered
 		var discovery_chance = (thoroughness + (GameState.regime_suspicion / 100.0)) / (spot.concealment_score + 0.1)
-		
 		if randf() < discovery_chance:
 			_guest_captured(spot.occupant)
 			is_searching = false
@@ -394,7 +348,7 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool):
 			print("RaidSequence: Caught with level 1 contraband. Penalty: Scolding, maybe small fine")
 			GameState.regime_suspicion += 5.0 * multiplier
 		2:
-			var fine = (item.contraband_level * 25.0) * multiplier
+			# var fine = (item.contraband_level * 25.0) * multiplier
 			print("RaidSequence: Caught with level 2 contraband. Penalty: Fine")
 			GameState.regime_suspicion += 10.0 * multiplier
 		3:
