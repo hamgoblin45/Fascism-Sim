@@ -7,6 +7,7 @@ class_name Grabbable
 var held: bool = false
 
 func _ready():
+	add_to_group("grabbables")
 	# If no slot data is assigned (dragged into scene manually), create dummy data
 	if not slot_data:
 		push_warning("Grabbable %s has no SlotData!" % name)

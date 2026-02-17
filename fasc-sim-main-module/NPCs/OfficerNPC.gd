@@ -26,7 +26,19 @@ func _scan_for_targets():
 		if _can_see_target(guest):
 			_arrest_guest(guest)
 			return # Stop scanning if we found a person
-
+	
+	# 2. Dropped Contraband (NEW)
+	var dropped_items = get_tree().get_nodes_in_group("grabbables")
+	for item in dropped_items:
+		# Check visibility
+		if _can_see_target(item):
+			# Check if it has data and is illegal
+			if item.get("slot_data") and item.slot_data.item_data:
+				var data = item.slot_data.item_data
+				if data.contraband_level > GameState.legal_threshold:
+					_found_dropped_contraband(item, data, item.slot_data.quantity)
+					return
+	
 	# 2. Check Clues (Bark & Flag, but keep moving)
 	var clues = get_tree().get_nodes_in_group("clues")
 	for clue in clues:
@@ -49,6 +61,10 @@ func _arrest_guest(guest: NPC):
 	spawn_bark("FREEZE!")
 	state = INVESTIGATING
 	SearchManager.guest_spotted_in_open(self, guest)
+
+func _found_dropped_contraband(item_node: Node3D, data: ItemData, qty: int):
+	state = INVESTIGATING
+	SearchManager.contraband_spotted_in_open(self, item_node, data, qty)
 
 func _handle_investigation(_delta):
 	pass

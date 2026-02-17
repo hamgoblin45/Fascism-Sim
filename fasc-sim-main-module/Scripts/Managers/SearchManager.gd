@@ -311,6 +311,35 @@ func player_busted_external(inventory: InventoryData, slot: SlotData, index: int
 	inventory.slots[index] = null
 	EventBus.inventory_item_updated.emit(inventory, index)
 
+func contraband_spotted_in_open(officer: NPC, item_node: Node3D, item_data: ItemData, qty: int):
+	if not is_searching and not GameState.raid_in_progress: 
+		return # Optional: Ignore if not raiding? Or maybe always illegal? Assuming Raid context.
+	
+	is_searching = false # Interrupt any other search
+	
+	print("SearchManager: Contraband spotted on floor: %s" % item_data.name)
+	
+	# 1. Stop Officer
+	officer.command_stop()
+	officer.look_at_target(item_node)
+	officer.spawn_bark("What is this doing here?!")
+	
+	# 2. Confiscate (Delete the object)
+	if is_instance_valid(item_node):
+		item_node.queue_free()
+	
+	# 3. Apply Penalties
+	var penalty = (item_data.contraband_level * qty) * 2.5
+	GameState.regime_suspicion += penalty
+	EventBus.stat_changed.emit("suspicion")
+	
+	GameState.world_flags["busted_with_contraband"] = true
+	EventBus.world_changed.emit("busted_with_contraband", true)
+	
+	# 4. Trigger Consequences
+	search_finished.emit(true, item_data, qty) # Notify UI/RaidSequence
+	interrogation_started(item_data)
+
 func interrogation_started(item: ItemData):
 	# Look for any relevant unique dialogue, for example if the item is a weapon
 	var dialogue_key = item.interrogation_dialogue_id + "_questioning"
