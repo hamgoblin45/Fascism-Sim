@@ -44,6 +44,10 @@ func _ready() -> void:
 	EventBus.item_interacted.connect(_on_interact)
 	EventBus.follow_player.connect(follow_player)
 	
+	# Setup Nav Agent
+	nav_agent.path_desired_distance = 2.0
+	nav_agent.target_desired_distance = 2.0
+	
 	await get_tree().process_frame 
 	_check_schedule(GameState.hour, GameState.minute)
 
@@ -146,14 +150,14 @@ func _handle_state(delta):
 			velocity.z = move_toward(velocity.z, 0, 2.0 * delta)
 		
 		WALK:
-			if not get_tree().paused:
+			if not get_tree().paused and not GameState.paused:
 				_handle_schedule_nav(delta)
 		
 		COMMAND_MOVE:
 			_handle_dynamic_nav(delta)
 
+# Schedule Nav (Waypoint based)
 func _handle_schedule_nav(delta: float):
-	# Use local active_path variable
 	if not active_path: 
 		state = IDLE
 		return
@@ -163,28 +167,47 @@ func _handle_schedule_nav(delta: float):
 		_finish_path()
 		return
 
+	# Use NavAgent for schedule too if you want obstacle avoidance
+	nav_agent.target_position = current_target
+	var next_pos = nav_agent.get_next_path_position()
+	var dir = global_position.direction_to(next_pos)
+	
 	if global_position.distance_to(current_target) < 1.0:
 		if not active_path.advance_to_next():
 			_finish_path()
 			return
 	
-	_move_and_rotate(global_position.direction_to(current_target), 9.0, delta)
+	_move_and_rotate(dir, 2.0, delta)
 
+# Dynamic Nav (Direct Target based)
 func _handle_dynamic_nav(delta: float):
-	if global_position.distance_to(dynamic_target_pos) < 1.0:
+	# 1. Update Target
+	nav_agent.target_position = dynamic_target_pos
+	
+	# 2. Check Arrival
+	if nav_agent.is_navigation_finished():
 		state = IDLE
+		velocity = Vector3.ZERO
+		print("NPC %s arrived at command target." % npc_data.name)
 		destination_reached.emit()
 		return
+		
+	# 3. Get Next Step from NavServer
+	var next_path_position: Vector3 = nav_agent.get_next_path_position()
+	var dir = global_position.direction_to(next_path_position)
 	
-	# Simple direct movement for command mode
-	var dir = global_position.direction_to(dynamic_target_pos)
-	_move_and_rotate(dir, 9.0, delta)
+	# 4. Move
+	_move_and_rotate(dir, 3.0, delta)
 
 func _move_and_rotate(dir: Vector3, speed: float, delta: float):
-	velocity.x = lerp(velocity.x, dir.x * speed, 15.0 * delta)
-	velocity.z = lerp(velocity.z, dir.z * speed, 15.0 * delta)
-	look_at_node.look_at(global_position + dir)
-	global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 5.0 * delta)
+	velocity.x = lerp(velocity.x, dir.x * speed, 5.0 * delta)
+	velocity.z = lerp(velocity.z, dir.z * speed, 5.0 * delta)
+	
+	# Only rotate if moving
+	if dir.length() > 0.1:
+		var target_rot = atan2(dir.x, dir.z)
+		# Smooth rotation using lerp_angle
+		rotation.y = lerp_angle(rotation.y, target_rot, 5.0 * delta)
 
 # --- COMMANDS ---
 
@@ -192,6 +215,8 @@ func command_move_to(target: Vector3):
 	is_under_command = true
 	dynamic_target_pos = target
 	state = COMMAND_MOVE
+	# Pre-set the nav agent immediately
+	nav_agent.target_position = target
 
 func command_stop():
 	is_under_command = false
