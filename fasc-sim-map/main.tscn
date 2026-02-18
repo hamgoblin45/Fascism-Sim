@@ -45,6 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://va0lkgrucskc" path="res://Map/Buildings/apartment_building_b.glb" id="43_d2t1y"]
 [ext_resource type="PackedScene" uid="uid://ct7fwsucprx04" path="res://Map/Buildings/house_bg.glb" id="44_gngh3"]
 [ext_resource type="PackedScene" uid="uid://cysvta6kwg678" path="res://Map/Buildings/house_bg2.glb" id="45_0n3wm"]
+[ext_resource type="PackedScene" uid="uid://cdlytdp0rst5k" path="res://Map/Buildings/player_house.glb" id="46_qnost"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -2650,5 +2651,9 @@ transform = Transform3D(0.079791814, 0, -2.4987261, 0, 2.4999998, 0, 2.4987261, 
 
 [node name="house_bg2" parent="Scenery" unique_id=1284975603 instance=ExtResource("45_0n3wm")]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -124.54907, -1.2874603e-05, 441.13116)
+
+[node name="player_house" type="Node3D" parent="." unique_id=540572668 instance=ExtResource("46_qnost")]
+transform = Transform3D(0.87228715, 0, -0.89532965, 0, 1.25, 0, 0.89532965, 0, 0.87228715, 159.19124, 3.3189926, 370.47467)
+metadata/asset_placer_res_id = "uid://cdlytdp0rst5k"
 
 [editable path="PlayerCharacter"]
