@@ -28,9 +28,10 @@ func set_context_menu(slot: SlotData):
 		hide()
 		return
 	
-	trash_confirmed = false
-	trash_button.text = "TRASH"
-	trash_button.modulate = Color.WHITE
+	if trash_button:
+		trash_confirmed = false
+		trash_button.text = "TRASH"
+		trash_button.modulate = Color.WHITE
 	
 	split_button.hide()
 	use_button.hide()
@@ -50,7 +51,7 @@ func set_context_menu(slot: SlotData):
 		drop_button.hide()
 	
 	item_value.text = "Sell Value: %s" % slot_data.item_data.sell_value
-	if slot_data.item_data.stackable and slot_data.quantity > 1:
+	if slot_data.item_data.stackable and slot_data.quantity > 1 and split_button:
 		split_button.show()
 	if slot_data.item_data.useable or GameState.shopping:
 		use_button.show()
@@ -65,9 +66,10 @@ func set_context_menu(slot: SlotData):
 
 
 func _clear_out_context_ui():
-	trash_confirmed = false
-	trash_button.text = "TRASH"
-	trash_button.modulate = Color.WHITE # Reset trash button color
+	if trash_button:
+		trash_confirmed = false
+		trash_button.text = "TRASH"
+		trash_button.modulate = Color.WHITE # Reset trash button color
 	slot_data = null
 	hide()
 

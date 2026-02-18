@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cb06vgbnsed6c" path="res://Interface/Inventory/grabbed_slot_ui.tscn" id="9_c0f0r"]
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/Inventory/give_item_ui.gd" id="11_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/Inventory/Shop/shop_ui.tscn" id="11_hvb16"]
+[ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/Inventory/item_context_ui.gd" id="11_oli18"]
 [ext_resource type="Script" uid="uid://bya0l8x7gtw7q" path="res://Interface/notication_control.gd" id="15_sxlab"]
 
 [sub_resource type="Resource" id="Resource_oli18"]
@@ -35,10 +36,6 @@ metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 script = ExtResource("3_gur8t")
 slots = Array[ExtResource("4_c0f0r")]([SubResource("Resource_oli18"), SubResource("Resource_jfwpd"), null, SubResource("Resource_8c4yq"), null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
-
-[sub_resource type="GDScript" id="GDScript_8c4yq"]
-script/source = "extends PanelContainer
-"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
 
@@ -110,8 +107,11 @@ offset_bottom = 457.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="ShopItemContextUI" parent="ShopUI/HBoxContainer" index="1"]
+script = ExtResource("11_oli18")
+
 [node name="BuybackUI" parent="ShopUI/HBoxContainer" index="2"]
-script = SubResource("GDScript_8c4yq")
+script = null
 
 [node name="GiveItemUI" type="PanelContainer" parent="." unique_id=628832054]
 visible = false

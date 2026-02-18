@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/Inventory/Shop/shop_ui.gd" id="1_8js8v"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_ob0a7"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_e6hud"]
+[ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/Inventory/item_context_ui.gd" id="7_8js8v"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/Inventory/inventory_slot_ui.tscn" id="8_ee1af"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="17_6o2oc"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/Styles/InventoryPanelStyle.tres" id="18_v4hxh"]
@@ -148,13 +149,18 @@ layout_mode = 2
 [node name="InventorySlotUI12" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=724317012 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="ShopItemContextUI" type="PanelContainer" parent="HBoxContainer" unique_id=91104731]
+[node name="ShopItemContextUI" type="PanelContainer" parent="HBoxContainer" unique_id=91104731 node_paths=PackedStringArray("item_name", "item_descript", "item_flavor_text", "use_button")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("18_v4hxh")
+script = ExtResource("7_8js8v")
+item_name = NodePath("MarginContainer/VBoxContainer/ShopItemName")
+item_descript = NodePath("MarginContainer/VBoxContainer/ShopItemDescript")
+item_flavor_text = NodePath("MarginContainer/VBoxContainer/ShopFlavorText")
+use_button = NodePath("MarginContainer/VBoxContainer/ButtonContainer/BuyButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ShopItemContextUI" unique_id=665360231]
 layout_mode = 2
