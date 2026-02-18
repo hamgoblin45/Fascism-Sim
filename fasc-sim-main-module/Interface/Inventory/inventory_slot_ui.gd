@@ -187,9 +187,9 @@ func _set_search_visual(state: SearchState, duration: float = 0.0):
 			search_overlay.scale = Vector2(1,1)
 			
 		SearchState.SEARCHING:
-			search_overlay.color = Color(1, 0.3, 0.3, 0.5) # Red Highlight for active slots
-			search_overlay.scale = Vector2(0,1)
-			
+			search_overlay.show()
+			search_overlay.scale = Vector2(0, 1) # <--- ADD THIS LINE
+			if tween: tween.kill()
 			tween = create_tween()
 			
 			tween.tween_property(search_overlay, "scale:x", 1.0, duration)

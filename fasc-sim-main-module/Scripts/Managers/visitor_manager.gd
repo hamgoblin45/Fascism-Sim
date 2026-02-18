@@ -18,6 +18,7 @@ var raid_party_arrived_count: int = 0
 
 func _ready() -> void:
 	EventBus.visitor_arrived.connect(_on_visitor_arrived)
+	EventBus.door_opened_for_visitor.connect(_on_door_opened)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
 func _input(event: InputEvent) -> void:
@@ -113,6 +114,19 @@ func _create_visit_path(start: Vector3, end: Vector3) -> PathData:
 	new_path.wait_for_player = true 
 	new_path.anim_on_arrival = "Idle"
 	return new_path
+
+func _on_door_opened() -> void:
+	if current_visitor and is_instance_valid(current_visitor):
+		# Determine which timeline to play
+		var timeline = "default_visitor"
+		
+		if current_visitor == fugitive_npc:
+			timeline = "fugitive_at_door"
+		elif current_visitor == merchant_npc:
+			timeline = "merchant_at_door"
+			
+		print("VisitorManager: Door opened, starting dialogue: ", timeline)
+		DialogueManager.start_dialogue(timeline, current_visitor.npc_data.name)
 
 # ... (Keep _on_dialogue_ended, _handle_post_visit_logic, etc. from previous response) ...
 func _on_dialogue_ended() -> void:

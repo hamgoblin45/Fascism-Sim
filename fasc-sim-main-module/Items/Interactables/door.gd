@@ -14,17 +14,19 @@ func _ready() -> void:
 	interactable.interacted.connect(_interact)
 
 func _interact(interact_type: String, engaged: bool):
-	if not engaged:
-		return
-	print("click or interact detected on door")
+	if not engaged: return
+	
 	match interact_type:
-		"click","interact":
-			
+		"interact":
 			toggle_door(!open)
-				
-			if GameState.raid_in_progress:
-				if interactable.id == "front_door":
+			
+			# NEW: If the door is being opened and it's the front door
+			if open and interactable.id == "front_door":
+				if GameState.raid_in_progress:
 					EventBus.answering_door.emit()
+				else:
+					# Tell the VisitorManager to start dialogue with whoever is waiting
+					EventBus.door_opened_for_visitor.emit()
 				
 
 func toggle_door(state: bool):

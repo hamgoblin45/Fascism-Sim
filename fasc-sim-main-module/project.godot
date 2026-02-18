@@ -37,7 +37,7 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "default_contraband_questioning": "res://Data/Dialogue/default_contraband_questioning.dtl",
-"fugutive_at_door": "res://Data/Dialogue/fugutive_at_door.dtl",
+"fugitive_at_door": "res://Data/Dialogue/fugitive_at_door.dtl",
 "guest_search_imminent": "res://Data/Dialogue/guest_search_imminent.dtl",
 "major_raid_frisk_complete": "res://Data/Dialogue/Characters/Major/major_raid_frisk_complete.dtl",
 "major_search_announce_test": "res://Data/Dialogue/major_search_announce_test.dtl",

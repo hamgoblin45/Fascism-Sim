@@ -125,6 +125,12 @@ id = "fugitive"
 default_timeline = "guest_search_imminent"
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
+[sub_resource type="Resource" id="Resource_qsp4k"]
+script = ExtResource("24_0odxb")
+name = "Merchant"
+id = "merchant"
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryguw"]
 albedo_color = Color(0.8727669, 0.79216146, 0.38186333, 1)
 
@@ -164,12 +170,13 @@ door_blocker_pos = NodePath("../NavigationRegion3D/player_house/DoorBlockerPos")
 major_stand_aside_pos = NodePath("../NavigationRegion3D/player_house/MajorStepAsidePos")
 front_door = NodePath("../FrontDoor")
 
-[node name="VisitorManager" type="Node" parent="." unique_id=1000293489 node_paths=PackedStringArray("officer_major_npc", "officer_grunt_1", "officer_grunt_2", "fugitive_npc", "spawn_marker", "door_marker", "back_door_marker", "leave_marker")]
+[node name="VisitorManager" type="Node" parent="." unique_id=1000293489 node_paths=PackedStringArray("officer_major_npc", "officer_grunt_1", "officer_grunt_2", "fugitive_npc", "merchant_npc", "spawn_marker", "door_marker", "back_door_marker", "leave_marker")]
 script = ExtResource("3_lswn8")
 officer_major_npc = NodePath("../NPCs/Major")
 officer_grunt_1 = NodePath("../NPCs/Grunt1")
 officer_grunt_2 = NodePath("../NPCs/Grunt2")
 fugitive_npc = NodePath("../NPCs/TestRefugee")
+merchant_npc = NodePath("../NPCs/MerchantNPC")
 spawn_marker = NodePath("../PathingPoints/SpawnPos")
 door_marker = NodePath("../PathingPoints/DoorPos")
 back_door_marker = NodePath("../PathingPoints/BackDoorPos")
@@ -186,7 +193,6 @@ navigation_mesh = SubResource("NavigationMesh_1u8w0")
 
 [node name="Ground" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1653129422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23692656, 0)
-visible = false
 use_collision = true
 size = Vector3(80, 0.1, 80)
 
@@ -356,10 +362,14 @@ script = ExtResource("28_kq58d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.003862, 0, -23.972462)
 script = ExtResource("28_kq58d")
 
-[node name="TestRefugee" parent="NPCs" unique_id=2024641856 groups=["guests"] instance=ExtResource("19_cegan")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.139555, 0.594924, 2.0548325)
+[node name="TestRefugee" parent="NPCs" unique_id=2024641856 instance=ExtResource("19_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.377983, 0.5949259, 29.290741)
 script = ExtResource("29_seu75")
 npc_data = SubResource("Resource_a6jrf")
+
+[node name="MerchantNPC" parent="NPCs" unique_id=851211521 instance=ExtResource("19_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.217497, 0, 28.349388)
+npc_data = SubResource("Resource_qsp4k")
 
 [node name="HidingSpots" type="Node3D" parent="." unique_id=706021514]
 
