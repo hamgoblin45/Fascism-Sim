@@ -28,6 +28,7 @@ WorldManager="*uid://bp12kglfjfa8g"
 DialogueManager="*uid://b2rrttx774p65"
 SearchManager="*uid://b03qagyiuoc44"
 Dialogic="*uid://ds2q0uclmolvu"
+ShopManager="*uid://cx4k876ydjwc2"
 
 [dialogic]
 

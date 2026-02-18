@@ -50,6 +50,7 @@ signal item_stack_split(slot_data: SlotData, orig_slot: SlotData) # Confirms a s
 
 ## - Shopping
 # Consider changing shopping to emit a string id for shop type if you want different kinds of vendors
+signal open_specific_shop(inventory: InventoryData, is_legal: bool)
 signal shopping(legal: bool) # Opens up either the legal shop or the black market
 signal shop_closed # Resets player inventory slots if they had been disabled for selling
 signal selling_item(slot: SlotData) # Requests sale

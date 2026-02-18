@@ -48,7 +48,7 @@ func _ready() -> void:
 	_check_schedule(GameState.hour, GameState.minute)
 
 func _physics_process(delta: float) -> void:
-	if GameState.is_game_paused or GameState.in_dialogue or GameState.shopping:
+	if GameState.paused or GameState.in_dialogue or GameState.shopping:
 		# Allow gravity so they don't float if paused mid-air, but stop X/Z movement
 		if not is_on_floor() and gravity_enabled:
 			velocity.y -= gravity * delta

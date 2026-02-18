@@ -57,4 +57,6 @@ func _on_dialogic_signal(arg: Dictionary):
 		"choice_selected":
 			dialogue_choice_selected.emit(arg["choice_id"])
 		"open_shop":
-			EventBus.shopping.emit(false)
+			if arg["shop_inventory"]:
+				var inv = load(arg["shop_inventory"])
+				EventBus.open_specific_shop.emit(inv, false)

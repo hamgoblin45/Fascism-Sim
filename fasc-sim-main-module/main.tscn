@@ -24,6 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://dveqicaom7xy5" path="res://Map/filing_cabinet.glb" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cokdko33hqlj1" path="res://Map/hiding_spot.tscn" id="21_getpj"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="24_0odxb"]
+[ext_resource type="Script" uid="uid://di7kfeuqnwjmf" path="res://NPCs/MerchantNPC.gd" id="26_xuqvo"]
+[ext_resource type="Resource" uid="uid://b476fxp3toyxi" path="res://Data/Inventory/Pool_BlackMarket.tres" id="27_kq58d"]
+[ext_resource type="Script" uid="uid://dwbtgkwya4a0e" path="res://Data/InventoryItemData.gd" id="27_qsp4k"]
 [ext_resource type="Script" uid="uid://dpcu4t1mojv2t" path="res://NPCs/OfficerNPC.gd" id="28_kq58d"]
 [ext_resource type="Script" uid="uid://cwpn1uxl5smj" path="res://NPCs/GuestNPC.gd" id="29_seu75"]
 
@@ -127,7 +130,7 @@ metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [sub_resource type="Resource" id="Resource_qsp4k"]
 script = ExtResource("24_0odxb")
-name = "Merchant"
+name = "Merhcnat"
 id = "merchant"
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
@@ -369,6 +372,11 @@ npc_data = SubResource("Resource_a6jrf")
 
 [node name="MerchantNPC" parent="NPCs" unique_id=851211521 instance=ExtResource("19_cegan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.217497, 0, 28.349388)
+script = ExtResource("26_xuqvo")
+merchant_id = "black_market_1"
+is_legal_merchant = false
+inventory_pool = ExtResource("27_kq58d")
+guaranteed_items = Array[ExtResource("27_qsp4k")]([ExtResource("13_074og")])
 npc_data = SubResource("Resource_qsp4k")
 
 [node name="HidingSpots" type="Node3D" parent="." unique_id=706021514]

@@ -30,37 +30,52 @@ var legal: bool = true
 @onready var buyback_price_label: Label = %BuybuackPriceLabel
 
 func _ready():
-	EventBus.shopping.connect(_handle_shop_ui)
+	EventBus.open_specific_shop.connect(_on_open_specific_shop)
 	EventBus.select_item.connect(_on_item_select)
 	EventBus.selling_item.connect(_sell_item)
 	hide()
 
-func _handle_shop_ui(legal_shop: bool):
-	# Toggle visibility based on GameState
-	GameState.shopping = not GameState.shopping
-	visible = GameState.shopping
+func _on_open_specific_shop(inv_data: InventoryData, is_legal: bool):
+	GameState.shopping = true
+	visible = true
 	
-	if not visible:
-		buyback_ui.hide()
-		EventBus.shop_closed.emit()
-		return
+	legal = is_legal
+	shop_inventory_data = inv_data
 	
-	legal = legal_shop
 	_clear_selected_item()
-	
-	# Determine Inventory Source
-	if legal:
-		print("Opening Commissary (Legal)")
-		if shop_inventory_data != legal_shop_inventory:
-			shop_inventory_data = legal_shop_inventory
-			_refresh_stock(legal_shop_inventory, legal_inventory_pool)
-	else:
-		print("Opening Black Market (Illegal)")
-		if shop_inventory_data != illegal_shop_inventory:
-			shop_inventory_data = illegal_shop_inventory
-			_refresh_stock(illegal_shop_inventory, illegal_inventory_pool)
-	
 	_populate_grid(shop_inventory_data)
+	
+	if legal:
+		print("ShopUI: Displaying Legal Stock")
+	else:
+		print("ShopUI: Displaying Black Market Stock")
+
+#func _handle_shop_ui(legal_shop: bool):
+	## Toggle visibility based on GameState
+	#GameState.shopping = not GameState.shopping
+	#visible = GameState.shopping
+	#
+	#if not visible:
+		#buyback_ui.hide()
+		#EventBus.shop_closed.emit()
+		#return
+	#
+	#legal = legal_shop
+	#_clear_selected_item()
+	#
+	## Determine Inventory Source
+	#if legal:
+		#print("Opening Commissary (Legal)")
+		#if shop_inventory_data != legal_shop_inventory:
+			#shop_inventory_data = legal_shop_inventory
+			#_refresh_stock(legal_shop_inventory, legal_inventory_pool)
+	#else:
+		#print("Opening Black Market (Illegal)")
+		#if shop_inventory_data != illegal_shop_inventory:
+			#shop_inventory_data = illegal_shop_inventory
+			#_refresh_stock(illegal_shop_inventory, illegal_inventory_pool)
+	#
+	#_populate_grid(shop_inventory_data)
 
 func _refresh_stock(shop_inv: InventoryData, pool: InventoryData):
 	# Fill empty slots in the persistent shop inventory with new random items
@@ -199,4 +214,7 @@ func _on_buyback_button_pressed():
 		buyback_ui.hide()
 
 func _on_close_shop_button_pressed():
-	_handle_shop_ui(legal) # Toggles off
+	GameState.shopping = false
+	visible = false
+	buyback_ui.hide()
+	EventBus.shop_closed.emit()
