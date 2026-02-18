@@ -9,31 +9,21 @@ var parent_inventory: InventoryData
 @onready var selected_panel: Panel = %SelectedPanel
 
 
-func set_slot_data(new_slot_data: SlotData):
-	slot_data = new_slot_data
-	if !slot_data or !slot_data.item_data:
-		print("Setting slot in InventorySlotUI, has no slot and/or item_data")
-		return
-	
-	print("Set_Slot_Data run in inv_slot_ui. New slot: %s" % slot_data)
-	item_texture.show()
-	item_texture.texture = slot_data.item_data.texture
-	tooltip_text = slot_data.item_data.name
-	if slot_data.quantity > 1 and slot_data.item_data.stackable:
-		quantity.show()
-		quantity.text = str(slot_data.quantity)
-	else:
-		quantity.hide()
-	
-	var qty = slot_data.quantity
-	if not slot_data.item_data.stackable:
-		qty = 1
-	EventBus.inventory_item_updated.emit(parent_inventory, qty)
+func set_slot_data(new_data: SlotData):
+	slot_data = new_data
+	_update_visuals()
 
 func _update_visuals():
+	if not slot_data or not slot_data.item_data:
+		item_texture.hide()
+		quantity.hide()
+		return
+
 	item_texture.show()
 	item_texture.texture = slot_data.item_data.texture
-	if slot_data.quantity > 1 and slot_data.item_data.stackable:
+	tooltip_text = "%s ($%s)" % [slot_data.item_data.name, slot_data.item_data.buy_value]
+	
+	if slot_data.quantity > 1:
 		quantity.show()
 		quantity.text = str(slot_data.quantity)
 	else:
@@ -60,6 +50,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "click")
+			EventBus.select_item.emit(slot_data)
 			#print("Shop UI slot clicked")
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			EventBus.inventory_interacted.emit(parent_inventory, self, slot_data, "r_click")
