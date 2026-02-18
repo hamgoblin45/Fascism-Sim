@@ -56,3 +56,5 @@ func _on_dialogic_signal(arg: Dictionary):
 			EventBus.follow_player.emit(GameState.talking_to, true)
 		"choice_selected":
 			dialogue_choice_selected.emit(arg["choice_id"])
+		"open_shop":
+			EventBus.shopping.emit(false)

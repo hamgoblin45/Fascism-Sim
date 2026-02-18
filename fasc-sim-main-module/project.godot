@@ -41,6 +41,7 @@ directories/dtl_directory={
 "guest_search_imminent": "res://Data/Dialogue/guest_search_imminent.dtl",
 "major_raid_frisk_complete": "res://Data/Dialogue/Characters/Major/major_raid_frisk_complete.dtl",
 "major_search_announce_test": "res://Data/Dialogue/major_search_announce_test.dtl",
+"merchant_at_door": "res://Data/Dialogue/Characters/merchant_at_door.dtl",
 "raid_guest_discovered": "res://Data/Dialogue/raid_guest_discovered.dtl",
 "timeline": "res://Data/Dialogue/timeline.dtl"
 }
