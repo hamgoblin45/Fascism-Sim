@@ -157,7 +157,7 @@ func _handle_schedule_nav(delta: float):
 			_finish_path()
 			return
 	
-	_move_and_rotate(global_position.direction_to(current_target), 2.0, delta)
+	_move_and_rotate(global_position.direction_to(current_target), 9.0, delta)
 
 func _handle_dynamic_nav(delta: float):
 	if global_position.distance_to(dynamic_target_pos) < 1.0:
@@ -167,11 +167,11 @@ func _handle_dynamic_nav(delta: float):
 	
 	# Simple direct movement for command mode
 	var dir = global_position.direction_to(dynamic_target_pos)
-	_move_and_rotate(dir, 3.0, delta)
+	_move_and_rotate(dir, 9.0, delta)
 
 func _move_and_rotate(dir: Vector3, speed: float, delta: float):
-	velocity.x = lerp(velocity.x, dir.x * speed, 5.0 * delta)
-	velocity.z = lerp(velocity.z, dir.z * speed, 5.0 * delta)
+	velocity.x = lerp(velocity.x, dir.x * speed, 15.0 * delta)
+	velocity.z = lerp(velocity.z, dir.z * speed, 15.0 * delta)
 	look_at_node.look_at(global_position + dir)
 	global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 5.0 * delta)
 
