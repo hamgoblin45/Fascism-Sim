@@ -12,15 +12,12 @@ func _ready():
 
 
 func start_dialogue(timeline_key: String, npc_name: String = ""):
-	# Check if a dialogue is already running
-	if Dialogic.current_timeline != null:
-		return
+	if Dialogic.current_timeline != null: return
 	
 	if npc_name != "":
 		Dialogic.VAR.CurrentNPC = npc_name
 		
 	print("DialogueManager: Starting dialogue timeline: ", timeline_key)
-	
 	Dialogic.start(timeline_key)
 	
 	get_viewport().set_input_as_handled()
@@ -30,9 +27,12 @@ func start_dialogue(timeline_key: String, npc_name: String = ""):
 	dialogue_started.emit()
 
 func _on_timeline_ended():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameState.in_dialogue = false
 	GameState.can_move = true
+	
+	# FIX: Only recapture mouse if we are NOT shopping
+	if not GameState.shopping:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	dialogue_ended.emit()
 
@@ -60,3 +60,5 @@ func _on_dialogic_signal(arg: Dictionary):
 			if arg["shop_inventory"]:
 				var inv = load(arg["shop_inventory"])
 				EventBus.open_specific_shop.emit(inv, false)
+		#"visitor_leave":
+			#EventBus.visitor_leave_requested.emit()

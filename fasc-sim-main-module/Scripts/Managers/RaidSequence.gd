@@ -36,7 +36,7 @@ func start_raid_event() -> void:
 		major_npc.rotation = door_blocker_pos.rotation
 		
 		# Position Search Grunt slightly behind/right
-		search_grunt_npc.global_position = door_blocker_pos.global_position + (Vector3.BACK * 2.0) + (Vector3.RIGHT * 1.5)
+		search_grunt_npc.global_position = door_blocker_pos.global_position + (Vector3.BACK * 2.0) + (Vector3.LEFT * 1.5)
 		search_grunt_npc.look_at_target(front_door)
 
 	# 2. Position Backup Grunt at Back Door

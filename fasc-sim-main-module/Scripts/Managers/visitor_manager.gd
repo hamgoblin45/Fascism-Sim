@@ -8,10 +8,11 @@ extends Node
 @export var merchant_npc: NPC
 
 # Locations
-@export var spawn_marker: Node3D # Street
-@export var door_marker: Node3D # Front Door
-@export var back_door_marker: Node3D # Back Door
-@export var leave_marker: Node3D 
+@export var spawn_marker: Node3D
+@export var door_marker: Node3D
+@export var back_door_marker: Node3D
+@export var side_yard_marker: Node3D # NEW: The corner they must walk around
+@export var leave_marker: Node3D
 
 var current_visitor: NPC = null
 var raid_party_arrived_count: int = 0
@@ -20,6 +21,7 @@ func _ready() -> void:
 	EventBus.visitor_arrived.connect(_on_visitor_arrived)
 	EventBus.door_opened_for_visitor.connect(_on_door_opened)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+	EventBus.visitor_leave_requested.connect(_send_npc_away)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_visit_officer"): 
@@ -41,21 +43,22 @@ func start_visit(npc: NPC) -> void:
 	npc.global_position = spawn_marker.global_position
 	npc.show()
 	npc.process_mode = Node.PROCESS_MODE_INHERIT
+	var points: Array = []
+	points.append(door_marker.global_position)
 	
-	var path = _create_visit_path(spawn_marker.global_position, door_marker.global_position)
+	var path = _create_visit_path(spawn_marker.global_position, points)
 	npc.set_override_path(path)
 
-# --- RAID PARTY LOGIC (New) ---
+# --- RAID PARTY LOGIC ---
 
 func start_raid_arrival() -> void:
 	if current_visitor != null: return
 	print("VisitorManager: DISPATCHING RAID SQUAD")
 	
-	# Track arrival to know when to start knocking
 	raid_party_arrived_count = 0
-	current_visitor = officer_major_npc # Mark Major as "Main" visitor to block others
+	current_visitor = officer_major_npc
 	
-	# 1. Spawn Everyone at Street
+	# 1. Spawn Everyone
 	var squad = [officer_major_npc, officer_grunt_1, officer_grunt_2]
 	var offset = Vector3(0,0,0)
 	
@@ -64,22 +67,40 @@ func start_raid_arrival() -> void:
 			member.global_position = spawn_marker.global_position + offset
 			member.show()
 			member.process_mode = Node.PROCESS_MODE_INHERIT
-			offset += Vector3(1, 0, 1) # Space them out slightly
-	
+			offset += Vector3(1, 0, 1)
+
 	# 2. Assign Paths
-	# Major -> Front Door Center
-	var major_path = _create_visit_path(officer_major_npc.global_position, door_marker.global_position)
+	# Major -> Front Door
+	var major_path = _create_visit_path(officer_major_npc.global_position, [door_marker.global_position])
 	officer_major_npc.set_override_path(major_path)
 	
-	# Grunt 1 (Searcher) -> Front Door Side
+	# Grunt 1 -> Front Door Side
 	var grunt1_pos = door_marker.global_position + (door_marker.basis.x * 1.5) + (door_marker.basis.z * 1.0)
-	var grunt1_path = _create_visit_path(officer_grunt_1.global_position, grunt1_pos)
+	var grunt1_path = _create_visit_path(officer_grunt_1.global_position, [grunt1_pos])
 	officer_grunt_1.set_override_path(grunt1_path)
 	
-	# Grunt 2 (Backup) -> Back Door
+	# Grunt 2 -> Side Yard -> Back Door
 	if back_door_marker:
-		var grunt2_path = _create_visit_path(officer_grunt_2.global_position, back_door_marker.global_position)
+		var points: Array[Vector3] = []
+		
+		# If we defined a corner waypoint, go there first
+		if side_yard_marker:
+			points.append(side_yard_marker.global_position)
+			
+		points.append(back_door_marker.global_position)
+		
+		var grunt2_path = _create_visit_path(officer_grunt_2.global_position, points)
 		officer_grunt_2.set_override_path(grunt2_path)
+
+# --- UTILS ---
+
+func _create_visit_path(start: Vector3, target_points: Array[Vector3]) -> PathData:
+	var new_path = PathData.new()
+	new_path.start_pos = start
+	new_path.points = target_points # Assign the list of points
+	new_path.wait_for_player = true 
+	new_path.anim_on_arrival = "Idle"
+	return new_path
 
 # --- ARRIVAL HANDLING ---
 
@@ -106,14 +127,6 @@ func _on_visitor_arrived(npc: NPC) -> void:
 		npc.look_at_target(GameState.player)
 		npc.interactable = true 
 
-func _create_visit_path(start: Vector3, end: Vector3) -> PathData:
-	var new_path = PathData.new()
-	new_path.start_pos = start
-	var path_points: Array[Vector3] = [end] # Explicit typed array
-	new_path.points = path_points
-	new_path.wait_for_player = true 
-	new_path.anim_on_arrival = "Idle"
-	return new_path
 
 func _on_door_opened() -> void:
 	if current_visitor and is_instance_valid(current_visitor):
@@ -141,10 +154,13 @@ func _handle_post_visit_logic(npc: NPC) -> void:
 			return
 
 	print("VisitorManager: Visit complete. NPC leaving.")
-	_send_npc_away(npc)
+	_send_npc_away()
 
-func _send_npc_away(npc: NPC) -> void:
-	var path = _create_visit_path(npc.global_position, leave_marker.global_position)
+func _send_npc_away() -> void:
+	var npc = current_visitor
+	var points: Array = []
+	points.append(leave_marker.global_position)
+	var path = _create_visit_path(npc.global_position, points)
 	npc.set_override_path(path)
 	await get_tree().create_timer(10.0).timeout
 	npc.release_from_override() 

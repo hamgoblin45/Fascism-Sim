@@ -50,33 +50,6 @@ func _on_open_specific_shop(inv_data: InventoryData, is_legal: bool):
 	else:
 		print("ShopUI: Displaying Black Market Stock")
 
-#func _handle_shop_ui(legal_shop: bool):
-	## Toggle visibility based on GameState
-	#GameState.shopping = not GameState.shopping
-	#visible = GameState.shopping
-	#
-	#if not visible:
-		#buyback_ui.hide()
-		#EventBus.shop_closed.emit()
-		#return
-	#
-	#legal = legal_shop
-	#_clear_selected_item()
-	#
-	## Determine Inventory Source
-	#if legal:
-		#print("Opening Commissary (Legal)")
-		#if shop_inventory_data != legal_shop_inventory:
-			#shop_inventory_data = legal_shop_inventory
-			#_refresh_stock(legal_shop_inventory, legal_inventory_pool)
-	#else:
-		#print("Opening Black Market (Illegal)")
-		#if shop_inventory_data != illegal_shop_inventory:
-			#shop_inventory_data = illegal_shop_inventory
-			#_refresh_stock(illegal_shop_inventory, illegal_inventory_pool)
-	#
-	#_populate_grid(shop_inventory_data)
-
 func _refresh_stock(shop_inv: InventoryData, pool: InventoryData):
 	# Fill empty slots in the persistent shop inventory with new random items
 	for i in range(shop_inv.slots.size()):

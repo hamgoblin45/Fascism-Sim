@@ -173,7 +173,7 @@ door_blocker_pos = NodePath("../NavigationRegion3D/player_house/DoorBlockerPos")
 major_stand_aside_pos = NodePath("../NavigationRegion3D/player_house/MajorStepAsidePos")
 front_door = NodePath("../FrontDoor")
 
-[node name="VisitorManager" type="Node" parent="." unique_id=1000293489 node_paths=PackedStringArray("officer_major_npc", "officer_grunt_1", "officer_grunt_2", "fugitive_npc", "merchant_npc", "spawn_marker", "door_marker", "back_door_marker", "leave_marker")]
+[node name="VisitorManager" type="Node" parent="." unique_id=1000293489 node_paths=PackedStringArray("officer_major_npc", "officer_grunt_1", "officer_grunt_2", "fugitive_npc", "merchant_npc", "spawn_marker", "door_marker", "back_door_marker", "side_yard_marker", "leave_marker")]
 script = ExtResource("3_lswn8")
 officer_major_npc = NodePath("../NPCs/Major")
 officer_grunt_1 = NodePath("../NPCs/Grunt1")
@@ -183,6 +183,7 @@ merchant_npc = NodePath("../NPCs/MerchantNPC")
 spawn_marker = NodePath("../PathingPoints/SpawnPos")
 door_marker = NodePath("../PathingPoints/DoorPos")
 back_door_marker = NodePath("../PathingPoints/BackDoorPos")
+side_yard_marker = NodePath("../PathingPoints/CornerToBackYardPos")
 leave_marker = NodePath("../PathingPoints/SpawnPos")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2094871426]
@@ -418,6 +419,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.086946, -4.7683716e-07, -
 
 [node name="BackDoorPos" type="Node3D" parent="PathingPoints" unique_id=2101943389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.696357, -1.4305115e-06, 6.6067295)
+
+[node name="CornerToBackYardPos" type="Node3D" parent="PathingPoints" unique_id=98932520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.676918, -1.4305115e-06, 19.124535)
 
 [editable path="NavigationRegion3D/player_house"]
 [editable path="FrontDoor"]

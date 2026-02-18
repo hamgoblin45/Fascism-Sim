@@ -27,6 +27,7 @@ var looking_at: Node3D
 enum {IDLE, WALK, WAIT, ANIMATING, FOLLOWING, COMMAND_MOVE}
 var state = IDLE
 var prev_state
+const SPEED_MULTIPLIER: float = 3.2
 
 # Pathing & Overrides
 var is_under_command: bool = false 
@@ -200,14 +201,13 @@ func _handle_dynamic_nav(delta: float):
 	_move_and_rotate(dir, 3.0, delta)
 
 func _move_and_rotate(dir: Vector3, speed: float, delta: float):
-	velocity.x = lerp(velocity.x, dir.x * speed, 5.0 * delta)
-	velocity.z = lerp(velocity.z, dir.z * speed, 5.0 * delta)
+	var adjusted_speed = speed * SPEED_MULTIPLIER
 	
-	# Only rotate if moving
-	if dir.length() > 0.1:
-		var target_rot = atan2(dir.x, dir.z)
-		# Smooth rotation using lerp_angle
-		rotation.y = lerp_angle(rotation.y, target_rot, 5.0 * delta)
+	velocity.x = lerp(velocity.x, dir.x * adjusted_speed, 5.0 * delta)
+	velocity.z = lerp(velocity.z, dir.z * adjusted_speed, 5.0 * delta)
+	
+	look_at_node.look_at(global_position + dir)
+	global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 5.0 * delta)
 
 # --- COMMANDS ---
 

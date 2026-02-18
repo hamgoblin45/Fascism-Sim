@@ -83,6 +83,7 @@ signal interrogation_started(item, qty)
 
 ## -- PATHING ---
 signal visitor_arrived(npc)
+signal visitor_leave_requested(npc)
 signal setting_path(schedule: ScheduleData, path: PathData)
 signal path_finished(npc: NPCData, path: PathData)
 signal follow_player(NPC, bool)
