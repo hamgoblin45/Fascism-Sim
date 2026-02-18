@@ -12,6 +12,8 @@ func _ready() -> void:
 	EventBus.start_day.connect(_start_new_day)
 
 func handle_time():
+	if GameState.paused or GameState.in_dialogue or GameState.shopping:
+		return
 	GameState.time = 1440 * GameState.cycle_time / 60
 	GameState.hour = floor(GameState.time)
 	var minute_fraction = GameState.time - GameState.hour
