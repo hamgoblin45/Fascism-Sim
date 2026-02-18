@@ -80,6 +80,7 @@ signal raid_timer_updated(seconds: float)
 signal interrogation_started(item, qty)
 
 ## -- PATHING ---
+signal visitor_arrived(npc)
 signal setting_path(schedule: ScheduleData, path: PathData)
 signal path_finished(npc: NPCData, path: PathData)
 signal follow_player(NPC, bool)

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/Inventory/inventory_ui.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dqoxbykl7fg8w" path="res://Interface/hud.tscn" id="2_074og"]
 [ext_resource type="Script" uid="uid://crjy7n1e3nfkj" path="res://Scripts/Managers/RaidSequence.gd" id="2_d13ii"]
+[ext_resource type="Script" uid="uid://cib062svm35nn" path="res://Scripts/Managers/visitor_manager.gd" id="3_lswn8"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="6_272bh"]
 [ext_resource type="Script" uid="uid://mcdm8xr3sdvh" path="res://Items/Interactables/container.gd" id="6_ycdy4"]
@@ -158,10 +159,21 @@ script = ExtResource("1_ryguw")
 [node name="RaidSequence" type="Node" parent="." unique_id=363072616 node_paths=PackedStringArray("major_npc", "search_grunt_npc", "door_blocker_pos", "major_stand_aside_pos", "front_door")]
 script = ExtResource("2_d13ii")
 major_npc = NodePath("../NPCs/Major")
-search_grunt_npc = NodePath("../NPCs/Grunt")
+search_grunt_npc = NodePath("../NPCs/Grunt1")
 door_blocker_pos = NodePath("../NavigationRegion3D/player_house/DoorBlockerPos")
 major_stand_aside_pos = NodePath("../NavigationRegion3D/player_house/MajorStepAsidePos")
 front_door = NodePath("../FrontDoor")
+
+[node name="VisitorManager" type="Node" parent="." unique_id=1000293489 node_paths=PackedStringArray("officer_major_npc", "officer_grunt_1", "officer_grunt_2", "fugitive_npc", "spawn_marker", "door_marker", "back_door_marker", "leave_marker")]
+script = ExtResource("3_lswn8")
+officer_major_npc = NodePath("../NPCs/Major")
+officer_grunt_1 = NodePath("../NPCs/Grunt1")
+officer_grunt_2 = NodePath("../NPCs/Grunt2")
+fugitive_npc = NodePath("../NPCs/TestRefugee")
+spawn_marker = NodePath("../PathingPoints/SpawnPos")
+door_marker = NodePath("../PathingPoints/DoorPos")
+back_door_marker = NodePath("../PathingPoints/BackDoorPos")
+leave_marker = NodePath("../PathingPoints/SpawnPos")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2094871426]
 environment = SubResource("Environment_7dm0k")
@@ -333,11 +345,15 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 [node name="NPCs" type="Node3D" parent="." unique_id=1576685263]
 
 [node name="Major" parent="NPCs" unique_id=610944064 instance=ExtResource("19_cegan")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.838703, 0, -3.702774)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.298426, 0, -23.69853)
 script = ExtResource("28_kq58d")
 
-[node name="Grunt" parent="NPCs" unique_id=26024771 instance=ExtResource("19_cegan")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.863255, 0, -5.8265653)
+[node name="Grunt1" parent="NPCs" unique_id=26024771 instance=ExtResource("19_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.881622, 0, -27.650469)
+script = ExtResource("28_kq58d")
+
+[node name="Grunt2" parent="NPCs" unique_id=92454 instance=ExtResource("19_cegan")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.003862, 0, -23.972462)
 script = ExtResource("28_kq58d")
 
 [node name="TestRefugee" parent="NPCs" unique_id=2024641856 groups=["guests"] instance=ExtResource("19_cegan")]
@@ -373,6 +389,17 @@ interact_text = "Hide here!"
 
 [node name="CollisionShape3D" parent="HidingSpots/Wardrobe/HidingSpot" index="0" unique_id=1822048844]
 shape = SubResource("BoxShape3D_getpj")
+
+[node name="PathingPoints" type="Node3D" parent="." unique_id=1385536164]
+
+[node name="SpawnPos" type="Node3D" parent="PathingPoints" unique_id=1307168223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.272987, 0, -7.223173)
+
+[node name="DoorPos" type="Node3D" parent="PathingPoints" unique_id=176690797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.086946, -4.7683716e-07, -3.7836375)
+
+[node name="BackDoorPos" type="Node3D" parent="PathingPoints" unique_id=2101943389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.696357, -1.4305115e-06, 6.6067295)
 
 [editable path="NavigationRegion3D/player_house"]
 [editable path="FrontDoor"]
