@@ -10,6 +10,7 @@
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/Styles/InventoryPanelStyle.tres" id="6_3y5k6"]
 [ext_resource type="Resource" uid="uid://ijbovam7ggbb" path="res://Data/Items/Food/steak.tres" id="6_8c4yq"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="7_hvb16"]
+[ext_resource type="Resource" uid="uid://bmahi1w8kf6yv" path="res://Interface/TestStuff/cocaine.tres" id="8_oli18"]
 [ext_resource type="PackedScene" uid="uid://cb06vgbnsed6c" path="res://Interface/Inventory/grabbed_slot_ui.tscn" id="9_c0f0r"]
 [ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/Inventory/give_item_ui.gd" id="11_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/Inventory/Shop/shop_ui.tscn" id="11_hvb16"]
@@ -31,9 +32,15 @@ script = ExtResource("4_c0f0r")
 item_data = ExtResource("7_hvb16")
 metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
 
+[sub_resource type="Resource" id="Resource_mh3xh"]
+script = ExtResource("4_c0f0r")
+item_data = ExtResource("8_oli18")
+quantity = 20
+metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
+
 [sub_resource type="Resource" id="Resource_xywkj"]
 script = ExtResource("3_gur8t")
-slots = Array[ExtResource("4_c0f0r")]([SubResource("Resource_oli18"), SubResource("Resource_jfwpd"), null, SubResource("Resource_8c4yq"), null, null])
+slots = Array[ExtResource("4_c0f0r")]([SubResource("Resource_oli18"), SubResource("Resource_jfwpd"), null, SubResource("Resource_8c4yq"), SubResource("Resource_mh3xh"), null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]

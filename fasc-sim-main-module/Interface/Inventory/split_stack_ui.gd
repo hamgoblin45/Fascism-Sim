@@ -6,6 +6,8 @@ var current_inventory: InventoryData
 @onready var split_slider: HSlider = $MarginContainer/VBoxContainer/HBoxContainer/SplitSlider
 @onready var split_qty: Label = $MarginContainer/VBoxContainer/HBoxContainer/SplitQty
 
+@onready var split_button: Button = $MarginContainer/VBoxContainer/SplitButton
+
 var mouse_on_ui: bool
 
 
@@ -23,6 +25,8 @@ func _set_split_ui(inv: InventoryData, slot: SlotData):
 	split_qty.text = "%s/%s" % [str(snappedi(split_slider.value,1)), str(slot.quantity)]
 	split_slider.max_value = slot.quantity
 	split_slider.value = 1
+	
+	_update_button_text()
 
 func _physics_process(_delta: float) -> void:
 	if !visible: return
@@ -30,6 +34,14 @@ func _physics_process(_delta: float) -> void:
 	or Input.is_action_just_pressed("back"):
 		print("Click while split ui is visible and mouse off panel, hiding")
 		hide()
+
+func _update_button_text() -> void:
+	var amount = int(split_slider.value)
+	if GameState.shopping:
+		var total_val = amount * slot_data.item_data.sell_value
+		split_button.text = "Sell for $%s" % total_val
+	else:
+		split_button.text = "Split"
 
 func _on_split_button_pressed() -> void:
 	var amount = int(split_slider.value)
@@ -65,6 +77,7 @@ func _on_split_button_pressed() -> void:
 
 func _on_split_slider_value_changed(value: float) -> void:
 	split_qty.text = "%s/%s" % [str(snappedi(value,1)), str(slot_data.quantity)]
+	_update_button_text()
 
 
 func _on_mouse_exited() -> void:

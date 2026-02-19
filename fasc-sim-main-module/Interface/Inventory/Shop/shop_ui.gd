@@ -131,18 +131,25 @@ func _on_buy_button_pressed():
 func _sell_item(sell_slot: SlotData):
 	if not visible: return
 	
-	var value = sell_slot.item_data.sell_value * sell_slot.quantity
+	# Determine actual quantity (force 1 if non-stackable)
+	var qty = sell_slot.quantity if sell_slot.item_data.stackable else 1
+	var value = sell_slot.item_data.sell_value * qty
+	
+	# FIX: Create a BRAND NEW memory reference for the buyback slot
+	var buyback_data = SlotData.new()
+	buyback_data.item_data = sell_slot.item_data
+	buyback_data.quantity = qty
 	
 	if legal:
-		legal_buyback_slot = sell_slot
+		legal_buyback_slot = buyback_data
 	else:
-		illegal_buyback_slot = sell_slot
+		illegal_buyback_slot = buyback_data
 	
-	_update_buyback_ui(sell_slot)
+	_update_buyback_ui(buyback_data)
 	
 	GameState.money += value
 	EventBus.money_updated.emit(GameState.money)
-	EventBus.removing_item.emit(sell_slot.item_data, sell_slot.quantity, sell_slot)
+	EventBus.removing_item.emit(sell_slot.item_data, qty, sell_slot)
 
 func _update_buyback_ui(slot: SlotData):
 	buyback_ui.show()
