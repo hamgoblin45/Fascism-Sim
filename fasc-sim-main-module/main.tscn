@@ -130,7 +130,7 @@ metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [sub_resource type="Resource" id="Resource_qsp4k"]
 script = ExtResource("24_0odxb")
-name = "Merhcnat"
+name = "Merchant"
 id = "merchant"
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 

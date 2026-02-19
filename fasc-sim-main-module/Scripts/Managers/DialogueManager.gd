@@ -12,7 +12,9 @@ func _ready():
 
 
 func start_dialogue(timeline_key: String, npc_name: String = ""):
-	if Dialogic.current_timeline != null: return
+	if Dialogic.current_timeline != null: 
+		print("DialogueManager ERROR: Cannot start '%s', timeline '%s' is already active!" % [timeline_key, Dialogic.current_timeline])
+		return
 	
 	if npc_name != "":
 		Dialogic.VAR.CurrentNPC = npc_name

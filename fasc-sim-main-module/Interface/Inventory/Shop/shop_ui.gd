@@ -3,11 +3,6 @@ class_name ShopUI
 
 const SHOP_SLOT_UI = preload("uid://cj1cyf80hrqb4")
 
-@export var legal_inventory_pool: InventoryData
-@export var illegal_inventory_pool: InventoryData
-@export var legal_shop_inventory: InventoryData
-@export var illegal_shop_inventory: InventoryData
-
 var shop_inventory_data: InventoryData
 var selected_slot: SlotData = null
 var legal_buyback_slot: SlotData = null
@@ -50,24 +45,6 @@ func _on_open_specific_shop(inv_data: InventoryData, is_legal: bool):
 	else:
 		print("ShopUI: Displaying Black Market Stock")
 
-func _refresh_stock(shop_inv: InventoryData, pool: InventoryData):
-	# Fill empty slots in the persistent shop inventory with new random items
-	for i in range(shop_inv.slots.size()):
-		if shop_inv.slots[i] == null:
-			var picked = _pick_random_stock(pool)
-			if picked:
-				var new_slot = SlotData.new()
-				new_slot.item_data = picked.item_data
-				new_slot.quantity = picked.quantity
-				shop_inv.slots[i] = new_slot
-
-func _pick_random_stock(pool: InventoryData) -> SlotData:
-	if not pool or pool.slots.is_empty(): return null
-	# Filter out nulls
-	var valid_slots = pool.slots.filter(func(s): return s != null)
-	if valid_slots.is_empty(): return null
-	return valid_slots.pick_random()
-
 func _populate_grid(inv: InventoryData):
 	for child in slot_container.get_children():
 		child.queue_free()
@@ -75,7 +52,7 @@ func _populate_grid(inv: InventoryData):
 	for slot_data in inv.slots:
 		var slot_ui = SHOP_SLOT_UI.instantiate()
 		slot_container.add_child(slot_ui)
-		slot_ui.parent_inventory = inv # Important for interaction
+		slot_ui.parent_inventory = inv 
 		if slot_data:
 			slot_ui.set_slot_data(slot_data)
 
@@ -88,7 +65,6 @@ func _clear_selected_item():
 func _on_item_select(slot_data: SlotData):
 	if not visible: return
 	
-	# Verify this slot belongs to the shop
 	if not shop_inventory_data.slots.has(slot_data):
 		_clear_selected_item()
 		return
@@ -98,6 +74,7 @@ func _on_item_select(slot_data: SlotData):
 	
 	shop_item_name.text = slot_data.item_data.name
 	shop_item_descript.text = slot_data.item_data.description
+	# shop_flavor_text.text = slot_data.item_data.flavor_text # Uncomment if you have this property
 	
 	# Setup Buying Slider
 	var price = slot_data.item_data.buy_value
@@ -141,17 +118,15 @@ func _on_buy_button_pressed():
 			shop_inventory_data.slots[idx] = null
 			_clear_selected_item()
 		
-		_populate_grid(shop_inventory_data) # Refresh UI
+		_populate_grid(shop_inventory_data) 
 
 # --- SELLING ---
 
 func _sell_item(sell_slot: SlotData):
 	if not visible: return
 	
-	# Logic: Player clicks 'Sell' on their own item context menu
 	var value = sell_slot.item_data.sell_value * sell_slot.quantity
 	
-	# Add to buyback (simulating the vendor taking it)
 	if legal:
 		legal_buyback_slot = sell_slot
 	else:
@@ -161,8 +136,6 @@ func _sell_item(sell_slot: SlotData):
 	
 	GameState.money += value
 	EventBus.money_updated.emit(GameState.money)
-	
-	# Remove from player
 	EventBus.removing_item.emit(sell_slot.item_data, sell_slot.quantity, sell_slot)
 
 func _update_buyback_ui(slot: SlotData):

@@ -43,7 +43,7 @@ func start_visit(npc: NPC) -> void:
 	npc.global_position = spawn_marker.global_position
 	npc.show()
 	npc.process_mode = Node.PROCESS_MODE_INHERIT
-	var points: Array = []
+	var points: Array[Vector3] = []
 	points.append(door_marker.global_position)
 	
 	var path = _create_visit_path(spawn_marker.global_position, points)
@@ -130,6 +130,7 @@ func _on_visitor_arrived(npc: NPC) -> void:
 
 func _on_door_opened() -> void:
 	if current_visitor and is_instance_valid(current_visitor):
+		GameState.talking_to = current_visitor
 		# Determine which timeline to play
 		var timeline = "default_visitor"
 		
@@ -143,7 +144,11 @@ func _on_door_opened() -> void:
 
 # ... (Keep _on_dialogue_ended, _handle_post_visit_logic, etc. from previous response) ...
 func _on_dialogue_ended() -> void:
-	if current_visitor and not GameState.raid_in_progress: # Don't send away if raid started
+	if GameState.shopping:
+		print("VisitorManager: Dialogue ended, but shopping active. Keeping visitor.")
+		return
+
+	if current_visitor and not GameState.raid_in_progress:
 		_handle_post_visit_logic(current_visitor)
 
 func _handle_post_visit_logic(npc: NPC) -> void:
@@ -157,8 +162,10 @@ func _handle_post_visit_logic(npc: NPC) -> void:
 	_send_npc_away()
 
 func _send_npc_away() -> void:
+	if not current_visitor or not is_instance_valid(current_visitor):
+		return
 	var npc = current_visitor
-	var points: Array = []
+	var points: Array[Vector3] = []
 	points.append(leave_marker.global_position)
 	var path = _create_visit_path(npc.global_position, points)
 	npc.set_override_path(path)
