@@ -142,13 +142,20 @@ func _animate_selection(is_active: bool):
 	
 	tween.tween_property(self, "scale", target_scale, 0.2)
 
-func _check_if_sellable(legal: bool):
-	if not slot_data or not slot_data.item_data:
-		return
-	if legal and slot_data.item_data.contraband_level > 1 \
-	or not legal and slot_data.item_data.contraband_level <= 1:
+func _check_if_sellable(legal_shop: bool):
+	if not slot_data or not slot_data.item_data: return
+	
+	var is_contraband = slot_data.item_data.contraband_level > GameState.legal_threshold
+	
+	# Can we sell it?
+	# Legal shop buys legal goods. Illegal shop buys illegal goods.
+	var can_sell = false
+	if legal_shop and not is_contraband: can_sell = true
+	elif not legal_shop and is_contraband: can_sell = true
+	
+	if not can_sell:
 		activated = false
-		item_texture.modulate = Color.BLACK
+		item_texture.modulate = Color(0.2, 0.2, 0.2, 0.5) # Dark gray, semi-transparent
 		tooltip_text = "Merchant won't buy this"
 	else:
 		activated = true
@@ -160,8 +167,10 @@ func _on_shop_closed():
 		return
 		# Reset deactivate parameters set when an item isn't sellable
 	activated = true
-	item_texture.modulate = Color(1,1,1) # Reset to normal
-	tooltip_text = slot_data.item_data.name
+	if item_texture:
+		item_texture.modulate = Color.WHITE
+	if slot_data and slot_data.item_data:
+		tooltip_text = slot_data.item_data.name
 
 func _on_search_step(search_inv: InventoryData, index: int, duration: float):
 	if search_inv != parent_inventory:

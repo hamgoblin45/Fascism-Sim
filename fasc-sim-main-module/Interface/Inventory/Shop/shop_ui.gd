@@ -33,12 +33,14 @@ func _ready():
 func _on_open_specific_shop(inv_data: InventoryData, is_legal: bool):
 	GameState.shopping = true
 	visible = true
-	
 	legal = is_legal
 	shop_inventory_data = inv_data
 	
 	_clear_selected_item()
 	_populate_grid(shop_inventory_data)
+	
+	# NEW: Tell InventorySlotUIs to update their appearance
+	EventBus.shopping.emit(is_legal)
 	
 	if legal:
 		print("ShopUI: Displaying Legal Stock")
@@ -65,6 +67,10 @@ func _clear_selected_item():
 func _on_item_select(slot_data: SlotData):
 	if not visible: return
 	
+	if not slot_data or not slot_data.item_data:
+		_clear_selected_item()
+		return
+		
 	if not shop_inventory_data.slots.has(slot_data):
 		_clear_selected_item()
 		return
