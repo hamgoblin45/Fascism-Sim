@@ -153,7 +153,7 @@ func _on_dialogue_ended() -> void:
 
 func _handle_post_visit_logic(npc: NPC) -> void:
 	if npc == fugitive_npc:
-		if GameState.world_flags.get("accepted_fugitive", false):
+		if GameState.world_flags.get("accepted_fugitive", true):
 			_convert_to_guest(npc)
 			current_visitor = null
 			return
@@ -174,7 +174,7 @@ func _send_npc_away() -> void:
 	current_visitor = null
 
 func _convert_to_guest(npc: NPC) -> void:
+	print("VisitorManager: Convert to guest run")
+	# Release them from their door-waiting override path
 	npc.release_from_override()
-	npc.global_position = Vector3(0, 0, 0) # Teleport inside (placeholder)
-	if not npc.is_in_group("guests"):
-		npc.add_to_group("guests")
+	GuestManager.make_guest(npc)

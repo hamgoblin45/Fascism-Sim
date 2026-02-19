@@ -423,6 +423,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.696357, -1.4305115e-06, 6.
 [node name="CornerToBackYardPos" type="Node3D" parent="PathingPoints" unique_id=98932520]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.676918, -1.4305115e-06, 19.124535)
 
+[node name="GuestIdleSpots" type="Node3D" parent="PathingPoints" unique_id=1833116245]
+
+[node name="Node3D" type="Node3D" parent="PathingPoints/GuestIdleSpots" unique_id=1013966698 groups=["guest_idle_spots"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.180107, 0, -7.916887)
+
+[node name="Node3D2" type="Node3D" parent="PathingPoints/GuestIdleSpots" unique_id=1016885542 groups=["guest_idle_spots"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.883503, 0, 2.0640473)
+
+[node name="Node3D3" type="Node3D" parent="PathingPoints/GuestIdleSpots" unique_id=1102523952 groups=["guest_idle_spots"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9671545, 0, 10.150923)
+
+[node name="Node3D4" type="Node3D" parent="PathingPoints/GuestIdleSpots" unique_id=2117077978 groups=["guest_idle_spots"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.359264, -4.7683716e-07, 9.891012)
+
 [editable path="NavigationRegion3D/player_house"]
 [editable path="FrontDoor"]
 [editable path="FrontDoor/door"]
