@@ -22,7 +22,7 @@ func _set_split_ui(inv: InventoryData, slot: SlotData):
 	slot_data = slot
 	split_qty.text = "%s/%s" % [str(snappedi(split_slider.value,1)), str(slot.quantity)]
 	split_slider.max_value = slot.quantity
-	split_slider.value = 0
+	split_slider.value = 1
 
 func _physics_process(_delta: float) -> void:
 	if !visible: return
@@ -34,18 +34,29 @@ func _physics_process(_delta: float) -> void:
 func _on_split_button_pressed() -> void:
 	var amount = int(split_slider.value)
 	
-	if amount <= 0 or amount >= slot_data.quantity:
+	if amount <= 0 or amount > slot_data.quantity: # Changed to allow selling full stack via split ui
 		hide()
 		return
 	
+	# Create the temporary data for the split
 	var stack_data = SlotData.new()
 	stack_data.item_data = slot_data.item_data
 	stack_data.quantity = amount
 	
-	slot_data.quantity -= int(amount)
-	
+	# NEW: If we are shopping, we route this to the ShopUI instead of the cursor
+	if GameState.shopping:
+		EventBus.selling_item.emit(stack_data) # Send to shop
+		hide()
+		return
+		
+	# --- STANDARD INVENTORY SPLIT ---
+	if amount >= slot_data.quantity: 
+		# If they split the max amount, don't actually split, just grab the whole thing
+		hide()
+		return 
+		
+	slot_data.quantity -= amount
 	var idx = current_inventory.slots.find(slot_data)
-	
 	EventBus.inventory_item_updated.emit(current_inventory, idx)
 	
 	EventBus.splitting_item_stack.emit(stack_data)

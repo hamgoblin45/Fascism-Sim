@@ -46,13 +46,13 @@ func _input(event: InputEvent) -> void:
 		var should_open = (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED)
 		_handle_open_ui(should_open)
 	
-	# Stop grabbing if click released early (before timer finishes)
+	# Stop grabbing if click released early
 	if Input.is_action_just_released("click"):
 		if not grab_timer.is_stopped():
 			_abort_pending_grab()
 
-	# Gameplay Inputs (Only when UI is closed)
-	if not GameState.ui_open:
+	# Gameplay Inputs (Only when UI is closed AND not shopping)
+	if not GameState.ui_open and not GameState.shopping:
 		_handle_gameplay_input(event)
 
 func _handle_gameplay_input(event: InputEvent) -> void:

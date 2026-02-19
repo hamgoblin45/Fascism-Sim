@@ -92,7 +92,11 @@ func _on_use_button_pressed() -> void:
 		"GIVE":
 			EventBus.giving_item.emit(slot_data)
 		"SELL":
-			EventBus.selling_item.emit(slot_data)
+			# NEW: Check if stackable before selling immediately
+			if slot_data.item_data.stackable and slot_data.quantity > 1:
+				EventBus.open_split_stack_ui.emit(inventory_data, slot_data)
+			else:
+				EventBus.selling_item.emit(slot_data)
 
 func _on_split_button_pressed() -> void:
 	EventBus.open_split_stack_ui.emit(inventory_data, slot_data)
