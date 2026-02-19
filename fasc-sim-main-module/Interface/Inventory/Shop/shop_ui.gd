@@ -17,7 +17,7 @@ var legal: bool = true
 @onready var buy_qty: Label = %BuyQty
 
 @onready var slot_container: GridContainer = %BuySlotContainer
-@onready var shop_item_context_ui: PanelContainer = %ShopItemContextUI
+@onready var item_context_ui: PanelContainer = %ShopItemContextUI
 
 @onready var buyback_ui: PanelContainer = %BuybackUI
 @onready var buyback_item_texture: TextureRect = %BuybackItemTexture
@@ -58,7 +58,7 @@ func _populate_grid(inv: InventoryData):
 
 func _clear_selected_item():
 	selected_slot = null
-	shop_item_context_ui.hide()
+	item_context_ui.hide()
 	buy_qty_slider.hide()
 	buy_qty.hide()
 
@@ -70,7 +70,7 @@ func _on_item_select(slot_data: SlotData):
 		return
 		
 	selected_slot = slot_data
-	shop_item_context_ui.show()
+	item_context_ui.show()
 	
 	shop_item_name.text = slot_data.item_data.name
 	shop_item_descript.text = slot_data.item_data.description

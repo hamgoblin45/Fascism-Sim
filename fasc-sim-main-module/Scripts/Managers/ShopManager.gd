@@ -24,7 +24,7 @@ func get_shop_inventory(merchant_id: String, stock_config: Dictionary) -> Invent
 
 func _generate_daily_stock(config: Dictionary) -> InventoryData:
 	var shop_inv = InventoryData.new()
-	shop_inv.slots.resize(12) # Set size of shop window (e.g. 20 slots)
+	shop_inv.slots.resize(20) # Set size of shop window (e.g. 20 slots)
 	
 	var current_slot_index = 0
 	

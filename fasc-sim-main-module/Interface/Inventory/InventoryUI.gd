@@ -6,23 +6,23 @@ const SLOT_SCENE = preload("uid://d3yl41a7rncgb") # Ensure this is correct UID/P
 
 # Pockets / Hotbar
 @onready var pockets_ui: PanelContainer = %PocketsInventoryUI
-@onready var pockets_grid: GridContainer = $PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketsContainer/SlotsPanel/PocketSlotContainer
+var pockets_grid: GridContainer = null
 
 # Grabbed Item Cursor
 @onready var grabbed_slot_ui: PanelContainer = %GrabbedSlotUI
 
 # External
 @onready var external_ui: PanelContainer = %ExternalInventoryUI
-@onready var external_grid: GridContainer = $ExternalInventoryUI/HBoxContainer/VBoxContainer/SlotsPanel/ExternalSlotContainer
+var external_grid: GridContainer = null
 
 # Shop
 @onready var shop_ui: PanelContainer = %ShopUI
-@onready var shop_grid: GridContainer = $ShopUI/HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer
+var shop_grid: GridContainer = null
 
 # Context Menus
-@onready var pocket_item_context_ui: PanelContainer = $PocketsInventoryUI/PocketsMasterContainer/BarDetailsRow/PocketItemContextUI
-@onready var external_item_context_ui: PanelContainer = $ExternalInventoryUI/HBoxContainer/ExternalItemContextUI
-@onready var shop_item_context_ui: PanelContainer = $ShopUI/HBoxContainer/ShopItemContextUI
+var pocket_item_context_ui: PanelContainer = null
+var external_item_context_ui: PanelContainer = null
+var shop_item_context_ui: PanelContainer = null
 
 func _ready() -> void:
 	# Signal Connections
@@ -31,8 +31,15 @@ func _ready() -> void:
 	EventBus.inventory_item_updated.connect(_on_item_updated)
 	EventBus.select_item.connect(_on_context_ui_set)
 	EventBus.update_grabbed_slot.connect(_on_grabbed_slot_updated)
+
+	pockets_grid = pockets_ui.slot_container
+	external_grid = external_ui.slot_container
+	shop_grid = shop_ui.slot_container
+	pocket_item_context_ui = pockets_ui.item_context_ui
+	external_item_context_ui = external_ui.item_context_ui
+	shop_item_context_ui = shop_ui.item_context_ui
 	
-	# Initial State: Hide secondary UIs
+		# Initial State: Hide secondary UIs
 	external_ui.hide()
 	external_item_context_ui.hide()
 	shop_ui.hide()
@@ -113,6 +120,20 @@ func _on_context_ui_set(slot_data: SlotData) -> void:
 
 	# Find where the clicked slot lives and show the appropriate menu
 	if _is_slot_in_inventory(slot_data, GameState.pockets_inventory):
+		# NEW: Check if we are shopping and if the item is valid for this merchant
+		if GameState.shopping:
+			var is_legal_shop = shop_ui.legal
+			var item_is_contraband = slot_data.item_data.contraband_level > GameState.legal_threshold
+			
+			var can_sell = false
+			if is_legal_shop and not item_is_contraband: can_sell = true
+			if not is_legal_shop and item_is_contraband: can_sell = true
+			
+			if not can_sell:
+				print("InventoryUI: Merchant refuses to buy this item.")
+				# Optionally show a tooltip or a little pop-up here saying "Merchant won't buy"
+				return # Block context menu from opening
+				
 		pocket_item_context_ui.set_context_menu(slot_data)
 		pocket_item_context_ui.show()
 		

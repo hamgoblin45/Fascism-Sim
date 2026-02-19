@@ -1,40 +1,29 @@
 [gd_scene format=3 uid="uid://uoaaf2v3td1e"]
 
 [ext_resource type="Script" uid="uid://cd88x2t70g7yn" path="res://Interface/Inventory/Shop/shop_ui.gd" id="1_8js8v"]
-[ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="2_ob0a7"]
-[ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="3_e6hud"]
 [ext_resource type="Script" uid="uid://bi8gfy8qlexw5" path="res://Interface/Inventory/item_context_ui.gd" id="7_8js8v"]
+[ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="7_n1id2"]
 [ext_resource type="PackedScene" uid="uid://d3yl41a7rncgb" path="res://Interface/Inventory/inventory_slot_ui.tscn" id="8_ee1af"]
-[ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="17_6o2oc"]
 [ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/Styles/InventoryPanelStyle.tres" id="18_v4hxh"]
 [ext_resource type="Texture2D" uid="uid://c8ptw3jtdkmqe" path="res://Interface/TestStuff/test_atlas_texture.tres" id="20_241a7"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="21_v4hxh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvb16"]
 
-[sub_resource type="Resource" id="Resource_ofwss"]
-script = ExtResource("2_ob0a7")
-metadata/_custom_type_script = "uid://crfuvv7qrrub3"
-
-[sub_resource type="Resource" id="Resource_ee1af"]
-script = ExtResource("2_ob0a7")
-metadata/_custom_type_script = "uid://crfuvv7qrrub3"
-
-[sub_resource type="Resource" id="Resource_pjc3g"]
-script = ExtResource("2_ob0a7")
-metadata/_custom_type_script = "uid://crfuvv7qrrub3"
-
-[sub_resource type="Resource" id="Resource_e2rwj"]
-script = ExtResource("3_e6hud")
-item_data = ExtResource("17_6o2oc")
-metadata/_custom_type_script = "uid://bg2a6tr7dx7cs"
-
-[sub_resource type="Resource" id="Resource_ob0a7"]
-script = ExtResource("2_ob0a7")
-slots = Array[ExtResource("3_e6hud")]([SubResource("Resource_e2rwj")])
-metadata/_custom_type_script = "uid://crfuvv7qrrub3"
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gur8t"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr5hj"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.18431373, 0.17254902, 0.13725491, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ik1e"]
 bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
@@ -58,6 +47,10 @@ content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.51937366, 0.14046302, 0.013221324, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2rwj"]
+atlas = ExtResource("7_n1id2")
+region = Rect2(320, 0, 64, 64)
+
 [node name="ShopUI" type="PanelContainer" unique_id=1867818113]
 custom_minimum_size = Vector2(304, 0)
 anchors_preset = 8
@@ -74,10 +67,6 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hvb16")
 script = ExtResource("1_8js8v")
-legal_inventory_pool = SubResource("Resource_ofwss")
-illegal_inventory_pool = SubResource("Resource_ee1af")
-legal_shop_inventory = SubResource("Resource_pjc3g")
-illegal_shop_inventory = SubResource("Resource_ob0a7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=801948350]
 layout_mode = 2
@@ -85,7 +74,7 @@ theme_override_constants/separation = 24
 
 [node name="ShopPanel" type="PanelContainer" parent="HBoxContainer" unique_id=773933345]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("18_v4hxh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lr5hj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ShopPanel" unique_id=1155913302]
 layout_mode = 2
@@ -99,54 +88,55 @@ theme_override_font_sizes/font_size = 34
 text = "SHOP"
 horizontal_alignment = 1
 
-[node name="SlotsPanel" type="PanelContainer" parent="HBoxContainer/ShopPanel/VBoxContainer" unique_id=724019000]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ShopPanel/VBoxContainer" unique_id=250588160]
+custom_minimum_size = Vector2(0, 210)
 layout_mode = 2
-size_flags_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_gur8t")
+size_flags_vertical = 0
+horizontal_scroll_mode = 0
 
-[node name="BuySlotContainer" type="GridContainer" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel" unique_id=1862009631]
+[node name="BuySlotContainer" type="GridContainer" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer" unique_id=1862009631]
 unique_name_in_owner = true
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 mouse_filter = 2
 columns = 4
 
-[node name="InventorySlotUI" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=1753418531 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=1753418531 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI2" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=1597585406 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI2" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=1597585406 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI3" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=1869913792 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI3" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=1869913792 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI4" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=750731330 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI4" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=750731330 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI5" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=1413805178 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI5" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=1413805178 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI6" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=1090168688 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI6" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=1090168688 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI7" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=662325907 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI7" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=662325907 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI8" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=294624843 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI8" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=294624843 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI9" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=308124746 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI9" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=308124746 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI10" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=2050988304 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI10" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=2050988304 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI11" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=901258876 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI11" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=901258876 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
-[node name="InventorySlotUI12" parent="HBoxContainer/ShopPanel/VBoxContainer/SlotsPanel/BuySlotContainer" unique_id=724317012 instance=ExtResource("8_ee1af")]
+[node name="InventorySlotUI12" parent="HBoxContainer/ShopPanel/VBoxContainer/ScrollContainer/BuySlotContainer" unique_id=724317012 instance=ExtResource("8_ee1af")]
 layout_mode = 2
 
 [node name="ShopItemContextUI" type="PanelContainer" parent="HBoxContainer" unique_id=91104731 node_paths=PackedStringArray("item_name", "item_descript", "item_flavor_text", "use_button")]
@@ -155,7 +145,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("18_v4hxh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lr5hj")
 script = ExtResource("7_8js8v")
 item_name = NodePath("MarginContainer/VBoxContainer/ShopItemName")
 item_descript = NodePath("MarginContainer/VBoxContainer/ShopItemDescript")
@@ -307,11 +297,14 @@ layout_mode = 2
 text = "Buyback"
 
 [node name="CloseShopButton" type="Button" parent="." unique_id=1640054543]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ob0a7")
-text = "CLOSE"
+icon = SubResource("AtlasTexture_e2rwj")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="mouse_entered" from="HBoxContainer/ShopItemContextUI" to="HBoxContainer/ShopItemContextUI" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/ShopItemContextUI" to="HBoxContainer/ShopItemContextUI" method="_on_mouse_exited"]

@@ -29,6 +29,8 @@ func _ready() -> void:
 	EventBus.drop_equipped_item.connect(_drop_equipped)
 	EventBus.force_ui_open.connect(_handle_open_ui)
 	
+	EventBus.shop_closed.connect(_on_shop_closed)
+	
 	# 2. Setup Initial State
 	#grab_timer.timeout.connect(_on_grab_timer_timeout)
 	call_deferred("_set_player_inventory")
@@ -410,3 +412,9 @@ func _discard_grabbed_item() -> void:
 		grabbed_slot_data = null
 		source_inventory = null
 		EventBus.update_grabbed_slot.emit(null)
+
+func _on_shop_closed() -> void:
+	# Clear whatever is selected so the context menu hides and resets
+	EventBus.select_item.emit(null)
+	# If we want the inventory to close entirely when the shop closes:
+	_handle_open_ui(false)
