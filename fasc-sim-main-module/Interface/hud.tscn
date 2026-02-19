@@ -9,8 +9,11 @@
 [ext_resource type="Script" uid="uid://c8buprwgcbrbt" path="res://Interface/TestStuff/test_stuff.gd" id="6_4i735"]
 [ext_resource type="Script" uid="uid://c7iwts56hctfr" path="res://Interface/Inventory/search_ui.gd" id="6_yux2m"]
 [ext_resource type="Script" uid="uid://c4tduqpqj1rpx" path="res://Interface/time_ui.gd" id="8_6je1u"]
+[ext_resource type="Script" uid="uid://cgkx7jos6fxce" path="res://Interface/guest_roster.gd" id="10_5bft6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uf33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yux2m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4i735"]
 
@@ -18,7 +21,7 @@
 atlas = ExtResource("5_jsbdt")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yux2m"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bft6"]
 
 [node name="HUD" type="Control" unique_id=758873281]
 process_mode = 3
@@ -57,7 +60,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -236.0
-offset_top = -183.0
+offset_top = -204.0
+offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
@@ -140,6 +144,25 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "100/100"
 horizontal_alignment = 1
+
+[node name="HungerUI" type="PanelContainer" parent="StatusUI/VBoxContainer" unique_id=1682203168]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yux2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatusUI/VBoxContainer/HungerUI" unique_id=808967914]
+layout_mode = 2
+
+[node name="HungerLabel" type="Label" parent="StatusUI/VBoxContainer/HungerUI/VBoxContainer" unique_id=2047885197]
+layout_mode = 2
+text = "Hunger "
+horizontal_alignment = 1
+
+[node name="HungerBar" type="ProgressBar" parent="StatusUI/VBoxContainer/HungerUI/VBoxContainer" unique_id=876787057]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="ActionProgressBar" type="TextureProgressBar" parent="." unique_id=207123865]
 unique_name_in_owner = true
@@ -258,32 +281,15 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 972.0
-offset_top = 157.0
+offset_top = 77.0
 offset_right = -15.0
-offset_bottom = -192.0
+offset_bottom = -272.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="StartRaid" type="Button" parent="TestStuff/TestHUD" unique_id=454979144]
 layout_mode = 2
 text = "Start Raid!"
-
-[node name="HungerUI" type="PanelContainer" parent="TestStuff/TestHUD" unique_id=1682203168]
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_yux2m")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TestStuff/TestHUD/HungerUI" unique_id=808967914]
-layout_mode = 2
-
-[node name="HungerLabel" type="Label" parent="TestStuff/TestHUD/HungerUI/VBoxContainer" unique_id=2047885197]
-layout_mode = 2
-text = "Hunger "
-horizontal_alignment = 1
-
-[node name="HungerBar" type="ProgressBar" parent="TestStuff/TestHUD/HungerUI/VBoxContainer" unique_id=876787057]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="SuspicionUI" type="PanelContainer" parent="TestStuff/TestHUD" unique_id=106634071]
 layout_mode = 2
@@ -362,6 +368,39 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "10:00"
 horizontal_alignment = 1
+
+[node name="GuestRoster" type="PanelContainer" parent="." unique_id=847879594]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -114.0
+offset_right = -18.0
+offset_bottom = 99.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5bft6")
+script = ExtResource("10_5bft6")
+
+[node name="NotificationLabel" type="Label" parent="GuestRoster" unique_id=741412322]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GuestRoster" unique_id=170145400]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="GuestRoster/VBoxContainer" unique_id=222551747]
+layout_mode = 2
+text = "Guests"
+horizontal_alignment = 1
+
+[node name="RosterList" type="VBoxContainer" parent="GuestRoster/VBoxContainer" unique_id=12957530]
+layout_mode = 2
 
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]
