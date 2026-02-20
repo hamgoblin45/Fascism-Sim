@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="24_0odxb"]
 [ext_resource type="Script" uid="uid://di7kfeuqnwjmf" path="res://NPCs/MerchantNPC.gd" id="26_xuqvo"]
 [ext_resource type="Resource" uid="uid://b476fxp3toyxi" path="res://Data/Inventory/Pool_BlackMarket.tres" id="27_kq58d"]
-[ext_resource type="Script" uid="uid://dwbtgkwya4a0e" path="res://Data/InventoryItemData.gd" id="27_qsp4k"]
+[ext_resource type="Script" uid="uid://dwbtgkwya4a0e" path="res://Data/ItemData.gd" id="27_qsp4k"]
 [ext_resource type="Script" uid="uid://dpcu4t1mojv2t" path="res://NPCs/OfficerNPC.gd" id="28_kq58d"]
 [ext_resource type="Script" uid="uid://cwpn1uxl5smj" path="res://NPCs/GuestNPC.gd" id="29_seu75"]
 

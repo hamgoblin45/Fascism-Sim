@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InventoryItemData" format=3 uid="uid://xnc5ytkpto04"]
 
-[ext_resource type="Script" uid="uid://dwbtgkwya4a0e" path="res://Data/InventoryItemData.gd" id="1_ge64n"]
+[ext_resource type="Script" uid="uid://dwbtgkwya4a0e" path="res://Data/ItemData.gd" id="1_ge64n"]
 [ext_resource type="PackedScene" uid="uid://baot8cx26xrnf" path="res://Items/Meshes/coffee_cup.gltf" id="1_re40b"]
 [ext_resource type="Texture2D" uid="uid://bif3lbyihceg0" path="res://Interface/TestStuff/test_item_spritesheet.png" id="2_re40b"]
 

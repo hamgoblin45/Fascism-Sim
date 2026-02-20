@@ -54,17 +54,28 @@ func _on_hour_changed(hour: int):
 		_process_guest_needs(guest)
 
 func _process_guest_needs(guest: GuestNPC):
-	# 1. Spawn Clues (e.g., 20% chance every hour to make a mess)
-	if randf() < 0.20 and clue_prefabs.size() > 0:
+	if not guest.is_inside_house: return
+
+	# 1. Increase Needs
+	guest.hunger = min(100.0, guest.hunger + 5.0) # Gets hungrier every hour
+	guest.stress = min(100.0, guest.stress + 2.0) # Base stress increase
+	
+	# If they are starving, stress skyrockets
+	if guest.hunger >= 80.0:
+		guest.stress = min(100.0, guest.stress + 10.0)
+		guest.spawn_bark("I'm so hungry...")
+
+	# 2. Spawn Clues (Messes)
+	var mess_chance = 0.10 # Base 10% chance per hour
+	if guest.stress >= 80.0:
+		mess_chance = 0.40 # 40% chance if highly stressed/panicking
+		
+	if randf() < mess_chance and clue_prefabs.size() > 0:
 		_spawn_clue_near_guest(guest)
 		
-	# 2. Change Locations (Keep the house feeling alive)
-	if randf() < 0.50:
+	# 3. Change Locations to make the house feel alive
+	if randf() < 0.50 and not guest.is_hidden:
 		send_to_random_spot(guest)
-		
-	# 3. Increase Hunger/Stress (Placeholder for next steps)
-	# guest.hunger += 10.0
-	# guest.stress += 5.0
 
 func _spawn_clue_near_guest(guest: GuestNPC):
 	var clue_scene = clue_prefabs.pick_random()
