@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b1jos7r4f40bc" path="res://NPCs/npc.tscn" id="19_cegan"]
 [ext_resource type="PackedScene" uid="uid://dveqicaom7xy5" path="res://Map/filing_cabinet.glb" id="21_0odxb"]
 [ext_resource type="PackedScene" uid="uid://cokdko33hqlj1" path="res://Map/hiding_spot.tscn" id="21_getpj"]
+[ext_resource type="PackedScene" uid="uid://7231mpho8olk" path="res://Items/Interactables/trash_can.tscn" id="22_kq58d"]
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="24_0odxb"]
 [ext_resource type="Script" uid="uid://di7kfeuqnwjmf" path="res://NPCs/MerchantNPC.gd" id="26_xuqvo"]
 [ext_resource type="Resource" uid="uid://b476fxp3toyxi" path="res://Data/Inventory/Pool_BlackMarket.tres" id="27_kq58d"]
@@ -351,6 +352,9 @@ shape = SubResource("BoxShape3D_a6jrf")
 
 [node name="filing_cabinet" parent="Containers/FilingCabnet2" unique_id=508371374 instance=ExtResource("21_0odxb")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[node name="TrashCan" parent="Containers" unique_id=760818668 instance=ExtResource("22_kq58d")]
+transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -16.48896, 1.0478435, 2.1192732)
 
 [node name="NPCs" type="Node3D" parent="." unique_id=1576685263]
 

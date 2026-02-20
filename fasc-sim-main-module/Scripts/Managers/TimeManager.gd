@@ -14,6 +14,7 @@ func _ready() -> void:
 func handle_time():
 	if GameState.paused or GameState.in_dialogue or GameState.shopping:
 		return
+	var prev_hour = GameState.hour
 	GameState.time = 1440 * GameState.cycle_time / 60
 	GameState.hour = floor(GameState.time)
 	var minute_fraction = GameState.time - GameState.hour
@@ -23,6 +24,8 @@ func handle_time():
 		GameState.cycle_time = 0.0
 		GameState.hour = 0
 	
+	if GameState.hour > prev_hour:
+		EventBus.hour_changed.emit(GameState.hour)
 	#EventBus.time_changed.emit(GameState.time)
 	EventBus.minute_changed.emit(GameState.hour, GameState.minute)
 	#print("Hour: %s" % GameState.hour)

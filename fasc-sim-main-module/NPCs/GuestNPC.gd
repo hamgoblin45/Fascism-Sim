@@ -19,7 +19,7 @@ func exit_hiding():
 	collision_layer = 1
 
 func _on_clue_timer_timeout():
-	var GUEST_CLUE = preload("uid://bkoe4a2utnp6l")
+	var GUEST_CLUE = preload("uid://xn46lpckumw5")
 	
 	if is_inside_house and not is_hidden:
 		var clue = GUEST_CLUE.instantiate()

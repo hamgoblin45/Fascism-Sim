@@ -27,9 +27,9 @@ GameState="*res://Scripts/GameState.gd"
 WorldManager="*uid://bp12kglfjfa8g"
 DialogueManager="*uid://b2rrttx774p65"
 SearchManager="*uid://b03qagyiuoc44"
-Dialogic="*uid://ds2q0uclmolvu"
 ShopManager="*uid://cx4k876ydjwc2"
-GuestManager="*uid://6oqv3cnhpp3"
+Dialogic="*uid://ds2q0uclmolvu"
+GuestManager="*uid://dj04joesklsd5"
 
 [dialogic]
 
@@ -251,3 +251,4 @@ back={
 3d_physics/layer_2="Ground"
 3d_physics/layer_3="Interactable"
 3d_physics/layer_4="NPCDetect"
+3d_physics/layer_5="trash"
