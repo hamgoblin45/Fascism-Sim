@@ -3,10 +3,6 @@
 		"generator":"Khronos glTF Blender I/O v5.0.21",
 		"version":"2.0"
 	},
-	"extensionsUsed":[
-		"KHR_materials_specular",
-		"KHR_materials_ior"
-	],
 	"scene":0,
 	"scenes":[
 		{
@@ -19,21 +15,21 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Cylinder-col",
+			"name":"NeighborHouseE-col",
 			"rotation":[
 				0,
-				0.1950903683900833,
+				0.36695095896720886,
 				0,
-				0.9807853698730469
+				0.9302403330802917
 			],
 			"scale":[
-				0.5607464909553528,
-				0.12359242141246796,
-				0.5607464909553528
+				0.3528519570827484,
+				0.352851927280426,
+				0.42991119623184204
 			],
 			"translation":[
 				0,
-				-0.046406108886003494,
+				4.049787521362305,
 				0
 			]
 		}
@@ -41,27 +37,19 @@
 	"materials":[
 		{
 			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_specular":{
-					"specularFactor":0
-				},
-				"KHR_materials_ior":{
-					"ior":1.4500000476837158
-				}
-			},
-			"name":"Material",
+			"name":"HouseEExterior",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
 				},
-				"metallicFactor":0.6535432934761047,
+				"metallicFactor":0,
 				"roughnessFactor":0.5
 			}
 		}
 	],
 	"meshes":[
 		{
-			"name":"Cylinder",
+			"name":"Cube.007",
 			"primitives":[
 				{
 					"attributes":{
@@ -84,82 +72,82 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"RustyMetal02",
-			"uri":"RustyMetal02.png"
+			"name":"Untitled",
+			"uri":"Untitled.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":988,
+			"count":81,
 			"max":[
-				0.9144582152366638,
-				13.06661605834961,
-				1.0448365211486816
+				64.96150207519531,
+				17.3705997467041,
+				52.31782531738281
 			],
 			"min":[
-				-0.9144582152366638,
-				0.2509605288505554,
-				-0.9144582152366638
+				-52.852386474609375,
+				-12.908708572387695,
+				-42.08710479736328
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":988,
+			"count":81,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":988,
+			"count":81,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":1734,
+			"count":144,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":11856,
+			"byteLength":972,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":11856,
-			"byteOffset":11856,
+			"byteLength":972,
+			"byteOffset":972,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":7904,
-			"byteOffset":23712,
+			"byteLength":648,
+			"byteOffset":1944,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3468,
-			"byteOffset":31616,
+			"byteLength":288,
+			"byteOffset":2592,
 			"target":34963
 		}
 	],
 	"samplers":[
 		{
-			"magFilter":9728,
-			"minFilter":9984
+			"magFilter":9729,
+			"minFilter":9987
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":35084,
-			"uri":"fire_hydrant.bin"
+			"byteLength":2880,
+			"uri":"house_d.bin"
 		}
 	]
 }

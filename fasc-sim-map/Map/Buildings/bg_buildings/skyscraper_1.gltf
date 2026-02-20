@@ -3,10 +3,6 @@
 		"generator":"Khronos glTF Blender I/O v5.0.21",
 		"version":"2.0"
 	},
-	"extensionsUsed":[
-		"KHR_materials_specular",
-		"KHR_materials_ior"
-	],
 	"scene":0,
 	"scenes":[
 		{
@@ -19,21 +15,15 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Cylinder-col",
-			"rotation":[
-				0,
-				0.1950903683900833,
-				0,
-				0.9807853698730469
-			],
+			"name":"Skyscraper1",
 			"scale":[
-				0.5607464909553528,
-				0.12359242141246796,
-				0.5607464909553528
+				23.930604934692383,
+				55.82859802246094,
+				23.930604934692383
 			],
 			"translation":[
 				0,
-				-0.046406108886003494,
+				77.59526062011719,
 				0
 			]
 		}
@@ -41,27 +31,19 @@
 	"materials":[
 		{
 			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_specular":{
-					"specularFactor":0
-				},
-				"KHR_materials_ior":{
-					"ior":1.4500000476837158
-				}
-			},
-			"name":"Material",
+			"name":"Tower1",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
 				},
-				"metallicFactor":0.6535432934761047,
+				"metallicFactor":0,
 				"roughnessFactor":0.5
 			}
 		}
 	],
 	"meshes":[
 		{
-			"name":"Cylinder",
+			"name":"Cube.003",
 			"primitives":[
 				{
 					"attributes":{
@@ -84,69 +66,69 @@
 	"images":[
 		{
 			"mimeType":"image/png",
-			"name":"RustyMetal02",
-			"uri":"RustyMetal02.png"
+			"name":"urban_building_1",
+			"uri":"urban_building_1.png"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":988,
+			"count":20,
 			"max":[
-				0.9144582152366638,
-				13.06661605834961,
-				1.0448365211486816
+				1,
+				1,
+				1
 			],
 			"min":[
-				-0.9144582152366638,
-				0.2509605288505554,
-				-0.9144582152366638
+				-1,
+				-1.394014835357666,
+				-1
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":988,
+			"count":20,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":988,
+			"count":20,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":1734,
+			"count":30,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":11856,
+			"byteLength":240,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":11856,
-			"byteOffset":11856,
+			"byteLength":240,
+			"byteOffset":240,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":7904,
-			"byteOffset":23712,
+			"byteLength":160,
+			"byteOffset":480,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3468,
-			"byteOffset":31616,
+			"byteLength":60,
+			"byteOffset":640,
 			"target":34963
 		}
 	],
@@ -158,8 +140,8 @@
 	],
 	"buffers":[
 		{
-			"byteLength":35084,
-			"uri":"fire_hydrant.bin"
+			"byteLength":700,
+			"uri":"skyscraper_1.bin"
 		}
 	]
 }
