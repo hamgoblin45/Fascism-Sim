@@ -81,7 +81,8 @@ signal answering_door
 signal door_opened_for_visitor
 signal raid_timer_updated(seconds: float)
 signal interrogation_started(item, qty)
-
+signal player_arrested
+signal game_over
 
 ## -- PATHING ---
 signal visitor_arrived(npc)

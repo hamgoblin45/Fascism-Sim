@@ -38,11 +38,14 @@ directories/dch_directory={
 "major": "res://Data/Dialogue/Characters/major.dch"
 }
 directories/dtl_directory={
+"arrest_consequence": "res://Data/Dialogue/arrest_consequence.dtl",
 "contraband_fess_up": "res://Data/Dialogue/contraband_fess_up.dtl",
 "contraband_lie_fail": "res://Data/Dialogue/contraband_lie_fail.dtl",
 "contraband_lie_success": "res://Data/Dialogue/contraband_lie_success.dtl",
 "default_contraband_questioning": "res://Data/Dialogue/default_contraband_questioning.dtl",
+"fine_demand": "res://Data/Dialogue/fine_demand.dtl",
 "fugitive_at_door": "res://Data/Dialogue/fugitive_at_door.dtl",
+"game_over_consequence": "res://Data/Dialogue/game_over_consequence.dtl",
 "guest_search_imminent": "res://Data/Dialogue/guest_search_imminent.dtl",
 "major_raid_frisk_complete": "res://Data/Dialogue/Characters/Major/major_raid_frisk_complete.dtl",
 "major_search_announce_test": "res://Data/Dialogue/major_search_announce_test.dtl",
@@ -57,7 +60,9 @@ layout/style_directory={
 }
 variables={
 "CurrentNPC": "",
-"accepted_fugitive": false
+"accepted_fugitive": false,
+"current_fine": "",
+"player_money": ""
 }
 layout/style_list=["res://Interface/Styles/MainDialogueStyle.tres"]
 layout/default_style="res://Interface/Styles/MainDialogueStyle.tres"

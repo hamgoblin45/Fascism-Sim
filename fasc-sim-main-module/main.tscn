@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://crjy7n1e3nfkj" path="res://Scripts/Managers/RaidSequence.gd" id="2_d13ii"]
 [ext_resource type="Script" uid="uid://cib062svm35nn" path="res://Scripts/Managers/visitor_manager.gd" id="3_lswn8"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dcwuooc1citlw" path="res://Interface/fade_out.tscn" id="5_kq58d"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="6_272bh"]
 [ext_resource type="Script" uid="uid://mcdm8xr3sdvh" path="res://Items/Interactables/container.gd" id="6_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://vesf8xtd74rn" path="res://Items/Interactables/lamp.tscn" id="7_272bh"]
@@ -186,6 +187,10 @@ back_door_marker = NodePath("../PathingPoints/BackDoorPos")
 side_yard_marker = NodePath("../PathingPoints/CornerToBackYardPos")
 leave_marker = NodePath("../PathingPoints/SpawnPos")
 
+[node name="HUD" parent="." unique_id=758873281 instance=ExtResource("2_074og")]
+
+[node name="FadeOut" parent="." unique_id=72735776 instance=ExtResource("5_kq58d")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2094871426]
 environment = SubResource("Environment_7dm0k")
 
@@ -229,8 +234,6 @@ id = "front_door"
 
 [node name="PlayerCharacter" parent="." unique_id=395488164 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0.31503916, 0)
-
-[node name="HUD" parent="." unique_id=758873281 instance=ExtResource("2_074og")]
 
 [node name="Containers" type="Node3D" parent="." unique_id=1755705583]
 

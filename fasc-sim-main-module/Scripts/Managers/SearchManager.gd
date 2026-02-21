@@ -315,30 +315,85 @@ func _handle_lie_attempt(item: ItemData) -> bool:
 	var chance = (item.concealability * 0.5) / (1.0 + (GameState.regime_suspicion / 100.0))
 	
 	if randf() < chance:
+		print("SearchManager: They bought your lie")
 		GameState.regime_suspicion += 2.0 
-		DialogueManager.start_dialogue("contraband_lie_success", "Officer")
+		DialogueManager.start_dialogue("contraband_lie_success", "Officer") # Assumes you make this timeline
 		await DialogueManager.dialogue_ended
-		return true
+		return true # Survived!
 	else:
+		print("SearchManager: They didn't buy your lie")
 		DialogueManager.start_dialogue("contraband_lie_fail", "Officer")
 		await DialogueManager.dialogue_ended
-		_apply_penalty(item, true)
-		return false
+		return await _apply_penalty(item, true)
 
 func _handle_fess_up(item: ItemData) -> bool:
 	DialogueManager.start_dialogue("contraband_fess_up", "Officer")
 	await DialogueManager.dialogue_ended
-	_apply_penalty(item, false)
-	return false
+	return await _apply_penalty(item, false)
 
-func _apply_penalty(item: ItemData, was_caught_lying: bool):
+func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 	var multiplier: float = 2.0 if was_caught_lying else 1.0
-	match item.contraband_level:
+	var level = item.contraband_level
+	
+	var fine_amount: int = 0
+	var consequence_type: String = "fine" # default to fine
+	
+	# 1. Determine Consequence based on Level
+	match level:
 		1:
+			fine_amount = int(50 * multiplier)
 			GameState.regime_suspicion += 5.0 * multiplier
 		2:
+			fine_amount = int(150 * multiplier)
 			GameState.regime_suspicion += 10.0 * multiplier
+			if was_caught_lying: 
+				consequence_type = "arrest" # Escalate if they lied
 		3:
 			GameState.regime_suspicion += 20.0 * multiplier
+			consequence_type = "arrest"
 		4:
 			GameState.regime_suspicion += 40.0 * multiplier
+			consequence_type = "game_over"
+
+	# 2. Apply Custom Item Overrides (If you set them in the Resource)
+	if item.contraband_consequences.has("type"):
+		consequence_type = item.contraband_consequences["type"]
+	if item.contraband_consequences.has("fine"):
+		fine_amount = int(item.contraband_consequences["fine"] * multiplier)
+
+	# 3. Inject variables into Dialogic
+	Dialogic.VAR.current_fine = fine_amount
+	Dialogic.VAR.player_money = GameState.money
+
+	# 4. Route to the correct Sequence
+	match consequence_type:
+		"fine":
+			DialogueManager.start_dialogue("fine_demand", "Officer")
+			
+			# Wait for them to click Pay or Refuse
+			var choice = await DialogueManager.dialogue_choice_selected
+			await DialogueManager.dialogue_ended
+			
+			if choice == "pay_fine":
+				print("SearchManager: Fine paid.")
+				GameState.money -= fine_amount
+				EventBus.money_updated.emit(GameState.money)
+				return true # Survived the encounter, raid can continue
+			else:
+				print("SearchManager: Fine refused! Arresting.")
+				EventBus.player_arrested.emit()
+				return false 
+				
+		"arrest":
+			DialogueManager.start_dialogue("arrest_consequence", "Officer")
+			await DialogueManager.dialogue_ended
+			EventBus.player_arrested.emit()
+			return false
+			
+		"game_over":
+			DialogueManager.start_dialogue("game_over_consequence", "Officer")
+			await DialogueManager.dialogue_ended
+			EventBus.game_over.emit()
+			return false
+			
+	return false
