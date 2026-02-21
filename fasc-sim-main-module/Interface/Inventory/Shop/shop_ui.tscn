@@ -53,7 +53,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -404.0
 offset_top = -76.0
-offset_right = 147.5
+offset_right = 391.0
 offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -67,6 +67,7 @@ theme_override_constants/separation = 24
 
 [node name="ShopPanel" type="PanelContainer" parent="HBoxContainer" unique_id=776037327]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3ei5i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ShopPanel" unique_id=1578474723]
@@ -132,6 +133,7 @@ layout_mode = 2
 
 [node name="ShopItemContextUI" type="PanelContainer" parent="HBoxContainer" unique_id=593803487]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -209,7 +211,6 @@ size_flags_horizontal = 3
 
 [node name="BuyQty" type="Label" parent="HBoxContainer/ShopItemContextUI/MarginContainer/VBoxContainer/ButtonContainer/BuyQtyContainer" unique_id=2134393771]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 text = "X/XX"

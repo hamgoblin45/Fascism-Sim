@@ -128,7 +128,7 @@ func _apply_export_overrides() -> void:
 		if boxes_fill_width:
 			new_choice.size_flags_horizontal = Control.SIZE_FILL
 		else:
-			new_choice.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+			new_choice.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 
 		new_choice.custom_minimum_size = boxes_min_size
 

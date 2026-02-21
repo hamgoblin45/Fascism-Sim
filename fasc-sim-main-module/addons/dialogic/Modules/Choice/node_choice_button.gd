@@ -82,8 +82,11 @@ func _load_info(choice_info: Dictionary) -> void:
 func set_choice_text(new_text: String) -> void:
 	if text_node:
 		text_node.text = new_text
+		text_node.autowrap_mode = TextServer.AutowrapMode.AUTOWRAP_WORD_SMART
 	else:
 		text = new_text
+		autowrap_mode = TextServer.AutowrapMode.AUTOWRAP_WORD_SMART
+	#custom_minimum_size.x = 80
 
 
 ## This method moves the mouse to the focused choice when the focus changes 
