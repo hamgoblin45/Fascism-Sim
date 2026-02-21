@@ -17,7 +17,8 @@ func _ready() -> void:
 	
 	SearchManager.search_step_started.connect(_on_search_started)
 	SearchManager.search_finished.connect(_on_search_finished)
-	DialogueManager.dialogue_ended.connect(_on_dialogue_ended) # Clear on dialogue close
+	SearchManager.search_busted_visuals.connect(_on_search_busted) # NEW
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	
 	hide()
 	frisk_warning.hide()
@@ -26,11 +27,9 @@ func _ready() -> void:
 
 func _on_raid_starting():
 	show()
-	# Only show raid timer/labels, make sure frisk is hidden
 	frisk_warning.hide()
 
 func _on_search_started(inv: InventoryData, index: int, duration: float):
-	# ONLY show Frisk Warning if our pockets are being searched
 	if inv == GameState.pockets_inventory:
 		show()
 		frisk_warning.show()
@@ -38,31 +37,27 @@ func _on_search_started(inv: InventoryData, index: int, duration: float):
 			_start_pulsing()
 
 func _start_pulsing():
-	pulse_tween = create_tween().set_loops() # Loop infinitely
+	pulse_tween = create_tween().set_loops() 
 	pulse_tween.tween_property(frisk_warning, "modulate:a", 0.2, 0.5)
 	pulse_tween.tween_property(frisk_warning, "modulate:a", 1.0, 0.5)
 
-# Added the index parameter to match the updated signal
+# NEW: Trigger Busted label early
+func _on_search_busted(index: int):
+	_hide_warnings()
+	if busted_label: 
+		busted_label.show()
+
 func _on_search_finished(caught: bool, item: ItemData, qty: int, index: int = -1):
 	_hide_warnings()
 	
-	if caught:
-		# Show Busted! (It will be cleared automatically when interrogation ends)
-		if busted_label: 
-			busted_label.show()
-	else:
-		# Show Clear temporarily if the player themselves was searched
-		# (We check frisk_warning's previous state indirectly or just flash it anyway)
+	# Only show CLEAR if they searched and found absolutely nothing
+	if not caught and item == null:
 		if clear_label:
 			clear_label.show()
 			await get_tree().create_timer(1.5).timeout
 			if clear_label: clear_label.hide()
-			
-	if not GameState.raid_in_progress:
-		pass # Any extra cleanup if it was a standalone search
 
 func _on_dialogue_ended():
-	# Dialogic is done, remove the Busted warning
 	if busted_label: 
 		busted_label.hide()
 	frisk_warning.hide()
@@ -80,6 +75,6 @@ func _on_door_answered():
 	answer_door_timer_label.text = ""
 
 func _hide_warnings():
-	hide()
+	frisk_warning.hide()
 	if pulse_tween:
 		pulse_tween.kill()

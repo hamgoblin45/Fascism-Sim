@@ -38,6 +38,9 @@ directories/dch_directory={
 "major": "res://Data/Dialogue/Characters/major.dch"
 }
 directories/dtl_directory={
+"contraband_fess_up": "res://Data/Dialogue/contraband_fess_up.dtl",
+"contraband_lie_fail": "res://Data/Dialogue/contraband_lie_fail.dtl",
+"contraband_lie_success": "res://Data/Dialogue/contraband_lie_success.dtl",
 "default_contraband_questioning": "res://Data/Dialogue/default_contraband_questioning.dtl",
 "fugitive_at_door": "res://Data/Dialogue/fugitive_at_door.dtl",
 "guest_search_imminent": "res://Data/Dialogue/guest_search_imminent.dtl",

@@ -35,6 +35,7 @@ func _ready() -> void:
 	
 	SearchManager.search_step_started.connect(_on_search_step)
 	SearchManager.search_finished.connect(_on_search_finished)
+	SearchManager.search_busted_visuals.connect(_on_busted_visuals)
 	DialogueManager.dialogue_ended.connect(_clear_interrogation_state)
 	
 	await get_tree().process_frame
@@ -199,8 +200,12 @@ func _set_search_visual(state: SearchState, duration: float = 0.0):
 				search_eye.hide()
 				search_eye.modulate = Color.WHITE
 
-func _on_search_finished(caught: bool, item: ItemData, qty: int, busted_index: int = -1):
-	if caught and busted_index == get_index():
+func _on_search_finished(caught: bool, item: ItemData, qty: int, index: int = -1):
+	# Always return to normal when search fully concludes
+	_set_search_visual(SearchState.NONE)
+
+func _on_busted_visuals(busted_index: int):
+	if busted_index == get_index():
 		if tween and tween.is_valid(): tween.kill()
 		if pulse_tween and pulse_tween.is_valid(): pulse_tween.kill()
 			
@@ -216,9 +221,7 @@ func _on_search_finished(caught: bool, item: ItemData, qty: int, busted_index: i
 				.set_trans(Tween.TRANS_BOUNCE)\
 				.set_ease(Tween.EASE_OUT)
 		
-		EventBus.request_screen_shake.emit(0.3, 0.4) 
-	else:
-		_set_search_visual(SearchState.NONE)
+		EventBus.request_screen_shake.emit(0.3, 0.4)
 
 func _clear_interrogation_state():
 	if current_search_state != SearchState.NONE:
