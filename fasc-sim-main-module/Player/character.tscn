@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvyrqfy6x3x1l" path="res://Player/character.gd" id="1_0t4e8"]
 [ext_resource type="Script" uid="uid://bcllo70t6g0an" path="res://Player/interact_ray.gd" id="2_6j38j"]
+[ext_resource type="Script" uid="uid://kwbyd1wcs1m0" path="res://Player/camera.gd" id="2_bis3e"]
 [ext_resource type="Script" uid="uid://d04xmgme67dv2" path="res://Player/EditorModule.gd" id="3_v3ckk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
@@ -361,6 +362,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="Camera" type="Camera3D" parent="Head" unique_id=759016982]
 process_mode = 1
+script = ExtResource("2_bis3e")
 
 [node name="HeadbobAnimation" type="AnimationPlayer" parent="Head" unique_id=417643793]
 process_mode = 1

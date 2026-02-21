@@ -220,9 +220,8 @@ bbcode_enabled = true
 text = "[center]Interact"
 fit_content = true
 
-[node name="SearchUI" type="Control" parent="." unique_id=1108982129]
+[node name="RaidWarningUI" type="Control" parent="." unique_id=1108982129]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -232,7 +231,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("6_yux2m")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SearchUI" unique_id=1719165186]
+[node name="RaidContainer" type="VBoxContainer" parent="RaidWarningUI" unique_id=1719165186]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -241,7 +240,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RaidInProgressLabel" type="Label" parent="SearchUI/VBoxContainer" unique_id=325107014]
+[node name="RaidInProgressLabel" type="Label" parent="RaidWarningUI/RaidContainer" unique_id=325107014]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -253,13 +252,84 @@ text = "RAID IN PROGRESS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnswerDoorTimerLabel" type="Label" parent="SearchUI/VBoxContainer" unique_id=1556250405]
+[node name="AnswerDoorTimerLabel" type="Label" parent="RaidWarningUI/RaidContainer" unique_id=1556250405]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.90588236)
 theme_override_constants/shadow_outline_size = 6
 theme_override_font_sizes/font_size = 36
 text = "TIME LEFT!"
+horizontal_alignment = 1
+
+[node name="FriskWarning" type="Label" parent="RaidWarningUI" unique_id=851297797]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -173.5
+offset_top = -263.0
+offset_right = 173.5
+offset_bottom = -240.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.26338115, 0.16588688, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.78039217)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 22
+text = "!! YOU ARE BEING SEARCHED !!"
+horizontal_alignment = 1
+
+[node name="BustedLabel" type="Label" parent="RaidWarningUI" unique_id=1536012025]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.56833
+offset_top = -76.35623
+offset_right = 378.43164
+offset_bottom = 59.64377
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.25272197
+pivot_offset = Vector2(325.9583, 60.312317)
+theme_override_colors/font_color = Color(0.9225075, 0.12824076, 0.12914181, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.78039217)
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 135
+text = "BUSTED!!!"
+horizontal_alignment = 1
+
+[node name="ClearLabel" type="Label" parent="RaidWarningUI" unique_id=1450697655]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.56836
+offset_top = -44.3562
+offset_right = 354.43164
+offset_bottom = 91.6438
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.033457115
+pivot_offset = Vector2(325.9583, 60.312317)
+theme_override_colors/font_color = Color(0.08229431, 0.607072, 0.19667298, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.78039217)
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 135
+text = "CLEAR!"
 horizontal_alignment = 1
 
 [node name="TestStuff" type="Control" parent="." unique_id=161768506]

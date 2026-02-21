@@ -1,7 +1,7 @@
 extends Node
 
 signal search_step_started(inv: InventoryData, index: int, duration: float)
-signal search_finished(caught: bool, item: ItemData, qty: int)
+signal search_finished(caught: bool, item: ItemData, qty: int, index: int)
 signal house_raid_status(message: String) # For the sake of UI. "The guards are checking the pantry..."
 signal raid_finished
 
@@ -29,7 +29,6 @@ func emit_test_values():
 
 func start_frisk(inventory: InventoryData):
 	print("SearchManager: STARTING SEARCH!")
-	# Temporarily lower patience for a quicker pat down as opposed to external searches
 	var old_patience = patience
 	patience = base_patience
 	
@@ -37,44 +36,36 @@ func start_frisk(inventory: InventoryData):
 	if not GameState.raid_in_progress:
 		search_tension = 0.0
 	
-	# Minimum pat down time
 	if inventory.slots.is_empty():
-		#if inventory.slots.all(func(x): return x == null):
-		search_step_started.emit(inventory, 0, 2.0) # Fake searching first slot for 2 sec
+		search_step_started.emit(inventory, 0, 2.0)
 		await get_tree().create_timer(2.0).timeout
-	
 	else:
 		var elapsed_time = 0.0
 		temp_elapse_time = elapsed_time
-		
 		current_search_inventory = inventory
 		
 		for i in range(inventory.slots.size()):
 			if not is_searching or elapsed_time >= patience:
 				break
 			
-			
 			current_search_index = i
 			var slot = inventory.slots[i]
-			if slot == null: continue # skip empty slots faster
 			
-			var base_time = 1.5 # The time it takes to search an empty/insignificant slot
+			# FIX: Remove the 'continue' skip so we actually wait for empty slots
+			var base_time = 0.8 # Takes 0.8 seconds to search an empty slot
 			var search_duration = base_time
 			
-			if slot.item_data:
-				search_duration += (slot.item_data.concealability * 0.8) # Takes longer to seach based on how well hidden slot is
+			if slot and slot.item_data:
+				search_duration += (slot.item_data.concealability * 0.8)
 				print("SearchManager: %s has a contraband level of %s" % [slot.item_data.name, slot.item_data.contraband_level])
 			
 			search_step_started.emit(inventory, i, search_duration)
-			
-			## ---- TESTING-----------
 			emit_test_values()
-			##-----------------------------
-			# Wait for each slot to be searched before running
+			
 			await get_tree().create_timer(search_duration).timeout
 			elapsed_time += search_duration
 			
-			if slot.item_data:
+			if slot and slot.item_data:
 				if _discovered_contraband(slot.item_data):
 					player_busted(slot.item_data, slot.quantity, i)
 					return
@@ -281,63 +272,62 @@ func _finish_search(caught: bool, item: ItemData, qty: int):
 	search_finished.emit(caught, item, qty)
 
 func player_busted(item: ItemData, qty: int, index: int):
-	interrogation_started(item)
 	is_searching = false
 	
-	var penalty = (item.contraband_level * qty) * 2.5 # How much suspicion will be added based on the amount of contraband / contraband lvl
+	var penalty = (item.contraband_level * qty) * 2.5
 	GameState.regime_suspicion += penalty
 	EventBus.stat_changed.emit("suspicion")
 	GameState.world_flags["busted_with_contraband"] = true
 	EventBus.world_changed.emit("busted_with_contraband", true)
 	
-	# Confiscation
 	if current_search_inventory:
 		current_search_inventory.slots[index] = null
 		EventBus.inventory_item_updated.emit(current_search_inventory, index)
 	
 	print("SearchManager: PLAYER BUSTED with %s, entering interrogation" % item.name)
-	search_finished.emit(true, item, qty)
+	search_finished.emit(true, item, qty, index)
+	
+	# FIX: Add a delay so the UI effects and Camera Shake have time to play!
+	await get_tree().create_timer(1.5).timeout
+	interrogation_started(item)
 
 func player_busted_external(inventory: InventoryData, slot: SlotData, index: int):
-	interrogation_started(slot.item_data)
-	
-	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5 # Maybe less suspicion because item isn't on the player's person?
+	var penalty = (slot.item_data.contraband_level * slot.quantity) * 2.5
 	GameState.regime_suspicion += penalty
 	EventBus.stat_changed.emit("suspicion")
 	
 	is_searching = false
-	search_finished.emit(true, slot.item_data, slot.quantity)
-	# Confiscation
+	search_finished.emit(true, slot.item_data, slot.quantity, -1)
+	
 	inventory.slots[index] = null
 	EventBus.inventory_item_updated.emit(inventory, index)
+	
+	await get_tree().create_timer(1.5).timeout
+	interrogation_started(slot.item_data)
 
 func contraband_spotted_in_open(officer: NPC, item_node: Node3D, item_data: ItemData, qty: int):
 	if not is_searching and not GameState.raid_in_progress: 
-		return # Optional: Ignore if not raiding? Or maybe always illegal? Assuming Raid context.
+		return 
 	
-	is_searching = false # Interrupt any other search
-	
+	is_searching = false
 	print("SearchManager: Contraband spotted on floor: %s" % item_data.name)
 	
-	# 1. Stop Officer
 	officer.command_stop()
 	officer.look_at_target(item_node)
 	officer.spawn_bark("What is this doing here?!")
 	
-	# 2. Confiscate (Delete the object)
 	if is_instance_valid(item_node):
 		item_node.queue_free()
 	
-	# 3. Apply Penalties
 	var penalty = (item_data.contraband_level * qty) * 2.5
 	GameState.regime_suspicion += penalty
 	EventBus.stat_changed.emit("suspicion")
-	
 	GameState.world_flags["busted_with_contraband"] = true
 	EventBus.world_changed.emit("busted_with_contraband", true)
 	
-	# 4. Trigger Consequences
-	search_finished.emit(true, item_data, qty) # Notify UI/RaidSequence
+	search_finished.emit(true, item_data, qty, -1) 
+	
+	await get_tree().create_timer(1.5).timeout
 	interrogation_started(item_data)
 
 func interrogation_started(item: ItemData):

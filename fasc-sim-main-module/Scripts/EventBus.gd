@@ -12,6 +12,7 @@ signal item_grabbed(body)
 
 #####-----INTERFACE
 signal force_ui_open(open: bool)
+signal request_screen_shake(intensity: float, duration: float)
 ## --- Status
 signal change_stat(stat: String, value: float)
 signal stat_changed(_stat: String)
@@ -80,6 +81,7 @@ signal answering_door
 signal door_opened_for_visitor
 signal raid_timer_updated(seconds: float)
 signal interrogation_started(item, qty)
+
 
 ## -- PATHING ---
 signal visitor_arrived(npc)
