@@ -30,6 +30,7 @@ SearchManager="*uid://b03qagyiuoc44"
 ShopManager="*uid://cx4k876ydjwc2"
 GuestManager="*uid://dj04joesklsd5"
 Dialogic="*uid://ds2q0uclmolvu"
+DayManager="*uid://7q3at4tlrne8"
 
 [dialogic]
 
