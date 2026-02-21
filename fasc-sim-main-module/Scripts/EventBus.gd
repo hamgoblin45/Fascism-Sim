@@ -88,6 +88,8 @@ signal setting_path(schedule: ScheduleData, path: PathData)
 signal path_finished(npc: NPCData, path: PathData)
 signal follow_player(NPC, bool)
 
+signal giving_item(item: SlotData)
+
 ## -- TIME ---
 signal end_day # To initiate day transition
 signal change_day() # to initiate the change

@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ckqaavaslkm4k" path="res://main.gd" id="1_ryguw"]
-[ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/Inventory/inventory_ui.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dqoxbykl7fg8w" path="res://Interface/hud.tscn" id="2_074og"]
 [ext_resource type="Script" uid="uid://crjy7n1e3nfkj" path="res://Scripts/Managers/RaidSequence.gd" id="2_d13ii"]
 [ext_resource type="Script" uid="uid://cib062svm35nn" path="res://Scripts/Managers/visitor_manager.gd" id="3_lswn8"]
@@ -230,9 +229,6 @@ id = "front_door"
 
 [node name="PlayerCharacter" parent="." unique_id=395488164 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0, 0.31503916, 0)
-
-[node name="InventoryUI" parent="." unique_id=1602292331 instance=ExtResource("2_0xm2m")]
-process_mode = 3
 
 [node name="HUD" parent="." unique_id=758873281 instance=ExtResource("2_074og")]
 

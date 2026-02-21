@@ -9,6 +9,19 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hvb16"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ei5i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ei5i"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.23362625, 0.22156253, 0.20346862, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ik1e"]
 bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
 border_width_left = 3
@@ -38,10 +51,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -559.5
-offset_top = -117.0
-offset_right = 107.5
-offset_bottom = 144.0
+offset_left = -404.0
+offset_top = -76.0
+offset_right = 147.5
+offset_bottom = 185.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -54,7 +67,7 @@ theme_override_constants/separation = 24
 
 [node name="ShopPanel" type="PanelContainer" parent="HBoxContainer" unique_id=776037327]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("7_vrdig")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3ei5i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ShopPanel" unique_id=1578474723]
 layout_mode = 2
@@ -123,7 +136,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
-theme_override_styles/panel = ExtResource("7_vrdig")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ei5i")
 script = ExtResource("4_3ei5i")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ShopItemContextUI" unique_id=301255783]

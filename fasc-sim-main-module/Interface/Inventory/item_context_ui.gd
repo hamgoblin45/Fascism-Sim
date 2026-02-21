@@ -3,6 +3,7 @@ extends PanelContainer
 var inventory_data: InventoryData
 var slot_data
 
+
 @export var item_name: Label
 @export var item_descript: RichTextLabel
 @export var item_flavor_text: RichTextLabel
@@ -41,8 +42,8 @@ func set_context_menu(slot: SlotData):
 	
 	print("ItemContextUI: set_context_menu: Setting context UI to %s in inv: %s" % [slot, inventory_data])
 	item_name.text = slot_data.item_data.name
-	item_descript.text = slot_data.item_data.description
-	item_flavor_text.text = slot_data.item_data.flavor_text
+	item_descript.text = "[center]" + slot_data.item_data.description
+	item_flavor_text.text = "[center]" + slot_data.item_data.flavor_text
 	
 	drop_button.show()
 	
@@ -50,7 +51,7 @@ func set_context_menu(slot: SlotData):
 	if inventory_data != GameState.pockets_inventory:
 		drop_button.hide()
 	
-	item_value.text = "Sell Value: %s" % slot_data.item_data.sell_value
+	item_value.text = str(slot_data.item_data.sell_value)
 	if slot_data.item_data.stackable and slot_data.quantity > 1 and split_button:
 		split_button.show()
 	if slot_data.item_data.useable or GameState.shopping:
@@ -62,6 +63,7 @@ func set_context_menu(slot: SlotData):
 			use_button.text = "GIVE"
 		else:
 			use_button.text = "USE"
+	
 
 
 

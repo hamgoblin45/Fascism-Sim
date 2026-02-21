@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c7iwts56hctfr" path="res://Interface/Inventory/search_ui.gd" id="6_yux2m"]
 [ext_resource type="Script" uid="uid://c4tduqpqj1rpx" path="res://Interface/time_ui.gd" id="8_6je1u"]
 [ext_resource type="Script" uid="uid://cgkx7jos6fxce" path="res://Interface/guest_roster.gd" id="10_5bft6"]
+[ext_resource type="PackedScene" uid="uid://dhpfeub82th3n" path="res://Interface/Inventory/inventory_ui.tscn" id="11_lwdvj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uf33"]
 
@@ -54,15 +55,11 @@ one_shot = true
 
 [node name="StatusUI" type="PanelContainer" parent="." unique_id=1249952142]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -236.0
-offset_top = -204.0
-offset_bottom = -16.0
-grow_horizontal = 0
+offset_top = -240.0
+offset_right = 144.0
 grow_vertical = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1uf33")
@@ -277,17 +274,17 @@ script = ExtResource("6_4i735")
 
 [node name="TestHUD" type="VBoxContainer" parent="TestStuff" unique_id=833593531]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 972.0
-offset_top = 77.0
-offset_right = -15.0
-offset_bottom = -272.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -152.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 92.0
+grow_horizontal = 0
 
 [node name="StartRaid" type="Button" parent="TestStuff/TestHUD" unique_id=454979144]
+visible = false
 layout_mode = 2
 text = "Start Raid!"
 
@@ -327,8 +324,10 @@ layout_mode = 2
 
 [node name="SearchLabels" type="VBoxContainer" parent="TestStuff" unique_id=663606075]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 197.0
+offset_bottom = 64.0
 
 [node name="PatienceLabel" type="Label" parent="TestStuff/SearchLabels" unique_id=1212187384]
 layout_mode = 2
@@ -344,14 +343,17 @@ text = "Searcher Suspicion: 0"
 
 [node name="TimeUI" type="PanelContainer" parent="." unique_id=405917292]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -163.0
-offset_top = 21.0
-offset_right = -26.0
-offset_bottom = 64.0
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -51.0
+offset_right = -8.0
+offset_bottom = -8.0
 grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("8_6je1u")
 
@@ -401,6 +403,9 @@ horizontal_alignment = 1
 
 [node name="RosterList" type="VBoxContainer" parent="GuestRoster/VBoxContainer" unique_id=12957530]
 layout_mode = 2
+
+[node name="InventoryUI" parent="." unique_id=1947418699 instance=ExtResource("11_lwdvj")]
+layout_mode = 1
 
 [connection signal="timeout" from="TimeManager/Timer" to="TimeManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="StatusManager/StatusCheckTimer" to="StatusManager" method="_on_status_check_timer_timeout"]

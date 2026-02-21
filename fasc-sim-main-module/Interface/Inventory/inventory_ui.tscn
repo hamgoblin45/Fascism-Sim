@@ -7,12 +7,10 @@
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="4_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://wkm6jgcm5mys" path="res://Interface/Inventory/external_inventory.tscn" id="5_gur8t"]
 [ext_resource type="Resource" uid="uid://371084472b42" path="res://Data/Items/Equippables/hammer.tres" id="5_p4sp8"]
-[ext_resource type="StyleBox" uid="uid://cu8wrnw314hjl" path="res://Interface/Styles/InventoryPanelStyle.tres" id="6_3y5k6"]
 [ext_resource type="Resource" uid="uid://ijbovam7ggbb" path="res://Data/Items/Food/steak.tres" id="6_8c4yq"]
 [ext_resource type="Resource" uid="uid://dt7862782ov4v" path="res://Data/Items/Misc/resistance_pamphlet.tres" id="7_hvb16"]
 [ext_resource type="Resource" uid="uid://bmahi1w8kf6yv" path="res://Interface/TestStuff/cocaine.tres" id="8_oli18"]
 [ext_resource type="PackedScene" uid="uid://cb06vgbnsed6c" path="res://Interface/Inventory/grabbed_slot_ui.tscn" id="9_c0f0r"]
-[ext_resource type="Script" uid="uid://bfaqypv1kkdvd" path="res://Interface/Inventory/give_item_ui.gd" id="11_c0f0r"]
 [ext_resource type="PackedScene" uid="uid://cbsuhe7my4ttl" path="res://Interface/Inventory/Shop/shop_ui.tscn" id="11_hvb16"]
 [ext_resource type="Script" uid="uid://bya0l8x7gtw7q" path="res://Interface/notication_control.gd" id="15_sxlab"]
 
@@ -43,19 +41,6 @@ script = ExtResource("3_gur8t")
 slots = Array[ExtResource("4_c0f0r")]([SubResource("Resource_oli18"), SubResource("Resource_jfwpd"), null, SubResource("Resource_8c4yq"), SubResource("Resource_mh3xh"), null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5k6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xrn1"]
-bg_color = Color(0.32172796, 0.32172796, 0.32172787, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [node name="InventoryUI" type="Control" unique_id=1947418699]
 texture_filter = 1
 layout_mode = 3
@@ -79,10 +64,15 @@ one_shot = true
 [node name="PocketsInventoryUI" parent="." unique_id=1834282051 instance=ExtResource("4_3y5k6")]
 unique_name_in_owner = true
 layout_mode = 1
-offset_left = 27.0
-offset_top = -146.0
-offset_right = 455.0
-offset_bottom = -8.0
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+offset_left = 0.0
+offset_top = 461.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_vertical = 2
 
 [node name="ExternalInventoryUI" parent="." unique_id=467885479 instance=ExtResource("5_gur8t")]
 unique_name_in_owner = true
@@ -91,10 +81,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = -64.5
-offset_right = 570.0
-offset_bottom = 176.5
+offset_left = 171.0
+offset_top = -24.5
+offset_right = 709.0
+offset_bottom = 216.5
 grow_vertical = 2
 
 [node name="ShopUI" parent="." unique_id=1314536890 instance=ExtResource("11_hvb16")]
@@ -106,71 +96,12 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 11.0
-offset_top = 196.0
-offset_right = 597.0
-offset_bottom = 457.0
+offset_left = 275.0
+offset_top = 284.0
+offset_right = 861.0
+offset_bottom = 545.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="GiveItemUI" type="PanelContainer" parent="." unique_id=628832054]
-visible = false
-layout_mode = 0
-offset_left = 47.0
-offset_top = 342.0
-offset_right = 143.0
-offset_bottom = 487.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3y5k6")
-script = ExtResource("11_c0f0r")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GiveItemUI" unique_id=653084894]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="GiveItemLabel" type="Label" parent="GiveItemUI/VBoxContainer" unique_id=275672097]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4627451)
-theme_override_font_sizes/font_size = 20
-text = "GIVE
-ITEM"
-horizontal_alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="GiveItemUI/VBoxContainer" unique_id=1180932767]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("6_3y5k6")
-
-[node name="GiveItemSlot" type="PanelContainer" parent="GiveItemUI/VBoxContainer/PanelContainer" unique_id=2087448101]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_3xrn1")
-
-[node name="ItemUI" type="MarginContainer" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" unique_id=1463144022]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 6
-
-[node name="ItemTexture" type="TextureRect" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot/ItemUI" unique_id=665263640]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-expand_mode = 1
-
-[node name="Quantity" type="Label" parent="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot/ItemUI" unique_id=1707161556]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "10"
 
 [node name="GrabbedSlotUI" parent="." unique_id=440725332 instance=ExtResource("9_c0f0r")]
 unique_name_in_owner = true
@@ -195,4 +126,3 @@ grow_vertical = 2
 mouse_filter = 2
 
 [connection signal="timeout" from="InventoryManager/GrabTimer" to="InventoryManager" method="_on_grab_timer_timeout"]
-[connection signal="gui_input" from="GiveItemUI/VBoxContainer/PanelContainer/GiveItemSlot" to="." method="_on_give_item_slot_gui_input"]

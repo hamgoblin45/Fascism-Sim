@@ -5,7 +5,8 @@ const SLOT_SCENE = preload("uid://d3yl41a7rncgb") # Ensure this is correct UID/P
 # const SHOP_SLOT_SCENE = preload("uid://cj1cyf80hrqb4") # Uncomment when needed
 
 # Pockets / Hotbar
-@onready var pockets_ui: PanelContainer = %PocketsInventoryUI
+@onready var pockets_ui: Control = %PocketsInventoryUI
+
 var pockets_grid: GridContainer = null
 
 # Grabbed Item Cursor

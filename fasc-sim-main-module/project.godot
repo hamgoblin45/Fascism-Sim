@@ -28,8 +28,8 @@ WorldManager="*uid://bp12kglfjfa8g"
 DialogueManager="*uid://b2rrttx774p65"
 SearchManager="*uid://b03qagyiuoc44"
 ShopManager="*uid://cx4k876ydjwc2"
-Dialogic="*uid://ds2q0uclmolvu"
 GuestManager="*uid://dj04joesklsd5"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
@@ -48,13 +48,16 @@ directories/dtl_directory={
 "raid_guest_discovered": "res://Data/Dialogue/raid_guest_discovered.dtl",
 "timeline": "res://Data/Dialogue/timeline.dtl"
 }
-layout/style_directory={}
+layout/style_directory={
+"": "res://Interface/Styles/MainDialogueStyle.tres",
+"MainDialogueStyle": "res://Interface/Styles/MainDialogueStyle.tres"
+}
 variables={
 "CurrentNPC": "",
 "accepted_fugitive": false
 }
-layout/style_list=[]
-layout/default_style="Default"
+layout/style_list=["res://Interface/Styles/MainDialogueStyle.tres"]
+layout/default_style="res://Interface/Styles/MainDialogueStyle.tres"
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true

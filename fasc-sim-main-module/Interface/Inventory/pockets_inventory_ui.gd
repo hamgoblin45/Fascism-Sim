@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 
 const INVENTORY_SLOT = preload("uid://d3yl41a7rncgb")
 
