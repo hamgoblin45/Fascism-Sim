@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://btml3xrwculls" path="res://Map/map_terrain.gltf" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btcbf58h7yvlx" path="res://day_night_cycle.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://lx7gpi1nvcv2" path="res://Map/Buildings/checkpoint.gltf" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cxqvhxc121iea" path="res://Map/Buildings/player_house.gltf" id="4_sm6fg"]
 [ext_resource type="PackedScene" uid="uid://ckqfi05gehmb6" path="res://Map/car2.gltf" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://df64xm21pute5" path="res://Map/Buildings/house_b.gltf" id="5_wnkbs"]
 [ext_resource type="PackedScene" uid="uid://cbxnnbyabl534" path="res://Map/military_wall_block.tscn" id="6_7mycd"]
@@ -16,10 +17,15 @@
 [ext_resource type="PackedScene" uid="uid://cqmjcwbph7lw3" path="res://Map/Buildings/house_f.gltf" id="9_uypp3"]
 [ext_resource type="PackedScene" uid="uid://ccwiioata2y5n" path="res://Map/Fences/picket_fence_short.gltf" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://6ouvs2gcmubk" path="res://Map/street_lamp.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://fe5gy3e7k5yh" path="res://Map/Furniture-Fixtures/counter_corner.gltf" id="11_vke2r"]
 [ext_resource type="PackedScene" uid="uid://5y2lc6m0p2tv" path="res://Map/telephone_pole.gltf" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dp2awa8n31bru" path="res://Map/Furniture-Fixtures/fridge.gltf" id="12_uit24"]
+[ext_resource type="PackedScene" uid="uid://cv81oa52xikay" path="res://Map/Furniture-Fixtures/basic_bed.gltf" id="13_ruth0"]
 [ext_resource type="PackedScene" uid="uid://daxf6jtqfqyuh" path="res://Map/car1.gltf" id="13_w48qg"]
+[ext_resource type="PackedScene" uid="uid://d4iknq3phjrjf" path="res://Map/Furniture-Fixtures/toilet.gltf" id="14_rm4vd"]
 [ext_resource type="PackedScene" uid="uid://csso27phrjcmt" path="res://Map/pickup.gltf" id="14_vivmo"]
 [ext_resource type="PackedScene" uid="uid://12tgaag32x0d" path="res://Map/Environ/town_square_tree.gltf" id="15_cegan"]
+[ext_resource type="PackedScene" uid="uid://celw88s4xnbpp" path="res://Map/Furniture-Fixtures/basic_wood_nightstand.gltf" id="15_pjyto"]
 [ext_resource type="PackedScene" uid="uid://b64nkpguqysp0" path="res://Map/Furniture-Fixtures/picnic_table.gltf" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://ci8hpi5w65xhg" path="res://Map/Environ/rock3.gltf" id="16_82xsv"]
 [ext_resource type="PackedScene" uid="uid://b4a84wbhr1djw" path="res://Map/Environ/rock2.gltf" id="17_getpj"]
@@ -50,13 +56,15 @@
 [ext_resource type="PackedScene" uid="uid://va0lkgrucskc" path="res://Map/Buildings/apartment_building_b.glb" id="43_d2t1y"]
 [ext_resource type="PackedScene" uid="uid://ct7fwsucprx04" path="res://Map/Buildings/house_bg.glb" id="44_gngh3"]
 [ext_resource type="PackedScene" uid="uid://cysvta6kwg678" path="res://Map/Buildings/house_bg2.glb" id="45_0n3wm"]
-[ext_resource type="PackedScene" uid="uid://cdlytdp0rst5k" path="res://Map/Buildings/player_house.glb" id="46_qnost"]
 [ext_resource type="PackedScene" uid="uid://df6snvo0c5ukg" path="res://Map/Furniture-Fixtures/oven_stove.gltf" id="52_rnkwl"]
 [ext_resource type="PackedScene" uid="uid://dv7uok5t2dgut" path="res://Map/Furniture-Fixtures/round_coffe_table.gltf" id="53_vke2r"]
 [ext_resource type="PackedScene" uid="uid://coeebht04a6s4" path="res://Map/Furniture-Fixtures/counter_1.gltf" id="54_uit24"]
 [ext_resource type="PackedScene" uid="uid://dbm7yjbq1wu82" path="res://Map/Furniture-Fixtures/counter_sink.gltf" id="55_ruth0"]
 [ext_resource type="PackedScene" uid="uid://ce8wyyi6i2wy8" path="res://Map/Furniture-Fixtures/basic_wood_desk.gltf" id="56_rm4vd"]
 [ext_resource type="PackedScene" uid="uid://b6u27887w43qc" path="res://Map/Furniture-Fixtures/trash_can_bucket.gltf" id="57_pjyto"]
+[ext_resource type="PackedScene" uid="uid://bhjb3ed58ko8p" path="res://Map/Furniture-Fixtures/office_chair.gltf" id="63_sm6fg"]
+[ext_resource type="PackedScene" uid="uid://dmubous2qn7d0" path="res://Map/Furniture-Fixtures/bookcase_1.gltf" id="64_b17eg"]
+[ext_resource type="PackedScene" uid="uid://d2sd10hlyxjgx" path="res://Map/Furniture-Fixtures/tv-w-stand.gltf" id="65_ntx8l"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -74,9 +82,54 @@ visible = false
 
 [node name="Structures" type="Node3D" parent="Terrain" unique_id=1680364581]
 
-[node name="PlayerHouse" parent="Terrain/Structures" unique_id=540572668 instance=ExtResource("46_qnost")]
-transform = Transform3D(0.7269058, 0, -0.746108, 0, 1.0416665, 0, 0.746108, 0, 0.7269058, 132.65935, 2.5865471, 308.72885)
-metadata/asset_placer_res_id = "uid://cdlytdp0rst5k"
+[node name="PlayerHouse" parent="Terrain/Structures" unique_id=2107880812 instance=ExtResource("4_sm6fg")]
+transform = Transform3D(0.7269058, 0, -0.7461078, 0, 1.0416665, 0, 0.7461078, 0, 0.7269058, 134.30371, 4.384612, 310.87878)
+
+[node name="PlayerHouseFurniture" type="Node3D" parent="Terrain/Structures/PlayerHouse" unique_id=2025086795]
+transform = Transform3D(0.6699166, 0, 0.6876131, 0, 0.95999986, 0, -0.6876131, 0, 0.6699166, -301.15677, 0.20459175, -115.60427)
+
+[node name="oven_stove" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=23443122 instance=ExtResource("52_rnkwl")]
+transform = Transform3D(-0.8790385, 0, 0.8887012, 0, 1.2499987, 0, -0.8887012, 0, -0.8790385, 150.70137, -0.32219768, 322.91913)
+metadata/asset_placer_res_id = "uid://df6snvo0c5ukg"
+
+[node name="round_coffe_table" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1973278660 instance=ExtResource("53_vke2r")]
+transform = Transform3D(1.3651575, 0, 1.2852904, 0, 2.2916667, 0, -1.2852904, 0, 1.3651575, 131.12006, -0.35297227, 297.99545)
+metadata/asset_placer_res_id = "uid://dv7uok5t2dgut"
+
+[node name="counter_1" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1231348921 instance=ExtResource("54_uit24")]
+transform = Transform3D(-0.8954984, 0, -0.8721129, 0, 1.249999, 0, 0.8721129, 0, -0.8954984, 148.05495, -0.32753015, 308.93875)
+metadata/asset_placer_res_id = "uid://coeebht04a6s4"
+
+[node name="counter_1 (2)" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=2005814203 instance=ExtResource("54_uit24")]
+transform = Transform3D(-0.87627643, 0, 0.8914253, 0, 1.2499998, 0, -0.8914253, 0, -0.87627643, 148.03534, -0.31168938, 325.51764)
+metadata/asset_placer_res_id = "uid://coeebht04a6s4"
+
+[node name="counter_sink" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=2025906401 instance=ExtResource("55_ruth0")]
+transform = Transform3D(-0.8954675, 0, -0.87214464, 0, 1.2499992, 0, 0.87214464, 0, -0.8954675, 150.66273, -0.32898736, 311.61426)
+metadata/asset_placer_res_id = "uid://dbm7yjbq1wu82"
+
+[node name="basic_wood_desk" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=61738085 instance=ExtResource("56_rm4vd")]
+transform = Transform3D(0.35283047, 0, 0.42512965, 0, 1.2719996, 0, -0.35427472, 0, 0.42339644, 111.08425, -0.93398094, 306.8817)
+metadata/asset_placer_res_id = "uid://ce8wyyi6i2wy8"
+
+[node name="trash_can_bucket" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1854747516 instance=ExtResource("57_pjyto")]
+transform = Transform3D(0.8333332, 0, 0, 0, 0.83333313, 0, 0, 0, 0.8333332, 145.80234, -0.35297465, 327.4614)
+metadata/asset_placer_res_id = "uid://b6u27887w43qc"
+
+[node name="counter_corner" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=28836112 instance=ExtResource("11_vke2r")]
+transform = Transform3D(-0.87882495, 0, 0.888913, 0, 1.2499998, 0, -0.888913, 0, -0.87882495, 155.9238, -0.327873, 317.7539)
+
+[node name="fridge" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1085413044 instance=ExtResource("12_uit24")]
+transform = Transform3D(-1.4775507, 0, -1.4210352, 0, 2.0499988, 0, 1.4210352, 0, -1.4775507, 145.42873, -0.3731885, 305.95816)
+
+[node name="basic_bed" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1855608764 instance=ExtResource("13_ruth0")]
+transform = Transform3D(-2.4668236, 0, 2.4828944, 0, 3.4999976, 0, -2.4828944, 0, -2.4668236, 118.12242, -1.1828631, 311.18506)
+
+[node name="toilet" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=844368738 instance=ExtResource("14_rm4vd")]
+transform = Transform3D(0.700386, 0, -0.7137642, 0, 0.9999999, 0, 0.7137642, 0, 0.700386, 125.9176, 0.44795156, 313.6154)
+
+[node name="basic_wood_nightstand" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=295083757 instance=ExtResource("15_pjyto")]
+transform = Transform3D(-0.69133604, 0, 0.72253245, 0, 0.9999993, 0, -0.72253245, 0, -0.69133604, 126.36606, -0.32894826, 308.66077)
 
 [node name="HouseB" parent="Terrain/Structures" unique_id=1153659329 instance=ExtResource("5_wnkbs")]
 transform = Transform3D(0.9984724, 0, -0.055246424, 0, 0.99999976, 0, 0.055246424, 0, 0.9984724, 174.05296, 2.7219286, 242.4112)
@@ -2640,37 +2693,16 @@ transform = Transform3D(0.079791814, 0, -2.4987261, 0, 2.4999998, 0, 2.4987261, 
 [node name="house_bg2" parent="Scenery" unique_id=1284975603 instance=ExtResource("45_0n3wm")]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -124.54907, -1.2874603e-05, 441.13116)
 
-[node name="oven_stove" type="Node3D" parent="." unique_id=23443122 instance=ExtResource("52_rnkwl")]
-transform = Transform3D(-1.1557679, 0, -1.1064358, 0, 1.6, 0, 1.1064358, 0, -1.1557679, 178.32913, 2.9360256, 372.07053)
-metadata/asset_placer_res_id = "uid://df6snvo0c5ukg"
+[node name="office_chair" type="Node3D" parent="." unique_id=195594459 instance=ExtResource("63_sm6fg")]
+transform = Transform3D(0.77624774, 0, -0.6304291, 0, 1, 0, 0.6304291, 0, 0.77624774, 136.0548, 5.109262, 369.73944)
+metadata/asset_placer_res_id = "uid://bhjb3ed58ko8p"
 
-[node name="round_coffe_table" type="Node3D" parent="." unique_id=1973278660 instance=ExtResource("53_vke2r")]
-transform = Transform3D(1.638189, 0, 1.5423484, 0, 2.75, 0, -1.5423484, 0, 1.638189, 157.34406, 2.9360294, 357.59454)
-metadata/asset_placer_res_id = "uid://dv7uok5t2dgut"
+[node name="bookcase_1" type="Node3D" parent="." unique_id=2074240205 instance=ExtResource("64_b17eg")]
+transform = Transform3D(-0.51994777, 0, 0.5405132, 0, 0.7499998, 0, -0.5405132, 0, -0.51994777, 156.35356, 8.875163, 375.24548)
+metadata/asset_placer_res_id = "uid://dmubous2qn7d0"
 
-[node name="counter_1" type="Node3D" parent="." unique_id=1231348921 instance=ExtResource("54_uit24")]
-transform = Transform3D(-1.1421404, 0, -1.120498, 0, 1.6, 0, 1.120498, 0, -1.1421404, 174.97478, 2.9151585, 368.62067)
-metadata/asset_placer_res_id = "uid://coeebht04a6s4"
-
-[node name="counter_1 (1)" type="Node3D" parent="." unique_id=131509101 instance=ExtResource("54_uit24")]
-transform = Transform3D(-1.1619828, 0, -1.0999072, 0, 1.5999999, 0, 1.0999072, 0, -1.1619828, 181.55602, 2.9360273, 375.6332)
-metadata/asset_placer_res_id = "uid://coeebht04a6s4"
-
-[node name="counter_1 (2)" type="Node3D" parent="." unique_id=2005814203 instance=ExtResource("54_uit24")]
-transform = Transform3D(-1.1216336, 0, 1.141025, 0, 1.6, 0, -1.141025, 0, -1.1216336, 185.77425, 2.9360275, 382.38647)
-metadata/asset_placer_res_id = "uid://coeebht04a6s4"
-
-[node name="counter_sink" type="Node3D" parent="." unique_id=2025906401 instance=ExtResource("55_ruth0")]
-transform = Transform3D(-1.1158042, 0, 1.1467263, 0, 1.6, 0, -1.1467263, 0, -1.1158042, 182.35179, 2.9360266, 385.7378)
-metadata/asset_placer_res_id = "uid://dbm7yjbq1wu82"
-
-[node name="basic_wood_desk" type="Node3D" parent="." unique_id=61738085 instance=ExtResource("56_rm4vd")]
-transform = Transform3D(0.7180976, 0, -0.73281085, 0, 1.526, 0, 0.73281085, 0, 0.7180976, 136.1855, 2.9360275, 364.38718)
-metadata/asset_placer_res_id = "uid://ce8wyyi6i2wy8"
-
-[node name="trash_can_bucket" type="Node3D" parent="." unique_id=1854747516 instance=ExtResource("57_pjyto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.9897, 2.9360266, 392.90555)
-metadata/asset_placer_res_id = "uid://b6u27887w43qc"
+[node name="tv-w-stand" parent="." unique_id=349944229 instance=ExtResource("65_ntx8l")]
+transform = Transform3D(-0.83113456, 0, -0.8459458, 0, 1.1859207, 0, 0.8459458, 0, -0.83113456, 163.72125, 5.0404034, 356.4162)
 
 [editable path="PlayerCharacter"]
 [editable path="Terrain"]

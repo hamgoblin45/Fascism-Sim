@@ -103,8 +103,9 @@ size = Vector3(1.8121338, 4.557617, 2.015625)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b1gkk"]
 
-[sub_resource type="Resource" id="Resource_facbu"]
+[sub_resource type="Resource" id="Resource_kq58d"]
 script = ExtResource("5_7mycd")
+slots = Array[ExtResource("6_272bh")]([null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://crfuvv7qrrub3"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u8w0"]
@@ -218,16 +219,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.962023, 4.7683716e-07, -6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.963692, 0, -3.7396345)
 
 [node name="Door2" parent="." unique_id=1775857434 instance=ExtResource("10_4c57u")]
-transform = Transform3D(-0.00069806725, 0, 1.5999995, 0, 1.5999998, 0, -1.5999995, 0, -0.00069806725, -9.211445, -0.08569169, 4.71878)
+transform = Transform3D(-6.993821e-08, 0, -1.5999997, 0, 1.5999998, 0, 1.5999997, 0, -6.993821e-08, -9.211445, -0.08569169, 4.71878)
 
 [node name="Door4" parent="." unique_id=1757735991 instance=ExtResource("10_4c57u")]
 transform = Transform3D(-0.00070688647, 0, 1.6199998, 0, 1.62, 0, -1.6199998, 0, -0.00070688647, 15.140961, -0.08569169, 4.6999927)
 
 [node name="Door3" parent="." unique_id=2059241498 instance=ExtResource("10_4c57u")]
-transform = Transform3D(0.0027925037, 0, 1.299998, 0, 1.6, 0, -1.5999976, 0, 0.0022689179, 1.8669302, -0.08569169, 4.752642)
+transform = Transform3D(-6.9938224e-08, 0, -1.3000001, 0, 1.6, 0, 1.6000001, 0, -5.6824806e-08, 1.8669302, -0.08569169, 4.752642)
 
 [node name="FrontDoor" parent="." unique_id=983619317 instance=ExtResource("10_4c57u")]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -18.716526, -0.13075042, -3.6849256)
+
+[node name="Cube" parent="FrontDoor/door" parent_id_path=PackedInt32Array(983619317, 792928833) index="0"]
+transform = Transform3D(-0.081829496, 0, 0, 0, 2.1973991, -1.1198248e-07, 0, 1.9210273e-07, 1.2809303, 0, 2.1972866, 0)
 
 [node name="Interactable" parent="FrontDoor/door/Cube" index="2" unique_id=503422902]
 id = "front_door"
@@ -328,7 +332,7 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 process_mode = 3
 transform = Transform3D(-0.9997854, 0, 0.020715574, 0, 1, 0, -0.020715574, 0, -0.9997854, -4.4091587, 0, 6.430385)
 script = ExtResource("6_ycdy4")
-container_inventory = SubResource("Resource_facbu")
+container_inventory = SubResource("Resource_kq58d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Containers/FilingCabnet2" unique_id=493102420]
 visible = false
@@ -418,7 +422,7 @@ shape = SubResource("BoxShape3D_getpj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.272987, 0, -7.223173)
 
 [node name="DoorPos" type="Node3D" parent="PathingPoints" unique_id=176690797]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.086946, -4.7683716e-07, -3.7836375)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.735775, -4.7683716e-07, -3.8597631)
 
 [node name="BackDoorPos" type="Node3D" parent="PathingPoints" unique_id=2101943389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.696357, -1.4305115e-06, 6.6067295)
