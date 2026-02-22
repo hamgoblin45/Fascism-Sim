@@ -153,7 +153,8 @@ func _on_dialogue_ended() -> void:
 
 func _handle_post_visit_logic(npc: NPC) -> void:
 	if npc == fugitive_npc:
-		if GameState.world_flags.get("accepted_fugitive", true):
+		# FIX: Changed the default fallback from 'true' to 'false'
+		if GameState.world_flags.get("accepted_fugitive", false): 
 			_convert_to_guest(npc)
 			current_visitor = null
 			return
