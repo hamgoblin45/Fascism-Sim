@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://coai26ivs6uv4" path="res://Data/NPCData.gd" id="2_vxakg"]
 [ext_resource type="Script" uid="uid://8yo1utsr8bth" path="res://Items/Interactables/interactable.gd" id="3_k7mck"]
 [ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="4_k5705"]
+[ext_resource type="PackedScene" uid="uid://diuwtmxdc2vvg" path="res://Items/Interactables/guest_needs_billboard.tscn" id="5_xlwy1"]
 
 [sub_resource type="Resource" id="Resource_k7mck"]
 script = ExtResource("2_vxakg")
@@ -108,6 +109,9 @@ shape = SubResource("CapsuleShape3D_k5705")
 
 [node name="BarkAnchor" type="Node3D" parent="." unique_id=669773913]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.752794, 0)
+
+[node name="GuestNeedsBillboard" parent="." unique_id=1027608702 instance=ExtResource("5_xlwy1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8978443, 0)
 
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]
 [connection signal="body_exited" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_exited"]

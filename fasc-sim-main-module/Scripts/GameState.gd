@@ -71,7 +71,6 @@ var world_flags: Dictionary = {
 }
 
 var objectives: Array[ObjectiveData]
-var flags = {}
 
 ## -- Hiding NPCs
 var guests: Array[NPC]
@@ -80,8 +79,8 @@ var leading_npc: NPC
 
 
 func set_flag(id: String, value: bool):
-	flags[id] = value
-	EventBus.world_changed.emit(id, value) # NPCs and other scenes can listen to this and change accordingly
+	world_flags[id] = value
+	EventBus.world_changed.emit(id, value) 
 
 func get_flag(id: String) -> bool:
-	return flags.get(id, false)
+	return world_flags.get(id, false)
