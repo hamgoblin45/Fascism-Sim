@@ -81,8 +81,8 @@ signal answering_door
 signal door_opened_for_visitor
 signal raid_timer_updated(seconds: float)
 signal interrogation_started(item, qty)
-signal player_arrested
-signal game_over
+signal player_arrested(reason: String, details: String)
+signal game_over(reason: String)
 
 ## -- PATHING ---
 signal visitor_arrived(npc)

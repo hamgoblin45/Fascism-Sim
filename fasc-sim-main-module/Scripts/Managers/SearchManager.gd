@@ -375,7 +375,6 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 		"fine":
 			DialogueManager.start_dialogue("fine_demand", "Officer")
 			
-			# Wait for them to click Pay or Refuse
 			var choice = await DialogueManager.dialogue_choice_selected
 			await DialogueManager.dialogue_ended
 			
@@ -383,22 +382,27 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 				print("SearchManager: Fine paid.")
 				GameState.money -= fine_amount
 				EventBus.money_updated.emit(GameState.money)
-				return true # Survived the encounter, raid can continue
+				return true 
 			else:
 				print("SearchManager: Fine refused! Arresting.")
-				EventBus.player_arrested.emit()
+				var reason = "Refusal / Inability to pay fines for " + item.name
+				var details = "PENALTY: 1 Day Incarceration\n(Health & Energy Halved)"
+				EventBus.player_arrested.emit(reason, details)
 				return false 
 				
 		"arrest":
 			DialogueManager.start_dialogue("arrest_consequence", "Officer")
 			await DialogueManager.dialogue_ended
-			EventBus.player_arrested.emit()
+			var reason = "Possession of Class " + str(level) + " Contraband (" + item.name + ")"
+			var details = "PENALTY: 1 Day Incarceration\n(Health & Energy Halved)"
+			EventBus.player_arrested.emit(reason, details)
 			return false
 			
 		"game_over":
 			DialogueManager.start_dialogue("game_over_consequence", "Officer")
 			await DialogueManager.dialogue_ended
-			EventBus.game_over.emit()
+			var reason = "Possession of Class " + str(level) + " Contraband (" + item.name + ")"
+			EventBus.game_over.emit(reason)
 			return false
 			
 	return false

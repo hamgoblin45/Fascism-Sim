@@ -38,6 +38,12 @@ text = "game over"
 horizontal_alignment = 1
 uppercase = true
 
+[node name="ReportLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=1320273502]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
 [node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=1124791108]
 unique_name_in_owner = true
 layout_mode = 2
