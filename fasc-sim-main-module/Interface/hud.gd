@@ -10,7 +10,7 @@ extends Control
 @onready var action_bar: TextureProgressBar = %ActionProgressBar
 
 # Testing vars
-@onready var hunger_bar: ProgressBar = %HungerBar
+@onready var satiety_bar: ProgressBar = %SatietyBar
 
 
 func _ready():
@@ -34,8 +34,8 @@ func _set_hud():
 	stamina_bar.value = GameState.stamina
 	stamina_value.text = str(snapped(GameState.stamina,1))
 	
-	# This is only for testing unless we decide to display Hunger to player
-	hunger_bar.value = GameState.hunger
+	# This is only for testing unless we decide to display satiety to player
+	satiety_bar.value = GameState.satiety
 
 
 # Should this go in a PlayerManager, stay here, or something else?

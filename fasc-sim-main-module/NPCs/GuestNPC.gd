@@ -6,8 +6,8 @@ var is_hidden: bool = false
 var current_hiding_spot: HidingSpot = null
 
 # --- NEEDS SYSTEM ---
-var hunger: float = 0.0 # 0 is full, 100 is starving
-var stress: float = 0.0 # 0 is calm, 100 is panicking
+var satiety: float = 100.0 # Starts at 100 (Full)
+var stress: float = 0.0    # 0 is calm (this stays the same)
 
 @onready var needs_billboard = $GuestNeedsBillboard
 var look_timer: float = 0.0
@@ -101,21 +101,25 @@ func _on_look_change(interactable: Interactable, looking: bool):
 				interact_area.interact_text = "Talk"
 
 func _feed_guest(item: ConsumableData):
-	var nut = item.effects.get("hunger", 0.0)
+	# Check the dictionary for the new "satiety" key 
+	# (Make sure to update your .tres resource files too!)
+	var nut = item.effects.get("satiety", 0.0)
 	var s_rel = item.effects.get("stress", 0.0)
 	var helped = false
-	
+
 	if nut != 0:
-		hunger = clamp(hunger - nut, 0.0, 100.0) 
+		# We add to satiety now!
+		satiety = clamp(satiety + nut, 0.0, 100.0) 
 		helped = true
 	
+	# Stress still subtracts (lower is better)
 	if s_rel != 0:
 		stress = clamp(stress - s_rel, 0.0, 100.0)
 		helped = true
 		
 	if helped:
 		spawn_bark("Thank you, I really needed this.")
-		print("GuestNPC: Fed %s. Hunger: %s, Stress: %s" % [item.name, hunger, stress])
+		print("GuestNPC: Fed %s. satiety: %s, Stress: %s" % [item.name, satiety, stress])
 		EventBus.removing_item.emit(item, 1, null)
 	else:
 		spawn_bark("I don't need this right now...")

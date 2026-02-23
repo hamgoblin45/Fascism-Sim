@@ -1,7 +1,7 @@
 extends Node
 
 var prev_status_check: float = 0.0
-var prev_hunger_check: float = 0.0
+var prev_satiety_check: float = 0.0
 
 @onready var recovery_delay_timer: Timer = %RecoveryDelayTimer
 var stamina_recovery_delay: float = 3.0 # How long after last action before stamina will start regenerating
@@ -12,11 +12,11 @@ func _ready():
 	GameState.hp = GameState.max_hp
 	GameState.energy = GameState.max_energy
 	GameState.stamina = GameState.energy
-	GameState.hunger = 100
+	GameState.satiety = 100
 	
 	var total_minutes: float = (GameState.hour * 24) + GameState.minute
 	prev_status_check = total_minutes
-	prev_hunger_check = total_minutes
+	prev_satiety_check = total_minutes
 
 	EventBus.change_stat.connect(_change_stat)
 	#EventBus.start_day.connect(_on_new_day_start)
@@ -34,17 +34,17 @@ func _change_stat(stat: String, value: float):
 			
 			GameState.energy += value
 			
-		"hunger":
-			GameState.hunger += value
+		"satiety":
+			GameState.satiety += value
 			
-			if GameState.hunger > 75:
-				GameState.hunger_level = 1
-			elif GameState.hunger > 50:
-				GameState.hunger_level = 2
-			elif GameState.hunger > 25:
-				GameState.hunger_level = 3
+			if GameState.satiety > 75:
+				GameState.satiety_level = 1
+			elif GameState.satiety > 50:
+				GameState.satiety_level = 2
+			elif GameState.satiety > 25:
+				GameState.satiety_level = 3
 			else:
-				GameState.hunger_level = 4
+				GameState.satiety_level = 4
 				print("You are starving to death")
 		"stamina":
 			# Change GameState value
@@ -73,19 +73,19 @@ func _handle_stamina_recovery(delta: float):
 func _on_status_check_timer_timeout() -> void:
 	var total_minutes: float = (GameState.hour * 60) + GameState.minute
 	#print("There have been %s minutes in the day so far.
-	#Prev hunger check: %s ago. Prev status check %s ago" % [str(total_minutes), str(total_minutes - prev_hunger_check), str(total_minutes - prev_status_check)])
+	#Prev satiety check: %s ago. Prev status check %s ago" % [str(total_minutes), str(total_minutes - prev_satiety_check), str(total_minutes - prev_status_check)])
 	
 	# Check for times past midnight
 	if prev_status_check - total_minutes > 1000:
 		prev_status_check = 1440 - prev_status_check
-	if prev_hunger_check - total_minutes > 1000:
-		prev_hunger_check = 1440 - prev_hunger_check
+	if prev_satiety_check - total_minutes > 1000:
+		prev_satiety_check = 1440 - prev_satiety_check
 		
-	# Change hunger every 60 min
-	if total_minutes - prev_hunger_check >= 60:
-		print("It's been an hour since last hunger check!")
-		prev_hunger_check = total_minutes
-		_change_stat("hunger", GameState.hunger_drain_rate)
+	# Change satiety every 60 min
+	if total_minutes - prev_satiety_check >= 60:
+		print("It's been an hour since last satiety check!")
+		prev_satiety_check = total_minutes
+		_change_stat("satiety", GameState.satiety_drain_rate)
 	
 	# Only updates for every in-game minute regardless of time rate
 	if total_minutes - prev_status_check < 1.0:
@@ -93,13 +93,13 @@ func _on_status_check_timer_timeout() -> void:
 	
 	prev_status_check = total_minutes
 	
-	var energy_change = -GameState.energy_drain_rate * GameState.hunger_level
+	var energy_change = -GameState.energy_drain_rate * GameState.satiety_level
 	if GameState.working:
 		energy_change *= 3
 	
 	_change_stat("energy", energy_change)
 	
-	if GameState.hunger <= 0:
+	if GameState.satiety <= 0:
 		_change_stat("hp", -GameState.hp_starve_drain_rate)
 
 

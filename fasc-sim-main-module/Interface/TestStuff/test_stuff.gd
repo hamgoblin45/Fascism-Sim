@@ -1,7 +1,7 @@
 extends Control
 
 @onready var start_raid_button: Button = $TestHUD/StartRaid
-@onready var hunger_bar: ProgressBar = %HungerBar
+@onready var satiety_bar: ProgressBar = %SatietyBar
 @onready var suspicion_bar: ProgressBar = %SuspicionBar
 @onready var resistance_bar: ProgressBar = %ResistanceBar
 
@@ -14,7 +14,7 @@ extends Control
 func _ready() -> void:
 	EventBus.stat_changed.connect(_on_stat_changed)
 	EventBus.show_test_value.connect(_show_test_value)
-	_on_stat_changed("hunger")
+	_on_stat_changed("satiety")
 	_on_stat_changed("suspicion")
 	_on_stat_changed("resistance")
 
@@ -23,8 +23,8 @@ func _on_start_raid_pressed() -> void:
 
 func _on_stat_changed(stat: String):
 	match stat:
-		"hunger":
-			hunger_bar.value = GameState.hunger
+		"satiety":
+			satiety_bar.value = GameState.satiety
 		"suspicion":
 			suspicion_bar.value = GameState.regime_suspicion
 		"resistance":

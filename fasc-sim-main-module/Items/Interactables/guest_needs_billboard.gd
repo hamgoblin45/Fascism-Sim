@@ -15,11 +15,11 @@ func setup(guest: GuestNPC):
 	set_process(true)
 
 func _process(delta):
-	if target_guest:
-		# Update the 2D UI inside the viewport
+	# Only update the viewport if the sprite is actually visible to the player
+	if target_guest and is_visible:
 		viewport.update_needs(
 			target_guest.npc_data.name, 
-			target_guest.hunger, 
+			target_guest.satiety, 
 			target_guest.stress
 		)
 

@@ -20,16 +20,16 @@ func process_transition(was_arrested: bool):
 	if was_arrested:
 		GameState.hp = 50.0
 		GameState.energy = 50.0
-		GameState.hunger = 50.0 
+		GameState.satiety = 50.0 
 		_confiscate_inventory()
 	else:
 		GameState.hp = 100.0
 		GameState.energy = 100.0
-		GameState.hunger = 100.0 
+		GameState.satiety = 100.0 
 	
 	EventBus.stat_changed.emit("hp")
 	EventBus.stat_changed.emit("energy")
-	EventBus.stat_changed.emit("hunger")
+	EventBus.stat_changed.emit("satiety")
 	
 	# --- WORLD UPDATES ---
 	# GameState.day += 1 

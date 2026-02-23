@@ -26,19 +26,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
-[node name="HungerBar" type="ProgressBar" parent="NeedsViewport/VBoxContainer" unique_id=36878702]
+[node name="SatietyBar" type="ProgressBar" parent="NeedsViewport/VBoxContainer" unique_id=36878702]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 show_percentage = false
 
-[node name="HungerBarLabel" type="Label" parent="NeedsViewport/VBoxContainer/HungerBar" unique_id=699760674]
+[node name="SatietyBarLabel" type="Label" parent="NeedsViewport/VBoxContainer/SatietyBar" unique_id=699760674]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hunger"
+text = "Food"
 horizontal_alignment = 1
 
 [node name="StressBar" type="ProgressBar" parent="NeedsViewport/VBoxContainer" unique_id=1224830095]

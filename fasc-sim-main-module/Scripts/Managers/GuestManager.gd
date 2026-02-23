@@ -56,12 +56,14 @@ func _on_hour_changed(hour: int):
 func _process_guest_needs(guest: GuestNPC):
 	if not guest.is_inside_house: return
 
-	# 1. Increase Needs
-	guest.hunger = min(100.0, guest.hunger + 5.0) # Gets hungrier every hour
-	guest.stress = min(100.0, guest.stress + 2.0) # Base stress increase
+	# 1. Decrease Satiety (Drain)
+	# Drain 5.0 per hour. Clamp at 0.0
+	guest.satiety = max(0.0, guest.satiety - 5.0)
+	guest.stress = min(100.0, guest.stress + 2.0) 
 	
-	# If they are starving, stress skyrockets
-	if guest.hunger >= 80.0:
+	# 2. Starvation Logic
+	# If satiety is below 20%, they are starving/stressed
+	if guest.satiety <= 20.0:
 		guest.stress = min(100.0, guest.stress + 10.0)
 		guest.spawn_bark("I'm so hungry...")
 

@@ -13,7 +13,7 @@ script = ExtResource("1_opir1")
 effects = {
 "energy": 4.0,
 "hp": 2.0,
-"hunger": 10.0
+"satiety": 10.0
 }
 name = "Cookie"
 id = "cookie"

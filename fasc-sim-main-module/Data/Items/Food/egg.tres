@@ -12,7 +12,7 @@ script = ExtResource("1_738bs")
 effects = {
 "energy": 18.0,
 "hp": 8.0,
-"hunger": 21.0
+"satiety": 0.0
 }
 name = "Egg"
 id = "egg"

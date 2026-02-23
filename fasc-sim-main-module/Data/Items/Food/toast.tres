@@ -12,7 +12,7 @@ script = ExtResource("1_xcwok")
 effects = {
 "energy": 5.0,
 "hp": 2.0,
-"hunger": 16.0
+"satiety": 8.0
 }
 name = "Toast"
 id = "toast"

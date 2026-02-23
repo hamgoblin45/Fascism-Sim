@@ -13,7 +13,7 @@ script = ExtResource("1_luo3d")
 effects = {
 "energy": 55.0,
 "hp": 40.0,
-"hunger": 80.0
+"satiety": 65.0
 }
 name = "Steak"
 id = "steak"

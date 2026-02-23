@@ -48,10 +48,10 @@ var stamina: float = 100.0:
 		stamina = clamp(value, 0, energy)
 var stamina_regen_rate: float = 15.0
 
-var hunger: float = 12.0:
-	set(value): hunger = clamp(value, 0, 100)
-var hunger_level: int = 1 # 1-4, incemental hunger categories. This is multiplied by energy drain to make you tired faster when hungry
-var hunger_drain_rate: float = 0.05 # How quickly you get hungry
+var satiety: float = 12.0:
+	set(value): satiety = clamp(value, 0, 100)
+var satiety_level: int = 1 # 1-4, incemental satiety categories. This is multiplied by energy drain to make you tired faster when hungry
+var satiety_drain_rate: float = 0.05 # How quickly you get hungry
 var hp_starve_drain_rate: float = 0.05 # How much dmg you take when starving
 
 var working: bool = false
