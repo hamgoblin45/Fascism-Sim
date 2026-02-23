@@ -13,29 +13,112 @@ var stress: float = 0.0 # 0 is calm, 100 is panicking
 var look_timer: float = 0.0
 var is_being_looked_at: bool = false
 
+# --- HOLD-TO-GIVE SYSTEM ---
+var give_timer: float = 0.0
+var give_duration: float = 1.0
+var last_equipped_item: ItemData = null
+var has_fed_current_press: bool = false
+
 func _ready() -> void:
 	super._ready()
-	EventBus.giving_item.connect(_on_item_given)
 	if needs_billboard:
 		needs_billboard.setup(self)
 	EventBus.looking_at_interactable.connect(_on_look_change)
 
 func _process(delta: float) -> void:
-	# If we are looking at them, count up to 1 second
+	# 1. Dynamic UI Updates
+	if GameState.equipped_item != last_equipped_item:
+		last_equipped_item = GameState.equipped_item
+		if GameState.equipped_item is ConsumableData:
+			interact_area.interact_text = "Tap: Talk | Hold: Give " + GameState.equipped_item.name
+		else:
+			interact_area.interact_text = "Talk"
+			
+		if is_being_looked_at:
+			EventBus.looking_at_interactable.emit(interact_area, true)
+
 	if is_being_looked_at:
+		# 2. Billboard Reveal Timer
 		look_timer += delta
 		if look_timer >= 1.0 and needs_billboard:
 			needs_billboard.reveal()
+			
+		# 3. Hold-to-Give Logic
+		if GameState.equipped_item is ConsumableData:
+			# Track when the player initially clicks
+			if Input.is_action_just_pressed("interact"):
+				has_fed_current_press = false
+				
+			if Input.is_action_pressed("interact"):
+				# Only increment if we haven't already fed them this press
+				if not has_fed_current_press:
+					give_timer += delta
+					EventBus.consume_progress.emit(give_timer / give_duration)
+					
+					if give_timer >= give_duration:
+						_feed_guest(GameState.equipped_item)
+						_reset_give_state()
+						has_fed_current_press = true # Lock out the tap logic!
+						
+			elif Input.is_action_just_released("interact"):
+				# Only trigger dialogue if we DIDN'T just feed them
+				if not has_fed_current_press and give_timer > 0.0:
+					super._handle_interaction()
+					
+				_reset_give_state()
+				has_fed_current_press = false # Reset the lock
+		else:
+			_reset_give_state()
+			
 	else:
-		# If we look away, reset timer and hide immediately
 		look_timer = 0.0
+		_reset_give_state()
 		if needs_billboard:
 			needs_billboard.hide_ui()
 
+func _reset_give_state():
+	if give_timer > 0:
+		give_timer = 0.0
+		EventBus.consume_progress.emit(0.0)
+
+# OVERRIDE: Prevent immediate dialogue if holding food
+func _handle_interaction():
+	if GameState.equipped_item is ConsumableData:
+		return # Do nothing on initial press, let the tap/hold logic handle it
+		
+	# Normal behavior if holding a non-consumable (like a hammer or nothing)
+	super._handle_interaction()
+
 func _on_look_change(interactable: Interactable, looking: bool):
-	# Check if the interactable we are looking at belongs to THIS specific NPC
 	if interactable == interact_area:
 		is_being_looked_at = looking
+		
+		if looking:
+			last_equipped_item = GameState.equipped_item
+			if GameState.equipped_item is ConsumableData:
+				interact_area.interact_text = "Tap: Talk | Hold: Give " + GameState.equipped_item.name
+			else:
+				interact_area.interact_text = "Talk"
+
+func _feed_guest(item: ConsumableData):
+	var nut = item.effects.get("hunger", 0.0)
+	var s_rel = item.effects.get("stress", 0.0)
+	var helped = false
+	
+	if nut != 0:
+		hunger = clamp(hunger - nut, 0.0, 100.0) 
+		helped = true
+	
+	if s_rel != 0:
+		stress = clamp(stress - s_rel, 0.0, 100.0)
+		helped = true
+		
+	if helped:
+		spawn_bark("Thank you, I really needed this.")
+		print("GuestNPC: Fed %s. Hunger: %s, Stress: %s" % [item.name, hunger, stress])
+		EventBus.removing_item.emit(item, 1, null)
+	else:
+		spawn_bark("I don't need this right now...")
 
 func hide_in_spot(spot: HidingSpot):
 	is_hidden = true
@@ -49,36 +132,3 @@ func exit_hiding():
 	current_hiding_spot = null
 	show()
 	collision_layer = 1
-
-# --- FEEDING SYSTEM ---
-func _on_item_given(slot_data: SlotData):
-	# Only accept the item if the player is actively talking to THIS guest
-	if GameState.talking_to != self: 
-		return
-		
-	var item = slot_data.item_data
-	var helped = false
-	
-	# Check if the item is consumable
-	if item is ConsumableData:
-		# Extract values from the effects dictionary safely (defaults to 0.0 if not found)
-		# Assuming a positive value means "Amount of Need Relieved" (e.g., {"hunger": 30} removes 30 hunger)
-		var nut = item.effects.get("hunger", 0.0)
-		var s_rel = item.effects.get("stress", 0.0)
-		
-		if nut != 0:
-			# Clamp keeps it safely between 0 and 100
-			hunger = clamp(hunger - nut, 0.0, 100.0) 
-			helped = true
-		
-		if s_rel != 0:
-			stress = clamp(stress - s_rel, 0.0, 100.0)
-			helped = true
-			
-	if helped:
-		spawn_bark("Thank you, I really needed this.")
-		print("GuestNPC: Fed %s. Hunger is now %s. Stress is now %s." % [item.name, hunger, stress])
-		# Remove 1 quantity of the item from the player's inventory
-		EventBus.removing_item.emit(item, 1, slot_data)
-	else:
-		spawn_bark("I don't need this right now...")
