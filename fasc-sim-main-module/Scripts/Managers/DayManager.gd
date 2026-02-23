@@ -1,43 +1,64 @@
 extends Node
 
 func _ready():
-	# Listen for the normal sleep event
 	EventBus.end_day.connect(_on_end_day_normal)
 
 func _on_end_day_normal():
+	# 1. Disable player movement while falling asleep
+	GameState.can_move = false 
+	
+	# FIX: Just await the function itself, because it already returns the signal!
+	await DayTransition.fade_out_for_sleep()
+	
+	# 3. Process the math
 	process_transition(false)
 
 func process_transition(was_arrested: bool):
 	print("DayManager: Processing Day Transition. Arrested: ", was_arrested)
 	
-	# 1. Update Player Stats
+	# --- STAT UPDATES ---
 	if was_arrested:
-		# Penalized Wake Up
 		GameState.hp = 50.0
 		GameState.energy = 50.0
-		GameState.hunger = 50.0 # Assuming 100 is full and 0 is starving
+		GameState.hunger = 50.0 
 		_confiscate_inventory()
 	else:
-		# Rested Wake Up
 		GameState.hp = 100.0
 		GameState.energy = 100.0
 		GameState.hunger = 100.0 
 	
-	# Emit signals to update your HUD bars
 	EventBus.stat_changed.emit("hp")
 	EventBus.stat_changed.emit("energy")
 	EventBus.stat_changed.emit("hunger")
 	
-	# 2. Advance Time
-	# GameState.day += 1 # Uncomment if you track days
-	GameState.hour = 8 # Wake up at 8:00 AM
+	# --- WORLD UPDATES ---
+	# GameState.day += 1 
+	GameState.hour = 8 
 	GameState.minute = 0
-	
-	# Reset global flags
 	GameState.raid_in_progress = false
 	
-	# 3. Notify the world (ShopManager will generate new stock, Guests will get hungrier)
+	# --- TELEPORT PLAYER ---
+	var spawns = get_tree().get_nodes_in_group("bed_spawn")
+	if spawns.size() > 0:
+		# Move the player
+		GameState.player.global_position = spawns[0].global_position
+		GameState.player.global_rotation = spawns[0].global_rotation 
+		
+		if GameState.player.has_node("Head"):
+			GameState.player.get_node("Head").rotation.x = 0
+	else:
+		push_warning("DayManager: No node found in 'bed_spawn' group! Teleport failed.")
+
+	# --- NOTIFY WORLD ---
 	EventBus.day_changed.emit()
+
+	# --- WAKE UP ---
+	# Wait a second in the darkness to let the tension/rest sink in
+	await get_tree().create_timer(1.0).timeout
+	
+	# Fade back in to the morning light using the renamed UI manager
+	DayTransition.fade_in()
+	GameState.can_move = true
 
 func _confiscate_inventory():
 	var inv = GameState.pockets_inventory

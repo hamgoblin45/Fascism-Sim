@@ -20,6 +20,8 @@ func _ready() -> void:
 	SearchManager.search_busted_visuals.connect(_on_search_busted) # NEW
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	
+	EventBus.day_changed.connect(_on_day_changed)
+	
 	hide()
 	frisk_warning.hide()
 	if busted_label: busted_label.hide()
@@ -78,3 +80,10 @@ func _hide_warnings():
 	frisk_warning.hide()
 	if pulse_tween:
 		pulse_tween.kill()
+
+func _on_day_changed():
+	hide()
+	_hide_warnings()
+	if busted_label: busted_label.hide()
+	if clear_label: clear_label.hide()
+	answer_door_timer_label.text = ""

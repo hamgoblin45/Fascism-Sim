@@ -20,6 +20,11 @@ var temp_elapse_time: float = 0.0
 var active_clues: Array[GuestClue] = []
 var assigned_searcher: NPC = null
 
+
+
+func _ready() -> void:
+	EventBus.day_changed.connect(_on_day_changed)
+
 func emit_test_values():
 	EventBus.show_test_value.emit("search_tension", search_tension)
 	EventBus.show_test_value.emit("patience", patience)
@@ -397,3 +402,13 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 			return false
 			
 	return false
+
+func _on_day_changed():
+	is_searching = false
+	is_silent_search = false
+	assigned_searcher = null
+	current_search_inventory = null
+	current_search_index = -1
+	search_tension = 0.0
+	patience = base_patience
+	thoroughness = base_thoroughness

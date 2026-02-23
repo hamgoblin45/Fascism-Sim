@@ -21,8 +21,8 @@ func _ready() -> void:
 	EventBus.raid_starting.connect(start_raid_event)
 	EventBus.answering_door.connect(answer_door)
 	
-	# Connect to SearchManager signals to handle flow
 	SearchManager.raid_finished.connect(_on_raid_finished)
+	EventBus.day_changed.connect(_on_day_changed)
 
 func start_raid_event() -> void:
 	print("RaidSequence: RAID STARTING! 20s Countdown.")
@@ -171,3 +171,17 @@ func _on_raid_finished() -> void:
 		search_grunt_npc.command_move_to(exit_loc)
 		
 	# Despawn logic could go here after a delay
+
+func _on_day_changed():
+	door_answered = false
+	countdown_active = false
+	
+	# Hard hide/reset officers so they aren't still standing in your house
+	var squad = [major_npc, search_grunt_npc, backup_grunt_npc]
+	for npc in squad:
+		if npc and is_instance_valid(npc):
+			npc.command_stop()
+			npc.release_from_override()
+			npc.hide()
+			# Teleport them far away into a holding area under the map
+			npc.global_position = Vector3(0, -50, 0)

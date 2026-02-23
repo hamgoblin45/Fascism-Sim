@@ -22,6 +22,7 @@ func _ready() -> void:
 	EventBus.door_opened_for_visitor.connect(_on_door_opened)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	EventBus.visitor_leave_requested.connect(_send_npc_away)
+	EventBus.day_changed.connect(_on_day_changed)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_visit_officer"): 
@@ -179,3 +180,7 @@ func _convert_to_guest(npc: NPC) -> void:
 	# Release them from their door-waiting override path
 	npc.release_from_override()
 	GuestManager.make_guest(npc)
+
+func _on_day_changed():
+	current_visitor = null
+	raid_party_arrived_count = 0

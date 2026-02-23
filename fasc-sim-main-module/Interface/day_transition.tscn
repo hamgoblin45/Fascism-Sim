@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dcwuooc1citlw"]
 
-[ext_resource type="Script" uid="uid://v53ud2spamha" path="res://Interface/fade_out.gd" id="1_plveu"]
+[ext_resource type="Script" uid="uid://v53ud2spamha" path="res://Interface/day_transition.gd" id="1_plveu"]
 
-[node name="FadeOut" type="CanvasLayer" unique_id=72735776]
+[node name="DayTransition" type="CanvasLayer" unique_id=72735776]
+process_mode = 3
 layer = 100
 script = ExtResource("1_plveu")
 

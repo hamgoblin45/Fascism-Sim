@@ -31,6 +31,7 @@ ShopManager="*uid://cx4k876ydjwc2"
 GuestManager="*uid://dj04joesklsd5"
 DayManager="*uid://7q3at4tlrne8"
 Dialogic="*uid://ds2q0uclmolvu"
+DayTransition="*uid://dcwuooc1citlw"
 
 [dialogic]
 
