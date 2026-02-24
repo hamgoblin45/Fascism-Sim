@@ -54,9 +54,32 @@ func _interact(interact_type: String, engaged: bool):
 func _on_visitor_arrived(npc: NPC):
 	if interactable.id == "front_door" and not open:
 		is_knocking = true
-		visitor_patience = 45.0 # Normal visitors will wait 45 seconds
+		visitor_patience = 45.0 
 		print("DOOR: Someone is at the door...")
-		# Play a KNOCK KNOCK sound effect here!
+		
+		# SAFELY fetch the VisitorManager via its group
+		var vm = get_tree().get_first_node_in_group("visitor_manager")
+		var pitch = 1.0
+		
+		# Make the knock deeper and heavier if it's the Police Major
+		if vm and vm.current_visitor == vm.officer_major_npc:
+			pitch = 0.8
+			
+		AudioManager.play_3d("door_knock", global_position, 0.0, pitch)
+
+func _visitor_lost_patience():
+	print("DOOR: Visitor lost patience and left.")
+	is_knocking = false
+	EventBus.toggle_peephole.emit(false, "")
+	EventBus.visitor_leave_requested.emit()
+	
+	# SAFELY fetch the VisitorManager
+	var vm = get_tree().get_first_node_in_group("visitor_manager")
+	
+	# If the cops hear you but aren't actively raiding, they get VERY suspicious
+	if vm and vm.current_visitor == vm.officer_major_npc:
+		GameState.regime_suspicion += 15.0
+		EventBus.stat_changed.emit("suspicion")
 
 func _process(delta: float) -> void:
 	# Only manage patience for normal visitors (RaidSequence handles its own breach timer!)
@@ -75,16 +98,6 @@ func _process(delta: float) -> void:
 		if visitor_patience <= 0.0:
 			_visitor_lost_patience()
 
-func _visitor_lost_patience():
-	print("DOOR: Visitor lost patience and left.")
-	is_knocking = false
-	EventBus.toggle_peephole.emit(false, "")
-	EventBus.visitor_leave_requested.emit()
-	
-	# If the cops hear you but aren't actively raiding, they get VERY suspicious
-	#if VisitorManager.current_visitor == VisitorManager.officer_major_npc:
-		#GameState.regime_suspicion += 15.0
-		#EventBus.stat_changed.emit("suspicion")
 
 func toggle_door(state: bool):
 	open = state

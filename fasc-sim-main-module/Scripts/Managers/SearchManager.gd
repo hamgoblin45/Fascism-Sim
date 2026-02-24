@@ -63,6 +63,10 @@ func start_frisk(inventory: InventoryData):
 			search_step_started.emit(inventory, i, search_duration)
 			emit_test_values()
 			
+			# NEW: Play a fabric rustling sound! 
+			# Randomizing the pitch slightly makes it sound like different pockets
+			AudioManager.play_2d("pocket_rustle", -5.0, randf_range(0.9, 1.1))
+			
 			await get_tree().create_timer(search_duration).timeout
 			elapsed_time += search_duration
 			
@@ -278,6 +282,8 @@ func player_busted(item: ItemData, qty: int, index: int) -> bool:
 	
 	# Trigger the visual jumpscare immediately
 	search_busted_visuals.emit(index)
+	
+	AudioManager.play_2d("busted_sting", 0.0)
 	
 	await get_tree().create_timer(1.5).timeout
 	return await interrogation_started(item)
