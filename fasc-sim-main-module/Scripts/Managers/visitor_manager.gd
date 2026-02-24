@@ -34,48 +34,107 @@ func _on_day_changed():
 	raid_party_arrived_count = 0
 	daily_schedule.clear()
 	
-	# CRITICAL FIX: Wait exactly one frame so GuestManager can finish setting flags!
+	# Wait exactly one frame so GuestManager can finish setting flags
 	await get_tree().process_frame 
 	
 	_generate_daily_schedule()
 
+# Adding New Visitors Later
+# Whenever you create a new NPC (like a nosy neighbor or a black-market smuggler), you just add a new if block into Step 3 to append them to the event_pool,
+# give them a baseline weight, and give them valid hours. The system will automatically handle the rest!
 func _generate_daily_schedule():
-	# 1. High Priority Overrides (Like Betrayals)
+	# 1. MANDATORY EVENTS (Overrides normal schedules)
 	if GameState.get_flag("betrayed_by_guest"):
 		GameState.set_flag("betrayed_by_guest", false) 
 		GameState.set_flag("raid_reason_betrayal", true) 
 		
-		# Schedule the raid for 9:00 AM (1 hour after you wake up)
 		daily_schedule[9] = "betrayal_raid"
 		print("VisitorManager: Betrayal Raid scheduled for 9:00 AM!")
-		return # Skip normal visitors today, the cops are coming.
+		return # Skip all normal visitors today!
 
-	# 2. Normal Visitor Dictation (RNG/Flags)
-	# Example: 30% chance for a merchant at 10 AM
-	if randf() < 0.30:
-		daily_schedule[10] = "merchant"
-		print("VisitorManager: Merchant scheduled for 10:00 AM")
+	# 2. DETERMINE VISITOR COUNT
+	var num_visitors_today = randi_range(1, 3) # 1 to 3 visitors max per day
+	var event_pool = []
+
+	# 3. BUILD TODAY'S EVENT POOL
+	# (Only add events to the pool if their conditions are met)
+
+	# A. The Merchant (Always available)
+	event_pool.append({
+		"type": "merchant",
+		"weight": 10.0, 
+		"hours": [9, 10, 11, 13, 14, 15, 16] # Standard business hours
+	})
+
+	# B. The Fugitive (Available if you have room / randomness)
+	# Example condition: Only if you don't already have 3 guests
+	if GuestManager.active_guests.size() < 3:
+		event_pool.append({
+			"type": "fugitive",
+			"weight": 6.0,
+			"hours": [20, 21, 22, 23, 0, 1] # Late at night
+		})
+
+	# C. Random Police Raid (Scales with Suspicion!)
+	if GameState.regime_suspicion > 30.0:
+		event_pool.append({
+			"type": "random_raid",
+			# The higher the suspicion, the more heavily weighted this becomes
+			"weight": GameState.regime_suspicion / 4.0, 
+			"hours": [8, 11, 14, 17, 19] 
+		})
+
+	# 4. ROLL FOR VISITORS
+	for i in range(num_visitors_today):
+		if event_pool.is_empty(): break
 		
-	# Example: 20% chance for a fugitive at 8 PM (20:00)
-	elif randf() < 0.20:
-		daily_schedule[20] = "fugitive"
-		print("VisitorManager: Fugitive scheduled for 20:00 PM")
+		# Calculate total weight of the pool
+		var total_weight = 0.0
+		for event in event_pool:
+			total_weight += event["weight"]
+			
+		# Pick a random number up to the total weight
+		var roll = randf_range(0.0, total_weight)
+		var selected_event = null
+		
+		# Find which event we landed on
+		var current_weight = 0.0
+		for event in event_pool:
+			current_weight += event["weight"]
+			if roll <= current_weight:
+				selected_event = event
+				break
+				
+		# 5. ASSIGN AN HOUR
+		if selected_event:
+			# Shuffle the valid hours so they don't always come at the exact same time
+			var available_hours = selected_event["hours"].duplicate()
+			available_hours.shuffle()
+			
+			for h in available_hours:
+				# Make sure no one is already scheduled for this exact hour
+				if not daily_schedule.has(h):
+					daily_schedule[h] = selected_event["type"]
+					print("VisitorManager: Scheduled ", selected_event["type"], " at ", h, ":00")
+					break # Successfully scheduled!
+					
+			# Remove this event from the pool so we don't get 3 merchants in one day
+			event_pool.erase(selected_event)
 
 func _on_hour_changed(hour: int):
 	if daily_schedule.has(hour):
 		_trigger_scheduled_event(daily_schedule[hour])
 
 func _trigger_scheduled_event(event_type: String):
-	print("VisitorManager: Triggering scheduled event - ", event_type)
+	print("VisitorManager: Triggering event - ", event_type)
 	
 	match event_type:
-		"betrayal_raid":
+		"betrayal_raid", "random_raid":
 			start_raid_arrival()
 		"merchant":
 			start_visit(merchant_npc)
 		"fugitive":
 			start_visit(fugitive_npc)
-		# Add more cases here as you make new NPCs!
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_visit_officer"): 
@@ -196,7 +255,6 @@ func _on_door_opened() -> void:
 		print("VisitorManager: Door opened, starting dialogue: ", timeline)
 		DialogueManager.start_dialogue(timeline, current_visitor.npc_data.name)
 
-# ... (Keep _on_dialogue_ended, _handle_post_visit_logic, etc. from previous response) ...
 func _on_dialogue_ended() -> void:
 	if GameState.shopping:
 		print("VisitorManager: Dialogue ended, but shopping active. Keeping visitor.")
