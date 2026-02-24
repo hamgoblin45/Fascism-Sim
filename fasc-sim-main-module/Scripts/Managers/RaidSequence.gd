@@ -69,12 +69,14 @@ func _run_countdown(seconds: float) -> void:
 			
 			# NEW: Escalating Door Audio
 			var sound_to_play = "door_knock"
+			var db = 3.0
 			if time_left <= (seconds / 2.0):
 				sound_to_play = "door_pound"
+				db = 7.0
 				
 			# Play the sound spatially at the front door's location
 			if front_door:
-				AudioManager.play_3d(sound_to_play, front_door.global_position, 0.0, 1.0)
+				AudioManager.play_3d(sound_to_play, front_door.global_position, db, 1.0)
 		
 		EventBus.raid_timer_updated.emit(snapped(time_left, 0.1))
 		

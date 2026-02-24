@@ -104,6 +104,7 @@ func toggle_door(state: bool):
 	
 	if open:
 		anim.play("Open")
+		AudioManager.play_3d("door_open", global_position, 0.0, 1.0)
 		if interactable.id == "front_door":
 			interactable.interact_text = "Close"
 		else:
@@ -113,6 +114,7 @@ func toggle_door(state: bool):
 		EventBus.toggle_peephole.emit(false, "") # Force peephole closed if open
 	else:
 		anim.play("Close")
+		AudioManager.play_3d("door_close", global_position, 0.0, 1.0)
 		if interactable.id == "front_door":
 			interactable.interact_text = "L-Click: Open | Hold R-Click: Peek"
 		else:
