@@ -66,3 +66,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		
 	elif Input.is_action_just_pressed("r_click"):
 		EventBus.item_interacted.emit(current_interactable, "r_click", true)
+	
+	elif Input.is_action_just_released("r_click"):
+		EventBus.item_interacted.emit(current_interactable, "r_click", false)

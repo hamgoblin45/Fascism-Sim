@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ckqaavaslkm4k" path="res://main.gd" id="1_ryguw"]
 [ext_resource type="PackedScene" uid="uid://dqoxbykl7fg8w" path="res://Interface/hud.tscn" id="2_074og"]
 [ext_resource type="Script" uid="uid://crjy7n1e3nfkj" path="res://Scripts/Managers/RaidSequence.gd" id="2_d13ii"]
-[ext_resource type="Script" uid="uid://cib062svm35nn" path="res://Scripts/Managers/visitor_manager.gd" id="3_lswn8"]
+[ext_resource type="PackedScene" uid="uid://lkf5a3ayr5ip" path="res://Scripts/Managers/visitor_manager.tscn" id="2_kq58d"]
 [ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="6_272bh"]
 [ext_resource type="Script" uid="uid://mcdm8xr3sdvh" path="res://Items/Interactables/container.gd" id="6_ycdy4"]
@@ -167,18 +167,7 @@ metadata/_custom_type_script = "uid://coai26ivs6uv4"
 [node name="Main" type="Node3D" unique_id=923260690]
 script = ExtResource("1_ryguw")
 
-[node name="RaidSequence" type="Node" parent="." unique_id=363072616 node_paths=PackedStringArray("major_npc", "search_grunt_npc", "backup_grunt_npc", "player", "door_blocker_pos", "major_stand_aside_pos", "front_door")]
-script = ExtResource("2_d13ii")
-major_npc = NodePath("../NPCs/Major")
-search_grunt_npc = NodePath("../NPCs/Grunt1")
-backup_grunt_npc = NodePath("../NPCs/Grunt2")
-player = NodePath("../PlayerCharacter")
-door_blocker_pos = NodePath("../NavigationRegion3D/player_house/DoorBlockerPos")
-major_stand_aside_pos = NodePath("../NavigationRegion3D/player_house/MajorStepAsidePos")
-front_door = NodePath("../NavigationRegion3D/player_house/FrontDoor")
-
-[node name="VisitorManager" type="Node" parent="." unique_id=1000293489 node_paths=PackedStringArray("officer_major_npc", "officer_grunt_1", "officer_grunt_2", "fugitive_npc", "merchant_npc", "spawn_marker", "door_marker", "back_door_marker", "side_yard_marker", "leave_marker")]
-script = ExtResource("3_lswn8")
+[node name="VisitorManager" parent="." unique_id=2135035888 node_paths=PackedStringArray("officer_major_npc", "officer_grunt_1", "officer_grunt_2", "fugitive_npc", "merchant_npc", "spawn_marker", "door_marker", "back_door_marker", "side_yard_marker", "leave_marker") instance=ExtResource("2_kq58d")]
 officer_major_npc = NodePath("../NPCs/Major")
 officer_grunt_1 = NodePath("../NPCs/Grunt1")
 officer_grunt_2 = NodePath("../NPCs/Grunt2")
@@ -189,6 +178,16 @@ door_marker = NodePath("../NavigationRegion3D/player_house/PathingPoints/DoorPos
 back_door_marker = NodePath("../NavigationRegion3D/player_house/PathingPoints/BackDoorPos")
 side_yard_marker = NodePath("../NavigationRegion3D/player_house/PathingPoints/CornerToBackYardPos")
 leave_marker = NodePath("../NavigationRegion3D/player_house/PathingPoints/SpawnPos")
+
+[node name="RaidSequence" type="Node" parent="." unique_id=363072616 node_paths=PackedStringArray("major_npc", "search_grunt_npc", "backup_grunt_npc", "player", "door_blocker_pos", "major_stand_aside_pos", "front_door")]
+script = ExtResource("2_d13ii")
+major_npc = NodePath("../NPCs/Major")
+search_grunt_npc = NodePath("../NPCs/Grunt1")
+backup_grunt_npc = NodePath("../NPCs/Grunt2")
+player = NodePath("../PlayerCharacter")
+door_blocker_pos = NodePath("../NavigationRegion3D/player_house/DoorBlockerPos")
+major_stand_aside_pos = NodePath("../NavigationRegion3D/player_house/MajorStepAsidePos")
+front_door = NodePath("../NavigationRegion3D/player_house/FrontDoor")
 
 [node name="HUD" parent="." unique_id=758873281 instance=ExtResource("2_074og")]
 

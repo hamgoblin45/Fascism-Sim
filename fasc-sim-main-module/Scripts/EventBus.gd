@@ -85,14 +85,16 @@ signal player_arrested(reason: String, details: String)
 signal game_over(reason: String)
 
 ## -- PATHING ---
-signal visitor_arrived(npc)
-signal visitor_leave_requested(npc)
 signal setting_path(schedule: ScheduleData, path: PathData)
 signal path_finished(npc: NPCData, path: PathData)
 signal follow_player(NPC, bool)
 
 signal giving_item(item: SlotData)
 
+## -- VISITORS --
+signal visitor_arrived(npc)
+signal visitor_leave_requested(npc)
+signal toggle_peephole(is_open: bool, description: String)
 
 ## -- TIME ---
 signal end_day # To initiate day transition

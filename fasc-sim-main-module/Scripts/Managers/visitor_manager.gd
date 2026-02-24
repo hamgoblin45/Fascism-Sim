@@ -26,6 +26,27 @@ func _ready() -> void:
 	EventBus.visitor_leave_requested.connect(_send_npc_away)
 	EventBus.day_changed.connect(_on_day_changed)
 	EventBus.hour_changed.connect(_on_hour_changed)
+	
+	# Wait one frame to ensure the level and all characters are fully loaded
+	await get_tree().process_frame 
+	
+	# Check for Debug Flags from the Testing Hub
+	if GameState.get_flag("debug_start_with_fugitive"):
+		print("DEBUG: Force spawning fugitive as guest!")
+		if fugitive_npc:
+			# NEW: Find the indoor spots and teleport them directly there
+			var spots = get_tree().get_nodes_in_group("guest_idle_spots")
+			if spots.size() > 0:
+				var random_spot = spots.pick_random()
+				fugitive_npc.global_position = random_spot.global_position
+				# Optional: Make them match the spot's rotation so they aren't facing a wall
+				fugitive_npc.rotation = random_spot.rotation 
+			
+			fugitive_npc.show()
+			_convert_to_guest(fugitive_npc)
+
+	# Generate the schedule for Day 1 immediately upon loading the level!
+	_generate_daily_schedule()
 
 # --- VISITOR SCHEDULING SYSTEM ---
 
@@ -264,6 +285,16 @@ func _on_visitor_arrived(npc: NPC) -> void:
 		npc.look_at_target(GameState.player)
 		npc.interactable = true 
 
+func get_visitor_description() -> String:
+	if not current_visitor or not is_instance_valid(current_visitor): 
+		return "Nobody is there."
+		
+	match current_visitor:
+		officer_major_npc: return "A high-ranking Regime Officer. Armed."
+		officer_grunt_1: return "A Regime Officer."
+		fugitive_npc: return "A shivering figure in rags."
+		merchant_npc: return "A person with a large, heavy pack."
+		_: return "An unrecognizable silhouette."
 
 func _on_door_opened() -> void:
 	if current_visitor and is_instance_valid(current_visitor):
