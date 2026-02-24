@@ -200,10 +200,29 @@ func _finish_house_raid(hiding_spots: Array):
 
 func _search_hiding_spot(spot: HidingSpot):
 	var dur = 3.0 + (spot.concealment_score * 5.0)
+	
+	# NEW: Chance to make noise during the search!
+	if spot.occupant and spot.occupant is GuestNPC:
+		var guest = spot.occupant
+		var noise_chance = 0.0
+		if guest.stress > 50.0: noise_chance += (guest.stress - 50.0) / 100.0 # Up to 50% chance
+		if guest.satiety < 50.0: noise_chance += (50.0 - guest.satiety) / 100.0 # Up to 50% chance
+		
+		if randf() < noise_chance:
+			house_raid_status.emit("A noise came from the " + spot.name + "!")
+			dur *= 0.5 # The search speeds up because the officer heard them!
+
 	await get_tree().create_timer(dur).timeout
 	
 	if spot.occupant:
 		var discovery_chance = (thoroughness + (GameState.regime_suspicion / 100.0)) / (spot.concealment_score + 0.1)
+		
+		# NEW: Stat Penalty to concealment
+		if spot.occupant is GuestNPC:
+			var guest = spot.occupant
+			if guest.stress > 50.0: discovery_chance += (guest.stress - 50.0) / 100.0
+			if guest.satiety < 50.0: discovery_chance += (50.0 - guest.satiety) / 100.0
+
 		if randf() < discovery_chance:
 			_guest_captured(spot.occupant)
 			is_searching = false

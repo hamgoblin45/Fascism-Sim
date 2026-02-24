@@ -184,3 +184,11 @@ func _convert_to_guest(npc: NPC) -> void:
 func _on_day_changed():
 	current_visitor = null
 	raid_party_arrived_count = 0
+	
+	if GameState.get_flag("betrayed_by_guest"):
+		GameState.set_flag("betrayed_by_guest", false) # Clear the trigger
+		GameState.set_flag("raid_reason_betrayal", true) # Set this for Dialogic condition
+		
+		# Give the player exactly 8 seconds to panic before the squad arrives
+		await get_tree().create_timer(8.0).timeout
+		start_raid_arrival()
