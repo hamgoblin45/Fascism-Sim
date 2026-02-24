@@ -6,7 +6,7 @@ var day: int = 1
 var hour: int = 8
 var minute: int = 0
 
-var day_start: float = 18.0
+var day_start: float = 8.0
 var day_end: float = 2.0 # Measured in hours, above 24 is in the AM
 
 var time: float = 8.0 # in hours

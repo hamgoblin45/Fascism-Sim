@@ -10,6 +10,8 @@ func _ready() -> void:
 	EventBus.set_paused.connect(_handle_pause)
 	EventBus.change_day.connect(_change_day)
 	EventBus.start_day.connect(_start_new_day)
+	
+	EventBus.day_changed.connect(_on_day_changed)
 
 func handle_time():
 	if GameState.paused or GameState.in_dialogue or GameState.shopping:
@@ -78,6 +80,12 @@ func _change_weekday():
 		"Sunday":
 			GameState.weekday = "Monday"
 
+func _on_day_changed():
+	# 1. Reset the math variables
+	_start_new_day()
+	# 2. Force an immediate update so GameState.hour and GameState.minute are correct!
+	handle_time()
+
 func _start_new_day():
 	print("Setting up new day in TimeManager")
 	GameState.time = GameState.day_start # in hours
@@ -85,6 +93,8 @@ func _start_new_day():
 	EventBus.set_paused.emit(false)
 	#GameState.cycle_time = 0.33 # between 0.0 and 1.0
 	#EventBus.new_day_started.emit()
+
+
 
 func _handle_pause(paused: bool):
 	print("Pause handled in TimeManager")

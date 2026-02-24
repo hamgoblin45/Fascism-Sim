@@ -17,12 +17,65 @@ extends Node
 var current_visitor: NPC = null
 var raid_party_arrived_count: int = 0
 
+var daily_schedule: Dictionary = {}
+
 func _ready() -> void:
 	EventBus.visitor_arrived.connect(_on_visitor_arrived)
 	EventBus.door_opened_for_visitor.connect(_on_door_opened)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 	EventBus.visitor_leave_requested.connect(_send_npc_away)
 	EventBus.day_changed.connect(_on_day_changed)
+	EventBus.hour_changed.connect(_on_hour_changed)
+
+# --- VISITOR SCHEDULING SYSTEM ---
+
+func _on_day_changed():
+	current_visitor = null
+	raid_party_arrived_count = 0
+	daily_schedule.clear()
+	
+	# CRITICAL FIX: Wait exactly one frame so GuestManager can finish setting flags!
+	await get_tree().process_frame 
+	
+	_generate_daily_schedule()
+
+func _generate_daily_schedule():
+	# 1. High Priority Overrides (Like Betrayals)
+	if GameState.get_flag("betrayed_by_guest"):
+		GameState.set_flag("betrayed_by_guest", false) 
+		GameState.set_flag("raid_reason_betrayal", true) 
+		
+		# Schedule the raid for 9:00 AM (1 hour after you wake up)
+		daily_schedule[9] = "betrayal_raid"
+		print("VisitorManager: Betrayal Raid scheduled for 9:00 AM!")
+		return # Skip normal visitors today, the cops are coming.
+
+	# 2. Normal Visitor Dictation (RNG/Flags)
+	# Example: 30% chance for a merchant at 10 AM
+	if randf() < 0.30:
+		daily_schedule[10] = "merchant"
+		print("VisitorManager: Merchant scheduled for 10:00 AM")
+		
+	# Example: 20% chance for a fugitive at 8 PM (20:00)
+	elif randf() < 0.20:
+		daily_schedule[20] = "fugitive"
+		print("VisitorManager: Fugitive scheduled for 20:00 PM")
+
+func _on_hour_changed(hour: int):
+	if daily_schedule.has(hour):
+		_trigger_scheduled_event(daily_schedule[hour])
+
+func _trigger_scheduled_event(event_type: String):
+	print("VisitorManager: Triggering scheduled event - ", event_type)
+	
+	match event_type:
+		"betrayal_raid":
+			start_raid_arrival()
+		"merchant":
+			start_visit(merchant_npc)
+		"fugitive":
+			start_visit(fugitive_npc)
+		# Add more cases here as you make new NPCs!
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_visit_officer"): 
@@ -180,15 +233,3 @@ func _convert_to_guest(npc: NPC) -> void:
 	# Release them from their door-waiting override path
 	npc.release_from_override()
 	GuestManager.make_guest(npc)
-
-func _on_day_changed():
-	current_visitor = null
-	raid_party_arrived_count = 0
-	
-	if GameState.get_flag("betrayed_by_guest"):
-		GameState.set_flag("betrayed_by_guest", false) # Clear the trigger
-		GameState.set_flag("raid_reason_betrayal", true) # Set this for Dialogic condition
-		
-		# Give the player exactly 8 seconds to panic before the squad arrives
-		await get_tree().create_timer(8.0).timeout
-		start_raid_arrival()

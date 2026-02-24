@@ -31,10 +31,6 @@ func process_transition(was_arrested: bool):
 	EventBus.stat_changed.emit("energy")
 	EventBus.stat_changed.emit("satiety")
 	
-	# --- WORLD UPDATES ---
-	# GameState.day += 1 
-	GameState.hour = 8 
-	GameState.minute = 0
 	GameState.raid_in_progress = false
 	
 	# --- TELEPORT PLAYER ---

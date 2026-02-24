@@ -18,6 +18,25 @@ func _ready():
 	EventBus.hour_changed.connect(_on_hour_changed)
 	EventBus.day_changed.connect(_on_day_changed)
 
+## TESTING
+func _input(event: InputEvent) -> void:
+	# Press '1' to instantly ruin the guest's life
+	if event.is_action_pressed("debug_ruin_guest"): # Map this to '1' in Project Settings
+		for guest in active_guests:
+			guest.satiety = 0.0
+			guest.stress = 100.0
+			
+			# Force loyalty to 0 so they hate you
+			if "loyalty" in guest.npc_data:
+				guest.npc_data.loyalty = 0.0 
+				
+		print("DEBUG: All guests are now starving, stressed, and disloyal!")
+		
+	# Press '2' to instantly go to sleep
+	if event.is_action_pressed("debug_force_sleep"): # Map this to '2' in Project Settings
+		print("DEBUG: Forcing day transition!")
+		EventBus.end_day.emit()
+
 func _update_idle_spots():
 	idle_spots.assign(get_tree().get_nodes_in_group("guest_idle_spots"))
 
@@ -104,7 +123,8 @@ func _on_day_changed():
 	for guest in active_guests:
 		# Check critical thresholds
 		if guest.stress >= 90.0 or guest.satiety <= 10.0:
-			if randf() < 0.6: # 60% chance they break and flee
+			#if randf() < 0.6: # 60% chance they break and flee
+			if true: # DEBUG - ONLY FOR TESTING, uncomment above and remove this line
 				guests_to_remove.append(guest)
 				
 				var reason = "starvation" if guest.satiety <= 10.0 else "extreme stress"
@@ -114,7 +134,8 @@ func _on_day_changed():
 				# Safely get loyalty (defaults to 50 if the variable isn't on the resource yet)
 				var loyalty = guest.npc_data.get("loyalty") if "loyalty" in guest.npc_data else 50.0
 				
-				if loyalty < 40.0 and randf() < 0.5: # 50% chance to snitch if disloyal
+				#if loyalty < 40.0 and randf() < 0.5: # 50% chance to snitch if disloyal
+				if true: # DEBUG - ONLY FOR TESTING, uncomment above and remove this line
 					msg += "\n  [color=red]WARNING: They were angry and desperate. They may have informed the Regime.[/color]"
 					GameState.regime_suspicion += 50.0
 					GameState.set_flag("betrayed_by_guest", true)
@@ -124,6 +145,7 @@ func _on_day_changed():
 	# Process removals
 	for guest in guests_to_remove:
 		active_guests.erase(guest)
+		guest_removed.emit(guest.npc_data) # NEW: Tell the UI they left!
 		guest.queue_free() # Despawn them entirely
 		
 	# Trigger the morning report UI if anyone left
