@@ -53,12 +53,15 @@ func process_transition(was_arrested: bool):
 	EventBus.day_changed.emit()
 
 	# --- WAKE UP ---
-	# Wait a second in the darkness to let the tension/rest sink in
 	await get_tree().create_timer(1.0).timeout
 	
-	# Fade back in to the morning light using the renamed UI manager
-	DayTransition.fade_in()
-	GameState.can_move = true
+	if GameState.get_flag("has_morning_report"):
+		# Let the UI handle the fade-in via the "Wake Up" button
+		GameState.set_flag("has_morning_report", false)
+	else:
+		# Normal wake up
+		DayTransition.fade_in()
+		GameState.can_move = true
 
 func _confiscate_inventory():
 	var inv = GameState.pockets_inventory

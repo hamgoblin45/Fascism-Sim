@@ -93,6 +93,7 @@ signal follow_player(NPC, bool)
 
 signal giving_item(item: SlotData)
 
+
 ## -- TIME ---
 signal end_day # To initiate day transition
 signal change_day() # to initiate the change
@@ -104,3 +105,6 @@ signal time_changed(time: float)
 signal minute_changed(hour: float, minute: int)
 
 signal set_paused(bool)
+
+## -- END OF DAY
+signal show_morning_report(title: String, text: String)

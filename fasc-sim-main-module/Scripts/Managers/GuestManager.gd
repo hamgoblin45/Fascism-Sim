@@ -16,6 +16,7 @@ func _ready():
 	
 	# Listen to time to trigger guest needs and messes
 	EventBus.hour_changed.connect(_on_hour_changed)
+	EventBus.day_changed.connect(_on_day_changed)
 
 func _update_idle_spots():
 	idle_spots.assign(get_tree().get_nodes_in_group("guest_idle_spots"))
@@ -56,26 +57,29 @@ func _on_hour_changed(hour: int):
 func _process_guest_needs(guest: GuestNPC):
 	if not guest.is_inside_house: return
 
-	# 1. Decrease Satiety (Drain)
-	# Drain 5.0 per hour. Clamp at 0.0
-	guest.satiety = max(0.0, guest.satiety - 5.0)
-	guest.stress = min(100.0, guest.stress + 2.0) 
+	guest.satiety = max(0.0, guest.satiety - 5.0) 
 	
-	# 2. Starvation Logic
-	# If satiety is below 20%, they are starving/stressed
+	# 1. STRESS SCALES WITH SATIETY
+	var stress_gain = 2.0
+	if guest.satiety < 50.0:
+		# Add up to 5 extra stress per hour the hungrier they get
+		stress_gain += ((50.0 - guest.satiety) / 10.0) 
+	
 	if guest.satiety <= 20.0:
-		guest.stress = min(100.0, guest.stress + 10.0)
+		stress_gain += 10.0 # Starving panic spike
 		guest.spawn_bark("I'm so hungry...")
 
+	guest.stress = min(100.0, guest.stress + stress_gain)
+
 	# 2. Spawn Clues (Messes)
-	var mess_chance = 0.10 # Base 10% chance per hour
+	var mess_chance = 0.10 
 	if guest.stress >= 80.0:
-		mess_chance = 0.40 # 40% chance if highly stressed/panicking
+		mess_chance = 0.40 
 		
 	if randf() < mess_chance and clue_prefabs.size() > 0:
 		_spawn_clue_near_guest(guest)
 		
-	# 3. Change Locations to make the house feel alive
+	# 3. Change Locations
 	if randf() < 0.50 and not guest.is_hidden:
 		send_to_random_spot(guest)
 
@@ -91,3 +95,39 @@ func _spawn_clue_near_guest(guest: GuestNPC):
 	clue_instance.global_position = guest.global_position + offset
 	
 	print("GuestManager: %s left a mess behind!" % guest.npc_data.name)
+
+# --- OVERNIGHT DEPARTURES & BETRAYAL ---
+func _on_day_changed():
+	var departure_messages = []
+	var guests_to_remove = []
+
+	for guest in active_guests:
+		# Check critical thresholds
+		if guest.stress >= 90.0 or guest.satiety <= 10.0:
+			if randf() < 0.6: # 60% chance they break and flee
+				guests_to_remove.append(guest)
+				
+				var reason = "starvation" if guest.satiety <= 10.0 else "extreme stress"
+				var msg = "- " + guest.npc_data.name + " fled the house due to " + reason + "."
+				
+				# BETRAYAL CHECK (Req 4)
+				# Safely get loyalty (defaults to 50 if the variable isn't on the resource yet)
+				var loyalty = guest.npc_data.get("loyalty") if "loyalty" in guest.npc_data else 50.0
+				
+				if loyalty < 40.0 and randf() < 0.5: # 50% chance to snitch if disloyal
+					msg += "\n  [color=red]WARNING: They were angry and desperate. They may have informed the Regime.[/color]"
+					GameState.regime_suspicion += 50.0
+					GameState.set_flag("betrayed_by_guest", true)
+					
+				departure_messages.append(msg)
+
+	# Process removals
+	for guest in guests_to_remove:
+		active_guests.erase(guest)
+		guest.queue_free() # Despawn them entirely
+		
+	# Trigger the morning report UI if anyone left
+	if departure_messages.size() > 0:
+		GameState.set_flag("has_morning_report", true)
+		var full_text = "\n\n".join(departure_messages)
+		EventBus.show_morning_report.emit("OVERNIGHT EVENTS", full_text)

@@ -25,3 +25,6 @@ var waiting_for_player: bool = false
 	# Key: World Flag, Value: Array of Strings
 }
 @export var bark_only: bool = false
+
+@export_group("Stats")
+@export var loyalty: float = 50.0 # 0-100. Below 40 is a flight/snitch risk.

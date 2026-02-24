@@ -13,6 +13,7 @@ func _ready():
 	
 	EventBus.player_arrested.connect(_on_arrested)
 	EventBus.game_over.connect(_on_game_over)
+	EventBus.show_morning_report.connect(_on_morning_report)
 	restart_button.pressed.connect(_on_restart_pressed)
 
 func _on_arrested(reason: String = "Unknown", details: String = ""):
@@ -55,7 +56,29 @@ func _trigger_consequence(title_text: String, report_text: String = ""):
 func _force_mouse_visible():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+func _on_morning_report(title: String, text: String):
+	show()
+	consequence_label.show()
+	consequence_label.text = title
+	
+	if report_label:
+		report_label.show()
+		report_label.text = text
+		
+	restart_button.show()
+	restart_button.text = "Wake Up"
+	call_deferred("_force_mouse_visible")
+
 func _on_restart_pressed():
+	if restart_button.text == "Wake Up":
+		# Just close the text and fade in
+		consequence_label.hide()
+		if report_label: report_label.hide()
+		restart_button.hide()
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		GameState.can_move = true
+		fade_in()
+		return
 	get_tree().paused = false
 	
 	if consequence_label.text == "GAME OVER":
