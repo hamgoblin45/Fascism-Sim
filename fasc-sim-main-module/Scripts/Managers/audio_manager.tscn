@@ -1,6 +1,21 @@
 [gd_scene format=3 uid="uid://k5ldx287f1k6"]
 
 [ext_resource type="Script" uid="uid://bio7jkgu1a2m0" path="res://Scripts/Managers/AudioManager.gd" id="1_8cdu0"]
+[ext_resource type="AudioStream" uid="uid://sft1g8j15njo" path="res://Audio/SFX/Nondiagetic/fail_sting1.mp3" id="2_ngxih"]
+[ext_resource type="AudioStream" uid="uid://c58h4fts56jh2" path="res://Audio/SFX/Spatial/rummage1.mp3" id="3_845pu"]
+[ext_resource type="AudioStream" uid="uid://crsredvddoeoc" path="res://Audio/SFX/Spatial/door_knock1.mp3" id="4_fwl6w"]
+[ext_resource type="AudioStream" uid="uid://ci5vdlwukttb8" path="res://Audio/SFX/Spatial/door_pound.mp3" id="5_845pu"]
+[ext_resource type="AudioStream" uid="uid://c882beeh5fexf" path="res://Audio/SFX/Spatial/footsteps.mp3" id="6_fwl6w"]
+
+[sub_resource type="AudioStream" id="AudioStream_5femq"]
 
 [node name="AudioManager" type="Node" unique_id=446803662]
 script = ExtResource("1_8cdu0")
+sounds = {
+"busted_sting": ExtResource("2_ngxih"),
+"door_knock": ExtResource("4_fwl6w"),
+"door_pound": ExtResource("5_845pu"),
+"footsteps": [ExtResource("6_fwl6w")],
+"pocket_rustle": ExtResource("3_845pu"),
+"ui_click": SubResource("AudioStream_5femq")
+}

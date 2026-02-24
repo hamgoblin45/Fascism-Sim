@@ -63,12 +63,19 @@ func _run_countdown(seconds: float) -> void:
 			countdown_active = false
 			return # Exit loop if player answers door
 		
-		# Barks every 5 seconds
+		# Trigger every 5 seconds
 		if int(time_left) % 5 == 0:
 			major_npc.spawn_bark("OPEN THE DOOR!")
-			# AudioManager.play_spatial("door_knock", major_npc.global_position)
+			
+			# NEW: Escalating Door Audio
+			var sound_to_play = "door_knock"
+			if time_left <= (seconds / 2.0):
+				sound_to_play = "door_pound"
+				
+			# Play the sound spatially at the front door's location
+			if front_door:
+				AudioManager.play_3d(sound_to_play, front_door.global_position, 0.0, 1.0)
 		
-		# UI Update (snapped to 0.1)
 		EventBus.raid_timer_updated.emit(snapped(time_left, 0.1))
 		
 		await get_tree().create_timer(1.0).timeout

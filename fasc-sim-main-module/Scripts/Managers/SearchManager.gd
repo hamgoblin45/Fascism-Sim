@@ -267,9 +267,9 @@ func _finish_search(caught: bool, item: ItemData, qty: int, index: int):
 	current_search_inventory = null
 	current_search_index = -1
 	search_finished.emit(caught, item, qty, index)
+	AudioManager.stop_audio("pocket_rustle")
 
 func player_busted(item: ItemData, qty: int, index: int) -> bool:
-	# Add suspicion but keep searching alive while interrogation happens
 	var penalty = (item.contraband_level * qty) * 2.5 
 	GameState.regime_suspicion += penalty
 	EventBus.stat_changed.emit("suspicion")
@@ -280,9 +280,10 @@ func player_busted(item: ItemData, qty: int, index: int) -> bool:
 		current_search_inventory.slots[index] = null
 		EventBus.inventory_item_updated.emit(current_search_inventory, index)
 	
-	# Trigger the visual jumpscare immediately
-	search_busted_visuals.emit(index)
+	# NEW: Stop the rustling immediately!
+	AudioManager.stop_audio("pocket_rustle")
 	
+	search_busted_visuals.emit(index)
 	AudioManager.play_2d("busted_sting", 0.0)
 	
 	await get_tree().create_timer(1.5).timeout
@@ -295,6 +296,7 @@ func player_busted_external(inventory: InventoryData, slot: SlotData, index: int
 	
 	inventory.slots[index] = null
 	EventBus.inventory_item_updated.emit(inventory, index)
+	AudioManager.play_2d("busted_jumpscare", 0.0)
 	
 	await get_tree().create_timer(1.5).timeout
 	return await interrogation_started(slot.item_data)
