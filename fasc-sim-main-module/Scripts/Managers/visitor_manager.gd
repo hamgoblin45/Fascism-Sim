@@ -1,6 +1,6 @@
 extends Node
 
-# References to Actors
+# References to Actors (ADD HERE WHEN CREATING NEW CHARACTERS THAT CAN VISIT)
 @export var officer_major_npc: NPC
 @export var officer_grunt_1: NPC # Searcher
 @export var officer_grunt_2: NPC # Back door guard
@@ -51,8 +51,28 @@ func _generate_daily_schedule():
 		daily_schedule[9] = "betrayal_raid"
 		print("VisitorManager: Betrayal Raid scheduled for 9:00 AM!")
 		return # Skip all normal visitors today!
+	
+	# 1.5. GUARANTEED STORY EVENTS (Does not skip normal visitors)
+	# Case Example 1: The Rebel Recruiter
+	# We check if the attack happened, AND we check a secondary flag to ensure 
+	# he only visits once and doesn't show up every single day forever!
+	if GameState.get_flag("first_rebel_attack") and not GameState.get_flag("rebel_recruiter_visited"):
+		GameState.set_flag("rebel_recruiter_visited", true) # Lock it out for future days
+		
+		# Assign him to a specific hour (e.g., 18:00 / 6 PM)
+		daily_schedule[18] = "rebel_recruiter"
+		print("VisitorManager: Story Event - Recruiter scheduled for 18:00")
 
-	# 2. DETERMINE VISITOR COUNT
+	# Case Example 2: The Neighbor Kid
+	if GameState.get_flag("neighbor_arrested") and not GameState.get_flag("neighbor_kid_visited"):
+		GameState.set_flag("neighbor_kid_visited", true)
+		
+		# Or assign them to a random hour so it's a surprise!
+		var kid_hours = [8, 9, 10, 11]
+		daily_schedule[kid_hours.pick_random()] = "neighbor_kid"
+		print("VisitorManager: Story Event - Kid scheduled for morning.")
+
+	# 2. DETERMINE RNG VISITOR COUNT
 	var num_visitors_today = randi_range(1, 3) # 1 to 3 visitors max per day
 	var event_pool = []
 
@@ -135,6 +155,10 @@ func _trigger_scheduled_event(event_type: String):
 			start_visit(merchant_npc)
 		"fugitive":
 			start_visit(fugitive_npc)
+		#"rebel_recruiter":
+			#start_visit(rebel_recruiter_npc) # NEW
+		#"neighbor_kid":
+			#start_visit(neighbor_kid_npc)    # NEW
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_visit_officer"): 
