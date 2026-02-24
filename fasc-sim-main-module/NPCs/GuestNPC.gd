@@ -101,11 +101,14 @@ func _on_look_change(interactable: Interactable, looking: bool):
 				interact_area.interact_text = "Talk"
 
 func _feed_guest(item: ConsumableData):
-	# Check the dictionary for the new "satiety" key 
-	# (Make sure to update your .tres resource files too!)
 	var nut = item.effects.get("satiety", 0.0)
 	var s_rel = item.effects.get("stress", 0.0)
 	var helped = false
+
+	# NEW: Prevent overfeeding
+	if nut > 0 and satiety > 90.0:
+		spawn_bark("I'm too full right now.")
+		return # Exit the function completely so the item isn't consumed
 
 	if nut != 0:
 		# We add to satiety now!
@@ -119,7 +122,7 @@ func _feed_guest(item: ConsumableData):
 		
 	if helped:
 		spawn_bark("Thank you, I really needed this.")
-		print("GuestNPC: Fed %s. satiety: %s, Stress: %s" % [item.name, satiety, stress])
+		print("GuestNPC: Fed %s. Satiety: %s, Stress: %s" % [item.name, satiety, stress])
 		EventBus.removing_item.emit(item, 1, null)
 	else:
 		spawn_bark("I don't need this right now...")
