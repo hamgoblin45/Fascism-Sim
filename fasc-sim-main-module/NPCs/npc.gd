@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 
 	_handle_state(delta)
 	move_and_slide()
+	_handle_footsteps(delta)
 
 # --- PATHING & SCHEDULES ---
 
@@ -208,6 +209,47 @@ func _move_and_rotate(dir: Vector3, speed: float, delta: float):
 	
 	look_at_node.look_at(global_position + dir)
 	global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 5.0 * delta)
+
+# --- FOOTSTEP SYSTEM ---
+var distance_walked: float = 0.0
+var step_distance: float = 4.2 # NPCs usually take slightly shorter/slower steps than players
+
+
+func _handle_footsteps(delta: float):
+	# Only accumulate distance if they are moving
+	if velocity.length() > 0.1 and is_on_floor():
+		var horizontal_velocity = Vector2(velocity.x, velocity.z)
+		distance_walked += horizontal_velocity.length() * delta
+		
+		if distance_walked >= step_distance:
+			distance_walked = 0.0
+			_play_footstep()
+	else:
+		distance_walked = 0.0
+
+func _play_footstep():
+	var surface = "default"
+	
+	# CAST A RAY THROUGH CODE (No Node Required!)
+	# We shoot a line from their center to 1.5 meters straight down
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(global_position, global_position + Vector3.DOWN * 1.5)
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		var collider = result.collider
+		if collider.is_in_group("carpet"):
+			surface = "carpet"
+		elif collider.is_in_group("concrete"):
+			surface = "concrete"
+		elif collider.is_in_group("dirt"):
+			surface = "dirt"
+		elif collider.is_in_group("wood"):
+			surface = "wood"
+			
+	var sound_name = "footstep_" + surface
+	
+	AudioManager.play_3d(sound_name, global_position, -6.0, randf_range(0.85, 1.15))
 
 # --- COMMANDS ---
 
