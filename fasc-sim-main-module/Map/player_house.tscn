@@ -947,7 +947,7 @@ transform = Transform3D(0.372251, 0, 0, 0, 0.16342787, 0, 0, 0, 0.372251, 0, 8.0
 mesh = SubResource("ArrayMesh_7hnk3")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/PorchFloor" unique_id=1865018780]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/PorchFloor" unique_id=1865018780 groups=["concrete"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/PorchFloor/StaticBody3D" unique_id=1712965893]
 shape = SubResource("ConcavePolygonShape3D_m5m65")
@@ -982,7 +982,7 @@ transform = Transform3D(0.372251, 0, 0, 0, 0.16342787, 0, 0, 0, 0.372251, 0, 8.0
 mesh = SubResource("ArrayMesh_xlr7w")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/BedroomFloor" unique_id=1259200844]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/BedroomFloor" unique_id=1259200844 groups=["carpet"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/BedroomFloor/StaticBody3D" unique_id=1106656380]
 shape = SubResource("ConcavePolygonShape3D_yafyb")
@@ -992,7 +992,7 @@ transform = Transform3D(0.372251, 0, 0, 0, 0.16342787, 0, 0, 0, 0.372251, 0, 8.0
 mesh = SubResource("ArrayMesh_b3rp4")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/FloorBathroom" unique_id=1152500646]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/FloorBathroom" unique_id=1152500646 groups=["concrete"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/FloorBathroom/StaticBody3D" unique_id=1298566095]
 shape = SubResource("ConcavePolygonShape3D_t8vjp")
@@ -1002,7 +1002,7 @@ transform = Transform3D(0.372251, 0, 0, 0, 0.16342787, 0, 0, 0, 0.372251, 0, 8.0
 mesh = SubResource("ArrayMesh_fo4ek")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/LivingRoomFloor" unique_id=293410210]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/LivingRoomFloor" unique_id=293410210 groups=["wood"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/LivingRoomFloor/StaticBody3D" unique_id=1873651210]
 shape = SubResource("ConcavePolygonShape3D_484av")
@@ -1012,7 +1012,7 @@ transform = Transform3D(0.372251, 0, 0, 0, 0.16342787, 0, 0, 0, 0.372251, 0, 8.0
 mesh = SubResource("ArrayMesh_4ilac")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/KitchenFloor" unique_id=1677489243]
+[node name="StaticBody3D" type="StaticBody3D" parent="Mesh/KitchenFloor" unique_id=1677489243 groups=["concrete"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/KitchenFloor/StaticBody3D" unique_id=1189138165]
 shape = SubResource("ConcavePolygonShape3D_gw4fw")

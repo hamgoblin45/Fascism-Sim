@@ -118,6 +118,9 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 house_containers=""
 hiding_spots=""
 guests=""
+concrete=""
+wood=""
+carpet=""
 
 [gui]
 

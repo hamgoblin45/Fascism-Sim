@@ -36,12 +36,22 @@ func process_transition(was_arrested: bool):
 	# --- TELEPORT PLAYER ---
 	var spawns = get_tree().get_nodes_in_group("bed_spawn")
 	if spawns.size() > 0:
-		# Move the player
-		GameState.player.global_position = spawns[0].global_position
-		GameState.player.global_rotation = spawns[0].global_rotation 
+		var spawn = spawns[0]
 		
-		if GameState.player.has_node("Head"):
-			GameState.player.get_node("Head").rotation.x = 0
+		# Move the player
+		GameState.player.global_position = spawn.global_position
+		
+		# CRITICAL FIX: The FPS Controller requires the body rotation to remain ZERO.
+		# If the body rotates, the movement math breaks.
+		GameState.player.global_rotation = Vector3.ZERO 
+		
+		# Apply the bed's rotation ONLY to the player's HEAD node
+		if GameState.player.HEAD:
+			GameState.player.HEAD.global_rotation.y = spawn.global_rotation.y
+			GameState.player.HEAD.rotation.x = 0 # Look straight ahead
+			
+			# Clear any leftover mouse movement from before the teleport
+			GameState.player.mouseInput = Vector2.ZERO 
 	else:
 		push_warning("DayManager: No node found in 'bed_spawn' group! Teleport failed.")
 
