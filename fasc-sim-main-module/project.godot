@@ -30,9 +30,10 @@ SearchManager="*uid://b03qagyiuoc44"
 ShopManager="*uid://cx4k876ydjwc2"
 GuestManager="*uid://dj04joesklsd5"
 DayManager="*uid://7q3at4tlrne8"
-Dialogic="*uid://ds2q0uclmolvu"
 DayTransition="*uid://dcwuooc1citlw"
 AudioManager="*uid://k5ldx287f1k6"
+Dialogic="*uid://ds2q0uclmolvu"
+PauseMenu="*uid://cjg0x4uo3ro86"
 
 [dialogic]
 

@@ -72,7 +72,7 @@ func _run_countdown(seconds: float) -> void:
 			var db = 3.0
 			if time_left <= (seconds / 2.0):
 				sound_to_play = "door_pound"
-				db = 7.0
+				db = 13.0
 				
 			# Play the sound spatially at the front door's location
 			if front_door:
