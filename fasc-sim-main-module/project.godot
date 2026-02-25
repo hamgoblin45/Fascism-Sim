@@ -280,3 +280,4 @@ debug_force_sleep={
 3d_physics/layer_3="Interactable"
 3d_physics/layer_4="NPCDetect"
 3d_physics/layer_5="trash"
+3d_physics/layer_6="Navigation"
