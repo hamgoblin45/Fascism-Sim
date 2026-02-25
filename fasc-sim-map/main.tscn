@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://wf1pkv3ob04m"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://Player/character.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://btml3xrwculls" path="res://Map/map_terrain.gltf" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://btcbf58h7yvlx" path="res://day_night_cycle.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://lx7gpi1nvcv2" path="res://Map/Buildings/checkpoint.gltf" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cxqvhxc121iea" path="res://Map/Buildings/player_house.gltf" id="4_sm6fg"]
@@ -65,6 +64,7 @@
 [ext_resource type="PackedScene" uid="uid://bhjb3ed58ko8p" path="res://Map/Furniture-Fixtures/office_chair.gltf" id="63_sm6fg"]
 [ext_resource type="PackedScene" uid="uid://dmubous2qn7d0" path="res://Map/Furniture-Fixtures/bookcase_1.gltf" id="64_b17eg"]
 [ext_resource type="PackedScene" uid="uid://d2sd10hlyxjgx" path="res://Map/Furniture-Fixtures/tv-w-stand.gltf" id="65_ntx8l"]
+[ext_resource type="PackedScene" uid="uid://ctjhg387w88de" path="res://Map/culdesac.tscn" id="66_uatky"]
 
 [node name="Main" type="Node3D" unique_id=482726971]
 
@@ -74,76 +74,74 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 62.520313, 7.485712, 31
 [node name="DayNightCycle" parent="." unique_id=1429322333 instance=ExtResource("3_h2yge")]
 script = null
 
-[node name="Terrain" parent="." unique_id=96384834 instance=ExtResource("3_1bvp3")]
+[node name="Culdesac" parent="." unique_id=1121214102 instance=ExtResource("66_uatky")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Boundary" parent="Terrain" index="2" unique_id=988676261]
-visible = false
+[node name="Structures" type="Node3D" parent="Culdesac" unique_id=1680364581]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
-[node name="Structures" type="Node3D" parent="Terrain" unique_id=1680364581]
-
-[node name="PlayerHouse" parent="Terrain/Structures" unique_id=2107880812 instance=ExtResource("4_sm6fg")]
+[node name="PlayerHouse" parent="Culdesac/Structures" unique_id=2107880812 instance=ExtResource("4_sm6fg")]
 transform = Transform3D(0.7269058, 0, -0.7461078, 0, 1.0416665, 0, 0.7461078, 0, 0.7269058, 134.30371, 4.384612, 310.87878)
 
-[node name="PlayerHouseFurniture" type="Node3D" parent="Terrain/Structures/PlayerHouse" unique_id=2025086795]
+[node name="PlayerHouseFurniture" type="Node3D" parent="Culdesac/Structures/PlayerHouse" unique_id=2025086795]
 transform = Transform3D(0.6699166, 0, 0.6876131, 0, 0.95999986, 0, -0.6876131, 0, 0.6699166, -301.15677, 0.20459175, -115.60427)
 
-[node name="oven_stove" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=23443122 instance=ExtResource("52_rnkwl")]
+[node name="oven_stove" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=23443122 instance=ExtResource("52_rnkwl")]
 transform = Transform3D(-0.8790385, 0, 0.8887012, 0, 1.2499987, 0, -0.8887012, 0, -0.8790385, 150.70137, -0.32219768, 322.91913)
 metadata/asset_placer_res_id = "uid://df6snvo0c5ukg"
 
-[node name="round_coffe_table" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1973278660 instance=ExtResource("53_vke2r")]
+[node name="round_coffe_table" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1973278660 instance=ExtResource("53_vke2r")]
 transform = Transform3D(1.3651575, 0, 1.2852904, 0, 2.2916667, 0, -1.2852904, 0, 1.3651575, 131.12006, -0.35297227, 297.99545)
 metadata/asset_placer_res_id = "uid://dv7uok5t2dgut"
 
-[node name="counter_1" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1231348921 instance=ExtResource("54_uit24")]
+[node name="counter_1" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1231348921 instance=ExtResource("54_uit24")]
 transform = Transform3D(-0.8954984, 0, -0.8721129, 0, 1.249999, 0, 0.8721129, 0, -0.8954984, 148.05495, -0.32753015, 308.93875)
 metadata/asset_placer_res_id = "uid://coeebht04a6s4"
 
-[node name="counter_1 (2)" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=2005814203 instance=ExtResource("54_uit24")]
+[node name="counter_1 (2)" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=2005814203 instance=ExtResource("54_uit24")]
 transform = Transform3D(-0.87627643, 0, 0.8914253, 0, 1.2499998, 0, -0.8914253, 0, -0.87627643, 148.03534, -0.31168938, 325.51764)
 metadata/asset_placer_res_id = "uid://coeebht04a6s4"
 
-[node name="counter_sink" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=2025906401 instance=ExtResource("55_ruth0")]
+[node name="counter_sink" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=2025906401 instance=ExtResource("55_ruth0")]
 transform = Transform3D(-0.8954675, 0, -0.87214464, 0, 1.2499992, 0, 0.87214464, 0, -0.8954675, 150.66273, -0.32898736, 311.61426)
 metadata/asset_placer_res_id = "uid://dbm7yjbq1wu82"
 
-[node name="basic_wood_desk" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=61738085 instance=ExtResource("56_rm4vd")]
+[node name="basic_wood_desk" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=61738085 instance=ExtResource("56_rm4vd")]
 transform = Transform3D(0.35283047, 0, 0.42512965, 0, 1.2719996, 0, -0.35427472, 0, 0.42339644, 111.08425, -0.93398094, 306.8817)
 metadata/asset_placer_res_id = "uid://ce8wyyi6i2wy8"
 
-[node name="trash_can_bucket" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1854747516 instance=ExtResource("57_pjyto")]
+[node name="trash_can_bucket" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1854747516 instance=ExtResource("57_pjyto")]
 transform = Transform3D(0.8333332, 0, 0, 0, 0.83333313, 0, 0, 0, 0.8333332, 145.80234, -0.35297465, 327.4614)
 metadata/asset_placer_res_id = "uid://b6u27887w43qc"
 
-[node name="counter_corner" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=28836112 instance=ExtResource("11_vke2r")]
+[node name="counter_corner" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=28836112 instance=ExtResource("11_vke2r")]
 transform = Transform3D(-0.87882495, 0, 0.888913, 0, 1.2499998, 0, -0.888913, 0, -0.87882495, 155.9238, -0.327873, 317.7539)
 
-[node name="fridge" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1085413044 instance=ExtResource("12_uit24")]
+[node name="fridge" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1085413044 instance=ExtResource("12_uit24")]
 transform = Transform3D(-1.4775507, 0, -1.4210352, 0, 2.0499988, 0, 1.4210352, 0, -1.4775507, 145.42873, -0.3731885, 305.95816)
 
-[node name="basic_bed" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1855608764 instance=ExtResource("13_ruth0")]
+[node name="basic_bed" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=1855608764 instance=ExtResource("13_ruth0")]
 transform = Transform3D(-2.4668236, 0, 2.4828944, 0, 3.4999976, 0, -2.4828944, 0, -2.4668236, 118.12242, -1.1828631, 311.18506)
 
-[node name="toilet" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=844368738 instance=ExtResource("14_rm4vd")]
+[node name="toilet" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=844368738 instance=ExtResource("14_rm4vd")]
 transform = Transform3D(0.700386, 0, -0.7137642, 0, 0.9999999, 0, 0.7137642, 0, 0.700386, 125.9176, 0.44795156, 313.6154)
 
-[node name="basic_wood_nightstand" parent="Terrain/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=295083757 instance=ExtResource("15_pjyto")]
+[node name="basic_wood_nightstand" parent="Culdesac/Structures/PlayerHouse/PlayerHouseFurniture" unique_id=295083757 instance=ExtResource("15_pjyto")]
 transform = Transform3D(-0.69133604, 0, 0.72253245, 0, 0.9999993, 0, -0.72253245, 0, -0.69133604, 126.36606, -0.32894826, 308.66077)
 
-[node name="HouseB" parent="Terrain/Structures" unique_id=1153659329 instance=ExtResource("5_wnkbs")]
+[node name="HouseB" parent="Culdesac/Structures" unique_id=1153659329 instance=ExtResource("5_wnkbs")]
 transform = Transform3D(0.9984724, 0, -0.055246424, 0, 0.99999976, 0, 0.055246424, 0, 0.9984724, 174.05296, 2.7219286, 242.4112)
 
-[node name="HouseC" parent="Terrain/Structures" unique_id=723651232 instance=ExtResource("6_f6a44")]
+[node name="HouseC" parent="Culdesac/Structures" unique_id=723651232 instance=ExtResource("6_f6a44")]
 transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 69.79509, 2.5250058, 327.41403)
 
-[node name="HouseD" parent="Terrain/Structures" unique_id=314932638 instance=ExtResource("7_0cbny")]
+[node name="HouseD" parent="Culdesac/Structures" unique_id=314932638 instance=ExtResource("7_0cbny")]
 transform = Transform3D(-0.8235421, 0, -0.56725425, 0, 0.9999995, 0, 0.56725425, 0, -0.8235421, -7.7081404, 2.7366724, 298.97235)
 
-[node name="HouseE" parent="Terrain/Structures" unique_id=1826519313 instance=ExtResource("8_hrvbo")]
+[node name="HouseE" parent="Culdesac/Structures" unique_id=1826519313 instance=ExtResource("8_hrvbo")]
 transform = Transform3D(0.98712206, 0, -0.1599673, 0, 0.99999976, 0, 0.1599673, 0, 0.98712206, -16.837383, -7.579121e-13, 225.78853)
 
-[node name="house_f" parent="Terrain/Structures" unique_id=635985603 instance=ExtResource("9_uypp3")]
+[node name="house_f" parent="Culdesac/Structures" unique_id=635985603 instance=ExtResource("9_uypp3")]
 transform = Transform3D(0.49999988, 0, -0.8660253, 0, 0.99999976, 0, 0.8660253, 0, 0.49999988, 88.87614, 0, 138.45444)
 
 [node name="Scenery" type="Node3D" parent="." unique_id=751881669]
@@ -2693,11 +2691,11 @@ transform = Transform3D(0.079791814, 0, -2.4987261, 0, 2.4999998, 0, 2.4987261, 
 [node name="house_bg2" parent="Scenery" unique_id=1284975603 instance=ExtResource("45_0n3wm")]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, -124.54907, -1.2874603e-05, 441.13116)
 
-[node name="office_chair" type="Node3D" parent="." unique_id=195594459 instance=ExtResource("63_sm6fg")]
+[node name="office_chair" parent="." unique_id=195594459 instance=ExtResource("63_sm6fg")]
 transform = Transform3D(0.77624774, 0, -0.6304291, 0, 1, 0, 0.6304291, 0, 0.77624774, 136.0548, 5.109262, 369.73944)
 metadata/asset_placer_res_id = "uid://bhjb3ed58ko8p"
 
-[node name="bookcase_1" type="Node3D" parent="." unique_id=2074240205 instance=ExtResource("64_b17eg")]
+[node name="bookcase_1" parent="." unique_id=2074240205 instance=ExtResource("64_b17eg")]
 transform = Transform3D(-0.51994777, 0, 0.5405132, 0, 0.7499998, 0, -0.5405132, 0, -0.51994777, 156.35356, 8.875163, 375.24548)
 metadata/asset_placer_res_id = "uid://dmubous2qn7d0"
 
@@ -2705,4 +2703,4 @@ metadata/asset_placer_res_id = "uid://dmubous2qn7d0"
 transform = Transform3D(-0.83113456, 0, -0.8459458, 0, 1.1859207, 0, 0.8459458, 0, -0.83113456, 163.72125, 5.0404034, 356.4162)
 
 [editable path="PlayerCharacter"]
-[editable path="Terrain"]
+[editable path="Culdesac"]

@@ -33,6 +33,11 @@ project/assembly_name="FascSim-House"
 
 enabled=PackedStringArray("res://addons/asset_placer/plugin.cfg")
 
+[global_group]
+
+grass=""
+concrete=""
+
 [input]
 
 move_left={

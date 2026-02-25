@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c71dtlvwlsknr"
-path.s3tc="res://.godot/imported/player_house_roof_tiles_2indigo.png-2763805bb31ed61f27d76e62acf5bff5.s3tc.ctex"
+uid="uid://bqb78dqa8uia4"
+path.s3tc="res://.godot/imported/player_house_Tile02.png-b814348182f57c98e890c2416b54ee91.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "a57222c41e76154d00f44fc953717aa7"
+"md5": "8bc3d116ac014eb5839d979fb00309e3"
 }
 
 [deps]
 
-source_file="res://Map/Buildings/player_house_roof_tiles_2indigo.png"
-dest_files=["res://.godot/imported/player_house_roof_tiles_2indigo.png-2763805bb31ed61f27d76e62acf5bff5.s3tc.ctex"]
+source_file="res://Map/player_house_Tile02.png"
+dest_files=["res://.godot/imported/player_house_Tile02.png-b814348182f57c98e890c2416b54ee91.s3tc.ctex"]
 
 [params]
 
