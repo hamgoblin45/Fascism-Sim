@@ -8,7 +8,7 @@ extends Control
 @onready var launch_button: Button = $MarginContainer/VBoxContainer/LaunchButton
 
 
-var main_level_path: String = "res://main.tscn"
+var main_level_path: String = "res://Map/main_map.tscn"
 
 func _ready() -> void:
 	launch_button.pressed.connect(_on_launch_pressed)

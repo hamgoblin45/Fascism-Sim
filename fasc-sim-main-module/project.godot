@@ -32,8 +32,8 @@ GuestManager="*uid://dj04joesklsd5"
 DayManager="*uid://7q3at4tlrne8"
 DayTransition="*uid://dcwuooc1citlw"
 AudioManager="*uid://k5ldx287f1k6"
-Dialogic="*uid://ds2q0uclmolvu"
 PauseMenu="*uid://cjg0x4uo3ro86"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 

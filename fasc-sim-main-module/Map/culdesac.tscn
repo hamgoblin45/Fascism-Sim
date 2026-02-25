@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dvbje8g3fg6ea" path="res://Map/culdesac_grass_1.png" id="1_x4ayy"]
 [ext_resource type="Texture2D" uid="uid://dfm1r7h85dphs" path="res://Map/culdesac_concrete_tile.png" id="2_f0ouj"]
 [ext_resource type="Texture2D" uid="uid://c1hthgcpo5x2b" path="res://Map/culdesac_Asphalt02.png" id="3_rnng7"]
-[ext_resource type="PackedScene" uid="uid://cdgx42uf1og5n" path="res://Map/player_house.tscn" id="4_f0ouj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6qwn"]
 resource_name = "Ground"
@@ -217,6 +216,3 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary/StaticBody3D" unique_id=1108768436]
 shape = SubResource("ConcavePolygonShape3D_xneor")
-
-[node name="player_house" parent="." unique_id=2018590726 instance=ExtResource("4_f0ouj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.788, 0, 291.6792)
