@@ -123,7 +123,12 @@ var current_hold_velocity: Vector3
 @onready var drop_point: Node3D = $Head/DropPoint
 @onready var look_at_node: Node3D = $LookAtNode
 
-#@onready var footsteps_audio: SAudioStreamPlayer3D = $FootstepsAudio
+# --- FOOTSTEP SYSTEM ---
+@onready var floor_ray: RayCast3D = %GroundRay
+var distance_walked: float = 0.0
+var step_distance: float = 5.0 # Play a sound every 1.8 meters (tweak this until it feels right)
+
+
 var looking_at = null
 
 
@@ -190,6 +195,7 @@ func _physics_process(delta):
 			current_hold_velocity = (hold_item_point.global_position - last_hold_pos) / delta
 			last_hold_pos = hold_item_point.global_position
 		
+		_handle_footsteps(delta)
 
 ## -- Clicking and holding physical objects
 func _set_held_object(body):
@@ -344,6 +350,41 @@ func handle_jumping():
 				if jump_animation:
 					JUMP_ANIMATION.play("jump", 0.25)
 				velocity.y += jump_velocity
+
+func _handle_footsteps(delta: float):
+	# Only accumulate distance if we are on the ground and actually moving
+	if is_on_floor() and velocity.length() > 0.5:
+		# We only care about horizontal movement (ignore falling/jumping velocity)
+		var horizontal_velocity = Vector2(velocity.x, velocity.z)
+		distance_walked += horizontal_velocity.length() * delta
+		
+		# Once we've traveled far enough for a "stride", play a sound!
+		if distance_walked >= step_distance:
+			distance_walked = 0.0
+			_play_footstep()
+	else:
+		# Reset if we stop moving so our next step is instant
+		distance_walked = 0.0
+
+func _play_footstep():
+	var surface = "default" # Default if the raycast fails
+	
+	if floor_ray.is_colliding():
+		var collider = floor_ray.get_collider()
+		
+		# Check the collider's groups to determine the surface
+		if collider.is_in_group("carpet"):
+			surface = "carpet"
+		elif collider.is_in_group("concrete"):
+			surface = "concrete"
+		elif collider.is_in_group("dirt"):
+			surface = "dirt"
+			
+	# Construct the sound name exactly as it appears in the AudioManager Dictionary
+	var sound_name = "footstep_" + surface
+	
+	# Play the sound! Randomize pitch slightly so steps don't sound like a machine gun
+	AudioManager.play_3d(sound_name, global_position, -5.0, randf_range(0.85, 1.15))
 
 func handle_movement(delta, input_dir):
 	var direction = input_dir.rotated(-HEAD.rotation.y)

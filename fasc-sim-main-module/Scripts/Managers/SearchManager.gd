@@ -65,7 +65,7 @@ func start_frisk(inventory: InventoryData):
 			
 			# NEW: Play a fabric rustling sound! 
 			# Randomizing the pitch slightly makes it sound like different pockets
-			AudioManager.play_2d("pocket_rustle", -5.0, randf_range(0.9, 1.1))
+			AudioManager.play_2d("pocket_rustle", -12.0, randf_range(0.9, 1.1))
 			
 			await get_tree().create_timer(search_duration).timeout
 			elapsed_time += search_duration
@@ -423,6 +423,7 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 			var reason = "Possession of Class " + str(level) + " Contraband (" + item.name + ")"
 			var details = "PENALTY: 1 Day Incarceration\n(Health & Energy Halved)"
 			EventBus.player_arrested.emit(reason, details)
+			AudioManager.play_2d("handcuffs", -4.5, 1.0)
 			return false
 			
 		"game_over":

@@ -104,7 +104,7 @@ func toggle_door(state: bool):
 	
 	if open:
 		anim.play("Open")
-		AudioManager.play_3d("door_open", global_position, 0.0, 1.0)
+		AudioManager.play_3d("door_open", global_position, -5.0, 1.0)
 		if interactable.id == "front_door":
 			interactable.interact_text = "Close"
 		else:
@@ -114,13 +114,14 @@ func toggle_door(state: bool):
 		EventBus.toggle_peephole.emit(false, "") # Force peephole closed if open
 	else:
 		anim.play("Close")
-		AudioManager.play_3d("door_close", global_position, 0.0, 1.0)
+		
 		if interactable.id == "front_door":
 			interactable.interact_text = "L-Click: Open | Hold R-Click: Peek"
 		else:
 			interactable.interact_text = "Open"
 			
 		await anim.animation_finished
+		AudioManager.play_3d("door_close", global_position, -5.0, 1.0)
 		collision_shape.disabled = false
 
 func _on_npc_detect_body_entered(body: Node3D) -> void:
