@@ -17,6 +17,8 @@ func _ready():
 	# Listen to time to trigger guest needs and messes
 	EventBus.hour_changed.connect(_on_hour_changed)
 	EventBus.day_changed.connect(_on_day_changed)
+	
+	EventBus.raid_starting.connect(_trigger_raid_panic)
 
 ### TESTING
 #func _input(event: InputEvent) -> void:
@@ -153,3 +155,16 @@ func _on_day_changed():
 		GameState.set_flag("has_morning_report", true)
 		var full_text = "\n\n".join(departure_messages)
 		EventBus.show_morning_report.emit("OVERNIGHT EVENTS", full_text)
+
+func _trigger_raid_panic():
+	for guest in active_guests:
+		# If they aren't hidden, and they aren't currently running to a hiding spot...
+		if not guest.is_hidden and guest.target_hiding_spot == null:
+			print("GuestManager: %s is panicking!" % guest.npc_data.name)
+			guest.spawn_bark("Oh no, they're here! Hide me!")
+			
+			# Send them to a random idle spot (which acts as a corner)
+			send_to_random_spot(guest)
+			
+			# TODO: Once animations are in, play the cower animation here!
+			# guest.anim.play("cower")

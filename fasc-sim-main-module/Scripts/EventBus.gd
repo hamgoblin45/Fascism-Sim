@@ -89,7 +89,9 @@ signal setting_path(schedule: ScheduleData, path: PathData)
 signal path_finished(npc: NPCData, path: PathData)
 signal follow_player(NPC, bool)
 
+## -- GUESTS -- 
 signal giving_item(item: SlotData)
+signal open_guest_selection_menu(spot: HidingSpot, guests: Array)
 
 ## -- VISITORS --
 signal visitor_arrived(npc)

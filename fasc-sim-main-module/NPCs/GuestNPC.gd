@@ -4,6 +4,7 @@ class_name GuestNPC
 var is_inside_house: bool = false
 var is_hidden: bool = false
 var current_hiding_spot: HidingSpot = null
+var target_hiding_spot: HidingSpot = null
 
 # --- NEEDS SYSTEM ---
 var satiety: float = 100.0 # Starts at 100 (Full)
@@ -127,12 +128,29 @@ func _feed_guest(item: ConsumableData):
 	else:
 		spawn_bark("I don't need this right now...")
 
-func hide_in_spot(spot: HidingSpot):
+func command_go_hide(spot: HidingSpot):
+	spot.reserved_by = self
+	target_hiding_spot = spot
+	
+	spawn_bark("I'm going!")
+	command_move_to(spot.global_position)
+	
+	# Wait until the NavigationAgent says we have arrived
+	await destination_reached
+	
+	# Double check we are still trying to hide here (in case they got interrupted)
+	if target_hiding_spot == spot:
+		_enter_hiding_spot()
+
+func _enter_hiding_spot():
 	is_hidden = true
-	current_hiding_spot = spot
-	hide()
-	collision_layer = 0
-	state = IDLE
+	if target_hiding_spot:
+		current_hiding_spot = target_hiding_spot
+		target_hiding_spot._assign_occupant(self)
+		target_hiding_spot = null
+		
+		# Optional: Play a door shut sound!
+		# AudioManager.play_3d("closet_shut", global_position)
 
 func exit_hiding():
 	is_hidden = false
