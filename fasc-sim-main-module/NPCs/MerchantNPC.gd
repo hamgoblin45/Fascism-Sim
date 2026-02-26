@@ -38,7 +38,7 @@ func _on_dialogic_signal(arg):
 		open_shop()
 	
 	if signal_name == "visitor_leave":
-		EventBus.visitor_leave_requested.emit(self)
+		EventBus.visitor_leave_requested.emit()
 
 func _on_shop_closed():
 	print("MerchantNPC (%s): Recieved shop_closed signal. Is Trading: %s" % [get_instance_id(), is_trading])
