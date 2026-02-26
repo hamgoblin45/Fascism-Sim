@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://d2sd10hlyxjgx" path="res://Map/Furniture-Fixtures/tv-w-stand.gltf" id="14_a4t4s"]
 [ext_resource type="PackedScene" uid="uid://bkqltx6hl064x" path="res://Items/Interactables/door.tscn" id="15_4cery"]
 [ext_resource type="PackedScene" uid="uid://dhlekm2ye6yky" path="res://Map/Furniture-Fixtures/Containers/fridge.tscn" id="15_bfgmv"]
-[ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="19_kw0na"]
 [ext_resource type="PackedScene" uid="uid://7231mpho8olk" path="res://Items/Interactables/trash_can.tscn" id="29_d3od3"]
 [ext_resource type="PackedScene" uid="uid://cokdko33hqlj1" path="res://Map/hiding_spot.tscn" id="30_ycj54"]
 
@@ -843,19 +842,17 @@ size = Vector3(3.7400513, 3.9042969, 15.45813)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tev2s"]
 size = Vector3(11.725525, 3.887207, 3.821167)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_getpj"]
-albedo_color = Color(0.93490076, 0.66774225, 0.26907676, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_8y64p"]
+size = Vector3(3.5407715, 2.9046173, 1.2053223)
 
-[sub_resource type="BoxMesh" id="BoxMesh_qrfa0"]
-material = SubResource("StandardMaterial3D_getpj")
-size = Vector3(3, 4, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_qge5b"]
+size = Vector3(8.935059, 1.3858643, 4.984253)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m62yb"]
-atlas = ExtResource("19_kw0na")
-region = Rect2(576, 0, 64, 64)
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0gbr"]
+size = Vector3(1.9528809, 2.125, 1.9760742)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_r543o"]
-size = Vector3(2.4814453, 3.9001465, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_dghbn"]
+size = Vector3(4.7939453, 1.2635498, 3.8173828)
 
 [node name="PlayerHouse" type="Node3D" unique_id=2018590726]
 
@@ -866,11 +863,13 @@ navigation_mesh = SubResource("NavigationMesh_kv3v6")
 
 [node name="Roof" type="MeshInstance3D" parent="NavigationRegion3D/Mesh" unique_id=984929277]
 transform = Transform3D(0.372251, 0, 0, 0, 0.16342787, 0, 0, 0, 0.372251, 0, 8.03713, 0)
+visible = false
 mesh = SubResource("ArrayMesh_25xqh")
 skeleton = NodePath("")
 
 [node name="Ceilings" type="MeshInstance3D" parent="NavigationRegion3D/Mesh" unique_id=1610315681]
 transform = Transform3D(0.372251, 0, 0, 0, 0.16342787, 0, 0, 0, 0.372251, 0, 8.03713, 0)
+visible = false
 mesh = SubResource("ArrayMesh_of0u4")
 skeleton = NodePath("")
 
@@ -1129,18 +1128,77 @@ transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -16.48896, 1.0478435, 2
 [node name="HidingSpots" type="Node3D" parent="." unique_id=618332420]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, 0, 0, 0)
 
-[node name="Wardrobe" type="MeshInstance3D" parent="HidingSpots" unique_id=1997017071]
-transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 5.776659, 1.8217067, 4.108093)
-mesh = SubResource("BoxMesh_qrfa0")
+[node name="CabinetHidingSpot1" parent="HidingSpots" unique_id=85300068 instance=ExtResource("30_ycj54")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 10.428961, 0, -10.322716)
+spot_id = "cabinet_1"
+concealment_score = 0.4
 
-[node name="HidingSpot" parent="HidingSpots/Wardrobe" unique_id=246055440 instance=ExtResource("30_ycj54")]
-spot_id = "wardrobe"
-id = "wardrobe"
-interact_icon = SubResource("AtlasTexture_m62yb")
-interact_text = "Hide here!"
+[node name="CollisionShape3D" parent="HidingSpots/CabinetHidingSpot1" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3056415, 1.140625)
+shape = SubResource("BoxShape3D_8y64p")
 
-[node name="CollisionShape3D" parent="HidingSpots/Wardrobe/HidingSpot" index="0" unique_id=1822048844]
-shape = SubResource("BoxShape3D_r543o")
+[node name="CabinetHidingSpot2" parent="HidingSpots" unique_id=646923977 instance=ExtResource("30_ycj54")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 14.020963, 0, -10.318701)
+spot_id = "cabinet_2"
+concealment_score = 0.4
+
+[node name="CollisionShape3D" parent="HidingSpots/CabinetHidingSpot2" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3056415, 1.140625)
+shape = SubResource("BoxShape3D_8y64p")
+
+[node name="CabinetHidingSpot3" parent="HidingSpots" unique_id=1057079441 instance=ExtResource("30_ycj54")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 17.632982, 0, -10.3187)
+spot_id = "cabinet_3"
+concealment_score = 0.4
+
+[node name="CollisionShape3D" parent="HidingSpots/CabinetHidingSpot3" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3056415, 1.140625)
+shape = SubResource("BoxShape3D_8y64p")
+
+[node name="CabinetHidingSpot4" parent="HidingSpots" unique_id=928334559 instance=ExtResource("30_ycj54")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.407154, 0.051190622, -6.4790483)
+spot_id = "cabinet_4"
+concealment_score = 0.4
+
+[node name="CollisionShape3D" parent="HidingSpots/CabinetHidingSpot4" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3056415, 1.140625)
+shape = SubResource("BoxShape3D_8y64p")
+
+[node name="CabinetHidingSpot5" parent="HidingSpots" unique_id=383006097 instance=ExtResource("30_ycj54")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.407154, 0.051190626, 0.6761553)
+spot_id = "cabinet_5"
+concealment_score = 0.4
+
+[node name="CollisionShape3D" parent="HidingSpots/CabinetHidingSpot5" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3056415, 1.140625)
+shape = SubResource("BoxShape3D_8y64p")
+
+[node name="BedHidingSpot" parent="HidingSpots" unique_id=935516542 instance=ExtResource("30_ycj54")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -8.690052, 0, 12.205837)
+spot_id = "under_bed"
+concealment_score = 0.8
+
+[node name="CollisionShape3D" parent="HidingSpots/BedHidingSpot" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26153564, 0.19293231, -0.3433094)
+shape = SubResource("BoxShape3D_qge5b")
+
+[node name="DeskHidingSpot" parent="HidingSpots" unique_id=1895138152 instance=ExtResource("30_ycj54")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -15.733153, 0.829672, 14.04542)
+spot_id = "under_desk"
+concealment_score = 0.25
+
+[node name="CollisionShape3D" parent="HidingSpots/DeskHidingSpot" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11425775, -0.4880371)
+shape = SubResource("BoxShape3D_j0gbr")
+
+[node name="CoffeeTableHidingSpot" parent="HidingSpots" unique_id=849331548 instance=ExtResource("30_ycj54")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -8.9006815, 0.3068904, -6.6534934)
+spot_id = "under_coffee_table"
+concealment_score = 0.25
+
+[node name="CollisionShape3D" parent="HidingSpots/CoffeeTableHidingSpot" index="0" unique_id=1822048844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4506836, 0.13177493, 0)
+shape = SubResource("BoxShape3D_dghbn")
 
 [node name="GuestIdleSpots" type="Node3D" parent="." unique_id=1085125564]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, 0, 0, 0)
@@ -1160,4 +1218,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.359264, -4.7683716e-07, 9
 [editable path="FrontDoor"]
 [editable path="FrontDoor/door"]
 [editable path="FrontDoor/door/Cube/Interactable"]
-[editable path="HidingSpots/Wardrobe/HidingSpot"]
+[editable path="HidingSpots/CabinetHidingSpot1"]
+[editable path="HidingSpots/CabinetHidingSpot2"]
+[editable path="HidingSpots/CabinetHidingSpot3"]
+[editable path="HidingSpots/CabinetHidingSpot4"]
+[editable path="HidingSpots/CabinetHidingSpot5"]
+[editable path="HidingSpots/BedHidingSpot"]
+[editable path="HidingSpots/DeskHidingSpot"]
+[editable path="HidingSpots/CoffeeTableHidingSpot"]

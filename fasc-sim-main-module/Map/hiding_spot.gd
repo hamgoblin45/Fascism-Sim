@@ -3,7 +3,7 @@ class_name HidingSpot
 
 @export var spot_id: String = ""
 # 0.0 (obvious) - 1.0 (invisible)
-# This is the base change the guards will FAIL to find occupant
+# This is the base chance the guards will FAIL to find occupant
 @export var concealment_score: float = 0.5
 
 var occupant: NPC = null
