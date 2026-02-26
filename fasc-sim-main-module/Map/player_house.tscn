@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://d2sd10hlyxjgx" path="res://Map/Furniture-Fixtures/tv-w-stand.gltf" id="14_a4t4s"]
 [ext_resource type="PackedScene" uid="uid://bkqltx6hl064x" path="res://Items/Interactables/door.tscn" id="15_4cery"]
 [ext_resource type="PackedScene" uid="uid://dhlekm2ye6yky" path="res://Map/Furniture-Fixtures/Containers/fridge.tscn" id="15_bfgmv"]
+[ext_resource type="PackedScene" uid="uid://bp6vi1mqo4n5a" path="res://Items/Interactables/container.tscn" id="17_ujo4e"]
+[ext_resource type="Script" uid="uid://crfuvv7qrrub3" path="res://Data/InventoryData.gd" id="21_ghc17"]
+[ext_resource type="Script" uid="uid://bg2a6tr7dx7cs" path="res://Data/InventorySlotData.gd" id="22_epgi1"]
 [ext_resource type="PackedScene" uid="uid://7231mpho8olk" path="res://Items/Interactables/trash_can.tscn" id="29_d3od3"]
 [ext_resource type="PackedScene" uid="uid://cokdko33hqlj1" path="res://Map/hiding_spot.tscn" id="30_ycj54"]
 
@@ -842,6 +845,32 @@ size = Vector3(3.7400513, 3.9042969, 15.45813)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tev2s"]
 size = Vector3(11.725525, 3.887207, 3.821167)
 
+[sub_resource type="Resource" id="Resource_hq1hr"]
+script = ExtResource("21_ghc17")
+slots = Array[ExtResource("22_epgi1")]([null, null, null, null, null])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fuvcd"]
+size = Vector3(1, 1.2016602, 1.2817383)
+
+[sub_resource type="Resource" id="Resource_kv3v6"]
+script = ExtResource("21_ghc17")
+slots = Array[ExtResource("22_epgi1")]([null, null, null, null, null])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+
+[sub_resource type="Resource" id="Resource_jm8ps"]
+script = ExtResource("21_ghc17")
+slots = Array[ExtResource("22_epgi1")]([null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h3lsl"]
+size = Vector3(1, 1, 2.696289)
+
+[sub_resource type="Resource" id="Resource_33bvn"]
+script = ExtResource("21_ghc17")
+slots = Array[ExtResource("22_epgi1")]([null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://crfuvv7qrrub3"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_8y64p"]
 size = Vector3(3.5407715, 2.9046173, 1.2053223)
 
@@ -1089,6 +1118,26 @@ shape = SubResource("BoxShape3D_ujo4e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.707553, 1.4436039, 2.5995274)
 shape = SubResource("BoxShape3D_tev2s")
 
+[node name="Doors" type="Node3D" parent="NavigationRegion3D" unique_id=868910465]
+
+[node name="BedroomDoor" parent="NavigationRegion3D/Doors" unique_id=362548465 instance=ExtResource("15_4cery")]
+transform = Transform3D(5.9604645e-08, 0, -1.5999999, 0, 1.5999997, 0, 1.5999999, 0, 5.9604645e-08, -9.211456, -0.08569145, 4.7187805)
+
+[node name="BackDoor" parent="NavigationRegion3D/Doors" unique_id=98457352 instance=ExtResource("15_4cery")]
+transform = Transform3D(-0.0007069707, 0, 1.62, 0, 1.6199999, 0, -1.62, 0, -0.0007069707, 15.140961, -0.08569145, 4.700012)
+
+[node name="BathroomDoor" parent="NavigationRegion3D/Doors" unique_id=253911227 instance=ExtResource("15_4cery")]
+transform = Transform3D(2.3841858e-07, 0, -1.3000002, 0, 1.5999999, 0, 1.6000004, 0, 5.9604645e-08, 1.8669128, -0.08569145, 4.7526474)
+
+[node name="FrontDoor" parent="NavigationRegion3D/Doors" unique_id=1642945830 instance=ExtResource("15_4cery")]
+transform = Transform3D(1.6000003, 0, 1.1920929e-07, 0, 1.5999999, 0, -1.1920929e-07, 0, 1.6000003, -18.716522, -0.13075066, -3.6849213)
+
+[node name="Cube" parent="NavigationRegion3D/Doors/FrontDoor/door" parent_id_path=PackedInt32Array(1642945830, 792928833) index="0"]
+transform = Transform3D(-0.081829496, 0, 0, 0, 2.1973991, -1.1198248e-07, 0, 1.9210273e-07, 1.2809303, 0, 2.1972866, 0)
+
+[node name="Interactable" parent="NavigationRegion3D/Doors/FrontDoor/door/Cube" index="2" unique_id=503422902]
+id = "front_door"
+
 [node name="MajorStepAsidePos" type="Node3D" parent="." unique_id=175432295]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, -20.962006, 4.7683716e-07, -6.0430527)
 
@@ -1098,24 +1147,6 @@ transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e
 [node name="BedSpawnPos" type="Node3D" parent="." unique_id=1945922752 groups=["bed_spawn"]]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, -9.403473, 9.536743e-07, 6.9383698)
 
-[node name="Door2" parent="." unique_id=362548465 instance=ExtResource("15_4cery")]
-transform = Transform3D(5.9604645e-08, 0, -1.5999999, 0, 1.5999997, 0, 1.5999999, 0, 5.9604645e-08, -9.211456, -0.08569145, 4.7187805)
-
-[node name="Door4" parent="." unique_id=98457352 instance=ExtResource("15_4cery")]
-transform = Transform3D(-0.0007069707, 0, 1.62, 0, 1.6199999, 0, -1.62, 0, -0.0007069707, 15.140961, -0.08569145, 4.700012)
-
-[node name="Door3" parent="." unique_id=253911227 instance=ExtResource("15_4cery")]
-transform = Transform3D(2.3841858e-07, 0, -1.3000002, 0, 1.5999999, 0, 1.6000004, 0, 5.9604645e-08, 1.8669128, -0.08569145, 4.7526474)
-
-[node name="FrontDoor" parent="." unique_id=1642945830 instance=ExtResource("15_4cery")]
-transform = Transform3D(1.6000003, 0, 1.1920929e-07, 0, 1.5999999, 0, -1.1920929e-07, 0, 1.6000003, -18.716522, -0.13075066, -3.6849213)
-
-[node name="Cube" parent="FrontDoor/door" parent_id_path=PackedInt32Array(1642945830, 792928833) index="0"]
-transform = Transform3D(-0.081829496, 0, 0, 0, 2.1973991, -1.1198248e-07, 0, 1.9210273e-07, 1.2809303, 0, 2.1972866, 0)
-
-[node name="Interactable" parent="FrontDoor/door/Cube" index="2" unique_id=503422902]
-id = "front_door"
-
 [node name="Containers" type="Node3D" parent="." unique_id=1942363986]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, 0, 0, 0)
 
@@ -1124,6 +1155,44 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.11
 
 [node name="TrashCan" parent="Containers" unique_id=760818668 instance=ExtResource("29_d3od3")]
 transform = Transform3D(1.6, 0, 0, 0, 1.6, 0, 0, 0, 1.6, -16.48896, 1.0478435, 2.1192732)
+
+[node name="DeskDrawerL" parent="Containers" unique_id=427099316 instance=ExtResource("17_ujo4e")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -14.168697, 1.3941108, 13.547016)
+collision_layer = 0
+collision_mask = 0
+container_inventory = SubResource("Resource_hq1hr")
+
+[node name="CollisionShape3D" parent="Containers/DeskDrawerL/Interactable" parent_id_path=PackedInt32Array(427099316, 844407554) index="0" unique_id=595969542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10083008, -0.14086914)
+shape = SubResource("BoxShape3D_fuvcd")
+
+[node name="DeskDrawerR" parent="Containers" unique_id=954355882 instance=ExtResource("17_ujo4e")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -17.323818, 1.3941108, 13.547015)
+collision_layer = 0
+collision_mask = 0
+container_inventory = SubResource("Resource_kv3v6")
+
+[node name="CollisionShape3D" parent="Containers/DeskDrawerR/Interactable" parent_id_path=PackedInt32Array(954355882, 844407554) index="0" unique_id=595969542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10083008, -0.14086914)
+shape = SubResource("BoxShape3D_fuvcd")
+
+[node name="NightstandTopDrawer" parent="Containers" unique_id=404372860 instance=ExtResource("17_ujo4e")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -5.6509395, 1.6212234, 7.1669307)
+collision_layer = 0
+collision_mask = 0
+container_inventory = SubResource("Resource_jm8ps")
+
+[node name="CollisionShape3D" parent="Containers/NightstandTopDrawer/Interactable" parent_id_path=PackedInt32Array(404372860, 844407554) index="0" unique_id=595969542]
+shape = SubResource("BoxShape3D_h3lsl")
+
+[node name="NightstandLowerDrawer" parent="Containers" unique_id=1792620393 instance=ExtResource("17_ujo4e")]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -5.6509395, 0.47760552, 7.1669307)
+collision_layer = 0
+collision_mask = 0
+container_inventory = SubResource("Resource_33bvn")
+
+[node name="CollisionShape3D" parent="Containers/NightstandLowerDrawer/Interactable" parent_id_path=PackedInt32Array(1792620393, 844407554) index="0" unique_id=595969542]
+shape = SubResource("BoxShape3D_h3lsl")
 
 [node name="HidingSpots" type="Node3D" parent="." unique_id=618332420]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, 0, 0, 0)
@@ -1215,9 +1284,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9671545, 0, 10.150923)
 [node name="Node3D4" type="Node3D" parent="GuestIdleSpots" unique_id=1554631933 groups=["guest_idle_spots"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.359264, -4.7683716e-07, 9.891012)
 
-[editable path="FrontDoor"]
-[editable path="FrontDoor/door"]
-[editable path="FrontDoor/door/Cube/Interactable"]
+[editable path="NavigationRegion3D/Doors/FrontDoor"]
+[editable path="NavigationRegion3D/Doors/FrontDoor/door"]
+[editable path="NavigationRegion3D/Doors/FrontDoor/door/Cube/Interactable"]
+[editable path="Containers/DeskDrawerL"]
+[editable path="Containers/DeskDrawerR"]
+[editable path="Containers/NightstandTopDrawer"]
+[editable path="Containers/NightstandLowerDrawer"]
 [editable path="HidingSpots/CabinetHidingSpot1"]
 [editable path="HidingSpots/CabinetHidingSpot2"]
 [editable path="HidingSpots/CabinetHidingSpot3"]
