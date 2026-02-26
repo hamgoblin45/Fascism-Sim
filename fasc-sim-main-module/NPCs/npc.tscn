@@ -57,6 +57,7 @@ npc_data = SubResource("Resource_k7mck")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=854902024]
 process_mode = 1
+navigation_layers = 33
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1590653774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4855292, 0)

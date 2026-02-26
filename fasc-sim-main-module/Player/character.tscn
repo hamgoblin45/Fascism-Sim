@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://d04xmgme67dv2" path="res://Player/EditorModule.gd" id="3_v3ckk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uy03j"]
-height = 3.213379
+height = 3.026123
 
 [sub_resource type="Animation" id="Animation_j8cx7"]
 resource_name = "RESET"
@@ -325,9 +325,10 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 
 [node name="PlayerCharacter" type="CharacterBody3D" unique_id=1054369776 node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH", "ground_ray")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 257
 collision_mask = 257
+floor_snap_length = 0.5
+safe_margin = 0.025
 script = ExtResource("1_0t4e8")
 default_reticle = "res://Player/reticles/reticle_0.tscn"
 HEAD = NodePath("Head")

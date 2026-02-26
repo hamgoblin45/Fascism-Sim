@@ -19,7 +19,7 @@ class_name PlayerCharacter
 ### How fast the character speeds up and slows down when Motion Smoothing is on.
 @export var acceleration : float = 2.0
 ### How high the player jumps.
-@export var jump_velocity : float = 2.0
+@export var jump_velocity : float = 5.0
 ### How far the player turns when the mouse is moved.
 @export var mouse_sensitivity : float = 0.1
 ## Invert the Y input for mouse and joystick
