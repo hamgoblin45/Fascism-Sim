@@ -4,16 +4,21 @@ class_name OfficerNPC
 enum {INVESTIGATING}
 
 func _physics_process(delta: float) -> void:
-	super._physics_process(delta) # Handles standard movement/gravity
+	super._physics_process(delta) 
 	
+	# NEW: Cops are hyper-vigilant during a raid!
+	if GameState.raid_in_progress:
+		vision_range = 15.0 # See further
+		vision_angle = 85.0 # Almost 180 degree peripheral vision!
+	else:
+		vision_range = 10.0
+		vision_angle = 60.0
+		
 	if state == INVESTIGATING:
 		_handle_investigation(delta)
 		move_and_slide()
 		return
 	
-	# SCANNING LOGIC:
-	# Allow scanning if Raid is active AND not currently busy investigating.
-	# We DO allow scanning while in COMMAND_MOVE (walking to a target).
 	if GameState.raid_in_progress and state != INVESTIGATING:
 		_scan_for_targets()
 

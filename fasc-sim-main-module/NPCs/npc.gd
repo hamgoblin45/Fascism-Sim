@@ -273,16 +273,19 @@ func look_at_target(target):
 func _can_see_target(target_node: Node3D) -> bool:
 	if not is_instance_valid(target_node): return false
 	
-	var _target_pos = target_node.global_position
-	if target_node is NPC: 
-		_target_pos.y += 2.2 # Look up at head
+	# 1. Start raycast from EYE LEVEL, not the feet!
+	var my_eyes = global_position + Vector3(0, 1.6, 0)
+	if head: my_eyes = head.global_position
+	
+	# 2. Target the CENTER of the object (or chest of the NPC)
+	var target_center = target_node.global_position + Vector3(0, 1.0, 0)
 	
 	# Distance Check
-	if global_position.distance_to(_target_pos) > vision_range:
+	if my_eyes.distance_to(target_center) > vision_range:
 		return false
 	
 	# Angle Check
-	var dir = global_position.direction_to(_target_pos)
+	var dir = my_eyes.direction_to(target_center)
 	var fwd = -global_transform.basis.z
 	var angle_dot = fwd.dot(dir)
 	var angle_threshold = cos(deg_to_rad(vision_angle))
@@ -294,7 +297,9 @@ func _can_see_target(target_node: Node3D) -> bool:
 	if not vision_ray: return false
 	
 	vision_ray.enabled = true
-	vision_ray.target_position = vision_ray.to_local(_target_pos)
+	# Temporarily detach ray position from NPC rotation/body to guarantee clean math
+	vision_ray.global_position = my_eyes 
+	vision_ray.target_position = vision_ray.to_local(target_center)
 	vision_ray.force_raycast_update()
 	
 	var can_see = false

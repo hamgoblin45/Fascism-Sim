@@ -99,15 +99,17 @@ back_door_marker = NodePath("../PathingPoints/PlayerHousePoints/BackDoorPos")
 side_yard_marker = NodePath("../PathingPoints/PlayerHousePoints/CornerToBackYardPos")
 leave_marker = NodePath("../PathingPoints/PlayerHousePoints/VisitorSpawnPos")
 
-[node name="RaidSequence" type="Node" parent="." unique_id=2096436160 node_paths=PackedStringArray("major_npc", "search_grunt_npc", "backup_grunt_npc", "player", "door_blocker_pos", "back_door_pos", "leave_pos")]
+[node name="RaidSequence" type="Node" parent="." unique_id=2096436160 node_paths=PackedStringArray("major_npc", "search_grunt_npc", "backup_grunt_npc", "player", "door_blocker_pos", "major_stand_aside_pos", "back_door_pos", "leave_pos", "front_door")]
 script = ExtResource("2_reseb")
 major_npc = NodePath("../NPCs/Major")
 search_grunt_npc = NodePath("../NPCs/Grunt1")
 backup_grunt_npc = NodePath("../NPCs/Grunt2")
 player = NodePath("../PlayerCharacter")
 door_blocker_pos = NodePath("../PathingPoints/PlayerHousePoints/FrontDoorPos")
+major_stand_aside_pos = NodePath("../PathingPoints/PlayerHousePoints/MajorStandAsidePos")
 back_door_pos = NodePath("../PathingPoints/PlayerHousePoints/BackDoorPos")
 leave_pos = NodePath("../PathingPoints/PlayerHousePoints/VisitorSpawnPos")
+front_door = NodePath("../Structures/PlayerHouse/Doors/FrontDoor")
 
 [node name="HUD" parent="." unique_id=758873281 instance=ExtResource("3_1n4es")]
 
@@ -174,6 +176,9 @@ transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 112.
 
 [node name="FrontDoorPos" type="Node3D" parent="PathingPoints/PlayerHousePoints" unique_id=772716573]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 121.514305, 4.8777246, 291.9318)
+
+[node name="MajorStandAsidePos" type="Node3D" parent="PathingPoints/PlayerHousePoints" unique_id=1468235]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 122.36926, 4.8777246, 290.13132)
 
 [node name="BackDoorPos" type="Node3D" parent="PathingPoints/PlayerHousePoints" unique_id=284199189]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, 142.7347, 3.1693726, 331.10266)

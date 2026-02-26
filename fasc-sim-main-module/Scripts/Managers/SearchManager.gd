@@ -124,7 +124,7 @@ func start_house_raid():
 	print("SearchManager: HOUSE RAID COMMENCING")
 	
 	var total_targets = hiding_spots.size() + containers.size()
-	var search_count = clamp(3 + int(GameState.regime_suspicion / 10.0), 3, total_targets)
+	var search_count = clamp(5 + int(GameState.regime_suspicion / 10.0), 5, total_targets)
 	
 	var potential_targets = []
 	potential_targets.append_array(hiding_spots)

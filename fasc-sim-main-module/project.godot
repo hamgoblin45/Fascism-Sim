@@ -121,6 +121,7 @@ guests=""
 concrete=""
 wood=""
 carpet=""
+grabbable=""
 
 [gui]
 
