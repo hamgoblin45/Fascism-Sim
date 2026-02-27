@@ -80,12 +80,6 @@ func _on_status_check_timer_timeout() -> void:
 		prev_status_check = 1440 - prev_status_check
 	if prev_satiety_check - total_minutes > 1000:
 		prev_satiety_check = 1440 - prev_satiety_check
-		
-	# Change satiety every 60 min
-	if total_minutes - prev_satiety_check >= 60:
-		print("It's been an hour since last satiety check!")
-		prev_satiety_check = total_minutes
-		_change_stat("satiety", GameState.satiety_drain_rate)
 	
 	# Only updates for every in-game minute regardless of time rate
 	if total_minutes - prev_status_check < 1.0:
@@ -98,6 +92,8 @@ func _on_status_check_timer_timeout() -> void:
 		energy_change *= 3
 	
 	_change_stat("energy", energy_change)
+	
+	_change_stat("satiety", -GameState.satiety_drain_rate)
 	
 	if GameState.satiety <= 0:
 		_change_stat("hp", -GameState.hp_starve_drain_rate)

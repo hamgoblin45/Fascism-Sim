@@ -15,8 +15,8 @@ func _ready() -> void:
 	interactable.interacted.connect(_interact)
 	
 	# Update the interact text to hint at peeking
-	if interactable.id == "front_door":
-		interactable.interact_text = "L-Click: Open | Hold R-Click: Peek"
+	#if interactable.id == "front_door":
+		#interactable.interact_text = "L-Click: Open | Hold R-Click: Peek"
 		
 	EventBus.visitor_arrived.connect(_on_visitor_arrived)
 	EventBus.day_changed.connect(_on_day_changed)
