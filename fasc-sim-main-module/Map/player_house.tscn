@@ -324,6 +324,9 @@ container_inventory = SubResource("Resource_hq1hr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10083008, -0.14086914)
 shape = SubResource("BoxShape3D_fuvcd")
 
+[node name="StandPos" type="Marker3D" parent="Containers/DeskDrawerL" unique_id=1980666090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10976219, -1.055257, -2.9431677)
+
 [node name="DeskDrawerR" parent="Containers" unique_id=954355882 instance=ExtResource("17_ujo4e")]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -17.323818, 1.3941108, 13.547015)
 collision_layer = 0
@@ -334,6 +337,9 @@ container_inventory = SubResource("Resource_kv3v6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10083008, -0.14086914)
 shape = SubResource("BoxShape3D_fuvcd")
 
+[node name="StandPos" type="Marker3D" parent="Containers/DeskDrawerR" unique_id=999064888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19621849, -0.8817201, -3.1392784)
+
 [node name="NightstandTopDrawer" parent="Containers" unique_id=404372860 instance=ExtResource("17_ujo4e")]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -5.6509395, 1.6212234, 7.1669307)
 collision_layer = 0
@@ -343,6 +349,9 @@ container_inventory = SubResource("Resource_jm8ps")
 [node name="CollisionShape3D" parent="Containers/NightstandTopDrawer/Interactable" parent_id_path=PackedInt32Array(404372860, 844407554) index="0" unique_id=595969542]
 shape = SubResource("BoxShape3D_h3lsl")
 
+[node name="StandPos" type="Marker3D" parent="Containers/NightstandTopDrawer" unique_id=1824080973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.283647, 4.7683716e-07, 0.33953094)
+
 [node name="NightstandLowerDrawer" parent="Containers" unique_id=1792620393 instance=ExtResource("17_ujo4e")]
 transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -5.6509395, 0.47760552, 7.1669307)
 collision_layer = 0
@@ -351,6 +360,9 @@ container_inventory = SubResource("Resource_33bvn")
 
 [node name="CollisionShape3D" parent="Containers/NightstandLowerDrawer/Interactable" parent_id_path=PackedInt32Array(1792620393, 844407554) index="0" unique_id=595969542]
 shape = SubResource("BoxShape3D_h3lsl")
+
+[node name="StandPos" type="Marker3D" parent="Containers/NightstandLowerDrawer" unique_id=798206448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.440907, 4.7683716e-07, 0.2238617)
 
 [node name="HidingSpots" type="Node3D" parent="." unique_id=618332420]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, 0, 0, 0)

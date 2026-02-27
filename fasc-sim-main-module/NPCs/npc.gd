@@ -195,11 +195,15 @@ func _handle_dynamic_nav(delta: float):
 	# 1. Update Target
 	nav_agent.target_position = dynamic_target_pos
 	
+	# NEW: Anti-Softlock Distance Check! 
+	var distance_to_target = global_position.distance_to(dynamic_target_pos)
+	var is_close_enough = distance_to_target < 1.5 # 1.5 meters is arm's reach!
+	
 	# 2. Check Arrival
-	if nav_agent.is_navigation_finished():
+	if nav_agent.is_navigation_finished() or is_close_enough:
 		state = IDLE
 		velocity = Vector3.ZERO
-		print("NPC %s arrived at command target." % npc_data.name)
+		print("NPC %s arrived at command target. (Distance: %s)" % [npc_data.name, distance_to_target])
 		destination_reached.emit()
 		return
 		

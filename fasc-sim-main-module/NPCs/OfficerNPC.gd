@@ -21,6 +21,9 @@ func _physics_process(delta: float) -> void:
 	
 	if GameState.raid_in_progress and state != INVESTIGATING:
 		_scan_for_targets()
+	#
+	#if dynamic_target_pos:
+		#print("Distance to dynamic target pos: %s" % global_position.distance_to(dynamic_target_pos))
 
 func _scan_for_targets():
 	# 1. Prioritize Guests (Immediate Arrest)

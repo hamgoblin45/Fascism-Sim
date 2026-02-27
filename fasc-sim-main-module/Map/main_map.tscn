@@ -82,6 +82,12 @@ name = "Merchant"
 id = "merchant"
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
+[sub_resource type="Resource" id="Resource_c0vsx"]
+script = ExtResource("68_18c67")
+name = "Vendor"
+id = "vendor"
+metadata/_custom_type_script = "uid://coai26ivs6uv4"
+
 [node name="Main" type="Node3D" unique_id=482726971]
 
 [node name="PlayerCharacter" parent="." unique_id=1054369776 instance=ExtResource("2_0xm2m")]
@@ -165,6 +171,10 @@ is_legal_merchant = false
 inventory_pool = ExtResource("70_1n4es")
 guaranteed_items = Array[ExtResource("71_40t73")]([ExtResource("72_hvouq")])
 npc_data = SubResource("Resource_dwp3b")
+
+[node name="VendorNPC" parent="NPCs" unique_id=226574541 instance=ExtResource("65_ej373")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -35.7232, 0, 132.92743)
+npc_data = SubResource("Resource_c0vsx")
 
 [node name="PathingPoints" type="Node3D" parent="." unique_id=252180756]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, 0, 0, 0)

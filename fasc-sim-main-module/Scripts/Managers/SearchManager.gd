@@ -143,10 +143,20 @@ func start_house_raid():
 		if not target: break
 		
 		if assigned_searcher:
-			var move_pos = target.global_position + (Vector3(1,0,1).normalized() * 1.0)
+			var move_pos = target.global_position
+			
+			# 1. Try to find our new specific standing marker!
+			if target.has_node("StandPos"):
+				move_pos = target.get_node("StandPos").global_position
+			elif target.get_parent() and target.get_parent().has_node("StandPos"):
+				move_pos = target.get_parent().get_node("StandPos").global_position
+			else:
+				# 2. Fallback: Step exactly 1.5 meters out from the FRONT of the object
+				move_pos = target.global_position + (target.global_transform.basis.z * 1.5)
+				
 			assigned_searcher.command_move_to(move_pos)
 			await assigned_searcher.destination_reached
-			assigned_searcher.look_at_node.look_at(target.global_position)
+			assigned_searcher.look_at_target(target)
 		
 		if target is HidingSpot:
 			await _search_hiding_spot(target)
