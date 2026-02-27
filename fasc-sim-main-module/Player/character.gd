@@ -133,7 +133,7 @@ var current_hold_velocity: Vector3
 # --- FOOTSTEP SYSTEM ---
 @onready var floor_ray: RayCast3D = %GroundRay
 var distance_walked: float = 0.0
-var step_distance: float = 1.9 # Play a sound every 1.8 meters (tweak this until it feels right)
+var step_distance: float = 1.8 # Play a sound every 1.8 meters (tweak this until it feels right)
 
 
 var looking_at = null

@@ -11,13 +11,16 @@ func _ready():
 	Dialogic.timeline_ended.connect(_on_timeline_ended)
 
 
-func start_dialogue(timeline_key: String, npc_name: String = ""):
+func start_dialogue(timeline_key: String, npc: NPC, npc_name: String = ""):
 	if Dialogic.current_timeline != null: 
 		print("DialogueManager ERROR: Cannot start '%s', timeline '%s' is already active!" % [timeline_key, Dialogic.current_timeline])
 		return
 	
 	if npc_name != "":
 		Dialogic.VAR.CurrentNPC = npc_name
+	
+	if npc:
+		GameState.talking_to = npc
 		
 	print("DialogueManager: Starting dialogue timeline: ", timeline_key)
 	Dialogic.start(timeline_key)

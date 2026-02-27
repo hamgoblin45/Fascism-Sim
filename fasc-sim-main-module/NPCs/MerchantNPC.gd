@@ -53,6 +53,5 @@ func _on_shop_closed():
 		await get_tree().create_timer(0.1).timeout
 		
 		# Re-assert focus so DialogueManager knows who we are talking to
-		GameState.talking_to = self 
 		print("MerchantNPC: Starting closing dialogue 'merchant_closing'")
-		DialogueManager.start_dialogue("merchant_closing", npc_data.name)
+		DialogueManager.start_dialogue("merchant_closing", self ,npc_data.name)

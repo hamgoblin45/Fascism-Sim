@@ -262,7 +262,7 @@ func _guest_captured(npc: NPC):
 		# FIX: Look at the Grunt who just yelled!
 		GameState.talking_to = assigned_searcher 
 	
-	DialogueManager.start_dialogue("raid_guest_discovered", "Major")
+	DialogueManager.start_dialogue("raid_guest_discovered", assigned_searcher, "Officer")
 
 func _discovered_contraband(item: ItemData) -> bool:
 	if item.contraband_level <= GameState.legal_threshold:
@@ -347,7 +347,7 @@ func interrogation_started(item: ItemData) -> bool:
 	if assigned_searcher:
 		GameState.talking_to = assigned_searcher
 	
-	DialogueManager.start_dialogue(dialogue_key, "Officer")
+		DialogueManager.start_dialogue(dialogue_key, assigned_searcher, "Officer")
 	
 	var choice = await DialogueManager.dialogue_choice_selected
 	
@@ -365,17 +365,17 @@ func _handle_lie_attempt(item: ItemData) -> bool:
 	if randf() < chance:
 		print("SearchManager: They bought your lie")
 		GameState.regime_suspicion += 2.0 
-		DialogueManager.start_dialogue("contraband_lie_success", "Officer") # Assumes you make this timeline
+		DialogueManager.start_dialogue("contraband_lie_success", assigned_searcher, "Officer")
 		await DialogueManager.dialogue_ended
 		return true # Survived!
 	else:
 		print("SearchManager: They didn't buy your lie")
-		DialogueManager.start_dialogue("contraband_lie_fail", "Officer")
+		DialogueManager.start_dialogue("contraband_lie_fail", assigned_searcher, "Officer")
 		await DialogueManager.dialogue_ended
 		return await _apply_penalty(item, true)
 
 func _handle_fess_up(item: ItemData) -> bool:
-	DialogueManager.start_dialogue("contraband_fess_up", "Officer")
+	DialogueManager.start_dialogue("contraband_fess_up", assigned_searcher, "Officer")
 	await DialogueManager.dialogue_ended
 	return await _apply_penalty(item, false)
 
@@ -416,7 +416,7 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 	# 4. Route to the correct Sequence
 	match consequence_type:
 		"fine":
-			DialogueManager.start_dialogue("fine_demand", "Officer")
+			DialogueManager.start_dialogue("fine_demand", assigned_searcher, "Officer")
 			
 			var choice = await DialogueManager.dialogue_choice_selected
 			await DialogueManager.dialogue_ended
@@ -434,7 +434,7 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 				return false 
 				
 		"arrest":
-			DialogueManager.start_dialogue("arrest_consequence", "Officer")
+			DialogueManager.start_dialogue("arrest_consequence", assigned_searcher, "Officer")
 			await DialogueManager.dialogue_ended
 			var reason = "Possession of Class " + str(level) + " Contraband (" + item.name + ")"
 			var details = "PENALTY: 1 Day Incarceration\n(Health & Energy Halved)"
@@ -443,7 +443,7 @@ func _apply_penalty(item: ItemData, was_caught_lying: bool) -> bool:
 			return false
 			
 		"game_over":
-			DialogueManager.start_dialogue("game_over_consequence", "Officer")
+			DialogueManager.start_dialogue("game_over_consequence", assigned_searcher, "Officer")
 			await DialogueManager.dialogue_ended
 			var reason = "Possession of Class " + str(level) + " Contraband (" + item.name + ")"
 			EventBus.game_over.emit(reason)

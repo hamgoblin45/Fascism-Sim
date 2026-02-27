@@ -369,8 +369,7 @@ func _start_context_dialogue():
 			timeline_to_play = npc_data.condition_timelines[flag]
 			break
 	if timeline_to_play != "":
-		DialogueManager.start_dialogue(timeline_to_play, npc_data.name)
-		GameState.talking_to = self
+		DialogueManager.start_dialogue(timeline_to_play, self, npc_data.name)
 	else:
 		_play_context_bark()
 

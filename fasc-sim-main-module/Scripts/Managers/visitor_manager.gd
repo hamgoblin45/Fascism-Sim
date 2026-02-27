@@ -308,7 +308,7 @@ func _on_door_opened() -> void:
 			timeline = "merchant_at_door"
 			
 		print("VisitorManager: Door opened, starting dialogue: ", timeline)
-		DialogueManager.start_dialogue(timeline, current_visitor.npc_data.name)
+		DialogueManager.start_dialogue(timeline, current_visitor, current_visitor.npc_data.name)
 
 func _on_dialogue_ended() -> void:
 	if GameState.shopping:
