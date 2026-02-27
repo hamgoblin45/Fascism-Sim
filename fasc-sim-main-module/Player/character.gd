@@ -81,6 +81,13 @@ class_name PlayerCharacter
 ## Use with caution.
 @export var gravity_enabled : bool = true
 
+# --- CINEMATIC SYSTEM ---
+# To make the player look "cinematically" at anything, just use something like GameState.player.start_cinematic_focus(my_tv_node, 50.0)
+var cinematic_mode: bool = false
+var cinematic_target: Node3D = null
+var target_cinematic_fov: float = 35.0 # How tight the zoom gets
+var base_fov: float = 75.0
+
 
 ## Member variables
 var speed = base_speed
@@ -148,54 +155,79 @@ func _unhandled_input(event : InputEvent):
 	### --- FPS ADDON CODE END --- ###
 
 func _physics_process(delta):
-	if not get_tree().paused and GameState.can_move:
+	if get_tree().paused: return
+	
+	# Check if the player is allowed to control the character
+	var is_locked = GameState.in_dialogue or GameState.shopping or not GameState.can_move
 	
 	### --- FPS ADDON CODE START --- ###
+	current_speed = Vector3.ZERO.distance_to(get_real_velocity())
 	
-	# Big thanks to github.com/LorenzoAncora for the concept of the improved debug values
-		current_speed = Vector3.ZERO.distance_to(get_real_velocity())
-		
-		# Gravity
-		if not is_on_floor() and gravity and gravity_enabled:
-			velocity.y -= gravity * delta
-		
+	# Gravity always applies!
+	if not is_on_floor() and gravity and gravity_enabled:
+		velocity.y -= gravity * delta
+	
+	var input_dir = Vector2.ZERO
+	
+	# Only allow input if we are NOT locked
+	if not is_locked:
 		handle_jumping()
-		
-		var input_dir = Vector2.ZERO
-		if !immobile: # Immobility works by interrupting user input, so other forces can still be applied to the player
+		if !immobile:
 			input_dir = Input.get_vector(LEFT, RIGHT, FORWARD, BACKWARD)
-		handle_movement(delta, input_dir)
-
 		handle_head_rotation()
+	else:
+		# Clear any mouse movement that accumulated while the mouse was visible
+		mouseInput = Vector2.ZERO
+	
+	# Movement always processes (so we smoothly decelerate to a stop)
+	handle_movement(delta, input_dir)
+	
+	# The player is not able to stand up if the ceiling is too low
+	low_ceiling = $CrouchCeilingDetection.is_colliding()
+	handle_state(input_dir)
+	
+	if dynamic_fov: 
+		update_camera_fov()
+	
+	if view_bobbing:
+		headbob_animation(input_dir)
+	
+	if jump_animation:
+		if !was_on_floor and is_on_floor(): 
+			match randi() % 2: 
+				0: JUMP_ANIMATION.play("land_left", 0.25)
+				1: JUMP_ANIMATION.play("land_right", 0.25)
+	
+	was_on_floor = is_on_floor() 
+	### --- FPS ADDON CODE END --- ###
+	
+	# --- CINEMATIC HEAD TURN ---
+	if cinematic_mode and is_instance_valid(cinematic_target):
+		var target_pos = cinematic_target.global_position
 		
-		# The player is not able to stand up if the ceiling is too low
-		low_ceiling = $CrouchCeilingDetection.is_colliding()
+		# Try to look exactly at their head, using your new 0.42x scale!
+		if "head" in cinematic_target and cinematic_target.head:
+			target_pos = cinematic_target.head.global_position
+		elif cinematic_target is NPC:
+			target_pos.y += 0.67 
+			
+		# Pure Math to find the exact angle to the target's face
+		var dir = HEAD.global_position.direction_to(target_pos)
+		var target_y = atan2(-dir.x, -dir.z)
 		
-		handle_state(input_dir)
-		if dynamic_fov: # This may be changed to an AnimationPlayer
-			update_camera_fov()
+		var horiz_dist = Vector2(HEAD.global_position.x, HEAD.global_position.z).distance_to(Vector2(target_pos.x, target_pos.z))
+		var target_x = atan2(dir.y, horiz_dist)
 		
-		if view_bobbing:
-			headbob_animation(input_dir)
-		
-		if jump_animation:
-			if !was_on_floor and is_on_floor(): # The player just landed
-				match randi() % 2: #TODO: Change this to detecting velocity direction
-					0:
-						JUMP_ANIMATION.play("land_left", 0.25)
-					1:
-						JUMP_ANIMATION.play("land_right", 0.25)
-		
-		was_on_floor = is_on_floor() # This must always be at the end of physics_process
-		
-		### --- FPS ADDON CODE END --- ###
-
-		if is_instance_valid(hold_item_point):
-			# Velocity = (Current Position - Last Position) / Time
-			current_hold_velocity = (hold_item_point.global_position - last_hold_pos) / delta
-			last_hold_pos = hold_item_point.global_position
-		
-		_handle_footsteps(delta)
+		# Smoothly rotate the player's neck
+		HEAD.global_rotation.y = lerp_angle(HEAD.global_rotation.y, target_y, 4.0 * delta)
+		HEAD.global_rotation.x = lerp_angle(HEAD.global_rotation.x, target_x, 4.0 * delta)
+	
+	# --- HOLD SYSTEM ---
+	if is_instance_valid(hold_item_point):
+		current_hold_velocity = (hold_item_point.global_position - last_hold_pos) / delta
+		last_hold_pos = hold_item_point.global_position
+	
+	_handle_footsteps(delta)
 
 ## -- Clicking and holding physical objects
 func _set_held_object(body):
@@ -488,10 +520,13 @@ func enter_sprint_state():
 	speed = sprint_speed
 
 func update_camera_fov():
-	if state == "sprinting":
+	if cinematic_mode:
+		# Smooth, slow zoom in
+		CAMERA.fov = lerp(CAMERA.fov, target_cinematic_fov, 0.05)
+	elif state == "sprinting":
 		CAMERA.fov = lerp(CAMERA.fov, 85.0, 0.3)
 	else:
-		CAMERA.fov = lerp(CAMERA.fov, 75.0, 0.3)
+		CAMERA.fov = lerp(CAMERA.fov, base_fov, 0.3)
 
 func headbob_animation(moving):
 	
@@ -522,5 +557,11 @@ func headbob_animation(moving):
 			HEADBOB_ANIMATION.speed_scale = 1
 			HEADBOB_ANIMATION.play("RESET", 1)
 
-#### ---- FPS CONTROLLER ADDON CODE END -------- ####
-#######################################################
+func start_cinematic_focus(target: Node3D, target_fov: float = 35.0):
+	cinematic_target = target
+	target_cinematic_fov = target_fov
+	cinematic_mode = true
+
+func end_cinematic_focus():
+	cinematic_mode = false
+	cinematic_target = null

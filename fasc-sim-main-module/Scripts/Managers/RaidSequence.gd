@@ -111,11 +111,16 @@ func answer_door() -> void:
 	
 	EventBus.raid_timer_updated.emit(0.0) # Clear timer
 	
+	# FIX: Explicitly tell the game we are looking at the Major!
+	GameState.talking_to = major_npc 
+	
 	# DialogueManager handles mouse visibility
 	DialogueManager.start_dialogue("major_search_announce_test", major_npc.npc_data.name)
 	await DialogueManager.dialogue_ended
 	
 	_begin_frisk()
+
+
 
 func _begin_frisk() -> void:
 	# Begin frisk
@@ -143,6 +148,9 @@ func _begin_frisk() -> void:
 
 func _send_in_grunt() -> void:
 	if not GameState.raid_in_progress: return
+	
+	# FIX: Look back at the Major after the frisk!
+	GameState.talking_to = major_npc
 	
 	DialogueManager.start_dialogue("major_raid_frisk_complete", major_npc.npc_data.name)
 	await DialogueManager.dialogue_ended

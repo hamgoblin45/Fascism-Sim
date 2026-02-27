@@ -26,23 +26,25 @@ func start_dialogue(timeline_key: String, npc_name: String = ""):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	GameState.in_dialogue = true
 	GameState.can_move = false
+	
+	# NEW: Trigger the cinematic focus!
+	if GameState.player and is_instance_valid(GameState.talking_to):
+		GameState.player.start_cinematic_focus(GameState.talking_to, 35.0)
+		
 	dialogue_started.emit()
 
 func _on_timeline_ended():
 	GameState.in_dialogue = false
 	GameState.can_move = true
 	
-	# FIX: Only recapture mouse if we are NOT shopping
+	# NEW: End the cinematic focus!
+	if GameState.player:
+		GameState.player.end_cinematic_focus()
+	
 	if not GameState.shopping:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	dialogue_ended.emit()
-
-# Call this func from Dialogic: DialogueBridge.accept_quest("path to objective")
-func accept_objective(path: String):
-	var obj = load(path)
-	if obj:
-		EventBus.advance_objective.emit(obj)
 
 # This is used to confirm player has an objective before show a particular dialogue branch
 func is_objective_complete(id: String) -> bool:

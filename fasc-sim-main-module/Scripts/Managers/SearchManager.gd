@@ -258,6 +258,9 @@ func _guest_captured(npc: NPC):
 		assigned_searcher.spawn_bark("Hey! Who's this!")
 		await get_tree().create_timer(1.0).timeout
 		assigned_searcher.look_at_target(npc)
+		
+		# FIX: Look at the Grunt who just yelled!
+		GameState.talking_to = assigned_searcher 
 	
 	DialogueManager.start_dialogue("raid_guest_discovered", "Major")
 
@@ -340,6 +343,9 @@ func interrogation_started(item: ItemData) -> bool:
 	var dialogue_key = "default_contraband_questioning"
 	if item.interrogation_dialogue_id != "":
 		dialogue_key = item.interrogation_dialogue_id + "_questioning"
+	
+	if assigned_searcher:
+		GameState.talking_to = assigned_searcher
 	
 	DialogueManager.start_dialogue(dialogue_key, "Officer")
 	
