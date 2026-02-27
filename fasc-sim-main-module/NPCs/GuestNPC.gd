@@ -30,7 +30,8 @@ func _process(delta: float) -> void:
 	# 1. Dynamic UI Updates
 	if GameState.equipped_item != last_equipped_item:
 		last_equipped_item = GameState.equipped_item
-		if GameState.equipped_item is ConsumableData:
+		# NEW: Only show the "Hold to Give" prompt if they are actually a guest!
+		if GameState.equipped_item is ConsumableData and is_inside_house:
 			interact_area.interact_text = "Tap: Talk | Hold: Give " + GameState.equipped_item.name
 		else:
 			interact_area.interact_text = "Talk"
@@ -41,17 +42,18 @@ func _process(delta: float) -> void:
 	if is_being_looked_at:
 		# 2. Billboard Reveal Timer
 		look_timer += delta
-		if look_timer >= 1.0 and needs_billboard:
+		
+		# NEW: Only reveal the billboard if they are in the house!
+		if look_timer >= 1.0 and needs_billboard and is_inside_house:
 			needs_billboard.reveal()
 			
-		# 3. Hold-to-Give Logic
-		if GameState.equipped_item is ConsumableData:
+		# 3. Hold-to-Give Logic (Only allow feeding if they are a guest!)
+		if GameState.equipped_item is ConsumableData and is_inside_house:
 			# Track when the player initially clicks
 			if Input.is_action_just_pressed("interact"):
 				has_fed_current_press = false
 				
 			if Input.is_action_pressed("interact"):
-				# Only increment if we haven't already fed them this press
 				if not has_fed_current_press:
 					give_timer += delta
 					EventBus.consume_progress.emit(give_timer / give_duration)
@@ -59,15 +61,14 @@ func _process(delta: float) -> void:
 					if give_timer >= give_duration:
 						_feed_guest(GameState.equipped_item)
 						_reset_give_state()
-						has_fed_current_press = true # Lock out the tap logic!
+						has_fed_current_press = true
 						
 			elif Input.is_action_just_released("interact"):
-				# Only trigger dialogue if we DIDN'T just feed them
 				if not has_fed_current_press and give_timer > 0.0:
 					super._handle_interaction()
 					
 				_reset_give_state()
-				has_fed_current_press = false # Reset the lock
+				has_fed_current_press = false
 		else:
 			_reset_give_state()
 			
@@ -96,7 +97,8 @@ func _on_look_change(interactable: Interactable, looking: bool):
 		
 		if looking:
 			last_equipped_item = GameState.equipped_item
-			if GameState.equipped_item is ConsumableData:
+			# NEW: Match the logic here so the initial text is correct
+			if GameState.equipped_item is ConsumableData and is_inside_house:
 				interact_area.interact_text = "Tap: Talk | Hold: Give " + GameState.equipped_item.name
 			else:
 				interact_area.interact_text = "Talk"
