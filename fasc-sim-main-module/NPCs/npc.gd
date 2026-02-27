@@ -14,7 +14,7 @@ var interactable: bool = true
 @onready var bark_anchor: Node3D = $BarkAnchor
 
 @export_group("Vision Settings")
-@export var vision_range: float = 10.0
+@export var vision_range: float = 4.2
 @export var vision_angle: float = 60.0
 @onready var vision_ray: RayCast3D = %VisionRay
 
@@ -27,7 +27,7 @@ var looking_at: Node3D
 enum {IDLE, WALK, WAIT, ANIMATING, FOLLOWING, COMMAND_MOVE}
 var state = IDLE
 var prev_state
-const SPEED_MULTIPLIER: float = 3.2
+const SPEED_MULTIPLIER: float = 1.35
 
 # Pathing & Overrides
 var is_under_command: bool = false 
@@ -46,8 +46,8 @@ func _ready() -> void:
 	EventBus.follow_player.connect(follow_player)
 	
 	# Setup Nav Agent
-	nav_agent.path_desired_distance = 2.0
-	nav_agent.target_desired_distance = 2.0
+	nav_agent.path_desired_distance = 0.42
+	nav_agent.target_desired_distance = 0.21
 	
 	if vision_ray:
 		vision_ray.add_exception(self)
@@ -231,7 +231,7 @@ func _move_and_rotate(dir: Vector3, speed: float, delta: float):
 
 # --- FOOTSTEP SYSTEM ---
 var distance_walked: float = 0.0
-var step_distance: float = 4.2 # NPCs usually take slightly shorter/slower steps than players
+var step_distance: float = 1.78 # NPCs usually take slightly shorter/slower steps than players
 
 
 func _handle_footsteps(delta: float):
@@ -252,7 +252,7 @@ func _play_footstep():
 	# CAST A RAY THROUGH CODE (No Node Required!)
 	# We shoot a line from their center to 1.5 meters straight down
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(global_position, global_position + Vector3.DOWN * 1.5)
+	var query = PhysicsRayQueryParameters3D.create(global_position, global_position + Vector3.DOWN * 0.63)
 	var result = space_state.intersect_ray(query)
 	
 	if result:

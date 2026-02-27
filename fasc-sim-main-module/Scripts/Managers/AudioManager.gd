@@ -52,7 +52,7 @@ func play_3d(sound_name: String, position: Vector3, volume_db: float = 0.0, pitc
 	player.stream = stream
 	player.volume_db = volume_db
 	player.pitch_scale = pitch
-	player.max_distance = 25.0 
+	player.max_distance = 18.0 
 	player.attenuation_model = AudioStreamPlayer3D.ATTENUATION_INVERSE_DISTANCE
 	
 	# NEW: Add to a group matching the sound name

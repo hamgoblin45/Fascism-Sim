@@ -10,11 +10,11 @@ class_name PlayerCharacter
 ## The settings for the character's movement and feel.
 @export_category("Character")
 ## The speed that the character moves at without crouching or sprinting.
-@export var base_speed : float = 11
+@export var base_speed : float = 4.6
 ### The speed that the character moves at when sprinting.
-@export var sprint_speed : float = 19.0
+@export var sprint_speed : float = 8.0
 ### The speed that the character moves at when crouching.
-@export var crouch_speed : float = 6.5
+@export var crouch_speed : float = 2.7
 #
 ### How fast the character speeds up and slows down when Motion Smoothing is on.
 @export var acceleration : float = 2.0
@@ -110,8 +110,8 @@ var equipped_item_mesh
 var held: bool
 @export var throw_force = 1.5
 @export var follow_speed = 10.0
-@export var follow_dist = 2.5
-@export var max_dist_from_cam = 5.0
+@export var follow_dist = 1.05
+@export var max_dist_from_cam = 2.1
 @export var rotation_speed: float = 10.0
 @export var drop_below_player = false
 @export var ground_ray: RayCast3D
@@ -126,7 +126,7 @@ var current_hold_velocity: Vector3
 # --- FOOTSTEP SYSTEM ---
 @onready var floor_ray: RayCast3D = %GroundRay
 var distance_walked: float = 0.0
-var step_distance: float = 4.5 # Play a sound every 1.8 meters (tweak this until it feels right)
+var step_distance: float = 1.9 # Play a sound every 1.8 meters (tweak this until it feels right)
 
 
 var looking_at = null
@@ -226,7 +226,7 @@ func _drop_held_object():
 func _throw_held_object():
 	print("throwing held item")
 	var obj = held_object
-	var throw_vel = current_hold_velocity + (-CAMERA.global_transform.basis.z * throw_force * 10)
+	var throw_vel = current_hold_velocity + (-CAMERA.global_transform.basis.z * throw_force * 4.2)
 	_drop_held_object()
 	if is_instance_valid(obj):
 		obj.linear_velocity = throw_vel

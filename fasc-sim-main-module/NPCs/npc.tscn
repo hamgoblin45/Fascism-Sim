@@ -11,22 +11,23 @@
 script = ExtResource("2_vxakg")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2f5l"]
-radius = 0.7338867
-height = 4.8991823
+radius = 0.19628906
+height = 1.8987458
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w48l3"]
-radius = 5.0
+radius = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlwy1"]
 atlas = ExtResource("4_k5705")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5705"]
-height = 5.3271484
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2pim4"]
+radius = 0.23291016
+height = 1.8461914
 
 [node name="NPC" type="CharacterBody3D" unique_id=26024771]
 process_mode = 3
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
 collision_layer = 139
 collision_mask = 139
 floor_constant_speed = true
@@ -41,7 +42,7 @@ process_mode = 1
 navigation_layers = 33
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1590653774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4855292, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9853109, 0)
 shape = SubResource("CapsuleShape3D_h2f5l")
 
 [node name="ProximityDetectArea" type="Area3D" parent="." unique_id=795830790]
@@ -52,14 +53,13 @@ collision_layer = 0
 shape = SubResource("SphereShape3D_w48l3")
 
 [node name="LookAtNode" type="Node3D" parent="." unique_id=719546373]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0716, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0010126, 0)
 
 [node name="Head" type="Node3D" parent="." unique_id=2053793809]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
 [node name="VisionRay" type="RayCast3D" parent="Head" unique_id=2055719919]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6318436, 0)
 target_position = Vector3(0, 0, -40)
 collision_mask = 9
 
@@ -74,17 +74,17 @@ interact_text = "Talk"
 show_highlight = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=459875667]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6635742, 0)
-shape = SubResource("CapsuleShape3D_k5705")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0769043, 0)
+shape = SubResource("CapsuleShape3D_2pim4")
 
 [node name="BarkAnchor" type="Node3D" parent="." unique_id=669773913]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.752794, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9952412, 0)
 
 [node name="GuestNeedsBillboard" parent="." unique_id=1027608702 instance=ExtResource("5_xlwy1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8978443, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.140292, 0)
 
 [node name="blank_npc" parent="." unique_id=215287757 instance=ExtResource("6_2pim4")]
-transform = Transform3D(2.19, 0, 0, 0, 2.19, 0, 0, 0, 2.19, 0, 0, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]
 [connection signal="body_exited" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_exited"]

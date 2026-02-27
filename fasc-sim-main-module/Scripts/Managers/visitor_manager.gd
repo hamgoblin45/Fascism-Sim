@@ -225,7 +225,7 @@ func start_raid_arrival() -> void:
 			member.global_position = spawn_marker.global_position + offset
 			member.show()
 			member.process_mode = Node.PROCESS_MODE_INHERIT
-			offset += Vector3(1, 0, 1)
+			offset += Vector3(0.5, 0, 0.5)
 
 	# 2. Assign Paths
 	# Major -> Front Door
