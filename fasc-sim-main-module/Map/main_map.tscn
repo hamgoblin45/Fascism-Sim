@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://ccwiioata2y5n" path="res://Map/Fences/picket_fence_short.gltf" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://6ouvs2gcmubk" path="res://Map/street_lamp.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://5y2lc6m0p2tv" path="res://Map/telephone_pole.gltf" id="12_dg77c"]
+[ext_resource type="PackedScene" uid="uid://mvcaa2e2uvnj" path="res://Map/Buildings/commissary.tscn" id="13_okefk"]
 [ext_resource type="PackedScene" uid="uid://daxf6jtqfqyuh" path="res://Map/car1.gltf" id="13_w48qg"]
 [ext_resource type="PackedScene" uid="uid://csso27phrjcmt" path="res://Map/pickup.gltf" id="14_vivmo"]
 [ext_resource type="PackedScene" uid="uid://12tgaag32x0d" path="res://Map/Environ/town_square_tree.gltf" id="15_cegan"]
@@ -40,7 +41,6 @@
 [ext_resource type="PackedScene" uid="uid://cp0ovvynlli5i" path="res://Map/Furniture-Fixtures/park_bench.gltf" id="29_qsp4k"]
 [ext_resource type="PackedScene" uid="uid://c6fjk4hgs18ax" path="res://Map/trash_can.tscn" id="30_htxhm"]
 [ext_resource type="PackedScene" uid="uid://bsxpyngp6b7ei" path="res://Map/fire_hydrant.gltf" id="31_jq2sk"]
-[ext_resource type="PackedScene" uid="uid://d350gy73blt0f" path="res://Map/Buildings/commisary.gltf" id="32_4k2k6"]
 [ext_resource type="PackedScene" uid="uid://bry5nwcbt3x70" path="res://Map/dumpster.gltf" id="33_jq2sk"]
 [ext_resource type="PackedScene" uid="uid://beebh1k46iu8m" path="res://Map/gas_station.glb" id="34_0rl1p"]
 [ext_resource type="PackedScene" uid="uid://dh4mers48tj3a" path="res://Map/Furniture-Fixtures/rollaway_dumpster.gltf" id="34_4k2k6"]
@@ -80,12 +80,6 @@ metadata/_custom_type_script = "uid://coai26ivs6uv4"
 script = ExtResource("68_18c67")
 name = "Merchant"
 id = "merchant"
-metadata/_custom_type_script = "uid://coai26ivs6uv4"
-
-[sub_resource type="Resource" id="Resource_c0vsx"]
-script = ExtResource("68_18c67")
-name = "Vendor"
-id = "vendor"
 metadata/_custom_type_script = "uid://coai26ivs6uv4"
 
 [node name="Main" type="Node3D" unique_id=482726971]
@@ -132,6 +126,9 @@ navigation_mesh = SubResource("NavigationMesh_5vo8o")
 [node name="Culdesac" parent="NavigationRegion3D" unique_id=230454482 instance=ExtResource("66_uatky")]
 transform = Transform3D(2.3809526, 0, 0, 0, 2.3809526, 0, 0, 0, 2.3809526, -83.44398, 0, -326.63864)
 
+[node name="Commissary" parent="NavigationRegion3D/Culdesac" unique_id=25139329 instance=ExtResource("13_okefk")]
+transform = Transform3D(0.48138657, 0, -0.8765084, 0, 1, 0, 0.8765084, 0, 0.48138657, 30.816874, 3.2999053, 211.86621)
+
 [node name="Structures" type="Node3D" parent="NavigationRegion3D/Culdesac" unique_id=1568367817]
 transform = Transform3D(0.42, 0, 0, 0, 0.42, 0, 0, 0, 0.42, 35.071705, 0, 137.13976)
 
@@ -177,10 +174,6 @@ is_legal_merchant = false
 inventory_pool = ExtResource("70_1n4es")
 guaranteed_items = Array[ExtResource("71_40t73")]([ExtResource("72_hvouq")])
 npc_data = SubResource("Resource_dwp3b")
-
-[node name="VendorNPC" parent="NPCs" unique_id=226574541 instance=ExtResource("65_ej373")]
-transform = Transform3D(0.67382324, 0, -1.1117383, 0, 1.3, 0, 1.1117383, 0, 0.67382324, 22.247454, 3.3946254, 190.24165)
-npc_data = SubResource("Resource_c0vsx")
 
 [node name="PathingPoints" type="Node3D" parent="." unique_id=252180756]
 transform = Transform3D(1.0000001, 0, 8.940697e-08, 0, 0.99999994, 0, -8.940697e-08, 0, 1.0000001, 0, 0, 0)
@@ -2686,9 +2679,6 @@ transform = Transform3D(1.2311544, 0, -2.1324215, 0, 2.4623072, 0, 2.1324215, 0,
 
 [node name="fire_hydrant (1)" parent="Scenery" unique_id=1924578403 instance=ExtResource("31_jq2sk")]
 transform = Transform3D(-2.1805136, 0, -1.1438255, 0, 2.4623072, 0, 1.1438255, 0, -2.1805136, 99.382576, -0.40673923, 290.5049)
-
-[node name="commisary" parent="Scenery" unique_id=6856109 instance=ExtResource("32_4k2k6")]
-transform = Transform3D(0.6739412, 0, -1.2271118, 0, 1.4000001, 0, 1.2271118, 0, 0.6739412, -37.770226, 0.12876606, 132.46674)
 
 [node name="dumpster" parent="Scenery" unique_id=1553059587 instance=ExtResource("33_jq2sk")]
 transform = Transform3D(0.9930147, 0, 0.17509526, 0, 1.0083334, 0, -0.17509526, 0, 0.9930147, -69.45188, -0.40673852, 71.622116)

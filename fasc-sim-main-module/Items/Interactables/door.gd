@@ -115,10 +115,9 @@ func toggle_door(state: bool):
 	else:
 		anim.play("Close")
 		
-		if interactable.id == "front_door":
-			interactable.interact_text = "L-Click: Open | Hold R-Click: Peek"
-		else:
-			interactable.interact_text = "Open"
+		interactable.interact_text = "Open"
+		#if interactable.id == "front_door":
+			#interactable.interact_text = "L-Click: Open | Hold R-Click: Peek"
 			
 		await anim.animation_finished
 		AudioManager.play_3d("door_close", global_position, -5.0, 1.0)

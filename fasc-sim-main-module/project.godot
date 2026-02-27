@@ -56,7 +56,8 @@ directories/dtl_directory={
 "merchant_at_door": "res://Data/Dialogue/Characters/merchant_at_door.dtl",
 "merchant_closing": "res://Data/Dialogue/Characters/merchant_closing.dtl",
 "raid_guest_discovered": "res://Data/Dialogue/raid_guest_discovered.dtl",
-"timeline": "res://Data/Dialogue/timeline.dtl"
+"timeline": "res://Data/Dialogue/timeline.dtl",
+"vendor_default": "res://Data/Dialogue/Characters/vendor_default.dtl"
 }
 layout/style_directory={
 "": "res://Interface/Styles/MainDialogueStyle.tres",
@@ -121,7 +122,6 @@ guests=""
 concrete=""
 wood=""
 carpet=""
-grabbable=""
 
 [gui]
 
