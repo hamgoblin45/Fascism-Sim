@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://8yo1utsr8bth" path="res://Items/Interactables/interactable.gd" id="3_k7mck"]
 [ext_resource type="Texture2D" uid="uid://bi1lgavhmkq5c" path="res://Interface/UI_icons.png" id="4_k5705"]
 [ext_resource type="PackedScene" uid="uid://diuwtmxdc2vvg" path="res://Items/Interactables/guest_needs_billboard.tscn" id="5_xlwy1"]
+[ext_resource type="PackedScene" uid="uid://b0rlw2umttyrd" path="res://NPCs/blank_npc.glb" id="6_2pim4"]
 
 [sub_resource type="Resource" id="Resource_k7mck"]
 script = ExtResource("2_vxakg")
@@ -15,26 +16,6 @@ height = 4.8991823
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w48l3"]
 radius = 5.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uamu8"]
-shading_mode = 0
-albedo_color = Color(0.849446, 5.7371853e-05, 0.6507998, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_uamu8"]
-material = SubResource("StandardMaterial3D_uamu8")
-size = Vector3(0.2, 0.2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vymve"]
-albedo_color = Color(0.96, 0.56, 0, 0.380392)
-
-[sub_resource type="SphereMesh" id="SphereMesh_qwsqk"]
-material = SubResource("StandardMaterial3D_vymve")
-height = 1.2
-
-[sub_resource type="SphereMesh" id="SphereMesh_qkxgd"]
-material = SubResource("StandardMaterial3D_vymve")
-radius = 0.6
-height = 4.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlwy1"]
 atlas = ExtResource("4_k5705")
@@ -76,24 +57,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0716, 0)
 [node name="Head" type="Node3D" parent="." unique_id=2053793809]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.24999, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Head" unique_id=1511276597]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06482768, 2.6315293, -1.3503411)
-mesh = SubResource("BoxMesh_uamu8")
-
 [node name="VisionRay" type="RayCast3D" parent="Head" unique_id=2055719919]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6318436, 0)
-enabled = false
 target_position = Vector3(0, 0, -40)
-collision_mask = 13
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=571848710]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7710776, 0)
-mesh = SubResource("SphereMesh_qwsqk")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=748598529]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9984965, 0)
-mesh = SubResource("SphereMesh_qkxgd")
+collision_mask = 9
 
 [node name="Interactable" type="Area3D" parent="." unique_id=1997282885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0900524, 0)
@@ -114,6 +82,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.752794, 0)
 
 [node name="GuestNeedsBillboard" parent="." unique_id=1027608702 instance=ExtResource("5_xlwy1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8978443, 0)
+
+[node name="blank_npc" parent="." unique_id=215287757 instance=ExtResource("6_2pim4")]
+transform = Transform3D(2.19, 0, 0, 0, 2.19, 0, 0, 0, 2.19, 0, 0, 0)
 
 [connection signal="body_entered" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_entered"]
 [connection signal="body_exited" from="ProximityDetectArea" to="." method="_on_proximity_detect_area_body_exited"]

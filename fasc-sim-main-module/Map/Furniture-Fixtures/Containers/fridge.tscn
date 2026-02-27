@@ -17,7 +17,7 @@ atlas = ExtResource("4_0fobo")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dkrnp"]
-size = Vector3(2.241211, 7.9344482, 3.953125)
+size = Vector3(2.7191162, 7.9344482, 3.953125)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ihu05"]
 size = Vector3(3.0061646, 8.134644, 3.9604492)
@@ -40,7 +40,7 @@ interact_icon = SubResource("AtlasTexture_q7jb5")
 interact_text = "Open"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=514788359]
-transform = Transform3D(1, 0, -4.973799e-13, 0, 1, 0, 4.973799e-13, 0, 1, 0, 3.496601, 0.44580078)
+transform = Transform3D(1, 0, -4.973799e-13, 0, 1, 0, 4.973799e-13, 0, 1, 0.23895264, 3.496601, 0.44580078)
 shape = SubResource("BoxShape3D_dkrnp")
 
 [node name="BodyCollision" type="CollisionShape3D" parent="." unique_id=660164132]

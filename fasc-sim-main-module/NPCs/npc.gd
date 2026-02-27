@@ -49,6 +49,9 @@ func _ready() -> void:
 	nav_agent.path_desired_distance = 2.0
 	nav_agent.target_desired_distance = 2.0
 	
+	if vision_ray:
+		vision_ray.add_exception(self)
+	
 	await get_tree().process_frame 
 	_check_schedule(GameState.hour, GameState.minute)
 
@@ -70,8 +73,13 @@ func _physics_process(delta: float) -> void:
 	
 	# Look At
 	if is_instance_valid(looking_at):
-		look_at_node.look_at(looking_at.global_position)
-		global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 0.1)
+		# Look at the chest/center of the target, not their feet!
+		var target_pos = looking_at.global_position
+		if looking_at is CharacterBody3D:
+			target_pos.y += 1.0 
+			
+		look_at_node.look_at(target_pos)
+		global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 5.0 * delta)
 
 	_handle_state(delta)
 	move_and_slide()
@@ -95,6 +103,7 @@ func _check_schedule(h: int, m: int):
 		set_path(active_path)
 
 func set_path(path: PathData):
+	look_at_target(null)
 	active_path = path
 	
 	if path and path.get_next_target():
@@ -207,8 +216,14 @@ func _move_and_rotate(dir: Vector3, speed: float, delta: float):
 	velocity.x = lerp(velocity.x, dir.x * adjusted_speed, 5.0 * delta)
 	velocity.z = lerp(velocity.z, dir.z * adjusted_speed, 5.0 * delta)
 	
-	look_at_node.look_at(global_position + dir)
-	global_rotation.y = lerp_angle(global_rotation.y, look_at_node.global_rotation.y, 5.0 * delta)
+	# NEW: Clean, math-based rotation!
+	# Only rotate to face the walking direction if we aren't being forced to stare at someone
+	if not is_instance_valid(looking_at) and dir.length() > 0.1:
+		var target_angle = atan2(-dir.x, -dir.z)
+		global_rotation.y = lerp_angle(global_rotation.y, target_angle, 8.0 * delta)
+		
+		# Smoothly rotate the character to face where they are walking
+		global_rotation.y = lerp_angle(global_rotation.y, target_angle, 8.0 * delta)
 
 # --- FOOTSTEP SYSTEM ---
 var distance_walked: float = 0.0
@@ -257,8 +272,10 @@ func command_move_to(target: Vector3):
 	is_under_command = true
 	dynamic_target_pos = target
 	state = COMMAND_MOVE
-	# Pre-set the nav agent immediately
 	nav_agent.target_position = target
+	
+	# FIX: Stop staring at previous targets so we can face where we are walking!
+	look_at_target(null)
 
 func command_stop():
 	is_under_command = false
@@ -273,41 +290,51 @@ func look_at_target(target):
 func _can_see_target(target_node: Node3D) -> bool:
 	if not is_instance_valid(target_node): return false
 	
-	# 1. Start raycast from EYE LEVEL, not the feet!
 	var my_eyes = global_position + Vector3(0, 1.6, 0)
 	if head: my_eyes = head.global_position
 	
-	# 2. Target the CENTER of the object (or chest of the NPC)
-	var target_center = target_node.global_position + Vector3(0, 1.0, 0)
+	var target_chest = target_node.global_position + Vector3(0, 1.0, 0)
 	
-	# Distance Check
-	if my_eyes.distance_to(target_center) > vision_range:
+	# 1. Distance Check
+	if my_eyes.distance_to(target_chest) > vision_range:
 		return false
 	
-	# Angle Check
-	var dir = my_eyes.direction_to(target_center)
+	# 2. Angle Check (The Mathematical Cone)
+	var dir = my_eyes.direction_to(target_chest)
+	
+	# RESTORED: Negative signs for Godot's native -Z forward
 	var fwd = -global_transform.basis.z
+	if head: fwd = -head.global_transform.basis.z 
+		
 	var angle_dot = fwd.dot(dir)
 	var angle_threshold = cos(deg_to_rad(vision_angle))
 	
 	if angle_dot < angle_threshold:
-		return false
+		return false # They are outside our peripheral vision!
 	
-	# Raycast Check
+	# 3. Raycast Check (Line of Sight)
 	if not vision_ray: return false
 	
 	vision_ray.enabled = true
-	# Temporarily detach ray position from NPC rotation/body to guarantee clean math
-	vision_ray.global_position = my_eyes 
-	vision_ray.target_position = vision_ray.to_local(target_center)
-	vision_ray.force_raycast_update()
-	
 	var can_see = false
-	if vision_ray.is_colliding():
-		var collider = vision_ray.get_collider()
-		if collider == target_node or collider.get_parent() == target_node:
-			can_see = true
 	
+	# Check the chest first. If blocked, check the head!
+	var points_to_check = [
+		target_node.global_position + Vector3(0, 1.0, 0), # Chest
+		target_node.global_position + Vector3(0, 1.6, 0)  # Head
+	]
+	
+	for point in points_to_check:
+		vision_ray.global_position = my_eyes 
+		vision_ray.target_position = vision_ray.to_local(point)
+		vision_ray.force_raycast_update()
+		
+		if vision_ray.is_colliding():
+			var collider = vision_ray.get_collider()
+			if collider == target_node or collider.get_parent() == target_node:
+				can_see = true
+				break # We saw them! No need to check other body parts.
+				
 	vision_ray.enabled = false
 	return can_see
 
